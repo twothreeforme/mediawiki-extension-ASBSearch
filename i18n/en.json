@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shocks"
+		]
+	},
+	"asbsearch": "ASB Search",
+	"asbsearch-desc": "Various search options for ASB data.",
+	"asbsearch-summary": "On this Special page editors can search for ASB data that has been committed to the Wiki database.",
+	"group-asbsearchrole": "",
+	"group-asbsearchrole-member": "",
+	"grouppage-asbsearchrole": "",
+	"action-asbsearch": "",
+	"right-asbsearch": ""
+}

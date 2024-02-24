@@ -1,0 +1,13 @@
+#dropstable {
+    position: relative;
+}
+
+#dropstable th {
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+  }
+
+#dropstable tr:nth-child(even) td{
+    background-color: #4c8af550;
+}
