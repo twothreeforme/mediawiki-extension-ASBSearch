@@ -193,7 +193,7 @@ class SpecialASBSearch extends SpecialPage {
 
 	public function openConnection() {
        // $status = Status::newGood();
-	   
+
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
@@ -212,6 +212,7 @@ class SpecialASBSearch extends SpecialPage {
 			print_r('issue');
         }
  
+		
         // return $status;
 		return $returnDB;
     }
