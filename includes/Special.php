@@ -298,7 +298,13 @@ class SpecialASBSearch extends SpecialPage {
 	{
 		$html = "<br>
 			<div ><p>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</p> </div>
-			<div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name (lvl)</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
+			<div style=\"max-height: 500px; overflow: auto; display: inline-block;\">
+			<table id=\"dropstable\">
+				<tr><th>Zone Name</th>
+				<th>Mob Name <sup>(lvl)</sup></th>
+				<th>Item Name</th>
+				<th>Item (sort)Name</th>
+				<th>Drop Percentage</th>";
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
@@ -397,8 +403,9 @@ class SpecialASBSearch extends SpecialPage {
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
 
-		if ( $fished == true ) return "[[$mobName]] (fished)";
-		else return "[[$mobName]] ($minLvl-$maxLvl)";
+		$mobName = "[[$mobName]]<sup>($minLvl-$maxLvl)</sup>";
+		if ( $fished == true ) return $mobName . " (fished)";
+		else return $mobName;
 	}
 
 	function parseItemName($itemName){
