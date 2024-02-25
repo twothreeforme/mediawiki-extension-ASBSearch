@@ -296,7 +296,9 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
-		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name (lvl)</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
+		$html = "<br>
+			<div ><p>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</p> </div>
+			<div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name (lvl)</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
