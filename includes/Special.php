@@ -13,7 +13,7 @@ class SpecialASBSearch extends SpecialPage {
 		$out->addModules(['inputHandler']);
 	}
 
-	public $thRatesCheck = 0;
+	private $thRatesCheck = 0;
 
 	function execute( $par ) {
 		$request = $this->getRequest();
@@ -246,7 +246,8 @@ class SpecialASBSearch extends SpecialPage {
 						'mob_droplist.itemRate', 
 						'zone_settings.name AS zoneName',
 						'mob_groups.name AS mobName',
-						'item_basic.name AS itemName' ] )
+						'item_basic.name AS itemName',
+						'item_basic.sortname AS itemSortName', ] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
@@ -293,7 +294,7 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
-		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name</th><th>Item Name</th><th>Drop Percentage</th>";
+		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
@@ -311,10 +312,9 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = self::parseZoneName($row->zoneName);
 			$mn = self::parseMobName($row->mobName);
 			$in = self::parseItemName($row->itemName);
+			$iSn = self::parseItemName($row->itemSortName);
 
-
-
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$iSn</center></td><td><center>$droprate</center></td>";
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
@@ -384,9 +384,17 @@ class SpecialASBSearch extends SpecialPage {
 	}
 
 	function parseMobName($mobName){
+		$fished = false;
+		if ( str_contains($mobName, "_fished") ) {
+			$mobName = str_replace("_fished", "", $mobName);
+			$fished = true;
+		}
+
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
-		return "[[$mobName]]";
+
+		if ( $fished == true ) return "[[$mobName]] (fished)";
+		else return "[[$mobName]]";
 	}
 
 	function parseItemName($itemName){
