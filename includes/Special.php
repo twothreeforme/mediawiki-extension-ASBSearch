@@ -197,8 +197,8 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                //'user' => 'root',
-                //'password' => '',
+                // 'user' => 'root',
+                // 'password' => '',
 				'user' => 'horizon_wiki',
 				'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
@@ -246,6 +246,8 @@ class SpecialASBSearch extends SpecialPage {
 						'mob_droplist.itemRate', 
 						'zone_settings.name AS zoneName',
 						'mob_groups.name AS mobName',
+						'mob_groups.minLevel AS mobMinLevel',
+						'mob_groups.maxLevel AS mobMaxLevel',
 						'item_basic.name AS itemName',
 						'item_basic.sortname AS itemSortName', ] )
 			->from( 'mob_droplist' )
@@ -294,7 +296,7 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
-		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
+		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name (lvl)</th><th>Item Name</th><th>Item (sort)Name</th><th>Drop Percentage</th>";
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
@@ -310,7 +312,7 @@ class SpecialASBSearch extends SpecialPage {
 			else $droprate = "$droprate %";
 			//if ( $droprate == 0 ) continue;
 			$zn = self::parseZoneName($row->zoneName);
-			$mn = self::parseMobName($row->mobName);
+			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = self::parseItemName($row->itemName);
 			$iSn = self::parseItemName($row->itemSortName);
 
@@ -383,7 +385,7 @@ class SpecialASBSearch extends SpecialPage {
 		return "[[$zoneName]]";
 	}
 
-	function parseMobName($mobName){
+	function parseMobName($mobName, $minLvl, $maxLvl){
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
 			$mobName = str_replace("_fished", "", $mobName);
@@ -394,7 +396,7 @@ class SpecialASBSearch extends SpecialPage {
 		$mobName = ucwords($mobName);
 
 		if ( $fished == true ) return "[[$mobName]] (fished)";
-		else return "[[$mobName]]";
+		else return "[[$mobName]] ($minLvl-$maxLvl)";
 	}
 
 	function parseItemName($itemName){
