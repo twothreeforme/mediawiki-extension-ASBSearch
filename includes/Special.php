@@ -1,24 +1,13 @@
 <?php
 //namespace MediaWiki\Extension\MyExtension;
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
-
-//print_r(DB_PRIMARY);
 
 class SpecialASBSearch extends SpecialPage {
     public function __construct( $title = 'ASBSearch' ) {
         parent::__construct( 'ASBSearch' );
     }
-
-	protected $globalNames = [
-        'wgDBserver',
-        'wgDBname',
-        'wgDBuser',
-        'wgDBpassword',
-        'wgDBssl',
-        'wgDBprefix',
-        'wgDBTableOptions',
-    ];
 
 	static function onBeforePageDisplay( $out, $skin ) : void  { 
 		$out->addModules(['inputHandler']);
@@ -204,14 +193,15 @@ class SpecialASBSearch extends SpecialPage {
 
 	public function openConnection() {
        // $status = Status::newGood();
-	   $returnDB;
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
                 'user' => 'root',
                 'password' => '',
+				//'user' => 'horizon_wiki',
+				//'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
-                'dbname' => 'testASB',
+                'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
             //$status->value = $db;
@@ -223,16 +213,6 @@ class SpecialASBSearch extends SpecialPage {
  
         // return $status;
 		return $returnDB;
-    }
-
-
-	private function databaseExists( $dbName ) {
-        $encDatabase = $this->db->addQuotes( $dbName );
- 
-        return $this->db->query(
-            "SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = $encDatabase",
-            __METHOD__
-        )->numRows() > 0;
     }
 
 	function getZoneNames(){
@@ -251,7 +231,10 @@ class SpecialASBSearch extends SpecialPage {
 	}
 
 	function getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch){
-		
+		$zoneNameSearch = self::replaceSpaces($zoneNameSearch);
+		$mobNameSearch = self::replaceSpaces($mobNameSearch);
+		$itemNameSearch = self::replaceSpaces($itemNameSearch);
+
 		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// $dbr = $lb->getConnection( DB_REPLICA );
 		$dbr = $this->openConnection();
@@ -321,7 +304,12 @@ class SpecialASBSearch extends SpecialPage {
 			
 			$droprate = ($row->itemRate)/10;
 			//if ( $droprate == 0 ) continue;
-			$html .= "<tr><td><center>$row->zoneName</center></td><td><center>$row->mobName</center></td><td><center>$row->itemName</center></td><td><center>$droprate %</center></td>";
+			$zn = self::replaceUnderscores($row->zoneName);
+			$mn = self::replaceUnderscores($row->mobName);
+			$in = self::replaceUnderscores($row->itemName);
+
+
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate %</center></td>";
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
@@ -376,9 +364,11 @@ class SpecialASBSearch extends SpecialPage {
 		return $html;
 	}
 
-	public static function getReplicaDB(): IReadableDatabase {
-		return MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
-			->getReplicaDatabase( 'awgeaewg');
+	function replaceSpaces($inputStr){
+		return str_replace(" ", "_", $inputStr);
+	}
+
+	function replaceUnderscores($inputStr){
+		return str_replace("_", " ", $inputStr);
 	}
 }
