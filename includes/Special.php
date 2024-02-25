@@ -197,10 +197,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                'user' => 'root',
-                'password' => '',
-				//'user' => 'horizon_wiki',
-				//'password' => 'KamjycFLfKEyFsogDtqM',
+                //'user' => 'root',
+                //'password' => '',
+				'user' => 'horizon_wiki',
+				'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -212,7 +212,7 @@ class SpecialASBSearch extends SpecialPage {
 			print_r('issue');
         }
  
-		
+
         // return $status;
 		return $returnDB;
     }
@@ -293,7 +293,7 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
-		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name</th><th>Item Name</th><th>Drop Percentage (0 = Steal)</th>";
+		$html = "<br><div style=\"max-height: 500px; overflow: auto; display: inline-block;\"><table id=\"dropstable\"><tr><th>Zone Name</th><th>Mob Name</th><th>Item Name</th><th>Drop Percentage</th>";
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
@@ -305,13 +305,16 @@ class SpecialASBSearch extends SpecialPage {
 			//DEBUG	
 			
 			$droprate = ($row->itemRate)/10;
+			if ( $droprate == 0 ) $droprate = 'Steal';
+			else $droprate = "$droprate %";
 			//if ( $droprate == 0 ) continue;
-			$zn = self::replaceUnderscores($row->zoneName);
-			$mn = self::replaceUnderscores($row->mobName);
-			$in = self::replaceUnderscores($row->itemName);
+			$zn = self::parseZoneName($row->zoneName);
+			$mn = self::parseMobName($row->mobName);
+			$in = self::parseItemName($row->itemName);
 
 
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate %</center></td>";
+
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
@@ -372,5 +375,23 @@ class SpecialASBSearch extends SpecialPage {
 
 	function replaceUnderscores($inputStr){
 		return str_replace("_", " ", $inputStr);
+	}
+
+	function parseZoneName($zoneName){
+		$zoneName = self::replaceUnderscores($zoneName);
+		$zoneName = str_replace("[S]", "(S)", $zoneName);
+		return "[[$zoneName]]";
+	}
+
+	function parseMobName($mobName){
+		$mobName = self::replaceUnderscores($mobName);
+		$mobName = ucwords($mobName);
+		return "[[$mobName]]";
+	}
+
+	function parseItemName($itemName){
+		$itemName = self::replaceUnderscores($itemName);
+		$itemName = ucwords($itemName);
+		return "[[$itemName]]";
 	}
 }
