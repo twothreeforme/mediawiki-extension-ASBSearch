@@ -62,7 +62,7 @@ class ParserHelper {
 
 
     /**************************
-     * General Parsin
+     * General Parsing
      */
     public static function replaceApostrophe($inputStr){
 		return str_replace("'", "", $inputStr);
@@ -75,6 +75,8 @@ class ParserHelper {
 	public static function replaceUnderscores($inputStr){
 		return str_replace("_", " ", $inputStr);
 	}
+
+    //public static function 
 }
 
 

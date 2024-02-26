@@ -175,14 +175,11 @@ class SpecialASBSearch extends SpecialPage {
 
 		$htmlForm->setMethod( 'post' );
 		$htmlForm->show(); // Display the form
-
-/////////// HTML FORM TESTING
 		
 		$output->addWikiTextAsInterface( $wikitext );
 	}
 
-	// Callback function
-	// OnSubmit Callback, here we do all the logic we want to do…
+
 	public static function processInput( $formData ) {
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
@@ -246,7 +243,6 @@ class SpecialASBSearch extends SpecialPage {
 		$mobNameSearch = ParserHelper::replaceApostrophe($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceApostrophe($itemNameSearch);
 
-
 		$query = [ 
 			//"zone_settings.name" => $zoneNameSearch,
 			"mob_groups.name LIKE '%$mobNameSearch%'",
@@ -259,13 +255,7 @@ class SpecialASBSearch extends SpecialPage {
 			array_push($query, "zone_settings.name = '$zoneNameSearch'");
 		}
 
-		//print_r($query);
-
-
-		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		// $dbr = $lb->getConnection( DB_REPLICA );
 		$dbr = $this->openConnection();
-
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
@@ -283,13 +273,7 @@ class SpecialASBSearch extends SpecialPage {
 
 			//->field( 'mob_groups.name', null )
 			// |join on=asb_mob_groups.zoneid=asb_zone_settings.zoneid,asb_mob_droplist.dropid=asb_mob_groups.dropid
-			->where( 
-				//"zone_settings.name = '%$zoneNameSearch%'",
-				// "zone_settings.name" => $zoneNameSearch,
-				// "mob_groups.name LIKE '%$mobNameSearch%'",
-				// "item_basic.name LIKE '%$itemNameSearch%'"
-				$query
-			)
+			->where( $query	)
 			->fetchResultSet(); 
 	}
 
@@ -327,7 +311,7 @@ class SpecialASBSearch extends SpecialPage {
 
 		$html .= "<br>
 		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
-		<div style=\"max-height: 900px; overflow: auto; display: inline-block;\">
+		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"dropstable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
@@ -424,44 +408,4 @@ class SpecialASBSearch extends SpecialPage {
 
 		return $html;
 	}
-
-	// function replaceApostrophe($inputStr){
-	// 	return str_replace("'", "", $inputStr);
-	// }
-
-	// function replaceSpaces($inputStr){
-	// 	return str_replace(" ", "_", $inputStr);
-	// }
-
-	// function replaceUnderscores($inputStr){
-	// 	return str_replace("_", " ", $inputStr);
-	// }
-
-	// function parseZoneName($zoneName){
-	// 	$zoneName = self::replaceUnderscores($zoneName);
-	// 	$zoneName = str_replace("[S]", "(S)", $zoneName);
-	// 	$zoneName = str_replace("-", " - ", $zoneName);
-	// 	return " [[$zoneName]] ";
-	// }
-
-	// function parseMobName($mobName, $minLvl, $maxLvl){
-	// 	$fished = false;
-	// 	if ( str_contains($mobName, "_fished") ) {
-	// 		$mobName = str_replace("_fished", "", $mobName);
-	// 		$fished = true;
-	// 	}
-
-	// 	$mobName = self::replaceUnderscores($mobName);
-	// 	$mobName = ucwords($mobName);
-
-	// 	$mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
-	// 	if ( $fished == true ) return " " . $mobName . " (fished) ";
-	// 	else return $mobName;
-	// }
-
-	// function parseItemName($itemName){
-	// 	$itemName = self::replaceUnderscores($itemName);
-	// 	$itemName = ucwords($itemName);
-	// 	return " [[$itemName]] ";
-	// }
 }
