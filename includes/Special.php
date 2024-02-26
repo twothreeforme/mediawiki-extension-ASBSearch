@@ -236,9 +236,9 @@ class SpecialASBSearch extends SpecialPage {
 		$mobNameSearch = self::replaceSpaces($mobNameSearch);
 		$itemNameSearch = self::replaceSpaces($itemNameSearch);
 
-		$zoneNameSearch = self::replaceApostraphe($zoneNameSearch);
-		$mobNameSearch = self::replaceApostraphe($mobNameSearch);
-		$itemNameSearch = self::replaceApostraphe($itemNameSearch);
+		$zoneNameSearch = self::replaceApostrophe($zoneNameSearch);
+		$mobNameSearch = self::replaceApostrophe($mobNameSearch);
+		$itemNameSearch = self::replaceApostrophe($itemNameSearch);
 
 		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// $dbr = $lb->getConnection( DB_REPLICA );
@@ -299,11 +299,16 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = self::replaceUnderscores($row->zoneName);
 			$zn = str_replace("[S]", "(S)", $zn );
 
+			/*******************************************************
+			 * Removing OOE 
+			 */
+			// First check zone names
 			$skipRow = false;
 			foreach( ExclusionsHelper::$zones as $v) { 
 				//print_r($zn);
 				if ( $zn == $v ) { $skipRow = true; break; } }
 			if ( $skipRow == true ) continue;
+			/*******************************************************/
 
 			$zn = self::parseZoneName($row->zoneName);
 			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
@@ -371,7 +376,7 @@ class SpecialASBSearch extends SpecialPage {
 		return $html;
 	}
 
-	function replaceApostraphe($inputStr){
+	function replaceApostrophe($inputStr){
 		return str_replace("'", "", $inputStr);
 	}
 
