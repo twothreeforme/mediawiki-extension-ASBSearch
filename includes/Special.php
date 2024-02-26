@@ -305,7 +305,7 @@ class SpecialASBSearch extends SpecialPage {
 	function build_table($items)
 	{
 		$html = "";
-		
+
 		/************************
 		 * Row counter
 		 */
@@ -320,12 +320,12 @@ class SpecialASBSearch extends SpecialPage {
 			}
 		}
 		if ( $totalRows >= 0 ) {
-			$html = "<i><b> $totalRows records found</i></b>" . $html;
+			$html .= "<i><b> $totalRows records found</i></b>";
 			
 		}
 		/************************/
 
-		$html = "<br>
+		$html .= "<br>
 		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block;\">
 		<table id=\"dropstable\">
