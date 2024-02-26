@@ -4,7 +4,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
 
-set_time_limit(0);
+//set_time_limit(0);
 
 class SpecialASBSearch extends SpecialPage {
     public function __construct( $title = 'ASBSearch' ) {
@@ -27,6 +27,7 @@ class SpecialASBSearch extends SpecialPage {
 
 		# Get request data from, e.g.
 		//$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
+		
 		$zoneNameSearch = $request->getText( 'zoneNameSearch' );
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
 		$itemNameSearch = $request->getText( 'itemNameSearch' );
@@ -40,11 +41,11 @@ class SpecialASBSearch extends SpecialPage {
 		// print_r($url);
 ////////////////////////////////////////////
 		// if (isset($zoneNameDropDown) ||  ) {
-			if ( $zoneNameSearch == "" && $mobNameSearch == "" && $itemNameSearch== ""){
+			if ( $mobNameSearch == "" && $itemNameSearch== "" ){
 				//$wikitext = self::build_table(self::getFullDBTable());
-				$wikitext = "<p>Please use the search query above to generate a table.</p>";
+				$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
 			}
-			else {
+			else{
 				$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
 				$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 				$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
@@ -117,7 +118,7 @@ class SpecialASBSearch extends SpecialPage {
 
 /////////// HTML FORM TESTING
 		
-		$zoneNamesList = self::getZoneNames();
+		//$zoneNamesList = self::getZoneNames();
 		// formDescriptor Array to tell HTMLForm what to build
 		$lang = $this->getLanguage();
 		$formDescriptor = [
@@ -137,20 +138,21 @@ class SpecialASBSearch extends SpecialPage {
 			// 	'options' => $zoneNamesList,
 			// 	'default' => "Aht Urhgan Whitegate",
 			// ],
-			'zoneNameTextField' => [
-				'label' => 'Zone Name', // Label of the field
-				'class' => 'HTMLTextField', // Input type
-				'name' => 'zoneNameSearch'
-			],
+			
 			'mobNameTextField' => [
-				'label' => 'Mob Name', // Label of the field
+				'label' => 'Mob Name*', // Label of the field
 				'class' => 'HTMLTextField', // Input type
 				'name' => 'mobNameSearch'
 			],
 			'itemNameTextField' => [
-				'label' => 'Item Name', // Label of the field
+				'label' => 'Item Name*', // Label of the field
 				'class' => 'HTMLTextField', // Input type
 				'name' => 'itemNameSearch'
+			],
+			'zoneNameTextField' => [
+				'label' => 'Zone Name', // Label of the field
+				'class' => 'HTMLTextField', // Input type
+				'name' => 'zoneNameSearch'
 			],
 			'thRatesCheck' => [
 				'type' => 'check',
@@ -182,15 +184,11 @@ class SpecialASBSearch extends SpecialPage {
 	// OnSubmit Callback, here we do all the logic we want to do…
 	public static function processInput( $formData ) {
 		// If true is returned, the form won't display again
-		// if ( $formData['simpletextfield1'] === 'next' ) {
-		// 	return true; 
-		// } elseif ( $formData[ 'simpletextfield1' ] === 'again' ) {
-		// 	// If false is returned, the form will be redisplayed
-		// 	return false;
-		// }
-		return false;
 		// If a string is returned, it will be displayed as an error message with the form
-		//return 'Try again';
+		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == ''  ) {
+			return '*Either the Mob field or Item field must be filled.';
+		}
+		return false;
 	}
 
 	public function openConnection() {
@@ -219,20 +217,18 @@ class SpecialASBSearch extends SpecialPage {
 		return $returnDB;
     }
 
-	function getZoneNames(){
-		
-		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		// $dbr = $lb->getConnection( DB_REPLICA );
-		$dbr = $this->openConnection();
-		$zonenames =  $dbr->newSelectQueryBuilder()
-			->select( [ 'name' ] )
-			->from( 'zone_settings' )
-			->caller( __METHOD__ )->fetchResultSet(); 
+	// function getZoneNames(){
 
-		$result = [];
-		foreach ($zonenames as $row) { $result[$row->name]=$row->name; }
-		return $result ;
-	}
+	// 	$dbr = $this->openConnection();
+	// 	$zonenames =  $dbr->newSelectQueryBuilder()
+	// 		->select( [ 'name' ] )
+	// 		->from( 'zone_settings' )
+	// 		->fetchResultSet(); 
+
+	// 	$result = [];
+	// 	foreach ($zonenames as $row) { $result[$row->name]=$row->name; }
+	// 	return $result ;
+	// }
 
 	function getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch){
 		$zoneNameSearch = self::replaceSpaces($zoneNameSearch);
@@ -250,7 +246,7 @@ class SpecialASBSearch extends SpecialPage {
 						'mob_groups.name AS mobName',
 						'mob_groups.minLevel AS mobMinLevel',
 						'mob_groups.maxLevel AS mobMaxLevel',
-						'item_basic.name AS itemName',
+						'item_basic.name AS itemName', 
 						'item_basic.sortname AS itemSortName', ] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
@@ -264,29 +260,8 @@ class SpecialASBSearch extends SpecialPage {
 				"mob_groups.name LIKE '%$mobNameSearch%'",
 				"item_basic.name LIKE '%$itemNameSearch%'"
 			])
-			->caller( __METHOD__ )->fetchResultSet(); 
+			->fetchResultSet(); 
 	}
-
-	// function getFullDBTable(){
-		
-	// 	// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-	// 	// $dbr = $lb->getConnection( DB_REPLICA );
-	// 	$dbr = $this->openConnection();
-
-	// 	return $dbr->newSelectQueryBuilder()
-	// 	->select( [ //'mob_droplist.name', 
-	// 				'mob_droplist.itemRate', 
-	// 				'mob_droplist.dropid',
-	// 				'zone_settings.name',
-	// 				'mob_groups.name AS mobName' ] )
-	// 	->from( 'mob_droplist' )
-	// 	->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
-	// 	->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
-	// 	//->field( 'mob_groups.name', null )
-	// 	// |join on=asb_mob_groups.zoneid=asb_zone_settings.zoneid,asb_mob_droplist.dropid=asb_mob_groups.dropid
-	// 	->caller( __METHOD__ )->fetchResultSet(); 
-	// }
-
 
 	// 0 SET @ALWAYS =     1000;  -- Always, 100%
 	// 1 SET @VCOMMON =  999 > 201;  -- Very common, 24%
@@ -299,24 +274,22 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
+
 		$html = "<br>
-			<div ><p>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</p> </div>
+			<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
 			<div style=\"max-height: 500px; overflow: auto; display: inline-block;\">
 			<table id=\"dropstable\">
 				<tr><th>Zone Name</th>
 				<th>Mob Name <sup>(lvl)</sup></th>
 				<th>Item Name</th>
-				<th>Item (sort)Name</th>
+				
 				<th>Drop Percentage</th>";
+				//<th>Item (sort)Name</th>
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
 		foreach ($items as $row)
 		{
-			//DEBUG	
-			// $properties = get_object_vars( $row );
-			// print_r( $properties );
-			//DEBUG	
 			
 			$droprate = ($row->itemRate)/10;
 			if ( $droprate == 0 ) $droprate = 'Steal';
@@ -325,9 +298,9 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = self::parseZoneName($row->zoneName);
 			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = self::parseItemName($row->itemName);
-			$iSn = self::parseItemName($row->itemSortName);
+			//$iSn = self::parseItemName($row->itemSortName);
 
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$iSn</center></td><td><center>$droprate</center></td>";
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
@@ -394,7 +367,7 @@ class SpecialASBSearch extends SpecialPage {
 		$zoneName = self::replaceUnderscores($zoneName);
 		$zoneName = str_replace("[S]", "(S)", $zoneName);
 		$zoneName = str_replace("-", " - ", $zoneName);
-		return "[[$zoneName]]";
+		return " [[$zoneName]] ";
 	}
 
 	function parseMobName($mobName, $minLvl, $maxLvl){
@@ -407,14 +380,14 @@ class SpecialASBSearch extends SpecialPage {
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
 
-		$mobName = "[[$mobName]]<sup>($minLvl-$maxLvl)</sup>";
-		if ( $fished == true ) return $mobName . " (fished)";
+		$mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
+		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else return $mobName;
 	}
 
 	function parseItemName($itemName){
 		$itemName = self::replaceUnderscores($itemName);
 		$itemName = ucwords($itemName);
-		return "[[$itemName]]";
+		return " [[$itemName]] ";
 	}
 }
