@@ -304,6 +304,8 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
+		$html = "";
+		
 		/************************
 		 * Row counter
 		 */
@@ -313,9 +315,8 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $totalRows < 0 ) $totalRows = 0;
 			$totalRows ++;
 			if ( $totalRows > 1000){
-				$html = "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
+				return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
 					Please reduce search pool by adding more to any of the search parameters.</i></b>";
-				return $html;
 			}
 		}
 		if ( $totalRows >= 0 ) {
