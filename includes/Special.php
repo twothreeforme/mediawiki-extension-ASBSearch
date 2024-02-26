@@ -259,7 +259,7 @@ class SpecialASBSearch extends SpecialPage {
 			array_push($query, "zone_settings.name = '$zoneNameSearch'");
 		}
 
-		print_r($query);
+		//print_r($query);
 
 
 		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
