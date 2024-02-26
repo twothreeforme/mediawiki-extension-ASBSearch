@@ -2,6 +2,18 @@
 
 class ExclusionsHelper {
 
+    public static function zoneIsOOE($x){
+        if ( gettype($x) == 'string' || gettype($x) == 'integer' ){ 
+            foreach( ExclusionsHelper::$zones as $v) { 
+                if ( $x == $v ) { 
+                    //print_r($x . " found OOE"); 
+                    return true; } 
+            }
+        }
+
+        return false;
+    }
+
     public static $zones = [
 
         //ToUA
@@ -44,7 +56,7 @@ class ExclusionsHelper {
         'Meriphataud Mountains (S)',
         'Sauromugue Champaign (S)',
         'Beadeaux (S)',
-        'Crawlers\' Nest (S)',
+        'Crawlers Nest (S)',
         'Pashhow Marshlands (S)',
         'Rolanberry Fields (S)',
         'Vunkerl Inlet (S)',
@@ -59,9 +71,9 @@ class ExclusionsHelper {
         'Jugner Forest (S)',
         'East Ronfaure (S)',
         'Everbloom Hollow',
-        'Southern San d\'Oria (S)',
+        'Southern San dOria (S)',
         'Fort Karugo-Narugo (S)',
-        'Ghoyu\'s Reverie',
+        'Ghoyus Reverie',
         'Windurst Waters (S)',
         'West Sarutabaruta (S)',
         'Provenance',
@@ -82,11 +94,20 @@ class ExclusionsHelper {
         'Abyssea-Uleguerand',
         'Abyssea-Empyreal Paradox',
 
-        //Random
+        //Additional Zones (unorganized)
         'Feretory',
-        'Marquette Abdhaljs-Legion'
+        'Marquette Abdhaljs-Legion',
+
+        //Random ones? 
+        'unknown',
+        '49',
+        '286',
+        'GM Home'
     ];
 
+    public static $items = array(
+        'King Behemoth' => 'Defending Ring'
+    );
 }
 
 ?>

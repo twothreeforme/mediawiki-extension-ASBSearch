@@ -27,9 +27,8 @@ class SpecialASBSearch extends SpecialPage {
 		$this->setHeaders();
 
 		# Get request data from, e.g.
-		//$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
-		
-		$zoneNameSearch = $request->getText( 'zoneNameSearch' );
+		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
+		//$zoneNameSearch = $request->getText( 'zoneNameSearch' );
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
 		$itemNameSearch = $request->getText( 'itemNameSearch' );
 		$this->thRatesCheck = $request->getText( 'thRatesCheck' );
@@ -52,7 +51,7 @@ class SpecialASBSearch extends SpecialPage {
 				$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
 				$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
 
-				$wikitext = self::build_table(self::getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch));
+				$wikitext = self::build_table(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
 			}
 		//}
 
@@ -119,7 +118,7 @@ class SpecialASBSearch extends SpecialPage {
 
 /////////// HTML FORM TESTING
 		
-		//$zoneNamesList = self::getZoneNames();
+		$zoneNamesList = self::getZoneNames();
 		// formDescriptor Array to tell HTMLForm what to build
 		$lang = $this->getLanguage();
 		$formDescriptor = [
@@ -131,14 +130,7 @@ class SpecialASBSearch extends SpecialPage {
 			// 	// If true, the above string won't be HTML escaped
 			// 	'raw' => true,
 			// ],
-			// 'zoneNameDropDown' => [
-			// 	'type' => 'limitselect',
-			// 	'name' => 'zoneNameDropDown',
-			// 	'label' => 'Zone', // Label of the field
-			// 	'class' => 'HTMLSelectField', // Input type
-			// 	'options' => $zoneNamesList,
-			// 	'default' => "Aht Urhgan Whitegate",
-			// ],
+			
 			
 			'mobNameTextField' => [
 				'label' => 'Mob Name*', // Label of the field
@@ -150,11 +142,19 @@ class SpecialASBSearch extends SpecialPage {
 				'class' => 'HTMLTextField', // Input type
 				'name' => 'itemNameSearch'
 			],
-			'zoneNameTextField' => [
-				'label' => 'Zone Name', // Label of the field
-				'class' => 'HTMLTextField', // Input type
-				'name' => 'zoneNameSearch'
+			'zoneNameDropDown' => [
+				'type' => 'limitselect',
+				'name' => 'zoneNameDropDown',
+				'label' => 'Zone', // Label of the field
+				'class' => 'HTMLSelectField', // Input type
+				'options' => $zoneNamesList,
+				'default' => "Aht Urhgan Whitegate",
 			],
+			// 'zoneNameTextField' => [
+			// 	'label' => 'Zone Name', // Label of the field
+			// 	'class' => 'HTMLTextField', // Input type
+			// 	'name' => 'zoneNameSearch'
+			// ],
 			'thRatesCheck' => [
 				'type' => 'check',
 				'label' => 'Show TH Rates',
@@ -218,27 +218,49 @@ class SpecialASBSearch extends SpecialPage {
 		return $returnDB;
     }
 
-	// function getZoneNames(){
+	function getZoneNames(){
 
-	// 	$dbr = $this->openConnection();
-	// 	$zonenames =  $dbr->newSelectQueryBuilder()
-	// 		->select( [ 'name' ] )
-	// 		->from( 'zone_settings' )
-	// 		->fetchResultSet(); 
+		$dbr = $this->openConnection();
+		$zonenames =  $dbr->newSelectQueryBuilder()
+			->select( [ 'name' ] )
+			->from( 'zone_settings' )
+			->fetchResultSet(); 
 
-	// 	$result = [];
-	// 	foreach ($zonenames as $row) { $result[$row->name]=$row->name; }
-	// 	return $result ;
-	// }
+		$result = [ ];
+		foreach ($zonenames as $row) {
+			$temp = ParserHelper::zoneERA_forList($row->name);
+			if ( !isset($temp) ) { continue; }
+			$result[$temp]=$row->name; 
+			//print_r($result[$temp] .", " . $row->name);
+		}
+		$result[' ** Search All Zones ** '] = "searchallzones";
+		ksort($result);
+		return $result ;
+	}
 
 	function getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch){
-		$zoneNameSearch = self::replaceSpaces($zoneNameSearch);
-		$mobNameSearch = self::replaceSpaces($mobNameSearch);
-		$itemNameSearch = self::replaceSpaces($itemNameSearch);
+		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
+		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
 
-		$zoneNameSearch = self::replaceApostrophe($zoneNameSearch);
-		$mobNameSearch = self::replaceApostrophe($mobNameSearch);
-		$itemNameSearch = self::replaceApostrophe($itemNameSearch);
+		//$zoneNameSearch = self::replaceApostrophe($zoneNameSearch);
+		$mobNameSearch = ParserHelper::replaceApostrophe($mobNameSearch);
+		$itemNameSearch = ParserHelper::replaceApostrophe($itemNameSearch);
+
+
+		$query = [ 
+			//"zone_settings.name" => $zoneNameSearch,
+			"mob_groups.name LIKE '%$mobNameSearch%'",
+			"item_basic.name LIKE '%$itemNameSearch%'" ];
+
+			//up_property = 'enotifwatchlistpages'
+		if ( $zoneNameSearch !=  'searchallzones' ) {
+			$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
+			//$str = "zone_settings.name => $zoneNameSearch';
+			array_push($query, "zone_settings.name = '$zoneNameSearch'");
+		}
+
+		print_r($query);
+
 
 		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// $dbr = $lb->getConnection( DB_REPLICA );
@@ -246,7 +268,8 @@ class SpecialASBSearch extends SpecialPage {
 
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
-						'mob_droplist.itemRate', 
+						'mob_droplist.itemRate',
+						'mob_droplist.droptype',
 						'zone_settings.name AS zoneName',
 						'mob_groups.name AS mobName',
 						'mob_groups.minLevel AS mobMinLevel',
@@ -260,11 +283,13 @@ class SpecialASBSearch extends SpecialPage {
 
 			//->field( 'mob_groups.name', null )
 			// |join on=asb_mob_groups.zoneid=asb_zone_settings.zoneid,asb_mob_droplist.dropid=asb_mob_groups.dropid
-			->where( [
-				"zone_settings.name LIKE '%$zoneNameSearch%'",
-				"mob_groups.name LIKE '%$mobNameSearch%'",
-				"item_basic.name LIKE '%$itemNameSearch%'"
-			])
+			->where( 
+				//"zone_settings.name = '%$zoneNameSearch%'",
+				// "zone_settings.name" => $zoneNameSearch,
+				// "mob_groups.name LIKE '%$mobNameSearch%'",
+				// "item_basic.name LIKE '%$itemNameSearch%'"
+				$query
+			)
 			->fetchResultSet(); 
 	}
 
@@ -296,7 +321,7 @@ class SpecialASBSearch extends SpecialPage {
 		foreach ($items as $row)
 		{
 			//$zn = self::parseZoneName($row->zoneName);
-			$zn = self::replaceUnderscores($row->zoneName);
+			$zn = ParserHelper::replaceUnderscores($row->zoneName);
 			$zn = str_replace("[S]", "(S)", $zn );
 
 			/*******************************************************
@@ -310,11 +335,11 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $skipRow == true ) continue;
 			/*******************************************************/
 
-			$zn = self::parseZoneName($row->zoneName);
-			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
-			$in = self::parseItemName($row->itemName);
+			$zn = ParserHelper::zoneName($row->zoneName);
+			$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
+			$in = ParserHelper::itemName($row->itemName);
 			
-			$droprate = ($row->itemRate)/10;
+			$droprate = ($row->itemRate) / 10 ;
 			if ( $droprate == 0 ) $droprate = 'Steal';
 			else $droprate = "$droprate %";
 			//if ( $droprate == 0 ) continue;
@@ -376,43 +401,43 @@ class SpecialASBSearch extends SpecialPage {
 		return $html;
 	}
 
-	function replaceApostrophe($inputStr){
-		return str_replace("'", "", $inputStr);
-	}
+	// function replaceApostrophe($inputStr){
+	// 	return str_replace("'", "", $inputStr);
+	// }
 
-	function replaceSpaces($inputStr){
-		return str_replace(" ", "_", $inputStr);
-	}
+	// function replaceSpaces($inputStr){
+	// 	return str_replace(" ", "_", $inputStr);
+	// }
 
-	function replaceUnderscores($inputStr){
-		return str_replace("_", " ", $inputStr);
-	}
+	// function replaceUnderscores($inputStr){
+	// 	return str_replace("_", " ", $inputStr);
+	// }
 
-	function parseZoneName($zoneName){
-		$zoneName = self::replaceUnderscores($zoneName);
-		$zoneName = str_replace("[S]", "(S)", $zoneName);
-		$zoneName = str_replace("-", " - ", $zoneName);
-		return " [[$zoneName]] ";
-	}
+	// function parseZoneName($zoneName){
+	// 	$zoneName = self::replaceUnderscores($zoneName);
+	// 	$zoneName = str_replace("[S]", "(S)", $zoneName);
+	// 	$zoneName = str_replace("-", " - ", $zoneName);
+	// 	return " [[$zoneName]] ";
+	// }
 
-	function parseMobName($mobName, $minLvl, $maxLvl){
-		$fished = false;
-		if ( str_contains($mobName, "_fished") ) {
-			$mobName = str_replace("_fished", "", $mobName);
-			$fished = true;
-		}
+	// function parseMobName($mobName, $minLvl, $maxLvl){
+	// 	$fished = false;
+	// 	if ( str_contains($mobName, "_fished") ) {
+	// 		$mobName = str_replace("_fished", "", $mobName);
+	// 		$fished = true;
+	// 	}
 
-		$mobName = self::replaceUnderscores($mobName);
-		$mobName = ucwords($mobName);
+	// 	$mobName = self::replaceUnderscores($mobName);
+	// 	$mobName = ucwords($mobName);
 
-		$mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
-		if ( $fished == true ) return " " . $mobName . " (fished) ";
-		else return $mobName;
-	}
+	// 	$mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
+	// 	if ( $fished == true ) return " " . $mobName . " (fished) ";
+	// 	else return $mobName;
+	// }
 
-	function parseItemName($itemName){
-		$itemName = self::replaceUnderscores($itemName);
-		$itemName = ucwords($itemName);
-		return " [[$itemName]] ";
-	}
+	// function parseItemName($itemName){
+	// 	$itemName = self::replaceUnderscores($itemName);
+	// 	$itemName = ucwords($itemName);
+	// 	return " [[$itemName]] ";
+	// }
 }

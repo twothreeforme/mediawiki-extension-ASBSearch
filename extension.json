@@ -10,7 +10,8 @@
     "type": "other",
     "AutoloadClasses": {
         "SpecialASBSearch": "includes/Special.php",
-        "ExclusionsHelper": "includes/ExclusionsHelper.php"
+        "ExclusionsHelper": "includes/ExclusionsHelper.php",
+        "ParserHelper": "includes/ParserHelper.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch"
