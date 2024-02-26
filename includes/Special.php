@@ -300,7 +300,7 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = str_replace("[S]", "(S)", $zn );
 
 			$skipZone = false;
-			foreach( ExclusionsHelper::$zones as $v) { if ( $zn == $v ) { print_r($zn); $skipZone = true; break; } }
+			foreach( ExclusionsHelper::$zones as $v) { if ( $zn == $v ) { $skipZone = true; break; } }
 			if ( $skipZone == true ) continue;
 
 			$zn = self::parseZoneName($row->zoneName);
