@@ -4,6 +4,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
 
+
 //set_time_limit(0);
 
 class SpecialASBSearch extends SpecialPage {
@@ -294,14 +295,23 @@ class SpecialASBSearch extends SpecialPage {
 		
 		foreach ($items as $row)
 		{
+			//$zn = self::parseZoneName($row->zoneName);
+			$zn = self::replaceUnderscores($row->zoneName);
+			$zn = str_replace("[S]", "(S)", $zn );
+
+			$skipZone = false;
+			foreach( ExclusionsHelper::$zones as $v) { if ( $zn == $v ) { print_r($zn); $skipZone = true; break; } }
+			if ( $skipZone == true ) continue;
+
+			$zn = self::parseZoneName($row->zoneName);
+			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
+			$in = self::parseItemName($row->itemName);
 			
 			$droprate = ($row->itemRate)/10;
 			if ( $droprate == 0 ) $droprate = 'Steal';
 			else $droprate = "$droprate %";
 			//if ( $droprate == 0 ) continue;
-			$zn = self::parseZoneName($row->zoneName);
-			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
-			$in = self::parseItemName($row->itemName);
+			
 			//$iSn = self::parseItemName($row->itemSortName);
 
 			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";

@@ -9,7 +9,8 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
-        "SpecialASBSearch": "includes/Special.php"
+        "SpecialASBSearch": "includes/Special.php",
+        "ExclusionsHelper": "includes/ExclusionsHelper.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch"
