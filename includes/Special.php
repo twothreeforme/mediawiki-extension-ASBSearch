@@ -282,7 +282,7 @@ class SpecialASBSearch extends SpecialPage {
 
 		$html = "<br>
 			<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
-			<div style=\"max-height: 500px; overflow: auto; display: inline-block;\">
+			<div style=\"max-height: 900px; overflow: auto; display: inline-block;\">
 			<table id=\"dropstable\">
 				<tr><th>Zone Name</th>
 				<th>Mob Name <sup>(lvl)</sup></th>
