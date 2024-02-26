@@ -62,6 +62,23 @@ class ParserHelper {
 
 
     /**************************
+     * Drop Rate Parsing
+     */
+    public static function getDropRate($rate){
+        switch($rate){
+            case '@ALWAYS': return 1000;
+            case '@VCOMMON': return 240;
+            case '@COMMON': return 150;
+            case '@UNCOMMON': return 100;
+            case '@RARE': return 50;
+            case '@VRARE': return 10;
+            case '@SRARE': return 5;
+            case '@URARE': return 1;
+            default: return $rate;
+        }
+    }
+
+    /**************************
      * General Parsing
      */
     public static function replaceApostrophe($inputStr){
@@ -76,7 +93,7 @@ class ParserHelper {
 		return str_replace("_", " ", $inputStr);
 	}
 
-    //public static function 
+    
 }
 
 

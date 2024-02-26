@@ -17,8 +17,8 @@ class ExclusionsHelper {
     public static $zones = [
 
         //ToUA
-        'Aht Urghan Whitegate',
-        'Al Zhabi',
+        'Aht Urhgan Whitegate',
+        'Al Zahbi',
         'Nashmau',
         'Aydeewa Subterrane',
         'Jade Sepulcher',

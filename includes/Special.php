@@ -259,7 +259,8 @@ class SpecialASBSearch extends SpecialPage {
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
-						'mob_droplist.droptype',
+						'mob_droplist.dropType',
+						'mob_droplist.groupRate',
 						'zone_settings.name AS zoneName',
 						'mob_groups.name AS mobName',
 						'mob_groups.minLevel AS mobMinLevel',
@@ -270,21 +271,9 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
-
-			//->field( 'mob_groups.name', null )
-			// |join on=asb_mob_groups.zoneid=asb_zone_settings.zoneid,asb_mob_droplist.dropid=asb_mob_groups.dropid
-			->where( $query	)
+			->where( $query	) 
 			->fetchResultSet(); 
 	}
-
-	// 0 SET @ALWAYS =     1000;  -- Always, 100%
-	// 1 SET @VCOMMON =  999 > 201;  -- Very common, 24%
-	// 2 SET @COMMON =   200 > 125;   -- Common, 15%
-	// 3 SET @UNCOMMON = 124 > 75; -- Uncommon, 10%
-	// 4 SET @RARE = 74 > 30;      -- Rare, 5%
-	// 5 SET @VRARE = 30 > 8;     -- Very rare, 1%
-	// 6 SET @SRARE = 7 > 3;      -- Super Rare, 0.5%
-	// 7 SET @URARE = 3 > 1;      -- Ultra rare, 0.1%
 
 	function build_table($items)
 	{
@@ -324,14 +313,12 @@ class SpecialASBSearch extends SpecialPage {
 
 		foreach ($items as $row)
 		{
-			//$zn = self::parseZoneName($row->zoneName);
-			$zn = ParserHelper::replaceUnderscores($row->zoneName);
-			$zn = str_replace("[S]", "(S)", $zn );
-
 			/*******************************************************
 			 * Removing OOE 
 			 */
 			// First check zone names
+			$zn = ParserHelper::replaceUnderscores($row->zoneName);
+			$zn = str_replace("[S]", "(S)", $zn );
 			$skipRow = false;
 			foreach( ExclusionsHelper::$zones as $v) { 
 				//print_r($zn);
@@ -342,53 +329,69 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = ParserHelper::zoneName($row->zoneName);
 			$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = ParserHelper::itemName($row->itemName);
-			
-			$droprate = ($row->itemRate) / 10 ;
-			if ( $droprate == 0 ) $droprate = 'Steal';
-			else $droprate = "$droprate %";
+
+			/******************************************************
+			 * Handle drop TYPE & RATE
+			 */
+			$droprate;	
+			switch ($row->dropType) {
+				case 2:
+					$droprate = 'Steal';
+					break;
+				case 4;
+					$droprate = 'Despoil';
+					break;
+				default:
+					$droprate = round(($row->itemRate) / (ParserHelper::getDropRate($row->groupRate) / 100 ) ) ;
+					$droprate = "$droprate %";
+					break;
+			}
+
 			//if ( $droprate == 0 ) continue;
-			
-			//$iSn = self::parseItemName($row->itemSortName);
+			/*******************************************************/
 
 			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
-				if ( $row->itemRate <= 999 && $row->itemRate >= 201 ) $cat = 1; //@VCOMMON =  999 > 201;  -- Very common, 24%
+				if ( $row->itemRate == 0 || $row->dropType != 0) $cat = 8;
+				elseif ( $row->itemRate <= 999 && $row->itemRate >= 201 ) $cat = 1; //@VCOMMON =  999 > 201;  -- Very common, 24%
 				elseif ( $row->itemRate < 201 && $row->itemRate >= 125 ) $cat = 2; //@COMMON =   200 > 125;   -- Common, 15%
 				elseif ( $row->itemRate < 125 && $row->itemRate >= 75 ) $cat = 3; //@UNCOMMON = 124 > 75; -- Uncommon, 10%
 				elseif ( $row->itemRate < 74 && $row->itemRate >= 30 ) $cat = 4; //@RARE = 74 > 30;      -- Rare, 5%
 				elseif ( $row->itemRate < 30 && $row->itemRate >= 8 ) $cat = 5; //@VRARE = 30 > 8;     -- Very rare, 1%
 				elseif ( $row->itemRate < 8 && $row->itemRate >= 3 ) $cat = 6; //@SRARE = 7 > 3;      -- Super Rare, 0.5%
 				elseif ( $row->itemRate < 3 && $row->itemRate >= 1 ) $cat = 7; //@URARE = 3 > 1;      -- Ultra rare, 0.1%
-				elseif ( $row->itemRate < 1 ) $cat = 8;
+				
 
 				$th1 = 0; $th2 = 0; $th3 = 0; $th4 = 0;
+				
+				
 
 				switch ($cat) {
 					case 0:
 						$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
 						break;
 					case 1:
-						$th1 = round(($row->itemRate * 2) / 10, 2); $th2 = round(($row->itemRate * 2.333)/ 10, 2); $th3 = round(($row->itemRate * 2.5)/ 10, 2); $th4 = round(($row->itemRate * 2.666)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 2.333); $th3 = self::thAdjust($row->itemRate, 2.5); $th4 = self::thAdjust($row->itemRate, 2.666);
 						break;
 					case 2:
-						$th1 = round(($row->itemRate * 2) / 10, 2); $th2 = round(($row->itemRate * 2.666)/ 10, 2); $th3 = round(($row->itemRate * 2.833)/ 10, 2); $th4 = round(($row->itemRate * 3)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 2.666); $th3 = self::thAdjust($row->itemRate, 2.833); $th4 = self::thAdjust($row->itemRate, 3);
 						break;
 					case 3:
-						$th1 = round(($row->itemRate * 1.2) / 10, 2); $th2 = round(($row->itemRate * 1.5)/ 10, 2); $th3 = round(($row->itemRate * 1.65)/ 10, 2); $th4 = round(($row->itemRate * 1.8)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 1.2); $th2 = self::thAdjust($row->itemRate, 1.5); $th3 = self::thAdjust($row->itemRate, 1.65); $th4 = self::thAdjust($row->itemRate, 1.8);
 						break;
 					case 4:
-						$th1 = round(($row->itemRate * 1.2) / 10, 2); $th2 = round(($row->itemRate * 1.4)/ 10, 2); $th3 = round(($row->itemRate * 1.5)/ 10, 2); $th4 = round(($row->itemRate * 1.6)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 1.2); $th2 = self::thAdjust($row->itemRate, 1.4); $th3 = self::thAdjust($row->itemRate, 1.5); $th4 = self::thAdjust($row->itemRate, 1.6);
 						break;	
 					case 5:
-						$th1 = round(($row->itemRate * 1.5) / 10, 2); $th2 = round(($row->itemRate * 2)/ 10, 2); $th3 = round(($row->itemRate * 2.25)/ 10, 2); $th4 = round(($row->itemRate * 2.5)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 1.5); $th2 = self::thAdjust($row->itemRate, 2); $th3 = self::thAdjust($row->itemRate, 2.25); $th4 = self::thAdjust($row->itemRate, 2.5);
 						break;		
 					case 6:
-						$th1 = round(($row->itemRate * 1.5) / 10, 2); $th2 = round(($row->itemRate * 2)/ 10, 2); $th3 = round(($row->itemRate * 2.4)/ 10, 2); $th4 = round(($row->itemRate * 2.8)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 1.5); $th2 = self::thAdjust($row->itemRate, 2); $th3 = self::thAdjust($row->itemRate, 2.4); $th4 = self::thAdjust($row->itemRate, 2.8);
 						break;
 					case 7:
-						$th1 = round(($row->itemRate * 2) / 10, 2); $th2 = round(($row->itemRate * 3)/ 10, 2); $th3 = round(($row->itemRate * 3.5)/ 10, 2); $th4 = round(($row->itemRate * 4)/ 10, 2);
+						$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 3); $th3 = self::thAdjust($row->itemRate, 3.5); $th4 = self::thAdjust($row->itemRate, 4);
 						break;
 					case 8;
 						$th1 = "-"; $th2 = "-"; $th3 = "-"; $th4 = "-";
@@ -407,5 +410,11 @@ class SpecialASBSearch extends SpecialPage {
 		
 
 		return $html;
+	}
+
+	function thAdjust($rate, $multiplier){
+		$num = round(($rate * $multiplier) / 10, 2);
+		if ( $num >= 100 ) return "~99";
+		else return $num;
 	}
 }
