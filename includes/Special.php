@@ -304,20 +304,6 @@ class SpecialASBSearch extends SpecialPage {
 
 	function build_table($items)
 	{
-
-		$html = "<br>
-			<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
-			<div style=\"max-height: 900px; overflow: auto; display: inline-block;\">
-			<table id=\"dropstable\">
-				<tr><th>Zone Name</th>
-				<th>Mob Name <sup>(lvl)</sup></th>
-				<th>Item Name</th>
-				
-				<th>Drop Percentage</th>";
-				//<th>Item (sort)Name</th>
-		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
-		$html .= "</tr>";
-		
 		/************************
 		 * Row counter
 		 */
@@ -327,8 +313,8 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $totalRows < 0 ) $totalRows = 0;
 			$totalRows ++;
 			if ( $totalRows > 1000){
-				$html .= "<p>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-					Please reduce search pool by adding more to either the Mob or Item name.</p>";
+				$html = "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
+					Please reduce search pool by adding more to any of the search parameters.</i></b>";
 				return $html;
 			}
 		}
@@ -338,6 +324,18 @@ class SpecialASBSearch extends SpecialPage {
 		}
 		/************************/
 
+		$html = "<br>
+		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
+		<div style=\"max-height: 900px; overflow: auto; display: inline-block;\">
+		<table id=\"dropstable\">
+			<tr><th>Zone Name</th>
+			<th>Mob Name <sup>(lvl)</sup></th>
+			<th>Item Name</th>
+			
+			<th>Drop Percentage</th>";
+			//<th>Item (sort)Name</th>
+		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
+		$html .= "</tr>";
 
 		foreach ($items as $row)
 		{
