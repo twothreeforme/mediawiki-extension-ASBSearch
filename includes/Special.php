@@ -4,6 +4,8 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
 
+set_time_limit(0);
+
 class SpecialASBSearch extends SpecialPage {
     public function __construct( $title = 'ASBSearch' ) {
         parent::__construct( 'ASBSearch' );
@@ -162,7 +164,7 @@ class SpecialASBSearch extends SpecialPage {
     	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'myform' );
 	
 		// Text to display in submit button
-		$htmlForm->setSubmitText( 'Show Drops Table' );
+		$htmlForm->setSubmitText( 'Show Drops' );
 	
 		// We set a callback function
 		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );  
@@ -252,8 +254,9 @@ class SpecialASBSearch extends SpecialPage {
 						'item_basic.sortname AS itemSortName', ] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
-			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+
 			//->field( 'mob_groups.name', null )
 			// |join on=asb_mob_groups.zoneid=asb_zone_settings.zoneid,asb_mob_droplist.dropid=asb_mob_groups.dropid
 			->where( [
@@ -390,6 +393,7 @@ class SpecialASBSearch extends SpecialPage {
 	function parseZoneName($zoneName){
 		$zoneName = self::replaceUnderscores($zoneName);
 		$zoneName = str_replace("[S]", "(S)", $zoneName);
+		$zoneName = str_replace("-", " - ", $zoneName);
 		return "[[$zoneName]]";
 	}
 
