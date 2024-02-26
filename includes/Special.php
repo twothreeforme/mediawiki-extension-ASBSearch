@@ -330,10 +330,11 @@ class SpecialASBSearch extends SpecialPage {
 		if ( $totalRows >= 0 ) {
 			$html = "<i><b> $totalRows records found</i></b>" . $html;
 			if ( $totalRows > 1000){
-				$html .= "<p>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-					Please reduce search pool by adding more to either the Mob or Item name.</p>";
-				return $html;
+				// $html .= "<p>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
+				// 	Please reduce search pool by adding more to either the Mob or Item name.</p>";
+				// return $html;
 			}
+		}
 		/************************/
 
 
