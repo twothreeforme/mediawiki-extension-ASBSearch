@@ -33,9 +33,9 @@ class ExclusionsHelper {
         'Navukgo Execution Chamber',
         'Bhaflau Thickets',
         'The Colosseum',
-        'Open sea route to Al Zhabi',
+        'Open sea route to Al Zahbi',
         'Open sea route to Mhaura',
-        'Silver Sea route to Al Zhabi',
+        'Silver Sea route to Al Zahbi',
         'Silver Sea route to Nashmau',
 
         //Wings of the Goddess

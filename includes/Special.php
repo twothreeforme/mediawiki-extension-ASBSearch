@@ -299,9 +299,11 @@ class SpecialASBSearch extends SpecialPage {
 			$zn = self::replaceUnderscores($row->zoneName);
 			$zn = str_replace("[S]", "(S)", $zn );
 
-			$skipZone = false;
-			foreach( ExclusionsHelper::$zones as $v) { if ( $zn == $v ) { $skipZone = true; break; } }
-			if ( $skipZone == true ) continue;
+			$skipRow = false;
+			foreach( ExclusionsHelper::$zones as $v) { 
+				//print_r($zn);
+				if ( $zn == $v ) { $skipRow = true; break; } }
+			if ( $skipRow == true ) continue;
 
 			$zn = self::parseZoneName($row->zoneName);
 			$mn = self::parseMobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
