@@ -318,6 +318,7 @@ class SpecialASBSearch extends SpecialPage {
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 		
+		$totalRows = -1;
 		foreach ($items as $row)
 		{
 			//$zn = self::parseZoneName($row->zoneName);
@@ -334,7 +335,7 @@ class SpecialASBSearch extends SpecialPage {
 				if ( $zn == $v ) { $skipRow = true; break; } }
 			if ( $skipRow == true ) continue;
 			/*******************************************************/
-
+			
 			$zn = ParserHelper::zoneName($row->zoneName);
 			$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = ParserHelper::itemName($row->itemName);
@@ -395,9 +396,14 @@ class SpecialASBSearch extends SpecialPage {
 				$html .= "<td><center>$th1 %</center></td><td><center>$th2 %</center></td><td><center>$th3 %</center></td><td><center>$th4 %</center></td>";
 			}
 			$html .= "</tr>";
+			if ( $totalRows < 0 ) $totalRows = 0;
+			$totalRows ++;
 		}
 
 		$html .= '</table></div>';
+
+		if ( $totalRows >= 0 ) $html = "<i> $totalRows records found</i>" . $html;
+
 		return $html;
 	}
 
