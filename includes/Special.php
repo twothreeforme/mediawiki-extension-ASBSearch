@@ -235,6 +235,10 @@ class SpecialASBSearch extends SpecialPage {
 		$mobNameSearch = self::replaceSpaces($mobNameSearch);
 		$itemNameSearch = self::replaceSpaces($itemNameSearch);
 
+		$zoneNameSearch = self::replaceApostraphe($zoneNameSearch);
+		$mobNameSearch = self::replaceApostraphe($mobNameSearch);
+		$itemNameSearch = self::replaceApostraphe($itemNameSearch);
+
 		// $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// $dbr = $lb->getConnection( DB_REPLICA );
 		$dbr = $this->openConnection();
@@ -353,6 +357,10 @@ class SpecialASBSearch extends SpecialPage {
 
 		$html .= '</table></div>';
 		return $html;
+	}
+
+	function replaceApostraphe($inputStr){
+		return str_replace("'", "", $inputStr);
 	}
 
 	function replaceSpaces($inputStr){
