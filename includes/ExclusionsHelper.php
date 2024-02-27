@@ -135,6 +135,12 @@ class ExclusionsHelper {
         'Silver Knife',
         'Desuetia - Empyreal Paradox',
 
+        //Dynamis Divergence
+        'Dynamis - Bastok [D]',
+        'Dynamis - San dOria [D]',
+        'Dynamis - Windurst [D]',
+        'Dynamis - Jeuno [D]',
+
         //Random ones
         'unknown',
         '49',
