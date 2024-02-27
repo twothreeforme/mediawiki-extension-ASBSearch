@@ -4,7 +4,7 @@
 			"Shocks"
 		]
 	},
-	"asbsearch": "ASB Search",
+	"ASB Search": "ASB Search",
 	"asbsearch-desc": "Various search options for ASB data.",
 	"asbsearch-summary": "On this Special page editors can search for ASB data that has been committed to the Wiki database.",
 	"group-asbsearchrole": "",

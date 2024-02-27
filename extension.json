@@ -5,7 +5,7 @@
         "Shocks"
     ],
     "url": "none",
-    "descriptionmsg": "ASBSearch-desc",
+    "descriptionmsg": "Database search tool for ASB related SQL data.",
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
