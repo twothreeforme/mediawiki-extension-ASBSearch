@@ -177,6 +177,14 @@ class ExclusionsHelper {
         'Ship bound for Mhaura', 
         'Ship bound for Selbina',
 
+        // Avatar Battlefields
+        'Cloister of Flames',
+        'Cloister of Frost',
+        'Cloister of Gales',
+        'Cloister of Storms',
+        'Cloister of Tides',
+        'Cloister of Tremors',
+
         //Random ones
         'unknown',
         '49',
