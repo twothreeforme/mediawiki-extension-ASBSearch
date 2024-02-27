@@ -133,7 +133,7 @@ class ExclusionsHelper {
         'Silver Knife',
         'Desuetia - Empyreal Paradox',
         'Escha RuAun',
-        'Escha Zita',
+        'Escha ZiTah',
         'Mount Kamihr',
         'RaKaznar Turris',
         'Reisenjima Henge',
@@ -184,6 +184,10 @@ class ExclusionsHelper {
         'Cloister of Storms',
         'Cloister of Tides',
         'Cloister of Tremors',
+
+        //PVP
+        'Desuetia Empyreal Paradox',
+        'Diorama Abdhaljs-Ghelsba',
 
         //Random ones
         'unknown',
