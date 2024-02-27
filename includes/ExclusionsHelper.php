@@ -109,7 +109,6 @@ class ExclusionsHelper {
         'Celennia Memorial Library',
         'Mog Garden',
         'Rala Waterways',
-
         'Ceizak Battlegrounds',
         'Cirdas Caverns',
         'Cirdas Caverns U',
@@ -126,7 +125,6 @@ class ExclusionsHelper {
         'Woh Gates',
         'Yorcia Weald',
         'Yorcia Weald U',
-
         'Outer RaKaznar',
         'RaKaznar Inner Court',
         'Outer RaKaznar [U1]',
@@ -134,6 +132,13 @@ class ExclusionsHelper {
         'Outer RaKaznar [U3]',
         'Silver Knife',
         'Desuetia - Empyreal Paradox',
+        'Escha RuAun',
+        'Escha Zita',
+        'Mount Kamihr',
+        'RaKaznar Turris',
+        'Reisenjima Henge',
+        'Reisenjima Sanctorium',
+        'Reisenjima',
 
         //Dynamis Divergence
         'Dynamis-Bastok [D]',
@@ -145,7 +150,7 @@ class ExclusionsHelper {
         'Upper Jeuno',
         'Lower Jeuno',
         'Port Jeuno',
-        'Rulude Gardens',
+        'RuLude Gardens',
         'Northern San dOria',
         'Southern San dOria',
         'Port San dOria',
@@ -156,23 +161,29 @@ class ExclusionsHelper {
         'Metalworks',
         'Windurst Woods',
         'Windurst Walls', 
+        'Windurst Waters',
         'Port Windurst', 
         'Heavens Tower',
         'Kazham',
         'Selbina',
         'Rabao',
         'Mhaura',
+        'Norg',
+        'Tavnazian Safehold',
         'Windurst-Jeuno Airship',
         'San dOria-Jeuno Airship', 
         'Bastok-Jeuno Airship', 
         'Kazham-Jeuno Airship', 
+        'Ship bound for Mhaura', 
+        'Ship bound for Selbina',
 
         //Random ones
         'unknown',
         '49',
         '286',
         'GM Home',
-        'Chocobo Circuit'
+        'Chocobo Circuit',
+        'Mordion Gaol'
     ];
 
     public static $items = array(
