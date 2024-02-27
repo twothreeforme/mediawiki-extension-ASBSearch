@@ -195,10 +195,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                'user' => 'root',
-                'password' => '',
-				// 'user' => 'horizon_wiki',
-				// 'password' => 'KamjycFLfKEyFsogDtqM',
+                // 'user' => 'root',
+                // 'password' => '',
+				'user' => 'horizon_wiki',
+				'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
