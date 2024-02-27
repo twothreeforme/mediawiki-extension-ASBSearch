@@ -141,7 +141,7 @@ class ExclusionsHelper {
         'Dynamis-Windurst [D]',
         'Dynamis-Jeuno [D]',
         
-        //
+        // Towns
         'Upper Jeuno',
         'Lower Jeuno',
         'Port Jeuno',
@@ -159,6 +159,9 @@ class ExclusionsHelper {
         'Port Windurst', 
         'Heavens Tower',
         'Kazham',
+        'Selbina',
+        'Rabao',
+        'Mhaura',
         'Windurst-Jeuno Airship',
         'San dOria-Jeuno Airship', 
         'Bastok-Jeuno Airship', 
