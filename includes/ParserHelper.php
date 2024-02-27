@@ -64,17 +64,17 @@ class ParserHelper {
     /**************************
      * Drop Rate Parsing
      */
-    public static function getDropRate($rate){
+    public static function getVarRate($rate){
         switch($rate){
-            case '@ALWAYS': return 1000;
-            case '@VCOMMON': return 240;
-            case '@COMMON': return 150;
-            case '@UNCOMMON': return 100;
-            case '@RARE': return 50;
-            case '@VRARE': return 10;
-            case '@SRARE': return 5;
-            case '@URARE': return 1;
-            default: return $rate;
+            case '@ALWAYS': return [true, 1000];
+            case '@VCOMMON': return [true, 240];
+            case '@COMMON': return [true, 150];
+            case '@UNCOMMON': return [true, 100];
+            case '@RARE': return [true, 50];
+            case '@VRARE': return [true, 10];
+            case '@SRARE': return [true, 5];
+            case '@URARE': return [true, 1];
+            default: return [false, $rate];
         }
     }
 

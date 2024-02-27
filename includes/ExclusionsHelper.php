@@ -98,6 +98,33 @@ class ExclusionsHelper {
         'Feretory',
         'Marquette Abdhaljs-Legion',
 
+        //Seekers of Adoulin
+        'Eastern Adoulin',
+        'Western Adoulin',
+        'Celennia Memorial Library',
+        'Mog Garden',
+        'Rala Waterways',
+
+        'Ceizak Battlegrounds',
+        'Cirdas Caverns',
+        'Cirdas Caverns (U)',
+        'Dho Gates',
+        'Foret de Hennetiel',
+        'Kamihr Drifts',
+        'Leafallia',
+        'Moh Gates',
+        'Morimar Basalt Fields',
+        'Marjami Ravine',
+        'Rala Waterways (U)',
+        'Sih Gates',
+        'Yahse Hunting Grounds',
+        'Woh Gates',
+        'Yorcia Weald',
+
+        'Outer RaKaznar',
+        'RaKaznar Inner Court',
+        'Outer RaKaznar (U)',
+
         //Random ones? 
         'unknown',
         '49',

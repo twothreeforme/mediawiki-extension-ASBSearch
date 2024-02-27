@@ -260,6 +260,7 @@ class SpecialASBSearch extends SpecialPage {
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
 						'mob_droplist.dropType',
+						'mob_droplist.groupId',
 						'mob_droplist.groupRate',
 						'zone_settings.name AS zoneName',
 						'mob_groups.name AS mobName',
@@ -304,9 +305,10 @@ class SpecialASBSearch extends SpecialPage {
 		<table id=\"dropstable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
-			<th>Item Name</th>
-			
-			<th>Drop Percentage</th>";
+			<th>Drop Group</th>
+			<th>Item - Drop Rate</th>
+			";
+			//<th>Drop Percentage</th>
 			//<th>Item (sort)Name</th>
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
@@ -325,7 +327,7 @@ class SpecialASBSearch extends SpecialPage {
 				if ( $zn == $v ) { $skipRow = true; break; } }
 			if ( $skipRow == true ) continue;
 			/*******************************************************/
-			
+
 			$zn = ParserHelper::zoneName($row->zoneName);
 			$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = ParserHelper::itemName($row->itemName);
@@ -333,41 +335,53 @@ class SpecialASBSearch extends SpecialPage {
 			/******************************************************
 			 * Handle drop TYPE & RATE
 			 */
+			$dropGroup;
 			$droprate;	
 			switch ($row->dropType) {
+				case 0;
+					$droprate = round(($row->itemRate) / 10 ) ;
+					$droprate = "$droprate %";
+					$dropGroup = "Common";
+					break;
+				case 1:
+					$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
+					$droprate = round(($row->itemRate) / 10 ) ;
+					$droprate = "$droprate %";
+					break;
 				case 2:
 					$droprate = 'Steal';
+					$dropGroup = "Common";
 					break;
 				case 4;
 					$droprate = 'Despoil';
+					$dropGroup = "Common";
 					break;
 				default:
-					$droprate = round(($row->itemRate) / (ParserHelper::getDropRate($row->groupRate) / 100 ) ) ;
-					$droprate = "$droprate %";
+					// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
+					// $droprate = "$droprate %";
 					break;
 			}
 
 			//if ( $droprate == 0 ) continue;
 			/*******************************************************/
-
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$in</center></td><td><center>$droprate</center></td>";
+			// 					Zone Name  		| 				Mob Name 		| 			Drop Group 		|			Item Name - Drop rate		| 		TH
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$dropGroup</center></td><td><center>$in - $droprate</center></td>";
+			
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
-				if ( $row->itemRate == 0 || $row->dropType != 0) $cat = 8;
-				elseif ( $row->itemRate <= 999 && $row->itemRate >= 201 ) $cat = 1; //@VCOMMON =  999 > 201;  -- Very common, 24%
-				elseif ( $row->itemRate < 201 && $row->itemRate >= 125 ) $cat = 2; //@COMMON =   200 > 125;   -- Common, 15%
-				elseif ( $row->itemRate < 125 && $row->itemRate >= 75 ) $cat = 3; //@UNCOMMON = 124 > 75; -- Uncommon, 10%
-				elseif ( $row->itemRate < 74 && $row->itemRate >= 30 ) $cat = 4; //@RARE = 74 > 30;      -- Rare, 5%
-				elseif ( $row->itemRate < 30 && $row->itemRate >= 8 ) $cat = 5; //@VRARE = 30 > 8;     -- Very rare, 1%
-				elseif ( $row->itemRate < 8 && $row->itemRate >= 3 ) $cat = 6; //@SRARE = 7 > 3;      -- Super Rare, 0.5%
-				elseif ( $row->itemRate < 3 && $row->itemRate >= 1 ) $cat = 7; //@URARE = 3 > 1;      -- Ultra rare, 0.1%
-				
+				if ( $row->itemRate == 0 || $row->dropType != 0 ) $cat = 8;
+				elseif ( $row->itemRate == 240 ) $cat = 1; 	//@VCOMMON -- Very common, 24%
+				elseif ( $row->itemRate == 150 ) $cat = 2; 	//@COMMON -- Common, 15%
+				elseif ( $row->itemRate == 100 ) $cat = 3; 	//@UNCOMMON -- Uncommon, 10%
+				elseif ( $row->itemRate == 50 ) $cat = 4; 	//@RARE -- Rare, 5%
+				elseif ( $row->itemRate == 10 ) $cat = 5; 	//@VRARE -- Very rare, 1%
+				elseif ( $row->itemRate == 5 ) $cat = 6; 	//@SRARE -- Super Rare, 0.5%
+				elseif ( $row->itemRate == 1 ) $cat = 7; 	//@URARE -- Ultra rare, 0.1%
+				else $cat = 8;
 
 				$th1 = 0; $th2 = 0; $th3 = 0; $th4 = 0;
-				
-				
-
+			
 				switch ($cat) {
 					case 0:
 						$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
@@ -417,4 +431,6 @@ class SpecialASBSearch extends SpecialPage {
 		if ( $num >= 100 ) return "~99";
 		else return $num;
 	}
+
+	
 }
