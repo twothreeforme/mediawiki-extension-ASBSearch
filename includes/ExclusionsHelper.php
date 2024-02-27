@@ -98,6 +98,11 @@ class ExclusionsHelper {
         'Feretory',
         'Marquette Abdhaljs-Legion',
 
+        //Wings of the Goddess
+        'Walk of Echoes',
+        'Walk of Echoes [P1]',
+        'Walk of Echoes [P2]',
+
         //Seekers of Adoulin
         'Eastern Adoulin',
         'Western Adoulin',
@@ -120,10 +125,14 @@ class ExclusionsHelper {
         'Yahse Hunting Grounds',
         'Woh Gates',
         'Yorcia Weald',
+        'Yorcia Weald U',
 
         'Outer RaKaznar',
         'RaKaznar Inner Court',
-        'Outer RaKaznar (U)',
+        'Outer RaKaznar [U1]',
+        'Outer RaKaznar [U2]',
+        'Outer RaKaznar [U3]',
+        'Silver Knife'
 
         //Random ones? 
         'unknown',
