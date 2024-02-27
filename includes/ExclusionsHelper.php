@@ -112,7 +112,7 @@ class ExclusionsHelper {
 
         'Ceizak Battlegrounds',
         'Cirdas Caverns',
-        'Cirdas Caverns (U)',
+        'Cirdas Caverns U',
         'Dho Gates',
         'Foret de Hennetiel',
         'Kamihr Drifts',
@@ -120,7 +120,7 @@ class ExclusionsHelper {
         'Moh Gates',
         'Morimar Basalt Fields',
         'Marjami Ravine',
-        'Rala Waterways (U)',
+        'Rala Waterways U',
         'Sih Gates',
         'Yahse Hunting Grounds',
         'Woh Gates',
