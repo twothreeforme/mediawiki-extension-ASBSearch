@@ -136,7 +136,7 @@ class ExclusionsHelper {
         'Desuetia - Empyreal Paradox',
 
         //Dynamis Divergence
-        'Dynamis - Bastok [D]',
+        'Dynamis - Bastok[D]',
         'Dynamis - San dOria [D]',
         'Dynamis - Windurst [D]',
         'Dynamis - Jeuno [D]',
