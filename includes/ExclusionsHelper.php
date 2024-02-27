@@ -136,11 +136,11 @@ class ExclusionsHelper {
         'Desuetia - Empyreal Paradox',
 
         //Dynamis Divergence
-        'Dynamis - Bastok[D]',
-        'Dynamis - San dOria [D]',
-        'Dynamis - Windurst [D]',
-        'Dynamis - Jeuno [D]',
-
+        'Dynamis-Bastok [D]',
+        'Dynamis-San dOria [D]',
+        'Dynamis-Windurst [D]',
+        'Dynamis-Jeuno [D]',
+        
         //
         'Upper Jeuno',
         'Lower Jeuno',
@@ -159,10 +159,10 @@ class ExclusionsHelper {
         'Port Windurst', 
         'Heavens Tower',
         'Kazham',
-        'Windurst - Jeuno Airship',
-        'San dOria - Jeuno Airship', 
-        'Bastok - Jeuno Airship', 
-        'Kazham - Jeuno Airship', 
+        'Windurst-Jeuno Airship',
+        'San dOria-Jeuno Airship', 
+        'Bastok-Jeuno Airship', 
+        'Kazham-Jeuno Airship', 
 
         //Random ones
         'unknown',
