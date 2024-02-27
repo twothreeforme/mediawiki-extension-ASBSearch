@@ -49,6 +49,7 @@ class ExclusionsHelper {
         'Open sea route to Mhaura',
         'Silver Sea route to Al Zahbi',
         'Silver Sea route to Nashmau',
+        'Ilrusi Atoll',
 
         //Wings of the Goddess
         'Castle Oztroja (S)',
@@ -188,6 +189,7 @@ class ExclusionsHelper {
         //PVP
         'Desuetia Empyreal Paradox',
         'Diorama Abdhaljs-Ghelsba',
+        'Abdhaljs Isle-Purgonorgo',
 
         //Random ones
         'unknown',
@@ -195,7 +197,22 @@ class ExclusionsHelper {
         '286',
         'GM Home',
         'Chocobo Circuit',
-        'Mordion Gaol'
+        'Mordion Gaol',
+        'Maquette Abdhaljs-Legion A',
+        'Maquette Abdhaljs-Legion B',
+        'Residential Area',
+        'Stellar Fulcrum', //May add this back in later
+        'Throne Room [V]',
+
+
+        //Mission / No-Mobs
+        'Empyreal Paradox',
+        'Gwora-Throne Room',
+        'Gwora-Corridor',
+        'Hall of Transference',
+        'Hall of the Gods',
+        'LaLoff Amphitheater',
+
     ];
 
     public static $items = array(
