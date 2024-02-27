@@ -132,13 +132,15 @@ class ExclusionsHelper {
         'Outer RaKaznar [U1]',
         'Outer RaKaznar [U2]',
         'Outer RaKaznar [U3]',
-        'Silver Knife'
+        'Silver Knife',
+        'Desuetia - Empyreal Paradox',
 
-        //Random ones? 
+        //Random ones
         'unknown',
         '49',
         '286',
-        'GM Home'
+        'GM Home',
+        'Chocobo Circuit'
     ];
 
     public static $items = array(
