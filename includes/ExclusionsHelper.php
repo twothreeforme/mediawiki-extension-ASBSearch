@@ -14,6 +14,12 @@ class ExclusionsHelper {
         return false;
     }
 
+    public static function mobIsOOE($m){
+        //print_r($m . ", " . substr($m, -2) . "  --  ");
+        if ( substr($m, -2) == "_G" ) return true;  // Garrison Mobs
+        return false;
+    }
+
     public static $zones = [
 
         //ToUA

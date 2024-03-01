@@ -325,6 +325,7 @@ class SpecialASBSearch extends SpecialPage {
 				//print_r($zn);
 				if ( $zn == $v ) { $skipRow = true; break; } }
 			if ( $skipRow == true ) continue;
+			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
 			/*******************************************************/
 
 			$zn = ParserHelper::zoneName($row->zoneName);
