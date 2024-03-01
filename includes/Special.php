@@ -349,11 +349,11 @@ class SpecialASBSearch extends SpecialPage {
 					break;
 				case 2:
 					$droprate = 'Steal';
-					$dropGroup = "Common";
+					$dropGroup = "-";
 					break;
 				case 4;
 					$droprate = 'Despoil';
-					$dropGroup = "Common";
+					$dropGroup = "-";
 					break;
 				default:
 					// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
