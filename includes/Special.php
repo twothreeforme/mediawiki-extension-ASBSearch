@@ -26,7 +26,7 @@ class SpecialASBSearch extends SpecialPage {
 		//$output->enableOOUI();
 		$this->setHeaders();
 
-		# Get request data from, e.g.
+		# Get request data 
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
 		//$zoneNameSearch = $request->getText( 'zoneNameSearch' );
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
@@ -195,10 +195,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                'user' => 'root',
-                'password' => '',
-				// 'user' => 'horizon_wiki',
-				// 'password' => 'KamjycFLfKEyFsogDtqM',
+                // 'user' => 'root',
+                // 'password' => '',
+				'user' => 'horizon_wiki',
+				'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -216,7 +216,6 @@ class SpecialASBSearch extends SpecialPage {
     }
 
 	function getZoneNames(){
-
 		$dbr = $this->openConnection();
 		$zonenames =  $dbr->newSelectQueryBuilder()
 			->select( [ 'name' ] )
@@ -341,7 +340,7 @@ class SpecialASBSearch extends SpecialPage {
 				case 0;
 					$droprate = round(($row->itemRate) / 10 ) ;
 					$droprate = "$droprate %";
-					$dropGroup = "Common";
+					$dropGroup = "-";
 					break;
 				case 1:
 					$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
