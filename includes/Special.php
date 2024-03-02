@@ -32,7 +32,8 @@ class SpecialASBSearch extends SpecialPage {
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
 		$itemNameSearch = $request->getText( 'itemNameSearch' );
 		$this->thRatesCheck = $request->getText( 'thRatesCheck' );
-		
+		//$this->showIDCheck = $request->getText( 'showIDCheck' );
+
 		//print_r("*" . $mobNameSearch . "*");
  
 		//$wikitext = 'Hello world!';	
@@ -50,8 +51,10 @@ class SpecialASBSearch extends SpecialPage {
 				$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 				$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
 				$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
+				$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
 
-				$wikitext = self::build_table(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
+				//$wikitext = self::build_table(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
+				$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
 			}
 		//}
 
@@ -160,6 +163,12 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Show TH Rates',
 				'name' => 'thRatesCheck',
 				'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
+			],
+			'showIDCheck' => [
+				'type' => 'check',
+				'label' => 'Show Entity IDs',
+				'name' => 'showIDCheck',
+				'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
 			]
 		];
 	
@@ -191,14 +200,13 @@ class SpecialASBSearch extends SpecialPage {
 
 	public function openConnection() {
        // $status = Status::newGood();
-
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -275,6 +283,110 @@ class SpecialASBSearch extends SpecialPage {
 			->fetchResultSet(); 
 	}
 
+	function arrayFromRates($dataset){ //uses schema from self::getRates
+		$array = [];
+		foreach ($dataset as $row)
+		{
+			// $zn = ParserHelper::replaceUnderscores($row->zoneName);
+
+			// /*******************************************************
+			//  * Removing OOE 
+			//  */
+			// // First check zone names
+			
+			// //$zn = str_replace("[S]", "(S)", $zn );
+			// // $skipRow = false;
+			// // foreach( ExclusionsHelper::$zones as $v) { 
+			// // 	//print_r($zn);
+			// // 	if ( $zn == $v ) { $skipRow = true; break; } }
+			// // if ( $skipRow == true ) continue;			
+			// if ( ExclusionsHelper::zoneIsOOE($row->zoneName) ) { continue; }
+			// if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
+			// /*******************************************************/
+
+			// $zn = ParserHelper::zoneName($row->zoneName);
+			// $mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
+			// $in = ParserHelper::itemName($row->itemName);
+
+			
+			// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
+
+			// }
+
+			/******************************************************
+			 * Handle drop TYPE & RATE
+			 */
+			// $dropGroup;
+			// $droprate;	
+			// switch ($row->dropType) {
+			// 	case 0;
+			// 		$droprate = round(($row->itemRate) / 10 ) ;
+			// 		$droprate = "$droprate %";
+			// 		$dropGroup = "-";
+			// 		break;
+			// 	case 1:
+			// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
+			// 		$droprate = round(($row->itemRate) / 10 ) ;
+			// 		$droprate = "$droprate %";
+			// 		break;
+			// 	case 2:
+			// 		$droprate = 'Steal';
+			// 		$dropGroup = "-";
+			// 		break;
+			// 	case 4;
+			// 		$droprate = 'Despoil';
+			// 		$dropGroup = "-";
+			// 		break;
+			// 	default:
+			// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
+			// 		// $droprate = "$droprate %";
+			// 		break;
+			// }			
+
+			/**
+			 * Unique by 1x zonename and 1x mobname
+			 * $array['zonename'] = [
+			 * 		zonename['mobname'] = [ 
+			 * 			moblevel = [ mobminlevel, mobmaxlevel ]
+			 * 			dropdata = [ dropgroup, [ itemname, droprate ] 
+			 * 		]	
+			 * 	]
+			 */
+			
+			
+			$dropGroup = [ $row->groupId, $row->groupRate ];
+			$itemrate = [ $row->itemName, $row->itemRate ];
+
+			$temp = array (
+				'mobName' => $row->mobName, 
+				'mobMinLevel' => $row->mobMinLevel,
+				'mobMaxLevel' => $row->mobMaxLevel,
+				'dropData' => array (
+					'groupId' => $row->groupId,
+					'groupRate' => $row->groupRate,
+					'item' => array(
+						'name' => $row->itemName,
+						'dropRate' => $row->itemRate
+					)));
+			// array_push ( $array[$row->zoneName], $temp );
+
+			if ( !array_key_exists($row->zoneName, $array) ) { $array[$row->zoneName] = []; }
+			if ( !array_key_exists($row->mobName, $array[$row->zoneName])){ 
+				array_push ( $array[$row->zoneName], $temp );
+				continue; 
+			}
+			//unset($temp['mobName']);
+			if (  )
+
+			//[ $row->zoneName, $row->mobName, $row->mobMinLevel, $row->mobMaxLevel, [ ] ]
+		}
+		// foreach ($array as $a){
+		// 	$html = "<br>" . $a["zoneName"]["dropData"]["groupId"] ;
+		// }
+		print_r($array);
+		return $html;
+	} 
+
 	function build_table($items)
 	{
 		$html = "";
@@ -283,7 +395,8 @@ class SpecialASBSearch extends SpecialPage {
 		 * Row counter
 		 */
 		$totalRows = -1;
-		foreach ($items as $row)
+		
+		foreach ($items as $row) // test total records query'd
 		{
 			if ( $totalRows < 0 ) $totalRows = 0;
 			$totalRows ++;
@@ -292,12 +405,12 @@ class SpecialASBSearch extends SpecialPage {
 					Please reduce search pool by adding more to any of the search parameters.</i></b>";
 			}
 		}
-		if ( $totalRows >= 0 ) {
-			$html .= "<i><b> $totalRows records found</i></b>";
-			
-		}
-		/************************/
 
+		//if ( $totalRows >= 0 ) {  $html .= "<i><b> $totalRows records found</i></b>"; }
+
+		/************************
+		 * Initial HTML for the table
+		 */
 		$html .= "<br>
 		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
@@ -312,25 +425,34 @@ class SpecialASBSearch extends SpecialPage {
 		if ( $this->thRatesCheck == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
 		$html .= "</tr>";
 
+		$itemGroup = 0;
 		foreach ($items as $row)
 		{
+			$zn = ParserHelper::replaceUnderscores($row->zoneName);
+
 			/*******************************************************
 			 * Removing OOE 
 			 */
 			// First check zone names
-			$zn = ParserHelper::replaceUnderscores($row->zoneName);
-			$zn = str_replace("[S]", "(S)", $zn );
-			$skipRow = false;
-			foreach( ExclusionsHelper::$zones as $v) { 
-				//print_r($zn);
-				if ( $zn == $v ) { $skipRow = true; break; } }
-			if ( $skipRow == true ) continue;
+			
+			//$zn = str_replace("[S]", "(S)", $zn );
+			// $skipRow = false;
+			// foreach( ExclusionsHelper::$zones as $v) { 
+			// 	//print_r($zn);
+			// 	if ( $zn == $v ) { $skipRow = true; break; } }
+			// if ( $skipRow == true ) continue;			
+			//if ( ExclusionsHelper::zoneIsOOE($row->zoneName) ) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
 			/*******************************************************/
 
 			$zn = ParserHelper::zoneName($row->zoneName);
 			$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
 			$in = ParserHelper::itemName($row->itemName);
+
+			
+			// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
+
+			// }
 
 			/******************************************************
 			 * Handle drop TYPE & RATE
@@ -362,11 +484,42 @@ class SpecialASBSearch extends SpecialPage {
 					break;
 			}
 
-			//if ( $droprate == 0 ) continue;
 			/*******************************************************/
-			// 					Zone Name  		| 				Mob Name 		| 			Drop Group 		|			Item Name - Drop rate		| 		TH
+			// 					Zone Name  		| 				Mob Name 		| 			Drop Group 		|			Item Name - Drop rate	
+			// if the previous item was in a droprate group
+			// and this item is not, then the html for the row
+			// needs to be closed out
+			// allow TH rows to be written after the last item in the group
+			// if (  $itemGroup != 0 && $row->groupId == 0) {
+			// 	$html .= " </table></td>";
+			// 	//continue;
+			// }
+			// // else if the previous item was in a droprate group
+			// // and this item is in the same droprate group then 
+			// // continue with the consolidated row 
+			// else if (  $itemGroup != 0 && $itemGroup == $row->groupId ) {
+			// 	$html .= "<tr><td><center>$in - $droprate</center></td></tr>";
+			// 	continue;
+			// }
+				
+			// // else if the previous item was in a droprate group
+			// // and this item is NOT in the same droprate group then 
+			// // this is the start of a new group and the old one needs 
+			// // to be closed first, then a new one started
+			// else if (  $itemGroup != 0 && $itemGroup != $row->groupId ) {
+			// 	$html .= " </table></td><td><table width=\"100%\"><tr><td><center>$in - $droprate</center></td></tr>";
+			// 	continue;
+			// }
+
+			// // else if the previous item was in a droprate group
+			// // and this item is in the same droprate group then 
+			// // continue with the consolidated row 
+			// else 
 			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$dropGroup</center></td><td><center>$in - $droprate</center></td>";
 			
+			//$itemGroup = $row->groupId; //reset item group for this iteration
+
+
 			if ( $this->thRatesCheck == 1){
 				
 				$cat = 0; // @ALWAYS =     1000;  -- Always, 100%

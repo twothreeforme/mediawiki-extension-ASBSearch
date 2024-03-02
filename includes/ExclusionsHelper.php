@@ -222,7 +222,10 @@ class ExclusionsHelper {
     ];
 
     public static $items = array(
-        'King Behemoth' => 'Defending Ring'
+        //'King Behemoth' => 'Defending Ring',
+        'Vanguard Trooper' => 'Pantin Babouches',
+        'Vanguard Trooper' => 'Mirage Bazubands',
+        'Vanguard Trooper' => 'Argute bracers'
     );
 }
 
