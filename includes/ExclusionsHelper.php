@@ -10,13 +10,23 @@ class ExclusionsHelper {
                     return true; } 
             }
         }
-
         return false;
     }
 
     public static function mobIsOOE($m){
         //print_r($m . ", " . substr($m, -2) . "  --  ");
         if ( substr($m, -2) == "_G" ) return true;  // Garrison Mobs
+        return false;
+    }
+
+    public static function zoneHasBCNM($zone){
+        if ( gettype($zone) == 'string' || gettype($zone) == 'integer' ){ 
+            foreach( ExclusionsHelper::$bcnmZones as $k => $v) {
+                $k = ucwords($k);
+                $zone = ucwords($zone);
+                if ( str_contains($k, $zone) ) return true;  
+            }
+        }
         return false;
     }
 
@@ -226,6 +236,11 @@ class ExclusionsHelper {
         'Vanguard Trooper' => 'Pantin Babouches',
         'Vanguard Trooper' => 'Mirage Bazubands',
         'Vanguard Trooper' => 'Argute bracers'
+    );
+
+    public static $bcnmZones = array(
+        // zoneName => BC name
+        'Giddeus' => 'Balgas Dais'
     );
 }
 

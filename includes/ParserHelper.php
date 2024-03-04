@@ -15,7 +15,8 @@ class ParserHelper {
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
 
-		$mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
+		if ( !$minLvl && !$maxLvl) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
+		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else return $mobName;
 	}
