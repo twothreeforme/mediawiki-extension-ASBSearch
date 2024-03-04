@@ -142,7 +142,8 @@ class SpecialASBSearch extends SpecialPage {
 			'mobNameTextField' => [
 				'label' => 'Mob Name*', // Label of the field
 				'class' => 'HTMLTextField', // Input type
-				'name' => 'mobNameSearch'
+				'name' => 'mobNameSearch',
+				'help' => 'Either the mob name or BCNM name should be used here.'
 			],
 			'itemNameTextField' => [
 				'label' => 'Item Name*', // Label of the field
