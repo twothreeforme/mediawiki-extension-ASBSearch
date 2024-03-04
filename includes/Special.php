@@ -293,6 +293,9 @@ class SpecialASBSearch extends SpecialPage {
 		//if ( $zoneNameSearch != 'searchallzones' )
 		if ( !ExclusionsHelper::zoneHasBCNM($zoneNameSearch) && $zoneNameSearch != 'searchallzones' ) return;
 
+		//if ( gettype($itemNameSearch) ==  )
+		print_r(gettype($itemNameSearch));
+		
 		$bcnmNameSearch = ParserHelper::replaceSpaces($bcnmNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
 
