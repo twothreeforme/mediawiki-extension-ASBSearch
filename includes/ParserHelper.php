@@ -5,7 +5,8 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl){
+    public static function mobName($mobName, $minLvl, $maxLvl, $zoneName){
+		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
 			$mobName = str_replace("_fished", "", $mobName);
@@ -14,8 +15,8 @@ class ParserHelper {
 
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
-
-		if ( !$minLvl && !$maxLvl) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
+		
+		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
 		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else return $mobName;

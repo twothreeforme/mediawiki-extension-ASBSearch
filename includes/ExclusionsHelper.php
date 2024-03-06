@@ -4,8 +4,9 @@ class ExclusionsHelper {
 
     public static function zoneIsOOE($x){
         if ( gettype($x) == 'string' || gettype($x) == 'integer' ){ 
-            foreach( ExclusionsHelper::$zones as $v) { 
-                if ( $x == $v ) { 
+            foreach( ExclusionsHelper::$zones as $v) {
+               //print_r($v);
+                if ( $x == $v) { 
                     //print_r($x . " found OOE"); 
                     return true; } 
             }
@@ -19,12 +20,17 @@ class ExclusionsHelper {
         return false;
     }
 
-    public static function zoneHasBCNM($zone){
+    public static function zoneIsBCNM($zone){
         if ( gettype($zone) == 'string' || gettype($zone) == 'integer' ){ 
+            $zone = ParserHelper::replaceUnderscores($zone);
+
+            //print_r($zone);
             foreach( ExclusionsHelper::$bcnmZones as $k => $v) {
                 $k = ucwords($k);
+                $v = ucwords($v);
+                print_r($k, $v);
                 $zone = ucwords($zone);
-                if ( str_contains($k, $zone) ) return true;  
+                if ( str_contains($v, $zone) || str_contains($k, $zone)) return true;  
             }
         }
         return false;
@@ -240,8 +246,20 @@ class ExclusionsHelper {
 
     public static $bcnmZones = array(
         // zoneName => BC name
-        'Giddeus' => 'Balgas Dais'
+        'Giddeus' => 'Balgas Dais',
+        'Uleguerand Range' => 'Bearclaw Pinnacle',
+        'Attohwa Chasm'   => 'Boneyard Gully',
+        'Quicksand Caves' => 'Chamber of Oracles',
+        'Ghelsba_Outpost' => 'Ghelsba Outpost',
+        'Yughott Grotto' => 'Horlais Peak',
+        'Newton Movalpolos' => 'Mine Shaft 2716',
+        'Riverne - Site A01' => 'Monarch Linn',
+        'FeiYin' => 'QuBia Arena',
+        'Den of Rancor' => 'Sacrificial Chamber',
+        'PsoXja' => 'The Shrouded Maw',
+        'Palborough Mines' => 'Waughroon Shrine'
     );
+    
 }
 
 ?>

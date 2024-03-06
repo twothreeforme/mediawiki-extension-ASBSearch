@@ -17,6 +17,8 @@ class SpecialASBSearch extends SpecialPage {
 	}
 
 	private $thRatesCheck = 0;
+	//private $showIDCheck = 0;
+	private $showBCNMdrops = 0;
 
 	function execute( $par ) {
 		$request = $this->getRequest();
@@ -33,6 +35,7 @@ class SpecialASBSearch extends SpecialPage {
 		$itemNameSearch = $request->getText( 'itemNameSearch' );
 		$this->thRatesCheck = $request->getText( 'thRatesCheck' );
 		//$this->showIDCheck = $request->getText( 'showIDCheck' );
+		$this->showBCNMdrops = $request->getText( 'showBCNMdrops' );
 
 		//print_r("*" . $mobNameSearch . "*");
  
@@ -51,14 +54,17 @@ class SpecialASBSearch extends SpecialPage {
 				$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 				$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
 				$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
-				$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
+				//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
+				$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
 
 				$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
 				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
 
+				if ( $this->showBCNMdrops != 1) $bcnmDropRatesData = null;
 				$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
 				//$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
 				//$wikitext = "<p>testing</p>";
+				
 			}
 		//}
 
@@ -169,12 +175,17 @@ class SpecialASBSearch extends SpecialPage {
 				'name' => 'thRatesCheck',
 				'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
 			],
-			'showIDCheck' => [
+			// 'showIDCheck' => [
+			// 	'type' => 'check',
+			// 	'label' => 'Show Entity IDs',
+			// 	'name' => 'showIDCheck',
+			// 	'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
+			// ]
+			'showBCNMdrops' => [
 				'type' => 'check',
-				'label' => 'Show Entity IDs',
-				'name' => 'showIDCheck',
-				'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
-			]
+				'label' => 'Include BCNMs',
+				'name' => 'showBCNMdrops',
+			],
 		];
 	
 		// Build the HTMLForm object, calling the form 'myform'
@@ -291,11 +302,11 @@ class SpecialASBSearch extends SpecialPage {
 	function getBCNMCrateRates($zoneNameSearch, $bcnmNameSearch, $itemNameSearch){
 		$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
 		//if ( $zoneNameSearch != 'searchallzones' )
-		if ( !ExclusionsHelper::zoneHasBCNM($zoneNameSearch) && $zoneNameSearch != 'searchallzones' ) return;
+		if ( !ExclusionsHelper::zoneIsBCNM($zoneNameSearch) && $zoneNameSearch != 'searchallzones' ) return;
 
 		//if ( gettype($itemNameSearch) ==  )
-		print_r(gettype($itemNameSearch));
-		
+		//print_r(gettype($itemNameSearch));
+
 		$bcnmNameSearch = ParserHelper::replaceSpaces($bcnmNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
 
@@ -350,80 +361,82 @@ class SpecialASBSearch extends SpecialPage {
 	// 	$array = [];
 	// 	foreach ($dataset as $row)
 	// 	{
-			// $zn = ParserHelper::replaceUnderscores($row->zoneName);
-
-			// /*******************************************************
-			//  * Removing OOE 
-			//  */
-			// // First check zone names
 			
-			// //$zn = str_replace("[S]", "(S)", $zn );
-			// // $skipRow = false;
-			// // foreach( ExclusionsHelper::$zones as $v) { 
-			// // 	//print_r($zn);
-			// // 	if ( $zn == $v ) { $skipRow = true; break; } }
-			// // if ( $skipRow == true ) continue;			
-			// if ( ExclusionsHelper::zoneIsOOE($row->zoneName) ) { continue; }
-			// if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
-			// /*******************************************************/
+	// 		/*******************************************************
+	// 		 * Removing OOE 
+	// 		 */
+	// 		// First check zone names
+			
+	// 		//$zn = str_replace("[S]", "(S)", $zn );
+	// 		// $skipRow = false;
+	// 		// foreach( ExclusionsHelper::$zones as $v) { 
+	// 		// 	//print_r($zn);
+	// 		// 	if ( $zn == $v ) { $skipRow = true; break; } }
+	// 		// if ( $skipRow == true ) continue;
+	// 		$zn = ParserHelper::zoneERA_forList($row->zoneName);
+	// 		if ( !$zn ) { continue; }
+	// 		if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
+	// 		/*******************************************************/
 
-			// $zn = ParserHelper::zoneName($row->zoneName);
-			// $mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel);
-			// $in = ParserHelper::itemName($row->itemName);
+
+	// 		$zn = ParserHelper::zoneName($row->zoneName);
+	// 		$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel, $zn);
+	// 		$in = ParserHelper::itemName($row->itemName);
 
 			
-			// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
+	// 		// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
 
-			// }
+	// 		// }
 
-			/******************************************************
-			 * Handle drop TYPE & RATE
-			 */
-			// $dropGroup;
-			// $droprate;	
-			// switch ($row->dropType) {
-			// 	case 0;
-			// 		$droprate = round(($row->itemRate) / 10 ) ;
-			// 		$droprate = "$droprate %";
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	case 1:
-			// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-			// 		$droprate = round(($row->itemRate) / 10 ) ;
-			// 		$droprate = "$droprate %";
-			// 		break;
-			// 	case 2:
-			// 		$droprate = 'Steal';
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	case 4;
-			// 		$droprate = 'Despoil';
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	default:
-			// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-			// 		// $droprate = "$droprate %";
-			// 		break;
-			// }			
+	// 		/******************************************************
+	// 		 * Handle drop TYPE & RATE
+	// 		 */
+	// 		// $dropGroup;
+	// 		// $droprate;	
+	// 		// switch ($row->dropType) {
+	// 		// 	case 0;
+	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
+	// 		// 		$droprate = "$droprate %";
+	// 		// 		$dropGroup = "-";
+	// 		// 		break;
+	// 		// 	case 1:
+	// 		// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
+	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
+	// 		// 		$droprate = "$droprate %";
+	// 		// 		break;
+	// 		// 	case 2:
+	// 		// 		$droprate = 'Steal';
+	// 		// 		$dropGroup = "-";
+	// 		// 		break;
+	// 		// 	case 4;
+	// 		// 		$droprate = 'Despoil';
+	// 		// 		$dropGroup = "-";
+	// 		// 		break;
+	// 		// 	default:
+	// 		// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
+	// 		// 		// $droprate = "$droprate %";
+	// 		// 		break;
+	// 		// }			
 
-			/**
-			 * Unique by 1x zonename and 1x mobname
-			 * $array['zonename'] = [
-			 * 		zonename['mobname'] = [ 
-			 * 			moblevel = [ mobminlevel, mobmaxlevel ]
-			 * 			dropdata = [ dropgroup, [ itemname, droprate ] 
-			 * 		]	
-			 * 	]
-			 */
+	// 		/**
+	// 		 * Unique by 1x zonename and 1x mobname
+	// 		 * $array['zonename'] = [
+	// 		 * 		zonename['mobname'] = [ 
+	// 		 * 			moblevel = [ mobminlevel, mobmaxlevel ]
+	// 		 * 			dropdata = [ dropgroup, [ itemname, droprate ] 
+	// 		 * 		]	
+	// 		 * 	]
+	// 		 */
 			
 			
-	// 		$dropGroup = [ $row->groupId, $row->groupRate ];
-	// 		$itemrate = [ $row->itemName, $row->itemRate ];
+	// 		$group = [ $row->groupId, $row->groupRate ];
+	// 		$item = [ $row->itemName, $row->itemRate ];
 
 	// 		$temp = array (
-	// 			'mobName' => $row->mobName, 
-	// 			'mobMinLevel' => $row->mobMinLevel,
-	// 			'mobMaxLevel' => $row->mobMaxLevel,
+	// 			// 'mobName' => $row->mobName, 
+	// 			// 'mobMinLevel' => $row->mobMinLevel,
+	// 			// 'mobMaxLevel' => $row->mobMaxLevel,
+	// 			'mobName' => $mn,
 	// 			'dropData' => array (
 	// 				'groupId' => $row->groupId,
 	// 				'groupRate' => $row->groupRate,
@@ -431,22 +444,39 @@ class SpecialASBSearch extends SpecialPage {
 	// 					'name' => $row->itemName,
 	// 					'dropRate' => $row->itemRate
 	// 				)));
-	// 		// array_push ( $array[$row->zoneName], $temp );
 
-	// 		if ( !array_key_exists($row->zoneName, $array) ) { $array[$row->zoneName] = []; }
-	// 		if ( !array_key_exists($row->mobName, $array[$row->zoneName])){ 
-	// 			array_push ( $array[$row->zoneName], $temp );
+	// 		if ( !array_key_exists($zn, $array) ) { $array[$zn] = []; }	// set zoneName in array
+	// 		if ( !array_key_exists($mn, $array[$zn])){ 					// set mobName in array
+	// 			// array_push ( $array[$zn], $mn );
+	// 			$array[$zn][$mn] = $mn;
+	// 			$array[$zn]['dropData'] = array(
+	// 				'groupId' => $row->groupId,
+	// 				'groupRate' => $row->groupRate,
+	// 				'item' => array(
+	// 					'name' => $row->itemName,
+	// 					'dropRate' => $row->itemRate
+	// 				));
+
 	// 			continue; 
 	// 		}
-	// 		//unset($temp['mobName']);
-	// 		if (  )
+	// 		unset($temp['mobName']);
+	// 		if ( !array_key_exists('dropData', $array[$zn])){			// set dropData in array
+
+	// 		}	
+			
 
 	// 		//[ $row->zoneName, $row->mobName, $row->mobMinLevel, $row->mobMaxLevel, [ ] ]
 	// 	}
-	// 	// foreach ($array as $a){
-	// 	// 	$html = "<br>" . $a["zoneName"]["dropData"]["groupId"] ;
-	// 	// }
-	// 	print_r($array);
+	// 	$html = "";
+	// 	foreach ($array as $key => $mobArray){
+	// 		//$html = "<br>" . $a["zoneName"]["dropData"]["groupId"] ;
+	// 		$html .= "<br> $key";
+
+	// 		foreach ($mobArray as $mob){
+	// 			$html .= "	<br>". $mob["mobName"] . ":" . $mob["dropData"];
+	// 		} 
+	// 	}
+	// 	//print_r($array);
 	// 	return $html;
 	// } 
 
@@ -502,7 +532,7 @@ class SpecialASBSearch extends SpecialPage {
 		foreach ( $dropRatesArray as $ratesTable ) {
 			foreach ($ratesTable as $row)
 			{
-				$zn = ParserHelper::replaceUnderscores($row->zoneName);
+				//$zn = ParserHelper::replaceUnderscores($row->zoneName);
 
 				// This section generally to help deal with gaps between the mob drops and bcnm crate lists
 				$minL = null; $maxL = null; $dType = null;
@@ -521,13 +551,14 @@ class SpecialASBSearch extends SpecialPage {
 				// foreach( ExclusionsHelper::$zones as $v) { 
 				// 	//print_r($zn);
 				// 	if ( $zn == $v ) { $skipRow = true; break; } }
-				// if ( $skipRow == true ) continue;			
-				//if ( ExclusionsHelper::zoneIsOOE($row->zoneName) ) { continue; }
+				// if ( $skipRow == true ) continue;
+				$zn = ParserHelper::zoneERA_forList($row->zoneName);
+				if ( !$zn ) { continue; }
 				if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
 				/*******************************************************/
 
 				$zn = ParserHelper::zoneName($row->zoneName);
-				$mn = ParserHelper::mobName($row->mobName, $minL, $maxL);
+				$mn = ParserHelper::mobName($row->mobName, $minL, $maxL, $row->zoneName);
 				$in = ParserHelper::itemName($row->itemName);
 
 				
