@@ -181,11 +181,11 @@ class SpecialASBSearch extends SpecialPage {
 			// 	'name' => 'showIDCheck',
 			// 	'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
 			// ]
-			'showBCNMdrops' => [
-				'type' => 'check',
-				'label' => 'Include BCNMs',
-				'name' => 'showBCNMdrops',
-			],
+			// 'showBCNMdrops' => [
+			// 	'type' => 'check',
+			// 	'label' => 'Include BCNMs',
+			// 	'name' => 'showBCNMdrops',
+			// ],
 		];
 	
 		// Build the HTMLForm object, calling the form 'myform'
