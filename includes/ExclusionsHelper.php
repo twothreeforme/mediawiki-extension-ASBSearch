@@ -17,6 +17,9 @@ class ExclusionsHelper {
     public static function mobIsOOE($m){
         //print_r($m . ", " . substr($m, -2) . "  --  ");
         if ( substr($m, -2) == "_G" ) return true;  // Garrison Mobs
+        foreach( ExclusionsHelper::$mobs as $mob) {
+            if ( ucwords($mob) == ucwords($m)) return true;
+        }
         return false;
     }
 
@@ -242,6 +245,10 @@ class ExclusionsHelper {
         'Vanguard Trooper' => 'Pantin Babouches',
         'Vanguard Trooper' => 'Mirage Bazubands',
         'Vanguard Trooper' => 'Argute bracers'
+    );
+
+    public static $mobs = array(
+        'Pixie'
     );
 
     public static $bcnmZones = array(
