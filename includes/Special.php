@@ -57,11 +57,18 @@ class SpecialASBSearch extends SpecialPage {
 				//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
 				$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
 
-				$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
-				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
+				$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
+				//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
+				
+				$mobDrops = new DataModel();
+				$mobDrops->parseData($mobDropRatesData);
+				if ( $this->showBCNMdrops == 1) {
+					$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
+					$mobDrops->parseData($bcnmDropRatesData);
+				}
 
-				if ( $this->showBCNMdrops != 1) $bcnmDropRatesData = null;
-				$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
+				//$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
+				$wikitext = self::build_table($mobDrops->getDataSet());
 				//$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
 				//$wikitext = "<p>testing</p>";
 				
@@ -181,11 +188,11 @@ class SpecialASBSearch extends SpecialPage {
 			// 	'name' => 'showIDCheck',
 			// 	'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
 			// ]
-			// 'showBCNMdrops' => [
-			// 	'type' => 'check',
-			// 	'label' => 'Include BCNMs',
-			// 	'name' => 'showBCNMdrops',
-			// ],
+			'showBCNMdrops' => [
+				'type' => 'check',
+				'label' => 'Include BCNMs',
+				'name' => 'showBCNMdrops',
+			],
 		];
 	
 		// Build the HTMLForm object, calling the form 'myform'
@@ -219,10 +226,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 //'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -295,7 +302,8 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
-			->where( $query	) 
+			->where( $query	)
+			->limit(1000) 
 			->fetchResultSet(); 
 	}
 
@@ -342,143 +350,12 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'bcnm_info', null, 'bcnm_info.bcnmId=hxi_bcnm_crate_list.bcnmId' )
 			->join( 'item_basic', null, 'item_basic.itemid=hxi_bcnm_crate_list.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=bcnm_info.zoneId')
-			->where( $query	) 
+			->where( $query	)
+			->limit(500)
 			->fetchResultSet(); 
-
-			// 			'mob_droplist.itemRate',
-			// 			'mob_droplist.dropType',
-			// 			'mob_droplist.groupId',
-			// 			'mob_droplist.groupRate',
-			// 			'zone_settings.name AS zoneName',
-			// 			'mob_groups.name AS mobName',
-			// 			'mob_groups.minLevel AS mobMinLevel',
-			// 			'mob_groups.maxLevel AS mobMaxLevel',
-			// 			'item_basic.name AS itemName', 
-			// 			'item_basic.sortname AS itemSortName', ] )
 	}
 
-	// function arrayFromRates($dataset){ //uses schema from self::getRates
-	// 	$array = [];
-	// 	foreach ($dataset as $row)
-	// 	{
-			
-	// 		/*******************************************************
-	// 		 * Removing OOE 
-	// 		 */
-	// 		// First check zone names
-			
-	// 		//$zn = str_replace("[S]", "(S)", $zn );
-	// 		// $skipRow = false;
-	// 		// foreach( ExclusionsHelper::$zones as $v) { 
-	// 		// 	//print_r($zn);
-	// 		// 	if ( $zn == $v ) { $skipRow = true; break; } }
-	// 		// if ( $skipRow == true ) continue;
-	// 		$zn = ParserHelper::zoneERA_forList($row->zoneName);
-	// 		if ( !$zn ) { continue; }
-	// 		if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
-	// 		/*******************************************************/
-
-
-	// 		$zn = ParserHelper::zoneName($row->zoneName);
-	// 		$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel, $zn);
-	// 		$in = ParserHelper::itemName($row->itemName);
-
-			
-	// 		// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
-
-	// 		// }
-
-	// 		/******************************************************
-	// 		 * Handle drop TYPE & RATE
-	// 		 */
-	// 		// $dropGroup;
-	// 		// $droprate;	
-	// 		// switch ($row->dropType) {
-	// 		// 	case 0;
-	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
-	// 		// 		$droprate = "$droprate %";
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	case 1:
-	// 		// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
-	// 		// 		$droprate = "$droprate %";
-	// 		// 		break;
-	// 		// 	case 2:
-	// 		// 		$droprate = 'Steal';
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	case 4;
-	// 		// 		$droprate = 'Despoil';
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	default:
-	// 		// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-	// 		// 		// $droprate = "$droprate %";
-	// 		// 		break;
-	// 		// }			
-
-	// 		/**
-	// 		 * Unique by 1x zonename and 1x mobname
-	// 		 * $array['zonename'] = [
-	// 		 * 		zonename['mobname'] = [ 
-	// 		 * 			moblevel = [ mobminlevel, mobmaxlevel ]
-	// 		 * 			dropdata = [ dropgroup, [ itemname, droprate ] 
-	// 		 * 		]	
-	// 		 * 	]
-	// 		 */
-			
-			
-	// 		$group = [ $row->groupId, $row->groupRate ];
-	// 		$item = [ $row->itemName, $row->itemRate ];
-
-	// 		$temp = array (
-	// 			// 'mobName' => $row->mobName, 
-	// 			// 'mobMinLevel' => $row->mobMinLevel,
-	// 			// 'mobMaxLevel' => $row->mobMaxLevel,
-	// 			'mobName' => $mn,
-	// 			'dropData' => array (
-	// 				'groupId' => $row->groupId,
-	// 				'groupRate' => $row->groupRate,
-	// 				'item' => array(
-	// 					'name' => $row->itemName,
-	// 					'dropRate' => $row->itemRate
-	// 				)));
-
-	// 		if ( !array_key_exists($zn, $array) ) { $array[$zn] = []; }	// set zoneName in array
-	// 		if ( !array_key_exists($mn, $array[$zn])){ 					// set mobName in array
-	// 			// array_push ( $array[$zn], $mn );
-	// 			$array[$zn][$mn] = $mn;
-	// 			$array[$zn]['dropData'] = array(
-	// 				'groupId' => $row->groupId,
-	// 				'groupRate' => $row->groupRate,
-	// 				'item' => array(
-	// 					'name' => $row->itemName,
-	// 					'dropRate' => $row->itemRate
-	// 				));
-
-	// 			continue; 
-	// 		}
-	// 		unset($temp['mobName']);
-	// 		if ( !array_key_exists('dropData', $array[$zn])){			// set dropData in array
-
-	// 		}	
-			
-
-	// 		//[ $row->zoneName, $row->mobName, $row->mobMinLevel, $row->mobMaxLevel, [ ] ]
-	// 	}
-	// 	$html = "";
-	// 	foreach ($array as $key => $mobArray){
-	// 		//$html = "<br>" . $a["zoneName"]["dropData"]["groupId"] ;
-	// 		$html .= "<br> $key";
-
-	// 		foreach ($mobArray as $mob){
-	// 			$html .= "	<br>". $mob["mobName"] . ":" . $mob["dropData"];
-	// 		} 
-	// 	}
-	// 	//print_r($array);
-	// 	return $html;
-	// } 
+	
 
 	function _tableHeaders(){
 		$html = "";
@@ -488,10 +365,10 @@ class SpecialASBSearch extends SpecialPage {
 		$html .= "<br>
 		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"dropstable\">
+		<table id=\"asbsearch_dropstable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
-			<th>Drop Group</th>
+			<th>Details</th>
 			<th>Item - Drop Rate</th>
 			";
 			//<th>Drop Percentage</th>
@@ -503,42 +380,46 @@ class SpecialASBSearch extends SpecialPage {
 	}
 
 	function build_table($dropRatesArray)
-	{
-		$items = $dropRatesArray[0];
-		
+	{		
 		$html = "";
+
+		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
 
 		/************************
 		 * Row counter
 		 */
 		$totalRows = -1;
 		
-		foreach ($items as $row) // test total records query'd
+		foreach ($dropRatesArray as $row) // test total records query'd
 		{
+			//print_r("row: " .$row['mobName']);
 			if ( $totalRows < 0 ) $totalRows = 0;
-			$totalRows ++;
-			if ( $totalRows > 1000){
-				return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-					Please reduce search pool by adding more to any of the search parameters.</i></b>";
+			foreach($row['dropData']['items'] as $item ){
+				$totalRows ++;
+				if ( $totalRows > 1000){
+					return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
+						Please reduce search pool by adding more to any of the search parameters.</i></b>";
+				}
 			}
 		}
 
-		if ( $totalRows >= 0 ) {  $html .= "<i><b> $totalRows records found</i></b>"; }
+		if ( $totalRows >= 0 ) {  $html .= "<i><b> $totalRows records (items) found</i></b>"; }
 
 		$html .= self::_tableHeaders();
 
-		$itemGroup = 0;
-
-		foreach ( $dropRatesArray as $ratesTable ) {
-			foreach ($ratesTable as $row)
-			{
+		foreach ( $dropRatesArray as $row ) {
+			//foreach ($ratesTable as $row) {
 				//$zn = ParserHelper::replaceUnderscores($row->zoneName);
 
 				// This section generally to help deal with gaps between the mob drops and bcnm crate lists
 				$minL = null; $maxL = null; $dType = null;
-				if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
-				if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
-				if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
+				// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
+				// if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
+				// if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
+				if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
+				if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
+				if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
+
 				else $dType = 1; 	// All bcnm drops are part of a group
 
 				/*******************************************************
@@ -552,14 +433,57 @@ class SpecialASBSearch extends SpecialPage {
 				// 	//print_r($zn);
 				// 	if ( $zn == $v ) { $skipRow = true; break; } }
 				// if ( $skipRow == true ) continue;
-				$zn = ParserHelper::zoneERA_forList($row->zoneName);
+				$zn = ParserHelper::zoneERA_forList($row['zoneName']);
 				if ( !$zn ) { continue; }
-				if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
+				if ( ExclusionsHelper::mobIsOOE($row['mobName']) ) { continue; }
 				/*******************************************************/
 
-				$zn = ParserHelper::zoneName($row->zoneName);
-				$mn = ParserHelper::mobName($row->mobName, $minL, $maxL, $row->zoneName);
-				$in = ParserHelper::itemName($row->itemName);
+				$zn = ParserHelper::zoneName($row['zoneName']);
+				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['zoneName']);
+				
+				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
+
+				/*******************
+				 * Handle drop details / grouping / type
+				 */
+				$dropDetails = "-";
+				if ( $row['dropData']['groupId'] != "0" ) {
+					$gR = $row['dropData']['groupRate'];
+					if ( $gR > 1000 ) $gR = 1000;
+					$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
+				}
+				else {
+					switch ($dType) {
+							case 2:
+								$dropDetails = "Steal";
+								break;
+							case 4;
+								$dropDetails = 'Despoil';
+								break;
+							default:
+								break;
+						}
+				}
+				$html .= "<td><center>$dropDetails</center></td>";
+				/*******************************************************/
+
+
+				/*******************
+				 * Add items as individual tables inside a cell
+				 */
+				$html .= "<td><table id=\"asbsearch_dropstable2\">";
+				for ( $i = 0; $i < count($row['dropData']['items']); $i ++){
+					$item = $row['dropData']['items'][$i];
+					$i_n = ParserHelper::itemName($item['name']);
+					$gR = $row['dropData']['groupRate'];
+					if ( $gR < 1000 ) $gR = 1000;
+					$i_dr = ((int)$item['dropRate'] / $gR) * 100 ;
+					
+					if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
+					else $html .= "<tr><center>" . $i_n . " - " . $i_dr ."%</center></tr>";
+				}
+				$html .= "</table></td>"; 
+				/*******************************************************/
 
 				
 				// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
@@ -569,34 +493,34 @@ class SpecialASBSearch extends SpecialPage {
 				/******************************************************
 				 * Handle drop TYPE & RATE
 				 */
-				$dropGroup;
-				$droprate;	
-				switch ($dType) {
-					case 0;
-						$droprate = round(($row->itemRate) / 10 ) ;
-						$droprate = "$droprate %";
-						$dropGroup = "-";
-						break;
-					case 1:
-						$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-						$droprate = round(($row->itemRate) / 10 ) ;
-						$droprate = "$droprate %";
-						break;
-					case 2:
-						$droprate = 'Steal';
-						$dropGroup = "-";
-						break;
-					case 4;
-						$droprate = 'Despoil';
-						$dropGroup = "-";
-						break;
-					default:
-						// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-						// $droprate = "$droprate %";
-						//$droprate = round(($row->itemRate) / 10 ) ;
-						//$dropGroup = "-";
-						break;
-				}
+				// $dropGroup;
+				// $droprate;	
+				// switch ($dType) {
+				// 	case 0;
+				// 		$droprate = round(($row->itemRate) / 10 ) ;
+				// 		$droprate = "$droprate %";
+				// 		$dropGroup = "-";
+				// 		break;
+				// 	case 1:
+				// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
+				// 		$droprate = round(($row->itemRate) / 10 ) ;
+				// 		$droprate = "$droprate %";
+				// 		break;
+				// 	case 2:
+				// 		$droprate = 'Steal';
+				// 		$dropGroup = "-";
+				// 		break;
+				// 	case 4;
+				// 		$droprate = 'Despoil';
+				// 		$dropGroup = "-";
+				// 		break;
+				// 	default:
+				// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
+				// 		// $droprate = "$droprate %";
+				// 		//$droprate = round(($row->itemRate) / 10 ) ;
+				// 		//$dropGroup = "-";
+				// 		break;
+				// }
 
 				/*******************************************************/
 				// 					Zone Name  		| 				Mob Name 		| 			Drop Group 		|			Item Name - Drop rate	
@@ -629,50 +553,56 @@ class SpecialASBSearch extends SpecialPage {
 				// // and this item is in the same droprate group then 
 				// // continue with the consolidated row 
 				// else 
-				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$dropGroup</center></td><td><center>$in - $droprate</center></td>";
+
+
+				//$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$dropGroup</center></td><td><center>$in - $droprate</center></td>";
 				
 				//$itemGroup = $row->groupId; //reset item group for this iteration
 
-
 				if ( $this->thRatesCheck == 1){
-					
+					$item = $row['dropData']['items'][0];
 					$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
-					if ( $row->itemRate == 0 || $row->dropType != 0 ) $cat = 8;
-					elseif ( $row->itemRate == 240 ) $cat = 1; 	//@VCOMMON -- Very common, 24%
-					elseif ( $row->itemRate == 150 ) $cat = 2; 	//@COMMON -- Common, 15%
-					elseif ( $row->itemRate == 100 ) $cat = 3; 	//@UNCOMMON -- Uncommon, 10%
-					elseif ( $row->itemRate == 50 ) $cat = 4; 	//@RARE -- Rare, 5%
-					elseif ( $row->itemRate == 10 ) $cat = 5; 	//@VRARE -- Very rare, 1%
-					elseif ( $row->itemRate == 5 ) $cat = 6; 	//@SRARE -- Super Rare, 0.5%
-					elseif ( $row->itemRate == 1 ) $cat = 7; 	//@URARE -- Ultra rare, 0.1%
+
+					if ( $row['dropData']['groupId'] == "0" ) {
+						print_r($dType);
+						if ( $item['dropRate'] == 0 || $dType != 0 ) $cat = 8;
+						elseif ( $item['dropRate'] == 240 ) $cat = 1; 	//@VCOMMON -- Very common, 24%
+						elseif ( $item['dropRate'] == 150 ) $cat = 2; 	//@COMMON -- Common, 15%
+						elseif ( $item['dropRate'] == 100 ) $cat = 3; 	//@UNCOMMON -- Uncommon, 10%
+						elseif ( $item['dropRate'] == 50 ) $cat = 4; 	//@RARE -- Rare, 5%
+						elseif ( $item['dropRate'] == 10 ) $cat = 5; 	//@VRARE -- Very rare, 1%
+						elseif ( $item['dropRate'] == 5 ) $cat = 6; 	//@SRARE -- Super Rare, 0.5%
+						elseif ( $item['dropRate'] == 1 ) $cat = 7; 	//@URARE -- Ultra rare, 0.1%
+						else $cat = 8;
+					}
 					else $cat = 8;
 
 					$th1 = 0; $th2 = 0; $th3 = 0; $th4 = 0;
-				
+					
 					switch ($cat) {
 						case 0:
 							$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
 							break;
 						case 1:
-							$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 2.333); $th3 = self::thAdjust($row->itemRate, 2.5); $th4 = self::thAdjust($row->itemRate, 2.666);
+							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 2.333); $th3 = self::thAdjust($item['dropRate'], 2.5); $th4 = self::thAdjust($item['dropRate'], 2.666);
 							break;
 						case 2:
-							$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 2.666); $th3 = self::thAdjust($row->itemRate, 2.833); $th4 = self::thAdjust($row->itemRate, 3);
+							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 2.666); $th3 = self::thAdjust($item['dropRate'], 2.833); $th4 = self::thAdjust($item['dropRate'], 3);
 							break;
 						case 3:
-							$th1 = self::thAdjust($row->itemRate, 1.2); $th2 = self::thAdjust($row->itemRate, 1.5); $th3 = self::thAdjust($row->itemRate, 1.65); $th4 = self::thAdjust($row->itemRate, 1.8);
+							$th1 = self::thAdjust($item['dropRate'], 1.2); $th2 = self::thAdjust($item['dropRate'], 1.5); $th3 = self::thAdjust($item['dropRate'], 1.65); $th4 = self::thAdjust($item['dropRate'], 1.8);
 							break;
 						case 4:
-							$th1 = self::thAdjust($row->itemRate, 1.2); $th2 = self::thAdjust($row->itemRate, 1.4); $th3 = self::thAdjust($row->itemRate, 1.5); $th4 = self::thAdjust($row->itemRate, 1.6);
+							$th1 = self::thAdjust($item['dropRate'], 1.2); $th2 = self::thAdjust($item['dropRate'], 1.4); $th3 = self::thAdjust($item['dropRate'], 1.5); $th4 = self::thAdjust($item['dropRate'], 1.6);
 							break;	
 						case 5:
-							$th1 = self::thAdjust($row->itemRate, 1.5); $th2 = self::thAdjust($row->itemRate, 2); $th3 = self::thAdjust($row->itemRate, 2.25); $th4 = self::thAdjust($row->itemRate, 2.5);
+							$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.25); $th4 = self::thAdjust($item['dropRate'], 2.5);
 							break;		
 						case 6:
-							$th1 = self::thAdjust($row->itemRate, 1.5); $th2 = self::thAdjust($row->itemRate, 2); $th3 = self::thAdjust($row->itemRate, 2.4); $th4 = self::thAdjust($row->itemRate, 2.8);
+							$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.4); $th4 = self::thAdjust($item['dropRate'], 2.8);
 							break;
 						case 7:
-							$th1 = self::thAdjust($row->itemRate, 2); $th2 = self::thAdjust($row->itemRate, 3); $th3 = self::thAdjust($row->itemRate, 3.5); $th4 = self::thAdjust($row->itemRate, 4);
+							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 3); $th3 = self::thAdjust($item['dropRate'], 3.5); $th4 = self::thAdjust($item['dropRate'], 4);
 							break;
 						case 8;
 							$th1 = "-"; $th2 = "-"; $th3 = "-"; $th4 = "-";
@@ -680,16 +610,13 @@ class SpecialASBSearch extends SpecialPage {
 						default:
 						break;
 					}
+
 					$html .= "<td><center>$th1 %</center></td><td><center>$th2 %</center></td><td><center>$th3 %</center></td><td><center>$th4 %</center></td>";
 				}
 				$html .= "</tr>";
-				
-			}
 
 		}
 		$html .= '</table></div>';
-
-		
 
 		return $html;
 	}

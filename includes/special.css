@@ -1,15 +1,20 @@
-#dropstable {
+#asbsearch_dropstable {
     position: relative;
     width: 100%;
 }
 
-#dropstable th {
+#asbsearch_dropstable th {
     background-color: #ffffff;
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
-#dropstable tr:nth-child(even) td{
+#asbsearch_dropstable tr:nth-child(even) td{
     background-color: #4c8af550;
+}
+
+#asbsearch_dropstable2 tr td{
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0) !important;
 }

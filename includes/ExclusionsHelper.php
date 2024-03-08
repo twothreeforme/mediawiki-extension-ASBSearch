@@ -27,13 +27,13 @@ class ExclusionsHelper {
         if ( gettype($zone) == 'string' || gettype($zone) == 'integer' ){ 
             $zone = ParserHelper::replaceUnderscores($zone);
 
-            //print_r($zone);
             foreach( ExclusionsHelper::$bcnmZones as $k => $v) {
-                $k = ucwords($k);
+                //$k = ucwords($k);
                 $v = ucwords($v);
-                print_r($k, $v);
+                // print_r($k, $v);
                 $zone = ucwords($zone);
-                if ( str_contains($v, $zone) || str_contains($k, $zone)) return true;  
+                //print_r($v);
+                if ( str_contains($v, $zone)) return true;  // str_contains($k, $zone) || 
             }
         }
         return false;

@@ -11,7 +11,8 @@
     "AutoloadClasses": {
         "SpecialASBSearch": "includes/Special.php",
         "ExclusionsHelper": "includes/ExclusionsHelper.php",
-        "ParserHelper": "includes/ParserHelper.php"
+        "ParserHelper": "includes/ParserHelper.php",
+        "DataModel": "includes/DataModel.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch"
