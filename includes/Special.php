@@ -446,7 +446,7 @@ class SpecialASBSearch extends SpecialPage {
 				/*******************
 				 * Handle drop details / grouping / type
 				 */
-				print_r($dType);
+				//print_r($dType);
 				$dropDetails = "-";
 				if ( $row['dropData']['groupId'] != "0" ) {
 					$gR = $row['dropData']['groupRate'];
