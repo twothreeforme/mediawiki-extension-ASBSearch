@@ -47,7 +47,7 @@ class DataModel {
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
-			$r_dropType = ( property_exists($row, 'dropData' ) ) ? $row->dropData : 0; 
+			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0; 
 			
 			$_item = array(
 				'name' => $row->itemName,
