@@ -230,7 +230,7 @@ class SpecialASBSearch extends SpecialPage {
                 // 'password' => '',
 				'user' => 'horizon_wiki',
 				'password' => 'KamjycFLfKEyFsogDtqM',
-                //'ssl' => $this->getVar( 'wgDBssl' ),
+                // 'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
@@ -365,7 +365,7 @@ class SpecialASBSearch extends SpecialPage {
 		$html .= "<br>
 		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\">
+		<table id=\"asbsearch_dropstable\" class=\"sortable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
 			<th>Details</th>
@@ -472,7 +472,7 @@ class SpecialASBSearch extends SpecialPage {
 				/*******************
 				 * Add items as individual tables inside a cell
 				 */
-				$html .= "<td><table id=\"asbsearch_dropstable2\">";
+				$html .= "<td><table id=\"asbsearch_dropstable2\" >";
 				for ( $i = 0; $i < count($row['dropData']['items']); $i ++){
 					$item = $row['dropData']['items'][$i];
 					$i_n = ParserHelper::itemName($item['name']);
