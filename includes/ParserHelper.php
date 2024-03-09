@@ -5,7 +5,7 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl, $zoneName){
+    public static function mobName($mobName, $minLvl, $maxLvl, $zoneName, $change){
 		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
@@ -26,10 +26,11 @@ class ParserHelper {
     /**************************
      * Item related parsing
      */
-	public static function itemName($itemName){
-		$itemName = self::replaceUnderscores($itemName);
+	public static function itemName($item){
+		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
-		return " [[$itemName]] ";
+		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
+		else return " [[$itemName]] ";
 	}
 
 

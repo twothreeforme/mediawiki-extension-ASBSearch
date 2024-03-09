@@ -48,10 +48,12 @@ class DataModel {
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0; 
-			
+			$r_itemChanges = ( property_exists($row, 'itemChanges' ) ) ? $row->itemChanges : 0; 
+
 			$_item = array(
 				'name' => $row->itemName,
-				'dropRate' => $row->itemRate
+				'dropRate' => $row->itemRate,
+				'changes' => $r_itemChanges
 			);
 
 			$workingRow = array (
@@ -59,7 +61,6 @@ class DataModel {
 				'mobName' => $row->mobName, 
 				'mobMinLevel' => $r_mobMinLevel,
 				'mobMaxLevel' => $r_mobMaxLevel,
-				'mobName' => $row->mobName,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,
