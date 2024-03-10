@@ -52,26 +52,36 @@ ALTER TABLE `mob_droplist`
  
 INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemId`, `itemRate`, `changes_tag`) VALUES
 
+-- Variables
+-- SET @ALWAYS = 1000;  -- Always, 100%
+-- SET @VCOMMON = 240;  -- Very common, 24%
+-- SET @COMMON = 150;   -- Common, 15%
+-- SET @UNCOMMON = 100; -- Uncommon, 10%
+-- SET @RARE = 50;      -- Rare, 5%
+-- SET @VRARE = 10;     -- Very rare, 1%
+-- SET @SRARE = 5;      -- Super Rare, 0.5%
+-- SET @URARE = 1;      -- Ultra rare, 0.1%
+
     -- Ruinous_Rocs (Tier 1 HENM)
-    (20000,0,0,0,15736,0,1), -- Trotter Boots 
-    (20000,0,0,0,50000,0,1), -- Rucke's Ring (Horizon Exclusive)
-    (20000,0,0,0,50001,0,1), -- Vaulter's Ring (Horizon Exclusive)
-    (20000,0,0,0,50002,0,1), -- Luftpause Mark (Horizon Exclusive)
-    (20000,0,0,0,658,0,1), -- Damascus Ingot
-    (20000,0,0,0,4655,0,1), -- Scroll of Protectra V
+    (20000,0,0,0,15736,100,1), -- Trotter Boots 
+    (20000,0,0,0,50000,100,1), -- Rucke's Ring (Horizon Exclusive)
+    (20000,0,0,0,50001,100,1), -- Vaulter's Ring (Horizon Exclusive)
+    (20000,0,0,0,50002,100,1), -- Luftpause Mark (Horizon Exclusive)
+    (20000,0,0,0,658,150,1), -- Damascus Ingot
+    (20000,0,0,0,4655,100,1), -- Scroll of Protectra V
 
     -- Sacred_Scorpions (Tier 1 HENM)
     (20001,0,0,0,50003,0,1), -- Horus's Helm (Horizon Exclusive)
-    (20001,0,0,0,50004,0,1), -- Dilation Ring (Horizon Exclusive)
+    (20001,0,0,0,50004,100,1), -- Dilation Ring (Horizon Exclusive)
     (20001,0,0,0,50005,0,1), -- Carapace bullet (Horizon Exclusive)
-    (20001,0,0,0,50006,0,1), -- Opuntia hoop (Horizon Exclusive)
+    (20001,0,0,0,50006,100,1), -- Opuntia hoop (Horizon Exclusive)
 
     -- Despotic_Decapod (Tier 1 HENM)
-    (20002,0,0,0,50007,0,1), -- Overlord's Ring (Horizon Exclusive)
-    (20002,0,0,0,50008,0,1), -- Sprinter's Belt (Horizon Exclusive)
-    (20002,0,0,0,50009,0,1), -- Deflecting Band (Horizon Exclusive)
-    (20002,0,0,0,50010,0,1), -- Duality Loop (Horizon Exclusive)
-    (20002,0,0,0,836,0,1) -- Damascene Cloth
+    (20002,0,0,0,50007,100,1), -- Overlord's Ring (Horizon Exclusive)
+    (20002,0,0,0,50008,100,1), -- Sprinter's Belt (Horizon Exclusive)
+    (20002,0,0,0,50009,100,1), -- Deflecting Band (Horizon Exclusive)
+    (20002,0,0,0,50010,100,1), -- Duality Loop (Horizon Exclusive)
+    (20002,0,0,0,836,150,1) -- Damascene Cloth
 
 ;
 UNLOCK TABLES;
