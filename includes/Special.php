@@ -227,10 +227,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 // 'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -421,17 +421,16 @@ class SpecialASBSearch extends SpecialPage {
 				//$zn = ParserHelper::replaceUnderscores($row->zoneName);
 
 				// This section generally to help deal with gaps between the mob drops and bcnm crate lists
-				$minL = null; $maxL = null; $dType = null; $changes = null;
+				$minL = null; $maxL = null; $dType = null; $mobChanges = null;
 				// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
 				// if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
 				// if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
 				if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
 				if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
 				if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
-				
-
 				else $dType = 1; 	// All bcnm drops are part of a group
-
+				if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
+				else $mobChanges = 0; 	// All bcnm drops are part of a group
 				/*******************************************************
 				 * Removing OOE 
 				 */
@@ -449,7 +448,7 @@ class SpecialASBSearch extends SpecialPage {
 				/*******************************************************/
 
 				$zn = ParserHelper::zoneName($row['zoneName']);
-				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['zoneName'], null); //need to readdress this later
+				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['zoneName'], $mobChanges); //need to readdress this later
 				
 				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
 

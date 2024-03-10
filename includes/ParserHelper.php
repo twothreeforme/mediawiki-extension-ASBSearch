@@ -5,7 +5,7 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl, $zoneName, $change){
+    public static function mobName($mobName, $minLvl, $maxLvl, $zoneName, $changes){
 		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
@@ -21,6 +21,7 @@ class ParserHelper {
 			if ( $maxLvl == 255) $mobName = " {{changes}}[[$mobName]]<sup>(HENM)</sup> ";
 			else $mobName = " [[$mobName]]<sup>($maxLvl)</sup> ";
 		}
+		else if ( $changes == 1) $mobName = " {{changes}}[[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else return $mobName;

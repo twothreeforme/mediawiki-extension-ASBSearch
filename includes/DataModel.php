@@ -60,7 +60,8 @@ class DataModel {
 
 			$workingRow = array (
 				'zoneName' => $zn,
-				'mobName' => $row->mobName, 
+				'mobName' => $row->mobName,
+				'mobChanges' => $row->mobChanges,
 				'mobMinLevel' => $r_mobMinLevel,
 				'mobMaxLevel' => $r_mobMaxLevel,
 				'dropData' => array (
