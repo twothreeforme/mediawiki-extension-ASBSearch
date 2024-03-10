@@ -17,6 +17,10 @@ class ParserHelper {
 		$mobName = ucwords($mobName);
 		
 		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
+		else if ( $minLvl == $maxLvl ) {
+			if ( $maxLvl == 255) $mobName = " {{changes}}[[$mobName]]<sup>(HENM)</sup> ";
+			else $mobName = " [[$mobName]]<sup>($maxLvl)</sup> ";
+		}
 		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else return $mobName;

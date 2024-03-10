@@ -1,25 +1,107 @@
 -- ---------------------------------------------------------------------------
---  Notes: Horizon XI Wiki Changes
+-- Horizon XI Wiki Changes
 -- ---------------------------------------------------------------------------
 
--- Table: mob_droplist
--- Format: (dropId,dropType,groupId,groupRate,itemId,itemRate)
+-- HENM Default `dropId` value starts at 20000
+SET @HENM_lvl = 255;        -- HENM Default `maxLevel` and `minLevel` value to help ParserHelper tag it
 
--- Table: hxi_bcnm_crate_list
+-- Start with cleanup
+DELETE FROM `mob_groups` WHERE groupid>=20000 AND groupid<30000 ;
+DELETE FROM `mob_droplist` WHERE dropId>=20000 AND dropId<30000 ;
+DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
+
+
+-- ---------------------------------------------------------------------------
 -- Format: (bcnmId,groupId,groupRate,itemId,itemRate)
-  
--- ---------------------------------------------------------------------------
-
-	
---LOCK TABLE `mob_droplist` WRITE;
---ALTER TABLE `mob_droplist`
---    ADD COLUMN IF NOT EXISTS `content_tag` varchar(14) DEFAULT NULL AFTER `allegiance`;
-
-
+SELECT 'hxi_bcnm_crate_list' AS' ';
 LOCK TABLE `hxi_bcnm_crate_list` WRITE;	
 ALTER TABLE `hxi_bcnm_crate_list`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `itemRate`;
 	
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='17440' AND bcnmId='79'; -- Replace Kraken Club(17440) with Octave Club(18852)
 
+UNLOCK TABLES;
+
+
+
+-- ---------------------------------------------------------------------------
+-- Format: (groupid,poolid,zoneid,name,respawntime,spawntype,dropid,HP,MP,minLevel,maxLevel,allegiance,changes_tag)
+SELECT 'mob_groups' AS' ';
+LOCK TABLE `mob_groups` WRITE;	
+ALTER TABLE `mob_groups`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `allegiance`;
+
+INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`,`changes_tag`) VALUES 
+    (20000,20000,110,'Ruinous_Rocs',0,0,20000,0,0,@HENM_lvl,@HENM_lvl,0,1),
+    (20000,20000,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,1),
+    (20000,20000,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,1);
+
+UNLOCK TABLES;
+
+
+
+-- ---------------------------------------------------------------------------
+-- Format: (dropId,dropType,groupId,groupRate,itemId,itemRate,changes_tag)
+SELECT 'mob_droplist' AS' ';
+-- Notes
+-- HENMs: dropId default start value 20000
+
+LOCK TABLE `mob_droplist` WRITE;	
+ALTER TABLE `mob_droplist`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `itemRate`;
+ 
+INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemId`, `itemRate`, `changes_tag`) VALUES
+
+    -- Ruinous_Rocs (Tier 1 HENM)
+    (20000,0,0,0,15736,0,1), -- Trotter Boots 
+    (20000,0,0,0,50000,0,1), -- Rucke's Ring (Horizon Exclusive)
+    (20000,0,0,0,50001,0,1), -- Vaulter's Ring (Horizon Exclusive)
+    (20000,0,0,0,50002,0,1), -- Luftpause Mark (Horizon Exclusive)
+    (20000,0,0,0,658,0,1), -- Damascus Ingot
+    (20000,0,0,0,4655,0,1), -- Scroll of Protectra V
+
+    -- Sacred_Scorpions (Tier 1 HENM)
+    (20001,0,0,0,50003,0,1), -- Horus's Helm (Horizon Exclusive)
+    (20001,0,0,0,50004,0,1), -- Dilation Ring (Horizon Exclusive)
+    (20001,0,0,0,50005,0,1), -- Carapace bullet (Horizon Exclusive)
+    (20001,0,0,0,50006,0,1), -- Opuntia hoop (Horizon Exclusive)
+
+    -- Despotic_Decapod (Tier 1 HENM)
+    (20002,0,0,0,50007,0,1), -- Overlord's Ring (Horizon Exclusive)
+    (20002,0,0,0,50008,0,1), -- Sprinter's Belt (Horizon Exclusive)
+    (20002,0,0,0,50009,0,1), -- Deflecting Band (Horizon Exclusive)
+    (20002,0,0,0,50010,0,1), -- Duality Loop (Horizon Exclusive)
+    (20002,0,0,0,836,0,1) -- Damascene Cloth
+
+;
+UNLOCK TABLES;
+
+-- ---------------------------------------------------------------------------
+-- Format: (itemid,subid,name,sortname,stackSize,flags,aH,NoSale,BaseSell,changes_tag)
+SELECT 'item_basic' AS' ';
+
+LOCK TABLE `item_basic` WRITE;	
+ALTER TABLE `item_basic`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `BaseSell`;
+
+INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`,`aH`,`NoSale`,`BaseSell`,`changes_tag`) VALUES
+
+    -- Ruinous_Rocs (Tier 1 HENM)
+    (50000,0,'ruckes_ring','ruckes_ring',1,63552,0,1,0,1), -- Rucke's Ring
+    (50001,0,'vaulters_ring','vaulters_ring',1,63552,0,1,0,1), -- Vaulter's Ring
+    (50002,0,'luftpause_mark','luftpause_mark',1,63552,0,1,0,1), -- Luftpause Mark
+
+    -- Sacred_Scorpions (Tier 1 HENM)
+    (50003,0,'horuss_helm','horuss_helm',1,63552,0,1,0,1), -- Horus's Helm 
+    (50004,0,'dilation_ring','dilation_ring',1,63552,0,1,0,1), -- Dilation Ring
+    (50005,0,'carapace_bullet','carapace_bullet',1,63552,0,1,0,1), -- Carapace bullet
+    (50006,0,'opuntia_hoop','opuntia_hoop',1,63552,0,1,0,1), -- Opuntia hoop
+
+    -- Despotic_Decapod (Tier 1 HENM)
+    (50007,0,'overlords_ring','overlords_ring',1,63552,0,1,0,1), -- Overlord's Ring 
+    (50008,0,'sprinters_belt','sprinters_belt',1,63552,0,1,0,1), -- Sprinter's Belt
+    (50009,0,'deflecting_band','deflecting_band',1,63552,0,1,0,1), -- Deflecting Band
+    (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,1) -- Duality Loop
+
+;
 UNLOCK TABLES;

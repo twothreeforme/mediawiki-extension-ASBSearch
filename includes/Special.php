@@ -62,6 +62,7 @@ class SpecialASBSearch extends SpecialPage {
 				
 				$mobDrops = new DataModel();
 				$mobDrops->parseData($mobDropRatesData);
+				//print_r($mobDrops);
 				if ( $this->showBCNMdrops == 1) {
 					$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
 					$mobDrops->parseData($bcnmDropRatesData);
@@ -226,10 +227,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 // 'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
@@ -276,7 +277,11 @@ class SpecialASBSearch extends SpecialPage {
 		$query = [ 
 			//"zone_settings.name" => $zoneNameSearch,
 			"mob_groups.name LIKE '%$mobNameSearch%'",
-			"item_basic.name LIKE '%$itemNameSearch%'" ];
+			"item_basic.name LIKE '%$itemNameSearch%'",
+			"mob_droplist.dropid !=0 ",
+			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL )",
+			//"mob_groups.content_tag IS NULL ",
+		];
 
 			//up_property = 'enotifwatchlistpages'
 		if ( $zoneNameSearch !=  'searchallzones' ) {
@@ -297,7 +302,10 @@ class SpecialASBSearch extends SpecialPage {
 						'mob_groups.minLevel AS mobMinLevel',
 						'mob_groups.maxLevel AS mobMaxLevel',
 						'item_basic.name AS itemName', 
-						'item_basic.sortname AS itemSortName'] )
+						//'item_basic.sortname AS itemSortName',
+						'mob_groups.changes_tag AS mobChanges',
+						'item_basic.changes_tag AS itemChanges' 
+						] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
@@ -345,7 +353,7 @@ class SpecialASBSearch extends SpecialPage {
 						//'mob_groups.minLevel AS mobMinLevel',
 						//'mob_groups.maxLevel AS mobMaxLevel',
 						'item_basic.name AS itemName', 
-						'item_basic.sortname AS itemSortName',
+						//'item_basic.sortname AS itemSortName',
 						'hxi_bcnm_crate_list.changes_tag AS itemChanges' ] )
 			->from( 'hxi_bcnm_crate_list' )
 			->join( 'bcnm_info', null, 'bcnm_info.bcnmId=hxi_bcnm_crate_list.bcnmId' )
@@ -482,86 +490,18 @@ class SpecialASBSearch extends SpecialPage {
 					if ( $gR < 1000 ) $gR = 1000;
 					$i_dr = ((int)$item['dropRate'] / $gR) * 100 ;
 					
+
 					if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
+					else if ( $i_dr == 0 ) $html .= "<tr><center>" . $i_n . " - " . " ??? </center></tr>";
 					else $html .= "<tr><center>" . $i_n . " - " . $i_dr ."%</center></tr>";
 				}
 				$html .= "</table></td>"; 
 				/*******************************************************/
 
-				
-				// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
 
-				// }
-
-				/******************************************************
-				 * Handle drop TYPE & RATE
+				/*******************
+				 * Add TH values
 				 */
-				// $dropGroup;
-				// $droprate;	
-				// switch ($dType) {
-				// 	case 0;
-				// 		$droprate = round(($row->itemRate) / 10 ) ;
-				// 		$droprate = "$droprate %";
-				// 		$dropGroup = "-";
-				// 		break;
-				// 	case 1:
-				// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-				// 		$droprate = round(($row->itemRate) / 10 ) ;
-				// 		$droprate = "$droprate %";
-				// 		break;
-				// 	case 2:
-				// 		$droprate = 'Steal';
-				// 		$dropGroup = "-";
-				// 		break;
-				// 	case 4;
-				// 		$droprate = 'Despoil';
-				// 		$dropGroup = "-";
-				// 		break;
-				// 	default:
-				// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-				// 		// $droprate = "$droprate %";
-				// 		//$droprate = round(($row->itemRate) / 10 ) ;
-				// 		//$dropGroup = "-";
-				// 		break;
-				// }
-
-				/*******************************************************/
-				// 					Zone Name  		| 				Mob Name 		| 			Drop Group 		|			Item Name - Drop rate	
-				// if the previous item was in a droprate group
-				// and this item is not, then the html for the row
-				// needs to be closed out
-				// allow TH rows to be written after the last item in the group
-				// if (  $itemGroup != 0 && $row->groupId == 0) {
-				// 	$html .= " </table></td>";
-				// 	//continue;
-				// }
-				// // else if the previous item was in a droprate group
-				// // and this item is in the same droprate group then 
-				// // continue with the consolidated row 
-				// else if (  $itemGroup != 0 && $itemGroup == $row->groupId ) {
-				// 	$html .= "<tr><td><center>$in - $droprate</center></td></tr>";
-				// 	continue;
-				// }
-					
-				// // else if the previous item was in a droprate group
-				// // and this item is NOT in the same droprate group then 
-				// // this is the start of a new group and the old one needs 
-				// // to be closed first, then a new one started
-				// else if (  $itemGroup != 0 && $itemGroup != $row->groupId ) {
-				// 	$html .= " </table></td><td><table width=\"100%\"><tr><td><center>$in - $droprate</center></td></tr>";
-				// 	continue;
-				// }
-
-				// // else if the previous item was in a droprate group
-				// // and this item is in the same droprate group then 
-				// // continue with the consolidated row 
-				// else 
-
-
-				//$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$dropGroup</center></td><td><center>$in - $droprate</center></td>";
-				
-				//$itemGroup = $row->groupId; //reset item group for this iteration
-
 				if ( $this->thRatesCheck == 1){
 					$item = $row['dropData']['items'][0];
 					$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
@@ -616,6 +556,8 @@ class SpecialASBSearch extends SpecialPage {
 
 					$html .= "<td><center>$th1 %</center></td><td><center>$th2 %</center></td><td><center>$th3 %</center></td><td><center>$th4 %</center></td>";
 				}
+				/*******************************************************/
+
 				$html .= "</tr>";
 
 		}

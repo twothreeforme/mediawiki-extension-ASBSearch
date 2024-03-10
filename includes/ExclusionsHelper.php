@@ -3,6 +3,7 @@
 class ExclusionsHelper {
 
     public static function zoneIsOOE($x){
+        return false;
         if ( gettype($x) == 'string' || gettype($x) == 'integer' ){ 
             foreach( ExclusionsHelper::$zones as $v) {
                //print_r($v);

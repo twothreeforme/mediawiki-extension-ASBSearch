@@ -50,6 +50,8 @@ class DataModel {
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0; 
 			$r_itemChanges = ( property_exists($row, 'itemChanges' ) ) ? $row->itemChanges : 0; 
 
+			//print_r($row->mobName . ":" . $row->itemName . "  ");  // DEBUGGING
+			
 			$_item = array(
 				'name' => $row->itemName,
 				'dropRate' => $row->itemRate,
