@@ -32,12 +32,23 @@ ALTER TABLE `mob_groups`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `allegiance`;
 
 INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`,`changes_tag`) VALUES 
+    
+    -- Rolanberry_Fields (Zone: 110)
     (20000,0,110,'Ruinous_Rocs',0,0,20000,0,0,@HENM_lvl,@HENM_lvl,0,1),
-    (20001,0,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,1),
-    (20002,0,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,1),
 
-    (20003,0,113,'Arid_Lizard',0,0,221,0,0,76,78,0,1)
+    -- Sauromugue_Champaign (Zone: 120)
+    (20000,0,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,1),
+    (20001,0,120,'Young_Uragnite',0,0,2527,0,0,36,42,0,1),
 
+    -- Jugner_Forest (Zone: 104)
+    (20000,0,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,1),
+
+    -- Cape_Terrigan (Zone: 113)
+    (20000,0,113,'Arid_Lizard',0,0,221,0,0,76,78,0,1),
+    (20001,0,113,'Dust_Bat',0,0,234,0,0,76,79,0,1),
+
+    -- Batallia Downs (Zone: 105)
+    (20000,0,105,'Downslime',0,0,567,0,0,41,44,0,1)
 ;
 UNLOCK TABLES;
 
