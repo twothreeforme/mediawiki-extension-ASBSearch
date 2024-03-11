@@ -98,7 +98,7 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     (20002,0,0,0,836,150,1) -- Damascene Cloth
 ;
 
-UPDATE mob_droplist set itemRate = 50 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%
+UPDATE mob_droplist set itemRate = 50, changes_tag = 1 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%
 
 
 UNLOCK TABLES;
