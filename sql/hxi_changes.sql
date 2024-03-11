@@ -96,8 +96,11 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     (20002,0,0,0,50009,100,1), -- Deflecting Band (Horizon Exclusive)
     (20002,0,0,0,50010,100,1), -- Duality Loop (Horizon Exclusive)
     (20002,0,0,0,836,150,1) -- Damascene Cloth
-
 ;
+
+UPDATE mob_droplist set itemRate = 50 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%
+
+
 UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
@@ -128,4 +131,6 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,1) -- Duality Loop
 
 ;
+
+
 UNLOCK TABLES;
