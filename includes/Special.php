@@ -304,7 +304,8 @@ class SpecialASBSearch extends SpecialPage {
 						'item_basic.name AS itemName', 
 						//'item_basic.sortname AS itemSortName',
 						'mob_groups.changes_tag AS mobChanges',
-						'item_basic.changes_tag AS itemChanges' 
+						'item_basic.changes_tag AS itemChanges',
+						'mob_droplist.changes_tag AS dropChanges'
 						] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
