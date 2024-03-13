@@ -421,20 +421,7 @@ class SpecialASBSearch extends SpecialPage {
 		$html .= self::_tableHeaders();
 
 		foreach ( $dropRatesArray as $row ) {
-			//foreach ($ratesTable as $row) {
-				//$zn = ParserHelper::replaceUnderscores($row->zoneName);
 
-				// This section generally to help deal with gaps between the mob drops and bcnm crate lists
-				$minL = null; $maxL = null; $dType = null; $mobChanges = null;
-				// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
-				// if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
-				// if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
-				if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
-				if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
-				if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
-				else $dType = 1; 	// All bcnm drops are part of a group
-				if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
-				else $mobChanges = 0; 	// All bcnm drops are part of a group
 				/*******************************************************
 				 * Removing OOE 
 				 */
@@ -451,10 +438,28 @@ class SpecialASBSearch extends SpecialPage {
 				if ( ExclusionsHelper::mobIsOOE($row['mobName']) ) { continue; }
 				/*******************************************************/
 
+				/*******************************************************
+				 * This section generally to help deal with gaps between the mob drops and bcnm crate lists 
+				 */
+				$minL = null; $maxL = null; $dType = null; $mobChanges = null;
+				// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
+				// if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
+				// if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
+				if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
+				if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
+				if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
+				else $dType = 1; 	// All bcnm drops are part of a group
+				if ( array_key_exists('changes', $row['dropData']) ) $dropChanges = $row['dropData']['changes']; // Nuances can be marked
+				else $dropChanges = 0; 	
+				if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
+				else $mobChanges = 0;
+
 				$zn = ParserHelper::zoneName($row['zoneName']);
 				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['zoneName'], $mobChanges); //need to readdress this later
 				
 				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
+				/*******************************************************/
+
 
 				/*******************
 				 * Handle drop details / grouping / type
@@ -464,7 +469,9 @@ class SpecialASBSearch extends SpecialPage {
 				if ( $row['dropData']['groupId'] != "0" ) {
 					$gR = $row['dropData']['groupRate'];
 					if ( $gR > 1000 ) $gR = 1000;
-					$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
+					$changes = "";
+					if ( $dropChanges == 2 ) $changes = "** ";
+					$dropDetails = $changes . "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
 				}
 				else {
 					switch ($dType) {

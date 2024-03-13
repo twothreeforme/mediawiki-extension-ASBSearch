@@ -48,8 +48,8 @@ class DataModel {
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0; 
-			$r_itemChanges = ( property_exists($row, 'itemChanges' ) || property_exists($row, 'dropChanges' ) ) ? $row->itemChanges : 0; 
-
+			$r_itemChanges = ( property_exists($row, 'itemChanges' ) ) ? $row->itemChanges : 0; 
+			$r_dropChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0; 
 			//print_r($row->mobName . ":" . $row->itemName . "  ");  // DEBUGGING
 			
 			$_item = array(
@@ -68,6 +68,7 @@ class DataModel {
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,
 					'type' => $r_dropType,
+					'changes' => $r_dropChanges,
 					'items' => array(
 						$_item
 					)));
