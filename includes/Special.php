@@ -376,7 +376,8 @@ class SpecialASBSearch extends SpecialPage {
 		 * Initial HTML for the table
 		 */
 		$html .= "<br>
-		<div ><i>Disclosure: All data here is from AirSkyBoat. Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i> </div>
+		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
+		</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"sortable\">
 			<tr><th>Zone Name</th>
