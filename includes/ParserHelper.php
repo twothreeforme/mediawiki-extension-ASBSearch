@@ -35,6 +35,7 @@ class ParserHelper {
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
+		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
 		else return " [[$itemName]] ";
 	}
 
