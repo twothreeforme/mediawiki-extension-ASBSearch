@@ -5,7 +5,7 @@
         "Shocks"
     ],
     "url": "none",
-    "descriptionmsg": "Database search tool for ASB related SQL data.",
+    "descriptionmsg": "asbsearch-desc",
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
@@ -17,8 +17,13 @@
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch"
     },
+    "MessagesDirs": {
+		"ASBSearch": [
+			"i18n"
+		]
+	},
 	"ExtensionMessagesFiles": {
-		"ASBSearchAlias": "i18n/ASBSearch.i18n.alias.php"
+		"ASBSearchAlias": "i18n/ASBSearch.alias.php"
 	},
 	"ResourceModules": {
 		"inputHandler" : {

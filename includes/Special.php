@@ -8,13 +8,14 @@ use Wikimedia\Rdbms\DatabaseFactory;
 //set_time_limit(0);
 
 class SpecialASBSearch extends SpecialPage {
-    public function __construct( $title = 'ASBSearch' ) {
+    public function __construct( ) {
         parent::__construct( 'ASBSearch' );
     }
 
 	static function onBeforePageDisplay( $out, $skin ) : void  { 
 		$out->addModules(['inputHandler']);
 	}
+	
 
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
@@ -24,6 +25,8 @@ class SpecialASBSearch extends SpecialPage {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		//$output->addModules(['inputHandler']);
+		$output->setPageTitle( $this->msg( 'asbsearch' ) );
+
 
 		//$output->enableOOUI();
 		$this->setHeaders();
@@ -227,10 +230,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 // 'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
