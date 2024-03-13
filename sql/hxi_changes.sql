@@ -54,7 +54,7 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
     (20000,0,105,'Downslime',0,0,567,0,0,41,44,0,@HXI),
 
     -- Lufaise_Meadows (Zone: 24)
-    (20000,0,24,'Padfoot',0,0,20003,0,0,45,46,0,0)
+    (20000,0,24,'Padfoot',0,0,20003,0,0,45,46,0,0),
 
     -- Grand_Palace_of_HuXzoi (Zone: 34)
     (20000,0,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
@@ -110,11 +110,11 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     (20003,1,1,1000,14676,750,@NUANCE), -- Assailant's Ring (Group 1 - 75%)
     (20003,1,1,1000,14782,250,@NUANCE), -- Astral Earring (Group 1 - 25%)
     (20003,0,0,1000,531,500,@NUANCE), -- Lanolin Cube (xi.drop_rate.GUARANTEED)
-    (20003,0,0,1000,505,1000,@NUANCE) -- Sheepskin (xi.drop_rate.VERY_COMMON)
+    (20003,0,0,1000,505,1000,@NUANCE), -- Sheepskin (xi.drop_rate.VERY_COMMON)
 
     -- Ixaern_Mnk 
     (20004,1,1,1000,1851,750,@NUANCE), -- Deed of Placidity (Group 1 - 75%)
-    (20004,1,1,1000,1901,250,@NUANCE), -- Vice of Antipathy (Group 1 - 25%)
+    (20004,1,1,1000,1901,250,@NUANCE) -- Vice of Antipathy (Group 1 - 25%)
 ;
 
 -- UPDATE mob_droplist set itemRate = 50, groupId =  3, changes_tag = 1 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%; move to new group with Andvaranauts
