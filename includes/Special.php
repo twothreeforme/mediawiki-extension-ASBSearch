@@ -491,11 +491,12 @@ class SpecialASBSearch extends SpecialPage {
 				$html .= "<td><table id=\"asbsearch_dropstable2\" >";
 				for ( $i = 0; $i < count($row['dropData']['items']); $i ++){
 					$item = $row['dropData']['items'][$i];
+
 					$i_n = ParserHelper::itemName($item);
 					$gR = $row['dropData']['groupRate'];
 					if ( $gR < 1000 ) $gR = 1000;
 					$i_dr = ((int)$item['dropRate'] / $gR) * 100 ;
-					
+					print_r($item['changes']);
 
 					if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
 					else if ( $i_dr == 0 ) $html .= "<tr><center>" . $i_n . " - " . " ??? </center></tr>";
