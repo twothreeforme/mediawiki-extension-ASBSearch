@@ -448,9 +448,7 @@ class SpecialASBSearch extends SpecialPage {
 				if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
 				if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
 				if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
-				else $dType = 1; 	// All bcnm drops are part of a group
-				if ( array_key_exists('changes', $row['dropData']) ) $dropChanges = $row['dropData']['changes']; // Nuances can be marked
-				else $dropChanges = 0; 	
+				else $dType = 1; 	// All bcnm drops are part of a group 	
 				if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
 				else $mobChanges = 0;
 
@@ -469,9 +467,7 @@ class SpecialASBSearch extends SpecialPage {
 				if ( $row['dropData']['groupId'] != "0" ) {
 					$gR = $row['dropData']['groupRate'];
 					if ( $gR > 1000 ) $gR = 1000;
-					$changes = "";
-					if ( $dropChanges == 2 ) $changes = "** ";
-					$dropDetails = $changes . "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
+					$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
 				}
 				else {
 					switch ($dType) {

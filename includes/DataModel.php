@@ -47,9 +47,13 @@ class DataModel {
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
-			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0; 
-			$r_itemChanges = ( property_exists($row, 'itemChanges' ) ) ? $row->itemChanges : 0; 
-			$r_dropChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0; 
+			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0;
+
+			// Doing it this way - itemChanges will take precendence over dropChanges...
+			// so a Horizon changes tag will take precendence over a nuanced label
+			$r_itemChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0; 
+			$r_itemChanges = ( property_exists($row, 'itemChanges' ) ) ? $row->itemChanges : $r_itemChanges; 
+			//$r_dropChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0; 
 			//print_r($row->mobName . ":" . $row->itemName . "  ");  // DEBUGGING
 			
 			$_item = array(
@@ -68,7 +72,6 @@ class DataModel {
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,
 					'type' => $r_dropType,
-					'changes' => $r_dropChanges,
 					'items' => array(
 						$_item
 					)));
