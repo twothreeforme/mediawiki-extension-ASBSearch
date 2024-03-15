@@ -48,11 +48,13 @@ class DataModel {
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0;
+			$r_mobChanges = ( property_exists($row, 'mobChanges' ) ) ? $row->mobChanges : 0;
 
 			// Doing it this way - itemChanges will take precendence over dropChanges...
 			// so a Horizon changes tag will take precendence over a nuanced label
 			$r_itemChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0;
 			$r_itemChanges = ( property_exists($row, 'itemChanges' ) && $row->itemChanges != 0 ) ? $row->itemChanges : $r_itemChanges; 
+
 			//print_r($row->mobName . ":" . $row->itemName . "  ");  // DEBUGGING
 
 			$_item = array(
@@ -64,7 +66,7 @@ class DataModel {
 			$workingRow = array (
 				'zoneName' => $zn,
 				'mobName' => $row->mobName,
-				'mobChanges' => $row->mobChanges,
+				'mobChanges' => $r_mobChanges,
 				'mobMinLevel' => $r_mobMinLevel,
 				'mobMaxLevel' => $r_mobMaxLevel,
 				'dropData' => array (
