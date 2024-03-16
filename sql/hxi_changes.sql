@@ -114,7 +114,7 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
 
     -- Ixaern_Mnk 
     (20004,1,1,1000,1851,750,@NUANCE), -- Deed of Placidity (Group 1 - 75%)
-    (20004,1,1,1000,1901,250,@NUANCE), -- Vice of Antipathy (Group 1 - 25%)
+    (20004,1,1,1000,1901,250,@NUANCE) -- Vice of Antipathy (Group 1 - 25%)
 
     -- -- All Coffer Keys drop rate increase to 10%
     -- (4,0,0,1000,1048,@UNCOMMON, @HXI),     -- Zvahl Coffer Key (Rare, 5%)
