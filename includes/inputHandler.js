@@ -1,17 +1,13 @@
-function copyToClipboard() {
-
-    //navigator.clipboard.writeText("test value");
-
-    //alert("test value");
-
-
-    let url = document.location.href
+function copyURLToClipboard() {
+    url = document.location.href;
 
     navigator.clipboard.writeText(url).then(function() {
-        console.log('Copied!');
+        console.log('copyURLToClipboard(): Copied!');
+        mw.notify( 'Test', { autoHide: true,  type: 'warn' } ); 
     }, function() {
-        console.log('Copy error')
+    	alert("Error copying to clipboard. Please report on our Discord.");
+        console.log('copyURLToClipboard(): Copy error');
     });
-  } 
+  };
 
   console.log('here');
