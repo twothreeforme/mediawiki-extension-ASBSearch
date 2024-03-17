@@ -40,44 +40,13 @@ class SpecialASBSearch extends SpecialPage {
 		//$this->showIDCheck = $request->getText( 'showIDCheck' );
 		$this->showBCNMdrops = $request->getText( 'showBCNMdrops' );
 
-		//print_r("*" . $mobNameSearch . "*");
- 
-		//$wikitext = 'Hello world!';	
-		// $title = Title::newFromText("Special:ASBSearch");
-		// $url = $title->getFullURL();
-		// print_r($url);
+
+		
+		$formTextInput = '
+				<button type="button" id="copytoclipboard"  onclick="copyURLToClipboard();">Share Query</button>
+			';	
 ////////////////////////////////////////////
-		// if (isset($zoneNameDropDown) ||  ) {
-			if ( $mobNameSearch == "" && $itemNameSearch== "" ){
-				//$wikitext = self::build_table(self::getFullDBTable());
-				$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
-			}
-			else{
-				$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
-				$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
-				$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
-				$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
-				//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
-				$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
 
-				$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
-				//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
-				
-				$mobDrops = new DataModel();
-				$mobDrops->parseData($mobDropRatesData);
-				//print_r($mobDrops);
-				if ( $this->showBCNMdrops == 1) {
-					$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
-					$mobDrops->parseData($bcnmDropRatesData);
-				}
-
-				//$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
-				$wikitext = self::build_table($mobDrops->getDataSet());
-				//$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
-				//$wikitext = "<p>testing</p>";
-				
-			}
-		//}
 
 		// $formDropDown = '<form method="post">;
 		// 		<select name="lang" multiple>
@@ -86,12 +55,7 @@ class SpecialASBSearch extends SpecialPage {
 		// 		</select>
 		// 	</form>';
 
-		// $formTextInput = '
-		// 	<form >
-		// 		<input id="zonenametext" name="zonenametext" placeholder="Name" />
-		// 		<button type="button" id="submitFormData"  onclick="SubmitFormData();">Submit</button>
-		// 	</form>
-		// ';
+		
 
 		// $testForm = '
         // <form id="myForm" method="post">
@@ -144,7 +108,7 @@ class SpecialASBSearch extends SpecialPage {
 		
 		$zoneNamesList = self::getZoneNames();
 		// formDescriptor Array to tell HTMLForm what to build
-		$lang = $this->getLanguage();
+
 		$formDescriptor = [
 			// 'info' => [
 			// 	'type' => 'info',
@@ -209,13 +173,51 @@ class SpecialASBSearch extends SpecialPage {
 		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );  
 		// Call processInput() in your extends SpecialPage class on submit
 
-		$htmlForm->setMethod( 'post' );
+		$htmlForm->setMethod( 'get' );
 		$htmlForm->show(); // Display the form
 		
+		if ( $mobNameSearch == "" && $itemNameSearch== "" ){
+			//$wikitext = self::build_table(self::getFullDBTable());
+			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
+		}
+		else{
+			$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
+			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
+			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
+			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
+			//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
+			$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
+
+			$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
+			//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
+			
+			$mobDrops = new DataModel();
+			$mobDrops->parseData($mobDropRatesData);
+			//print_r($mobDrops);
+			if ( $this->showBCNMdrops == 1) {
+				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
+				$mobDrops->parseData($bcnmDropRatesData);
+			}
+
+					
+			
+			//$title = $this->getSkin()->getTitle();
+			//print_r($title->getPrefixedUrl());
+
+			//$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
+			//$wikitext = $formTextInput;
+			//$wikitext = $formTextInput . '<br><br><br>';
+			$output->addHTML( "<br>" . $formTextInput  ); 
+			$wikitext = self::build_table($mobDrops->getDataSet());
+			//$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
+			//$wikitext = "<p>testing</p>";
+			
+		}
+
 		$output->addWikiTextAsInterface( $wikitext );
 	}
 
-
+	
 	public static function processInput( $formData ) {
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
