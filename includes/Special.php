@@ -83,7 +83,7 @@ class SpecialASBSearch extends SpecialPage {
 			//$wikitext = "<p>testing</p>";
 			
 		}
-
+		print_r($zoneNameSearch);
 		// $formDropDown = '<form method="post">;
 		// 		<select name="lang" multiple>
 		// 			<option>choose zone</option>
