@@ -52,7 +52,7 @@ class SpecialASBSearch extends SpecialPage {
 			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
 		}
 		else{
-			$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : $zoneNamesList[' ** Search All Zones ** ']; 
+			//$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : 'searchallzones'; 
 
 			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
@@ -164,7 +164,7 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Zone', // Label of the field
 				'class' => 'HTMLSelectField', // Input type
 				'options' => $zoneNamesList,
-				'default' => "Aht Urhgan Whitegate",
+				'default' => "searchallzones",
 			],
 			// 'zoneNameTextField' => [
 			// 	'label' => 'Zone Name', // Label of the field
