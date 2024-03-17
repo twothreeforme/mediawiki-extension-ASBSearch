@@ -46,12 +46,14 @@ class SpecialASBSearch extends SpecialPage {
 				<button type="button" id="copytoclipboard"  onclick="copyURLToClipboard();">Share Query</button>
 			';	
 ////////////////////////////////////////////
+		$zoneNamesList = self::getZoneNames();
 		if ( $mobNameSearch == "" && $itemNameSearch== "" ){
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
 		}
 		else{
-			//$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
+			$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : $zoneNamesList[' ** Search All Zones ** ']; 
+
 			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
 			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
