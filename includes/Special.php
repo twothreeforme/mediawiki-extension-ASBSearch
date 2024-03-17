@@ -209,7 +209,7 @@ class SpecialASBSearch extends SpecialPage {
 		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );  
 		// Call processInput() in your extends SpecialPage class on submit
 
-		$htmlForm->setMethod( 'get' );
+		$htmlForm->setMethod( 'post' );
 		$htmlForm->show(); // Display the form
 		
 		if ( $mobNameSearch != "" || $itemNameSearch != "" ){ $output->addHTML( "<br>" . $formTextInput  ); }
