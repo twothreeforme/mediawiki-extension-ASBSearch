@@ -10,4 +10,3 @@ function copyURLToClipboard() {
     });
   };
 
-  console.log('here');

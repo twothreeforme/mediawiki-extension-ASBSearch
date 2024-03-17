@@ -190,29 +190,30 @@ class SpecialASBSearch extends SpecialPage {
 			],
 		];
 	
-		// Build the HTMLForm object, calling the form 'myform'
-    	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'myform' );
-	
+    	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'ASBSearch_Form' );
+		$htmlForm->setMethod( 'get' );
 		// Text to display in submit button
 		$htmlForm->setSubmitText( 'Show Drops' );
 	
 		// We set a callback function
 		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );  
 		// Call processInput() in your extends SpecialPage class on submit
-
-		$htmlForm->setMethod( 'get' );
 		$htmlForm->show(); // Display the form
 		
-		if ( $mobNameSearch != "" || $itemNameSearch != "" ){ $output->addHTML( "<br>" . $formTextInput  ); }
+		print_r($htmlForm->wasSubmitted());
+
+		if ( $mobNameSearch != "" || $itemNameSearch != "" ){  $output->addHTML( "<br>" . $formTextInput  ); }
 
 		$output->addWikiTextAsInterface( $wikitext );
+
 	}
 
 	
 	public static function processInput( $formData ) {
+		
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
-		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == ''  ) {
+		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == '' && $formData['zoneNameDropDown'] != 'searchallzones' ) {
 			return '*Either the Mob field or Item field must be filled.';
 		}
 		return false;
