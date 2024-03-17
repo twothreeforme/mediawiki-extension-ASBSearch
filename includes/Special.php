@@ -51,7 +51,7 @@ class SpecialASBSearch extends SpecialPage {
 			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
 		}
 		else{
-			$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
+			//$zoneNameSearch = isset($zoneNameSearch) ? $zoneNameSearch : "*";
 			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
 			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
 			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
@@ -68,22 +68,11 @@ class SpecialASBSearch extends SpecialPage {
 				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
 				$mobDrops->parseData($bcnmDropRatesData);
 			}
-
-					
 			
-			//$title = $this->getSkin()->getTitle();
-			//print_r($title->getPrefixedUrl());
-
-			//$wikitext = self::build_table( [$mobDropRatesData, $bcnmDropRatesData]);
-			//$wikitext = $formTextInput;
-			//$wikitext = $formTextInput . '<br><br><br>';
-			 
 			$wikitext = self::build_table($mobDrops->getDataSet());
-			//$wikitext = self::arrayFromRates(self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch));
-			//$wikitext = "<p>testing</p>";
-			
 		}
-		print_r($zoneNameSearch);
+		//print_r("'" . $zoneNameDropDown . "'");
+
 		// $formDropDown = '<form method="post">;
 		// 		<select name="lang" multiple>
 		// 			<option>choose zone</option>
