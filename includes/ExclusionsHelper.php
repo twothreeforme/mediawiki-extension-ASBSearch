@@ -231,13 +231,14 @@ class ExclusionsHelper {
         'Throne Room [V]',
 
 
-        //Mission / No-Mobs
+        //Mission / No-Mobs / No drops
         'Empyreal Paradox',
         'Gwora-Throne Room',
         'Gwora-Corridor',
         'Hall of Transference',
         'Hall of the Gods',
         'LaLoff Amphitheater',
+        'Sealions Den'
 
     ];
 
