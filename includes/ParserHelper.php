@@ -32,6 +32,7 @@ class ParserHelper {
      * Item related parsing
      */
 	public static function itemName($item){
+		if ( $item['id'] == 0 ) return " <i>Nothing</i> ";
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";

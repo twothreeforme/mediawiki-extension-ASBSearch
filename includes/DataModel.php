@@ -52,15 +52,16 @@ class DataModel {
 
 			// Doing it this way - itemChanges will take precendence over dropChanges...
 			// so a Horizon changes tag will take precendence over a nuanced label
+			 
 			$r_itemChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0;
 			$r_itemChanges = ( property_exists($row, 'itemChanges' ) && $row->itemChanges != 0 ) ? $row->itemChanges : $r_itemChanges; 
-
-			//print_r($row->mobName . ":" . $row->itemName . "  ");  // DEBUGGING
 
 			$_item = array(
 				'name' => $row->itemName,
 				'dropRate' => $row->itemRate,
-				'changes' => $r_itemChanges
+				'changes' => $r_itemChanges,
+				'id' => $row->itemId,
+				'gilAmt' => $row->gilAmt
 			);
 
 			$workingRow = array (

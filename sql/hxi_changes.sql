@@ -15,11 +15,11 @@ DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
 
 
 -- ---------------------------------------------------------------------------
--- Format: (bcnmId,groupId,groupRate,itemId,itemRate)
+-- Format: (bcnmId,groupId,groupRate,itemId,itemRate,gilAmount)
 SELECT 'hxi_bcnm_crate_list' AS' ';
 LOCK TABLE `hxi_bcnm_crate_list` WRITE;	
 ALTER TABLE `hxi_bcnm_crate_list`
-    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `itemRate`;
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `gilAmount`;
 	
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='17440' AND bcnmId='79'; -- Replace Kraken Club(17440) with Octave Club(18852)
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1527' AND bcnmId='11'; -- Update BEHEMOTH_TONGUE drop rate to 50%... needed new Group to do so 
@@ -157,6 +157,9 @@ ALTER TABLE `item_basic`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `BaseSell`;
 
 INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`,`aH`,`NoSale`,`BaseSell`,`changes_tag`) VALUES
+
+    -- NOTHING - added to show 'Nothing' as a drop on the table
+    (0,0,'nothing','nothing',1,0,0,1,0,0), -- Nothing
 
     -- Ruinous_Rocs (Tier 1 HENM)
     (50000,0,'ruckes_ring','ruckes_ring',1,63552,0,1,0,@HXI), -- Rucke's Ring

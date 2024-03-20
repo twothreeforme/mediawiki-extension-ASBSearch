@@ -228,7 +228,6 @@ class SpecialASBSearch extends SpecialPage {
                 // 'password' => '',
 				'user' => 'horizon_wiki',
 				'password' => 'KamjycFLfKEyFsogDtqM',
-                // 'ssl' => $this->getVar( 'wgDBssl' ),
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
@@ -352,7 +351,9 @@ class SpecialASBSearch extends SpecialPage {
 						//'mob_groups.maxLevel AS mobMaxLevel',
 						'item_basic.name AS itemName', 
 						//'item_basic.sortname AS itemSortName',
-						'hxi_bcnm_crate_list.changes_tag AS itemChanges' ] )
+						'hxi_bcnm_crate_list.changes_tag AS itemChanges',
+						'hxi_bcnm_crate_list.gilAmount AS gilAmt',
+						'hxi_bcnm_crate_list.itemId'  ] )
 			->from( 'hxi_bcnm_crate_list' )
 			->join( 'bcnm_info', null, 'bcnm_info.bcnmId=hxi_bcnm_crate_list.bcnmId' )
 			->join( 'item_basic', null, 'item_basic.itemid=hxi_bcnm_crate_list.itemId')
@@ -495,6 +496,7 @@ class SpecialASBSearch extends SpecialPage {
 
 					if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
 					else if ( $i_dr == 0 ) $html .= "<tr><center>" . $i_n . " - " . " ??? </center></tr>";
+					else if ( $item['id'] == 65535 ) $html .= "<tr><center>" . $i_n . " - " . $item['gilAmt'] ."</center></tr>";
 					else $html .= "<tr><center>" . $i_n . " - " . $i_dr ."%</center></tr>";
 				}
 				$html .= "</table></td>"; 
