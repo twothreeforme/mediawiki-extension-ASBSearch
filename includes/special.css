@@ -10,8 +10,8 @@
     z-index: 1;
   }
 
-#asbsearch_dropstable tr:nth-child(even) td{
-    background-color: #4c8af550;
+#asbsearch_dropstable tr:nth-child(odd) td{
+    background-color: #45618a50;
 }
 
 #asbsearch_dropstable2 tr td{
