@@ -496,7 +496,7 @@ class SpecialASBSearch extends SpecialPage {
 
 					if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
 					else if ( $i_dr == 0 ) $html .= "<tr><center>" . $i_n . " - " . " ??? </center></tr>";
-					else if ( $item['id'] == 65535 ) $html .= "<tr><center>[[Image:Gil_icon.png|20px]] " . $i_n . " - " . $item['gilAmt'] ."</center></tr>";
+					else if ( $item['id'] == 65535 ) $html .= "<tr><center>[[Image:Gil_icon.png|18px]] " . $i_n . " - " . $item['gilAmt'] ."</center></tr>";
 					else $html .= "<tr><center>" . $i_n . " - " . $i_dr ."%</center></tr>";
 				}
 				$html .= "</table></td>"; 
