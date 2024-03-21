@@ -33,7 +33,7 @@ class ParserHelper {
      */
 	public static function itemName($item){
 		//if item = Nothing
-		if ( $item['id'] == 0 ) return " <i>Nothing</i> ";
+		if ( $item['name'] == 'nothing' ) return " <i>Nothing</i> ";
 
 		//adjust item names
 		$itemName = self::replaceUnderscores($item['name']);
