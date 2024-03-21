@@ -33,8 +33,6 @@ class ParserHelper {
      */
 	public static function itemName($item){
 		if ( $item['id'] == 0 ) return " <i>Nothing</i> ";
-		//[[Image:Gil_icon.png|16px]]
-		else if ( $item['id'] == 65535 ) return " [[Image:Gil_icon.png|16px]][[$itemName]] ";
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
