@@ -40,7 +40,7 @@ class ParserHelper {
 		$itemName = ucwords($itemName);
 
 		//if item is on OOE list
-		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName<sup>(OOE)</sup></strike> ";
+		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
 
 
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
