@@ -372,7 +372,7 @@ class SpecialASBSearch extends SpecialPage {
 		 */
 		$html .= "<br>
 		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
-		<br> Items that have a <strike>strikethrough</strike> and (OOE) are Out of Era. They are left in the table because it is still unknown how removing these effects other drop rates for Grouped drops (mainly from BCNMs).</i> </div>
+		<br> <strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these effects Grouped drop rates (mainly from BCNMs).</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"sortable\">
 			<tr><th>Zone Name</th>
