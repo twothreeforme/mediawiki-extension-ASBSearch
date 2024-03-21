@@ -3,7 +3,6 @@
 class ExclusionsHelper {
 
     public static function zoneIsOOE($x){
-        //return false;
         if ( gettype($x) == 'string' || gettype($x) == 'integer' ){ 
             foreach( ExclusionsHelper::$zones as $v) {
                //print_r($v);
@@ -16,10 +15,16 @@ class ExclusionsHelper {
     }
 
     public static function mobIsOOE($m){
-        //print_r($m . ", " . substr($m, -2) . "  --  ");
         if ( substr($m, -2) == "_G" ) return true;  // Garrison Mobs
         foreach( ExclusionsHelper::$mobs as $mob) {
             if ( ucwords($mob) == ucwords($m)) return true;
+        }
+        return false;
+    }
+
+    public static function itemIsOOE($i){
+        foreach( ExclusionsHelper::$items as $item) {
+            if ( ucwords($item) == ucwords($i)) return true;
         }
         return false;
     }
@@ -242,12 +247,50 @@ class ExclusionsHelper {
 
     ];
 
-    public static $items = array(
-        //'King Behemoth' => 'Defending Ring',
-        'Vanguard Trooper' => 'Pantin Babouches',
-        'Vanguard Trooper' => 'Mirage Bazubands',
-        'Vanguard Trooper' => 'Argute bracers'
-    );
+    public static $items = [
+        // BCNM OOE TOAU Grips
+         'Claymore Grip', 
+         'Pole Grip',
+         'Sword Strap',
+         'Spear Strap',
+         'Staff Strap',
+
+        // WOTG NM Grips
+         'Orca Strap',
+         'Shark Strap',
+
+        // ZMN Grips
+         'Dark Grip',
+         'Earth Grip',
+         'Fire Grip',
+         'Ice Grip',
+         'Light Grip',
+         'Thunder Grip',
+         'Water Grip',
+         'Wind Grip',
+         'Magic Strap',
+
+        // Abyssea NM Grips
+         'Amicus Grip',
+         'Pax Grip',
+         'Fulcio Grip',
+         'Caecus Grip',
+         'Vox Grip',
+         'Elementa Grip',
+         'Vallus Grip',
+         'Curatio Grip',
+         'Macero Grip',
+         'Quire Grip',
+         'Uthers Grip',
+         'Danger Grip',
+         'Divinus Grip',
+
+        // Post WoTG   Pre Abyssea 
+         'Disciple Grip',
+         'Succubus Grip',
+         'Tenax Strap'
+
+    ];
 
     public static $mobs = array(
         'Pixie'

@@ -32,9 +32,17 @@ class ParserHelper {
      * Item related parsing
      */
 	public static function itemName($item){
+		//if item = Nothing
 		if ( $item['id'] == 0 ) return " <i>Nothing</i> ";
+
+		//adjust item names
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
+
+		//if item is on OOE list
+		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName<sup>(OOE)</sup></strike> ";
+
+
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
 		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
 		else return " [[$itemName]] ";
