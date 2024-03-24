@@ -56,12 +56,16 @@ class DataModel {
 			$r_itemChanges = ( property_exists($row, 'dropChanges' ) ) ? $row->dropChanges : 0;
 			$r_itemChanges = ( property_exists($row, 'itemChanges' ) && $row->itemChanges != 0 ) ? $row->itemChanges : $r_itemChanges; 
 
+			$r_itemId = ( property_exists($row, 'itemId' ) ) ? $row->itemId : 0;
+			$r_gilAmt = ( property_exists($row, 'gilAmt' ) ) ? $row->gilAmt : 0;
+
+
 			$_item = array(
 				'name' => $row->itemName,
 				'dropRate' => $row->itemRate,
 				'changes' => $r_itemChanges,
-				'id' => $row->itemId,
-				'gilAmt' => $row->gilAmt
+				'id' => $r_itemId,
+				'gilAmt' => $r_gilAmt
 			);
 
 			$workingRow = array (

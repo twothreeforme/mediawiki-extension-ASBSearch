@@ -16,7 +16,6 @@ class SpecialASBSearch extends SpecialPage {
 		$out->addModules(['inputHandler']);
 	}
 	
-
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
@@ -28,7 +27,7 @@ class SpecialASBSearch extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 
 
-		//$output->enableOOUI();
+		$output->enableOOUI();
 		$this->setHeaders();
 
 		# Get request data 
@@ -73,62 +72,66 @@ class SpecialASBSearch extends SpecialPage {
 			
 			$wikitext = self::build_table($mobDrops->getDataSet());
 		}
-		//print_r("'" . $zoneNameDropDown . "'");
 
-		// $formDropDown = '<form method="post">;
-		// 		<select name="lang" multiple>
-		// 			<option>choose zone</option>
-		// 			<option value="akjweh">alhkjf</option>
-		// 		</select>
-		// 	</form>';
-
-		
-
-		// $testForm = '
-        // <form id="myForm" method="post">
-        //         <label for="name">Name:</label>
-        //         <input name="name" id="name" type="text" />
-
-        //         <label for="email">Email:</label>
-        //         <input name="email" id="email" type="text" />
-
-        //         <label for="phone">Phone No:</label>
-        //         <input name="phone" id="phone" type="text" />
-
-        //         <label>Gender:</label>
-        //         <input name="gender" type="radio" value="male" id="male"><label for="male">Male</label>
-        //         <input name="gender" type="radio" value="female" id="female"><label for="female">Female</label>
- 
-        //     <button type="button" id="submitFormData" >Submit</button>
-        // </form>
-
-		// ';
-
-		/*	
-		<form  method="POST" action = "<?php $_PHP_SELF ?>">
-		<input type="text" id="a123" name="test" value="submit" >
-		*/
-
-		// $uiLayout = new OOUI\HorizontalLayout( [
-		// 	'items' => [
-		// 		new OOUI\TextInputWidget( [
-		// 			'placeholder' => 'A form text field'
-		// 		] ),
-		// 		new OOUI\ButtonWidget( [
+		// $uiLayout = new OOUI\FieldLayout(
+		// 	new OOUI\TextInputWidget( [
+		// 			'label' => 'Mob BCNM Name',
+		// 			'help' => 'This is some inlined help. Assistive (optional) text, that isn\'t needed to '
+		// 				. 'understand the widget\'s purpose.',
+		// 			'placeholder' => 'Required',
+		// 			'align' => 'top'
+		// 		]
+		// 		),
+		// 	new OOUI\ButtonInputWidget( [
+		// 			'id' => 'shareButton',
+		// 			'infusable' => true,
 		// 			'label' => 'Search',
 		// 			'icon' => 'search',
 		// 			'name' => 'search',
 		// 			'flags' => [ 'primary', 'progressive'],
 		// 			'method' => 'post'
-		// 		] )
+		// 		] ),
+		// 	[
+		// 		'label' => 'Field layouts'
 		// 	]
-		// ] );
-		// $btn = new OOUI\TextInputWidget( [
-		// 	'placeholder' => 'A form text field'
-		// ] );
+		// );
+		
+		$uiLayout = new OOUI\ActionFieldLayout(
+			new OOUI\ButtonWidget( [
+				'id' => 'asbsearch-shareButton',
+				'infusable' => true,
+				'label' => 'Show Drops',
+				'icon' => 'search',
+				'name' => 'search',
+				'flags' => [ 'primary', 'progressive'],
+				'method' => 'post'
+			] ),
+			new OOUI\TextInputWidget( [
+				'id' => 'shareButton',
+				//'infusable' => true,
+				'label' => 'Mob/BCNM Name*',
+				//'name' => 'search',
+				'flags' => [ 'primary', 'progressive']
+			] ),
+			[
+				'id' => 'asbsearch-fieldlayout',
+				'label' => new OOUI\HtmlSnippet( '<i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.</i>' ),
+				'align' => 'top',
+				'help' => 'Test help bubble'
+			]
+			);
 
+		// $shareButton = new OOUI\ButtonWidget( [
+		// 		'id' => 'shareButton',
+		// 		'infusable' => true,
+		// 		'label' => '',
+		// 		'icon' => 'upload',
+		// 		'name' => 'Share',
+		// 		'flags' => [ 'primary', 'progressive']
+		// 	] );
+		
 		//$output->addHTML( $uiLayout );
-		//$output->addHTML( $formTextInput );
+		// $output->addHTML( $shareButton );
 		//$output->addHTML( $testForm );
 
 /////////// HTML FORM TESTING
@@ -200,7 +203,7 @@ class SpecialASBSearch extends SpecialPage {
 		// Call processInput() in your extends SpecialPage class on submit
 		$htmlForm->show(); // Display the form
 		
-		print_r($htmlForm->wasSubmitted());
+		//print_r($htmlForm->wasSubmitted());
 
 		if ( $mobNameSearch != "" || $itemNameSearch != "" ){  $output->addHTML( "<br>" . $formTextInput  ); }
 
@@ -224,10 +227,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => 'root',
+                'password' => '',
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
