@@ -1,4 +1,6 @@
 
+DROP TABLE IF EXISTS `hxi_bcnm_crate_list`;
+
 CREATE TABLE `hxi_bcnm_crate_list` ( 
     `bcnmId` int(10) NOT NULL,											
     `groupId` tinyint(3) unsigned NOT NULL DEFAULT '0',					
@@ -2574,9 +2576,6 @@ INSERT INTO `hxi_bcnm_crate_list` VALUES (80,7,1000,837,50,0); -- SPOOL_OF_MALBO
 INSERT INTO `hxi_bcnm_crate_list` VALUES (80,7,1000,942,300,0); -- PHILOSOPHERS_STONE (30 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (80,7,1000,844,300,0); -- PHOENIX_FEATHER (30 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (80,7,1000,1132,200,0); -- SQUARE_OF_RAXA (20 %)-- Waughroon_Shrine
-INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,1473,813,0); -- HIGH_QUALITY_SCORPION_SHELL (81.3 %)
-INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,13552,55,0); -- SERKET_RING (5.5 %)
-INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,901,123,0); -- VENOMOUS_CLAW (12.3 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,1473,813,0); -- HIGH_QUALITY_SCORPION_SHELL (81.3 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,13552,55,0); -- SERKET_RING (5.5 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (81,1,1000,901,123,0); -- VENOMOUS_CLAW (12.3 %)
