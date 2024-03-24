@@ -514,7 +514,7 @@ class SpecialASBSearch extends SpecialPage {
 					$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
 
 					if ( $row['dropData']['groupId'] == "0" ) {
-						print_r($dType);
+						//print_r($dType);
 						if ( $item['dropRate'] == 0 || $dType != 0 ) $cat = 8;
 						elseif ( $item['dropRate'] == 240 ) $cat = 1; 	//@VCOMMON -- Very common, 24%
 						elseif ( $item['dropRate'] == 150 ) $cat = 2; 	//@COMMON -- Common, 15%
