@@ -16,11 +16,11 @@ function copyURLToClipboard() {
 
   mw.loader.using( 'oojs-ui-core' ).done( function () {
 	$( function () {
-        var btn = OO.ui.ButtonWidget.static.infuse( $( '#asbsearch-shareButton' ) );
-		
-        btn.on( 'click', function () {
-			copyURLToClipboard();
-		} );
+        // var btn = OO.ui.ButtonWidget.static.infuse( $( '#asbsearch-shareButton' ) );
+		// console.log(btn);
+        // btn.on( 'click', function () {
+		// 	copyURLToClipboard();
+		// } );
 
     } );
 } );

@@ -58,7 +58,9 @@ class DataModel {
 
 			$r_itemId = ( property_exists($row, 'itemId' ) ) ? $row->itemId : 0;
 			$r_gilAmt = ( property_exists($row, 'gilAmt' ) ) ? $row->gilAmt : 0;
+			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
 
+			//print_r($r_mobType);
 
 			$_item = array(
 				'name' => $row->itemName,
@@ -74,6 +76,7 @@ class DataModel {
 				'mobChanges' => $r_mobChanges,
 				'mobMinLevel' => $r_mobMinLevel,
 				'mobMaxLevel' => $r_mobMaxLevel,
+				'mobType' => $r_mobType,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,
@@ -189,7 +192,7 @@ class DataModel {
     }
 
 	function showKeys($arr){
-			print_r( $arr );
+			//print_r( $arr );
 			//print_r( $arr->zoneName );
 	}
 

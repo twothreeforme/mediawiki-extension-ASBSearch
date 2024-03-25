@@ -19,6 +19,7 @@ class SpecialASBSearch extends SpecialPage {
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
+	private $excludeNMs = 1;
 
 	function execute( $par ) {
 		$request = $this->getRequest();
@@ -38,6 +39,7 @@ class SpecialASBSearch extends SpecialPage {
 		$this->thRatesCheck = $request->getText( 'thRatesCheck' );
 		//$this->showIDCheck = $request->getText( 'showIDCheck' );
 		$this->showBCNMdrops = $request->getText( 'showBCNMdrops' );
+		$this->excludeNMs = $request->getText( 'excludeNMs' );
 
 
 		
@@ -58,6 +60,7 @@ class SpecialASBSearch extends SpecialPage {
 			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
 			//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
 			$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
+			$excludeNMs = isset($excludeNMs) ? $excludeNMs : "1";
 
 			$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
 			//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
@@ -191,6 +194,11 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Include BCNMs',
 				'name' => 'showBCNMdrops',
 			],
+			'excludeNMs' => [
+				'type' => 'check',
+				'label' => 'Exclude NMs',
+				'name' => 'excludeNMs',
+			],
 		];
 	
     	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'ASBSearch_Form' );
@@ -288,6 +296,9 @@ class SpecialASBSearch extends SpecialPage {
 			//$str = "zone_settings.name => $zoneNameSearch';
 			array_push($query, "zone_settings.name = '$zoneNameSearch'");
 		}
+		if ( $this->excludeNMs == 1) {
+			array_push($query, "mob_pools.mobType != 2");
+		}
 
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()
@@ -304,12 +315,14 @@ class SpecialASBSearch extends SpecialPage {
 						//'item_basic.sortname AS itemSortName',
 						'mob_groups.changes_tag AS mobChanges',
 						'item_basic.changes_tag AS itemChanges',
-						'mob_droplist.changes_tag AS dropChanges'
+						'mob_droplist.changes_tag AS dropChanges',
+						'mob_pools.mobType'
 						] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
 			->where( $query	)
 			->limit(1000) 
 			->fetchResultSet(); 
@@ -452,7 +465,7 @@ class SpecialASBSearch extends SpecialPage {
 				else $mobChanges = 0;
 
 				$zn = ParserHelper::zoneName($row['zoneName']);
-				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['zoneName'], $mobChanges); //need to readdress this later
+				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges); //need to readdress this later
 				
 				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
 				/*******************************************************/
