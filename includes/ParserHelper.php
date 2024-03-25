@@ -15,7 +15,9 @@ class ParserHelper {
 
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
-		
+
+		// print_r($mobName ."-". $mobType ."...");
+
 		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
 		else if ( $minLvl == $maxLvl ) {
 			if ( $maxLvl == 255) $mobName = " {{changes}}[[$mobName]]<sup>(HENM)</sup> ";
@@ -25,7 +27,7 @@ class ParserHelper {
 		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
-		else if ( $mobType == 2 ) return "[NM] " . $mobName;
+		else if ( $mobType == 2 || $mobType == 16 || $mobType == 18 ) return "[NM] " . $mobName;
 		
 		return $mobName;
 	}

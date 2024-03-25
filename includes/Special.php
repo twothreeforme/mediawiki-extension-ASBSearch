@@ -298,6 +298,8 @@ class SpecialASBSearch extends SpecialPage {
 		}
 		if ( $this->excludeNMs == 1) {
 			array_push($query, "mob_pools.mobType != 2");
+			array_push($query, "mob_pools.mobType != 16");
+			array_push($query, "mob_pools.mobType != 18");
 		}
 
 		$dbr = $this->openConnection();

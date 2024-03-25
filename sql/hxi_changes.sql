@@ -57,7 +57,7 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
     (20000,0,105,'Downslime',0,0,567,0,0,41,44,0,@HXI),
 
     -- Lufaise_Meadows (Zone: 24)
-    (20000,0,24,'Padfoot',0,0,20003,0,0,45,46,0,0),
+    (20000,0,24,'Padfoot',0,0,20003,0,0,45,46,0,0),  -- NEED TO MAKE THIS AN NM
 
     -- Grand_Palace_of_HuXzoi (Zone: 34)
     (20000,0,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)

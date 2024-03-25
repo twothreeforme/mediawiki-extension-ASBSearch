@@ -60,7 +60,7 @@ class DataModel {
 			$r_gilAmt = ( property_exists($row, 'gilAmt' ) ) ? $row->gilAmt : 0;
 			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
 
-			//print_r($r_mobType);
+			
 
 			$_item = array(
 				'name' => $row->itemName,
@@ -84,6 +84,8 @@ class DataModel {
 					'items' => array(
 						$_item
 					)));
+
+			//print_r($row->mobName ."-" . $r_mobType ."...");
 
 			// it doenst exist, so create new entry
 			if ( !$this->dataset ) { array_push ( $this->dataset, $workingRow ); continue; }
