@@ -3,7 +3,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
-
+use MediaWiki\WikiMap\WikiMap;
 
 //set_time_limit(0);
 
@@ -20,13 +20,23 @@ class SpecialASBSearch extends SpecialPage {
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
 	private $excludeNMs = 1;
+	private $dbUsername = ''; 
+	private $dbPassword = '';
 
 	function execute( $par ) {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		//$output->addModules(['inputHandler']);
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
-
+		
+		// db login variables - prevents swapping login info between testing server and horizon server
+		
+		if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) == 'testWiki' ){ 
+			$this->dbUsername = 'root'; $this->dbPassword = '';
+		}
+		else {
+			$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
+		}
 
 		$output->enableOOUI();
 		$this->setHeaders();
@@ -232,13 +242,14 @@ class SpecialASBSearch extends SpecialPage {
 
 	public function openConnection() {
        // $status = Status::newGood();
+		
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => 'root',
-                // 'password' => '',
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => $this->dbUsername,
+                'password' => $this->dbPassword,
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
