@@ -40,31 +40,53 @@ ALTER TABLE `mob_groups`
 INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`,`changes_tag`) VALUES 
     
     -- Rolanberry_Fields (Zone: 110)
-    (20000,0,110,'Ruinous_Rocs',0,0,20000,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
+    (20000,25000,110,'Ruinous_Rocs',0,0,20000,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
 
     -- Sauromugue_Champaign (Zone: 120)
-    (20000,0,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
-    (20001,0,120,'Young_Uragnite',0,0,2527,0,0,36,42,0,@HXI),
+    (20000,25001,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
+    (20001,25002,120,'Young_Uragnite',0,0,2527,0,0,36,42,0,@HXI),
 
     -- Jugner_Forest (Zone: 104)
-    (20000,0,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
+    (20000,25003,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
 
     -- Cape_Terrigan (Zone: 113)
-    (20000,0,113,'Arid_Lizard',0,0,221,0,0,76,78,0,@HXI),
-    (20001,0,113,'Dust_Bat',0,0,234,0,0,76,79,0,@HXI),
+    (20000,25004,113,'Arid_Lizard',0,0,221,0,0,76,78,0,@HXI),
+    (20001,25005,113,'Dust_Bat',0,0,234,0,0,76,79,0,@HXI),
 
     -- Batallia Downs (Zone: 105)
-    (20000,0,105,'Downslime',0,0,567,0,0,41,44,0,@HXI),
+    (20000,25006,105,'Downslime',0,0,567,0,0,41,44,0,@HXI),
 
     -- Lufaise_Meadows (Zone: 24)
-    (20000,0,24,'Padfoot',0,0,20003,0,0,45,46,0,0),  -- NEED TO MAKE THIS AN NM
+    (20000,3083,24,'Padfoot',0,0,20003,0,0,45,46,0,0),  
 
     -- Grand_Palace_of_HuXzoi (Zone: 34)
-    (20000,0,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
+    (20000,4661,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
 ;
 UNLOCK TABLES;
 
 
+-- ---------------------------------------------------------------------------
+-- Format: (poolid,name,packet_name,familyid,modelid,mJob,sJob,cmbSkill,cmbDelay,cmbDmgMult,behavior,aggro,true_detection,
+--  links,mobType,immunity,name_prefix,flag,entityFlags,animationsub,hasSpellScript,spellList,namevis,roamflag,skill_list_id,
+--  resist_id)
+SELECT 'mob_pools' AS' ';
+
+LOCK TABLE `mob_pools` WRITE;	
+ALTER TABLE `mob_pools`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `resist_id`;
+ 
+INSERT INTO `mob_pools` (`poolid`,  `name`,     `packet_name`,              `familyid`,   `modelid`,`mJob`,`sJob`,`cmbSkill`,`cmbDelay`,`cmbDmgMult`,`behavior`,`aggro`,`true_detection`,`links`,`mobType`,`immunity`,`name_prefix`,`flag`,`entityFlags`,`animationsub`,`hasSpellScript`,`spellList`,`namevis`,`roamflag`,`skill_list_id`,`resist_id`,`changes_tag`) VALUES
+
+                        (25000,     'Ruinous_Rocs',  'Ruinous_Rocs',            0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      2,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25001,     'Sacred_Scorpions',  'Sacred_Scorpions',    0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      2,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25002,     'Young_Uragnite',  'Young_Uragnite',        0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      0,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25003,     'Despotic_Decapod',  'Despotic_Decapod',    0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      0,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25004,     'Arid_Lizard',  'Arid_Lizard',              0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      0,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25005,     'Dust_Bat',  'Dust_Bat',                    0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      0,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI),
+                        (25006,     'Downslime',  'Downslime',                  0,            0,      0,     0,      0,         0,          0,         0,         0,       0,               0,      0,         0,          0,          0,      0,              0,              0,              0,          0,      0,           0,             0,        @HXI)
+
+;
+UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 -- Format: (dropId,dropType,groupId,groupRate,itemId,itemRate,changes_tag)
