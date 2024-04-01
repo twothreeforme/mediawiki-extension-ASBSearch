@@ -32,8 +32,8 @@ class SpecialASBSearch extends SpecialPage {
 		// db login variables - prevents swapping login info between testing server and horizon server
 		//print_r(WikiMap::getWikiName(WikiMap::getCurrentWikiId()));
 		
-		$_wrap = new WikiMap();
-		print_r( $_wrap->getCurrentWikiId());
+		// $_wrap = new WikiMap();
+		// print_r( $_wrap->getCurrentWikiId());
 		// if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) != 'testWiki' ){ 
 		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
 		// }
