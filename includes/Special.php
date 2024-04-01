@@ -30,10 +30,10 @@ class SpecialASBSearch extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 		
 		// db login variables - prevents swapping login info between testing server and horizon server
-		//print_r(WikiMap::getWikiName(WikiMap::getCurrentWikiId()));
-		if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) != 'testWiki' ){ 
-			$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
-		}
+		print_r(WikiMap::getWikiName(WikiMap::getCurrentWikiId()));
+		// if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) != 'testWiki' ){ 
+		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
+		// }
 		// else {
 		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
 		// }
@@ -247,10 +247,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                'user' => $this->dbUsername,
-                'password' => $this->dbPassword,
-				// 'user' => 'horizon_wiki',
-				// 'password' => 'KamjycFLfKEyFsogDtqM',
+                // 'user' => $this->dbUsername,
+                // 'password' => $this->dbPassword,
+				'user' => 'horizon_wiki',
+				'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
