@@ -1,9 +1,8 @@
 <?php
 //namespace MediaWiki\Extension\MyExtension;
 
-use MediaWiki\MediaWikiServices;
+//use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
-use MediaWiki\WikiMap\WikiMap;
 
 //set_time_limit(0);
 
@@ -20,8 +19,8 @@ class SpecialASBSearch extends SpecialPage {
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
 	private $excludeNMs = 1;
-	private $dbUsername = 'root'; 
-	private $dbPassword = '';
+	private $dbUsername = 'horizon_wiki'; 
+	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
 	function execute( $par ) {
 		$request = $this->getRequest();
@@ -29,18 +28,11 @@ class SpecialASBSearch extends SpecialPage {
 		//$output->addModules(['inputHandler']);
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 		
-		// db login variables - prevents swapping login info between testing server and horizon server
-		//print_r(WikiMap::getWikiName(WikiMap::getCurrentWikiId()));
-		
-		// $_wrap = new WikiMap();
-		// print_r( $_wrap->getCurrentWikiId());
-		// if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) != 'testWiki' ){ 
-		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
-		// }
-		// else {
-		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
-		// }
-		//wfDebugLog( 'userdebug', "ASBSearch->username: $this->dbUsername");
+		// db login variables - prevents swapping login info between testing server and horizon server		
+		//print_r( $_SERVER['SERVER_NAME'] );
+		if ( $_SERVER['SERVER_NAME'] == 'localhost' ){ 
+			$this->dbUsername = 'root'; $this->dbPassword = '';
+		}
 
 		$output->enableOOUI();
 		$this->setHeaders();
@@ -250,10 +242,10 @@ class SpecialASBSearch extends SpecialPage {
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
-                // 'user' => $this->dbUsername,
-                // 'password' => $this->dbPassword,
-				'user' => 'horizon_wiki',
-				'password' => 'KamjycFLfKEyFsogDtqM',
+                'user' => $this->dbUsername,
+                'password' => $this->dbPassword,
+				// 'user' => 'horizon_wiki',
+				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
