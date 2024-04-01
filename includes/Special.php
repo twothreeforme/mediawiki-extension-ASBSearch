@@ -30,12 +30,12 @@ class SpecialASBSearch extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 		
 		// db login variables - prevents swapping login info between testing server and horizon server
-		// if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) == 'testWiki' ){ 
-		// 	$this->dbUsername = 'root'; $this->dbPassword = '';
-		// }
-		// else {
-		// 	$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
-		// }
+		if ( WikiMap::getWikiName(WikiMap::getCurrentWikiId()) == 'testWiki' ){ 
+			$this->dbUsername = 'root'; $this->dbPassword = '';
+		}
+		else {
+			$this->dbUsername = 'horizon_wiki'; $this->dbPassword = 'KamjycFLfKEyFsogDtqM';
+		}
 
 		$output->enableOOUI();
 		$this->setHeaders();
@@ -50,8 +50,6 @@ class SpecialASBSearch extends SpecialPage {
 		$this->showBCNMdrops = $request->getText( 'showBCNMdrops' );
 		$this->excludeNMs = $request->getText( 'excludeNMs' );
 
-
-		
 		$formTextInput = '
 				<button type="button" id="copytoclipboard"  onclick="copyURLToClipboard();">Share Query</button>
 			';	
