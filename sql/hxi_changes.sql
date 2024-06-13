@@ -63,6 +63,10 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
     -- Grand_Palace_of_HuXzoi (Zone: 34)
     (20000,4661,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
 ;
+
+UPDATE mob_groups SET changes_tag='1', dropid='644' WHERE groupid='4' AND poolid='6778' AND poolid='113'; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
+
+
 UNLOCK TABLES;
 
 
@@ -142,6 +146,11 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     (20004,1,1,1000,1851,750,@NUANCE), -- Deed of Placidity (Group 1 - 75%)
     (20004,1,1,1000,1901,250,@NUANCE) -- Vice of Antipathy (Group 1 - 25%)
 
+    -- ZoneID: 113 - Devil Manta Fished
+    -- added for era+ due to it not being listed in ASB
+    (20005,0,0,1000,876,240,@HXI), -- Manta Skin (Very Common, 24%)
+    (20005,0,0,1000,4484,150,@HXI), -- Shall Shell (Common, 15%)
+    (20005,0,0,1000,1312,50,@HXI)   -- Piece Of Angel Skin (Rare, 5%)
     
 ;    
 -- -- All Coffer Keys drop rate increase to 10%
