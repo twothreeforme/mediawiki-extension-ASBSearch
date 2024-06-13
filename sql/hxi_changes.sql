@@ -11,7 +11,7 @@ SET @NUANCE = 2;
 -- Start with cleanup
 DELETE FROM `mob_groups` WHERE groupid>=20000 AND groupid<30000 ;
 DELETE FROM `mob_droplist` WHERE dropId>=20000 AND dropId<30000 ;
-DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
+DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000 AND itemid=0;
 
 
 -- ---------------------------------------------------------------------------
@@ -145,7 +145,8 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
 ;    
 -- -- All Coffer Keys drop rate increase to 10%
 UPDATE mob_droplist set itemRate = 100, changes_tag = 1 WHERE (dropId < 1674 OR dropId > 1692) AND itemRate < 101 AND itemId IN 
-    ( 1048, -- Zvahl Coffer Key (Rare, 5%)
+    (
+    1048, -- Zvahl Coffer Key (Rare, 5%)
     1043,   -- Beadeaux Coffer Key (Rare, 5%)
     1054,   -- Quicksand Coffer Key (Rare, 5%)
     1049,   -- Uggalepih Coffer Key (Rare, 5%)
