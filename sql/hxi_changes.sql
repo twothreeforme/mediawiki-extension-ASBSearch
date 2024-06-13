@@ -64,7 +64,7 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
     (20000,4661,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
 ;
 
-UPDATE mob_groups SET changes_tag='1', dropid='644' WHERE groupid='4' AND poolid='6778' AND poolid='113'; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
+UPDATE mob_groups SET changes_tag='1', dropid='644' WHERE poolid='6778' AND zoneid='113'; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
 
 
 UNLOCK TABLES;
