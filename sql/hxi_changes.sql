@@ -145,12 +145,6 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     -- Ixaern_Mnk 
     (20004,1,1,1000,1851,750,@NUANCE), -- Deed of Placidity (Group 1 - 75%)
     (20004,1,1,1000,1901,250,@NUANCE) -- Vice of Antipathy (Group 1 - 25%)
-
-    -- ZoneID: 113 - Devil Manta Fished
-    -- added for era+ due to it not being listed in ASB
-    (20005,0,0,1000,876,240,@HXI), -- Manta Skin (Very Common, 24%)
-    (20005,0,0,1000,4484,150,@HXI), -- Shall Shell (Common, 15%)
-    (20005,0,0,1000,1312,50,@HXI)   -- Piece Of Angel Skin (Rare, 5%)
     
 ;    
 -- -- All Coffer Keys drop rate increase to 10%
