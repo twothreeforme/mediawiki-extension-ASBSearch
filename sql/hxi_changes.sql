@@ -10,9 +10,10 @@ SET @NUANCE = 2;
 
 -- Start with cleanup
 DELETE FROM `mob_groups` WHERE groupid>=20000 AND groupid<30000 ;
+DELETE FROM `mob_pools` WHERE poolid>=25000 AND poolid<30000 ;
 DELETE FROM `mob_droplist` WHERE dropId>=20000 AND dropId<30000 ;
-DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000 AND itemid=0;
-
+DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
+DELETE FROM `item_basic` WHERE itemid=0;
 
 -- ---------------------------------------------------------------------------
 -- Format: (bcnmId,groupId,groupRate,itemId,itemRate,gilAmount)
