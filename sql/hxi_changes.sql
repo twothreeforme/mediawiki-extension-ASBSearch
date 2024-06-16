@@ -28,7 +28,7 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHE
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so 
 
 
-INSERT INTO `hxi_bcnm_crate_list` ( `bcnmId`, `groupId`, `groupRate`, `itemId`, `itemRate`, `gilAmount`, 'changes_tag') VALUES
+INSERT INTO `hxi_bcnm_crate_list` ( `bcnmId`, `groupId`, `groupRate`, `itemId`, `itemRate`, `gilAmount`, `changes_tag`) VALUES
 
     --Royal Succession: BCNM 108
     (108,7,1000,4706,150,0,@HXI), --Add Scroll of Enlight (15%)
