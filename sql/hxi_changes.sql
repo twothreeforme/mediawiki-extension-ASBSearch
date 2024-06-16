@@ -30,7 +30,7 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     (524,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
     -- Ryoal Jelly: BCNM 77
-    (77,8,1000,4706,150,0,@HXI) -- Add Scroll of Enlight (15%)
+    (77,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
     -- Under Observation: BCNM 12
     (12,8,1000,1311,1000,0,@HXI) -- Add Oxblood (100%)
