@@ -356,7 +356,7 @@ INSERT INTO `hxi_bcnm_crate_list` VALUES (108,5,1000,4717,250,0); -- SCROLL_OF_R
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,5,1000,4751,250,0); -- SCROLL_OF_ERASE (25 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,6,1000,0,600,0); -- NOTHING (60 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,6,1000,748,400,0); -- GOLD_BEASTCOIN (40 %)-- Balgas_Dais
-INSERT INTO `hxi_bcnm_crate_list` VALUES (108,8,1000,4706,150,0); -- GOLD_BEASTCOIN (40 %)-- Balgas_Dais
+INSERT INTO `hxi_bcnm_crate_list` VALUES (108,7,1000,4706,150,0); -- SCROLL OF ENLIGHT
 
 INSERT INTO `hxi_bcnm_crate_list` VALUES (109,1,1000,853,1000,0); -- RAPTOR_SKIN (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (109,2,1000,655,1000,0); -- ADAMAN_INGOT (100 %)
