@@ -32,12 +32,15 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     -- Ryoal Jelly: BCNM 77
     (77,8,1000,4706,150,0,@HXI) -- Add Scroll of Enlight (15%)
 
+    -- Under Observation: BCNM 12
+    (12,8,1000,1311,1000,0,@HXI) -- Add Oxblood (100%)
 ;
 
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='17440' AND bcnmId='79'; -- Replace Kraken Club(17440) with Octave Club(18852)
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1527' AND bcnmId='11'; -- Update BEHEMOTH_TONGUE drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1526' AND bcnmId='107'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='13514' WHERE itemId='15551' AND bcnmId='77'; -- Replace Shikaree Ring(15551) with Archer's Ring(13514)
 
 
 UNLOCK TABLES;
