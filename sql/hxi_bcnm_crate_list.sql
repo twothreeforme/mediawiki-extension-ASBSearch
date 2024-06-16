@@ -356,8 +356,6 @@ INSERT INTO `hxi_bcnm_crate_list` VALUES (108,5,1000,4717,250,0); -- SCROLL_OF_R
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,5,1000,4751,250,0); -- SCROLL_OF_ERASE (25 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,6,1000,0,600,0); -- NOTHING (60 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (108,6,1000,748,400,0); -- GOLD_BEASTCOIN (40 %)-- Balgas_Dais
-INSERT INTO `hxi_bcnm_crate_list` VALUES (108,7,1000,4706,150,0); -- SCROLL OF ENLIGHT
-
 INSERT INTO `hxi_bcnm_crate_list` VALUES (109,1,1000,853,1000,0); -- RAPTOR_SKIN (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (109,2,1000,655,1000,0); -- ADAMAN_INGOT (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (109,3,1000,0,190,0); -- NOTHING (19 %)
@@ -1989,7 +1987,6 @@ INSERT INTO `hxi_bcnm_crate_list` VALUES (524,7,1000,0,850,0); -- NOTHING (85 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (524,7,1000,859,50,0); -- RAM_SKIN (5 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (524,7,1000,700,50,0); -- MAHOGANY_LOG (5 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (524,7,1000,738,50,0); -- CHUNK_OF_PLATINUM_ORE (5 %)-- QuBia_Arena
-INSERT INTO `hxi_bcnm_crate_list` VALUES (524,8,1000,4706,150,0); -- ENLIGHT
 INSERT INTO `hxi_bcnm_crate_list` VALUES (525,1,1000,1165,1000,0); -- DOLL_SHARD (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (525,2,1000,914,1000,0); -- VIAL_OF_MERCURY (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (525,3,1000,0,500,0); -- NOTHING (50 %)
@@ -2470,8 +2467,6 @@ INSERT INTO `hxi_bcnm_crate_list` VALUES (77,7,1000,699,5,0); -- OAK_LOG (0.5 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (77,7,1000,701,5,0); -- ROSEWOOD_LOG (0.5 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (77,7,1000,4174,10,0); -- VILE_ELIXIR (1 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (77,7,1000,4172,2,0); -- RERAISER (0.2 %)-- Waughroon_Shrine
-INSERT INTO `hxi_bcnm_crate_list` VALUES (77,8,1000,4706,150,0); -- RERAISER (0.2 %)-- Waughroon_Shrine
-
 INSERT INTO `hxi_bcnm_crate_list` VALUES (78,1,1000,1237,1000,0); -- BAG_OF_TREE_CUTTINGS (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (78,2,1000,1237,1000,0); -- BAG_OF_TREE_CUTTINGS (100 %)
 INSERT INTO `hxi_bcnm_crate_list` VALUES (78,3,1000,919,1000,0); -- CLUMP_OF_BOYAHDA_MOSS (100 %)
