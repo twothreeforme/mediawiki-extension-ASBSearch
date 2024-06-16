@@ -22,16 +22,15 @@ LOCK TABLE `hxi_bcnm_crate_list` WRITE;
 ALTER TABLE `hxi_bcnm_crate_list`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `gilAmount`;
 	
-INSERT INTO `hxi_bcnm_crate_list` ( `bcnmId`, `groupId`, `groupRate`, `itemId`, `itemRate`, `gilAmount`, `changes_tag`) VALUES
+INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES
+    -- Royal Succession: BCNM 108
+    (108,7,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
-    --Royal Succession: BCNM 108
-    (108,7,1000,4706,150,0,@HXI), --Add Scroll of Enlight (15%)
+    -- Undying Promise: BCNM 524
+    (524,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
-    --Undying Promise: BCNM 524
-    (524,8,1000,4706,150,0,@HXI), --Add Scroll of Enlight (15%)
-
-    --Ryoal Jelly: BCNM 77
-    (77,8,1000,4706,150,0,@HXI) --Add Scroll of Enlight (15%)
+    -- Ryoal Jelly: BCNM 77
+    (77,8,1000,4706,150,0,@HXI) -- Add Scroll of Enlight (15%)
 
 ;
 
