@@ -21,7 +21,12 @@ SELECT 'hxi_bcnm_crate_list' AS' ';
 LOCK TABLE `hxi_bcnm_crate_list` WRITE;	
 ALTER TABLE `hxi_bcnm_crate_list`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `gilAmount`;
-	
+
+IF NOT EXISTS(Select * from `hxi_bcnm_crate_list` where `itemId`= 4706)
+    BEGIN
+        INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES (108,7,1000,4706,150,0,@HXI)
+    END
+
 INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES
     -- Royal Succession: BCNM 108
     (108,7,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
@@ -29,7 +34,7 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     -- Undying Promise: BCNM 524
     (524,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
-    -- Ryoal Jelly: BCNM 77
+    -- Royal Jelly: BCNM 77
     (77,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
     -- Under Observation: BCNM 12
@@ -40,8 +45,6 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='174
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1527' AND bcnmId='11'; -- Update BEHEMOTH_TONGUE drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1526' AND bcnmId='107'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
-UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='13514' WHERE itemId='15551' AND bcnmId='77'; -- Replace Shikaree Ring(15551) with Archer's Ring(13514)
-
 
 UNLOCK TABLES;
 
