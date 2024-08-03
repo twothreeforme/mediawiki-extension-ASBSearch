@@ -7719,7 +7719,7 @@ INSERT INTO `mob_groups` VALUES (17,3647,108,'Skeleton_Warrior',330,1,2264,0,0,1
 INSERT INTO `mob_groups` VALUES (18,3646,108,'Skeleton_Sorcerer',330,1,2264,0,0,11,13,0);
 INSERT INTO `mob_groups` VALUES (19,3912,108,'Thunder_Elemental',330,4,2410,0,0,18,20,0);
 INSERT INTO `mob_groups` VALUES (20,3170,108,'Poltergeist',330,0,0,0,0,18,20,0);
-INSERT INTO `mob_groups` VALUES (21,1812,108,'Grenade',330,8,0,0,0,15,17,0);
+INSERT INTO `mob_groups` VALUES (21,1812,108,'Grenade',330,8,6027,0,0,15,17,0);
 INSERT INTO `mob_groups` VALUES (22,2473,108,'Mad_Sheep',330,0,1563,0,0,11,14,0);
 INSERT INTO `mob_groups` VALUES (23,4359,108,'Wolf_Zombie',330,1,226,0,0,8,10,0);
 INSERT INTO `mob_groups` VALUES (24,1738,108,'Goblin_Tinkerer',330,0,6029,0,0,12,16,0);

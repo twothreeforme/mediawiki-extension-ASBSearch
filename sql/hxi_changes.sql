@@ -4,7 +4,6 @@
 
 -- HENM Default `dropId` value starts at 20000
 SET @HENM_lvl = 255;        -- HENM Default `maxLevel` and `minLevel` value to help ParserHelper tag it
-
 SET @HXI = 1;
 SET @NUANCE = 2;
 
@@ -22,10 +21,9 @@ LOCK TABLE `hxi_bcnm_crate_list` WRITE;
 ALTER TABLE `hxi_bcnm_crate_list`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `gilAmount`;
 
-IF NOT EXISTS(Select * from `hxi_bcnm_crate_list` where `itemId`= 4706)
-    BEGIN
-        INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES (108,7,1000,4706,150,0,@HXI)
-    END
+-- INSERT INTO `hxi_bcnm_crate_list_copy`  (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES (108,7,1000,4706,150,0,@HXI)
+-- SELECT `bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag` from `hxi_bcnm_crate_list`
+-- WHERE NOT EXISTS (SELECT `itemId` FROM `hxi_bcnm_crate_list_copy` WHERE hxi_bcnm_crate_list_copy.itemId = hxi_bcnm_crate_list.itemId)
 
 INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES
     -- Royal Succession: BCNM 108
@@ -45,6 +43,17 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='174
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1527' AND bcnmId='11'; -- Update BEHEMOTH_TONGUE drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1526' AND bcnmId='107'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15515' WHERE itemId='13056' AND bcnmId='12'; -- Update Peacock Charm to be Peacock Amulet in 'Under Observation'
+
+-- Remove all scrolls from 'Under Observation'
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4717' AND bcnmId='12'; -- SCROLL_OF_REFRESH
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4947' AND bcnmId='12'; -- SCROLL_OF_UTSUSEMI_NI
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4858' AND bcnmId='12'; -- SCROLL_OF_ICE_SPIKES
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4874' AND bcnmId='12'; -- SCROLL_OF_ABSORB_STR
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4751' AND bcnmId='12'; -- SCROLL_OF_ERASE
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4714' AND bcnmId='12'; -- SCROLL_OF_PHALANX
+DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4896' AND bcnmId='12'; -- FIRE_SPIRIT_PACT
+-- ------------------------------------------
 
 UNLOCK TABLES;
 
@@ -64,17 +73,17 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
 
     -- Sauromugue_Champaign (Zone: 120)
     (20000,25001,120,'Sacred_Scorpions',0,0,20001,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
-    (20001,25002,120,'Young_Uragnite',0,0,2527,0,0,36,42,0,@HXI),
+    (20001,25002,120,'Young_Uragnite',0,0,0,0,0,36,42,0,@HXI),
 
     -- Jugner_Forest (Zone: 104)
     (20000,25003,104,'Despotic_Decapod',0,0,20002,0,0,@HENM_lvl,@HENM_lvl,0,@HXI),
 
     -- Cape_Terrigan (Zone: 113)
-    (20000,25004,113,'Arid_Lizard',0,0,221,0,0,76,78,0,@HXI),
-    (20001,25005,113,'Dust_Bat',0,0,234,0,0,76,79,0,@HXI),
+    (20000,25004,113,'Arid_Lizard',0,0,0,0,0,76,78,0,@HXI),
+    (20001,25005,113,'Dust_Bat',0,0,0,0,0,76,79,0,@HXI),
 
     -- Batallia Downs (Zone: 105)
-    (20000,25006,105,'Downslime',0,0,567,0,0,41,44,0,@HXI),
+    (20000,25006,105,'Downslime',0,0,0,0,0,41,44,0,@HXI),
 
     -- Lufaise_Meadows (Zone: 24)
     (20000,3083,24,'Padfoot',0,0,20003,0,0,45,46,0,0),  
@@ -84,7 +93,6 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
 ;
 
 UPDATE mob_groups SET changes_tag='1', dropid='644' WHERE poolid='6778' AND zoneid='113'; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
-
 
 UNLOCK TABLES;
 
@@ -222,7 +230,14 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50007,0,'overlords_ring','overlords_ring',1,63552,0,1,0,@HXI), -- Overlord's Ring 
     (50008,0,'sprinters_belt','sprinters_belt',1,63552,0,1,0,@HXI), -- Sprinter's Belt
     (50009,0,'deflecting_band','deflecting_band',1,63552,0,1,0,@HXI), -- Deflecting Band
-    (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,@HXI) -- Duality Loop
+    (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,@HXI), -- Duality Loop
+
+    -- Shepard's Armor Set
+    (50011,0,'shepard\`s_bonnet','shepards_bonnet',1,63552,0,1,0,@HXI), -- Shepard's Bonnet
+    (50012,0,'shepard\`s_boots','shepards_boots',1,63552,0,1,0,@HXI), -- Shepard's Boots
+    (50013,0,'shepard\`s_hose','shepards_hose',1,63552,0,1,0,@HXI), -- Shepard's Hose
+    (50014,0,'shepard\`s_bracers','shepards_bracers',1,63552,0,1,0,@HXI), -- Shepard's Bracers
+    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,@HXI) -- Shepard's Doublet
 
 ;
 
