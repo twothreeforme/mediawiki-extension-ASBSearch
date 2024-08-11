@@ -40,7 +40,7 @@ class WeatherModel {
 
         }
 
-
+        $html .= "</table></div>";
         return 	$html;
     }
 }
