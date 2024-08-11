@@ -4,7 +4,6 @@
 //use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
 
-//set_time_limit(0);
 
 class SpecialASBSearch extends SpecialPage {
     public function __construct( ) {

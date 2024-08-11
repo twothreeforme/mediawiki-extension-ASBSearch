@@ -10,9 +10,11 @@
     "type": "other",
     "AutoloadClasses": {
         "SpecialASBSearch": "includes/Special.php",
+        "WeatherModel": "includes/WeatherModel.php",
         "ExclusionsHelper": "includes/ExclusionsHelper.php",
         "ParserHelper": "includes/ParserHelper.php",
-        "DataModel": "includes/DataModel.php"
+        "DataModel": "includes/DataModel.php",
+        "DBConnection": "includes/DBConnection.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch"
@@ -41,7 +43,8 @@
 		}
 	},
     "Hooks": {
-        "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay"
+        "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay",
+        "ParserFirstCallInit": "WeatherModel::onParserInit"
     },
     "manifest_version": 2,
     "requires": {
