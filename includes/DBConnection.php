@@ -35,7 +35,6 @@ class DBConnection {
 
     function getWeatherHex($arr, $vanaDay){
         $hexweatherdata =  $arr[(($vanaDay * 2)  + 1 )] . $arr[($vanaDay * 2) ];
-        print_r("   newHex: " . $hexweatherdata . "<br/>");
         return $hexweatherdata;
     }
 
@@ -43,7 +42,6 @@ class DBConnection {
         $hexweatherdata = 0;
         do {
             $w_vanaDate = $w_vanaDate - 1;
-            print_r("date: " . $w_vanaDate . "<br/>"); 
             $hexweatherdata = $this->getWeatherHex($arr,$w_vanaDate);
         }while ( $hexweatherdata == 0000 );
         return $hexweatherdata;
@@ -53,7 +51,6 @@ class DBConnection {
         $hexweatherdata = 0;
         do {
             $w_vanaDate = $w_vanaDate + 1;
-            print_r("date: " . $w_vanaDate . "<br/>"); 
             $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
         }while ( $hexweatherdata == 0000 );
         return $hexweatherdata;
@@ -61,13 +58,7 @@ class DBConnection {
 
     function convertHexToSplitStrings($hex){
         $decimal = hexdec($hex);
-            print_r("hex: " . $hex . " dec: " . $decimal . "<br/>" );
-
-            //$binary = strrev(decbin($decimal));
             $binary = decbin($decimal);
-
-            print_r("bin: " . $binary . "<br/>");
-
             $paddedBinary = str_pad(
                 $binary,
                 15,
@@ -76,8 +67,14 @@ class DBConnection {
             );
 
             $split = str_split($paddedBinary, 5);
+
+            /*
+            print_r("hex: " . $hex . " dec: " . $decimal . "<br/>" );
+            print_r("bin: " . $binary . "<br/>");
             print_r("paddedBin: " . $paddedBinary . "<br/>" );
             print_r("split0: " . $split[0] . " split1: " . $split[1] . " split2: " . $split[2] . "<br/>");
+            */
+
             return $split;
     }
 
@@ -130,7 +127,7 @@ class DBConnection {
             // If the hex reads 0000 on the current day, then keep going back 1 day until 
             // reach a day with weather
             //$w_vanaDate = $w_vanaDate + ($dayUpdate);
-            print_r("date: " . $w_vanaDate . "<br/>"); 
+            //print_r("date: " . $w_vanaDate . "<br/>");
             $hexweatherdata = $this->getWeatherHex($arr, $m_vanaDate);
             
             if ( $hexweatherdata == 0 ){
@@ -142,8 +139,7 @@ class DBConnection {
                     if ( $hexweatherdata == 0000) {
                         do {
                             $w_vanaDate = $w_vanaDate + 1;
-                            print_r("date: " . $w_vanaDate . "<br/>");
-
+                            //print_r("date: " . $w_vanaDate . "<br/>");
                             $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
                         }while ( $hexweatherdata == 0000 );
                     }
