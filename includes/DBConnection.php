@@ -33,30 +33,56 @@ class DBConnection {
         return $returnDB;
     }
 
-    function getWeatherHex($vanaDay){
+    function getWeatherHex($arr, $vanaDay){
         $hexweatherdata =  $arr[(($vanaDay * 2)  + 1 )] . $arr[($vanaDay * 2) ];
-        print_r("<br/>" . "newHex: " . $hexweatherdata . "<br/>"); 
+        print_r("   newHex: " . $hexweatherdata . "<br/>");
         return $hexweatherdata;
     }
 
-    function getLastWeatherHex($w_vanaDate){
+    function getLastWeatherHex($arr, $w_vanaDate){
         $hexweatherdata = 0;
         do {
             $w_vanaDate = $w_vanaDate - 1;
             print_r("date: " . $w_vanaDate . "<br/>"); 
-            $hexweatherdata = $this->getWeatherHex($w_vanaDate);
+            $hexweatherdata = $this->getWeatherHex($arr,$w_vanaDate);
         }while ( $hexweatherdata == 0000 );
         return $hexweatherdata;
     }
 
-    function getNextWeatherHex(){
+    function getNextWeatherHex($arr, $w_vanaDate){
         $hexweatherdata = 0;
         do {
-            $w_vanaDate = $w_vanaDate - 1;
+            $w_vanaDate = $w_vanaDate + 1;
             print_r("date: " . $w_vanaDate . "<br/>"); 
-            $hexweatherdata = $this->getWeatherHex($w_vanaDate);
+            $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
         }while ( $hexweatherdata == 0000 );
         return $hexweatherdata;
+    }
+
+    function convertHexToSplitStrings($hex){
+        $decimal = hexdec($hex);
+            print_r("hex: " . $hex . " dec: " . $decimal . "<br/>" );
+
+            //$binary = strrev(decbin($decimal));
+            $binary = decbin($decimal);
+
+            print_r("bin: " . $binary . "<br/>");
+
+            $paddedBinary = str_pad(
+                $binary,
+                15,
+                '0',
+                STR_PAD_LEFT
+            );
+
+            $split = str_split($paddedBinary, 5);
+            print_r("paddedBin: " . $paddedBinary . "<br/>" );
+            print_r("split0: " . $split[0] . " split1: " . $split[1] . " split2: " . $split[2] . "<br/>");
+            return $split;
+    }
+
+    function getVanaDate(){
+        return intval(((floor(microtime(true) ) - 1009810800) / 3456)) % 2160 ;
     }
 
     function getZoneWeather($zone, $numberOfDays ) {
@@ -72,7 +98,7 @@ class DBConnection {
             $bin = unpack("H*",$row->weather);        
             $arr = str_split($bin[1], 2);
                         
-            $m_vanaDate = intval(((floor(microtime(true) ) - 1009810800) / 3456)) % 2160 ;
+            $m_vanaDate = $this->getVanaDate();
 
             /*                                                                        *
             *              0        00000       00000        00000                   *
@@ -97,50 +123,33 @@ class DBConnection {
             //display how many days worth of data? 
             $dayArray = array(); // weather data per day evaluated
             $weatherArray = array(); // overarching array for weather table, to show all days 
-            $dayUpdate = 0;
-            $w_vanaDate = $m_vanaDate;  
+            //$dayUpdate = 0;
+            $w_vanaDate = $m_vanaDate;
 
             // Have to find the first instance of weather in the hex... 
             // If the hex reads 0000 on the current day, then keep going back 1 day until 
             // reach a day with weather
-            $w_vanaDate = $w_vanaDate + ($dayUpdate);
+            //$w_vanaDate = $w_vanaDate + ($dayUpdate);
             print_r("date: " . $w_vanaDate . "<br/>"); 
-            $hexweatherdata = $this->getWeatherHex($w_vanaDate);   
+            $hexweatherdata = $this->getWeatherHex($arr, $m_vanaDate);
             
-            
-            
+            if ( $hexweatherdata == 0 ){
+                $hexweatherdata = $this->getLastWeatherHex($arr, $m_vanaDate);
+            }
+
+
             do {
-                if ( $dayUpdate > 0) {
-                    print_r( "dayUpdate: " . $dayUpdate . "<br/>");   
+                    if ( $hexweatherdata == 0000) {
+                        do {
+                            $w_vanaDate = $w_vanaDate + 1;
+                            print_r("date: " . $w_vanaDate . "<br/>");
 
-                    $hexweatherdata = 0000;
-                    do {
-                        $m_vanaDate = $m_vanaDate + 1;
-                        print_r("date: " . $m_vanaDate . "<br/>"); 
+                            $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
+                        }while ( $hexweatherdata == 0000 );
+                    }
 
-                        $hexweatherdata = $this->getWeatherHex($m_vanaDate);
-                    }while ( $hexweatherdata == 0000 );
-                }   
-                
-                $decimal = hexdec($hexweatherdata);
-                print_r("hex: " . $hexweatherdata . " dec: " . $decimal . "<br/>" );
+                $split = $this->convertHexToSplitStrings($hexweatherdata);
 
-                //$binary = strrev(decbin($decimal));
-                $binary = decbin($decimal);
-
-                print_r("bin: " . $binary . "<br/>");
-
-                $paddedBinary = str_pad(
-                    $binary, 
-                    15, 
-                    '0', 
-                    STR_PAD_LEFT
-                );
-        
-                $split = str_split($paddedBinary, 5);
-                print_r(" paddedBin: " . $paddedBinary . "<br/>" );
-                print_r(" split0: " . $split[0] . " split1: " . $split[1] . " split2: " . $split[2] . "<br/>");
-                
                 //need error check on if split == nil here !!!
                 for ( $c = 0; $c < 3; $c++ ){
                     $ncr = "normal"; 
@@ -159,10 +168,10 @@ class DBConnection {
                             $weatherType = "Fog";
                             break;
                         case 4;
-                            $weatherType = "Hot Spell";
+                            $weatherType = "{{Fire|Weather}} Hot Spell";
                             break;
                         case 5;
-                            $weatherType = "Heat Wave";
+                            $weatherType = "{{Fire|Double Weather}} Heat Wave";
                             break;
                         case 6;
                             $weatherType = "Rain";
@@ -189,10 +198,10 @@ class DBConnection {
                             $weatherType = "Blizzard";
                             break;
                         case 14;
-                            $weatherType = "Thunder";
+                            $weatherType = "{{Lightning|Weather}} Thunder";
                             break;
                         case 15;
-                            $weatherType = "Thunderstorms";
+                            $weatherType = "{{Lightning|Double Weather}} Thunderstorms";
                             break;
                         case 16;
                             $weatherType = "Auroras";
@@ -214,12 +223,13 @@ class DBConnection {
                     $dayArray[$ncr] = $weatherType;
                     
                 }
-            $weatherArray[$dayUpdate] = $dayArray;
-            $dayUpdate = $dayUpdate + 1;
-
+            $weatherArray[$w_vanaDate - $m_vanaDate] = $dayArray;
+            // $dayUpdate = $dayUpdate + 1;
+            $hexweatherdata = 0;
             }while( count($weatherArray) < 16 );
+
             //$weatherArray = array("normal"=>bindec($split[0]), "common"=>bindec($split[1]), "rare"=>bindec($split[2]));
-            print_r($weatherArray);
+            //print_r($weatherArray);
             return $weatherArray;
         }
 
