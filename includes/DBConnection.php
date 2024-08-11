@@ -66,6 +66,7 @@ class DBConnection {
                 STR_PAD_LEFT
             );
 
+
             $split = str_split($paddedBinary, 5);
 
             /*
