@@ -1,4 +1,5 @@
 <?php
+use Wikimedia\Rdbms\DatabaseFactory;
 
 
 class WeatherModel {
@@ -37,10 +38,14 @@ class WeatherModel {
             $daysFromCurrent = $daysFromCurrent == 0 ? "Current" : $daysFromCurrent ;
             //$html = $html . "<p>" . $daysFromCurrent . " ... " . "  Normal:" . $weatherArray["normal"] . "  Common:" . $weatherArray["common"] . "  Rare:" . $weatherArray["rare"] . "</p>";
             $html .= "<tr><td><center>$daysFromCurrent</center></td><td><center>" .$weatherArray["normal"] ."</center></td><td><center>" . $weatherArray["common"] . "</center></td><td><center>" . $weatherArray["rare"] . "</center></td></tr>";
-
         }
 
         $html .= "</table></div>";
+
+        $html = $parser->recursiveTagParse( $html, $frame );
+
+        //$html = $parserOutput->getText();
+
         return 	$html;
     }
 }
