@@ -14,7 +14,7 @@ class WeatherModel {
     static function _tableHeaders(){
 		$html = "";
 		$html .= "<br>
-		<div style=\"max-height: 150px; overflow: auto; display: inline-block;\">
+		<div style=\"max-height: 250px; overflow: auto; display: inline-block;\">
 		<table id=\"asbsearch_forecast\" class=\"sortable\">
 			<tr><th>Vana Days from Current</th>
 			<th>Normal (50%)</th>
