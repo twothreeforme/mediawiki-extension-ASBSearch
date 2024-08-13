@@ -160,7 +160,7 @@ class DBConnection {
                             $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
                         }while ( $hexweatherdata == 0000 );
                     } */
-                $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
+
                 $split = $this->convertHexToSplitStrings($hexweatherdata);
 
                 //need error check on if split == nil here !!!
@@ -247,6 +247,7 @@ class DBConnection {
             // $dayUpdate = $dayUpdate + 1;
             $hexweatherdata = 0;
             $w_vanaDate = $w_vanaDate + 1;
+            $hexweatherdata = $this->getWeatherHex($arr, $m_vanaDate);
             print_r(count($weatherArray));
             }while( count($weatherArray) < 16 );
 
