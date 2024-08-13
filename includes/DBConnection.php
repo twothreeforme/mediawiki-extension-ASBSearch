@@ -153,18 +153,19 @@ class DBConnection {
 
 
             do {
-                    if ( $hexweatherdata == 0000) {
+            /*         if ( $hexweatherdata == 0000) {
                         do {
                             $w_vanaDate = $w_vanaDate + 1;
                             //print_r("date: " . $w_vanaDate . "<br/>");
                             $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
                         }while ( $hexweatherdata == 0000 );
-                    }
-
+                    } */
+                $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
                 $split = $this->convertHexToSplitStrings($hexweatherdata);
 
                 //need error check on if split == nil here !!!
                 for ( $c = 0; $c < 3; $c++ ){
+
                     $ncr = "normal"; 
                     $weatherType = "None";
                     if ( $c == 1 ) $ncr = "common";
@@ -234,11 +235,19 @@ class DBConnection {
 
                     //array_push( $weatherArray, [$ncr => $weatherType]);
                     $dayArray[$ncr] = $weatherType;
-                    
                 }
+
+            if ( $dayArray["normal"] == "None" && $dayArray["common"] == "None" && $dayArray["rare"] == "None") {
+                $dayArray["normal"] = "";
+                $dayArray["common"] = "No Change";
+                $dayArray["rare"] = "";
+            }
+
             $weatherArray[$w_vanaDate - $m_vanaDate] = $dayArray;
             // $dayUpdate = $dayUpdate + 1;
             $hexweatherdata = 0;
+            $w_vanaDate = $w_vanaDate + 1;
+            print_r(count($weatherArray));
             }while( count($weatherArray) < 16 );
 
             //$weatherArray = array("normal"=>bindec($split[0]), "common"=>bindec($split[1]), "rare"=>bindec($split[2]));

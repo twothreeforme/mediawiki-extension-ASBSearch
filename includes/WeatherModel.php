@@ -15,7 +15,7 @@ class WeatherModel  {
 		$html .= "<br>
 		<div style=\"max-height: 250px; overflow: auto; display: inline-block; \">
 		<table id=\"asbsearch_forecast\" class=\"sortable\">
-			<tr><th>Vana Days from Now</th>
+			<tr><th>VanaDays from Today</th>
 			<th>Normal (50%)</th>
 			<th>Common (35%)</th>
 			<th>Rare (15%)</th>
@@ -49,7 +49,8 @@ class WeatherModel  {
 
         foreach ($zoneWeather as $daysFromCurrent => $weatherArray) {
 
-            $daysFromCurrent = $daysFromCurrent == 0 ? "Current" : $daysFromCurrent ;
+            $daysFromCurrent = $daysFromCurrent == 0 ? "Today" : $daysFromCurrent ;
+            $daysFromCurrent = $daysFromCurrent == 1 ? "Tomorrow" : $daysFromCurrent ;
             //$html = $html . "<p>" . $daysFromCurrent . " ... " . "  Normal:" . $weatherArray["normal"] . "  Common:" . $weatherArray["common"] . "  Rare:" . $weatherArray["rare"] . "</p>";
             $html .= "<tr><td><center>$daysFromCurrent</center></td><td><center>" .$weatherArray["normal"] ."</center></td><td><center>" . $weatherArray["common"] . "</center></td><td><center>" . $weatherArray["rare"] . "</center></td></tr>";
         }
