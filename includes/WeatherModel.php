@@ -30,7 +30,9 @@ class WeatherModel  {
 
         $zoneid = 0;
         foreach ( $zoneList as $zone){
-            if ( ParserHelper::zoneNameClean($zone->name) == $pagename) {
+            $pagename = ParseHelper::replaceApostrophe($pagename);
+            $pagename = ParserHelper::replaceSpaces($pagename);
+            if ( $zone->name == $pagename) {
                 $zoneid = $zone->zoneid;
                 break;
             }
