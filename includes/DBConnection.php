@@ -83,6 +83,22 @@ class DBConnection {
         return intval(((floor(microtime(true) ) - 1009810800) / 3456)) % 2160 ;
     }
 
+    function getZoneList() {
+		$dbr = $this->openConnection();
+		$zoneList = $dbr->newSelectQueryBuilder()
+			->select( [ 'zoneid, name' ] )
+			->from( 'zone_settings' )
+			->fetchResultSet();
+
+/*         $list = array();
+        foreach($zoneList as $row){
+            $list[$row->zoneid] = $row->name;
+            //print_r($row->name);
+        }
+        return $list; */
+        return $zoneList;
+    }
+
     function getZoneWeather($zone, $numberOfDays ) {
 		$dbr = $this->openConnection();
         $query = "zone_weather.zone = $zone";

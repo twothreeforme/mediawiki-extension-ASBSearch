@@ -1,13 +1,12 @@
 <?php
-use Wikimedia\Rdbms\DatabaseFactory;
 
 
-class WeatherModel {
+class WeatherModel  {
     public function __construct() {
     }
     
     static function onParserInit( Parser $parser ) {
-        $parser->setHook('WeatherModel', 'WeatherModel::generateWeatherTable' );
+        $parser->setHook('ZoneForecast','WeatherModel::generateZoneSpecificTable' );
         return true;
 	}
 
@@ -16,7 +15,7 @@ class WeatherModel {
 		$html .= "<br>
 		<div style=\"max-height: 250px; overflow: auto; display: inline-block;\">
 		<table id=\"asbsearch_forecast\" class=\"sortable\">
-			<tr><th>Vana Days from Current</th>
+			<tr><th>Vana Days from Now</th>
 			<th>Normal (50%)</th>
 			<th>Common (35%)</th>
 			<th>Rare (15%)</th>
@@ -24,10 +23,23 @@ class WeatherModel {
 		return $html;
 	}
 
-    public static function generateWeatherTable( $input, array $params, Parser $parser, PPFrame $frame ) {
+    public static function generateZoneSpecificTable( $input, array $params, Parser $parser, PPFrame $frame ) {
         $db = new DBConnection();
-        
-        $zoneWeather = $db->getZoneWeather(1, 1) ;
+        $pagename = $parser->getTitle();
+        $zoneList = $db->getZoneList();
+
+        $zoneid = 0;
+        foreach ( $zoneList as $zone){
+            if ( ParserHelper::zoneNameClean($zone->name) == $pagename) {
+                $zoneid = $zone->zoneid;
+                break;
+            }
+        }
+        if ( $zoneid == 0 ){
+            return "<div>Error: Forecast for ' $pagename ' not found. Please report to Wiki devs on Discord. </div>";
+        }
+
+        $zoneWeather = $db->getZoneWeather($zoneid, 1) ;
     
         $html = WeatherModel::_tableHeaders();
 

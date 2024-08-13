@@ -58,10 +58,15 @@ class ParserHelper {
      * Zone related parsing
      */
     public static function zoneName($zone){
+		$zone = ParserHelper::zoneNameClean($zone);
+		return " [[$zone]] ";
+	}
+
+	public static function zoneNameClean($zone){
 		$zone = ParserHelper::replaceUnderscores($zone);
 		$zone = str_replace("[S]", "(S)", $zone);
 		$zone = str_replace("-", " - ", $zone);
-		return " [[$zone]] ";
+		return $zone;
 	}
 
     public static function zoneERA_forList($zone){
