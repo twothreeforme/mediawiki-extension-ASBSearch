@@ -248,7 +248,7 @@ class DBConnection {
             $hexweatherdata = 0;
             $w_vanaDate = $w_vanaDate + 1;
             $hexweatherdata = $this->getWeatherHex($arr, $w_vanaDate);
-            print_r(count($weatherArray));
+            //print_r(count($weatherArray));
             }while( count($weatherArray) < 16 );
 
             //$weatherArray = array("normal"=>bindec($split[0]), "common"=>bindec($split[1]), "rare"=>bindec($split[2]));

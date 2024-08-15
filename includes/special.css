@@ -19,3 +19,13 @@
     background-color:rgba(0, 0, 0, 0) !important;
 }
 
+.zone-infobox-weather-div {
+    max-height: 125px;
+    overflow: auto;
+    display: inline-block;
+}
+
+.zone-infobox-weather-table {
+    font-size : 12px! important;
+}
+

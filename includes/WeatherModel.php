@@ -13,7 +13,7 @@ class WeatherModel  {
     static function _tableHeaders(){
 		$html = "";
 		$html .= "<br>
-		<div class=\"zone-infobox-weather-div\" style=\"max-height: 250px; overflow: auto; display: inline-block; \">
+		<div class=\"zone-infobox-weather-div\" >
 		<table class=\"sortable zone-infobox-weather-table\">
 			<tr><th>VanaDays from Today</th>
 			<th>Normal (50%)</th>
