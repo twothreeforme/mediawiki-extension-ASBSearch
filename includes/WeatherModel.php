@@ -13,8 +13,8 @@ class WeatherModel  {
     static function _tableHeaders(){
 		$html = "";
 		$html .= "<br>
-		<div style=\"max-height: 250px; overflow: auto; display: inline-block; \">
-		<table id=\"asbsearch_forecast\" class=\"sortable\">
+		<div class=\"zone-infobox-weather-div\" style=\"max-height: 250px; overflow: auto; display: inline-block; \">
+		<table class=\"sortable zone-infobox-weather-table\">
 			<tr><th>VanaDays from Today</th>
 			<th>Normal (50%)</th>
 			<th>Common (35%)</th>
@@ -25,10 +25,13 @@ class WeatherModel  {
 
     public static function generateZoneSpecificTable( $input, array $params, Parser $parser, PPFrame $frame ) {
         $db = new DBConnection();
-        $pagename = $parser->getTitle();
         $zoneList = $db->getZoneList();
 
         $zoneid = 0;
+        if(isset($params['zone'])) {
+            $pagename = $params['zone'];
+        }
+        else $pagename = $parser->getTitle();
         foreach ( $zoneList as $zone){
             $pagename = ParserHelper::replaceApostrophe($pagename);
             $pagename = ParserHelper::replaceSpaces($pagename);
