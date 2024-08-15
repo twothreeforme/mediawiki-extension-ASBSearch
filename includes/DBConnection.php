@@ -176,7 +176,7 @@ class DBConnection {
                             $weatherType = "Sunshine";
                             break;
                         case 2;
-                            $weatherType = "Clouds";
+                            $weatherType = "[[File:clouds.png]] Clouds";
                             break;
                         case 3;
                             $weatherType = "Fog";
