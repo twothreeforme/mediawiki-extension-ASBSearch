@@ -22,7 +22,7 @@
 .zone-infobox-weather-div {
     max-height: 125px;
     overflow: auto;
-    display: inline-block;
+
 }
 
 .zone-infobox-weather-table {
