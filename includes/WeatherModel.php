@@ -14,7 +14,7 @@ class WeatherModel  {
 		$html = "";
 		$html .= "<br>
 		<div class=\"zone-infobox-weather-div\" >
-		<table class=\"sortable zone-infobox-weather-table\">
+		<table class=\"zone-infobox-weather-table\">
 			<tr><th>VanaDays from Today</th>
 			<th>Normal (50%)</th>
 			<th>Common (35%)</th>
