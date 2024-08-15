@@ -36,7 +36,14 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     (77,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
 
     -- Under Observation: BCNM 12
-    (12,8,1000,1311,1000,0,@HXI) -- Add Oxblood (100%)
+    (12,8,1000,1311,1000,0,@HXI), -- Add Oxblood (100%)
+
+    -- Hills Are Alive: KS99
+    (76,4,1000,13189,50,0,@HXI), -- Add SPEED BELT (5.0 %)
+
+    -- Horns of War: KS99
+    (11,4,1000,13189,59,0,@HXI) -- SPEED BELT (5.3 %)
+
 ;
 
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18852' WHERE itemId='17440' AND bcnmId='79'; -- Replace Kraken Club(17440) with Octave Club(18852)
@@ -44,6 +51,7 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHE
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1526' AND bcnmId='107'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15515' WHERE itemId='13056' AND bcnmId='12'; -- Update Peacock Charm to be Peacock Amulet in 'Under Observation'
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='50' WHERE itemId='14080' AND bcnmId='76' and groupId='4'; -- Update STRIDER BOOTS drop rate to 5.0%...
 
 -- Remove all scrolls from 'Under Observation'
 DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4717' AND bcnmId='12'; -- SCROLL_OF_REFRESH

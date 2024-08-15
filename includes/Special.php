@@ -243,8 +243,6 @@ class SpecialASBSearch extends SpecialPage {
                 'host' => 'localhost',
                 'user' => $this->dbUsername,
                 'password' => $this->dbPassword,
-				// 'user' => 'horizon_wiki',
-				// 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => 'ASB_Data',
                 'flags' => 0,
                 'tablePrefix' => ''] );
@@ -331,6 +329,7 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
 			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+			->orderBy( 'groupId', 'ASC' )
 			->where( $query	)
 			->limit(1000) 
 			->fetchResultSet(); 
@@ -382,6 +381,7 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'bcnm_info', null, 'bcnm_info.bcnmId=hxi_bcnm_crate_list.bcnmId' )
 			->join( 'item_basic', null, 'item_basic.itemid=hxi_bcnm_crate_list.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=bcnm_info.zoneId')
+			->orderBy( 'groupId', 'ASC' )
 			->where( $query	)
 			->limit(500)
 			->fetchResultSet(); 

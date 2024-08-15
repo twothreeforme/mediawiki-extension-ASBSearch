@@ -125,7 +125,7 @@ class DataModel {
 
 			// if ( $prev_row['dropData']['groupId'] == $workingRow['dropData']['groupId'] ) {
 			// 	print_r('here');
-			// 	$groupRateMax += $_item['dropRate']; 
+			// 	$groupRateMax += $_item['dropRate'];
 			// 	//array_push ( $this->dataset['dropData']['items'], $_item );
 			// 	//print_r($this->dataset['dropData']['items']);
 			// 	continue;
@@ -146,7 +146,7 @@ class DataModel {
 			//  * Handle drop TYPE & RATE
 			//  */
 			// $dropGroup;
-			// $droprate;	
+			// $droprate;
 			// switch ($row->dropType) {
 			// 	case 0;
 			// 		$droprate = round(($row->itemRate) / 10 ) ;
@@ -182,13 +182,14 @@ class DataModel {
 		// 	//print_r(" mob: ".$row['mobName']);
 		// 	print_r(" gId: ".$row['dropData']['groupId']);
 		// 	//print_r(" gR: ".$row['dropData']['groupRate']);
-			
+
 		// 	foreach($row['dropData']['items'] as $item){
 		// 		print_r(" iN: ".$item['name']);
 		// 		print_r(" iR: ".$item['dropRate']);
 		// 	}
-			
+
 		// }
+
 
         return $this->dataset;
     }
@@ -207,15 +208,15 @@ class DataModel {
 	// 	$array = [];
 	// 	foreach ($dataset as $row)
 	// 	{
-			
+
 	// 		/*******************************************************
-	// 		 * Removing OOE 
+	// 		 * Removing OOE
 	// 		 */
 	// 		// First check zone names
-			
+
 	// 		//$zn = str_replace("[S]", "(S)", $zn );
 	// 		// $skipRow = false;
-	// 		// foreach( ExclusionsHelper::$zones as $v) { 
+	// 		// foreach( ExclusionsHelper::$zones as $v) {
 	// 		// 	//print_r($zn);
 	// 		// 	if ( $zn == $v ) { $skipRow = true; break; } }
 	// 		// if ( $skipRow == true ) continue;
@@ -229,7 +230,7 @@ class DataModel {
 	// 		$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel, $zn);
 	// 		$in = ParserHelper::itemName($row->itemName);
 
-			
+
 	// 		// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
 
 	// 		// }
@@ -238,7 +239,7 @@ class DataModel {
 	// 		 * Handle drop TYPE & RATE
 	// 		 */
 	// 		// $dropGroup;
-	// 		// $droprate;	
+	// 		// $droprate;
 	// 		// switch ($row->dropType) {
 	// 		// 	case 0;
 	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
@@ -262,24 +263,24 @@ class DataModel {
 	// 		// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
 	// 		// 		// $droprate = "$droprate %";
 	// 		// 		break;
-	// 		// }			
+	// 		// }
 
 			/**
 			 * Unique by 1x zonename and 1x mobname
 			 * $array['zonename'] = [
-			 * 		zonename['mobname'] = [ 
+			 * 		zonename['mobname'] = [
 			 * 			moblevel = [ mobminlevel, mobmaxlevel ]
-			 * 			dropdata = [ dropgroup, [ itemname, droprate ] 
-			 * 		]	
+			 * 			dropdata = [ dropgroup, [ itemname, droprate ]
+			 * 		]
 			 * 	]
 			 */
-			
-			
+
+
 	// 		$group = [ $row->groupId, $row->groupRate ];
 	// 		$item = [ $row->itemName, $row->itemRate ];
 
 	// 		$temp = array (
-	// 			// 'mobName' => $row->mobName, 
+	// 			// 'mobName' => $row->mobName,
 	// 			// 'mobMinLevel' => $row->mobMinLevel,
 	// 			// 'mobMaxLevel' => $row->mobMaxLevel,
 	// 			'mobName' => $mn,
@@ -303,13 +304,13 @@ class DataModel {
 	// 					'dropRate' => $row->itemRate
 	// 				));
 
-	// 			continue; 
+	// 			continue;
 	// 		}
 	// 		unset($temp['mobName']);
 	// 		if ( !array_key_exists('dropData', $array[$zn])){			// set dropData in array
 
-	// 		}	
-			
+	// 		}
+
 
 	// 		//[ $row->zoneName, $row->mobName, $row->mobMinLevel, $row->mobMaxLevel, [ ] ]
 	// 	}
@@ -320,11 +321,11 @@ class DataModel {
 
 	// 		foreach ($mobArray as $mob){
 	// 			$html .= "	<br>". $mob["mobName"] . ":" . $mob["dropData"];
-	// 		} 
+	// 		}
 	// 	}
 	// 	//print_r($array);
 	// 	return $html;
-	// } 
+	// }
 
 
 }
