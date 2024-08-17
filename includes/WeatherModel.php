@@ -33,14 +33,27 @@ class WeatherModel  {
             //$html = $parser->recursiveTagParse( $html, $frame );
         }
         else $pagename = $parser->getTitle();
+
+        $pagename = $pagename->getPrefixedText() ;
+        // if (strpos($pagename,"'") !== false) {
+		// 	var_dump("FOUND");
+		// }
+        // var_dump($pagename);
+
+        $pagename = ParserHelper::replaceApostrophe($pagename);
+        //var_dump($pagename);
+        $pagename = ParserHelper::replaceSpaces($pagename);
+        //var_dump($pagename);
+
         foreach ( $zoneList as $zone){
-            $pagename = ParserHelper::replaceApostrophe($pagename);
-            $pagename = ParserHelper::replaceSpaces($pagename);
             if ( $zone->name == $pagename) {
                 $zoneid = $zone->zoneid;
                 break;
             }
         }
+        
+        var_dump($zoneid);
+
         if ( $zoneid == 0 ){
             return "<div>Error: Forecast for ' $pagename ' not found. Please report to Wiki devs on Discord. </div>";
         }
