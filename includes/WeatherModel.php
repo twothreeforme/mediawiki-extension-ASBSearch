@@ -40,11 +40,12 @@ class WeatherModel  {
 
         }
         // $pagename = $pagename->getText() ;
-        // if (strpos($pagename,"'") !== false) {
-		// 	var_dump("FOUND");
-		// }
+     
+
         $pagename = ParserHelper::replaceApostrophe($pagename);
         //var_dump($pagename);
+        
+
         $pagename = ParserHelper::replaceSpaces($pagename);
         //var_dump($pagename);
 
