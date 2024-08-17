@@ -34,7 +34,7 @@ class WeatherModel  {
         }
         else $pagename = $parser->getTitle();
 
-        // $pagename = $pagename->__toString() ;
+        $pagename = $pagename->getText() ;
         // if (strpos($pagename,"'") !== false) {
 		// 	var_dump("FOUND");
 		// }
