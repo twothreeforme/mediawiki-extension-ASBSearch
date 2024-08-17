@@ -52,7 +52,7 @@ class WeatherModel  {
             }
         }
         
-        var_dump($zoneid);
+        //var_dump($zoneid);
 
         if ( $zoneid == 0 ){
             return "<div>Error: Forecast for ' $pagename ' not found. Please report to Wiki devs on Discord. </div>";
