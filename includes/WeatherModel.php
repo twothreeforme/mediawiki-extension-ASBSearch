@@ -29,7 +29,7 @@ class WeatherModel  {
 
         $zoneid = 0;
         if(isset($params['zone'])) {
-            $pagename = htmlspecialchars($parser->recursiveTagParse($params['zone'], $frame ));
+            $pagename = $parser->recursiveTagParse($params['zone'], $frame );
             //$html = $parser->recursiveTagParse( $html, $frame );
         }
         else $pagename = $parser->getTitle()->__toString();
