@@ -29,17 +29,20 @@ class WeatherModel  {
 
         $zoneid = 0;
         if(isset($params['zone'])) {
-            $pagename = $parser->recursiveTagParseFully($params['zone'], $frame );
+            $pagename = $parser->recursiveTagParse($params['zone'], $frame );
             //$html = $parser->recursiveTagParse( $html, $frame );
-        }
-        else $pagename = $parser->getTitle()->__toString();
+            //print_r("if: " . gettype($pagename));
 
+        }
+        else {
+            $pagename = $parser->getTitle()->__toString();
+            //print_r("else: " . gettype($pagename));
+
+        }
         // $pagename = $pagename->getText() ;
         // if (strpos($pagename,"'") !== false) {
 		// 	var_dump("FOUND");
 		// }
-        //var_dump($pagename->__toString());
-
         $pagename = ParserHelper::replaceApostrophe($pagename);
         //var_dump($pagename);
         $pagename = ParserHelper::replaceSpaces($pagename);

@@ -110,6 +110,8 @@ class ParserHelper {
      * General Parsing
      */
     public static function replaceApostrophe($inputStr){
+		$inputStr = urldecode( $inputStr);
+		//print_r("replaceApostrophe: " . $inputStr);
 		return str_replace("'", "", $inputStr);
 	}
 
