@@ -54,6 +54,10 @@ class WeatherModel  {
                 $zoneid = $zone->zoneid;
                 break;
             }
+            else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay_-_Purgonorgo_Isle' ){
+                $zoneid = $zone->zoneid;
+                break;
+            }
         }
         
         //var_dump($zoneid);

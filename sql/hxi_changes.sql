@@ -27,22 +27,38 @@ ALTER TABLE `hxi_bcnm_crate_list`
 
 INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`itemRate`,`gilAmount`,`changes_tag`) VALUES
     -- Royal Succession: BCNM 108
-    (108,7,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
+    (108,7,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
     -- Undying Promise: BCNM 524
-    (524,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
+    (524,8,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
     -- Royal Jelly: BCNM 77
-    (77,8,1000,4706,150,0,@HXI), -- Add Scroll of Enlight (15%)
+    (77,8,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
     -- Under Observation: BCNM 12
-    (12,8,1000,1311,1000,0,@HXI), -- Add Oxblood (100%)
+    (12,8,1000,1311,1000,0,@HXI), -- ADD Oxblood (100%)
 
     -- Hills Are Alive: KS99
-    (76,4,1000,13189,50,0,@HXI), -- Add SPEED BELT (5.0 %)
+    (76,4,1000,13189,50,0,@HXI), -- ADD SPEED BELT (5.0 %)
 
     -- Horns of War: KS99
-    (11,4,1000,13189,59,0,@HXI) -- SPEED BELT (5.3 %)
+    (11,4,1000,13189,59,0,@HXI), -- ADD SPEED BELT (5.3 %)
+
+    -- Shooting Fish: BCNM 9
+    (9,8,1000,50011,0,0,@HXI), -- SHEPARD'S BONNET (??? %)
+
+    -- Toadall Recall: BCNM 36
+    (36,7,1000,0,800,0,@HXI), -- NOTHING (80 %)
+    (36,7,1000,50012,200,0,@HXI), -- SHEPARD'S BOOTS (20 %)
+
+    -- Creeping Doom: BCNM 104
+    (104,12,1000,50013,0,0,@HXI), -- SHEPARD'S HOSE (??? %)
+
+    -- Factory Rejects: BCNM 525
+    (525,7,1000,50014,0,0,@HXI), -- SHEPARD'S BRACERS (??? %)
+
+    -- Undying Promise: BCNM 524
+    (524,8,1000,50015,0,0,@HXI) -- SHEPARD'S DOUBLET (??? %)
 
 ;
 
@@ -204,9 +220,10 @@ UPDATE mob_droplist set itemRate = 100, changes_tag = 1 WHERE (dropId < 1674 OR 
     1042,   -- Davoi Coffer Key
     1044    -- Oztroja Coffer Key
     ); 
-    
--- UPDATE mob_droplist set itemRate = 50, groupId =  3, changes_tag = 1 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%; move to new group with Andvaranauts
--- UPDATE mob_droplist set groupId =  3, changes_tag = 1 WHERE itemId = 14075; -- ZoneID: 154 - Fafnir -- Andvaranauts move to new group with Ridill
+
+ -- https://discord.com/channels/933423693848260678/1128323171821563986/1235284032485593119
+UPDATE mob_droplist set itemRate = 50, groupId =  3, changes_tag = @HXI WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%; move to new group with Andvaranauts
+UPDATE mob_droplist set itemRate = 950, groupId =  3, changes_tag = @HXI WHERE itemId = 14075; -- ZoneID: 154 - Fafnir -- Andvaranauts move to new group with Ridill
 
 UNLOCK TABLES;
 
@@ -241,13 +258,17 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,@HXI), -- Duality Loop
 
     -- Shepard's Armor Set
-    (50011,0,'shepard\`s_bonnet','shepards_bonnet',1,63552,0,1,0,@HXI), -- Shepard's Bonnet
-    (50012,0,'shepard\`s_boots','shepards_boots',1,63552,0,1,0,@HXI), -- Shepard's Boots
-    (50013,0,'shepard\`s_hose','shepards_hose',1,63552,0,1,0,@HXI), -- Shepard's Hose
-    (50014,0,'shepard\`s_bracers','shepards_bracers',1,63552,0,1,0,@HXI), -- Shepard's Bracers
-    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,@HXI) -- Shepard's Doublet
+    (50011,0,'shepard\`s_bonnet','shepards_bonnet',1,63552,0,1,0,@HXI), -- Shepard's Bonnet -- BCNM 20 Shooting Fish - 9
+    (50012,0,'shepard\`s_boots','shepards_boots',1,63552,0,1,0,@HXI), -- Shepard's Boots -- BCNM 30 Toadall Recall - 36
+    (50013,0,'shepard\`s_hose','shepards_hose',1,63552,0,1,0,@HXI), -- Shepard's Hose -- BCNM 30 Creeping Doom - 104
+    (50014,0,'shepard\`s_bracers','shepards_bracers',1,63552,0,1,0,@HXI), -- Shepard's Bracers -- BCNM 40 Factory Rejects - 525
+    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,@HXI) -- Shepard's Doublet -- BCNM 40 Undying Promise - 524
 
 ;
+
+-- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
+UPDATE item_basic set name = 'perforator', changes_tag = 1 WHERE itemId = 18097;
+
 
 
 UNLOCK TABLES;
