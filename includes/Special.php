@@ -290,7 +290,7 @@ class SpecialASBSearch extends SpecialPage {
 			"mob_groups.name LIKE '%$mobNameSearch%'",
 			"item_basic.name LIKE '%$itemNameSearch%'",
 			"mob_droplist.dropid !=0 ",
-			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL )",
+			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
 			//"mob_groups.content_tag IS NULL ",
 		];
 

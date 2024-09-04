@@ -11,6 +11,7 @@ SET @NUANCE = 2;
 DELETE FROM `mob_groups` WHERE groupid>=20000 AND groupid<30000 ;
 DELETE FROM `mob_pools` WHERE poolid>=25000 AND poolid<30000 ;
 DELETE FROM `mob_droplist` WHERE dropId>=20000 AND dropId<30000 ;
+DELETE FROM `mob_droplist` WHERE dropId=3137 ; -- Dyna-Tav: Diabolos, added below
 DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
 DELETE FROM `item_basic` WHERE itemid=0;
 
@@ -195,8 +196,32 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
 
     -- Ixaern_Mnk 
     (20004,1,1,1000,1851,750,@NUANCE), -- Deed of Placidity (Group 1 - 75%)
-    (20004,1,1,1000,1901,250,@NUANCE) -- Vice of Antipathy (Group 1 - 25%)
+    (20004,1,1,1000,1901,250,@NUANCE), -- Vice of Antipathy (Group 1 - 25%)
     
+    -- Dynamis-Tavnazia: Diabolos
+    (3137,0,0,1000,1450,333,@HXI), -- Lungo-Nango Jadeshell (33.3%)
+    (3137,0,0,1000,1453,333,@HXI), -- Montiont Silverpiece (33.3%)
+    (3137,0,0,1000,1456,333,@HXI), -- One Hundred Byne Bill (33.3%)
+    (3137,0,1,1000,0,700,@HXI), -- NOTHING (70 %)
+    (3137,0,1,1000,1450,100,@HXI), -- Lungo-Nango Jadeshell (Uncommon, 10%)
+    (3137,0,1,1000,1453,100,@HXI), -- Montiont Silverpiece (Uncommon, 10%)
+    (3137,0,1,1000,1456,100,@HXI), -- One Hundred Byne Bill (Uncommon, 10%)
+    (3137,0,2,1000,15260,100,@HXI),    -- Hydra Beret (Uncommon, 10%)
+    (3137,0,2,1000,14515,100,@HXI),    -- Hydra Doublet (Uncommon, 10%)
+    (3137,0,2,1000,14924,100,@HXI),    -- Hydra Gloves (Uncommon, 10%)
+    (3137,0,2,1000,15595,100,@HXI),    -- Hydra Brais (Uncommon, 10%)
+    (3137,0,2,1000,15680,100,@HXI),    -- Hydra Gaiters (Uncommon, 10%)
+    (3137,0,2,1000,15262,100,@HXI),    -- Hydra Salade (Uncommon, 10%)
+    (3137,0,2,1000,14517,100,@HXI),    -- Hydra Haubert (Uncommon, 10%)
+    (3137,0,2,1000,14926,100,@HXI),    -- Hydra Moufles (Uncommon, 10%)
+    (3137,0,2,1000,15597,100,@HXI),    -- Hydra Brayettes (Uncommon, 10%)
+    (3137,0,2,1000,15682,100,@HXI),    -- Hydra Sollerets (Uncommon, 10%)
+    (3137,0,3,1000,0,700,@HXI),    -- NOTHING (70 %)
+    (3137,0,3,1000,50018,300,@HXI),    -- Dream Collar (30%)
+    -- (3137,0,4,1000,0,620,@HXI),    -- NOTHING (62 %)
+    (3137,0,4,1000,50016,240,@HXI),    -- Sack of Dream Sand (Very Common, 24%)
+    (3137,0,4,1000,50017,240,@HXI)    -- Dream Ribbon (Very Common, 24%)
+
 ;    
 -- -- All Coffer Keys drop rate increase to 10%
 UPDATE mob_droplist set itemRate = 100, changes_tag = 1 WHERE (dropId < 1674 OR dropId > 1692) AND itemRate < 101 AND itemId IN 
@@ -262,8 +287,12 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50012,0,'shepard\`s_boots','shepards_boots',1,63552,0,1,0,@HXI), -- Shepard's Boots -- BCNM 30 Toadall Recall - 36
     (50013,0,'shepard\`s_hose','shepards_hose',1,63552,0,1,0,@HXI), -- Shepard's Hose -- BCNM 30 Creeping Doom - 104
     (50014,0,'shepard\`s_bracers','shepards_bracers',1,63552,0,1,0,@HXI), -- Shepard's Bracers -- BCNM 40 Factory Rejects - 525
-    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,@HXI) -- Shepard's Doublet -- BCNM 40 Undying Promise - 524
+    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,@HXI), -- Shepard's Doublet -- BCNM 40 Undying Promise - 524
 
+    -- Dynamis-Tavnazia - Diabolos drops
+    (50016,0,'sack_of_dream_sand','sack_of_dream_sand',1,63552,0,1,0,@HXI), -- Sack of Dreeam Sand
+    (50017,0,'dream_ribbon','dream_ribbon',1,63552,0,1,0,@HXI), -- Dream Ribbon
+    (50018,0,'dream_collar','dream_collar',1,63552,0,1,0,@HXI) -- Dream Collar
 ;
 
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
