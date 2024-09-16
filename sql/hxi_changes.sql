@@ -11,9 +11,14 @@ SET @NUANCE = 2;
 DELETE FROM `mob_groups` WHERE groupid>=20000 AND groupid<30000 ;
 DELETE FROM `mob_pools` WHERE poolid>=25000 AND poolid<30000 ;
 DELETE FROM `mob_droplist` WHERE dropId>=20000 AND dropId<30000 ;
-DELETE FROM `mob_droplist` WHERE dropId=3137 OR dropId=2908; -- Dyna-Tav: Diabolos NMs > lvl 90 should stay removed... lower level range has custom drop lists below
 DELETE FROM `item_basic` WHERE itemid>=50000 AND itemid<60000;
 DELETE FROM `item_basic` WHERE itemid=0;
+
+-- Remove outdated Dynamis Mobs
+DELETE FROM `mob_groups` WHERE name = "Nightmare_Funguar" OR name = "Nightmare_Flytrap" OR name = "Nightmare_Treant" OR name ="Nightmare_Goobbue";
+DELETE FROM `mob_droplist` WHERE dropId=3137 OR dropId=2908; -- Dyna-Tav: Diabolos NMs > lvl 90 should stay removed... lower level range has custom drop lists below
+DELETE FROM `mob_groups` WHERE name LIKE '%Lost_%' AND minLevel = 100 AND maxLevel = 100;
+
 
 -- ---------------------------------------------------------------------------
 -- Format: (bcnmId,groupId,groupRate,itemId,itemRate,gilAmount)
