@@ -1134,9 +1134,7 @@ REPLACE INTO `mob_droplist` VALUES (1799,2,0,1000,1449,0); -- Whiteshell
 -- Use Skill List 116
 --           Nant`ina             --
 -- Use Skill List 1214
-REPLACE INTO `mob_skill_lists` VALUES ('Nantina',5000,1617);
-REPLACE INTO `mob_skill_lists` VALUES ('Nantina',5000,1618);
-REPLACE INTO `mob_skill_lists` VALUES ('Nantina',5000,1619);
+
 --         Stcemqestcint          --
 -- Use Skill List 245
 -- --------------------------------------------------------------------
@@ -1624,20 +1622,7 @@ REPLACE INTO `mob_droplist` VALUES (1785,1,2,@RARE,15481,500); -- PLD Back
 REPLACE INTO `mob_droplist` VALUES (1785,0,0,1000,1455,@COMMON); -- Byne Bill
 REPLACE INTO `mob_droplist` VALUES (1785,0,0,1000,1455,@UNCOMMON); -- Byne Bill
 REPLACE INTO `mob_droplist` VALUES (1785,2,0,1000,1455,0); -- Byne Bill (Steal)
--- ---------------------------------
---   Special Mob Skills/Spells   --
--- ---------------------------------
---           Megaboss            --
-REPLACE INTO `mob_skill_lists` VALUES ('Stihi',5001,642);
-REPLACE INTO `mob_skill_lists` VALUES ('Vishap',5002,643);
-REPLACE INTO `mob_skill_lists` VALUES ('Jurik',5003,644);
-REPLACE INTO `mob_skill_lists` VALUES ('Barong',5004,645);
-REPLACE INTO `mob_skill_lists` VALUES ('Tarasca',5005,646);
-REPLACE INTO `mob_skill_lists` VALUES ('Alklha',5006,647);
-REPLACE INTO `mob_skill_lists` VALUES ('Basillic',5007,648);
-REPLACE INTO `mob_skill_lists` VALUES ('Aitvaras',5008,649);
-REPLACE INTO `mob_skill_lists` VALUES ('Koschei',5009,650);
-REPLACE INTO `mob_skill_lists` VALUES ('Stollenwurm',5010,651);
+
 -- --------------------------------------------------------------------
 --                            Dynamis-Qufim                         --
 -- --------------------------------------------------------------------
