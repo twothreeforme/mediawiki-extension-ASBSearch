@@ -10,7 +10,6 @@
     "type": "other",
     "AutoloadClasses": {
         "SpecialASBSearch": "includes/Special.php",
-        "WeatherModel": "includes/WeatherModel.php",
         "ExclusionsHelper": "includes/ExclusionsHelper.php",
         "ParserHelper": "includes/ParserHelper.php",
         "DataModel": "includes/DataModel.php",
@@ -43,8 +42,7 @@
 		}
 	},
     "Hooks": {
-        "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay",
-        "ParserFirstCallInit": "WeatherModel::onParserInit"
+        "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay"
     },
     "manifest_version": 2,
     "requires": {

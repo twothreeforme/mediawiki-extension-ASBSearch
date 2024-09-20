@@ -18,7 +18,7 @@ class SpecialASBSearch extends SpecialPage {
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
 	private $excludeNMs = 1;
-	private $query_limit = 2000;
+	private $query_limit = 1500;
 
 	private $dbUsername = 'horizon_wiki'; 
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
@@ -233,7 +233,7 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $formData['zoneNameDropDown'] != 'searchallzones' ) {
 			return '*All results for this zone shown, with no additional filter.';
 			}
-			else return true;
+			else return ;
 		}
 		return false;
 	}
