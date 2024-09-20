@@ -233,7 +233,8 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $formData['zoneNameDropDown'] != 'searchallzones' ) {
 			return '*All results for this zone shown, with no additional filter.';
 			}
-			else return ;
+			// else if ( $formData['zoneNameDropDown'] == 'searchallzones' ) return false;
+			// return ;
 		}
 		return false;
 	}
