@@ -53,33 +53,6 @@ class SpecialASBSearch extends SpecialPage {
 			';	
 ////////////////////////////////////////////
 		$zoneNamesList = self::getZoneNames();
-		if ( $mobNameSearch == "" && $itemNameSearch== "" && $zoneNameDropDown == "searchallzones"){
-			//$wikitext = self::build_table(self::getFullDBTable());
-			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
-		}
-		else{
-			//$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : 'searchallzones'; 
-
-			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
-			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
-			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
-			//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
-			$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
-			$excludeNMs = isset($excludeNMs) ? $excludeNMs : "1";
-
-			$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
-			//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
-			
-			$mobDrops = new DataModel();
-			$mobDrops->parseData($mobDropRatesData);
-			//print_r($mobDrops);
-			if ( $this->showBCNMdrops == 1) {
-				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
-				$mobDrops->parseData($bcnmDropRatesData);
-			}
-			
-			$wikitext = self::build_table($mobDrops->getDataSet());
-		}
 
 		// $uiLayout = new OOUI\FieldLayout(
 		// 	new OOUI\TextInputWidget( [
@@ -205,6 +178,35 @@ class SpecialASBSearch extends SpecialPage {
 				'name' => 'excludeNMs',
 			],
 		];
+
+		if ( $mobNameSearch == "" && $itemNameSearch== "" && ( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") ) {
+			//$wikitext = self::build_table(self::getFullDBTable());
+			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
+		}
+		else{
+			//$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : 'searchallzones';
+
+			$mobNameSearch = isset($mobNameSearch) ? $mobNameSearch : "*";
+			$itemNameSearch = isset($itemNameSearch) ? $itemNameSearch : "*";
+
+			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
+			//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
+			$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
+			$excludeNMs = isset($excludeNMs) ? $excludeNMs : "1";
+
+			$mobDropRatesData = self::getRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);  //object output
+			//$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch);
+
+			$mobDrops = new DataModel();
+			$mobDrops->parseData($mobDropRatesData);
+			//print_r($mobDrops);
+			if ( $this->showBCNMdrops == 1) {
+				$bcnmDropRatesData = self::getBCNMCrateRates($zoneNameDropDown, $mobNameSearch, $itemNameSearch); //object output
+				$mobDrops->parseData($bcnmDropRatesData);
+			}
+
+			$wikitext = self::build_table($mobDrops->getDataSet());
+		}
 	
     	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'ASBSearch_Form' );
 		$htmlForm->setMethod( 'get' );
@@ -212,7 +214,8 @@ class SpecialASBSearch extends SpecialPage {
 		$htmlForm->setSubmitText( 'Show Drops' );
 	
 		// We set a callback function
-		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );  
+		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );
+
 		// Call processInput() in your extends SpecialPage class on submit
 		$htmlForm->show(); // Display the form
 		
@@ -226,14 +229,14 @@ class SpecialASBSearch extends SpecialPage {
 
 	
 	public static function processInput( $formData ) {
-		
+
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
 		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == '') {
 			if ( $formData['zoneNameDropDown'] != 'searchallzones' ) {
 			return '*All results for this zone shown, with no additional filter.';
 			}
-			// else if ( $formData['zoneNameDropDown'] == 'searchallzones' ) return false;
+			//else if ( $formData['zoneNameDropDown'] == 'searchallzones' || $formData['zoneNameDropDown'] == 'searchallzones') return '*Nothing was filled out.';
 			// return ;
 		}
 		return false;
