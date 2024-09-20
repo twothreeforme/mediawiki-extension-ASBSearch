@@ -55,7 +55,7 @@ class SpecialASBSearch extends SpecialPage {
 		$zoneNamesList = self::getZoneNames();
 		if ( $mobNameSearch == "" && $itemNameSearch== "" && $zoneNameDropDown == "searchallzones"){
 			//$wikitext = self::build_table(self::getFullDBTable());
-			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
+			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
 		}
 		else{
 			//$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : 'searchallzones'; 
