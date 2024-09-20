@@ -18,6 +18,8 @@ class SpecialASBSearch extends SpecialPage {
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
 	private $excludeNMs = 1;
+	private $query_limit = 2000;
+
 	private $dbUsername = 'horizon_wiki'; 
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
@@ -51,7 +53,7 @@ class SpecialASBSearch extends SpecialPage {
 			';	
 ////////////////////////////////////////////
 		$zoneNamesList = self::getZoneNames();
-		if ( $mobNameSearch == "" && $itemNameSearch== "" ){
+		if ( $mobNameSearch == "" && $itemNameSearch== "" && $zoneNameDropDown == "searchallzones"){
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Mob name OR Item name are required.</i>";
 		}
@@ -227,8 +229,11 @@ class SpecialASBSearch extends SpecialPage {
 		
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
-		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == '' && $formData['zoneNameDropDown'] != 'searchallzones' ) {
-			return '*Either the Mob field or Item field must be filled.';
+		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == '') {
+			if ( $formData['zoneNameDropDown'] != 'searchallzones' ) {
+			return '*All results for this zone shown, with no additional filter.';
+			}
+			else return '*You must make a selection from one of the fields below.';
 		}
 		return false;
 	}
@@ -331,7 +336,7 @@ class SpecialASBSearch extends SpecialPage {
 			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
 			->orderBy( 'groupId', 'ASC' )
 			->where( $query	)
-			->limit(1000) 
+			->limit( $this->query_limit)
 			->fetchResultSet(); 
 	}
 
@@ -429,7 +434,7 @@ class SpecialASBSearch extends SpecialPage {
 			if ( $totalRows < 0 ) $totalRows = 0;
 			foreach($row['dropData']['items'] as $item ){
 				$totalRows ++;
-				if ( $totalRows > 1000){
+				if ( $totalRows > $this->query_limit){
 					return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
 						Please reduce search pool by adding more to any of the search parameters.</i></b>";
 				}
