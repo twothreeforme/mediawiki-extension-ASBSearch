@@ -44,15 +44,15 @@ class ParserHelper {
 		$itemName = self::replaceUnderscores($item['name']);
 		//print_r($itemName);
 		$itemName = ucwords($itemName);
-		$itemName = self::fixTrailingRomanNumerals($itemName);
+		$itemNameFixed = self::fixTrailingRomanNumerals($itemName);
 
 		//if item is on OOE list
-		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
+		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemNameFixed</strike><sup>(OOE)</sup> ";
 
 
-		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName|$itemName]] ";
-		else if ( $item['changes'] == 2 )  return " ** [[$itemName|$itemName]] ";
-		else return " [[$itemName|$itemName]] ";
+		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName|$itemNameFixed]] ";
+		else if ( $item['changes'] == 2 )  return " ** [[$itemName|$itemNameFixed]] ";
+		else return " [[$itemName|$itemNameFixed]] ";
 	}
 
 
