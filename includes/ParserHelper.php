@@ -42,15 +42,17 @@ class ParserHelper {
 
 		//adjust item names
 		$itemName = self::replaceUnderscores($item['name']);
+		//print_r($itemName);
 		$itemName = ucwords($itemName);
+		$itemName = self::fixTrailingRomanNumerals($itemName);
 
 		//if item is on OOE list
 		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
 
 
-		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
-		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
-		else return " [[$itemName]] ";
+		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName|$itemName]] ";
+		else if ( $item['changes'] == 2 )  return " ** [[$itemName|$itemName]] ";
+		else return " [[$itemName|$itemName]] ";
 	}
 
 
@@ -77,7 +79,6 @@ class ParserHelper {
         if ( ExclusionsHelper::zoneIsOOE($zone) ) return NULL;
 
 		$zone = str_replace("-", " - ", $zone);
-
 		return $zone;
 	}
 
@@ -123,7 +124,48 @@ class ParserHelper {
 		return str_replace("_", " ", $inputStr);
 	}
 
-    
+	public static function fixTrailingRomanNumerals($input){
+		$frags = explode(" ", $input);
+
+		//$final
+		$romans = array(
+			'M' => 1000,
+			'CM' => 900,
+			'D' => 500,
+			'CD' => 400,
+			'C' => 100,
+			'XC' => 90,
+			'L' => 50,
+			'XL' => 40,
+			'X' => 10,
+			'IX' => 9,
+			'V' => 5,
+			'IV' => 4,
+			'I' => 1,
+		);
+
+		// $result = 0 ;
+		for ( $i = 0; $i < count($frags); $i++){
+			$fragmentUC = strtoupper($frags[$i]);
+			//print_r($fragmentUC);
+			//$pattern = '/(.+)\s+[IVXLCDM]+\s*$/';
+			if (preg_match( "/(?!.*([IXCM])(\1{3}))(?!.*([VLD])(\3))^[IVXLCDM]+$/" , $fragmentUC)) {
+				//print_r($fragmentUC . "<br>");
+				$frags[$i] = $fragmentUC;
+			} else {
+				// No Roman numerals found
+			}
+
+			// foreach ($romans as $key => $value) {
+			// 	while (strpos($fragmentUC, $key) === 0) {
+			// 		$result += $value;
+			// 		$input = substr($input, strlen($key));
+			// 	}
+			// }
+		}
+		return implode(" ", $frags);
+	}
+
 }
 
 
