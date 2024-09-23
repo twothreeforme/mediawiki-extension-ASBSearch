@@ -50,9 +50,9 @@ class ParserHelper {
 		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemNameFixed</strike><sup>(OOE)</sup> ";
 
 
-		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName|$itemNameFixed]] ";
-		else if ( $item['changes'] == 2 )  return " ** [[$itemName|$itemNameFixed]] ";
-		else return " [[$itemName|$itemNameFixed]] ";
+		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemNameFixed|$itemNameFixed]] ";
+		else if ( $item['changes'] == 2 )  return " ** [[$itemNameFixed|$itemNameFixed]] ";
+		else return " [[$itemNameFixed|$itemNameFixed]] ";
 	}
 
 
