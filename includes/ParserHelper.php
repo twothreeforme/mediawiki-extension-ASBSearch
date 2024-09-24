@@ -43,8 +43,10 @@ class ParserHelper {
 		//adjust item names
 		$itemName = self::replaceUnderscores($item['name']);
 		//print_r($itemName);
+
 		$itemName = ucwords($itemName);
 		$itemNameFixed = self::fixTrailingRomanNumerals($itemName);
+		$itemNameFixed = self::cleanStringDetails($itemName);
 
 		//if item is on OOE list
 		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemNameFixed</strike><sup>(OOE)</sup> ";
@@ -166,6 +168,19 @@ class ParserHelper {
 		return implode(" ", $frags);
 	}
 
+	public static function cleanStringDetails($input){
+		$stats = array( "INT", "MND", "AGI", "STR", "CHR", "VIT", "DEX", " of ");
+		foreach ($stats as $stat) {
+			if ( str_ends_with($input,  strtolower( $stat ) ) ) {
+				$input = substr_replace($input, $stat, strlen($input) - 3, 3);
+			}
+			$pos = strpos($input, " Of ");
+			if ( $pos !== false ){
+				$input = substr_replace($input, " of ", $pos, 4);
+			}
+		}
+		return $input;
+	}
 }
 
 
