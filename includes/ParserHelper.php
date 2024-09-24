@@ -45,16 +45,18 @@ class ParserHelper {
 		//print_r($itemName);
 
 		$itemName = ucwords($itemName);
-		$itemNameFixed = self::fixTrailingRomanNumerals($itemName);
-		$itemNameFixed = self::cleanStringDetails($itemName);
+		$itemName = self::fixTrailingRomanNumerals($itemName);
+		$itemName = self::cleanStringDetails($itemName);
+		$itemName = self::replaceOF($itemName);
+
 
 		//if item is on OOE list
-		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemNameFixed</strike><sup>(OOE)</sup> ";
+		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
 
 
-		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemNameFixed|$itemNameFixed]] ";
-		else if ( $item['changes'] == 2 )  return " ** [[$itemNameFixed|$itemNameFixed]] ";
-		else return " [[$itemNameFixed|$itemNameFixed]] ";
+		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
+		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
+		else return " [[$itemName]] ";
 	}
 
 
@@ -126,6 +128,10 @@ class ParserHelper {
 		return str_replace("_", " ", $inputStr);
 	}
 
+	public static function replaceOF($inputStr){
+		return str_replace(" Of ", " of ", $inputStr);
+	}
+
 	public static function fixTrailingRomanNumerals($input){
 		$frags = explode(" ", $input);
 
@@ -173,10 +179,6 @@ class ParserHelper {
 		foreach ($stats as $stat) {
 			if ( str_ends_with($input,  strtolower( $stat ) ) ) {
 				$input = substr_replace($input, $stat, strlen($input) - 3, 3);
-			}
-			$pos = strpos($input, " Of ");
-			if ( $pos !== false ){
-				$input = substr_replace($input, " of ", $pos, 4);
 			}
 		}
 		return $input;
