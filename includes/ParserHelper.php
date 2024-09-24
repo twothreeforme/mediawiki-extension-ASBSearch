@@ -15,8 +15,7 @@ class ParserHelper {
 
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
-
-		// print_r($mobName ."-". $mobType ."...");
+		$mobName = self::replaceOF($mobName);
 
 		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
 		else if ( $minLvl == $maxLvl ) {
