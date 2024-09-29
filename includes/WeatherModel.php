@@ -12,7 +12,7 @@ class WeatherModel  {
 
     static function _tableHeaders(){
 		$html = "";
-		$html .= "<br>
+		$html .= "
 		<div class=\"zone-infobox-weather-div\" >
 		<table class=\"zone-infobox-weather-table\">
 			<tr><th>VanaDays from Today</th>
