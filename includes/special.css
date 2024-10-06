@@ -19,6 +19,10 @@
     background-color:rgba(0, 0, 0, 0) !important;
 }
 
+#asbsearch_LvlSelect{
+    display: inline;
+}
+
 .zone-infobox-weather-div {
     max-height: 200px;
     overflow: auto;
