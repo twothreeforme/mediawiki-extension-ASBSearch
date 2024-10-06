@@ -256,7 +256,8 @@ class SpecialASBSearch extends SpecialPage {
 			//else if ( $formData['zoneNameDropDown'] == 'searchallzones' || $formData['zoneNameDropDown'] == 'searchallzones') return '*Nothing was filled out.';
 			// return ;
 		}
-		if ( $formData['levelRangeMIN'] > $formData['levelRangeMAX'] ) return '*Level ranges invalid.';
+
+		if ( (int)$formData['levelRangeMIN'] > (int)$formData['levelRangeMAX'] ) return '*Level ranges invalid.';
 
 		return false;
 	}
