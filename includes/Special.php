@@ -14,8 +14,8 @@ class SpecialASBSearch extends SpecialPage {
 		$out->addModules(['inputHandler']);
 	}
 	
-	private $levelRangeMIN = 0;
-	private $levelRangeMAX = 0;
+	private $levelRangeMIN = "0";
+	private $levelRangeMAX = "0";
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
@@ -129,7 +129,7 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Mob/BCNM Name*', // Label of the field
 				'class' => 'HTMLTextField', // Input type
 				'name' => 'mobNameSearch',
-				'help' => '<sup><i>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Either the mob name or BCNM name should be used above.</i></sup>'
+				'help' => '<sup><i>&emsp;&emsp;&emsp;&emsp;Either the mob name or BCNM name should be used above.</i></sup>'
 			],
 			'levelRangeMIN' => [
 				'type' => 'limitselect',
@@ -145,7 +145,7 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Lvl Max', // Label of the field
 				'class' => 'HTMLSelectField', // Input type
 				'options' => $levelRangeList,
-				'help' => '<sup><i>&emsp;&emsp;Not Required. Leave as 0 to show all level ranges.</i></sup>'
+				'help' => '<sup><i>Not Required. Leave as 0 to show all level ranges.</i></sup>'
 				//'default' => "0",
 			],
 			'itemNameTextField' => [
@@ -193,7 +193,7 @@ class SpecialASBSearch extends SpecialPage {
 		if ( 	$mobNameSearch == "" &&
 				$itemNameSearch== "" &&
 				( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") &&
-				( $this->levelRangeMIN == 0 && $this->levelRangeMAX == 0) ) {
+				( $this->levelRangeMIN == "0" && $this->levelRangeMAX == "0") ) {
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
 		}
