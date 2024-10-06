@@ -32,8 +32,8 @@ class SpecialASBSearch extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 		
 		// db login variables - prevents swapping login info between testing server and horizon server		
-		//print_r( $_SERVER['SERVER_NAME'] );
-		if ( $_SERVER['SERVER_NAME'] == 'localhost' ){ 
+		//print_r( $_SERVER['HTTP_HOST'] );
+		if ( $_SERVER['HTTP_HOST'] == 'localhost' ){
 			$this->dbUsername = 'root'; $this->dbPassword = '';
 		}
 

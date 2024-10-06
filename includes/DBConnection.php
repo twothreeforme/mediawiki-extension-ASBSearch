@@ -7,7 +7,7 @@ class DBConnection {
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
     public function openConnection() {
-        if ( $_SERVER['SERVER_NAME'] == 'localhost' ){ 
+        if ( $_SERVER['HTTP_HOST'] == 'localhost' ){
 			$this->dbUsername = 'root'; $this->dbPassword = '';
 		}
 
