@@ -61,9 +61,9 @@ class DataModel {
 			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
 
 			/**
-			 * Beging additional exclusions here to prevent building the model in the first place
+			 * Begin additional exclusions here to prevent building the model in the first place
 			 */
-			if ( $row->mobMinLevel >= 90 && str_contains($zn, "Dynamis") ) continue;
+			if ( $row->mobMinLevel >= 90 && str_contains($zn, "Dynamis") && !str_contains($zn, "Tavna")  ) continue;
 
 			$_item = array(
 				'name' => $row->itemName,

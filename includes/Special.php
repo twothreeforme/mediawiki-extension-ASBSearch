@@ -137,7 +137,7 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Lvl Min', // Label of the field
 				'class' => 'HTMLSelectField', // Input type
 				'options' => $levelRangeList,
-				//'default' => "-",
+				'default' => $this->levelRangeMIN,
 			],
 			'levelRangeMAX' => [
 				'type' => 'limitselect',
@@ -145,8 +145,8 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Lvl Max', // Label of the field
 				'class' => 'HTMLSelectField', // Input type
 				'options' => $levelRangeList,
-				'help' => '<sup><i>Not Required. Leave as 0 to show all level ranges. Lvl Min must be less than or equal to Lvl Max. </i></sup>'
-				//'default' => "0",
+				'help' => '<sup><i>Not Required. Leave as 0 to show all level ranges. Lvl Min must be less than or equal to Lvl Max. </i></sup>',
+				'default' => $this->levelRangeMAX,
 			],
 			'itemNameTextField' => [
 				'label' => 'Item Name*', // Label of the field
