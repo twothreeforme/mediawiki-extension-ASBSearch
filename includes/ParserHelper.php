@@ -134,23 +134,6 @@ class ParserHelper {
 	public static function fixTrailingRomanNumerals($input){
 		$frags = explode(" ", $input);
 
-		//$final
-		$romans = array(
-			'M' => 1000,
-			'CM' => 900,
-			'D' => 500,
-			'CD' => 400,
-			'C' => 100,
-			'XC' => 90,
-			'L' => 50,
-			'XL' => 40,
-			'X' => 10,
-			'IX' => 9,
-			'V' => 5,
-			'IV' => 4,
-			'I' => 1,
-		);
-
 		// $result = 0 ;
 		for ( $i = 0; $i < count($frags); $i++){
 			$fragmentUC = strtoupper($frags[$i]);
@@ -162,13 +145,6 @@ class ParserHelper {
 			} else {
 				// No Roman numerals found
 			}
-
-			// foreach ($romans as $key => $value) {
-			// 	while (strpos($fragmentUC, $key) === 0) {
-			// 		$result += $value;
-			// 		$input = substr($input, strlen($key));
-			// 	}
-			// }
 		}
 		return implode(" ", $frags);
 	}

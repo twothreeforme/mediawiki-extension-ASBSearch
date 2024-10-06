@@ -311,7 +311,7 @@ class ExclusionsHelper {
         'PsoXja' => 'The Shrouded Maw',
         'Palborough Mines' => 'Waughroon Shrine'
     );
-    
+
 }
 
 ?>

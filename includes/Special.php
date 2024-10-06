@@ -14,6 +14,8 @@ class SpecialASBSearch extends SpecialPage {
 		$out->addModules(['inputHandler']);
 	}
 	
+	private $levelRangeMIN = 0;
+	private $levelRangeMAX = 0;
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
@@ -39,6 +41,8 @@ class SpecialASBSearch extends SpecialPage {
 		$this->setHeaders();
 
 		# Get request data 
+		$this->levelRangeMIN =  $request->getText( 'levelRangeMIN' );
+		$this->levelRangeMAX =  $request->getText( 'levelRangeMAX' );
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
 		//$zoneNameSearch = $request->getText( 'zoneNameSearch' );
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
@@ -53,6 +57,7 @@ class SpecialASBSearch extends SpecialPage {
 			';	
 ////////////////////////////////////////////
 		$zoneNamesList = self::getZoneNames();
+		$levelRangeList = self::lvlRngList();
 
 		// $uiLayout = new OOUI\FieldLayout(
 		// 	new OOUI\TextInputWidget( [
@@ -77,47 +82,36 @@ class SpecialASBSearch extends SpecialPage {
 		// 	]
 		// );
 		
-		$uiLayout = new OOUI\ActionFieldLayout(
-			new OOUI\ButtonWidget( [
-				'id' => 'asbsearch-shareButton',
-				'infusable' => true,
-				'label' => 'Show Drops',
-				'icon' => 'search',
-				'name' => 'search',
-				'flags' => [ 'primary', 'progressive'],
-				'method' => 'post'
-			] ),
-			new OOUI\TextInputWidget( [
-				'id' => 'shareButton',
-				//'infusable' => true,
-				'label' => 'Mob/BCNM Name*',
-				//'name' => 'search',
-				'flags' => [ 'primary', 'progressive']
-			] ),
-			[
-				'id' => 'asbsearch-fieldlayout',
-				'label' => new OOUI\HtmlSnippet( '<i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.</i>' ),
-				'align' => 'top',
-				'help' => 'Test help bubble'
-			]
-			);
-
-		// $shareButton = new OOUI\ButtonWidget( [
-		// 		'id' => 'shareButton',
+		// $uiLayout = new OOUI\ActionFieldLayout(
+		// 	new OOUI\ButtonWidget( [
+		// 		'id' => 'asbsearch-shareButton',
 		// 		'infusable' => true,
-		// 		'label' => '',
-		// 		'icon' => 'upload',
-		// 		'name' => 'Share',
+		// 		'label' => 'Show Drops',
+		// 		'icon' => 'search',
+		// 		'name' => 'search',
+		// 		'flags' => [ 'primary', 'progressive'],
+		// 		'method' => 'post'
+		// 	] ),
+		// 	new OOUI\TextInputWidget( [
+		// 		'id' => 'shareButton',
+		// 		//'infusable' => true,
+		// 		'label' => 'Mob/BCNM Name*',
+		// 		//'name' => 'search',
 		// 		'flags' => [ 'primary', 'progressive']
-		// 	] );
+		// 	] ),
+		// 	[
+		// 		'id' => 'asbsearch-fieldlayout',
+		// 		'label' => new OOUI\HtmlSnippet( '<i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.</i>' ),
+		// 		'align' => 'top',
+		// 		'help' => 'Test help bubble'
+		// 	]
+		// 	);
 		
 		//$output->addHTML( $uiLayout );
-		// $output->addHTML( $shareButton );
 		//$output->addHTML( $testForm );
 
 /////////// HTML FORM TESTING
 		
-		$zoneNamesList = self::getZoneNames();
 		// formDescriptor Array to tell HTMLForm what to build
 
 		$formDescriptor = [
@@ -135,7 +129,24 @@ class SpecialASBSearch extends SpecialPage {
 				'label' => 'Mob/BCNM Name*', // Label of the field
 				'class' => 'HTMLTextField', // Input type
 				'name' => 'mobNameSearch',
-				'help' => '<sup>Either the mob name or BCNM name should be used above.</sup>'
+				'help' => '<sup><i>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Either the mob name or BCNM name should be used above.</i></sup>'
+			],
+			'levelRangeMIN' => [
+				'type' => 'limitselect',
+				'name' => 'levelRangeMIN',
+				'label' => 'Lvl Min', // Label of the field
+				'class' => 'HTMLSelectField', // Input type
+				'options' => $levelRangeList,
+				//'default' => "-",
+			],
+			'levelRangeMAX' => [
+				'type' => 'limitselect',
+				'name' => 'levelRangeMAX',
+				'label' => 'Lvl Max', // Label of the field
+				'class' => 'HTMLSelectField', // Input type
+				'options' => $levelRangeList,
+				'help' => '<sup><i>&emsp;&emsp;Not Required. Leave as 0 to show all level ranges.</i></sup>'
+				//'default' => "0",
 			],
 			'itemNameTextField' => [
 				'label' => 'Item Name*', // Label of the field
@@ -150,6 +161,7 @@ class SpecialASBSearch extends SpecialPage {
 				'options' => $zoneNamesList,
 				'default' => "searchallzones",
 			],
+
 			// 'zoneNameTextField' => [
 			// 	'label' => 'Zone Name', // Label of the field
 			// 	'class' => 'HTMLTextField', // Input type
@@ -159,7 +171,6 @@ class SpecialASBSearch extends SpecialPage {
 				'type' => 'check',
 				'label' => 'Show TH Rates',
 				'name' => 'thRatesCheck',
-				'tooltip' => 'These options are in row 3.', // Tooltip to add to the Row 3 row label
 			],
 			// 'showIDCheck' => [
 			// 	'type' => 'check',
@@ -179,7 +190,10 @@ class SpecialASBSearch extends SpecialPage {
 			],
 		];
 
-		if ( $mobNameSearch == "" && $itemNameSearch== "" && ( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") ) {
+		if ( 	$mobNameSearch == "" &&
+				$itemNameSearch== "" &&
+				( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") &&
+				( $this->levelRangeMIN == 0 && $this->levelRangeMAX == 0) ) {
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
 		}
@@ -211,7 +225,7 @@ class SpecialASBSearch extends SpecialPage {
     	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'ASBSearch_Form' );
 		$htmlForm->setMethod( 'get' );
 		// Text to display in submit button
-		$htmlForm->setSubmitText( 'Show Drops' );
+		$htmlForm->setSubmitText( 'Show Table' );
 	
 		// We set a callback function
 		$htmlForm->setSubmitCallback( [ $this, 'processInput' ] );
@@ -233,9 +247,12 @@ class SpecialASBSearch extends SpecialPage {
 		// If true is returned, the form won't display again
 		// If a string is returned, it will be displayed as an error message with the form
 		if ( $formData['mobNameTextField'] == ''  && $formData['itemNameTextField'] == '') {
-			if ( $formData['zoneNameDropDown'] != 'searchallzones' ) {
-			return '*All results for this zone shown, with no additional filter.';
+			if ( $formData['zoneNameDropDown'] != 'searchallzones'  ) {
+				return '*All results for this zone shown, with no additional filter.';
 			}
+			// if ( $formData['levelRangeMIN'] != 0 || $formData['levelRangeMAX'] != 0){
+			// 	return 'safdafw';
+			// }
 			//else if ( $formData['zoneNameDropDown'] == 'searchallzones' || $formData['zoneNameDropDown'] == 'searchallzones') return '*Nothing was filled out.';
 			// return ;
 		}
@@ -286,6 +303,14 @@ class SpecialASBSearch extends SpecialPage {
 		return $result ;
 	}
 
+	function lvlRngList(){
+		$result = [];
+		for ( $i = 0; $i < 86; $i++){
+			array_push($result, $i);
+		}
+		return $result;
+	}
+
 	function getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch){
 		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
@@ -314,7 +339,12 @@ class SpecialASBSearch extends SpecialPage {
 			array_push($query, "mob_pools.mobType != 16");
 			array_push($query, "mob_pools.mobType != 18");
 		}
-
+		if ( $this->levelRangeMIN > 0){
+			array_push($query, "mob_groups.minLevel >= '$this->levelRangeMIN'");
+		}
+		if ( $this->levelRangeMAX > 0){
+			array_push($query, "mob_groups.maxLevel <= '$this->levelRangeMAX'");
+		}
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
