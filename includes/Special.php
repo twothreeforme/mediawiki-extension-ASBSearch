@@ -14,8 +14,8 @@ class SpecialASBSearch extends SpecialPage {
 		$out->addModules(['inputHandler']);
 	}
 	
-	private $levelRangeMIN = "0";
-	private $levelRangeMAX = "0";
+	private $levelRangeMIN = 0;
+	private $levelRangeMAX = 0;
 	private $thRatesCheck = 0;
 	//private $showIDCheck = 0;
 	private $showBCNMdrops = 0;
@@ -41,8 +41,8 @@ class SpecialASBSearch extends SpecialPage {
 		$this->setHeaders();
 
 		# Get request data 
-		$this->levelRangeMIN =  $request->getText( 'levelRangeMIN' );
-		$this->levelRangeMAX =  $request->getText( 'levelRangeMAX' );
+		$this->levelRangeMIN =  (int)$request->getText( 'levelRangeMIN' );
+		$this->levelRangeMAX =  (int)$request->getText( 'levelRangeMAX' );
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
 		//$zoneNameSearch = $request->getText( 'zoneNameSearch' );
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
@@ -193,7 +193,7 @@ class SpecialASBSearch extends SpecialPage {
 		if ( 	$mobNameSearch == "" &&
 				$itemNameSearch== "" &&
 				( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") &&
-				( $this->levelRangeMIN == "0" && $this->levelRangeMAX == "0") ) {
+				( $this->levelRangeMIN == 0 && $this->levelRangeMAX == 0) ) {
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
 		}
