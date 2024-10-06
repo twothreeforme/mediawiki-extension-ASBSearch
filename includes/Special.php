@@ -190,13 +190,19 @@ class SpecialASBSearch extends SpecialPage {
 			],
 		];
 
+		/**
+		 * This IF should hold all conditions where the table should NOT be drawn
+		 */
 		if ( 	$mobNameSearch == "" &&
 				$itemNameSearch== "" &&
 				( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") &&
-				( $this->levelRangeMIN == 0 && $this->levelRangeMAX == 0) ) {
+				( ($this->levelRangeMIN == 0 && $this->levelRangeMAX == 0) || ( $this->levelRangeMIN > $this->levelRangeMAX )) ) {
 			//$wikitext = self::build_table(self::getFullDBTable());
 			$wikitext = "<i>*Please use the search query above to generate a table. Only one of the three fields above is required. </i>";
 		}
+		/**
+		 * This ELSE should hold all conditions where the table SHOULD be drawn
+		 */
 		else{
 			//$zoneNameDropDown = isset($zoneNameSearch) ? $zoneNameSearch : 'searchallzones';
 
