@@ -38,9 +38,6 @@
 			"packageFiles": [
 				"includes/inputHandler.js"
 			],
-            "dependencies": [
-				"oojs-ui-core"
-			],
 			"styles": [
 				"includes/ASBSearch_Styles.css"
 			]
