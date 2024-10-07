@@ -12,6 +12,8 @@ class SpecialASBSearch extends SpecialPage {
 
 	static function onBeforePageDisplay( $out, $skin ) : void  { 
 		$out->addModules(['inputHandler']);
+		//$parser->getOutput()->addModules(['ext.FFXIMap']);
+
 	}
 	
 	private $levelRangeMIN = 0;
