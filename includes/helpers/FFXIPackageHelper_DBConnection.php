@@ -10,7 +10,6 @@ class DBConnection {
         if ( $_SERVER['HTTP_HOST'] == 'localhost' ){
 			$this->dbUsername = 'root'; $this->dbPassword = '';
 		}
-
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
@@ -258,6 +257,78 @@ class DBConnection {
 
         return null;
 	}
+
+    
+    public function getZoneForecastFromDB($zone){
+        $dbr = $this->openConnection();
+        $query = "zone_weather.zone = $zone";
+		return $dbr->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'zone_weather' )
+			->where( $query )
+			->fetchResultSet(); 
+    }
+
+    public function getForecastFromDB() {
+        $dbr =  $this->openConnection();
+        // $query = "zone_weather.zone = $zone";
+		return $dbr->newSelectQueryBuilder()
+			->select( [ 'name', 'zoneid', 'weather' ] )
+			->from( 'zone_weather' )
+            ->join( 'zone_settings', null, 'zone_weather.zone=zone_settings.zoneid' )
+			// ->where( $query )
+			->fetchResultSet();
+    }
+
+    public function getWeather($forDiggersPage){
+        $forDiggersPage ? $forDiggersPage : false;
+
+        $dbr = new DBConnection();
+        $allZonesWeather = $dbr->getForecastFromDB();
+
+        $result = [ ];
+        foreach( $allZonesWeather as $row ){
+            //Filter zones for those in Era
+            $temp = ParserHelper::zoneERA_forList($row->name);
+			if ( !isset($temp) ) { continue; }
+
+            $dayCount = 30;
+            //check if on the diggers special page
+            //should only include the weather for the zones listed in ExclusionsHelper::$diggingRelevantZones
+            if ( $forDiggersPage == true) {
+                if ( !array_key_exists($row->zoneid, ExclusionsHelper::$diggingRelevantZones) ) continue;
+                $dayCount = 4;
+            }
+
+            //Start stripping out weather details
+            //Should occur for each relevant zone
+            $zoneWeatherArray = ParserHelper::createCompleteWeatherArrayForZone($row->weather, $dayCount);
+            // print_r("<br>". $temp . "<br>");
+            // print_r($zoneWeatherArray);
+
+            $weatherdetails = array(
+                'name' => $temp,
+                'pagelinkname' => $row->name,
+				'weather' => $zoneWeatherArray,
+                'id' => $row->zoneid
+            );
+
+			$result[] = $weatherdetails;
+            //print_r("<br />" . $row->zoneid . " " . $row->name);
+        }
+
+        if ( $forDiggersPage == false ) {
+            $allzones= array(
+                'name' => ' ** Search All Zones ** ',
+                'pagelinkname' => 'searchallzones',
+                'weather' => NULL,
+                'id' => NULL
+            );
+            $result[] = $allzones;
+        }
+
+        return $result;
+    }
 
 
 }

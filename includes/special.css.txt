@@ -1,7 +1,0 @@
-.mw-htmlform  {
-	text-align: left;
-}
-
-.mw-htmlform table {
-    width: 100%;
-}

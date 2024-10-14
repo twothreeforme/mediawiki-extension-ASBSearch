@@ -4,13 +4,18 @@
 			"Shocks"
 		]
 	},
-	"asbsearch": "ASB Search",
-	"asbsearch-desc": "Database search tool for ASB related SQL data.",
-	"asbsearch-title": "ASB Search",
-	"asbsearch-summary": "On this Special page editors can search for ASB data that has been committed to the Wiki database.",
-	"group-asbsearchrole": "",
-	"group-asbsearchrole-member": "",
-	"grouppage-asbsearchrole": "",
-	"action-asbsearch": "",
-	"right-asbsearch": ""
+	"ffxipackagehelper": "FFXIPackageHelper",
+	"ffxipackagehelper-desc": "Series of tools to support FFXI related queries and special pages",
+	"ffxipackagehelper-title": "FFXIPackageHelper",
+	"ffxipackagehelper-summary": "Supports special pages ASBSearch, WeatherForecast, and DiggersWeatherForecast",
+	"group-ffxipackagehelperrole": "",
+	"group-ffxipackagehelperrole-member": "",
+	"grouppage-ffxipackagehelperrole": "",
+	"action-ffxipackagehelper": "",
+	"right-ffxipackagehelper": "",
+
+	"asbsearch": "ASBSearch",
+	"weatherforecast": "Weather Forecast",
+	"diggingweatherforecast": "Digging: Weather Forecast"
+
 }

@@ -1,47 +1,70 @@
 {
-    "name": "ASBSearch",
-    "version": "0.1.0",
+    "name": "FFXIPackageHelper",
+    "version": "1.0",
     "author": [
         "Shocks"
     ],
     "url": "none",
-    "descriptionmsg": "asbsearch-desc",
+    "descriptionmsg": "ffxipackagehelper-desc",
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
-        "SpecialASBSearch": "includes/Special.php",
-        "WeatherModel": "includes/WeatherModel.php",
-        "ExclusionsHelper": "includes/ExclusionsHelper.php",
-        "ParserHelper": "includes/ParserHelper.php",
-        "DataModel": "includes/DataModel.php",
-        "DBConnection": "includes/DBConnection.php"
+        "HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
+        "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
+        "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
+        "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
+        "DataModel": "includes/helpers/FFXIPackageHelper_DataModel.php",
+        "DBConnection": "includes/helpers/FFXIPackageHelper_DBConnection.php",
+        "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
+
+        "SpecialASBSearch": "includes/ASBSearch/SpecialASBSearch.php",
+
+        "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
+        "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
+        "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php"
+
 	},
     "SpecialPages": {
-        "ASBSearch": "SpecialASBSearch"
+        "ASBSearch": "SpecialASBSearch",
+        "WeatherForecast": "SpecialWeatherForecast",
+        "DiggingWeatherForecast": "SpecialDiggingWeatherForecast"
     },
     "MessagesDirs": {
-		"ASBSearch": [
+		"FFXIPackageHelper": [
 			"i18n"
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"ASBSearchAlias": "i18n/ASBSearch.alias.php"
+		"ASBSearchAlias": "i18n/ASBSearch.alias.php",
+        "WeatherForecastAlias": "i18n/WeatherForecast.alias.php"
 	},
     "Hooks": {
-        "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay",
+        "BeforePageDisplay": [
+            "SpecialASBSearch::onBeforePageDisplay",
+            "SpecialWeatherForecast::onBeforePageDisplay"
+        ],
         "ParserFirstCallInit": [
-                "WeatherModel::onParserInit"
-        ]
+                "ZoneForecast::onParserInit"        ]
     },
 	"ResourceModules": {
-		"inputHandler" : {
+		"FFXIPackageHelper_ASBSearch" : {
 			"localBasePath": "",
             "remoteExtPath": "ASBSearch",
 			"packageFiles": [
-				"includes/inputHandler.js"
+				"includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
 			"styles": [
-				"includes/ASBSearch_Styles.css"
+				"includes/ASBSearch/FFXIPackageHelper_ASBSearch_Styles.css"
+			]
+		},
+        "FFXIPackageHelper_WeatherForecast" : {
+			"localBasePath": "",
+			"remoteExtPath": "ASBSearch",
+			"packageFiles": [
+				"includes/js/FFXIPackageHelper_sortTable.js"
+			],
+			"styles": [
+				"includes/WeatherForecast/FFXIPackageHelper_WeatherForecast_Styles.css"
 			]
 		}
 	},

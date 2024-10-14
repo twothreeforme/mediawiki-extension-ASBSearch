@@ -312,6 +312,23 @@ class ExclusionsHelper {
         'Palborough Mines' => 'Waughroon Shrine'
     );
 
+    public static $diggingRelevantZones = array(
+        102 => 'La_Theine_Plateau',
+        103 => 'Valkurm_Dunes',
+        104 => 'Jugner_Forest',
+        108 => 'Konschtat_Highlands',
+        2 => 'Carpenters_Landing',
+        105 => 'Batallia_Downs',
+        109 => 'Pashhow_Marshlands',
+        110 => 'Rolanberry_Fields',
+        120 => 'Sauromugue_Champaign',
+        119 => 'Meriphitaud_Mountains',
+        121 => 'The_Sanctuary_of_ZiTah',
+        117 => 'Tahrongi_Canyon',
+        118 => 'Buburimu_Peninsula',
+        // 51 => 'Wajaom_Woodlands',
+        // 52 => 'Bhaflau_Thickets'
+    );
 }
 
 ?>

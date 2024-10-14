@@ -1,0 +1,15 @@
+
+
+.special-weatherforecast-table th {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+.special-weatherforecast-table tr:nth-child(odd) td{
+    background-color: #12396c30;
+}
+
+.special-weatherforecast-table {
+    font-size: 12px;
+}

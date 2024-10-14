@@ -1,12 +1,12 @@
 <?php
 
 
-class WeatherModel  {
+class ZoneForecast  {
     public function __construct() {
     }
     
     static function onParserInit( Parser $parser ) {
-        $parser->setHook('ZoneForecast','WeatherModel::generateZoneSpecificTable' );
+        $parser->setHook('ZoneForecast','ZoneForecast::generateZoneSpecificTable' );
         return true;
 	}
 
@@ -68,7 +68,7 @@ class WeatherModel  {
 
         $zoneWeather = $db->getZoneWeather($zoneid, 1) ;
     
-        $html = WeatherModel::_tableHeaders();
+        $html = ZoneForecast::_tableHeaders();
 
         //$html = $html . "<p>Vana Days from now... Normal (50%)... Common (35%)... Rare (15%)... </p>";
 
