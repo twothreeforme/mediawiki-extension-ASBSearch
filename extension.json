@@ -29,7 +29,9 @@
 	},
     "Hooks": {
         "BeforePageDisplay": "SpecialASBSearch::onBeforePageDisplay",
-        "ParserFirstCallInit": "WeatherModel::onParserInit"
+        "ParserFirstCallInit": [
+                "WeatherModel::onParserInit"
+        ]
     },
 	"ResourceModules": {
 		"inputHandler" : {
