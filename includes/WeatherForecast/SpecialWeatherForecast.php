@@ -8,7 +8,7 @@ class SpecialWeatherForecast extends SpecialPage {
     }
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
-        $out->addModules(['inputHandler']);
+        $out->addModules(['FFXIPackageHelper_WeatherForecast']);
 
     }
 
