@@ -29,10 +29,10 @@ class ZoneForecast  {
 
         $zoneid = 0;
         if(isset($params['zone'])) {
-            $pagename = $parser->recursiveTagParse($params['zone'], $frame );
+            $pagename = (string)$parser->recursiveTagParse($params['zone'], $frame );
             //$html = $parser->recursiveTagParse( $html, $frame );
             //print_r("if: " . gettype($pagename));
-
+        
         }
         else {
             $pagename = $parser->getTitle()->__toString();
@@ -41,14 +41,13 @@ class ZoneForecast  {
         }
         // $pagename = $pagename->getText() ;
      
-
+        //$name = ParserHelper::zoneName($row['name']);
+        //print_r($pagename);
+       // print_r(str_replace("\'", "", $pagename));
         $pagename = ParserHelper::replaceApostrophe($pagename);
-        //var_dump($pagename);
-        
-
         $pagename = ParserHelper::replaceSpaces($pagename);
         //var_dump($pagename);
-
+        
         foreach ( $zoneList as $zone){
             if ( $zone->name == $pagename) {
                 $zoneid = $zone->zoneid;
