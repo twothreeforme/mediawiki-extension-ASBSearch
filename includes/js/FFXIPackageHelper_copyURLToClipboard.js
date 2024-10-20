@@ -2,6 +2,7 @@
 /* Copy to Clipboard helper for ASBSearch */
 
 function copyURLToClipboard() {
+    
 	url = document.location.href;
 
     navigator.clipboard.writeText(url).then(function() {

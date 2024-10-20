@@ -6,6 +6,8 @@ function compareValues(a, b) {
 
 function sortTable(colnum) {
   let table = document.getElementById("special-weatherforecast-table");
+  if ( table === null ) return;
+
   let tbody = table.querySelector(`tbody`);
   
   let rows = Array.from(table.querySelectorAll(`tr`));

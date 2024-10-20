@@ -21,7 +21,8 @@
 
         "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
-        "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php"
+        "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
+        "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php"
 
 	},
     "SpecialPages": {
@@ -44,7 +45,9 @@
             "SpecialWeatherForecast::onBeforePageDisplay"
         ],
         "ParserFirstCallInit": [
-                "ZoneForecast::onParserInit"        ]
+            "ZoneForecast::onParserInit",
+            "FFXIPackageHelper_Equipsets::onParserInit"
+        ]
     },
 	"ResourceModules": {
 		"FFXIPackageHelper_ASBSearch" : {
@@ -65,6 +68,13 @@
 			],
 			"styles": [
 				"includes/WeatherForecast/FFXIPackageHelper_WeatherForecast_Styles.css"
+			]
+		},
+        "FFXIPackageHelper_Equipsets" : {
+			"localBasePath": "",
+			"remoteExtPath": "ASBSearch",
+			"packageFiles": [
+				"includes/js/FFXIPackageHelper_dynamicContent.js"
 			]
 		}
 	},
