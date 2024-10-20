@@ -31,7 +31,7 @@ class SpecialWeatherForecast extends SpecialPage {
 
         $host = $_SERVER['HTTP_HOST'];
         print_r( $host . "/Special:DiggingWeatherForecast");
-        $output->addHTML( "<br><center><button type=\"button\" onclick=\"location.href='" . $host . "/Special:DiggingWeatherForecast'\">Digging - Weather Page</button></center><br><br>"  );
+        $output->addHTML( "<br><center><button type=\"button\" onclick=\"location.href='/Special:DiggingWeatherForecast'\">Digging - Weather Page</button></center><br><br>"  );
         $this->setHeaders();
 
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
