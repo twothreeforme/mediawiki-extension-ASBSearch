@@ -30,7 +30,7 @@ class SpecialWeatherForecast extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'weatherforecast' ) );
 
         $host = $_SERVER['HTTP_HOST'];
-        print_r( $host . "/Special:DiggingWeatherForecast");
+        //print_r( $host . "/Special:DiggingWeatherForecast");
         $output->addHTML( "<br><center><button type=\"button\" onclick=\"location.href='/Special:DiggingWeatherForecast'\">Digging - Weather Page</button></center><br><br>"  );
         $this->setHeaders();
 
