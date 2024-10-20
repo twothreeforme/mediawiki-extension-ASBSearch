@@ -35,11 +35,14 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     -- Royal Succession: BCNM 108
     (108,7,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
-    -- Undying Promise: BCNM 524
-    (524,8,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
-
     -- Royal Jelly: BCNM 77
     (77,8,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
+
+    -- Worms Turn: BCNM 65
+    (65,7,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
+
+    -- Steamed Sprouts: BCNM 97
+    (97,7,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
     -- Under Observation: BCNM 12
     (12,8,1000,1311,1000,0,@HXI), -- ADD Oxblood (100%)
@@ -62,9 +65,12 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
 
     -- Factory Rejects: BCNM 525
     (525,7,1000,50014,0,0,@HXI), -- SHEPARD'S BRACERS (??? %)
+    (525,8,1000,4706,150,0,@HXI), -- ADD Scroll of Enlight (15%)
 
     -- Undying Promise: BCNM 524
-    (524,8,1000,50015,0,0,@HXI) -- SHEPARD'S DOUBLET (??? %)
+    (524,8,1000,50015,0,0,@HXI), -- SHEPARD'S DOUBLET (??? %)
+    (524,9,1000,4706,150,0,@HXI) -- ADD Scroll of Enlight (15%)
+
 
 ;
 
