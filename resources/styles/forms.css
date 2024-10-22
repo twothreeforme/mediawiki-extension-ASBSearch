@@ -1,0 +1,76 @@
+/*
+Custom Form related inputs
+*/
+.FFXIPackageHelper_dynamiccontent_textinput {
+    display: inline-block;
+    padding: 0 16px 0 12px;
+    width: 100%;
+    line-height: 30px;
+    height: 32px;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    background-color: #fff;
+    color: rgb(8, 7, 7);
+    transition: border .1s linear,background-color .1s linear;
+}
+
+.FFXIPackageHelper_dynamiccontent_textinput:focus{
+    border-color: #1b96ff;
+    color: var(--sds-c-input-text-color-focus);
+    box-shadow: rgb(1, 118, 211) 0px 0px 3px 0px;
+}
+
+/*
+Custom Buttons
+*/
+.FFXIPackageHelper_dynamiccontent_addbutton {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    padding: 0 16px;
+    background-color: #0070d2;
+    border-radius: 0.25rem;
+    border: 1px solid #0070d2;
+    color: #fff;
+    font-size: 13px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.FFXIPackageHelper_dynamiccontent_addbutton:hover {
+    background-color: #005fb2;  
+    border-color: #005fb2;
+} 
+
+/*
+Selecting equipment table
+*/
+.FFXIPackageHelper_Equipsets_table {
+    border-collapse: collapse;
+    width: 400px;
+    
+    float:left;
+    flex-grow: 1;
+}
+
+.FFXIPackageHelper_Equipsets_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+} 
+
+.FFXIPackageHelper_Equipsets_table td {
+    border: 1px solid #000;
+    width: 1%;
+    white-space: nowrap;
+}
+
+/*
+Showing equipment stats table
+*/
+.FFXIPackageHelper_Equipsets_showset {
+    background-color: #1eff00;
+    width: 400px;
+    float:right;
+    flex-wrap: wrap;
+}
