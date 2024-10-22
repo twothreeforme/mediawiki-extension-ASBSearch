@@ -70,13 +70,24 @@
 				"includes/WeatherForecast/FFXIPackageHelper_WeatherForecast_Styles.css"
 			]
 		},
-        "FFXIPackageHelper_Equipsets" : {
+        "FFXIPackageHelper_dynamicContent" : {
 			"localBasePath": "",
 			"remoteExtPath": "ASBSearch",
 			"packageFiles": [
-				"includes/js/FFXIPackageHelper_dynamicContent.js"
+                "includes/js/FFXIPackageHelper_dynamicContent.js" 
+			],
+            "styles": [
+				"resources/styles/forms.css"
 			]
-		}
+                   
+        },
+        "FFXIPackageHelper_Parsley" : {
+			"localBasePath": "",
+			"remoteExtPath": "ASBSearch",
+			"packageFiles": [
+               "includes/js/parsley.js"          
+			]              
+        }
 	},
     "manifest_version": 2,
     "requires": {

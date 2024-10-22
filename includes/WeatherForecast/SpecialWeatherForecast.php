@@ -9,7 +9,6 @@ class SpecialWeatherForecast extends SpecialPage {
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
         $out->addModules(['FFXIPackageHelper_WeatherForecast']);
-
     }
 
     function zoneNameArray($weatherArray){
