@@ -105,9 +105,8 @@ class ParserHelper {
      * General Parsing
      */
     public static function replaceApostrophe($inputStr){
-        $return = str_replace("'", "", $inputStr);
-        $return =  str_replace("%27", "", $inputStr);
-		return $return;
+        $inputStr = urldecode($inputStr);
+        return str_replace("'", '',  $inputStr);
 	}
 
 	public static function replaceSpaces($inputStr){

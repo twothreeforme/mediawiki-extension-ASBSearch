@@ -324,6 +324,7 @@ class SpecialASBSearch extends SpecialPage {
 	}
 
 	function getRates($zoneNameSearch, $mobNameSearch, $itemNameSearch){
+
 		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
 
