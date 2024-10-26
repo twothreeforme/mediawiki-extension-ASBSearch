@@ -1,6 +1,6 @@
 <?php
 
-class HTMLTableHelper {
+class FFXIPackageHelper_HTMLTableHelper {
 
     public static function buildTableHeaders(){
 		$html = "";

@@ -9,7 +9,9 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
-        "HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
+        "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
+        "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
+        "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
         "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
@@ -22,7 +24,9 @@
         "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
-        "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php"
+        "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
+        "FFXIPackageHelper_HTMLTabController": "includes/Tabs/FFXIPackageHelper_HTMLTabController.php"
+
 
 	},
     "SpecialPages": {
@@ -46,7 +50,8 @@
         ],
         "ParserFirstCallInit": [
             "ZoneForecast::onParserInit",
-            "FFXIPackageHelper_Equipsets::onParserInit"
+            "FFXIPackageHelper_Equipsets::onParserInit",
+            "FFXIPackageHelper_HTMLTabController::onParserInit"
         ]
     },
 	"ResourceModules": {
@@ -77,7 +82,8 @@
                 "includes/js/FFXIPackageHelper_dynamicContent.js" 
 			],
             "styles": [
-				"resources/styles/forms.css"
+				"resources/styles/forms.css",
+                "resources/styles/tabs.css"
 			]
                    
         },
