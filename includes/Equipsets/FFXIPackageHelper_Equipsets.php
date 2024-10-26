@@ -17,7 +17,7 @@ class FFXIPackageHelper_Equipsets  {
 
         return 
         '
-        <div style="display: grid;grid-template-columns: auto 400px;background-color: #878787;">
+        <div class="FFXIPackageHelper_Equipsets_container" >
             <div>
                 <table class="FFXIPackageHelper_Equipsets_table">
                     <tr>
@@ -38,7 +38,7 @@ class FFXIPackageHelper_Equipsets  {
                     </tr>
                 </table>
             </div>
-            <div class="FFXIPackageHelper_Equipsets_showset">show sets here</div>
+            <div class="FFXIPackageHelper_Equipsets_showset">show set data here</div>
         </div>
             
         ';

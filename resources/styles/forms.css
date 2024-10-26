@@ -45,14 +45,26 @@ Custom Buttons
 } 
 
 /*
+Main equipment DIV
+*/
+.FFXIPackageHelper_Equipsets_container {
+    /* display: grid;
+    grid-template-columns: auto 400px; */
+    background-color: #878787;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*
 Selecting equipment table
 */
 .FFXIPackageHelper_Equipsets_table {
     border-collapse: collapse;
     width: 400px;
-    
-    float:left;
-    flex-grow: 1;
+
+    /* float:left;
+    flex-grow: 1; */
 }
 
 .FFXIPackageHelper_Equipsets_table tr:nth-child(even) {
@@ -61,8 +73,10 @@ Selecting equipment table
 
 .FFXIPackageHelper_Equipsets_table td {
     border: 1px solid #000;
-    width: 1%;
+    /* width: 1%;
     white-space: nowrap;
+     */
+     flex-grow:1;
 }
 
 /*
@@ -71,6 +85,7 @@ Showing equipment stats table
 .FFXIPackageHelper_Equipsets_showset {
     background-color: #1eff00;
     width: 400px;
-    float:right;
-    flex-wrap: wrap;
+    height: 400px;
+    /* float:right;
+    flex-wrap: wrap; */
 }
