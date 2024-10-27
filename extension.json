@@ -25,8 +25,9 @@
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
         "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
-        "FFXIPackageHelper_HTMLTabController": "includes/Tabs/FFXIPackageHelper_HTMLTabController.php"
+        "FFXIPackageHelper_HTMLTabController": "includes/Tabs/FFXIPackageHelper_HTMLTabController.php",
 
+        "ASBSearchAPIModule" : "includes/APIModule/ASBSearchAPIModule.php"
 
 	},
     "SpecialPages": {
@@ -94,6 +95,11 @@
                "includes/js/parsley.js"          
 			]              
         }
+	},
+    "APIModules": {
+		"dropratesearch": {
+			"class": "ASBSearchAPIModule"
+		}
 	},
     "manifest_version": 2,
     "requires": {

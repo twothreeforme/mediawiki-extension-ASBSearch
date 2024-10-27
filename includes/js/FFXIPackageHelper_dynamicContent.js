@@ -34,6 +34,10 @@ function runMe(){
         }
     }());
 
+    const searchDropRatesSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
+    searchDropRatesSubmit.addEventListener("click", function (e) {
+      submitDropRatesRequest();
+    });
     //document.getElementById("initialHide").style.display = "block";
 }
 
@@ -64,7 +68,50 @@ function showTab(evt, cityName) { //https://www.w3schools.com/howto/howto_js_tab
   
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName.concat("_shown")).style.display = "block";
-    console.log(cityName.concat("_shown"));
+    //console.log(cityName.concat("_shown"));
     evt.currentTarget.className += " active";
   } 
 
+  function rcvQuery(){
+    console.log("here");
+  }
+
+function submitDropRatesRequest(){
+  const mobname =   document.querySelectorAll('input[name=mobNameSearch]')[0].value;
+  const itemname =  document.querySelectorAll('input[name=itemNameSearch]')[0].value;
+  const zonename =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectZonenName").value;
+  const selectLvlMIN =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value;
+  const selectLvlMAX =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value;
+
+  const showTH =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked;
+  const bcnm =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked;
+  const excludeNM =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked;
+
+  var data = {
+    mobname, itemname, zonename, selectLvlMIN, selectLvlMAX, showTH, bcnm, excludeNM
+  };
+/* DEBUG
+  console.log(mobname);
+  console.log(itemname);
+  console.log(zonename);
+  console.log(selectLvlMIN);
+  console.log(selectLvlMAX);
+  console.log(showTH);
+  console.log(bcnm);
+  console.log(excludeNM);
+*/
+
+actionAPI(mobname);
+}
+
+
+function actionAPI(data) {
+  var api = new mw.Api();
+  api.get( {
+      action: "dropratesearch",
+      dropratequery: data,
+  } ).done( function ( d ) {
+      console.log( d );
+  } );
+
+};

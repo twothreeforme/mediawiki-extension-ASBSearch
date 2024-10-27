@@ -4,9 +4,9 @@ Custom Form related inputs
 .FFXIPackageHelper_dynamiccontent_textinput {
     display: inline-block;
     padding: 0 16px 0 12px;
-    width: 100%;
-    line-height: 30px;
-    height: 32px;
+    width: 75%;
+    line-height: 20px;
+    height: 22px;
     border: 1px solid #dddbda;
     border-radius: 4px;
     background-color: #fff;
@@ -23,7 +23,7 @@ Custom Form related inputs
 /*
 Custom Buttons
 */
-.FFXIPackageHelper_dynamiccontent_addbutton {
+.FFXIPackageHelper_dynamiccontent_customButton {
     display: inline-block;
     outline: none;
     cursor: pointer;
@@ -39,10 +39,10 @@ Custom Buttons
     white-space: nowrap;
 }
 
-.FFXIPackageHelper_dynamiccontent_addbutton:hover {
-    background-color: #005fb2;  
+.FFXIPackageHelper_dynamiccontent_customButton:hover {
+    background-color: #005fb2;
     border-color: #005fb2;
-} 
+}
 
 /*
 Main equipment DIV
@@ -69,7 +69,7 @@ Selecting equipment table
 
 .FFXIPackageHelper_Equipsets_table tr:nth-child(even) {
     background-color: #f2f2f2;
-} 
+}
 
 .FFXIPackageHelper_Equipsets_table td {
     border: 1px solid #000;
@@ -89,3 +89,4 @@ Showing equipment stats table
     /* float:right;
     flex-wrap: wrap; */
 }
+

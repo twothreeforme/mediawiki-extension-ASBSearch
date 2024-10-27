@@ -7,75 +7,71 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_droprates_searchForm\"><h3>Search Form</h3>" .
-                    "<table><tbody>
-                    <tr>
-                        <td>Mob/BCNM Name <input id=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>
-                    </tr>
-                    <tr>
-                        <td>lvl Min <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>   lvl Max <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMAX\"></select></td>
-                    </tr>
-                    <tr>
-                        <td>Item Name <input id=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
-                    </tr>
-                    <tr>
-                        <td>Zone</td>
-                    </tr>
-                    <tr>
-                        <td>selections</td>
-                    </tr>
-                </tbody>
-                </table>" .
-        
-        
-                "</div>";
-        return $html; 
+                    "<table><tbody><tr><td>
+                        <table><tbody>
+                        <tr>
+                            <td>Mob/BCNM Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Item Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
+                        </tr>
+                        <tr>
+                            <td>Zone " . $this->zonesDropDown() . "<br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
+                        </tr>
+                        </tbody></table>
+                    </td>
+                        <td>Level: Min-><select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> Max-> <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMAX\"></select><br>" . $this->selectionOptions() . "</td>
+                    </tr></tbody></table>
+                </div>";
+        return $html;
     }
 
-    private function lvlSelectValues(){
-        return "<select>
-    <option value=\"0\">None</option>
-    <option value=\"1\">1</option>
-    <option value=\"2\">2</option>
-    <option value=\"3\">3</option>
-    <option value=\"4\">4</option>
-    <option value=\"5\">5</option>
-    <option value=\"6\">6</option>
-    <option value=\"7\">7</option>
-    <option value=\"8\">8</option>
-    <option value=\"9\">9</option>
-    <option value=\"10\">10</option>
-    <option value=\"11\">11</option>
-    <option value=\"12\">12</option>
-    <option value=\"13\">13</option>
-    <option value=\"14\">14</option>
-    <option value=\"15\">15</option>
-    <option value=\"16\">16</option>
-    <option value=\"17\">17</option>
-    <option value=\"18\">18</option>
-    <option value=\"19\">19</option>
-    <option value=\"20\">20</option>
-    <option value=\"21\">21</option>
-    <option value=\"22\">22</option>
-    <option value=\"23\">23</option>
-    <option value=\"24\">24</option>
-    <option value=\"25\">25</option>
-    <option value=\"26\">26</option>
-    <option value=\"27\">27</option>
-    <option value=\"28\">28</option>
-    <option value=\"29\">29</option>
-    <option value=\"30\">30</option>
-    <option value=\"31\">31</option>
-    <option value=\"32\">32</option>
-    <option value=\"33\">33</option>
-    <option value=\"34\">34</option>
-    <option value=\"35\">35</option>
-    <option value=\"36\">36</option>
-    <option value=\"37\">37</option>
-    <option value=\"38\">38</option>
-    
-  </select>";
+    public function lvlDropDown(){
+
     }
-    
+
+    private function zoneNamelist(){
+        $db = new DBConnection();
+        $zonelist = $db->getZoneList();
+
+        foreach ($zonelist as $row) {
+			$temp = ParserHelper::zoneERA_forList($row->name);
+			if ( !isset($temp) ) { continue; }
+			$result[$temp]=$row->name;
+			//print_r($result[$temp] .", " . $row->name);
+		}
+		$result[' ** Search All Zones ** '] = "searchallzones";
+		ksort($result);
+		return $result ;
+    }
+
+    private function zonesDropDown(){
+        // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZonenName\" >";
+        $zoneNamesList = $this->zoneNameList();
+        foreach ($zoneNamesList as $key => $value) {
+            //print_r($key . $value);
+            $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+        }
+
+        $html .= "</select>";
+        return $html;
+    }
+
+    private function selectionOptions(){
+        // <label class="container">One
+        //     <input type="checkbox" checked="checked">
+        //     <span class="checkmark"></span>
+        // </label>
+        $html = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxShowTH\" type=\"checkbox\"> Show TH Rates</label><br>";
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxBCNM\" type=\"checkbox\"> Include BCNMs</label><br>";
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxExcludeNM\" type=\"checkbox\"> Exclude NMs</label>";
+
+        return $html;
+    }
 }
 
 ?>
