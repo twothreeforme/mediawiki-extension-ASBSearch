@@ -87,8 +87,16 @@ function submitDropRatesRequest(){
   const bcnm =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked;
   const excludeNM =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked;
 
-  var data = {
-    mobname, itemname, zonename, selectLvlMIN, selectLvlMAX, showTH, bcnm, excludeNM
+  var params = {
+      action: "dropratesearch",
+      mobname: mobname, 
+      itemname: itemname, 
+      zonename: zonename, 
+      lvlmin: selectLvlMIN, 
+      lvlmax: selectLvlMAX, 
+      showth: showTH, 
+      bcnm: bcnm, 
+      excludenm: excludeNM
   };
 /* DEBUG
   console.log(mobname);
@@ -101,16 +109,13 @@ function submitDropRatesRequest(){
   console.log(excludeNM);
 */
 
-actionAPI(mobname);
+actionAPI(params);
 }
 
 
-function actionAPI(data) {
+function actionAPI(params) {
   var api = new mw.Api();
-  api.get( {
-      action: "dropratesearch",
-      dropratequery: data,
-  } ).done( function ( d ) {
+  api.get( params ).done( function ( d ) {
       console.log( d );
   } );
 

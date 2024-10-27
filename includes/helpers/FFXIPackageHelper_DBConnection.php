@@ -3,6 +3,20 @@
 use Wikimedia\Rdbms\DatabaseFactory;
 
 class DBConnection {
+
+    /*
+    // $queryData = [ $queryLimit, $mobNameSearch, $itemNameSearch, $zoneNameDropDown, $showBCNMdrops, $excludeNMs, $levelRangeMIN, $levelRangeMAX ];
+    $queryLimit = $queryData[0];
+    $mobNameSearch = $queryData[1];
+    $itemNameSearch = $queryData[2];
+    $zoneNameSearch = $queryData[3];
+    $showBCNMdrops = $queryData[4];
+    $excludeNMs = $queryData[5];
+    $levelRangeMIN = $queryData[6];
+    $levelRangeMAX = $queryData[7];
+    $showTH = $queryData[8];
+    */
+
 	private $dbUsername = 'horizon_wiki'; 
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
@@ -331,6 +345,134 @@ class DBConnection {
     }
 
 
+    public function getDropRates($queryData){
+        // $queryData = [ $queryLimit, $mobNameSearch, $itemNameSearch, $zoneNameDropDown, $showBCNMdrops, $excludeNMs, $levelRangeMIN, $levelRangeMAX ];
+        $queryLimit = $queryData[0];
+        $mobNameSearch = $queryData[1];
+        $itemNameSearch = $queryData[2];
+        $zoneNameSearch = $queryData[3];
+        $showBCNMdrops = $queryData[4];
+        $excludeNMs = $queryData[5];
+        $levelRangeMIN = $queryData[6];
+        $levelRangeMAX = $queryData[7];
+
+		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
+		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
+
+		//$zoneNameSearch = self::replaceApostrophe($zoneNameSearch);
+		$mobNameSearch = ParserHelper::replaceApostrophe($mobNameSearch);
+		$itemNameSearch = ParserHelper::replaceApostrophe($itemNameSearch);
+
+		$query = [ 
+			//"zone_settings.name" => $zoneNameSearch,
+			"mob_groups.name LIKE '%$mobNameSearch%'",
+			"item_basic.name LIKE '%$itemNameSearch%'",
+			"mob_droplist.dropid !=0 ",
+			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
+			//"mob_groups.content_tag IS NULL ",
+		];
+
+			//up_property = 'enotifwatchlistpages'
+		if ( $zoneNameSearch !=  'searchallzones' ) {
+			$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
+			//$str = "zone_settings.name => $zoneNameSearch';
+			array_push($query, "zone_settings.name = '$zoneNameSearch'");
+		}
+		if ( $excludeNMs == 1) {
+			array_push($query, "mob_pools.mobType != 2");
+			array_push($query, "mob_pools.mobType != 16");
+			array_push($query, "mob_pools.mobType != 18");
+		}
+		if ( $levelRangeMIN > 0){
+			array_push($query, "mob_groups.minLevel >= '$levelRangeMIN'");
+		}
+		if ( $levelRangeMAX > 0){
+			array_push($query, "mob_groups.maxLevel <= '$levelRangeMAX'");
+		}
+		$dbr = $this->openConnection();
+		return $dbr->newSelectQueryBuilder()
+			->select( [ //'mob_droplist.name', 
+						'mob_droplist.itemRate',
+						'mob_droplist.dropType',
+						'mob_droplist.groupId',
+						'mob_droplist.groupRate',
+						'zone_settings.name AS zoneName',
+						'mob_groups.name AS mobName',
+						'mob_groups.minLevel AS mobMinLevel',
+						'mob_groups.maxLevel AS mobMaxLevel',
+						'item_basic.name AS itemName', 
+						//'item_basic.sortname AS itemSortName',
+						'mob_groups.changes_tag AS mobChanges',
+						'item_basic.changes_tag AS itemChanges',
+						'mob_droplist.changes_tag AS dropChanges',
+						'mob_pools.mobType'
+						] )
+			->from( 'mob_droplist' )
+			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
+			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+			->orderBy( 'groupId', 'ASC' )
+			->where( $query	)
+			->limit( $queryLimit)
+			->fetchResultSet(); 
+	}
+
+    public function getBCNMCrateRates($queryData){
+        $bcnmNameSearch = $queryData[1];
+        $itemNameSearch = $queryData[2];
+        $zoneNameSearch = $queryData[3];
+
+		$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
+		//if ( $zoneNameSearch != 'searchallzones' )
+		if ( !ExclusionsHelper::zoneIsBCNM($zoneNameSearch) && $zoneNameSearch != 'searchallzones' ) return;
+
+		//if ( gettype($itemNameSearch) ==  )
+		//print_r(gettype($itemNameSearch));
+
+		$bcnmNameSearch = ParserHelper::replaceSpaces($bcnmNameSearch);
+		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
+
+		//$zoneNameSearch = self::replaceApostrophe($zoneNameSearch);
+		$bcnmNameSearch = ParserHelper::replaceApostrophe($bcnmNameSearch);
+		$itemNameSearch = ParserHelper::replaceApostrophe($itemNameSearch);
+
+		$query = [ 
+			//"zone_settings.name" => $zoneNameSearch,
+			"bcnm_info.name LIKE '%$bcnmNameSearch%'",
+			"item_basic.name LIKE '%$itemNameSearch%'" ];
+
+			//up_property = 'enotifwatchlistpages'
+		if ( $zoneNameSearch !=  'searchallzones' ) {
+			//$str = "zone_settings.name => $zoneNameSearch';
+			array_push($query, "zone_settings.name = '$zoneNameSearch'");
+		}
+
+		$dbr = $this->openConnection();
+		return $dbr->newSelectQueryBuilder()
+			->select( [ //'mob_droplist.name', 
+						'hxi_bcnm_crate_list.itemRate',
+						//'hxi_bcnm_crate_list.dropType',
+						'hxi_bcnm_crate_list.groupId',
+						'hxi_bcnm_crate_list.groupRate',
+						'zone_settings.name AS zoneName',
+						'bcnm_info.name AS mobName',
+						//'mob_groups.minLevel AS mobMinLevel',
+						//'mob_groups.maxLevel AS mobMaxLevel',
+						'item_basic.name AS itemName', 
+						//'item_basic.sortname AS itemSortName',
+						'hxi_bcnm_crate_list.changes_tag AS itemChanges',
+						'hxi_bcnm_crate_list.gilAmount AS gilAmt',
+						'hxi_bcnm_crate_list.itemId'  ] )
+			->from( 'hxi_bcnm_crate_list' )
+			->join( 'bcnm_info', null, 'bcnm_info.bcnmId=hxi_bcnm_crate_list.bcnmId' )
+			->join( 'item_basic', null, 'item_basic.itemid=hxi_bcnm_crate_list.itemId')
+			->join( 'zone_settings', null, 'zone_settings.zoneid=bcnm_info.zoneId')
+			->orderBy( 'groupId', 'ASC' )
+			->where( $query	)
+			->limit(500)
+			->fetchResultSet(); 
+	}
 }
 
 ?>

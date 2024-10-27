@@ -73,6 +73,8 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
         return $html;
     }
+
+    
 }
 
 ?>

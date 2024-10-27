@@ -21,20 +21,6 @@ class FFXIPackageHelper_HTMLTableHelper {
             <th>Rare (15%)</th>
 			</tr>
             ";
-        //  $html .= "<br>
-        //     <div ><i> All data and probabilities are based on AirSkyBoat. All earth times are based on your local timezone.</i></div>
-        //     <div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-        //     <table class=\"special-weatherforecast-table\">
-        //         <tr><th>Zone Name</th>
-        //         <th>Vana Days</th>
-        //         <th>Earth Time</th>
-        //         <th>Day's Element</th>
-        //         <th>Moon Phase</th>
-        //         <th>Normal (50%)</th>
-        //         <th>Common (35%)</th>
-        //         <th>Rare (15%)</th>
-        //         </tr>
-        //         ";
 		return $html;
 	}
 
@@ -63,34 +49,9 @@ class FFXIPackageHelper_HTMLTableHelper {
 		return $html;
     }
 
-    public static function table_DropRates($dropRatesArray)
+    public static function table_DropRates($dropRatesArray, $showTH)
 	{		
-		$html = "";
-
-		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
-
-		/************************
-		 * Row counter
-		 */
-		$totalRows = -1;
-		
-		foreach ($dropRatesArray as $row) // test total records query'd
-		{
-			//print_r("row: " .$row['mobName']);
-			if ( $totalRows < 0 ) $totalRows = 0;
-			foreach($row['dropData']['items'] as $item ){
-				$totalRows ++;
-				if ( $totalRows > $this->query_limit){
-					return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-						Please reduce search pool by adding more to any of the search parameters.</i></b>";
-				}
-			}
-		}
-
-		if ( $totalRows >= 0 ) {  $html .= "<i><b> $totalRows records (items) found</i></b>"; }
-
-		
-		$html .= FFXIPackageHelper_HTMLTableHelper::tableHeader_DropRates();
+		$html = FFXIPackageHelper_HTMLTableHelper::tableHeader_DropRates($showTH);
 
 		foreach ( $dropRatesArray as $row ) {
 
@@ -182,7 +143,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				/*******************
 				 * Add TH values
 				 */
-				if ( $this->thRatesCheck == 1){
+				if ( $showTH == 1){
 					$item = $row['dropData']['items'][0];
 					$cat = 0; // @ALWAYS =     1000;  -- Always, 100%
 
@@ -207,7 +168,7 @@ class FFXIPackageHelper_HTMLTableHelper {
                         if ( $num >= 100 ) return "~99";
                         else return $num;
                     }
-                    
+
 					switch ($cat) {
 						case 0:
 							$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
@@ -245,10 +206,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				/*******************************************************/
 
 				$html .= "</tr>";
-
 		}
-		$html .= '</table></div>';
-
 		return $html;
 	}
 }
