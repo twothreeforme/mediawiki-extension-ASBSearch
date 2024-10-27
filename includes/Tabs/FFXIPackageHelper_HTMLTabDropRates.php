@@ -25,6 +25,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
                     </td>
                         <td>Level: Min-><select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> Max-> <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMAX\"></select><br>" . $this->selectionOptions() . "</td>
                     </tr></tbody></table>
+                    <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\"></div>
                 </div>";
         return $html;
     }

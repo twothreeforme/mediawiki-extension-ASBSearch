@@ -228,7 +228,9 @@ class SpecialASBSearch extends SpecialPage {
 				$mobDrops->parseData($bcnmDropRatesData);
 			}
 
-			$wikitext = self::build_table($mobDrops->getDataSet());
+			//$wikitext = self::build_table($mobDrops->getDataSet());
+			$wikitext = self::showQueryResults($mobDrops->getDataSet());
+			
 		}
 	
     	$htmlForm = new HTMLForm( $formDescriptor, $this->getContext(), 'ASBSearch_Form' );
@@ -464,6 +466,10 @@ class SpecialASBSearch extends SpecialPage {
 		return $html;
 	}
 
+	function showQueryResults($dropRatesArray){
+		return FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray);
+	}
+
 	function build_table($dropRatesArray)
 	{		
 		$html = "";
@@ -489,6 +495,7 @@ class SpecialASBSearch extends SpecialPage {
 		}
 
 		if ( $totalRows >= 0 ) {  $html .= "<i><b> $totalRows records (items) found</i></b>"; }
+
 
 		$html .= self::_tableHeaders();
 

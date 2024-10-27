@@ -114,7 +114,7 @@ class SpecialWeatherForecast extends SpecialPage {
 
 
     function showWeatherPressed($weatherArray, $zone, $weatherType){
-        $html = HTMLTableHelper::buildTableHeaders();
+        $html = HTMLTableHelper::tableHeader_Forecast();
 
         $time = new VanaTime();
         //print_r($zone ." : ". $weatherType ." : ". count($weatherArray) );
