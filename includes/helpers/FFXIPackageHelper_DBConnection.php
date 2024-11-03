@@ -513,12 +513,12 @@ class DBConnection {
         $dbr = $this->openConnection();
 
         $items = $dbr->newSelectQueryBuilder()
-            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->select( [ 'item_basic.sortname, item_basic.itemid' ] )
             ->from( 'item_basic' )
             ->fetchResultSet();
         $itemArray = [];
         foreach( $items as $item ){
-            $itemArray[$item->itemid] = $item->name;
+            $itemArray[$item->itemid] = $item->sortname;
         }
 
         $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
@@ -526,9 +526,9 @@ class DBConnection {
 
         if ( isset($ingredient) && $ingredient != "" ) {
             $_ingr = $dbr->newSelectQueryBuilder()
-            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->select( [ 'item_basic.sortname, item_basic.itemid' ] )
             ->from( 'item_basic' )
-            ->where( "item_basic.name LIKE '%$ingredient%'"	)
+            ->where( "item_basic.sortname LIKE '%$ingredient%'"	)
             ->fetchResultSet();
 
             foreach ( $_ingr as $row ) {
