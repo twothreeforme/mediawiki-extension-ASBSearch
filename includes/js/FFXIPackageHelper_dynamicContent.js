@@ -103,7 +103,7 @@ function submitDropRatesRequest(){
       action: "dropratesearch",
       mobname: document.querySelectorAll('input[name=mobNameSearch]')[0].value,
       itemname: document.querySelectorAll('input[name=itemNameSearch]')[0].value,
-      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZonenName").value,
+      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value,
       lvlmin: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value,
       lvlmax: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value,
       showth: cb_showth,

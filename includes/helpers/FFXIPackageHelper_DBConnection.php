@@ -351,10 +351,10 @@ class DBConnection {
         $mobNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];
         $zoneNameSearch = $queryData[3];
-        $showBCNMdrops = $queryData[4];
-        $excludeNMs = $queryData[5];
-        $levelRangeMIN = $queryData[6];
-        $levelRangeMAX = $queryData[7];
+        $showBCNMdrops = intval($queryData[4]);
+        $excludeNMs = intval($queryData[5]);
+        $levelRangeMIN = intval($queryData[6]);
+        $levelRangeMAX = intval($queryData[7]);
 
 		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
@@ -513,12 +513,12 @@ class DBConnection {
         $dbr = $this->openConnection();
 
         $items = $dbr->newSelectQueryBuilder()
-            ->select( [ 'item_basic.sortname, item_basic.itemid' ] )
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
             ->from( 'item_basic' )
             ->fetchResultSet();
         $itemArray = [];
         foreach( $items as $item ){
-            $itemArray[$item->itemid] = $item->sortname;
+            $itemArray[$item->itemid] = $item->name;
         }
 
         $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
@@ -526,9 +526,9 @@ class DBConnection {
 
         if ( isset($ingredient) && $ingredient != "" ) {
             $_ingr = $dbr->newSelectQueryBuilder()
-            ->select( [ 'item_basic.sortname, item_basic.itemid' ] )
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
             ->from( 'item_basic' )
-            ->where( "item_basic.sortname LIKE '%$ingredient%'"	)
+            ->where( "item_basic.name LIKE '%$ingredient%'"	)
             ->fetchResultSet();
 
             foreach ( $_ingr as $row ) {

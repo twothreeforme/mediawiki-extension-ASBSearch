@@ -44,7 +44,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     private function zonesDropDown(){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZonenName\" >";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" >";
         $zoneNamesList = $this->zoneNameList();
         foreach ($zoneNamesList as $key => $value) {
             //print_r($key . $value);

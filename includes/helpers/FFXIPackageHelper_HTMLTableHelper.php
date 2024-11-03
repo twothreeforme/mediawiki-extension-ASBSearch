@@ -300,7 +300,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Synth
 			 *
 			 */
-			$name = "[[". $row->ResultName ."]]";
+			$name = $parse->getItemName($row->Result);
 			if ( $row->ResultQty > 1 ) $name .= " (x" . $row->ResultQty . ")";
 			$html .= "<td><center>". $name ."<br>";
 			

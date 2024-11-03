@@ -146,7 +146,7 @@ class SpecialASBSearch extends SpecialPage {
 			$thRatesCheck = isset($thRatesCheck) ? $thRatesCheck : "0";
 			//$showIDCheck = isset($showIDCheck) ? $showIDCheck : "0";
 			$showBCNMdrops = isset($showBCNMdrops) ? $showBCNMdrops : "0";
-			$excludeNMs = isset($excludeNMs) ? $excludeNMs : "1";
+			$excludeNMs = isset($excludeNMs) ? $excludeNMs : "0";
 
 			$queryData = [ $this->query_limit, $mobNameSearch, $itemNameSearch, 
 							$zoneNameDropDown, $showBCNMdrops, $excludeNMs,
