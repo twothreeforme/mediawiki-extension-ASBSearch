@@ -473,6 +473,100 @@ class DBConnection {
 			->limit(500)
 			->fetchResultSet(); 
 	}
+
+    public function getRecipes($queryData){
+        // $queryData = [  $params['craft'],
+        //                 $params['recipename'],
+        //                 $params['ingredient'],
+        //                 $params['crystal'],
+        //                 $params['skillrank'],
+        //                 $params['mincraftlvl'],
+        //                 $params['maxcraftlvl']
+        //              ];
+
+        $craftType = $queryData[0];
+        $recipename = $queryData[1];
+        $ingredient = $queryData[2];
+        $crystal = intval($queryData[3]);
+        $skillrank = intval($queryData[4]);
+        $mincraftlvl = $queryData[5];
+        $maxcraftlvl = $queryData[6];
+
+		$recipename = ParserHelper::replaceSpaces($recipename);
+		$ingredient = ParserHelper::replaceSpaces($ingredient);
+        $recipename = ParserHelper::replaceApostrophe($recipename);
+		$ingredient = ParserHelper::replaceApostrophe($ingredient);
+
+        // $html .= "<option value=\"any\">Any</option>";
+        // $html .= "<option value=\"amatuer\">Amatuer</option>";
+        // $html .= "<option value=\"recruit\">Recruit</option>";
+        // $html .= "<option value=\"initiate\">Initiate</option>";
+        // $html .= "<option value=\"novice\">Novice</option>";
+        // $html .= "<option value=\"apprentice\">Apprentice</option>";
+        // $html .= "<option value=\"journeyman\">Journeyman</option>";
+        // $html .= "<option value=\"craftsman\">Craftsman</option>";
+        // $html .= "<option value=\"artisan\">Artisan</option>";
+        // $html .= "<option value=\"adept\">Adept</option>";
+        // $html .= "<option value=\"veteran\">Veteran</option>";
+
+
+        $dbr = $this->openConnection();
+
+        $items = $dbr->newSelectQueryBuilder()
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->from( 'item_basic' )
+            ->fetchResultSet();
+        $itemArray = [];
+        foreach( $items as $item ){
+            $itemArray[$item->itemid] = $item->name;
+        }
+
+        $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
+        $ingr = [];
+
+        if ( isset($ingredient) && $ingredient != "" ) {
+            $_ingr = $dbr->newSelectQueryBuilder()
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->from( 'item_basic' )
+            ->where( "item_basic.name LIKE '%$ingredient%'"	)
+            ->fetchResultSet();
+
+            foreach ( $_ingr as $row ) {
+                array_push( $ingr , strval($row->itemid));
+            }
+
+            $query = [ $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
+                                            'synth_recipes.Ingredient2' => $ingr ,
+                                            'synth_recipes.Ingredient3' => $ingr ,
+                                            'synth_recipes.Ingredient4' => $ingr ,
+                                            'synth_recipes.Ingredient5' => $ingr ,
+                                            'synth_recipes.Ingredient6' => $ingr ,
+                                            'synth_recipes.Ingredient7' => $ingr ,
+                                            'synth_recipes.Ingredient8' => $ingr ],
+                                            $dbr::LIST_OR)];
+        }
+
+        //$prelimQuery = [ ];
+       // "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
+        if ( isset($recipename) && $recipename != "" ){ array_push ( $query, "synth_recipes.ResultName LIKE '%$recipename%'"); }
+        if ( isset($crystal) && $crystal != 0 ){ array_push ( $query, "synth_recipes.Crystal = '$crystal'"); }
+        // if ( isset($skillrank) && $skillrank != 0 ){
+        //     $high = $skillrank + 9;
+        //     array_push ( $query, $dbr->expr( 'cat_pages', '>', 0 ));
+        // }
+
+        // DEBUGGING
+        //return $query; }
+        /////////////
+        $recipesQueryResult = $dbr->newSelectQueryBuilder()
+			->select( [ '*' ] )
+			->from( 'synth_recipes' )
+            ///->join( 'item_basic', null, 'item_basic.name=synth_recipes.ResultName')
+			->where( $query )
+			->fetchResultSet();
+
+        return [ $recipesQueryResult, $itemArray ];
+    }
 }
 
 ?>

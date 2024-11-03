@@ -12,6 +12,7 @@
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
         "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
+        "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
         "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
@@ -27,8 +28,8 @@
         "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
         "FFXIPackageHelper_HTMLTabController": "includes/Tabs/FFXIPackageHelper_HTMLTabController.php",
 
-        "ASBSearchAPIModule" : "includes/APIModule/ASBSearchAPIModule.php"
-
+        "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
+        "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",
@@ -87,18 +88,14 @@
                 "resources/styles/tabs.css"
 			]
                    
-        },
-        "FFXIPackageHelper_Parsley" : {
-			"localBasePath": "",
-			"remoteExtPath": "ASBSearch",
-			"packageFiles": [
-               "includes/js/parsley.js"          
-			]              
         }
 	},
     "APIModules": {
 		"dropratesearch": {
-			"class": "ASBSearchAPIModule"
+			"class": "APIModuleDropRateSearch"
+		},
+        "recipesearch": {
+			"class": "APIModuleRecipeSearch"
 		}
 	},
     "manifest_version": 2,

@@ -44,6 +44,14 @@ Custom Buttons
     border-color: #005fb2;
 }
 
+.FFXIPackageHelper_dynamiccontent_customButton:disabled,
+.FFXIPackageHelper_dynamiccontent_customButton[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+
 /*
 Main equipment DIV
 */

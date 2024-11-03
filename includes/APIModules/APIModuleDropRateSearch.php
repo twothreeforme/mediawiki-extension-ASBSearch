@@ -2,7 +2,7 @@
 
 use ApiBase;
 
-class ASBSearchAPIModule extends ApiBase {
+class APIModuleDropRateSearch extends ApiBase {
     public function __construct( $main, $action ) {
         parent::__construct( $main, $action);
     }
@@ -11,6 +11,7 @@ class ASBSearchAPIModule extends ApiBase {
 
     protected function getAllowedParams() {
         return [
+            'action' => null,
 			'mobname' => "",
             'itemname' => "",
             'zonename' => "",
@@ -37,25 +38,30 @@ class ASBSearchAPIModule extends ApiBase {
                         $params['showth']
                      ];
 
-        //$testing = self::queryDropRates($queryData);
-
-        $result->addValue("dropratequery", "namesdfsd", $queryData);
+        $finalHtml = $this->queryDropRates($queryData);
+        $finalHtml = ParserHelper::wikiParse($finalHtml);
+        $result->addValue($params['action'], $params['querytype'], $finalHtml);
+        //$result->addValue($params['action'], $params['querytype'], $queryData[8]);
     }
 
     private function queryDropRates($queryData){
+        $showTH = intval($queryData[8]);
+        $showBCNMdrops = intval($queryData[4]);
+
         $dm = new DataModel();
         $db = new DBConnection();
+
 
         $mobDropRatesData = $db->getDropRates($queryData); 
         
         $dm->parseData($mobDropRatesData);
-        if ( $this->showBCNMdrops == 1) {
+        if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
             $dm->parseData($bcnmDropRatesData);
         }
         
         $dropRatesArray = $dm->getDataSet();
-        $showTH = $queryData[8];
+
 
 		$html = "";
 

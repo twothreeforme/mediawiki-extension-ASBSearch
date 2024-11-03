@@ -1,8 +1,8 @@
 <?php
 //namespace MediaWiki\Extension\MyExtension;
 
-//use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseFactory;
+//use MediaWikiServices;
 
 class SpecialASBSearch extends SpecialPage {
     public function __construct( ) {
@@ -26,6 +26,8 @@ class SpecialASBSearch extends SpecialPage {
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
 	function execute( $par ) {
+		//$this->testing();
+
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$db = new DBConnection();
@@ -357,7 +359,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 	$mobNameSearch = ParserHelper::replaceApostrophe($mobNameSearch);
 	// 	$itemNameSearch = ParserHelper::replaceApostrophe($itemNameSearch);
 
-	// 	$query = [ 
+	// 	$query = [
 	// 		//"zone_settings.name" => $zoneNameSearch,
 	// 		"mob_groups.name LIKE '%$mobNameSearch%'",
 	// 		"item_basic.name LIKE '%$itemNameSearch%'",
@@ -385,7 +387,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 	}
 	// 	$dbr = $this->openConnection();
 	// 	return $dbr->newSelectQueryBuilder()
-	// 		->select( [ //'mob_droplist.name', 
+	// 		->select( [ //'mob_droplist.name',
 	// 					'mob_droplist.itemRate',
 	// 					'mob_droplist.dropType',
 	// 					'mob_droplist.groupId',
@@ -394,7 +396,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 					'mob_groups.name AS mobName',
 	// 					'mob_groups.minLevel AS mobMinLevel',
 	// 					'mob_groups.maxLevel AS mobMaxLevel',
-	// 					'item_basic.name AS itemName', 
+	// 					'item_basic.name AS itemName',
 	// 					//'item_basic.sortname AS itemSortName',
 	// 					'mob_groups.changes_tag AS mobChanges',
 	// 					'item_basic.changes_tag AS itemChanges',
@@ -409,7 +411,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 		->orderBy( 'groupId', 'ASC' )
 	// 		->where( $query	)
 	// 		->limit( $queryLimit)
-	// 		->fetchResultSet(); 
+	// 		->fetchResultSet();
 	// }
 
 // function _tableHeaders(){
@@ -435,7 +437,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 	return $html;
 	// }
 	// function build_table($dropRatesArray)
-	// {		
+	// {
 	// 	$html = "";
 
 	// 	if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
@@ -444,7 +446,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 	 * Row counter
 	// 	 */
 	// 	$totalRows = -1;
-		
+
 	// 	foreach ($dropRatesArray as $row) // test total records query'd
 	// 	{
 	// 		//print_r("row: " .$row['mobName']);
@@ -466,13 +468,13 @@ class SpecialASBSearch extends SpecialPage {
 	// 	foreach ( $dropRatesArray as $row ) {
 
 	// 			/*******************************************************
-	// 			 * Removing OOE 
+	// 			 * Removing OOE
 	// 			 */
 	// 			// First check zone names
-				
+
 	// 			//$zn = str_replace("[S]", "(S)", $zn );
 	// 			// $skipRow = false;
-	// 			// foreach( ExclusionsHelper::$zones as $v) { 
+	// 			// foreach( ExclusionsHelper::$zones as $v) {
 	// 			// 	//print_r($zn);
 	// 			// 	if ( $zn == $v ) { $skipRow = true; break; } }
 	// 			// if ( $skipRow == true ) continue;
@@ -482,7 +484,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 			/*******************************************************/
 
 	// 			/*******************************************************
-	// 			 * This section generally to help deal with gaps between the mob drops and bcnm crate lists 
+	// 			 * This section generally to help deal with gaps between the mob drops and bcnm crate lists
 	// 			 */
 	// 			$minL = null; $maxL = null; $dType = null; $mobChanges = null;
 	// 			// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
@@ -491,13 +493,13 @@ class SpecialASBSearch extends SpecialPage {
 	// 			if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
 	// 			if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
 	// 			if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
-	// 			else $dType = 1; 	// All bcnm drops are part of a group 	
+	// 			else $dType = 1; 	// All bcnm drops are part of a group
 	// 			if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
 	// 			else $mobChanges = 0;
 
 	// 			$zn = ParserHelper::zoneName($row['zoneName']);
 	// 			$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges); //need to readdress this later
-				
+
 	// 			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
 	// 			/*******************************************************/
 
@@ -510,7 +512,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 			if ( $row['dropData']['groupId'] != "0" ) {
 	// 				$gR = $row['dropData']['groupRate'];
 	// 				if ( $gR > 1000 ) $gR = 1000;
-	// 				$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;	
+	// 				$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;
 	// 			}
 	// 			else {
 	// 				switch ($dType) {
@@ -539,14 +541,14 @@ class SpecialASBSearch extends SpecialPage {
 	// 				$gR = $row['dropData']['groupRate'];
 	// 				if ( $gR < 1000 ) $gR = 1000;
 	// 				$i_dr = ((int)$item['dropRate'] / $gR) * 100 ;
-					
+
 
 	// 				if ( $dType == 2 || $dType == 4 ) $html .= "<tr><center>" . $i_n . "</center></tr>";
 	// 				else if ( $i_dr == 0 ) $html .= "<tr><center>" . $i_n . " - " . " ??? </center></tr>";
 	// 				else if ( $item['id'] == 65535 ) $html .= "<tr><center>[[Image:Gil_icon.png|18px]] " . $i_n . " - " . $item['gilAmt'] ."</center></tr>";
 	// 				else $html .= "<tr><center>" . $i_n . " - " . $i_dr ."%</center></tr>";
 	// 			}
-	// 			$html .= "</table></td>"; 
+	// 			$html .= "</table></td>";
 	// 			/*******************************************************/
 
 
@@ -572,7 +574,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 				else $cat = 8;
 
 	// 				$th1 = 0; $th2 = 0; $th3 = 0; $th4 = 0;
-					
+
 	// 				switch ($cat) {
 	// 					case 0:
 	// 						$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
@@ -588,10 +590,10 @@ class SpecialASBSearch extends SpecialPage {
 	// 						break;
 	// 					case 4:
 	// 						$th1 = self::thAdjust($item['dropRate'], 1.2); $th2 = self::thAdjust($item['dropRate'], 1.4); $th3 = self::thAdjust($item['dropRate'], 1.5); $th4 = self::thAdjust($item['dropRate'], 1.6);
-	// 						break;	
+	// 						break;
 	// 					case 5:
 	// 						$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.25); $th4 = self::thAdjust($item['dropRate'], 2.5);
-	// 						break;		
+	// 						break;
 	// 					case 6:
 	// 						$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.4); $th4 = self::thAdjust($item['dropRate'], 2.8);
 	// 						break;
@@ -600,7 +602,7 @@ class SpecialASBSearch extends SpecialPage {
 	// 						break;
 	// 					case 8;
 	// 						$th1 = "-"; $th2 = "-"; $th3 = "-"; $th4 = "-";
-	// 						break;						
+	// 						break;
 	// 					default:
 	// 					break;
 	// 				}

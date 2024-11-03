@@ -6,14 +6,11 @@ class FFXIPackageHelper_HTMLTabDropRates {
       }
 
     public function searchForm(){
-        $html = "<div id=\"FFXIPackageHelper_tabs_droprates_searchForm\"><h3>Search Form</h3>" .
+        $html = "<div id=\"FFXIPackageHelper_tabs_droprates_searchForm\">" .
                     "<table><tbody><tr><td>
                         <table><tbody>
                         <tr>
                             <td>Mob/BCNM Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>Item Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
@@ -23,15 +20,11 @@ class FFXIPackageHelper_HTMLTabDropRates {
                         </tr>
                         </tbody></table>
                     </td>
-                        <td>Level: Min-><select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> Max-> <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMAX\"></select><br>" . $this->selectionOptions() . "</td>
+                        <td>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br>" . $this->selectionOptions() . "</td>
                     </tr></tbody></table>
                     <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\"></div>
                 </div>";
         return $html;
-    }
-
-    public function lvlDropDown(){
-
     }
 
     private function zoneNamelist(){
@@ -74,7 +67,17 @@ class FFXIPackageHelper_HTMLTabDropRates {
         return $html;
     }
 
-    
+    private function selectLvlDropDown($classname){
+        // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> FFXIPackageHelper_dynamiccontent_selectMinCraftLvl
+        $html = "<select id=\"". $classname ."\" >";
+
+        for ($i = 0; $i <= 85; $i++) {
+            if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
+            else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
+        }
+        $html .= "</select>";
+        return $html;
+    }
 }
 
 ?>

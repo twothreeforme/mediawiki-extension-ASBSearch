@@ -1,6 +1,7 @@
 
+var currentButton;
 
-function runMe(){
+function onReady(){
 
     const tabsButton_droprates = document.getElementById("FFXIPackageHelper_tabs_droprates");
     tabsButton_droprates.addEventListener("click", function (e) {
@@ -18,26 +19,38 @@ function runMe(){
         showTab(e,tabsButton_equipsets.id);
     });
 
-    // https://stackoverflow.com/questions/12725265/is-it-possible-to-use-a-for-loop-in-select-in-html-and-how
-    (function() { 
-        var df = document.createDocumentFragment(); 
-            
-        for (var i = 0; i <= 85; i++) { 
-            var option = document.createElement('option'); 
-            option.value = i; 
-            
-            if( i == 0 ) option.appendChild(document.createTextNode("None"));
-            else option.appendChild(document.createTextNode(i)); 
-            
-            document.getElementById('FFXIPackageHelper_dynamiccontent_selectLvlMIN').appendChild(option.cloneNode(true)); 
-            document.getElementById('FFXIPackageHelper_dynamiccontent_selectLvlMAX').appendChild(option);
-        }
-    }());
-
     const searchDropRatesSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
     searchDropRatesSubmit.addEventListener("click", function (e) {
       submitDropRatesRequest();
     });
+
+    const searchRecipeSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchRecipeSubmit");
+    searchRecipeSubmit.addEventListener("click", function (e) {
+      submitRecipeRequest();
+    });
+
+    const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft");
+    inputElement.addEventListener("change", (event) => {
+      // Code to execute when the input value changes
+      if ( event.target.value !=  "none" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").disabled = false;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").disabled = false;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").disabled = false;
+      }
+      else {
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").disabled = true;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").value = "0";
+
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").disabled = true;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "0";
+
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").disabled = true;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "0";
+
+      }
+      //console.log(event.target.value);
+    });
+
     //document.getElementById("initialHide").style.display = "block";
 }
 
@@ -45,7 +58,7 @@ function runMe(){
 
 //mw.hook('wikipage.content').add(runMe());
 $( document ).ready( function () {
-    runMe();
+    onReady();
 } );
 
 
@@ -77,46 +90,73 @@ function showTab(evt, cityName) { //https://www.w3schools.com/howto/howto_js_tab
   }
 
 function submitDropRatesRequest(){
-  const mobname =   document.querySelectorAll('input[name=mobNameSearch]')[0].value;
-  const itemname =  document.querySelectorAll('input[name=itemNameSearch]')[0].value;
-  const zonename =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectZonenName").value;
-  const selectLvlMIN =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value;
-  const selectLvlMAX =  document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value;
 
-  const showTH =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked;
-  const bcnm =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked;
-  const excludeNM =  document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked;
+  currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
+  currentButton.disabled = true;
+  document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "Loading query...";
+
+  const cb_showth = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0;
+  const cb_bcnm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0;
+  const cb_excludenm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0;
 
   var params = {
       action: "dropratesearch",
-      mobname: mobname, 
-      itemname: itemname, 
-      zonename: zonename, 
-      lvlmin: selectLvlMIN, 
-      lvlmax: selectLvlMAX, 
-      showth: showTH, 
-      bcnm: bcnm, 
-      excludenm: excludeNM
+      mobname: document.querySelectorAll('input[name=mobNameSearch]')[0].value,
+      itemname: document.querySelectorAll('input[name=itemNameSearch]')[0].value,
+      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZonenName").value,
+      lvlmin: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value,
+      lvlmax: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value,
+      showth: cb_showth,
+      bcnm: cb_bcnm,
+      excludenm: cb_excludenm
   };
-/* DEBUG
-  console.log(mobname);
-  console.log(itemname);
-  console.log(zonename);
-  console.log(selectLvlMIN);
-  console.log(selectLvlMAX);
-  console.log(showTH);
-  console.log(bcnm);
-  console.log(excludeNM);
-*/
-
-actionAPI(params);
+  //console.log(cb_showth);
+  actionAPI(params, "dropratesearch");
 }
 
+function submitRecipeRequest(){
+  const craft = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft").value;
+  const recipe = document.querySelectorAll('input[name=recipeNameSearch]')[0].value;
+  const ingr = document.querySelectorAll('input[name=ingredientSearch]')[0].value;
 
-function actionAPI(params) {
+  if ( craft == "none" && recipe == "" && ingr == "") {
+    document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "<p style=\"color:red;\">Either Recipe Name, Ingredient, or Craft are required to search.</p>";
+    return;
+  }
+
+  currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchRecipeSubmit");
+  currentButton.disabled = true;
+  document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "Loading query...";
+
+  var params = {
+    action: "recipesearch",
+    craft: craft,
+    recipename: recipe,
+    ingredient: ingr,
+    crystal: document.getElementById("FFXIPackageHelper_dynamiccontent_selectCrystal").value,
+    skillrank: document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").value,
+    mincraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value,
+    maxcraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value
+  };
+  //console.log(params.crystal);
+  actionAPI(params, "recipesearch");
+}
+
+function actionAPI(params, forTab) {
+  console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
+      if ( forTab ==  "dropratesearch" ) updateDropRatesFromQuery(d[forTab][0]);
+      else if ( forTab ==  "recipesearch" ) updateRecipesFromQuery(d[forTab][0]);
+      currentButton.disabled = false;
       console.log( d );
   } );
-
 };
+
+function updateDropRatesFromQuery(updatedHTML){
+  document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = updatedHTML;
+}
+
+function updateRecipesFromQuery(updatedHTML){
+  document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = updatedHTML;
+}

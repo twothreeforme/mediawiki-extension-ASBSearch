@@ -1,6 +1,19 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class ParserHelper {
+
+    public function __construct($param) {
+        $this->itemsArray = $param;
+    }
+    private $itemsArray;
+
+    public function getItemName($itemid) {
+		if ( $itemid == 0 )  return NULL;
+		$name = ParserHelper::itemName($this->itemsArray[$itemid]);
+        return "[[" . $name . "]]";
+	}
 
     /**************************
      * Mob related parsing
@@ -36,7 +49,7 @@ class ParserHelper {
     /**************************
      * Item related parsing
      */
-	public static function itemName($item){
+	public static function dropRatesItemName($item){
 		//if item = Nothing
 		if ( $item['name'] == 'nothing' ) return " <i>Nothing</i> ";
 
@@ -52,6 +65,13 @@ class ParserHelper {
 		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
 		else return " [[$itemName]] ";
 	}
+
+    public static function itemName($name){
+        //adjust item names
+		$name = self::replaceUnderscores($name);
+		$name = ucwords($name);
+        return $name;
+    }
 
 
     /**************************
@@ -344,6 +364,16 @@ class ParserHelper {
         return false;
     }
 
+    public static function wikiParse($html){
+		$context = RequestContext::getMain();
+        $title = $context->getTitle();
+        $parser = MediaWikiServices::getInstance()->getParserFactory()->create();
+		$user = RequestContext::getMain()->getUser();
+        $parserOptions = new ParserOptions($user);
+        $parserOutput = $parser->parse( $html, $title, $parserOptions );
+
+        return $parserOutput->getText();
+	}
 }
 
 

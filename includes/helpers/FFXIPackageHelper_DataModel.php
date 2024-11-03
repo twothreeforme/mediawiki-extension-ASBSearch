@@ -122,79 +122,10 @@ class DataModel {
 			}
 			else{
 				array_push ( $this->dataset[$l]['dropData']['items'], $_item );
-			}	
-			
-
-
-			// if ( $prev_row['dropData']['groupId'] == $workingRow['dropData']['groupId'] ) {
-			// 	print_r('here');
-			// 	$groupRateMax += $_item['dropRate'];
-			// 	//array_push ( $this->dataset['dropData']['items'], $_item );
-			// 	//print_r($this->dataset['dropData']['items']);
-			// 	continue;
-			// }
-			// else {
-			// 	$l = array_key_last($this->dataset);
-			// 	//print_r($this->dataset[$l]);
-
-			// 	//array_push ( $this->dataset['dropData']['items'], $_item );
-			// }
-
-
-			// $zn = ParserHelper::zoneName($row->zoneName);
-			// $mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel, $zn);
-			// $in = ParserHelper::itemName($row->itemName);
-
-			// /******************************************************
-			//  * Handle drop TYPE & RATE
-			//  */
-			// $dropGroup;
-			// $droprate;
-			// switch ($row->dropType) {
-			// 	case 0;
-			// 		$droprate = round(($row->itemRate) / 10 ) ;
-			// 		$droprate = "$droprate %";
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	case 1:
-			// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-			// 		$droprate = round(($row->itemRate) / 10 ) ;
-			// 		$droprate = "$droprate %";
-			// 		break;
-			// 	case 2:
-			// 		$droprate = 'Steal';
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	case 4;
-			// 		$droprate = 'Despoil';
-			// 		$dropGroup = "-";
-			// 		break;
-			// 	default:
-			// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-			// 		// $droprate = "$droprate %";
-			// 		break;
-			// }
-
-			//print_r($zn);
-
+			}
 		}
 
-		// foreach($this->dataset as $row){
-		// 	if ( $row['dropData']['groupId'] == 0 ) continue;
-		// 	print_r(" zone: ".$row['zoneName']);
-		// 	//print_r(" mob: ".$row['mobName']);
-		// 	print_r(" gId: ".$row['dropData']['groupId']);
-		// 	//print_r(" gR: ".$row['dropData']['groupRate']);
-
-		// 	foreach($row['dropData']['items'] as $item){
-		// 		print_r(" iN: ".$item['name']);
-		// 		print_r(" iR: ".$item['dropRate']);
-		// 	}
-
-		// }
-
-
-        return $this->dataset;
+		return $this->dataset;
     }
 
 	function showKeys($arr){
@@ -207,128 +138,53 @@ class DataModel {
 	}
 
 
-    // function arrayFromRates($dataset){ //uses schema from self::getRates
-	// 	$array = [];
-	// 	foreach ($dataset as $row)
-	// 	{
 
-	// 		/*******************************************************
-	// 		 * Removing OOE
-	// 		 */
-	// 		// First check zone names
+	function parseRecipes($param){
 
-	// 		//$zn = str_replace("[S]", "(S)", $zn );
-	// 		// $skipRow = false;
-	// 		// foreach( ExclusionsHelper::$zones as $v) {
-	// 		// 	//print_r($zn);
-	// 		// 	if ( $zn == $v ) { $skipRow = true; break; } }
-	// 		// if ( $skipRow == true ) continue;
-	// 		$zn = ParserHelper::zoneERA_forList($row->zoneName);
-	// 		if ( !$zn ) { continue; }
-	// 		if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
-	// 		/*******************************************************/
+        if ( !$param ) return NULL;
 
+		// need to add throw exception here
+		// $param should be array from DBConnection
+		// [ $recipesQueryResult, $items ]
+		if ( gettype($param) != 'array' ) return NULL;
 
-	// 		$zn = ParserHelper::zoneName($row->zoneName);
-	// 		$mn = ParserHelper::mobName($row->mobName, $row->mobMinLevel, $row->mobMaxLevel, $zn);
-	// 		$in = ParserHelper::itemName($row->itemName);
+		foreach ( $param[0] as $row ) {
 
-
-	// 		// if ( $itemGroup != 0 ) { // item group has been set from a previous iteration and needs to be handled
-
-	// 		// }
-
-	// 		/******************************************************
-	// 		 * Handle drop TYPE & RATE
-	// 		 */
-	// 		// $dropGroup;
-	// 		// $droprate;
-	// 		// switch ($row->dropType) {
-	// 		// 	case 0;
-	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
-	// 		// 		$droprate = "$droprate %";
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	case 1:
-	// 		// 		$dropGroup = "Group $row->groupId - " . ($row->groupRate / 10 )."%" ;
-	// 		// 		$droprate = round(($row->itemRate) / 10 ) ;
-	// 		// 		$droprate = "$droprate %";
-	// 		// 		break;
-	// 		// 	case 2:
-	// 		// 		$droprate = 'Steal';
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	case 4;
-	// 		// 		$droprate = 'Despoil';
-	// 		// 		$dropGroup = "-";
-	// 		// 		break;
-	// 		// 	default:
-	// 		// 		// $droprate = round(($row->itemRate) / (ParserHelper::getVarRate($row->groupRate)[1] / 100 ) ) ;
-	// 		// 		// $droprate = "$droprate %";
-	// 		// 		break;
-	// 		// }
-
-			/**
-			 * Unique by 1x zonename and 1x mobname
-			 * $array['zonename'] = [
-			 * 		zonename['mobname'] = [
-			 * 			moblevel = [ mobminlevel, mobmaxlevel ]
-			 * 			dropdata = [ dropgroup, [ itemname, droprate ]
-			 * 		]
-			 * 	]
-			 */
-
-
-	// 		$group = [ $row->groupId, $row->groupRate ];
-	// 		$item = [ $row->itemName, $row->itemRate ];
-
-	// 		$temp = array (
-	// 			// 'mobName' => $row->mobName,
-	// 			// 'mobMinLevel' => $row->mobMinLevel,
-	// 			// 'mobMaxLevel' => $row->mobMaxLevel,
-	// 			'mobName' => $mn,
-	// 			'dropData' => array (
-	// 				'groupId' => $row->groupId,
-	// 				'groupRate' => $row->groupRate,
-	// 				'item' => array(
-	// 					'name' => $row->itemName,
-	// 					'dropRate' => $row->itemRate
-	// 				)));
-
-	// 		if ( !array_key_exists($zn, $array) ) { $array[$zn] = []; }	// set zoneName in array
-	// 		if ( !array_key_exists($mn, $array[$zn])){ 					// set mobName in array
-	// 			// array_push ( $array[$zn], $mn );
-	// 			$array[$zn][$mn] = $mn;
-	// 			$array[$zn]['dropData'] = array(
-	// 				'groupId' => $row->groupId,
-	// 				'groupRate' => $row->groupRate,
-	// 				'item' => array(
-	// 					'name' => $row->itemName,
-	// 					'dropRate' => $row->itemRate
-	// 				));
-
-	// 			continue;
-	// 		}
-	// 		unset($temp['mobName']);
-	// 		if ( !array_key_exists('dropData', $array[$zn])){			// set dropData in array
-
-	// 		}
-
-
-	// 		//[ $row->zoneName, $row->mobName, $row->mobMinLevel, $row->mobMaxLevel, [ ] ]
-	// 	}
-	// 	$html = "";
-	// 	foreach ($array as $key => $mobArray){
-	// 		//$html = "<br>" . $a["zoneName"]["dropData"]["groupId"] ;
-	// 		$html .= "<br> $key";
-
-	// 		foreach ($mobArray as $mob){
-	// 			$html .= "	<br>". $mob["mobName"] . ":" . $mob["dropData"];
-	// 		}
-	// 	}
-	// 	//print_r($array);
-	// 	return $html;
-	// }
+			$workingRow = array (
+				'Desynth' => $row->Desynth,
+				'KeyItem' => $this->getItemName($param[1], $row->KeyItem),
+				'Wood' => $row->Wood,
+				'Smith' => $row->Smith,
+				'Gold' => $row->Gold,
+				'Cloth' => $row->Cloth,
+				'Leather' => $row->Leather,
+				'Bone' => $row->Bone,
+				'Alchemy' => $row->Alchemy,
+				'Cook' => $row->Cook,
+				'Crystal' => $this->getItemName($param[1], $row->Crystal),
+				'HQCrystal' => $this->getItemName($param[1], $row->HQCrystal),
+				'Ingredient1' => $this->getItemName($param[1], $row->Ingredient1),
+				'Ingredient2' => $this->getItemName($param[1], $row->Ingredient2),
+				'Ingredient3' => $this->getItemName($param[1], $row->Ingredient3),
+				'Ingredient4' => $this->getItemName($param[1], $row->Ingredient4),
+				'Ingredient5' => $this->getItemName($param[1], $row->Ingredient5),
+				'Ingredient6' => $this->getItemName($param[1], $row->Ingredient6),
+				'Ingredient7' => $this->getItemName($param[1], $row->Ingredient7),
+				'Ingredient8' => $this->getItemName($param[1], $row->Ingredient8),
+				'Result' => $this->getItemName($param[1], $row->Result),
+				'ResultHQ1' => $this->getItemName($param[1], $row->ResultHQ1),
+				'ResultHQ2' => $this->getItemName($param[1], $row->ResultHQ2),
+				'ResultHQ3' => $this->getItemName($param[1], $row->ResultHQ3),
+				'ResultQty' => $row->ResultQt,
+				'ResultHQ1Qty' => $row->ResultHQ1Qty,
+				'ResultHQ2Qty' => $row->ResultHQ2Qty,
+				'ResultHQ3Qty' => $row->ResultHQ3Qty,
+				'ResultName' => $row->ResultName,
+			);
+			array_push ( $this->dataset, $workingRow );
+		}
+        return $this->dataset;
+    }
 
 
 }

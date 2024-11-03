@@ -34,7 +34,6 @@ class FFXIPackageHelper_Equipsets  {
     public static function showequipset( $input, array $params, Parser $parser, PPFrame $frame ) {
 
         $parser->getOutput()->updateCacheExpiry(0);
-        //$parser->getOutput()->addModules(['FFXIPackageHelper_Parsley']);
         $parser->getOutput()->addModules(['FFXIPackageHelper_dynamicContent']);
 
 

@@ -51,9 +51,23 @@ class FFXIPackageHelper_HTMLTableHelper {
 
     public static function table_DropRates($dropRatesArray, $showTH)
 	{		
+
 		$html = FFXIPackageHelper_HTMLTableHelper::tableHeader_DropRates($showTH);
 
+		function thAdjust($rate, $multiplier){
+			$num = round(($rate * $multiplier) / 10, 2);
+			if ( $num >= 100 ) return "~99";
+			else return $num;
+		}
+
 		foreach ( $dropRatesArray as $row ) {
+			/**************
+			 * Set up Parser for converting wikitext to HTML
+			 */
+			// $parser = new Parser;
+			// $parserOptions = new ParserOptions;
+			// $parserOutput = $parser->parse( $text, $title, $parserOptions );
+			// //$html = $parserOutput->getText();
 
 				/*******************************************************
 				 * Removing OOE 
@@ -88,6 +102,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$zn = ParserHelper::zoneName($row['zoneName']);
 				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges); //need to readdress this later
 				
+
+
 				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
 				/*******************************************************/
 
@@ -125,7 +141,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				for ( $i = 0; $i < count($row['dropData']['items']); $i ++){
 					$item = $row['dropData']['items'][$i];
 
-					$i_n = ParserHelper::itemName($item);
+					$i_n = ParserHelper::dropRatesItemName($item);
 					$gR = $row['dropData']['groupRate'];
 					if ( $gR < 1000 ) $gR = 1000;
 					$i_dr = ((int)$item['dropRate'] / $gR) * 100 ;
@@ -163,36 +179,30 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 					$th1 = 0; $th2 = 0; $th3 = 0; $th4 = 0;
 					
-                    function thAdjust($rate, $multiplier){
-                        $num = round(($rate * $multiplier) / 10, 2);
-                        if ( $num >= 100 ) return "~99";
-                        else return $num;
-                    }
-
 					switch ($cat) {
 						case 0:
 							$th1 = 100; $th2 = 100; $th3 = 100; $th4 = 100;
 							break;
 						case 1:
-							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 2.333); $th3 = self::thAdjust($item['dropRate'], 2.5); $th4 = self::thAdjust($item['dropRate'], 2.666);
+							$th1 = thAdjust($item['dropRate'], 2); $th2 = thAdjust($item['dropRate'], 2.333); $th3 = thAdjust($item['dropRate'], 2.5); $th4 = thAdjust($item['dropRate'], 2.666);
 							break;
 						case 2:
-							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 2.666); $th3 = self::thAdjust($item['dropRate'], 2.833); $th4 = self::thAdjust($item['dropRate'], 3);
+							$th1 = thAdjust($item['dropRate'], 2); $th2 = thAdjust($item['dropRate'], 2.666); $th3 = thAdjust($item['dropRate'], 2.833); $th4 = thAdjust($item['dropRate'], 3);
 							break;
 						case 3:
-							$th1 = self::thAdjust($item['dropRate'], 1.2); $th2 = self::thAdjust($item['dropRate'], 1.5); $th3 = self::thAdjust($item['dropRate'], 1.65); $th4 = self::thAdjust($item['dropRate'], 1.8);
+							$th1 = thAdjust($item['dropRate'], 1.2); $th2 = thAdjust($item['dropRate'], 1.5); $th3 = thAdjust($item['dropRate'], 1.65); $th4 = thAdjust($item['dropRate'], 1.8);
 							break;
 						case 4:
-							$th1 = self::thAdjust($item['dropRate'], 1.2); $th2 = self::thAdjust($item['dropRate'], 1.4); $th3 = self::thAdjust($item['dropRate'], 1.5); $th4 = self::thAdjust($item['dropRate'], 1.6);
+							$th1 = thAdjust($item['dropRate'], 1.2); $th2 = thAdjust($item['dropRate'], 1.4); $th3 = thAdjust($item['dropRate'], 1.5); $th4 = thAdjust($item['dropRate'], 1.6);
 							break;	
 						case 5:
-							$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.25); $th4 = self::thAdjust($item['dropRate'], 2.5);
+							$th1 = thAdjust($item['dropRate'], 1.5); $th2 = thAdjust($item['dropRate'], 2); $th3 = thAdjust($item['dropRate'], 2.25); $th4 = thAdjust($item['dropRate'], 2.5);
 							break;		
 						case 6:
-							$th1 = self::thAdjust($item['dropRate'], 1.5); $th2 = self::thAdjust($item['dropRate'], 2); $th3 = self::thAdjust($item['dropRate'], 2.4); $th4 = self::thAdjust($item['dropRate'], 2.8);
+							$th1 = thAdjust($item['dropRate'], 1.5); $th2 = thAdjust($item['dropRate'], 2); $th3 = thAdjust($item['dropRate'], 2.4); $th4 = thAdjust($item['dropRate'], 2.8);
 							break;
 						case 7:
-							$th1 = self::thAdjust($item['dropRate'], 2); $th2 = self::thAdjust($item['dropRate'], 3); $th3 = self::thAdjust($item['dropRate'], 3.5); $th4 = self::thAdjust($item['dropRate'], 4);
+							$th1 = thAdjust($item['dropRate'], 2); $th2 = thAdjust($item['dropRate'], 3); $th3 = thAdjust($item['dropRate'], 3.5); $th4 = thAdjust($item['dropRate'], 4);
 							break;
 						case 8;
 							$th1 = "-"; $th2 = "-"; $th3 = "-"; $th4 = "-";
@@ -208,6 +218,113 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$html .= "</tr>";
 		}
 		return $html;
+	}
+
+
+	// public static function tableHeader_RecipesQuery(){
+	// 	$html = "<br>
+	// 	<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</div>
+	// 	<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
+	// 	<table id=\"asbsearch_dropstable\" class=\"sortable\">
+	// 		<tr><th>Item</th>
+	// 		<th>Crystal</th>
+	// 		<th>Ingredients</th>
+	// 		<th>HQ</th></tr>
+	// 		";
+	// 	return $html;
+    // }
+
+	public static function table_RecipesQuery($array){
+		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
+		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
+		<table id=\"asbsearch_dropstable\" class=\"sortable\">
+			<tr><th>Item</th>
+			<th>Crystal</th>
+			<th>Ingredients</th>
+			<th>HQ</th></tr>
+			";
+
+
+			// 'Desynth' => $row->Desynth,
+			// 	'KeyItem' => ParserHelper::getItemName($array[1], $row->KeyItem),
+			// 	'Wood' => $row->Wood,
+			// 	'Smith' => $row->Smith,
+			// 	'Gold' => $row->Gold,
+			// 	'Cloth' => $row->Cloth,
+			// 	'Leather' => $row->Leather,
+			// 	'Bone' => $row->Bone,
+			// 	'Alchemy' => $row->Alchemy,
+			// 	'Cook' => $row->Cook,
+			// 	'Crystal' => ParserHelper::getItemName($array[1], $row->Crystal),
+			// 	'HQCrystal' => ParserHelper::getItemName($array[1], $row->HQCrystal),
+			// 	'Ingredient1' => ParserHelper::getItemName($array[1], $row->Ingredient1),
+			// 	'Ingredient2' => ParserHelper::getItemName($array[1], $row->Ingredient2),
+			// 	'Ingredient3' => ParserHelper::getItemName($array[1], $row->Ingredient3),
+			// 	'Ingredient4' => ParserHelper::getItemName($array[1], $row->Ingredient4),
+			// 	'Ingredient5' => ParserHelper::getItemName($array[1], $row->Ingredient5),
+			// 	'Ingredient6' => ParserHelper::getItemName($array[1], $row->Ingredient6),
+			// 	'Ingredient7' => ParserHelper::getItemName($array[1], $row->Ingredient7),
+			// 	'Ingredient8' => ParserHelper::getItemName($array[1], $row->Ingredient8),
+			// 	'Result' => ParserHelper::getItemName($array[1], $row->Result),
+			// 	'ResultHQ1' => ParserHelper::getItemName($array[1], $row->ResultHQ1),
+			// 	'ResultHQ2' => ParserHelper::getItemName($array[1], $row->ResultHQ2),
+			// 	'ResultHQ3' => ParserHelper::getItemName($array[1], $row->ResultHQ3),
+			// 	'ResultQty' => $row->ResultQt,
+			// 	'ResultHQ1Qty' => $row->ResultHQ1Qty,
+			// 	'ResultHQ2Qty' => $row->ResultHQ2Qty,
+			// 	'ResultHQ3Qty' => $row->ResultHQ3Qty,
+			// 	'ResultName' => $row->ResultName,
+
+		$parse = new ParserHelper($array[1]);
+		$totalRows = 0;
+		foreach ( $array[0] as $row ) {
+
+			$name = "[[". $row->ResultName ."]]";
+			if ( $row->ResultQty > 1 ) $name .= " (x" . $row->ResultQty . ")";
+			$html .= "<tr><td><center>". $name ."</center></td><td><center>" . $parse->getItemName($row->Crystal) ."</center></td>";
+
+			/**
+			 *
+			 * Ingredients
+			 *
+			 */
+			$html .= "<td><center>". $parse->getItemName($row->Ingredient1) ."<br>";
+			if ( $row->Ingredient2 !== "0" && $row->Ingredient2 !== NULL ) $html .= $parse->getItemName( $row->Ingredient2) ."<br>";
+			if ( $row->Ingredient3 !== "0" && $row->Ingredient3 !== NULL ) $html .= $parse->getItemName( $row->Ingredient3) ."<br>";
+			if ( $row->Ingredient4 !== "0" && $row->Ingredient4 !== NULL ) $html .= $parse->getItemName( $row->Ingredient4) ."<br>";
+			if ( $row->Ingredient5 !== "0" && $row->Ingredient5 !== NULL ) $html .= $parse->getItemName( $row->Ingredient5) ."<br>";
+			if ( $row->Ingredient6 !== "0" && $row->Ingredient6 !== NULL ) $html .= $parse->getItemName( $row->Ingredient6) ."<br>";
+			if ( $row->Ingredient7 !== "0" && $row->Ingredient7 !== NULL ) $html .= $parse->getItemName( $row->Ingredient7) ."<br>";
+			if ( $row->Ingredient8 !== "0" && $row->Ingredient8 !== NULL ) $html .= $parse->getItemName( $row->Ingredient8) ."<br>";
+			$html .= "</td></center>";
+
+			/**
+			 *
+			 * Results
+			 *
+			 */
+			if ( $row->ResultHQ1 == $row->ResultHQ2 && $row->ResultHQ2 == $row->ResultHQ3 &&
+				$row->ResultHQ1Qty == $row->ResultHQ2Qty && $row->ResultHQ2Qty == $row->ResultHQ3Qty) {
+					$html .= "<td>". $parse->getItemName($row->ResultHQ1);
+					if ( $row->ResultHQ1Qty != "1" )   $html .=" (x" . $row->ResultHQ1Qty . ")<br></td>";
+			}
+			else {
+				$html .= "<td>HQ: ". $parse->getItemName($row->ResultHQ1);
+				if ( $row->ResultHQ1Qty != "1" ) $html .= " (x" . $row->ResultHQ1Qty . ")<br>";
+				$html .= "HQ2: " . $parse->getItemName($row->ResultHQ2);
+				if ( $row->ResultHQ2Qty != "1" ) $html .= " (x" . $row->ResultHQ2Qty . ")<br>";
+				$html .= "HQ3: " . $parse->getItemName($row->ResultHQ3);
+				if ( $row->ResultHQ3Qty != "1" ) $html .= " (x" . $row->ResultHQ3Qty . ")<br>";
+			}
+
+			$html .= "</center></tr>";
+			$totalRows ++;
+		}
+		$parse = NULL;
+		$finalHtml = "<i><b> $totalRows records (items) found.</i></b>";
+		if ( $totalRows > 0 ) $finalHtml .= $html;
+
+		return $finalHtml;
 	}
 }
 
