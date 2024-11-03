@@ -238,12 +238,12 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"sortable\">
-			<tr><th>Item</th>
+			<tr><th>Skill Lvl</th>
+			<th>Synth</th>
 			<th>Crystal</th>
 			<th>Ingredients</th>
-			<th>HQ</th></tr>
+			<th>Effects</th></tr>
 			";
-
 
 			// 'Desynth' => $row->Desynth,
 			// 	'KeyItem' => ParserHelper::getItemName($array[1], $row->KeyItem),
@@ -279,9 +279,49 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$totalRows = 0;
 		foreach ( $array[0] as $row ) {
 
+			/**
+			 *
+			 * Skill lvl
+			 *
+			 */
+			$html .= "<tr><td><center>";
+			if ( $row->Wood != "0" ) $html .= "[[Woodworking]](". $row->Wood . ")<br>";
+			if ( $row->Smith != "0" ) $html .= "[[Smithing]](". $row->Smith . ")<br>";
+			if ( $row->Gold != "0" ) $html .= "[[Goldsmithing]](". $row->Gold . ")<br>";
+			if ( $row->Cloth != "0" ) $html .= "[[Clothcraft]](". $row->Cloth . ")<br>";
+			if ( $row->Leather != "0" ) $html .= "[[Leatherworking]](". $row->Leather . ")<br>";
+			if ( $row->Bone != "0" ) $html .= "[[Bonecraft]](". $row->Bone . ")<br>";
+			if ( $row->Alchemy != "0" ) $html .= "[[Alchemy]](". $row->Alchemy . ")<br>";
+			if ( $row->Cook != "0" ) $html .= "[[Cooking]](". $row->Cook . ")<br>";
+			$html .= "</center></td>";
+
+			/**
+			 *
+			 * Synth
+			 *
+			 */
 			$name = "[[". $row->ResultName ."]]";
 			if ( $row->ResultQty > 1 ) $name .= " (x" . $row->ResultQty . ")";
-			$html .= "<tr><td><center>". $name ."</center></td><td><center>" . $parse->getItemName($row->Crystal) ."</center></td>";
+			$html .= "<td><center>". $name ."<br>";
+			
+			if ( $row->ResultHQ1 == $row->ResultHQ2 && $row->ResultHQ2 == $row->ResultHQ3 &&
+				$row->ResultHQ1Qty == $row->ResultHQ2Qty && $row->ResultHQ2Qty == $row->ResultHQ3Qty) {
+					$html .= "HQ: ". $parse->getItemName($row->ResultHQ1);
+					if ( $row->ResultHQ1Qty != "1" )   $html .=" (x" . $row->ResultHQ1Qty . ")<br>";
+			}
+			else {
+				$html .= "HQ: ". $parse->getItemName($row->ResultHQ1);
+				if ( $row->ResultHQ1Qty != "1" ) $html .= " (x" . $row->ResultHQ1Qty . ")<br>";
+				$html .= "HQ2: " . $parse->getItemName($row->ResultHQ2);
+				if ( $row->ResultHQ2Qty != "1" ) $html .= " (x" . $row->ResultHQ2Qty . ")<br>";
+				$html .= "HQ3: " . $parse->getItemName($row->ResultHQ3);
+				if ( $row->ResultHQ3Qty != "1" ) $html .= " (x" . $row->ResultHQ3Qty . ")";
+			}
+			$html .= "</center></td><td><center>" . $parse->getItemName($row->Crystal) ."</center></td>";
+			/**
+			 * End of Synth
+			 */
+
 
 			/**
 			 *
@@ -296,26 +336,11 @@ class FFXIPackageHelper_HTMLTableHelper {
 			if ( $row->Ingredient6 !== "0" && $row->Ingredient6 !== NULL ) $html .= $parse->getItemName( $row->Ingredient6) ."<br>";
 			if ( $row->Ingredient7 !== "0" && $row->Ingredient7 !== NULL ) $html .= $parse->getItemName( $row->Ingredient7) ."<br>";
 			if ( $row->Ingredient8 !== "0" && $row->Ingredient8 !== NULL ) $html .= $parse->getItemName( $row->Ingredient8) ."<br>";
-			$html .= "</td></center>";
-
+			$html .= "</center></td>";
 			/**
-			 *
-			 * Results
-			 *
+			 * End of Ingredients
 			 */
-			if ( $row->ResultHQ1 == $row->ResultHQ2 && $row->ResultHQ2 == $row->ResultHQ3 &&
-				$row->ResultHQ1Qty == $row->ResultHQ2Qty && $row->ResultHQ2Qty == $row->ResultHQ3Qty) {
-					$html .= "<td>". $parse->getItemName($row->ResultHQ1);
-					if ( $row->ResultHQ1Qty != "1" )   $html .=" (x" . $row->ResultHQ1Qty . ")<br></td>";
-			}
-			else {
-				$html .= "<td>HQ: ". $parse->getItemName($row->ResultHQ1);
-				if ( $row->ResultHQ1Qty != "1" ) $html .= " (x" . $row->ResultHQ1Qty . ")<br>";
-				$html .= "HQ2: " . $parse->getItemName($row->ResultHQ2);
-				if ( $row->ResultHQ2Qty != "1" ) $html .= " (x" . $row->ResultHQ2Qty . ")<br>";
-				$html .= "HQ3: " . $parse->getItemName($row->ResultHQ3);
-				if ( $row->ResultHQ3Qty != "1" ) $html .= " (x" . $row->ResultHQ3Qty . ")<br>";
-			}
+			
 
 			$html .= "</center></tr>";
 			$totalRows ++;
