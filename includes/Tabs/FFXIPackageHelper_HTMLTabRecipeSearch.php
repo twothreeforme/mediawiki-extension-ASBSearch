@@ -16,7 +16,7 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
                             <td>Ingredient <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"ingredientSearch\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Crystal " . $this->crystalDropDown() . "<br><button id=\"FFXIPackageHelper_dynamiccontent_searchRecipeSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>
+                            <td>Crystal<br>" . $this->crystalDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchRecipeSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>
                         </tr>
                         </tbody></table>
                     </td><td>

@@ -10,7 +10,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$html .= "<br>
 		<div ><i> All data and probabilities are based on AirSkyBoat. All earth times are based on your local timezone.</i></div>
 		<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%; position: relative; overflow: scroll;\">
-		<table id=\"special-weatherforecast-table\" class=\"horizon-table general-table special-weatherforecast-table  sortable\">
+		<table id=\"special-weatherforecast-table\" class=\"horizon-table general-table special-weatherforecast-table  sortable jquery-tablesorter\">
             <tr><th>Zone Name</th>
 			<th>Vana Days</th>
             <th>Earth Time</th>
@@ -35,7 +35,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
 		<br> <strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these has effected Group drop rates (mainly from BCNMs).</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\" class=\"sortable\">
+		<table id=\"asbsearch_dropstable\" class=\"sortable jquery-tablesorter\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
 			<th>Details</th>
@@ -237,7 +237,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_RecipesQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\" class=\"sortable\">
+		<table id=\"asbsearch_dropstable\" class=\"sortable jquery-tablesorter\">
 			<tr><th>Skill Lvl</th>
 			<th>Synth</th>
 			<th>Crystal</th>
@@ -302,25 +302,37 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 */
 			$name = $parse->getItemName($row->Result);
 			if ( $row->ResultQty > 1 ) $name .= " (x" . $row->ResultQty . ")";
-			$html .= "<td><center>". $name ."<br>";
+			$html .= "<td><center>". $name ;
 			
 			if ( $row->ResultHQ1 == $row->ResultHQ2 && $row->ResultHQ2 == $row->ResultHQ3 &&
 				$row->ResultHQ1Qty == $row->ResultHQ2Qty && $row->ResultHQ2Qty == $row->ResultHQ3Qty) {
-					$html .= "HQ: ". $parse->getItemName($row->ResultHQ1);
-					if ( $row->ResultHQ1Qty != "1" )   $html .=" (x" . $row->ResultHQ1Qty . ")<br>";
+					$html .= "<br>HQ: ". $parse->getItemName($row->ResultHQ1);
+					if ( $row->ResultHQ1Qty != "1" )   $html .=" (x" . $row->ResultHQ1Qty . ")";
 			}
 			else {
-				$html .= "HQ: ". $parse->getItemName($row->ResultHQ1);
-				if ( $row->ResultHQ1Qty != "1" ) $html .= " (x" . $row->ResultHQ1Qty . ")<br>";
-				$html .= "HQ2: " . $parse->getItemName($row->ResultHQ2);
-				if ( $row->ResultHQ2Qty != "1" ) $html .= " (x" . $row->ResultHQ2Qty . ")<br>";
-				$html .= "HQ3: " . $parse->getItemName($row->ResultHQ3);
+				$html .= "<br>HQ: ". $parse->getItemName($row->ResultHQ1);
+				if ( $row->ResultHQ1Qty != "1" ) $html .= " (x" . $row->ResultHQ1Qty . ")";
+				$html .= "<br>HQ2: " . $parse->getItemName($row->ResultHQ2);
+				if ( $row->ResultHQ2Qty != "1" ) $html .= " (x" . $row->ResultHQ2Qty . ")";
+				$html .= "<br>HQ3: " . $parse->getItemName($row->ResultHQ3);
 				if ( $row->ResultHQ3Qty != "1" ) $html .= " (x" . $row->ResultHQ3Qty . ")";
 			}
-			$html .= "</center></td><td><center>" . $parse->getItemName($row->Crystal) ."</center></td>";
+			$html .= "</center></td>";
 			/**
 			 * End of Synth
 			 */
+
+
+			/**
+			 * Crystal and Desynth
+			 */
+			$html .= "<td><center>";
+			if ( $row->Desynth != "0" ) $html .= "<i>** Desynth **</i><br>";
+			$html .= $parse->getItemName($row->Crystal) ."</center></td>";
+			/**
+			 * End of Crystal and Desynth
+			 */
+
 
 
 			/**

@@ -16,7 +16,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             <td>Item Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Zone " . $this->zonesDropDown() . "<br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
+                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
                         </tr>
                         </tbody></table>
                     </td>

@@ -522,20 +522,39 @@ class DBConnection {
         }
 
         $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
-        $ingr = [];
+
+        if ( isset($recipename) && $recipename != "" ){
+            // $_ingr = $dbr->newSelectQueryBuilder()
+            // ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            // ->from( 'item_basic' )
+            // ->where( "item_basic.name LIKE '%$ingredient%'"	)
+            // ->fetchResultSet();
+            $recipeIDs = $this->getItemIDsFromDB($dbr, $recipename );
+            // foreach ( $_ingr as $row ) {
+            //     array_push( $ingr , strval($row->itemid));
+            // }
+            $q = $dbr->makeList( [ 'synth_recipes.Result' => $recipeIDs ,
+                                    'synth_recipes.ResultHQ1' => $recipeIDs ,
+                                    'synth_recipes.ResultHQ2' => $recipeIDs ,
+                                    'synth_recipes.ResultHQ3' => $recipeIDs ],
+                                    $dbr::LIST_OR);
+            array_push ( $query, $q);
+        }
 
         if ( isset($ingredient) && $ingredient != "" ) {
-            $_ingr = $dbr->newSelectQueryBuilder()
-            ->select( [ 'item_basic.name, item_basic.itemid' ] )
-            ->from( 'item_basic' )
-            ->where( "item_basic.name LIKE '%$ingredient%'"	)
-            ->fetchResultSet();
+            // $_ingr = $dbr->newSelectQueryBuilder()
+            // ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            // ->from( 'item_basic' )
+            // ->where( "item_basic.name LIKE '%$ingredient%'"	)
+            // ->fetchResultSet();
 
-            foreach ( $_ingr as $row ) {
-                array_push( $ingr , strval($row->itemid));
-            }
+            // foreach ( $_ingr as $row ) {
+            //     array_push( $ingr , strval($row->itemid));
+            // }
+            $ingr = [];
+            $ingr = $this->getItemIDsFromDB($dbr, $ingredient );
 
-            $query = [ $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
+            $q = [ $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
                                             'synth_recipes.Ingredient2' => $ingr ,
                                             'synth_recipes.Ingredient3' => $ingr ,
                                             'synth_recipes.Ingredient4' => $ingr ,
@@ -544,12 +563,47 @@ class DBConnection {
                                             'synth_recipes.Ingredient7' => $ingr ,
                                             'synth_recipes.Ingredient8' => $ingr ],
                                             $dbr::LIST_OR)];
+            array_push ( $query, $q);
         }
 
-        //$prelimQuery = [ ];
-       // "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
-        if ( isset($recipename) && $recipename != "" ){ array_push ( $query, "synth_recipes.ResultName LIKE '%$recipename%'"); }
         if ( isset($crystal) && $crystal != 0 ){ array_push ( $query, "synth_recipes.Crystal = '$crystal'"); }
+
+
+
+        switch($craftType){
+            case 'Wood':
+                array_push ( $query, "synth_recipes.Wood != 0" ) ;
+                break;
+            case 'Smith':
+                array_push ( $query, "synth_recipes.Smith != 0" ) ;
+                break;
+            case 'Gold':
+                array_push ( $query, "synth_recipes.Gold != 0" ) ;
+                break;
+            case 'Cloth':
+                array_push ( $query, "synth_recipes.Cloth != 0" ) ;
+                break;
+            case 'Leather':
+                array_push ( $query, "synth_recipes.Leather != 0" ) ;
+                break;
+            case 'Bone':
+                array_push ( $query, "synth_recipes.Bone != 0" ) ;
+                break;
+            case 'Alchemy':
+                array_push ( $query, "synth_recipes.Alchemy != 0" ) ;
+                break;
+            case 'Cook':
+                array_push ( $query, "synth_recipes.Cook != 0" ) ;
+                break;
+            default;
+        }
+
+
+
+
+
+
+
         // if ( isset($skillrank) && $skillrank != 0 ){
         //     $high = $skillrank + 9;
         //     array_push ( $query, $dbr->expr( 'cat_pages', '>', 0 ));
@@ -566,6 +620,21 @@ class DBConnection {
 			->fetchResultSet();
 
         return [ $recipesQueryResult, $itemArray ];
+    }
+
+    private function getItemIDsFromDB($db, $name){
+        $items = $db->newSelectQueryBuilder()
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->from( 'item_basic' )
+            ->where( "item_basic.name LIKE '%$name%'"	)
+            ->fetchResultSet();
+
+            $returnarray = [];
+            if ( count($items) == 0 || count($items) == NULL) return NULL;
+            foreach ( $items as $row ) {
+                array_push( $returnarray , strval($row->itemid));
+            }
+            return $returnarray;
     }
 }
 
