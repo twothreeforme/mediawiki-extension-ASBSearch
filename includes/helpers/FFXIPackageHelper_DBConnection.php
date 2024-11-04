@@ -367,7 +367,8 @@ class DBConnection {
 			//"zone_settings.name" => $zoneNameSearch,
 			"mob_groups.name LIKE '%$mobNameSearch%'",
 			"item_basic.name LIKE '%$itemNameSearch%'",
-			"mob_droplist.dropid !=0 ",
+			"mob_droplist.dropid != 0 ",
+            "mob_droplist.dropType != 4",  // removing DESPOIL - as its OOE
 			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
 			//"mob_groups.content_tag IS NULL ",
 		];
