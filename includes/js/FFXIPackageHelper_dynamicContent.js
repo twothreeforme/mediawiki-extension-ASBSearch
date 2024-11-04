@@ -51,6 +51,53 @@ function onReady(){
       //console.log(event.target.value);
     });
 
+    const skillRankSelect = document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank");
+    skillRankSelect.addEventListener("change", (event) => {
+      // Code to execute when the input value changes
+      if ( event.target.value ==  "1" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "0";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "10";
+      }
+      else if ( event.target.value ==  "11" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "11";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "20";
+      }
+      else if ( event.target.value ==  "21" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "21";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "30";
+      }
+      else if ( event.target.value ==  "31" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "31";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "40";
+      }
+      else if ( event.target.value ==  "41" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "41";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "50";
+      }
+      else if ( event.target.value ==  "51" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "51";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "60";
+      }
+      else if ( event.target.value ==  "61" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "61";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "70";
+      }
+      else if ( event.target.value ==  "71" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "71";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "80";
+      }
+      else if ( event.target.value ==  "81" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "81";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "90";
+      }
+      else if ( event.target.value ==  "91" ){
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value = "91";
+        document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value = "100";
+      }
+
+    });
+
+
     //document.getElementById("initialHide").style.display = "block";
 }
 
@@ -84,10 +131,6 @@ function showTab(evt, cityName) { //https://www.w3schools.com/howto/howto_js_tab
     //console.log(cityName.concat("_shown"));
     evt.currentTarget.className += " active";
   } 
-
-  function rcvQuery(){
-    console.log("here");
-  }
 
 function submitDropRatesRequest(){
 
@@ -149,7 +192,7 @@ function actionAPI(params, forTab) {
       if ( forTab ==  "dropratesearch" ) updateDropRatesFromQuery(d[forTab][0]);
       else if ( forTab ==  "recipesearch" ) updateRecipesFromQuery(d[forTab][0]);
       currentButton.disabled = false;
-      console.log( d );
+      //console.log( d );
   } );
 };
 

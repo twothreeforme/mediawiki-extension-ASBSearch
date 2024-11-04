@@ -242,7 +242,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			<th>Synth</th>
 			<th>Crystal</th>
 			<th>Ingredients</th>
-			<th>Effects</th></tr>
+			</tr>
 			";
 
 			// 'Desynth' => $row->Desynth,

@@ -488,7 +488,7 @@ class DBConnection {
         $recipename = $queryData[1];
         $ingredient = $queryData[2];
         $crystal = intval($queryData[3]);
-        $skillrank = intval($queryData[4]);
+        //$skillrank = intval($queryData[4]);
         $mincraftlvl = $queryData[5];
         $maxcraftlvl = $queryData[6];
 
@@ -568,41 +568,49 @@ class DBConnection {
 
         if ( isset($crystal) && $crystal != 0 ){ array_push ( $query, "synth_recipes.Crystal = '$crystal'"); }
 
-
-
         switch($craftType){
             case 'Wood':
                 array_push ( $query, "synth_recipes.Wood != 0" ) ;
+                if ( $mincraftlvl != '0' ) array_push ( $query, "synth_recipes.Wood >= '$mincraftlvl'")  ;
+                if ( $maxcraftlvl != '0' ) array_push ( $query, "synth_recipes.Wood <= '$maxcraftlvl'") ;
                 break;
             case 'Smith':
                 array_push ( $query, "synth_recipes.Smith != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Smith >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Smith <= '$maxcraftlvl'" ) ;
                 break;
             case 'Gold':
                 array_push ( $query, "synth_recipes.Gold != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Gold >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Gold <= '$maxcraftlvl'" ) ;
                 break;
             case 'Cloth':
                 array_push ( $query, "synth_recipes.Cloth != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Cloth >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Cloth <= '$maxcraftlvl'" ) ;
                 break;
             case 'Leather':
                 array_push ( $query, "synth_recipes.Leather != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Leather >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Leather <= '$maxcraftlvl'" ) ;
                 break;
             case 'Bone':
                 array_push ( $query, "synth_recipes.Bone != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Bone >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Bone <= '$maxcraftlvl'" ) ;
                 break;
             case 'Alchemy':
                 array_push ( $query, "synth_recipes.Alchemy != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Alchemy >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Alchemy <= '$maxcraftlvl'" ) ;
                 break;
             case 'Cook':
                 array_push ( $query, "synth_recipes.Cook != 0" ) ;
+                if ( $mincraftlvl != "0" ) array_push ( $query, "synth_recipes.Cook >= '$mincraftlvl'" ) ;
+                if ( $maxcraftlvl != "0" ) array_push ( $query, "synth_recipes.Cook <= '$maxcraftlvl'" ) ;
                 break;
             default;
         }
-
-
-
-
-
-
 
         // if ( isset($skillrank) && $skillrank != 0 ){
         //     $high = $skillrank + 9;
