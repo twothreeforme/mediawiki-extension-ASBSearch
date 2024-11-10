@@ -59,6 +59,7 @@ class DataModel {
 			$r_itemId = ( property_exists($row, 'itemId' ) ) ? $row->itemId : 0;
 			$r_gilAmt = ( property_exists($row, 'gilAmt' ) ) ? $row->gilAmt : 0;
 			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
+			$r_bcnmChanges = ( property_exists($row, 'bcnmChanges' ) ) ? $row->bcnmChanges : 0;
 
 			/**
 			 * Begin additional exclusions here to prevent building the model in the first place
@@ -80,6 +81,7 @@ class DataModel {
 				'mobMinLevel' => $r_mobMinLevel,
 				'mobMaxLevel' => $r_mobMaxLevel,
 				'mobType' => $r_mobType,
+				'bcnmChanges' => $r_bcnmChanges,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,
@@ -87,7 +89,7 @@ class DataModel {
 					'items' => array(
 						$_item
 					)));
-
+			print_r($_item['name'] . "<br>");
 			//print_r($row->mobName ."-" . $r_mobType ."...");
 
 			// it doenst exist, so create new entry

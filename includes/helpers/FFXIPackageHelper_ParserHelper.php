@@ -18,7 +18,7 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $changes){
+    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $mobChanges){
 		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
@@ -36,7 +36,7 @@ class ParserHelper {
 			if ( $maxLvl == 255) $mobName = " {{changes}}[[$mobName]]<sup>(HENM)</sup> ";
 			else $mobName = " [[$mobName]]<sup>($maxLvl)</sup> ";
 		}
-		else if ( $changes == 1) $mobName = " {{changes}}[[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
+		else if ( $mobChanges == 1) $mobName = " {{changes}}[[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
@@ -78,10 +78,19 @@ class ParserHelper {
      * Zone related parsing
      */
     public static function zoneName($zone){
-		$zone = ParserHelper::replaceUnderscores($zone);
-		$zone = str_replace("[S]", "(S)", $zone);
-		$zone = str_replace("-", " - ", $zone);
-		return " [[$zone]] ";
+        $bcnmChanges = 0;
+        $zonename = "";
+        if (gettype($zone) == 'array'){
+            $bcnmChanges = $zone[1];
+            $zonename = $zone[0];
+        }
+        else $zonename = $zone;
+
+		$zone = ParserHelper::replaceUnderscores($zonename);
+		$zone = str_replace("[S]", "(S)", $zonename);
+		$zone = str_replace("-", " - ", $zonename);
+        if ( $bcnmChanges == 1 )  return " {{changes}}[[$zone]] ";
+		else return " [[$zone]] ";
 	}
 
     public static function zoneERA_forList($zone){

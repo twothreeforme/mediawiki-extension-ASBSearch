@@ -461,8 +461,8 @@ class DBConnection {
 						//'mob_groups.minLevel AS mobMinLevel',
 						//'mob_groups.maxLevel AS mobMaxLevel',
 						'item_basic.name AS itemName', 
-						//'item_basic.sortname AS itemSortName',
-						'hxi_bcnm_crate_list.changes_tag AS itemChanges',
+                        'item_basic.changes_tag AS itemChanges',
+						'hxi_bcnm_crate_list.changes_tag AS bcnmChanges',
 						'hxi_bcnm_crate_list.gilAmount AS gilAmt',
 						'hxi_bcnm_crate_list.itemId'  ] )
 			->from( 'hxi_bcnm_crate_list' )
