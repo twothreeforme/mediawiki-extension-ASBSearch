@@ -2,8 +2,28 @@
 
 
 class FFXIPackageHelper_HTMLTabDropRates {
-    public function __construct() {
-      }
+
+        private $query_limit;
+        private $mobName;
+        private $itemName;
+        private $zoneName;
+        private $showBCNMdrops;
+        private $excludeNMs;
+        private $levelRangeMIN;
+        private $levelRangeMAX;
+        private $thRatesCheck;
+
+    public function __construct(array $query) {
+        $this->query_limit = $query[0];
+        $this->mobName = $query[1];
+        $this->itemName = $query[2];
+        $this->zoneName = $query[3];
+        $this->showBCNMdrops = $query[4];
+        $this->excludeNMs = $query[5];
+        $this->levelRangeMIN = $query[6];
+        $this->levelRangeMAX = $query[7];
+        $this->thRatesCheck = $query[8];
+    }
 
     public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_droprates_searchForm\">" .
@@ -16,8 +36,9 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             <td>Item Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
-                        </tr>
+                            
+                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>&#9;<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_shareDropRateQuery\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" >Share</button></td>
+                            </tr>
                         </tbody></table>
                     </td>
                         <td>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br>" . $this->selectionOptions() . "</td>

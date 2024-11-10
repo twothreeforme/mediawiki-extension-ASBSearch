@@ -54,7 +54,6 @@ class APIModuleRecipeSearch extends ApiBase {
 		/************************
 		 * Row counter
 		 */
-
         $html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
 
 		//$html .= "<p>" . $recipesQuery . "</p>";

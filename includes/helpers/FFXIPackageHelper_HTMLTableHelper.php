@@ -51,9 +51,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 
     public static function table_DropRates($dropRatesArray, $showTH)
 	{		
-
 		$html = FFXIPackageHelper_HTMLTableHelper::tableHeader_DropRates($showTH);
-
+		
 		function thAdjust($rate, $multiplier){
 			$num = round(($rate * $multiplier) / 10, 2);
 			if ( $num >= 100 ) return "~99";

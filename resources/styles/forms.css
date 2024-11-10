@@ -51,6 +51,28 @@ Custom Buttons
   color: #666666;
 }
 
+.FFXIPackageHelper_dynamiccontent_shareButton {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    padding: 0 16px;
+    background-color: #fafbfc;
+    border-radius: 0.25rem;
+    border: 1px solid #1b1f2326;
+    color: #24292e;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    
+}
+
+.FFXIPackageHelper_dynamiccontent_shareButton:hover {
+    background-color: #f3f4f6;
+    border-color: #1b1f2326;
+    transition-duration: 0.1s;
+}
 
 /*
 Main equipment DIV

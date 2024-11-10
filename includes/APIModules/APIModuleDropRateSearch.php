@@ -51,9 +51,7 @@ class APIModuleDropRateSearch extends ApiBase {
         $dm = new DataModel();
         $db = new DBConnection();
 
-
         $mobDropRatesData = $db->getDropRates($queryData); 
-        
         $dm->parseData($mobDropRatesData);
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
@@ -62,9 +60,7 @@ class APIModuleDropRateSearch extends ApiBase {
         
         $dropRatesArray = $dm->getDataSet();
 
-
 		$html = "";
-
 		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
 
 		/************************
@@ -88,7 +84,8 @@ class APIModuleDropRateSearch extends ApiBase {
 		if ( $totalRows >= 0 ) {  
 			if ( $totalRows == $queryData[0] ) $html .= "<i><b> $totalRows records (items) found, which is the search limit. Narrow search parameters.</i></b>";
 			else $html .= "<i><b> $totalRows records (items) found.</i></b>";
-			$html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
+            
+            $html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
 		}
 
 		$html .= '</table></div>';

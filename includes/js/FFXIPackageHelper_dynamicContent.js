@@ -29,6 +29,12 @@ function onReady(){
       submitRecipeRequest();
     });
 
+    const shareDropRateQuery = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
+    shareDropRateQuery.addEventListener("click", function (e) {
+      
+    });
+
+
     const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft");
     inputElement.addEventListener("change", (event) => {
       // Code to execute when the input value changes
@@ -203,3 +209,16 @@ function updateDropRatesFromQuery(updatedHTML){
 function updateRecipesFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = updatedHTML;
 }
+
+function copyURLToClipboard() {
+    
+	url = document.location.href;
+
+    navigator.clipboard.writeText(url).then(function() {
+        console.log('copyURLToClipboard(): Copied!');
+        mw.notify( 'Copied to Clipboard !', { autoHide: true,  type: 'warn' } ); 
+    }, function() {
+    	mw.notify( 'Error copying to clipboard. Please report on our Discord.', { autoHide: true,  type: 'error' } ); 
+        console.log('copyURLToClipboard(): Copy error');
+    });
+  };

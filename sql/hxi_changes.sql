@@ -312,7 +312,7 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
 ;
 
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
-UPDATE item_basic set name = 'perforator', sortname = 'perforator', changes_tag = 1 WHERE itemid = 18097;
+UPDATE item_basic SET name = 'perforator', sortname = 'perforator', changes_tag = 1 WHERE itemid = 18097;
 UPDATE item_basic SET name = "warlock\'s_belt", sortname = "warlock\'s_belt", changes_tag = 1 WHERE itemid = 15275; -- Change Rapier's Belt to be Warlocks Belt
 
 
