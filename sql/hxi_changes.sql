@@ -23,7 +23,7 @@ DELETE FROM `mob_groups` WHERE name LIKE '%Lost_%' AND minLevel = 100 AND maxLev
 
 -- ---------------------------------------------------------------------------
 -- Format: (bcnmId,groupId,groupRate,itemId,itemRate,gilAmount)
-SELECT 'hxi_bcnm_crate_list' AS' ';
+-- SELECT 'hxi_bcnm_crate_list' AS' ';
 LOCK TABLE `hxi_bcnm_crate_list` WRITE;	
 ALTER TABLE `hxi_bcnm_crate_list`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `gilAmount`;
@@ -97,7 +97,7 @@ UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 -- Format: (groupid,poolid,zoneid,name,respawntime,spawntype,dropid,HP,MP,minLevel,maxLevel,allegiance,changes_tag)
-SELECT 'mob_groups' AS' ';
+-- SELECT 'mob_groups' AS' ';
 LOCK TABLE `mob_groups` WRITE;	
 ALTER TABLE `mob_groups`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `allegiance`;
@@ -137,7 +137,7 @@ UNLOCK TABLES;
 -- Format: (poolid,name,packet_name,familyid,modelid,mJob,sJob,cmbSkill,cmbDelay,cmbDmgMult,behavior,aggro,true_detection,
 --  links,mobType,immunity,name_prefix,flag,entityFlags,animationsub,hasSpellScript,spellList,namevis,roamflag,skill_list_id,
 --  resist_id)
-SELECT 'mob_pools' AS' ';
+-- SELECT 'mob_pools' AS' ';
 
 LOCK TABLE `mob_pools` WRITE;	
 ALTER TABLE `mob_pools`
@@ -158,7 +158,7 @@ UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 -- Format: (dropId,dropType,groupId,groupRate,itemId,itemRate,changes_tag)
-SELECT 'mob_droplist' AS' ';
+-- SELECT 'mob_droplist' AS' ';
 -- Notes
 -- HENMs: dropId default start value 20000
 
@@ -266,7 +266,7 @@ UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 -- Format: (itemid,subid,name,sortname,stackSize,flags,aH,NoSale,BaseSell,changes_tag)
-SELECT 'item_basic' AS' ';
+-- SELECT 'item_basic' AS' ';
 
 LOCK TABLE `item_basic` WRITE;	
 ALTER TABLE `item_basic`
