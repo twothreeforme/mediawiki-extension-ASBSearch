@@ -2,6 +2,10 @@
 
 class FFXIPackageHelper_HTMLTableHelper {
 
+	public static function shareButton($buttonID){
+		return "<button type=\"button\" id=\"$buttonID\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" >Share</button>";
+	}
+
     public static function tableHeader_Forecast(){
 		$html = "";
 		/************************

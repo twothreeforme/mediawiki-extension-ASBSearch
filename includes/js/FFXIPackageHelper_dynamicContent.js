@@ -139,22 +139,33 @@ function showTab(evt, cityName) { //https://www.w3schools.com/howto/howto_js_tab
   } 
 
 function submitDropRatesRequest(){
-
-  currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
-  currentButton.disabled = true;
-  document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "Loading query...";
-
+  const cb_mobname = document.querySelectorAll('input[name=mobNameSearch]')[0].value;
+  const cb_itemname = document.querySelectorAll('input[name=itemNameSearch]')[0].value;
+  const cb_zonename = document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value;
+  const cb_lvlMin = document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value;
+  const cb_lvlMax = document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value;
   const cb_showth = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0;
   const cb_bcnm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0;
   const cb_excludenm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0;
 
+
+  if( cb_mobname == "" && cb_itemname == "" && cb_zonename == "searchallzones" &&
+    ( ( cb_lvlMin == 0 && cb_lvlMax == 0) || ( cb_lvlMin > cb_lvlMax )) ){
+      document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "<i>*Please use the fields above to query a search.</i>";
+      return;
+    }
+
+currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
+  currentButton.disabled = true;
+  document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "Loading query...";
+
   var params = {
       action: "dropratesearch",
-      mobname: document.querySelectorAll('input[name=mobNameSearch]')[0].value,
-      itemname: document.querySelectorAll('input[name=itemNameSearch]')[0].value,
-      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value,
-      lvlmin: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value,
-      lvlmax: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value,
+      mobname: cb_mobname,
+      itemname: cb_itemname,
+      zonename: cb_zonename,
+      lvlmin: cb_lvlMin,
+      lvlmax: cb_lvlMax,
       showth: cb_showth,
       bcnm: cb_bcnm,
       excludenm: cb_excludenm

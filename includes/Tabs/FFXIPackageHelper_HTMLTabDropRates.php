@@ -3,7 +3,7 @@
 
 class FFXIPackageHelper_HTMLTabDropRates {
 
-        private $query_limit;
+        //private $query_limit;
         private $mobName;
         private $itemName;
         private $zoneName;
@@ -13,16 +13,18 @@ class FFXIPackageHelper_HTMLTabDropRates {
         private $levelRangeMAX;
         private $thRatesCheck;
 
-    public function __construct(array $query) {
-        $this->query_limit = $query[0];
-        $this->mobName = $query[1];
-        $this->itemName = $query[2];
-        $this->zoneName = $query[3];
-        $this->showBCNMdrops = $query[4];
-        $this->excludeNMs = $query[5];
-        $this->levelRangeMIN = $query[6];
-        $this->levelRangeMAX = $query[7];
-        $this->thRatesCheck = $query[8];
+    public function __construct( $query) {
+        if ( gettype($query) == 'array'){
+            //$this->query_limit = $query[0];
+            $this->mobName = $query[1];
+            $this->itemName = $query[2];
+            $this->zoneName = $query[3];
+            $this->showBCNMdrops = $query[4];
+            $this->excludeNMs = $query[5];
+            $this->levelRangeMIN = $query[6];
+            $this->levelRangeMAX = $query[7];
+            $this->thRatesCheck = $query[8];
+        }
     }
 
     public function searchForm(){
@@ -30,14 +32,13 @@ class FFXIPackageHelper_HTMLTabDropRates {
                     "<table><tbody><tr><td>
                         <table><tbody>
                         <tr>
-                            <td>Mob/BCNM Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>
+                            <td>Mob/BCNM Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Item Name <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" size=\"25\"></td>
+                            <td>Item Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" value=\"$this->itemName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            
-                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>&#9;<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_shareDropRateQuery\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" >Share</button></td>
+                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>". $this->showShareButton() . "</td>
                             </tr>
                         </tbody></table>
                     </td>
@@ -68,8 +69,9 @@ class FFXIPackageHelper_HTMLTabDropRates {
         $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" >";
         $zoneNamesList = $this->zoneNameList();
         foreach ($zoneNamesList as $key => $value) {
-            //print_r($key . $value);
-            $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+           // print_r($key . $value);
+            if ( $this->zoneName != "" && $this->zoneName == $key )$html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
+            else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
         }
 
         $html .= "</select>";
@@ -81,9 +83,25 @@ class FFXIPackageHelper_HTMLTabDropRates {
         //     <input type="checkbox" checked="checked">
         //     <span class="checkmark"></span>
         // </label>
-        $html = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxShowTH\" type=\"checkbox\"> Show TH Rates</label><br>";
-        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxBCNM\" type=\"checkbox\"> Include BCNMs</label><br>";
-        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxExcludeNM\" type=\"checkbox\"> Exclude NMs</label>";
+
+        // $this->showBCNMdrops = $query[4];
+        //     $this->excludeNMs = $query[5];
+        //     $this->levelRangeMIN = $query[6];
+        //     $this->levelRangeMAX = $query[7];
+        //     $this->thRatesCheck = $query[8];
+        $html = "";
+
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxShowTH\" type=\"checkbox\"";
+        if ( $this->thRatesCheck == 1 ) $html .= "checked=\"checked\"";
+        $html .= "> Show TH Rates</label><br>";
+
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxBCNM\" type=\"checkbox\"";
+        if ( $this->showBCNMdrops == 1 ) $html .= "checked=\"checked\"";
+        $html .= "> Include BCNMs</label><br>";
+
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxExcludeNM\" type=\"checkbox\"";
+        if ( $this->excludeNMs == 1 ) $html .= "checked=\"checked\"";
+        $html .= "> Exclude NMs</label><br>";
 
         return $html;
     }
@@ -98,6 +116,11 @@ class FFXIPackageHelper_HTMLTabDropRates {
         }
         $html .= "</select>";
         return $html;
+    }
+
+    private function showShareButton(){
+        if ( $this->zoneName != "" ) return FFXIPackageHelper_HTMLTableHelper::shareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
+        else return "";
     }
 }
 
