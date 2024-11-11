@@ -25,10 +25,10 @@ function onReady(){
       submitDropRatesRequest();
     });
 
-    const searchRecipeSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchRecipeSubmit");
-    searchRecipeSubmit.addEventListener("click", function (e) {
-      submitRecipeRequest();
-    });
+    // const searchRecipeSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchRecipeSubmit");
+    // searchRecipeSubmit.addEventListener("click", function (e) {
+    //   submitRecipeRequest();
+    // });
 
     const shareDropRateQuery = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
     shareDropRateQuery.addEventListener("click", function (e) {
