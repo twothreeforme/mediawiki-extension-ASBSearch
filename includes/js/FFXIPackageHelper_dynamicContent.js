@@ -158,6 +158,11 @@ function validDropRateQuery(params){
   else return true;
 }
 
+function validRecipesQuery(params){
+  if( params['recipename'] == "" && params['ingredient'] == "" && params['craft'] == "" )return false;
+  else return true;
+}
+
 function submitDropRatesRequest(){
   const params = getDropRateQueryParams();
 
@@ -190,8 +195,9 @@ function getRecipesQueryParams(){
 function submitRecipeRequest(){
   const params = getRecipesQueryParams();
 
-  if ( params['craft'] == "none" && params['recipe'] == "" && params['ingr'] == "") {
-    document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "<p style=\"color:red;\">Either Recipe Name, Ingredient, or Craft are required to search.</p>";
+  if ( validRecipesQuery(params) == false) {
+    //document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "<p style=\"color:red;\">Either Recipe Name, Ingredient, or Craft are required to search.</p>";
+    mw.notify( 'Either Recipe Name, Ingredient, or Craft are required to search', { autoHide: true,  type: 'error' } );
     return;
   }
 

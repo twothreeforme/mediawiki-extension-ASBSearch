@@ -624,8 +624,9 @@ class DBConnection {
         // }
 
         // DEBUGGING
-        //return $query; }
+        //return $query;
         /////////////
+
         $recipesQueryResult = $dbr->newSelectQueryBuilder()
 			->select( [ '*' ] )
 			->from( 'synth_recipes' )
