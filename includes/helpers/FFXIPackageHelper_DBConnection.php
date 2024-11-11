@@ -560,15 +560,16 @@ class DBConnection {
             $ingr = [];
             $ingr = $this->getItemIDsFromDB($dbr, $ingredient );
 
-            $q = [ $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
+            $q = $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
                                             'synth_recipes.Ingredient2' => $ingr ,
                                             'synth_recipes.Ingredient3' => $ingr ,
                                             'synth_recipes.Ingredient4' => $ingr ,
                                             'synth_recipes.Ingredient5' => $ingr ,
                                             'synth_recipes.Ingredient6' => $ingr ,
                                             'synth_recipes.Ingredient7' => $ingr ,
-                                            'synth_recipes.Ingredient8' => $ingr ],
-                                            $dbr::LIST_OR)];
+                                            'synth_recipes.Ingredient8' => $ingr
+                                        ],
+                                        $dbr::LIST_OR);
             array_push ( $query, $q);
         }
 

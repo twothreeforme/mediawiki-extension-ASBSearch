@@ -44,8 +44,9 @@ class APIModuleRecipeSearch extends ApiBase {
 
         // USE THIS ONE
         $initialQuery = $db->getRecipes($queryData);
+
         //return $initialQuery;
-       // $recipesQuery = $dm->parseRecipes($initialQuery);
+        //$recipesQuery = $dm->parseRecipes($initialQuery);
         //$recipesQuery = $this->getRecipes($queryData);
 
         $html = "";
