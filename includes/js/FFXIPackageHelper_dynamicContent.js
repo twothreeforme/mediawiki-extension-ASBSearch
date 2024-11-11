@@ -7,6 +7,7 @@ function onReady(){
     tabsButton_droprates.addEventListener("click", function (e) {
         showTab(e,tabsButton_droprates.id);
       });
+    // set the current tab to be "Drop Rates"
     tabsButton_droprates.click(); 
 
     const tabsButton_recipes = document.getElementById("FFXIPackageHelper_tabs_recipes");
@@ -31,7 +32,7 @@ function onReady(){
 
     const shareDropRateQuery = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
     shareDropRateQuery.addEventListener("click", function (e) {
-      
+      shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareDropRateQuery", getDropRateQueryParams());
     });
 
 
@@ -104,7 +105,7 @@ function onReady(){
     });
 
 
-    //document.getElementById("initialHide").style.display = "block";
+    document.getElementById("initialHide").style.display = "block";
 }
 
 
@@ -138,48 +139,58 @@ function showTab(evt, cityName) { //https://www.w3schools.com/howto/howto_js_tab
     evt.currentTarget.className += " active";
   } 
 
+function getDropRateQueryParams(){
+  return {
+    action: "dropratesearch",
+    mobname: document.querySelectorAll('input[name=mobNameSearch]')[0].value,
+    itemname: document.querySelectorAll('input[name=itemNameSearch]')[0].value,
+    zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value,
+    lvlmin: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value,
+    lvlmax: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value,
+    showth: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0,
+    bcnm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0,
+    excludenm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0
+  };
+}
+
+function validDropRateQuery(params){
+  if( params['mobname'] == "" && params['itemname'] == "" && params['zonename'] == "searchallzones" )return false;
+  else return true;
+}
+
 function submitDropRatesRequest(){
-  const cb_mobname = document.querySelectorAll('input[name=mobNameSearch]')[0].value;
-  const cb_itemname = document.querySelectorAll('input[name=itemNameSearch]')[0].value;
-  const cb_zonename = document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value;
-  const cb_lvlMin = document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMIN").value;
-  const cb_lvlMax = document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value;
-  const cb_showth = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0;
-  const cb_bcnm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0;
-  const cb_excludenm = ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0;
+  const params = getDropRateQueryParams();
 
-
-  if( cb_mobname == "" && cb_itemname == "" && cb_zonename == "searchallzones" &&
-    ( ( cb_lvlMin == 0 && cb_lvlMax == 0) || ( cb_lvlMin > cb_lvlMax )) ){
-      document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "<i>*Please use the fields above to query a search.</i>";
+  if( validDropRateQuery(params) == false ){
+      //document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "<i>*Please use the fields above to query a search.</i>";
+      mw.notify( 'Please complete the fields to query a search', { autoHide: true,  type: 'error' } );
       return;
     }
 
-currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
+  currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");
   currentButton.disabled = true;
   document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "Loading query...";
 
-  var params = {
-      action: "dropratesearch",
-      mobname: cb_mobname,
-      itemname: cb_itemname,
-      zonename: cb_zonename,
-      lvlmin: cb_lvlMin,
-      lvlmax: cb_lvlMax,
-      showth: cb_showth,
-      bcnm: cb_bcnm,
-      excludenm: cb_excludenm
-  };
-  //console.log(cb_showth);
   actionAPI(params, "dropratesearch");
 }
 
-function submitRecipeRequest(){
-  const craft = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft").value;
-  const recipe = document.querySelectorAll('input[name=recipeNameSearch]')[0].value;
-  const ingr = document.querySelectorAll('input[name=ingredientSearch]')[0].value;
+function getRecipesQueryParams(){
+  return {
+    action: "recipesearch",
+    craft: document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft").value,
+    recipename: document.querySelectorAll('input[name=recipeNameSearch]')[0].value,
+    ingredient: document.querySelectorAll('input[name=ingredientSearch]')[0].value,
+    crystal: document.getElementById("FFXIPackageHelper_dynamiccontent_selectCrystal").value,
+    skillrank: document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").value,
+    mincraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value,
+    maxcraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value
+  };
+}
 
-  if ( craft == "none" && recipe == "" && ingr == "") {
+function submitRecipeRequest(){
+  const params = getRecipesQueryParams();
+
+  if ( params['craft'] == "none" && params['recipe'] == "" && params['ingr'] == "") {
     document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "<p style=\"color:red;\">Either Recipe Name, Ingredient, or Craft are required to search.</p>";
     return;
   }
@@ -188,16 +199,6 @@ function submitRecipeRequest(){
   currentButton.disabled = true;
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "Loading query...";
 
-  var params = {
-    action: "recipesearch",
-    craft: craft,
-    recipename: recipe,
-    ingredient: ingr,
-    crystal: document.getElementById("FFXIPackageHelper_dynamiccontent_selectCrystal").value,
-    skillrank: document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").value,
-    mincraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value,
-    maxcraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value
-  };
   //console.log(params.crystal);
   actionAPI(params, "recipesearch");
 }
@@ -221,15 +222,22 @@ function updateRecipesFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = updatedHTML;
 }
 
-function copyURLToClipboard() {
-    
-	url = document.location.href;
-
-    navigator.clipboard.writeText(url).then(function() {
-        console.log('copyURLToClipboard(): Copied!');
-        mw.notify( 'Copied to Clipboard !', { autoHide: true,  type: 'warn' } ); 
-    }, function() {
-    	mw.notify( 'Error copying to clipboard. Please report on our Discord.', { autoHide: true,  type: 'error' } ); 
-        console.log('copyURLToClipboard(): Copy error');
-    });
+function shareQueryClicked(shareID, params) {
+  var GETparams = "";
+  if ( shareID == "FFXIPackageHelper_dynamiccontent_shareDropRateQuery" && validDropRateQuery(params) == true ){
+      GETparams = "mobNameSearch=" + params['mobname'] + "&itemNameSearch=" + params['itemname'] + "&zoneNameDropDown=" + params['zonename'] + "&levelRangeMIN=" + params['lvlmin'] + "&levelRangeMAX=" + params['lvlmax'] + "&thRatesCheck=" + params['showth'] + "&showBCNMdrops=" + params['bcnm'] + "&excludeNMs=" + + params['excludenm'];
+  }
+  else {
+    mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
+    return;
+  }
+  var url = window.location.href.split('?')[0] + "?" + GETparams;
+  //console.log(url);
+  navigator.clipboard.writeText(url).then(function() {
+      //console.log('copyURLToClipboard(): Copied!');
+      mw.notify( 'Copied to Clipboard !', { autoHide: true,  type: 'warn' } );
+  }, function() {
+    mw.notify( 'Error copying to clipboard. Please report on our Discord.', { autoHide: true,  type: 'error' } );
+    //console.log('Clipboard error');
+  });
   };

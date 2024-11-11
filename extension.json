@@ -27,7 +27,6 @@
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
         "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
-        "FFXIPackageHelper_HTMLTabController": "includes/Tabs/FFXIPackageHelper_HTMLTabController.php",
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php"
@@ -53,8 +52,7 @@
         ],
         "ParserFirstCallInit": [
             "ZoneForecast::onParserInit",
-            "FFXIPackageHelper_Equipsets::onParserInit",
-            "FFXIPackageHelper_HTMLTabController::onParserInit"
+            "FFXIPackageHelper_Equipsets::onParserInit"
         ]
     },
 	"ResourceModules": {

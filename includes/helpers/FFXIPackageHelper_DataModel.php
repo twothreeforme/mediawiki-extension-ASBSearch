@@ -89,7 +89,7 @@ class DataModel {
 					'items' => array(
 						$_item
 					)));
-			print_r($_item['name'] . "<br>");
+			//print_r($_item['name'] . "<br>");
 			//print_r($row->mobName ."-" . $r_mobType ."...");
 
 			// it doenst exist, so create new entry

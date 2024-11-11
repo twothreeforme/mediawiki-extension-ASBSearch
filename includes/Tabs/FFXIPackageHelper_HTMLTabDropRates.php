@@ -3,7 +3,7 @@
 
 class FFXIPackageHelper_HTMLTabDropRates {
 
-        //private $query_limit;
+        private $query_limit;
         private $mobName;
         private $itemName;
         private $zoneName;
@@ -15,7 +15,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     public function __construct( $query) {
         if ( gettype($query) == 'array'){
-            //$this->query_limit = $query[0];
+            $this->query_limit = $query[0];
             $this->mobName = $query[1];
             $this->itemName = $query[2];
             $this->zoneName = $query[3];
@@ -29,7 +29,8 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_droprates_searchForm\">" .
-                    "<table><tbody><tr><td>
+                    "<table><tbody>
+                    <tr><td>
                         <table><tbody>
                         <tr>
                             <td>Mob/BCNM Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
@@ -38,13 +39,13 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             <td>Item Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" value=\"$this->itemName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>". $this->showShareButton() . "</td>
+                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
                             </tr>
                         </tbody></table>
-                    </td>
-                        <td>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br>" . $this->selectionOptions() . "</td>
+                        </td>
+                        <td style=\"vertical-align:top;\">".$this->showShareButton()."<br><br>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br><br>" . $this->selectionOptions() . "</td>
                     </tr></tbody></table>
-                    <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\"></div>
+                    <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\">". $this->postQueryResults() ."</div>
                 </div>";
         return $html;
     }
@@ -70,7 +71,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
         $zoneNamesList = $this->zoneNameList();
         foreach ($zoneNamesList as $key => $value) {
            // print_r($key . $value);
-            if ( $this->zoneName != "" && $this->zoneName == $key )$html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
+            if ( $this->zoneName != "" && $this->zoneName == $key ) $html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
             else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
         }
 
@@ -79,16 +80,6 @@ class FFXIPackageHelper_HTMLTabDropRates {
     }
 
     private function selectionOptions(){
-        // <label class="container">One
-        //     <input type="checkbox" checked="checked">
-        //     <span class="checkmark"></span>
-        // </label>
-
-        // $this->showBCNMdrops = $query[4];
-        //     $this->excludeNMs = $query[5];
-        //     $this->levelRangeMIN = $query[6];
-        //     $this->levelRangeMAX = $query[7];
-        //     $this->thRatesCheck = $query[8];
         $html = "";
 
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxShowTH\" type=\"checkbox\"";
@@ -119,8 +110,27 @@ class FFXIPackageHelper_HTMLTabDropRates {
     }
 
     private function showShareButton(){
-        if ( $this->zoneName != "" ) return FFXIPackageHelper_HTMLTableHelper::shareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
-        else return "";
+        return FFXIPackageHelper_HTMLTableHelper::shareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
+
+    }
+
+    private function postQueryResults(){
+        if ( $this->mobName != "" || $this->itemName != "" || $this->zoneName != "") {
+
+            $html = FFXIPackageHelper_QueryController::queryDropRates([
+                $this->query_limit,
+                $this->mobName,
+                $this->itemName,
+                $this->zoneName,
+                $this->showBCNMdrops,
+                $this->excludeNMs,
+                $this->levelRangeMIN,
+                $this->levelRangeMAX,
+                $this->thRatesCheck
+                ]);
+            return ParserHelper::wikiParse($html);
+        }
+        return "";
     }
 }
 

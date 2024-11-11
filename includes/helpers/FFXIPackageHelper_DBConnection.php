@@ -365,14 +365,18 @@ class DBConnection {
 
 		$query = [ 
 			//"zone_settings.name" => $zoneNameSearch,
-			"mob_groups.name LIKE '%$mobNameSearch%'",
-			"item_basic.name LIKE '%$itemNameSearch%'",
 			"mob_droplist.dropid != 0 ",
             "mob_droplist.dropType != 4",  // removing DESPOIL - as its OOE
 			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
 			//"mob_groups.content_tag IS NULL ",
 		];
 
+        if ( $mobNameSearch !=  '' ) {
+			array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
+		}
+        if ( $itemNameSearch !=  '' ) {
+			array_push($query, "item_basic.name LIKE '%$itemNameSearch%'");
+		}
 			//up_property = 'enotifwatchlistpages'
 		if ( $zoneNameSearch !=  'searchallzones' ) {
 			$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
@@ -390,6 +394,7 @@ class DBConnection {
 		if ( $levelRangeMAX > 0){
 			array_push($query, "mob_groups.maxLevel <= '$levelRangeMAX'");
 		}
+
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 

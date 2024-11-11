@@ -224,19 +224,6 @@ class FFXIPackageHelper_HTMLTableHelper {
 	}
 
 
-	// public static function tableHeader_RecipesQuery(){
-	// 	$html = "<br>
-	// 	<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</div>
-	// 	<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-	// 	<table id=\"asbsearch_dropstable\" class=\"sortable\">
-	// 		<tr><th>Item</th>
-	// 		<th>Crystal</th>
-	// 		<th>Ingredients</th>
-	// 		<th>HQ</th></tr>
-	// 		";
-	// 	return $html;
-    // }
-
 	public static function table_RecipesQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
@@ -305,7 +292,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 */
 			$name = $parse->getItemName($row->Result);
 			if ( $row->ResultQty > 1 ) $name .= " (x" . $row->ResultQty . ")";
-			$html .= "<td><center>". $name ;
+			$html .= "<td style=\"margin:auto auto; justify-content:center;\"> ". $name ;
 			
 			if ( $row->ResultHQ1 == $row->ResultHQ2 && $row->ResultHQ2 == $row->ResultHQ3 &&
 				$row->ResultHQ1Qty == $row->ResultHQ2Qty && $row->ResultHQ2Qty == $row->ResultHQ3Qty) {
@@ -320,7 +307,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$html .= "<br>HQ3: " . $parse->getItemName($row->ResultHQ3);
 				if ( $row->ResultHQ3Qty != "1" ) $html .= " (x" . $row->ResultHQ3Qty . ")";
 			}
-			$html .= "</center></td>";
+			$html .= "</td>";
 			/**
 			 * End of Synth
 			 */

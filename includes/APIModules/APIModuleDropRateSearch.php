@@ -38,60 +38,16 @@ class APIModuleDropRateSearch extends ApiBase {
                         $params['showth']
                      ];
 
-        $finalHtml = $this->queryDropRates($queryData);
+        //$finalHtml = $this->queryDropRates($queryData);
+        //$finalHtml = ParserHelper::wikiParse($finalHtml);
+
+        $finalHtml = FFXIPackageHelper_QueryController::queryDropRates($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
+
         $result->addValue($params['action'], $params['querytype'], $finalHtml);
         //$result->addValue($params['action'], $params['querytype'], $queryData[8]);
     }
 
-    private function queryDropRates($queryData){
-        $showTH = intval($queryData[8]);
-        $showBCNMdrops = intval($queryData[4]);
-
-        $dm = new DataModel();
-        $db = new DBConnection();
-
-        $mobDropRatesData = $db->getDropRates($queryData); 
-        $dm->parseData($mobDropRatesData);
-        if ( $showBCNMdrops == 1) {
-            $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
-            $dm->parseData($bcnmDropRatesData);
-        }
-        
-        $dropRatesArray = $dm->getDataSet();
-
-		$html = "";
-		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
-
-		/************************
-		 * Row counter
-		 */
-		$totalRows = -1;
-		
-		foreach ($dropRatesArray as $row) // test total records query'd
-		{
-			//print_r("row: " .$row['mobName']);
-			if ( $totalRows < 0 ) $totalRows = 0;
-			foreach($row['dropData']['items'] as $item ){
-				$totalRows ++;
-				// if ( $totalRows > $this->query_limit){
-				// 	return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-				// 		Please reduce search pool by adding more to any of the search parameters.</i></b>";
-				// }
-			}
-		}
-
-		if ( $totalRows >= 0 ) {  
-			if ( $totalRows == $queryData[0] ) $html .= "<i><b> $totalRows records (items) found, which is the search limit. Narrow search parameters.</i></b>";
-			else $html .= "<i><b> $totalRows records (items) found.</i></b>";
-            
-            $html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
-		}
-
-		$html .= '</table></div>';
-
-		return $html;
-	}
 
 }
 ?>

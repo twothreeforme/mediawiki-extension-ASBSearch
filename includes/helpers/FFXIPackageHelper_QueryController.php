@@ -3,19 +3,20 @@
 class FFXIPackageHelper_QueryController {
 
 
+    // public static function queryDropRates($queryData){
+    //     $finalHtml = FFXIPackageHelper_QueryController::buildDropRates($queryData);
+    //     return ParserHelper::wikiParse($finalHtml);
+    // }
+
     public static function queryDropRates($queryData){
-        $finalHtml = FFXIPackageHelper_QueryController::buildDropRates($queryData);
-        return ParserHelper::wikiParse($finalHtml);
-    }
-    
-    public static function buildDropRates($queryData){
         $showTH = intval($queryData[8]);
         $showBCNMdrops = intval($queryData[4]);
 
         $dm = new DataModel();
         $db = new DBConnection();
 
-        $mobDropRatesData = $db->getDropRates($queryData); 
+        $mobDropRatesData = $db->getDropRates($queryData);
+
         $dm->parseData($mobDropRatesData);
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output

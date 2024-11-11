@@ -25,8 +25,6 @@ class SpecialASBSearch extends SpecialPage {
 		$output = $this->getOutput();
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 
-		$db = new DBConnection();
-
 		// # Get request data 
 		$levelRangeMIN =  (int)$request->getText( 'levelRangeMIN' );
 		//$levelRangeMIN = isset($levelRangeMIN) ? $levelRangeMIN : 0;
@@ -51,11 +49,13 @@ class SpecialASBSearch extends SpecialPage {
 					//do nothing
 		}
 		else {
+			if ( $zoneNameDropDown != "searchallzones") $zoneNameDropDown = ucfirst($zoneNameDropDown);
+
 			$queryDataDR = [
 				$this->queryLimit,
 				$mobNameSearch,
 				$itemNameSearch,
-				ucfirst($zoneNameDropDown),
+				$zoneNameDropDown,
 				$showBCNMdrops,
 				$excludeNMs,
 				$levelRangeMIN,
@@ -63,18 +63,18 @@ class SpecialASBSearch extends SpecialPage {
 				$thRatesCheck
 			];
 		}
-		print_r($queryDataDR);
+		//print_r($queryDataDR);
 
         $tabs = new FFXIPackageHelper_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
         $tabEquipsets = new FFXIPackageHelper_Equipsets();
 
-        $html = "<div id=\"initialHide\">" . 
+        $html = "<div id=\"initialHide\" style=\"display: none;\">" .
                 $tabs->header() . 
                 $tabs->tab1($tabDropRates->searchForm()) .
                 $tabs->tab2($tabRecipes->searchForm()) .
-                //$tabs->tab3($tabEquipsets->equipsets()) .
+                $tabs->tab3($tabEquipsets->equipsets()) .
                 "</div>";
 
 		$output->addHTML( $html );
