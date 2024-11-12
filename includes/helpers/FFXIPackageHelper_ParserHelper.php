@@ -18,7 +18,7 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $mobChanges){
+    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $mobChanges, $bcnmChanges){
 		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
@@ -28,6 +28,7 @@ class ParserHelper {
 
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
+        $mobName = str_replace(" Of ", " of ", $mobName);
 
 		// print_r($mobName ."-". $mobType ."...");
 
@@ -42,6 +43,8 @@ class ParserHelper {
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else if ( $mobType == 2 || $mobType == 16 || $mobType == 18 ) return "[NM] " . $mobName;
 		
+        if ($bcnmChanges == 1) $mobName = " {{changes}}" . $mobName;
+
 		return $mobName;
 	}
 
@@ -56,6 +59,7 @@ class ParserHelper {
 		//adjust item names
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
+        $itemName = str_replace(" Of ", " of ", $itemName);
 
 		//if item is on OOE list
 		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
@@ -70,6 +74,7 @@ class ParserHelper {
         //adjust item names
 		$name = self::replaceUnderscores($name);
 		$name = ucwords($name);
+        $name = str_replace(" Of ", " of ", $name);
         return $name;
     }
 
@@ -78,19 +83,13 @@ class ParserHelper {
      * Zone related parsing
      */
     public static function zoneName($zone){
-        $bcnmChanges = 0;
-        $zonename = "";
-        if (gettype($zone) == 'array'){
-            $bcnmChanges = $zone[1];
-            $zonename = $zone[0];
-        }
-        else $zonename = $zone;
 
-		$zone = ParserHelper::replaceUnderscores($zonename);
-		$zone = str_replace("[S]", "(S)", $zonename);
-		$zone = str_replace("-", " - ", $zonename);
-        if ( $bcnmChanges == 1 )  return " {{changes}}[[$zone]] ";
-		else return " [[$zone]] ";
+		$zone = ParserHelper::replaceUnderscores($zone);
+		$zone = str_replace("[S]", "(S)", $zone);
+		$zone = str_replace("-", " - ", $zone);
+        $zone = str_replace(" Of ", " of ", $zone);
+
+		return " [[$zone]] ";
 	}
 
     public static function zoneERA_forList($zone){
@@ -101,6 +100,7 @@ class ParserHelper {
         if ( ExclusionsHelper::zoneIsOOE($zone) ) return NULL;
 
 		$zone = str_replace("-", " - ", $zone);
+        $zone = str_replace(" Of ", " of ", $zone);
 
 		return $zone;
 	}
@@ -146,6 +146,9 @@ class ParserHelper {
 		return str_replace("_", " ", $inputStr);
 	}
 
+	// public static function replaceOf($inputStr){
+	// 	return str_replace(" Of ", " of ", $inputStr);
+	// }
 
 
 	public static function getWeatherHex($arr, $vanaDay){

@@ -102,11 +102,9 @@ class FFXIPackageHelper_HTMLTableHelper {
 				if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
 				else $mobChanges = 0;
 
-				$zn = ParserHelper::zoneName($row['zoneName'], $row['bcnmChanges']);
-				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges); //need to readdress this later
+				$zn = ParserHelper::zoneName($row['zoneName']);
+				$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges, $row['bcnmChanges']); //need to readdress this later
 				
-
-
 				$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
 				/*******************************************************/
 
