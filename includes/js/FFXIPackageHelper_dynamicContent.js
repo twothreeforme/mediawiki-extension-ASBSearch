@@ -25,6 +25,22 @@ function onReady(){
       submitDropRatesRequest();
     });
 
+    const mobName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=mobNameSearch]')[0];
+    mobName_enterKeysearchDropRatesSubmit.addEventListener("keyup", function(e) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        submitDropRatesRequest();
+      }
+    });
+
+    const itemName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=itemNameSearch]')[0];
+    itemName_enterKeysearchDropRatesSubmit.addEventListener("keyup", function(e) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        submitDropRatesRequest();
+      }
+    });
+
     const shareDropRateQuery = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
     shareDropRateQuery.addEventListener("click", function (e) {
       shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareDropRateQuery", getDropRateQueryParams());
@@ -34,6 +50,23 @@ function onReady(){
     searchRecipeSubmit.addEventListener("click", function (e) {
       submitRecipeRequest();
     });
+
+    const recipeName_enterKeysearchRecipesSubmit = document.querySelectorAll('input[name=recipeNameSearch]')[0];
+    recipeName_enterKeysearchRecipesSubmit.addEventListener("keyup", function(e) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        submitRecipeRequest();
+      }
+    });
+
+    const ingredient_enterKeysearchRecipesSubmit = document.querySelectorAll('input[name=ingredientSearch]')[0];
+    ingredient_enterKeysearchRecipesSubmit.addEventListener("keyup", function(e) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        submitRecipeRequest();
+      }
+    });
+
 
     const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft");
     inputElement.addEventListener("change", (event) => {
