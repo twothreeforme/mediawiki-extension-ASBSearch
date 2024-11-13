@@ -355,6 +355,7 @@ class DBConnection {
         $excludeNMs = intval($queryData[5]);
         $levelRangeMIN = intval($queryData[6]);
         $levelRangeMAX = intval($queryData[7]);
+        $includeSteal = intval($queryData[9]);
 
 		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
@@ -366,7 +367,7 @@ class DBConnection {
 		$query = [ 
 			//"zone_settings.name" => $zoneNameSearch,
 			"mob_droplist.dropid != 0 ",
-            "mob_droplist.dropType != 4",  // removing DESPOIL - as its OOE
+            //"mob_droplist.dropType != 4",  // removing DESPOIL - as its OOE
 			"( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
 			//"mob_groups.content_tag IS NULL ",
 		];
@@ -394,6 +395,10 @@ class DBConnection {
 		if ( $levelRangeMAX > 0){
 			array_push($query, "mob_groups.maxLevel <= '$levelRangeMAX'");
 		}
+        if ( $includeSteal == 1 ){
+			array_push($query, "mob_droplist.dropType <= 2"); // steal = 2
+		}
+        else array_push($query, "mob_droplist.dropType = 0"); // all other drops = 0
 
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()

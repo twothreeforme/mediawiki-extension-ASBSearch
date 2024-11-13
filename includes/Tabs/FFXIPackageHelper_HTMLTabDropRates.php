@@ -12,6 +12,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
         private $levelRangeMIN;
         private $levelRangeMAX;
         private $thRatesCheck;
+        private $includeSteal;
 
     public function __construct( $query) {
         if ( gettype($query) == 'array'){
@@ -24,6 +25,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
             $this->levelRangeMIN = $query[6];
             $this->levelRangeMAX = $query[7];
             $this->thRatesCheck = $query[8];
+            $this->includeSteal = $query[9];
         }
     }
 
@@ -94,6 +96,10 @@ class FFXIPackageHelper_HTMLTabDropRates {
         if ( $this->excludeNMs == 1 ) $html .= "checked=\"checked\"";
         $html .= "> Exclude NMs</label><br>";
 
+        $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxIncludeSteal\" type=\"checkbox\"";
+        if ( $this->includeSteal == 1 ) $html .= "checked=\"checked\"";
+        $html .= "> Include 'Steal'</label><br>";
+
         return $html;
     }
 
@@ -126,7 +132,8 @@ class FFXIPackageHelper_HTMLTabDropRates {
                 $this->excludeNMs,
                 $this->levelRangeMIN,
                 $this->levelRangeMAX,
-                $this->thRatesCheck
+                $this->thRatesCheck,
+                $this->includeSteal
                 ]);
             return ParserHelper::wikiParse($html);
         }

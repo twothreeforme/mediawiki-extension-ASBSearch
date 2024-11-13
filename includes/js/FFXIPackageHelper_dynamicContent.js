@@ -180,7 +180,8 @@ function getDropRateQueryParams(){
     lvlmax: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMAX").value,
     showth: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0,
     bcnm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0,
-    excludenm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0
+    excludenm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0,
+    includesteal: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxIncludeSteal").checked  ) ? 1 : 0
   };
 }
 
@@ -264,7 +265,7 @@ function updateRecipesFromQuery(updatedHTML){
 function shareQueryClicked(shareID, params) {
   var GETparams = "";
   if ( shareID == "FFXIPackageHelper_dynamiccontent_shareDropRateQuery" && validDropRateQuery(params) == true ){
-      GETparams = "mobNameSearch=" + params['mobname'] + "&itemNameSearch=" + params['itemname'] + "&zoneNameDropDown=" + params['zonename'] + "&levelRangeMIN=" + params['lvlmin'] + "&levelRangeMAX=" + params['lvlmax'] + "&thRatesCheck=" + params['showth'] + "&showBCNMdrops=" + params['bcnm'] + "&excludeNMs=" + + params['excludenm'];
+      GETparams = "mobNameSearch=" + params['mobname'] + "&itemNameSearch=" + params['itemname'] + "&zoneNameDropDown=" + params['zonename'] + "&levelRangeMIN=" + params['lvlmin'] + "&levelRangeMAX=" + params['lvlmax'] + "&thRatesCheck=" + params['showth'] + "&showBCNMdrops=" + params['bcnm'] + "&excludeNMs=" + params['excludenm'] + "&includeSteal=" + params['includesteal'];
   }
   else {
     mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );

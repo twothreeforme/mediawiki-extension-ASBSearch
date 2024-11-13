@@ -19,7 +19,8 @@ class APIModuleDropRateSearch extends ApiBase {
             'excludenm' => "0",
             'lvlmin' => "0",
             'lvlmax' => "0",
-            'showth' => "0"
+            'showth' => "0",
+            'includesteal' => "0"
     		];
 	}
 
@@ -35,7 +36,8 @@ class APIModuleDropRateSearch extends ApiBase {
                         $params['excludenm'],
                         $params['lvlmin'], 
                         $params['lvlmax'], 
-                        $params['showth']
+                        $params['showth'],
+                        $params['includesteal'],
                      ];
 
         //$finalHtml = $this->queryDropRates($queryData);
