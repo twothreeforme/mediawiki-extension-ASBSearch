@@ -131,6 +131,7 @@ Drop Rates table
 #asbsearch_dropstable {
     position: relative;
     width: 100%;
+    font-size: 13px;
 }
 
 #asbsearch_dropstable th {
@@ -156,6 +157,7 @@ Recipes table
 #asbsearch_recipestable {
     position: relative;
     width: 100%;
+    font-size: 13px;
 }
 
 #asbsearch_recipestable th {

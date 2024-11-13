@@ -276,7 +276,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			if ( $row->Wood != "0" ) $html .= "[[Woodworking]](". $row->Wood . ")<br>";
 			if ( $row->Smith != "0" ) $html .= "[[Smithing]](". $row->Smith . ")<br>";
 			if ( $row->Gold != "0" ) $html .= "[[Goldsmithing]](". $row->Gold . ")<br>";
-			if ( $row->Cloth != "0" ) $html .= "[[Clothcraft]](". $row->Cloth . ")<br>";
+			if ( $row->Cloth != "0" ) $html .= "[[File:ClothcraftIcon.png|33px|link=:Category:Clothcraft|title=Clothcraft]](". $row->Cloth . ")<br>";
 			if ( $row->Leather != "0" ) $html .= "[[Leatherworking]](". $row->Leather . ")<br>";
 			if ( $row->Bone != "0" ) $html .= "[[Bonecraft]](". $row->Bone . ")<br>";
 			if ( $row->Alchemy != "0" ) $html .= "[[Alchemy]](". $row->Alchemy . ")<br>";
