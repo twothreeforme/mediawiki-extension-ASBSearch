@@ -273,14 +273,22 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 *
 			 */
 			$html .= "<tr><td><center>";
-			if ( $row->Wood != "0" ) $html .= "[[Woodworking]](". $row->Wood . ")<br>";
-			if ( $row->Smith != "0" ) $html .= "[[Smithing]](". $row->Smith . ")<br>";
-			if ( $row->Gold != "0" ) $html .= "[[Goldsmithing]](". $row->Gold . ")<br>";
-			if ( $row->Cloth != "0" ) $html .= "[[File:ClothcraftIcon.png|25px|link=:Category:Clothcraft|Clothcraft]](". $row->Cloth . ")<br>";
-			if ( $row->Leather != "0" ) $html .= "[[Leatherworking]](". $row->Leather . ")<br>";
-			if ( $row->Bone != "0" ) $html .= "[[Bonecraft]](". $row->Bone . ")<br>";
-			if ( $row->Alchemy != "0" ) $html .= "[[Alchemy]](". $row->Alchemy . ")<br>";
-			if ( $row->Cook != "0" ) $html .= "[[Cooking]](". $row->Cook . ")<br>";
+			// if ( $row->Wood != "0" ) $html .= "[[Woodworking]](". $row->Wood . ")<br>";
+			// if ( $row->Smith != "0" ) $html .= "[[Smithing]](". $row->Smith . ")<br>";
+			// if ( $row->Gold != "0" ) $html .= "[[Goldsmithing]](". $row->Gold . ")<br>";
+			// if ( $row->Cloth != "0" ) $html .= "[[Clothcraft]](". $row->Cloth . ")<br>";
+			// if ( $row->Leather != "0" ) $html .= "[[Leatherworking]](". $row->Leather . ")<br>";
+			// if ( $row->Bone != "0" ) $html .= "[[Bonecraft]](". $row->Bone . ")<br>";
+			// if ( $row->Alchemy != "0" ) $html .= "[[Alchemy]](". $row->Alchemy . ")<br>";
+			// if ( $row->Cook != "0" ) $html .= "[[Cooking]](". $row->Cook . ")<br>";
+			if ( $row->Wood != "0" ) $html .= "[[File:WoodworkingIcon.png|30px|link=:Category:Woodworking|Woodworking]](". $row->Wood . ")<br>";
+			if ( $row->Smith != "0" ) $html .= "[[File:BlacksmithingIcon.png|30px|link=:Category:Smithing|Smithing]](". $row->Smith . ")<br>";
+			if ( $row->Gold != "0" ) $html .= "[[File:GoldsmithingIcon.png|30px|link=:Category:Goldsmithing|Goldsmithing]](". $row->Gold . ")<br>";
+			if ( $row->Cloth != "0" ) $html .= "[[File:ClothcraftIcon.png|30px|link=:Category:Clothcraft|Clothcraft]](". $row->Cloth . ")<br>";
+			if ( $row->Leather != "0" ) $html .= "[[File:LeathercraftIcon.png|30px|link=:Category:Leathercraft|Leathercraft]](". $row->Leather . ")<br>";
+			if ( $row->Bone != "0" ) $html .= "[[File:BonecraftIcon.png|30px|link=:Category:Bonecraft|Bonecraft]](". $row->Bone . ")<br>";
+			if ( $row->Alchemy != "0" ) $html .= "[[File:AlchemyIcon.png|30px|link=:Category:Alchemy|Alchemy]](". $row->Alchemy . ")<br>";
+			if ( $row->Cook != "0" ) $html .= "[[File:CookingIcon.png|30px|link=:Category:Cooking|Cooking]](". $row->Cook . ")<br>";
 			$html .= "</center></td>";
 
 			/**
