@@ -60,6 +60,8 @@ class ParserHelper {
 		$itemName = self::replaceUnderscores($item['name']);
 		$itemName = ucwords($itemName);
         $itemName = str_replace(" Of ", " of ", $itemName);
+        $itemName = self::cleanStringDetails($itemName);
+        $itemName = self::fixTrailingRomanNumerals($itemName);
 
 		//if item is on OOE list
 		if ( ExclusionsHelper::itemIsOOE($itemName) ) return " <strike>$itemName</strike><sup>(OOE)</sup> ";
@@ -75,9 +77,42 @@ class ParserHelper {
 		$name = self::replaceUnderscores($name);
 		$name = ucwords($name);
         $name = str_replace(" Of ", " of ", $name);
+        $name = self::cleanStringDetails($name);
+        $name = self::fixTrailingRomanNumerals($name);
+
         return $name;
     }
 
+    public static function fixTrailingRomanNumerals($input){
+		$frags = explode(" ", $input);
+
+		for ( $i = 0; $i < count($frags); $i++){
+			$fragmentUC = strtoupper($frags[$i]);
+			//print_r($fragmentUC);
+			//$pattern = '/(.+)\s+[IVXLCDM]+\s*$/';
+			if (preg_match( "/(?!.*([IXCM])(\1{3}))(?!.*([VLD])(\3))^[IVXLCDM]+$/" , $fragmentUC)) {
+				//print_r($fragmentUC . "<br>");
+				$frags[$i] = $fragmentUC;
+			} else {
+				// No Roman numerals found
+			}
+		}
+		return implode(" ", $frags);
+	}
+
+    public static function cleanStringDetails($input){
+		$stats = array( "INT", "MND", "AGI", "STR", "CHR", "VIT", "DEX", " of ");
+		foreach ($stats as $stat) {
+			if ( str_ends_with($input,  strtolower( $stat ) ) ) {
+				$input = substr_replace($input, $stat, strlen($input) - 3, 3);
+			}
+			$pos = strpos($input, " Of ");
+			if ( $pos !== false ){
+				$input = substr_replace($input, " of ", $pos, 4);
+			}
+		}
+		return $input;
+	}
 
     /**************************
      * Zone related parsing
