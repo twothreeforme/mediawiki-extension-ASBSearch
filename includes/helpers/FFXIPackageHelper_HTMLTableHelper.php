@@ -225,7 +225,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_RecipesQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\" class=\"sortable jquery-tablesorter\">
+		<table id=\"asbsearch_recipestable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Skill Lvl</th>
 			<th>Synth</th>
 			<th>Crystal</th>
