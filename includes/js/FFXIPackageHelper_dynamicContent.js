@@ -253,10 +253,12 @@ function actionAPI(params, forTab) {
 
 function updateDropRatesFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = updatedHTML;
+  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_droprates_queryresult'));
 }
 
 function updateRecipesFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = updatedHTML;
+  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_recipeSearch_queryresult'));
 }
 
 function shareQueryClicked(shareID, params) {

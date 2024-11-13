@@ -14,7 +14,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$html .= "<br>
 		<div ><i> All data and probabilities are based on AirSkyBoat. All earth times are based on your local timezone.</i></div>
 		<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%; position: relative; overflow: scroll;\">
-		<table id=\"special-weatherforecast-table\" class=\"horizon-table general-table special-weatherforecast-table  sortable jquery-tablesorter\">
+		<table id=\"special-weatherforecast-table\" class=\"horizon-table general-table special-weatherforecast-table  sortable\">
             <tr><th>Zone Name</th>
 			<th>Vana Days</th>
             <th>Earth Time</th>
@@ -39,7 +39,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
 		<br> <strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these has effected Group drop rates (mainly from BCNMs).</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\" class=\"sortable jquery-tablesorter\">
+		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name <sup>(lvl)</sup></th>
 			<th>Details</th>

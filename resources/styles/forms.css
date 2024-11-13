@@ -124,13 +124,17 @@ Showing equipment stats table
 /*
 Leftover from old ASB page
 */
+
+/*
+Drop Rates table
+*/
 #asbsearch_dropstable {
     position: relative;
     width: 100%;
 }
 
 #asbsearch_dropstable th {
-    background-color: #ffffff;
+    background-color: #ffffff9d;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -145,6 +149,30 @@ Leftover from old ASB page
     background-color:rgba(0, 0, 0, 0) !important;
 }
 
+
+/*
+Recipes table
+*/
+#asbsearch_recipestable {
+    position: relative;
+    width: 100%;
+}
+
+#asbsearch_recipestable th {
+    background-color: #ffffff9d;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+#asbsearch_recipestable tr:nth-child(odd) td{
+    background-color: #12396c30;
+}
+
+#asbsearch_recipestable tr td{
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0) !important;
+}
 
 .asbsearch_LvlSelect td.mw-label {
     text-align: right;
