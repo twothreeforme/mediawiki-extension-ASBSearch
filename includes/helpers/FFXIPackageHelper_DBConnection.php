@@ -398,7 +398,7 @@ class DBConnection {
         if ( $includeSteal == 1 ){
 			array_push($query, "mob_droplist.dropType <= 2"); // steal = 2
 		}
-        else array_push($query, "mob_droplist.dropType = 0"); // all other drops = 0
+        else array_push($query, "mob_droplist.dropType <= 1"); // all other drops = 0
 
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()
