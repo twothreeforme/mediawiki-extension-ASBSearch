@@ -502,6 +502,7 @@ class DBConnection {
         //$skillrank = intval($queryData[4]);
         $mincraftlvl = $queryData[5];
         $maxcraftlvl = $queryData[6];
+        $includeDesynths = $queryData[7];
 
 		$recipename = ParserHelper::replaceSpaces($recipename);
 		$ingredient = ParserHelper::replaceSpaces($ingredient);
@@ -623,6 +624,9 @@ class DBConnection {
                 break;
             default;
         }
+
+        if ( $includeDesynths == 1 ) array_push ( $query, "synth_recipes.Desynth <= 1" );
+        else array_push ( $query, "synth_recipes.Desynth = 0" );
 
         // if ( isset($skillrank) && $skillrank != 0 ){
         //     $high = $skillrank + 9;

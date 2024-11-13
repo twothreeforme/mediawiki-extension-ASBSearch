@@ -86,19 +86,19 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxShowTH\" type=\"checkbox\"";
         if ( $this->thRatesCheck == 1 ) $html .= "checked=\"checked\"";
-        $html .= "> Show TH Rates</label><br>";
+        $html .= "> Show TH Rates</input></label><br>";
 
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxBCNM\" type=\"checkbox\"";
         if ( $this->showBCNMdrops == 1 ) $html .= "checked=\"checked\"";
-        $html .= "> Include BCNMs</label><br>";
+        $html .= "> Include BCNMs</input></label><br>";
 
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxExcludeNM\" type=\"checkbox\"";
         if ( $this->excludeNMs == 1 ) $html .= "checked=\"checked\"";
-        $html .= "> Exclude NMs</label><br>";
+        $html .= "> Exclude NMs</input></label><br>";
 
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxIncludeSteal\" type=\"checkbox\"";
         if ( $this->includeSteal == 1 ) $html .= "checked=\"checked\"";
-        $html .= "> Include 'Steal'</label><br>";
+        $html .= "> Include 'Steal'</input></label><br>";
 
         return $html;
     }

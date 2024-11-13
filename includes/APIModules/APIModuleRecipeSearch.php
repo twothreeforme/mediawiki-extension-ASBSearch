@@ -16,7 +16,8 @@ class APIModuleRecipeSearch extends ApiBase {
             'crystal' => "0",
             'skillrank' => "0",
             'mincraftlvl' => "0",
-            'maxcraftlvl' => "0"
+            'maxcraftlvl' => "0",
+            'includedesynth' => "0"
     		];
 	}
 
@@ -30,7 +31,8 @@ class APIModuleRecipeSearch extends ApiBase {
                         $params['crystal'],
                         $params['skillrank'],
                         $params['mincraftlvl'],
-                        $params['maxcraftlvl']
+                        $params['maxcraftlvl'],
+                        $params['includedesynth']
                      ];
 
         $finalHtml = $this->queryRecipes($queryData);

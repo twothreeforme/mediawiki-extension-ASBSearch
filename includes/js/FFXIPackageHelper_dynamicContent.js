@@ -220,7 +220,8 @@ function getRecipesQueryParams(){
     crystal: document.getElementById("FFXIPackageHelper_dynamiccontent_selectCrystal").value,
     skillrank: document.getElementById("FFXIPackageHelper_dynamiccontent_selectSkillRank").value,
     mincraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl").value,
-    maxcraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value
+    maxcraftlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl").value,
+    includedesynth: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxIncludeDesynths").checked  ) ? 1 : 0
   };
 }
 

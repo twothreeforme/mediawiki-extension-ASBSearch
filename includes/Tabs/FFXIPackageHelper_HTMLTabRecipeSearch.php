@@ -23,7 +23,8 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
                             <td>Craft " . $this->craftDropDown() .
                             "<br>Skill Rank " . $this->skillRankDropDown() .
                             "<br>Min. Craft Level " . $this->craftLvlDropDown("FFXIPackageHelper_dynamiccontent_selectMinCraftLvl") .
-                            "<br>Max. Craft Level " . $this->craftLvlDropDown("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl") . "
+                            "<br>Max. Craft Level " . $this->craftLvlDropDown("FFXIPackageHelper_dynamiccontent_selectMaxCraftLvl") .
+                            "<br><label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxIncludeDesynths\" type=\"checkbox\"> Show Desynths</input></label>
                         </td>
                     </tr></tbody>
                     </table>
