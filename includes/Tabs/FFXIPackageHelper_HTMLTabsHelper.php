@@ -7,7 +7,7 @@ class FFXIPackageHelper_HTMLTabsHelper {
 
     public function header(){
         return "<div class=\"FFXIPackageHelper_tabs\">" . 
-        "<button id=\"FFXIPackageHelper_tabs_droprates\" class=\"tablinks\">Drop Rates</button><button id=\"FFXIPackageHelper_tabs_recipes\" class=\"tablinks\">Recipes</button><button id=\"FFXIPackageHelper_tabs_equipsets\" class=\"tablinks\">Equipsets</button>" .
+        "<button id=\"FFXIPackageHelper_tabs_droprates\" class=\"tablinks\">Drop Rates</button><button id=\"FFXIPackageHelper_tabs_recipes\" class=\"tablinks\">Recipes</button><button id=\"FFXIPackageHelper_tabs_equipsets\" class=\"tablinks\">Equipment</button>" .
         "</div>";
         // "
         // <div id=\"FFXIPackageHelper_tabs_recipes_shown\" class=\"tabcontent\">

@@ -359,6 +359,52 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 		return $finalHtml;
 	}
+
+	public static function table_EquipmentQuery($array){
+		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
+		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
+		<table id=\"asbsearch_equipmenttable\" class=\"horizon-table general-table sortable\">
+			<tr><th>Item Name</th>
+			<th>Jobs</th>
+			<th>Level</th>
+			</tr>
+			";
+		//$parse = new ParserHelper($array[1]);
+		$totalRows = 0;
+		foreach ( $array as $row ) {
+			$html .= "<tr>";
+
+			/**
+			 *
+			 * Item name
+			 *
+			 */
+			$html .= "<td><center>" . $row->name . "</center></td>";
+
+			/**
+			 *
+			 * Job
+			 *
+			 */
+			$html .= "<td><center>" . "fix" . "</center></td>";
+
+			/**
+			 *
+			 * Item level
+			 *
+			 */
+			$html .= "<td><center>" . $row->level . "</center></td>";
+
+			$html .= "</center></tr>";
+			$totalRows ++;
+		}
+
+		//$parse = NULL;
+		$finalHtml = "<i><b> $totalRows records (items) found.</i></b>";
+		if ( $totalRows > 0 ) $finalHtml .= $html;
+
+		return $finalHtml;
+	}
 }
 
 ?>

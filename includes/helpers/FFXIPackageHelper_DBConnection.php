@@ -664,23 +664,30 @@ class DBConnection {
 
     public function getEquipmentFromDB($queryData){
         $dbr = $this->openConnection();
+
+        $equipmentname = $queryData[0];
+        // $job = $queryData[1];
+        $itemlevel = $queryData[2];
+
         // $queryData = [  $params['equipmentname'],
         //                 $params['job'],
         //                 $params['minItemLvl']
         //              ];
 
-        $query = [ "item_equipment.name LIKE 'sash'" ];
+
+        $query = [  "item_equipment.name LIKE '%$equipmentname%'" ];
         // if ( $queryData[0] !=  '' ) {
 		// 	array_push($query, "item_equipment.name LIKE '%$queryData[0]%'");
 		// }
-        // if ( $queryData[2] !=  '0' ) {
-		// 	array_push($query, "item_equipment.level <= '%$queryData[2]%'");
-		// }
+        if ( $itemlevel !=  '0' ) {
+			array_push($query, "item_equipment.level <= '$itemlevel'");
+		}
 
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.name',
                     'item_equipment.level',
-                    'item_equipment.slot'  ] )
+                    // 'item_equipment.slot'
+                    ] )
         ->from( 'item_equipment' )
         ->join( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->orderBy( 'level', 'ASC' )

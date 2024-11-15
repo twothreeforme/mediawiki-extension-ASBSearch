@@ -297,7 +297,7 @@ function updateRecipesFromQuery(updatedHTML){
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_recipeSearch_queryresult'));
 }
 
-function updateRecipesFromQuery(updatedHTML){
+function updateEquipmentFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_equipment_queryresult").innerHTML = updatedHTML;
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_equipment_queryresult'));
 }

@@ -43,13 +43,13 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         $html = "";
 
-		if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
+		//if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
 
 		/************************
 		 * Row counter
 		 */
-        //$html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
-        $html .= $initialQuery;
+        $html .= FFXIPackageHelper_HTMLTableHelper::table_EquipmentQuery($initialQuery);
+       // $html .= $initialQuery;
 		return $html;
 	}
 
