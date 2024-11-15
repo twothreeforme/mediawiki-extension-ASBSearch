@@ -60,6 +60,15 @@ DROP TABLE IF EXISTS `bcnm_info`;
 source bcnm_info.sql;
 \! echo bcnm_info done
 
+\! echo item_equipment
+DROP TABLE IF EXISTS `item_equipment`;
+source item_equipment.sql;
+\! echo item_equipment done
+
+\! echo item_mods
+DROP TABLE IF EXISTS `item_mods`;
+source item_mods.sql;
+\! echo item_mods done
 
 \! echo hxi_changes
 source hxi_changes.sql;
