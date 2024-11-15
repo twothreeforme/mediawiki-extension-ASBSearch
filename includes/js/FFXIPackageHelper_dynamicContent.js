@@ -67,6 +67,10 @@ function onReady(){
       }
     });
 
+    const searchEquipmentSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchEquipmentSubmit");
+    searchEquipmentSubmit.addEventListener("click", function (e) {
+      submitEquipmentRequest();
+    });
 
     const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_selectCraft");
     inputElement.addEventListener("change", (event) => {
@@ -195,6 +199,11 @@ function validRecipesQuery(params){
   else return true;
 }
 
+function validEquipQuery(params){
+  if( params['equipmentname'] == "" && params['job'] == "0" && params['minitemlvl'] == "0" )return false;
+  else return true;
+}
+
 function submitDropRatesRequest(){
   const params = getDropRateQueryParams();
 
@@ -242,12 +251,37 @@ function submitRecipeRequest(){
   actionAPI(params, "recipesearch");
 }
 
+function getEquipQueryParams(){
+  return {
+    action: "equipmentsearch",
+    equipmentname: document.querySelectorAll('input[name=equipmentNameSearch]')[0].value,
+    job: document.getElementById("FFXIPackageHelper_dynamiccontent_selectJob").value,
+    minitemlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinItemLvl").value,
+  };
+}
+
+function submitEquipmentRequest(){
+  const params = getEquipQueryParams();
+
+  if( validEquipQuery(params) == false ){
+      mw.notify( 'Please complete the fields to query a search', { autoHide: true,  type: 'error' } );
+      return;
+    }
+
+  currentButton = document.getElementById("FFXIPackageHelper_dynamiccontent_searchEquipmentSubmit");
+  currentButton.disabled = true;
+  document.getElementById("FFXIPackageHelper_tabs_equipment_queryresult").innerHTML = "Loading query...";
+
+  actionAPI(params, "equipmentsearch");
+}
+
 function actionAPI(params, forTab) {
   console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
       if ( forTab ==  "dropratesearch" ) updateDropRatesFromQuery(d[forTab][0]);
       else if ( forTab ==  "recipesearch" ) updateRecipesFromQuery(d[forTab][0]);
+      else if ( forTab ==  "equipmentsearch" ) updateEquipmentFromQuery(d[forTab][0]);
       currentButton.disabled = false;
       //console.log( d );
   } );
@@ -261,6 +295,11 @@ function updateDropRatesFromQuery(updatedHTML){
 function updateRecipesFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = updatedHTML;
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_recipeSearch_queryresult'));
+}
+
+function updateRecipesFromQuery(updatedHTML){
+  document.getElementById("FFXIPackageHelper_tabs_equipment_queryresult").innerHTML = updatedHTML;
+  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_equipment_queryresult'));
 }
 
 function shareQueryClicked(shareID, params) {

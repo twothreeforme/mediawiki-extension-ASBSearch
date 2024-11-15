@@ -661,6 +661,32 @@ class DBConnection {
             }
             return $returnarray;
     }
+
+    public function getEquipmentFromDB($queryData){
+        $dbr = $this->openConnection();
+        // $queryData = [  $params['equipmentname'],
+        //                 $params['job'],
+        //                 $params['minItemLvl']
+        //              ];
+
+        $query = [ "item_equipment.name LIKE 'sash'" ];
+        // if ( $queryData[0] !=  '' ) {
+		// 	array_push($query, "item_equipment.name LIKE '%$queryData[0]%'");
+		// }
+        // if ( $queryData[2] !=  '0' ) {
+		// 	array_push($query, "item_equipment.level <= '%$queryData[2]%'");
+		// }
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'item_equipment.name',
+                    'item_equipment.level',
+                    'item_equipment.slot'  ] )
+        ->from( 'item_equipment' )
+        ->join( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->orderBy( 'level', 'ASC' )
+        ->where( $query	)
+        ->fetchResultSet();
+    }
 }
 
 ?>

@@ -68,13 +68,15 @@ class SpecialASBSearch extends SpecialPage {
         $tabs = new FFXIPackageHelper_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets();
+		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
+        //$tabEquipsets = new FFXIPackageHelper_Equipsets();
 
         $html = "<div id=\"initialHide\" style=\"display: none;\">" .
                 $tabs->header() . 
                 $tabs->tab1($tabDropRates->searchForm()) .
                 $tabs->tab2($tabRecipes->searchForm()) .
-                $tabs->tab3($tabEquipsets->equipsets()) .
+				$tabs->tab3($tabEquipment->searchForm()) .
+                //$tabs->tab4($tabEquipment->equipsets()) .
                 "</div>";
 
 		$output->addHTML( $html );

@@ -13,6 +13,7 @@
         "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
+        "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
         "FFXIPackageHelper_QueryController": "includes/helpers/FFXIPackageHelper_QueryController.php",
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
@@ -29,7 +30,9 @@
         "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
-        "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php"
+        "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
+        "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php"
+
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",
@@ -95,6 +98,9 @@
 		},
         "recipesearch": {
 			"class": "APIModuleRecipeSearch"
+		},
+        "equipmentsearch": {
+			"class": "APIModuleEquipmentSearch"
 		}
 	},
     "manifest_version": 2,

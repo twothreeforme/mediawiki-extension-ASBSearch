@@ -28,36 +28,59 @@ class FFXIPackageHelper_Equipsets  {
         return true;
 	}
 
-    // public function testForm(){
-    //     $tabs = new HTMLTabsHelper();
-
-    //     $html = "<div id=\"initialHide\">" .
-    //             $tabs->header() .
-    //             $tabs->tab1(null) .
-    //             $tabs->tab2(null) .
-    //             $tabs->tab3($this->equipsets()) .
-    //             "</div>";
-
-    //     return $html;
-
-    //     // <input class="FFXIPackageHelper_dynamiccontent_textinput" type="text" placeholder="Add Head" />
-
-    //     // <div class="d-grid gap-2">
-    //     //     <button class="btn btn-outline-secondary" type="button">Secondary action</button>
-    //     //     <button class="btn btn-primary" type="button">Primary action</button>
-    //     //  </div>
-    // }
-
     public static function showequipset( $input, array $params, Parser $parser, PPFrame $frame ) {
 
         // $parser->getOutput()->updateCacheExpiry(0);
         // $parser->getOutput()->addModules(['FFXIPackageHelper_dynamicContent']);
 
-        // $test = new FFXIPackageHelper_Equipsets();
-        // $html = $test->testForm();
-        $html = "under construction";
+        //$html = searchForm();
+
+        $test = new FFXIPackageHelper_Equipsets();
+        $html = $test->searchForm();
+
+
         return 	$html;
     }
+
+    public function searchForm(){
+        $html = "<div id=\"FFXIPackageHelper_tabs_equipment_searchForm\">" .
+                    "<table><tbody><tr><td>
+                        <tr>
+                            <td>Equipment <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"equipmentNameSearch\" size=\"25\" />
+                        </tr>
+                        <tr>
+                            <td>Job " . $this->jobDropDown() . "
+                            <br>Min. Item Level " . $this->minItemLevel("FFXIPackageHelper_dynamiccontent_selectMinItemLvl") . "</td>
+                        </tr>
+                        <tr>
+                            <td><button id=\"FFXIPackageHelper_dynamiccontent_searchEquipmentSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
+                        </tr>
+                        </td></tr></tbody></table>
+                    <div id=\"FFXIPackageHelper_tabs_recipeSearch_queryresult\"></div>
+                </div>";
+        return $html;
+    }
+
+    private function jobDropDown(){
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectJob\" defaultValue=\"0\">";
+        $html .= "<option value=\"0\">Any</option>";
+        $html .= "<option value=\"1\">Warrior</option>";
+        $html .= "<option value=\"2\">Monk</option>";
+        $html .= "</select>";
+        return $html;
+    }
+
+    private function minItemLevel($classname){
+        $html = "<select id=\"". $classname ."\" >";
+
+        for ($i = 0; $i <= 75; $i++) {
+            if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
+            else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
+        }
+        $html .= "</select>";
+        return $html;
+    }
+
 
     public function equipsets(){
         $html = "<div class=\"FFXIPackageHelper_Equipsets_container\" >
