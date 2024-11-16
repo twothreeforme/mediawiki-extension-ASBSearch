@@ -389,7 +389,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Slot
 			 *
 			 */
-			$html .= "<td><center>[[" . ParserHelper::getSlotLabel($row['slot']) . "]]</center></td>";
+			$html .= "<td><center>" . ParserHelper::getSlotLabel($row['slot']) . "</center></td>";
 			//$html .= "<td><center>" . $row->slot . "</center></td>";
 
 			

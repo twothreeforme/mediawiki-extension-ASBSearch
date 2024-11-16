@@ -428,7 +428,7 @@ class ParserHelper {
 
     public static function jobsFromInt($jobsint){
         $html = "";
-
+        if ( $jobsint == 4194303 ) return " All Jobs ";
         //if ( ParserHelper::checkJob(0, $jobsint) ) $html .= "None";
         for ( $j = 1; $j < count(self::$jobArray); $j++){
             if ( ParserHelper::checkJob($j, $jobsint) ) $html .= " [[". self::$jobArray[$j] ."]]";
@@ -440,6 +440,8 @@ class ParserHelper {
 
     private static function getMSB($n){
         if ($n < 1) return 0;
+        if ($n == 3) return 16; // Common axes/daggers listed as 3
+         
         $r = 0;
         while ($n >>= 1) $r++;
         return $r;
@@ -463,12 +465,14 @@ class ParserHelper {
             case 13: return "Ring1";
             case 14: return "Ring2";
             case 15: return "Back";
+            case 16: return "Main/Sub";
             default: return "None";
         }
     }
 
     public static function getSlotLabel($n){
-        return self:: getSlotLabelFromMSB(self::getMSB($n));
+        $msb = self::getMSB($n);
+        return self:: getSlotLabelFromMSB($msb);
     }
 
     public static $jobArray = array(

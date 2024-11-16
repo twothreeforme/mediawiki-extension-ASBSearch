@@ -662,6 +662,21 @@ class DBConnection {
             return $returnarray;
     }
 
+    private function getItemModsFromDB($db, $name){
+        $items = $db->newSelectQueryBuilder()
+            ->select( [ 'item_basic.name, item_basic.itemid' ] )
+            ->from( 'item_basic' )
+            ->where( "item_basic.name LIKE '%$name%'"	)
+            ->fetchResultSet();
+
+            $returnarray = [];
+            if ( count($items) == 0 || count($items) == NULL) return NULL;
+            foreach ( $items as $row ) {
+                array_push( $returnarray , strval($row->itemid));
+            }
+            return $returnarray;
+    }
+
     public function getEquipmentFromDB($queryData){
         $dbr = $this->openConnection();
 
@@ -709,7 +724,7 @@ class DBConnection {
                     'item_mods.value AS modValue'
                     ] )
         ->from( 'item_equipment' )
-        ->join( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->orderBy( 'level', 'ASC' )
         ->where( $query	)
         ->fetchResultSet();
