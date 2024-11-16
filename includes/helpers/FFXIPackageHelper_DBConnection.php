@@ -725,7 +725,7 @@ class DBConnection {
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
-        ->orderBy( 'level', 'ASC' )
+        ->orderBy( 'level', 'DESC' )
         ->where( $query	)
         ->fetchResultSet();
     }

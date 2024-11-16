@@ -475,6 +475,18 @@ class ParserHelper {
         return self:: getSlotLabelFromMSB($msb);
     }
 
+    public static function shouldShowMod($mod){
+        if ( $mod['name'] == 499 || //ITEM_SUBEFFECT
+        $mod['name'] == 431 || //ITEM_ADDEFFECT_TYPE
+        $mod['name'] == 501 || //ITEM_ADDEFFECT_CHANCE
+        $mod['name'] == 951 || //ITEM_ADDEFFECT_STATUS
+        $mod['name'] == 952 || //ITEM_ADDEFFECT_POWER
+        $mod['name'] == 953 || //ITEM_ADDEFFECT_DURATION
+        $mod['name'] == 1180 //ITEM_ADDEFFECT_OPTION
+        ) return false;
+        return true;
+    }
+
     public static $jobArray = array(
         0 => "NONE",
         1 => "WAR",
@@ -500,6 +512,8 @@ class ParserHelper {
         21 => "GEO",
         22 => "RUN"
     );
+
+
 
     public static $modArray = array(
         0 => "NONE",
