@@ -15,7 +15,7 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
                         <tr>
                             <td>Job " . $this->jobDropDown() . "
                             <br>Slot ". $this->slotTypeDropDown() . "
-                            <br>Min. Item Level " . $this->minItemLevel("FFXIPackageHelper_dynamiccontent_selectMinItemLvl") . "</td>
+                            <br>Max Item Level " . $this->minItemLevel("FFXIPackageHelper_dynamiccontent_selectMinItemLvl") . "</td>
                         </tr>
                         <tr>
                             <td><button id=\"FFXIPackageHelper_dynamiccontent_searchEquipmentSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
