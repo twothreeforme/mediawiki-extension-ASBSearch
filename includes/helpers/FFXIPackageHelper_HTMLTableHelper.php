@@ -365,12 +365,15 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_equipmenttable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Item Name</th>
-			<th>Jobs</th>
-			<th>Level</th>
+			<th class=\"equipmenttable_slot\">Slot</th>
+			<th class=\"equipmenttable_jobs\">Jobs</th>
+			<th class=\"equipmenttable_level\">Level</th>
+			<th>Mods</th>
 			</tr>
 			";
 		//$parse = new ParserHelper($array[1]);
-		$totalRows = 0;
+
+		$totalRows = 0;		
 		foreach ( $array as $row ) {
 			$html .= "<tr>";
 
@@ -379,21 +382,44 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Item name
 			 *
 			 */
-			$html .= "<td><center>" . $row->name . "</center></td>";
+			$html .= "<td><center>[[" . ParserHelper::itemName($row['name']) . "]]</center></td>";
 
+			/**
+			 *
+			 * Slot
+			 *
+			 */
+			$html .= "<td><center>[[" . ParserHelper::getSlotLabel($row['slot']) . "]]</center></td>";
+			//$html .= "<td><center>" . $row->slot . "</center></td>";
+
+			
 			/**
 			 *
 			 * Job
 			 *
 			 */
-			$html .= "<td><center>" . "fix" . "</center></td>";
+			$html .= "<td class=\"equipmenttable_reducedfont\"><center>" . ParserHelper::jobsFromInt($row['jobs']) . "</center></td>";
 
 			/**
 			 *
 			 * Item level
 			 *
 			 */
-			$html .= "<td><center>" . $row->level . "</center></td>";
+			$html .= "<td><center>" . $row['level'] . "</center></td>";
+
+			
+			/**
+			 *
+			 * Mods
+			 *
+			 */
+			$html .= "<td>";
+				for ( $i = 0; $i < count($row['mods']); $i ++){
+					$mod = $row['mods'][$i];
+					$html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
+				}
+			$html .= "</td>"; 
+
 
 			$html .= "</center></tr>";
 			$totalRows ++;

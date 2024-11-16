@@ -257,6 +257,7 @@ function getEquipQueryParams(){
     equipmentname: document.querySelectorAll('input[name=equipmentNameSearch]')[0].value,
     job: document.getElementById("FFXIPackageHelper_dynamiccontent_selectJob").value,
     minitemlvl: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMinItemLvl").value,
+    slot: document.getElementById("FFXIPackageHelper_dynamiccontent_selectSlotType").value,
   };
 }
 

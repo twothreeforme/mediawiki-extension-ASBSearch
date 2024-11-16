@@ -140,7 +140,6 @@ class DataModel {
 	}
 
 
-
 	function parseRecipes($param){
 
         if ( !$param ) return NULL;
@@ -188,7 +187,56 @@ class DataModel {
         return $this->dataset;
     }
 
+	function parseEquipment($param, $job){
+        //print_r($this->dataset);
+        if ( !$param ) return NULL;
+		
+		foreach ( $param as $row ) {
+			// 'item_equipment.name',
+			// 'item_equipment.level',
+			// 'item_equipment.jobs',
+			// 'item_equipment.slot'
+			
+			// $row->name
+			// $row->level
+			// $row->jobs
+			// $row->slot
+			// $row->modid
+			// $row->modValue
 
+			if ( $job != NULL && $job > 0) {
+				if ( !ParserHelper::checkJob($job, $row->jobs) ) continue;
+			}
+
+			$_mod = array(
+				'name' => $row->modid,
+				'value' => $row->modValue
+			);
+
+			$workingRow = array (
+				'name' => $row->name,
+				'level' => $row->level,
+				'jobs' => $row->jobs,
+				'slot' => $row->slot,
+				'mods' => array ( $_mod )
+			);
+
+			// it doenst exist, so create new entry
+			if ( !$this->dataset ) { array_push ( $this->dataset, $workingRow ); continue; }
+			
+			// i think i only need to view the last item in the array
+			// over each iteration
+			// fastest method: $x = array_slice($array, -1)[0];
+			$prev_row = array_slice($this->dataset, -1)[0];
+			if ( $prev_row['name'] != $workingRow['name']) { array_push ( $this->dataset, $workingRow ); continue; }
+
+			$l = array_key_last($this->dataset);
+			array_push ( $this->dataset[$l]['mods'], $_mod );
+
+		}
+
+		return $this->dataset;
+	}
 }
 
 ?>

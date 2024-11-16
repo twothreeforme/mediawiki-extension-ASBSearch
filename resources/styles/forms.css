@@ -175,6 +175,45 @@ Recipes table
     background-color:rgba(0, 0, 0, 0) !important;
 }
 
+/*
+Equipment table
+*/
+#asbsearch_equipmenttable {
+    position: relative;
+    width: 100%;
+    font-size: 13px;
+}
+
+#asbsearch_equipmenttable th.equipmenttable_jobs {
+    width: 15%;
+}
+
+#asbsearch_equipmenttable td.equipmenttable_reducedfont {
+    font-size: 12px;
+}
+
+#asbsearch_equipmenttable th.equipmenttable_slot,
+#asbsearch_equipmenttable th.equipmenttable_level {
+    width: 7%;
+}
+
+#asbsearch_equipmenttable th {
+    background-color: #ffffff9d;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+#asbsearch_equipmenttable tr:nth-child(odd) td{
+    background-color: #12396c30;
+}
+
+#asbsearch_equipmenttable2 {
+    width: 80%;
+    text-align: left;
+}
+
+
 .asbsearch_LvlSelect td.mw-label {
     text-align: right;
 }

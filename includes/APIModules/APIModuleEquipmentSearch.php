@@ -12,7 +12,8 @@ class APIModuleEquipmentSearch extends ApiBase {
             'action' => null,
 			'equipmentname' => "0",
             'job' => "0",
-            'minitemlvl' => "0"
+            'minitemlvl' => "0",
+            'slot' => "0",
     		];
 	}
 
@@ -22,7 +23,8 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         $queryData = [  $params['equipmentname'],
                         $params['job'],
-                        $params['minitemlvl']
+                        $params['minitemlvl'],
+                        $params['slot'],
                      ];
 
         $finalHtml = $this->queryEquipment($queryData);
@@ -36,21 +38,12 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         // USE THIS ONE
         $initialQuery = $db->getEquipmentFromDB($queryData);
-
-        //return $initialQuery;
-        //$recipesQuery = $dm->parseRecipes($initialQuery);
-        //$recipesQuery = $this->getRecipes($queryData);
+        $initialQuery = $dm->parseEquipment($initialQuery, $queryData[1]);
 
         $html = "";
 
-		//if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
-
-		/************************
-		 * Row counter
-		 */
         $html .= FFXIPackageHelper_HTMLTableHelper::table_EquipmentQuery($initialQuery);
-       // $html .= $initialQuery;
-		return $html;
+        return $html;
 	}
 
 }

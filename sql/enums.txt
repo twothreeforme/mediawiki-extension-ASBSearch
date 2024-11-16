@@ -1,28 +1,38 @@
-enum JOBTYPE
+
+(PItem->getJobs() & (1 << (PChar->GetMJob() - 1)))
+
+enum Status: int
 {
-    JOB_NON = 0,
-    JOB_WAR = 1,
-    JOB_MNK = 2,
-    JOB_WHM = 3,
-    JOB_BLM = 4,
-    JOB_RDM = 5,
-    JOB_THF = 6,
-    JOB_PLD = 7,
-    JOB_DRK = 8,
-    JOB_BST = 9,
-    JOB_BRD = 10,
-    JOB_RNG = 11,
-    JOB_SAM = 12,
-    JOB_NIN = 13,
-    JOB_DRG = 14,
-    JOB_SMN = 15,
-    JOB_BLU = 16,
-    JOB_COR = 17,
-    JOB_PUP = 18,
-    JOB_DNC = 19,
-    JOB_SCH = 20,
-    JOB_GEO = 21,
-    JOB_RUN = 22
+    case DRAFT = 1;
+    case PUBLISHED = 2;
+    case ARCHIVED = 3;
+}
+
+enum JOBTYPE: int
+{
+    case JOB_NON = 0;
+    case JOB_WAR = 1;
+    case JOB_MNK = 2;
+    case JOB_WHM = 3;
+    case JOB_BLM = 4;
+    case JOB_RDM = 5;
+    case JOB_THF = 6;
+    case JOB_PLD = 7;
+    case JOB_DRK = 8;
+    case JOB_BST = 9;
+    case JOB_BRD = 10;
+    case JOB_RNG = 11;
+    case JOB_SAM = 12;
+    case JOB_NIN = 13;
+    case JOB_DRG = 14;
+    case JOB_SMN = 15;
+    case JOB_BLU = 16;
+    case JOB_COR = 17;
+    case JOB_PUP = 18;
+    case JOB_DNC = 19;
+    case JOB_SCH = 20;
+    case JOB_GEO = 21;
+    case JOB_RUN = 22;
 };
 
 

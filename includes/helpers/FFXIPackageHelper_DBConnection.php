@@ -667,26 +667,46 @@ class DBConnection {
 
         $equipmentname = $queryData[0];
         // $job = $queryData[1];
-        $itemlevel = $queryData[2];
+        $itemlevel = intval($queryData[2]);
+        $slot = intval($queryData[3]);
 
-        // $queryData = [  $params['equipmentname'],
-        //                 $params['job'],
-        //                 $params['minItemLvl']
-        //              ];
-
+        // main: 1=nothing in offhand, 3= can have offhand
+// sub 2
+// range 4
+// ammo 8
+// head 16
+// neck 512
+// ear 6144
+// body 32
+// hands 64
+// rings 24576
+// back 32768
+// waist 1024
+// legs 128
+// feet 256
 
         $query = [  "item_equipment.name LIKE '%$equipmentname%'" ];
         // if ( $queryData[0] !=  '' ) {
 		// 	array_push($query, "item_equipment.name LIKE '%$queryData[0]%'");
 		// }
         if ( $itemlevel !=  '0' ) {
-			array_push($query, "item_equipment.level <= '$itemlevel'");
+			array_push($query, "item_equipment.level <= $itemlevel");
 		}
+        else array_push($query, "item_equipment.level <= 75");
+
+        if ( $slot != 0 ){
+            if ( $slot == 1){ $q = "( item_equipment.slot = 1 OR item_equipment.slot = 3 )"; }
+            else $q = "item_equipment.slot = '$slot'" ;
+            array_push($query, $q);
+        }
 
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.name',
                     'item_equipment.level',
-                    // 'item_equipment.slot'
+                    'item_equipment.jobs',
+                    'item_equipment.slot',
+                    'item_mods.modId AS modid',
+                    'item_mods.value AS modValue'
                     ] )
         ->from( 'item_equipment' )
         ->join( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
