@@ -416,7 +416,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			$html .= "<td>";
 				for ( $i = 0; $i < count($row['mods']); $i ++){
 					$mod = $row['mods'][$i];
-					$html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
+					if ( $mod['name'] != "" ) $html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
 				}
 			$html .= "</td>"; 
 
