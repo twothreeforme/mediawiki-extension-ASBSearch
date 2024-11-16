@@ -416,7 +416,12 @@ class FFXIPackageHelper_HTMLTableHelper {
 			$html .= "<td>";
 				for ( $i = 0; $i < count($row['mods']); $i ++){
 					$mod = $row['mods'][$i];
-					if ( $mod['name'] != "" && ParserHelper::shouldShowMod($mod) ) $html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
+					if ( $mod['name'] != "" && ParserHelper::shouldShowMod($mod) ) {
+						if ( $mod['name'] <= 14 ) {
+							$html .= "<br>{{Stat|" . ParserHelper::$modArray[$mod['name']] ."|". $mod['value'] ."}}";
+						}
+						else $html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
+					}
 				}
 			$html .= "</td>"; 
 
