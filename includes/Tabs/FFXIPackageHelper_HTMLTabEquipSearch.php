@@ -8,7 +8,9 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
 
       public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_equipment_searchForm\">" .
-                    "<table><tbody><tr><td>
+                    "<div ><i><b>Disclosure:</b>  This table is for experimentation only. Currently there is no mechanism to filter the gear by era, so everything listed here is available in retail at lvl 75 and below." . 
+                    "We are working to make the table more accurate.</div>
+                    <table><tbody><tr><td>
                         <tr>
                             <td>Equipment <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"equipmentNameSearch\" size=\"25\" />
                         </tr>
