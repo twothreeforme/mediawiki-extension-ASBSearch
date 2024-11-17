@@ -57,3 +57,47 @@ enum SLOTTYPE
     SLOT_LINK1  = 0x10,
     SLOT_LINK2  = 0x11,
 };
+
+
+xi.additionalEffect.procType =
+{
+    -- These are arbitrary, make up new ones as needed.
+    DAMAGE          = 1,
+    DEBUFF          = 2,
+    HP_HEAL         = 3,
+    MP_HEAL         = 4,
+    HP_DRAIN        = 5,
+    MP_DRAIN        = 6,
+    TP_DRAIN        = 7,
+    HPMPTP_DRAIN    = 8,
+    DISPEL          = 9,
+    ABSORB_STATUS   = 10,
+    SELF_BUFF       = 11,
+    DEATH           = 12,
+    BRIGAND         = 13,
+    VS_FAMILY       = 14,
+    AVATAR_SUMMONED = 15,
+    NIGHTTIME       = 16,
+    GOD_WIND        = 17,
+    VS_ECOSYSTEM    = 18,
+}
+
+ -- These are arbitrary, make up new ones as needed.
+    1 => "DAMAGE",
+    2 => "DEBUFF",
+    3 => "HP_HEAL",
+    4 => "MP_HEAL",
+    5 => "HP_DRAIN",
+    6 => "MP_DRAIN",
+    7 => "TP_DRAIN",
+    8 => "HPMPTP_DRAIN",
+    9 => "DISPEL",
+    10 => "ABSORB_STATUS",
+    11 => "SELF_BUFF",
+    12 => "DEATH",
+    13 => "BRIGAND",
+    14 => "VS_FAMILY",
+    15 => "AVATAR_SUMMONED",
+    16 => "NIGHTTIME",
+    17 => "GOD_WIND",
+    18 => "VS_ECOSYSTEM",

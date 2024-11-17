@@ -360,6 +360,30 @@ class FFXIPackageHelper_HTMLTableHelper {
 		return $finalHtml;
 	}
 
+
+	private static function isStatusEffectMod($mod){
+        if ( 	$mod['id'] == 431 || //ITEM_ADDEFFECT_TYPE
+				$mod['id'] == 499 || //ITEM_SUBEFFECT
+        		$mod['id'] == 501 || //ITEM_ADDEFFECT_CHANCE
+				$mod['id'] == 951 || //ITEM_ADDEFFECT_STATUS
+				$mod['id'] == 952 || //ITEM_ADDEFFECT_POWER
+				$mod['id'] == 953 || //ITEM_ADDEFFECT_DURATION
+				$mod['id'] == 1180 //ITEM_ADDEFFECT_OPTION
+        ) return false;
+        return true;
+    }
+
+	private static function htmlModifier($mod){
+		$var = new FFXIPackageHelper_Variables();
+		$html = "";
+		$val = ( $mod['value'] > 0 ) ? "+" . $mod['value'] : $mod['value'];
+		if ( $mod['id'] <= 14 ) {
+			$html .= "<br>{{Stat|" . $var->modArray[$mod['id']] ."|". $val ."}}";
+		}
+		else $html .= "<br>" . $var->modArray[$mod['id']] .": ". $val;
+		return $html;
+	}
+
 	public static function table_EquipmentQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
@@ -414,17 +438,35 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 *
 			 */
 			$html .= "<td>";
-				for ( $i = 0; $i < count($row['mods']); $i ++){
-					$mod = $row['mods'][$i];
-					if ( $mod['name'] != "" && ParserHelper::shouldShowMod($mod) ) {
-						if ( $mod['name'] <= 14 ) {
-							$html .= "<br>{{Stat|" . ParserHelper::$modArray[$mod['name']] ."|". $mod['value'] ."}}";
+
+				if ( $row['hasstatuseffect'] == false ){
+					for ( $i = 0; $i < count($row['mods']); $i ++){
+						$mod = $row['mods'][$i];
+						if ( self::isStatusEffectMod($mod) ) {
+							$html .= self::htmlModifier($mod);
 						}
-						else $html .= "<br>" . ParserHelper::$modArray[$mod['name']] .": ". $mod['value'];
 					}
 				}
+				else {
+					$var = new FFXIPackageHelper_Variables();
+					$cur_mod = array();
+					$skipEffect = false;
+					for ( $i = 0; $i < count($row['mods']); $i ++){
+						$mod = $row['mods'][$i];
+						if ( $mod['id'] == 431 ) $cur_mod['type'] = $mod['value'];   //ITEM_ADDEFFECT_TYPE
+						else if ( $mod['id'] == 499 ) $cur_mod['subeffect'] = $mod['value'];   //ITEM_SUBEFFECT
+						else if ( $mod['id'] == 501 ) $cur_mod['chance'] = $mod['value'];   //ITEM_ADDEFFECT_CHANCE
+						else if ( $mod['id'] == 951 ) $cur_mod['status'] = $var->effectType[$mod['value']];   //ITEM_ADDEFFECT_STATUS
+						else if ( $mod['id'] == 952 ) $cur_mod['power'] = $mod['value'];   //ITEM_ADDEFFECT_POWER
+						else if ( $mod['id'] == 953 ) $cur_mod['duration'] = $mod['value'];   //ITEM_ADDEFFECT_DURATION
+						else {
+							$html .=self::htmlModifier($mod);
+							//$skipEffect = true;
+						}
+					}
+					if ( $skipEffect == false ) $html .= "<br>{{Additional Effect|". $cur_mod['status'] ."}}";
+				}
 			$html .= "</td>"; 
-
 
 			$html .= "</center></tr>";
 			$totalRows ++;

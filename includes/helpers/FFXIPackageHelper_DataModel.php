@@ -130,11 +130,6 @@ class DataModel {
 		return $this->dataset;
     }
 
-	function showKeys($arr){
-			//print_r( $arr );
-			//print_r( $arr->zoneName );
-	}
-
 	function getDataSet(){
 		return $this->dataset;
 	}
@@ -187,37 +182,76 @@ class DataModel {
         return $this->dataset;
     }
 
+	function buildStatusEffectMod($id, $value){
+		$finalMod = array();
+		
+
+		return $finalMod;
+	}
+
 	function parseEquipment($param, $job){
         //print_r($this->dataset);
         if ( !$param ) return NULL;
 		
+		$prevItem = "";
+		//$modIsEffect = 0;	
+
 		foreach ( $param as $row ) {
-			// 'item_equipment.name',
-			// 'item_equipment.level',
-			// 'item_equipment.jobs',
-			// 'item_equipment.slot'
-			
-			// $row->name
-			// $row->level
-			// $row->jobs
-			// $row->slot
-			// $row->modid
-			// $row->modValue
 
 			if ( $job != NULL && $job > 0) {
 				if ( !ParserHelper::checkJob($job, $row->jobs) ) continue;
 			}
 
+			/**
+			 * We can skip some of these effects...
+			 */
+			$statusEffect = false;
+			if ( $row->modid == 499 || 		//-- Animation ID of Spikes and Additional Effects
+				$row->modid == 501 || 		//-- Chance of an items Additional Effect or Spikes
+				$row->modid == 950 ||		//-- Element of the Additional Effect or Spikes, for resist purposes
+				$row->modid == 953 ||	 	//-- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
+				$row->modid == 1180 )		//-- Additional parameters for more specific latents required to proc
+				$statusEffect = true;
+
+			// if ( $row->modid == 951 ) {
+			// 	$modIsEffect = $row->modValue;
+			// 	continue;
+			// }
+			
 			$_mod = array(
-				'name' => $row->modid,
+				'id' => $row->modid,
 				'value' => $row->modValue
 			);
+
+			// $last = array_key_last($this->dataset);
+			// if ( ($row->modid == 431 ||		//-- ITEM_ADDEFFECT_TYPE
+			// 	$row->modid == 499 || 		//-- ITEM_SUBEFFECT: Animation ID of Spikes and Additional Effects
+			// 	$row->modid == 501 || 		//-- ITEM_ADDEFFECT_CHANCE
+			// 	$row->modid == 950 ||		//-- ITEM_ADDEFFECT_ELEMENT
+			// 	$row->modid == 951 ||		//-- ITEM_ADDEFFECT_STATUS
+			// 	$row->modid == 952 ||		//-- ITEM_ADDEFFECT_POWER
+			// 	$row->modid == 953) && 		//-- ITEM_ADDEFFECT_DURATION
+			// 	($last != NULL && $last['name'] == $row->name) ){		
+				
+			// 	// if ( $prev_row['dropData']['groupId'] != $workingRow['dropData']['groupId'] ){
+			// 	// 	array_push ( $this->dataset, $workingRow ); continue;
+			// 	// }
+			// 	// else{
+			// 	// 	array_push ( $this->dataset[$l]['dropData']['items'], $_item );
+			// 	// }	
+			// }
+			// else {
+			// 	$_mod['id'] = $row->modid;
+			// 	$_mod['value'] = $row->modValue;
+			// 	$modIsEffect = 0;	
+			// }
 
 			$workingRow = array (
 				'name' => $row->name,
 				'level' => $row->level,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
+				'hasstatuseffect' => $statusEffect,
 				'mods' => array ( $_mod )
 			);
 
@@ -231,6 +265,7 @@ class DataModel {
 			if ( $prev_row['name'] != $workingRow['name']) { array_push ( $this->dataset, $workingRow ); continue; }
 
 			$l = array_key_last($this->dataset);
+			if ( $statusEffect == true && $this->dataset[$l]['hasstatuseffect'] != true ) $this->dataset[$l]['hasstatuseffect'] = true;
 			array_push ( $this->dataset[$l]['mods'], $_mod );
 
 		}
