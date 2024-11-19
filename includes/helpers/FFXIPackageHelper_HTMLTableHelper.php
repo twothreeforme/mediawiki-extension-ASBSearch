@@ -369,7 +369,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 					$html .= $vars->modArray[$e[1][$i][0]] . ":" . $power . "<br>";
 				}
 			}
-			else $html .= "<i>no effects: $row->Result</i>";
+			else $html .= "";
 			$html .= "</center></td>";
 
 			$html .= "</tr>";
