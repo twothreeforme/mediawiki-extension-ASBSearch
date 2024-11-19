@@ -486,7 +486,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 							//$skipEffect = true;
 						}
 					}
-					if ( $skipEffect == false ) $html .= "<br>{{Additional Effect|". $cur_mod['status'] ."}}";
+					if ( $skipEffect == false ) $html .= "<br>{{Additional Effect|". $cur_mod['status'] ."}}</b>";
 				}
 			$html .= "</td>"; 
 
