@@ -9,6 +9,7 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
+        "FFXIPackageHelper_Effects": "includes/helpers/FFXIPackageHelper_Effects.php",
         "FFXIPackageHelper_Variables": "includes/helpers/FFXIPackageHelper_Variables.php",
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
         "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",

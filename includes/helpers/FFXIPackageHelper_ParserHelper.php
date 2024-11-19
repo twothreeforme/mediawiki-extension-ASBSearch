@@ -462,10 +462,10 @@ class ParserHelper {
             case 8: return "Feet";
             case 9: return "Neck";
             case 10: return "Waist";
-            case 11: return "Ear1";
-            case 12: return "Ear2";
-            case 13: return "Ring1";
-            case 14: return "Ring2";
+            case 11: return "Ear";
+            case 12: return "Ear";
+            case 13: return "Ring";
+            case 14: return "Ring";
             case 15: return "Back";
             case 16: return "Main/Sub";
             default: return "None";

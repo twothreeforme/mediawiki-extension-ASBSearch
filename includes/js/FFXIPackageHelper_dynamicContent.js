@@ -247,7 +247,7 @@ function submitRecipeRequest(){
   currentButton.disabled = true;
   document.getElementById("FFXIPackageHelper_tabs_recipeSearch_queryresult").innerHTML = "Loading query...";
 
-  console.log(params);
+  //console.log(params);
   actionAPI(params, "recipesearch");
 }
 
@@ -277,7 +277,7 @@ function submitEquipmentRequest(){
 }
 
 function actionAPI(params, forTab) {
-  console.log(params["action"]);
+  //console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
       if ( forTab ==  "dropratesearch" ) updateDropRatesFromQuery(d[forTab][0]);

@@ -230,6 +230,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			<th>Synth</th>
 			<th>Crystal</th>
 			<th>Ingredients</th>
+			<th>NQ Effects</th>
 			</tr>
 			";
 
@@ -264,6 +265,9 @@ class FFXIPackageHelper_HTMLTableHelper {
 			// 	'ResultName' => $row->ResultName,
 
 		$parse = new ParserHelper($array[1]);
+		$effects = new FFXIPackageHelper_Effects();
+		$vars = new FFXIPackageHelper_Variables();
+
 		$totalRows = 0;
 		foreach ( $array[0] as $row ) {
 
@@ -349,8 +353,26 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * End of Ingredients
 			 */
 			
+			 /**
+			  *
+			  *Effects
+			  *
+			  */
+			$html .= "<td><center>";
+			$e = $effects->food[$row->Result];
+			if ( $e ) {
+				$html .= "<i>Duration: $e[0] mins</i><br>";
+				for ( $i = 0; $i < count($e[1]); $i++ ){
+					$power = $e[1][$i][1];
+					if ( $power < 0 ) $power = "-" . $power;
+					else $power = "+" . $power;
+					$html .= $vars->modArray[$e[1][$i][0]] . ":" . $power . "<br>";
+				}
+			}
+			else $html .= "<i>no effects: $row->Result</i>";
+			$html .= "</center></td>";
 
-			$html .= "</center></tr>";
+			$html .= "</tr>";
 			$totalRows ++;
 		}
 		$parse = NULL;
@@ -434,7 +456,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			
 			/**
 			 *
-			 * Mods
+			 * Modifiers
 			 *
 			 */
 			$html .= "<td>";
