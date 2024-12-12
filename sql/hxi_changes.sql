@@ -231,7 +231,10 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
     (2908,0,4,1000,50018,300,1),    -- Dream Collar (30%)
     -- (2908,0,5,240,0,620,1),    -- NOTHING (62 %)
     (2908,0,5,240,50016,500,1),    -- Sack of Dream Sand (Very Common, 24%)
-    (2908,0,5,240,50017,500,1)    -- Dream Ribbon (Very Common, 24%)
+    (2908,0,5,240,50017,500,1),    -- Dream Ribbon (Very Common, 24%)
+
+    -- Aspidochelone
+    (183,1,3,1000,50020,50,1)   -- Ancient Adamantoise Egg  (Group 3 - 5.0%) No TH effected
 
 ;    
 -- -- All Coffer Keys drop rate increase to 10%
@@ -307,7 +310,9 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50018,0,'dream_collar','dream_collar',1,63552,0,1,0,1), -- Dream Collar
 
     -- Worm's Turn, Royal Jelly, and Tails of Woe
-    (50019,0,'buffalo_helm','buffalo_helm',1,63552,0,1,0,1) -- Buffalo Helm
+    (50019,0,'buffalo_helm','buffalo_helm',1,63552,0,1,0,1), -- Buffalo Helm
+
+    (50020,0,'ancient_adamantoise_egg','ancient_adamantoise_egg',1,63552,0,1,0,1) -- Ancient Adamantoise Egg
 
 ;
 
