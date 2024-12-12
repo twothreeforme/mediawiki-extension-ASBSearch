@@ -346,7 +346,6 @@ class DBConnection {
 
 
     public function getDropRates($queryData){
-        // $queryData = [ $queryLimit, $mobNameSearch, $itemNameSearch, $zoneNameDropDown, $showBCNMdrops, $excludeNMs, $levelRangeMIN, $levelRangeMAX ];
         $queryLimit = $queryData[0];
         $mobNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];
@@ -356,6 +355,7 @@ class DBConnection {
         $levelRangeMIN = intval($queryData[6]);
         $levelRangeMAX = intval($queryData[7]);
         $includeSteal = intval($queryData[9]);
+        $includeFished = intval($queryData[10]);
 
 		$mobNameSearch = ParserHelper::replaceSpaces($mobNameSearch);
 		$itemNameSearch = ParserHelper::replaceSpaces($itemNameSearch);
@@ -373,8 +373,12 @@ class DBConnection {
 		];
 
         if ( $mobNameSearch !=  '' ) {
-			array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
+            array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
 		}
+
+        if ( $includeFished == 0 ){ array_push($query, "mob_groups.name NOT LIKE '%fished%'"); }
+
+
         if ( $itemNameSearch !=  '' ) {
 			array_push($query, "item_basic.name LIKE '%$itemNameSearch%'");
 		}
@@ -399,6 +403,8 @@ class DBConnection {
 			array_push($query, "mob_droplist.dropType <= 2"); // steal = 2
 		}
         else array_push($query, "mob_droplist.dropType <= 1"); // all other drops = 0
+
+
 
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()

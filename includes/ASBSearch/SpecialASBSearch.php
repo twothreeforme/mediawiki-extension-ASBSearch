@@ -40,6 +40,7 @@ class SpecialASBSearch extends SpecialPage {
 		$thRatesCheck = (int)$request->getText( 'thRatesCheck' );
 		$showBCNMdrops = (int)$request->getText( 'showBCNMdrops' );
 		$excludeNMs = (int)$request->getText( 'excludeNMs' );
+		$includeFished = (int)$request->getText( 'includeFished' );
 
 		$queryDataDR = NULL;
 		if ( 	$mobNameSearch == "" &&
@@ -60,7 +61,8 @@ class SpecialASBSearch extends SpecialPage {
 				$excludeNMs,
 				$levelRangeMIN,
 				$levelRangeMAX,
-				$thRatesCheck
+				$thRatesCheck,
+				$includeFished
 			];
 		}
 		//print_r($queryDataDR);

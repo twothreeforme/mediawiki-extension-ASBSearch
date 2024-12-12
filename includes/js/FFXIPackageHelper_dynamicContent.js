@@ -185,7 +185,8 @@ function getDropRateQueryParams(){
     showth: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxShowTH").checked ) ? 1 : 0,
     bcnm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxBCNM").checked  ) ? 1 : 0,
     excludenm: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxExcludeNM").checked  ) ? 1 : 0,
-    includesteal: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxIncludeSteal").checked  ) ? 1 : 0
+    includesteal: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxIncludeSteal").checked  ) ? 1 : 0,
+    includefished: ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxIncludeFished").checked  ) ? 1 : 0
   };
 }
 
