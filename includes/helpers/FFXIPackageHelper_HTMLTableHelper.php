@@ -41,10 +41,13 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Zone Name</th>
-			<th>Mob Name <sup>(lvl)</sup></th>
+			<th>Mob Name</th>
+			<th>Lvl Min</th>
+			<th>Lvl Max</th>
 			<th>Details</th>
 			<th>Item - Drop Rate</th>
 			";
+			//<th>Mob Name <sup>(lvl)</sup></th>
 			//<th>Drop Percentage</th>
 			//<th>Item (sort)Name</th>
 		if ( $showTH == 1) $html .= "<th>TH1</th><th>TH2</th><th>TH3</th><th>TH4</th>";
@@ -105,7 +108,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			$zn = ParserHelper::zoneName($row['zoneName']);
 			$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges, $row['bcnmChanges']); //need to readdress this later
 
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td>";
+			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$minL</center></td><td><center>$maxL</center></td>";
 			/*******************************************************/
 
 

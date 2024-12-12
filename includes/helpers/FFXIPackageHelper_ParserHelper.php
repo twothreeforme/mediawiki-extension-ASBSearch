@@ -31,14 +31,15 @@ class ParserHelper {
         $mobName = str_replace(" Of ", " of ", $mobName);
 
 		// print_r($mobName ."-". $mobType ."...");
+        $mobName = "[[$mobName]]";
 
-		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName = " [[$mobName]]<sup>(BCNM)</sup> ";
+		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName += "<sup>(BCNM)</sup> ";
 		else if ( $minLvl == $maxLvl ) {
-			if ( $maxLvl == 255) $mobName = " {{changes}}[[$mobName]]<sup>(HENM)</sup> ";
-			else $mobName = " [[$mobName]]<sup>($maxLvl)</sup> ";
+			if ( $maxLvl == 255) $mobName = " {{changes}}" . $mobName . "<sup>(HENM)</sup> ";
+			//else $mobName = " [[$mobName]] <sup>($maxLvl)</sup> ";
 		}
-		else if ( $mobChanges == 1) $mobName = " {{changes}}[[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
-		else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
+		else if ( $mobChanges == 1) $mobName = " {{changes}}" . $mobName; //. "<sup>($minLvl-$maxLvl)</sup> ";
+		//else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
 		else if ( $mobType == 2 || $mobType == 16 || $mobType == 18 ) return "[NM] " . $mobName;
