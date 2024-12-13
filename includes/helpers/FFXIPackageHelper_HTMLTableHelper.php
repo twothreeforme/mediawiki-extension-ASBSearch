@@ -215,7 +215,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 					break;
 				}
 
-				$html .= "<td><center>$th1 %</center></td><td><center>$th2 %</center></td><td><center>$th3 %</center></td><td><center>$th4 %</center></td>";
+				$html .= "<td><center>$th1%</center></td><td><center>$th2%</center></td><td><center>$th3%</center></td><td><center>$th4%</center></td>";
 			}
 			/*******************************************************/
 
