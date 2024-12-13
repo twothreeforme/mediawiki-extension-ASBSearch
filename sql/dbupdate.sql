@@ -70,6 +70,12 @@ DROP TABLE IF EXISTS `item_mods`;
 source item_mods.sql;
 \! echo item_mods done
 
+\! echo mob_family_system
+DROP TABLE IF EXISTS `mob_family_system`;
+source mob_family_system.sql;
+\! echo mob_family_system done
+
+
 \! echo hxi_changes
 source hxi_changes.sql;
 \! echo hxi_changes done

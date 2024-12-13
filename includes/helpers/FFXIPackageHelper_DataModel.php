@@ -82,6 +82,8 @@ class DataModel {
 				'mobMaxLevel' => $r_mobMaxLevel,
 				'mobType' => $r_mobType,
 				'bcnmChanges' => $r_bcnmChanges,
+				'family' => $row->superFamily,
+				'ecosystem' => $row->ecosystem,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,

@@ -422,13 +422,16 @@ class DBConnection {
 						'mob_groups.changes_tag AS mobChanges',
 						'item_basic.changes_tag AS itemChanges',
 						'mob_droplist.changes_tag AS dropChanges',
-						'mob_pools.mobType'
+						'mob_pools.mobType',
+                        'mob_family_system.superFamily',
+                        'mob_family_system.ecosystem'
 						] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
 			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
 			->orderBy( 'groupId', 'ASC' )
 			->where( $query	)
 			->limit( $queryLimit)

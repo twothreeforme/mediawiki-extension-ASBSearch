@@ -42,6 +42,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name</th>
+			<th>Family</th>
 			<th>Lvl Min</th>
 			<th>Lvl Max</th>
 			<th>Details</th>
@@ -108,7 +109,10 @@ class FFXIPackageHelper_HTMLTableHelper {
 			$zn = ParserHelper::zoneName($row['zoneName']);
 			$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges, $row['bcnmChanges']); //need to readdress this later
 
-			$html .= "<tr><td><center>$zn</center></td><td><center>$mn</center></td><td><center>$minL</center></td><td><center>$maxL</center></td>";
+			$html .= "<tr><td><center>$zn</center></td>";
+			$html .= "<td><center>$mn</center></td>";
+			$html .= "<td style=\"width: 10%;min-width: fit-content;\"><center> " . $row['ecosystem'] . "(<i>" . $row['family'] . "</i>) </center></td>";
+			$html .= "<td style=\"width: 0;min-width: fit-content;\"><center>$minL</center></td><td style=\"width: 0;min-width: fit-content;\"><center>$maxL</center></td>";
 			/*******************************************************/
 
 
