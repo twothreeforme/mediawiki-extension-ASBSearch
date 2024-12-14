@@ -6,6 +6,19 @@ class FFXIPackageHelper_Variables {
     public function __construct() {
     }
 
+    public $detectsBy = array(
+        0x000 => "NONE",
+        0x001 => "SIGHT",
+        0x002  => "HEARING",
+        0x004 => "LOWHP",
+        0x008 => "NONE1",
+        0x010 => "NONE2",
+        0x020 => "MAGIC",
+        0x040 => "WEAPONSKILL",
+        0x080 => "JOBABILITY",
+        0x100 => "SCENT"
+    );
+
     public $jobArray = array(
         0 => "NONE",
         1 => "WAR",

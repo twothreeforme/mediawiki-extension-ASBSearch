@@ -33,7 +33,7 @@ class ParserHelper {
 		// print_r($mobName ."-". $mobType ."...");
         $mobName = "[[$mobName]]";
 
-		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName += "<sup>(BCNM)</sup> ";
+		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName .= "<sup>(BCNM)</sup> ";
 		else if ( $minLvl == $maxLvl ) {
 			if ( $maxLvl == 255) $mobName = " {{changes}}" . $mobName . "<sup>(HENM)</sup> ";
 			//else $mobName = " [[$mobName]] <sup>($maxLvl)</sup> ";
