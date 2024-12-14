@@ -119,7 +119,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Family / Ecosystem column
 			 */
 			$html .= "<td style=\"width: 1%;min-width: fit-content;\"><center> ";
-			if ( isset($row['ecosystem']) && isset($row['family']) )  $html .= $row['ecosystem'] . "(<i>" . $row['family'] . "</i>) ";
+			if ( isset($row['ecosystem']) && isset($row['family']) )  $html .= "[[" . $row['ecosystem'] . "]]" . "(<i>" . $row['family'] . "</i>) ";
 			else $html .= "-";
 			$html .= "</center></td>";
 			/*******************************************************/
