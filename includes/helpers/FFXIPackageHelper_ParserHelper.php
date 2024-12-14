@@ -60,8 +60,11 @@ class ParserHelper {
         if ( 0x080 & $detects) $detectsString .= "JA,";
         if ( 0x100 & $detects) $detectsString .= "Sc,";
         rtrim($detectsString, ',');
-        $detectsString = substr(trim($detectsString), 0, -1) . ")</sub>";
-        return $detectsString .= $mobName;
+        if ($detectsString != "<sub>(" )  {
+            $detectsString = substr(trim($detectsString), 0, -1) . ")</sub>";
+            return $detectsString .= $mobName;
+        }
+        else $mobName;
     }
 
 
