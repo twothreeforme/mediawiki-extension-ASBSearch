@@ -50,7 +50,7 @@ class ParserHelper {
 	}
 
     public static function addDetects($mobName, $detects){
-        $var = new FFXIPackageHelper_Variables();
+        //$var = new FFXIPackageHelper_Variables();
         $detectsString = "<sub>(";
         if ( 0x001 & $detects) $detectsString .= "S,";
         if ( 0x002 & $detects) $detectsString .= "H,";
