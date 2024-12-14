@@ -37,7 +37,9 @@ class FFXIPackageHelper_HTMLTableHelper {
     public static function tableHeader_DropRates($showTH){
 		$html = "<br>
 		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
-		<br> <strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these has effected Group drop rates (mainly from BCNMs).</i> </div>
+		<strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these has effected Group drop rates (mainly from BCNMs).
+		<br><br> <b>Mob Detection (true-sight/hearing are not added yet):</b> <b>S</b> Detects by Sight, <b>H</b> Detects by Sound, <b>HP</b> Detects Low HP, <b>M</b> Detects Magic, <b>Sc</b> Follows by Scent, <b>T(S)</b> True-sight, <b>T(H)</b> True-hearing, <b>JA</b> Detects job abilities, <b>WS</b> Detects weaponskills
+		</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Zone Name</th>
@@ -99,8 +101,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 			// if ( property_exists($row, 'mobMinLevel') ) $minL = $row->mobMinLevel;
 			// if ( property_exists($row, 'mobMaxLevel') ) $maxL = $row->mobMaxLevel;
 			// if ( property_exists($row, 'dropType') ) $dType = $row->dropType;
-			if ( array_key_exists('mobMinLevel', $row) ) $minL = $row['mobMinLevel'];
-			if ( array_key_exists('mobMaxLevel', $row) ) $maxL = $row['mobMaxLevel'];
+			if ( array_key_exists('mobMinLevel', $row) ) $minL = ($row['mobMinLevel'] == 0 ) ? "-" : $row['mobMinLevel'] ;
+			if ( array_key_exists('mobMaxLevel', $row) ) $maxL = ($row['mobMaxLevel'] == 0 ) ? "-" : $row['mobMaxLevel'] ;
 			if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
 			else $dType = 1; 	// All bcnm drops are part of a group
 			if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
@@ -108,14 +110,25 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 			$zn = ParserHelper::zoneName($row['zoneName']);
 			$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges, $row['bcnmChanges']); //need to readdress this later
-			//$mn = ParserHelper::addDetects($mn, $row['detects']);
+			if ( isset($row['detects']) ) $mn = ParserHelper::addDetects($mn, $row['detects']);
 
 			$html .= "<tr><td><center>$zn</center></td>";
 			$html .= "<td><center>$mn</center></td>";
-			$html .= "<td style=\"width: 10%;min-width: fit-content;\"><center> " . $row['ecosystem'] . "(<i>" . $row['family'] . "</i>) </center></td>";
-			$html .= "<td style=\"width: 0;min-width: fit-content;\"><center>$minL</center></td><td style=\"width: 0;min-width: fit-content;\"><center>$maxL</center></td>";
+
+			/*******************
+			 * Family / Ecosystem column
+			 */
+			$html .= "<td style=\"width: 1%;min-width: fit-content;\"><center> ";
+			if ( isset($row['ecosystem']) && isset($row['family']) )  $html .= $row['ecosystem'] . "(<i>" . $row['family'] . "</i>) ";
+			else $html .= "-";
+			$html .= "</center></td>";
 			/*******************************************************/
 
+			/*******************
+			 * Level range
+			 */
+			$html .= "<td style=\"width: 0;min-width: fit-content;\"><center>$minL</center></td><td style=\"width: 0;min-width: fit-content;\"><center>$maxL</center></td>";
+			/*******************************************************/
 
 			/*******************
 			 * Handle drop details / grouping / type

@@ -62,7 +62,7 @@ class ParserHelper {
         rtrim($detectsString, ',');
         if ($detectsString != "<sub>(" )  {
             $detectsString = substr(trim($detectsString), 0, -1) . ")</sub>";
-            return $detectsString .= $mobName;
+            return $mobName .= $detectsString;
         }
         else $mobName;
     }
