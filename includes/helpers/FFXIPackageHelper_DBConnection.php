@@ -424,7 +424,8 @@ class DBConnection {
 						'mob_droplist.changes_tag AS dropChanges',
 						'mob_pools.mobType',
                         'mob_family_system.superFamily',
-                        'mob_family_system.ecosystem'
+                        'mob_family_system.ecosystem',
+                        'mob_family_system.detects',
 						] )
 			->from( 'mob_droplist' )
 			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )

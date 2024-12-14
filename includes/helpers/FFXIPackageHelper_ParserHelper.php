@@ -49,6 +49,21 @@ class ParserHelper {
 		return $mobName;
 	}
 
+    public static function addDetects($mobName, $detects){
+        $var = new FFXIPackageHelper_Variables();
+        $detectsString = "<sub>(";
+        if ( 0x001 & $detects) $detectsString .= "S,";
+        if ( 0x002 & $detects) $detectsString .= "H,";
+        if ( 0x004 & $detects) $detectsString .= "HP,";
+        if ( 0x020 & $detects) $detectsString .= "M,";
+        if ( 0x040 & $detects) $detectsString .= "WS,";
+        if ( 0x080 & $detects) $detectsString .= "JA,";
+        if ( 0x100 & $detects) $detectsString .= "Sc,";
+        rtrim($detectsString, ',');
+        $detectsString = substr(trim($detectsString), 0, -1) . ")</sub>";
+        return $detectsString .= $mobName;
+    }
+
 
     /**************************
      * Item related parsing

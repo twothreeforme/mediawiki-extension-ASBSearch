@@ -84,6 +84,7 @@ class DataModel {
 				'bcnmChanges' => $r_bcnmChanges,
 				'family' => $row->superFamily,
 				'ecosystem' => $row->ecosystem,
+				'detects' => $row->detects,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,

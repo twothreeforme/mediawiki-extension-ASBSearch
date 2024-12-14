@@ -9,7 +9,7 @@ class FFXIPackageHelper_Variables {
     public $detectsBy = array(
         0x000 => "NONE",
         0x001 => "SIGHT",
-        0x002  => "HEARING",
+        0x002 => "HEARING",
         0x004 => "LOWHP",
         0x008 => "NONE1",
         0x010 => "NONE2",
