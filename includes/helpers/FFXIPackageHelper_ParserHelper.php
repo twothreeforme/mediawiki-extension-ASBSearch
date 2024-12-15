@@ -61,16 +61,16 @@ class ParserHelper {
         $size = "14px";
         $detectsString = "<br>";
         if ( $aggro == 0 ) {
-            if ( $mobType == 2 ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
+            if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
             else $detectsString .= "[[File:Detect_PassiveNQ.png|" . $size . "|" . $size. "|Passive NQ]] ";
         }
         else if ( $aggro == 1 ) {
-            if ( $mobType == 2 ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
+            if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
             else $detectsString .= "[[File:Detect_AggroNQ.png|" . $size . "|" . $size. "|Aggressive NQ]] ";
         }
 
         if ( 0x001 & $detects) {
-            if ( $truedetection == 1 ) $detectsString .= "[[File:Detect_Truesight.png|" . $size . "|" . $size. "|True Sight]] ";
+            if ( $truedetection == 1 ) $detectsString .= "[[File:Detect_TrueSight.png|" . $size . "|" . $size. "|True Sight]] ";
             else $detectsString .= "[[File:Detect_Sight.png|" . $size . "|" . $size. "|Sight]] ";
         }
         if ( 0x002 & $detects) {
