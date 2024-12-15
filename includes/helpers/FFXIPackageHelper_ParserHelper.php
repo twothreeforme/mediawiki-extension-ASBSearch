@@ -42,7 +42,7 @@ class ParserHelper {
 		//else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
-		else if ( 0x002 & $mobType ) return "[NM] " . $mobName;
+		else if ( 0x02 & $mobType ) return "[NM] " . $mobName;
 		
         // MOBTYPE_NORMAL      = 0x00,
         // MOBTYPE_0X01        = 0x01, // available for use
