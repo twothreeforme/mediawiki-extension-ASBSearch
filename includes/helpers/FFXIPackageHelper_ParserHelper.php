@@ -61,10 +61,10 @@ class ParserHelper {
         $size = "14px";
         $detectsString = "<br>";
 
-        if ( $aggro == 0 ) {
-            if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
-            else $detectsString .= "[[File:Detect_PassiveNQ.png|" . $size . "|" . $size. "|Passive NQ]] ";
-        }
+        // if ( $aggro == 0 ) {
+        //     if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
+        //     else $detectsString .= "[[File:Detect_PassiveNQ.png|" . $size . "|" . $size. "|Passive NQ]] ";
+        // }
         // else if ( $aggro == 1 ) {
         //     if ( $mobType == 2 ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
         //     else $detectsString .= "[[File:Detect_AggroNQ.png|" . $size . "|" . $size. "|Aggressive NQ]] ";
