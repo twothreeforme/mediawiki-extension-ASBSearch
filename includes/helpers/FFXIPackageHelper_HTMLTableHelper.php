@@ -110,7 +110,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 			$zn = ParserHelper::zoneName($row['zoneName']);
 			$mn = ParserHelper::mobName($row['mobName'], $minL, $maxL, $row['mobType'], $row['zoneName'], $mobChanges, $row['bcnmChanges']); //need to readdress this later
-			if ( isset($row['detects']) ) print_r("good"); //$mn = ParserHelper::addDetects($mn, $row['detects'], $row['aggro'], $row['truedetection'], $row['mobType']);
+			if ( isset($row['detects']) ) $mn = ParserHelper::addDetects($mn, $row['detects'], $row['aggro'], $row['trueDetection'], $row['mobType']);
 
 			$html .= "<tr><td><center>$zn</center></td>";
 			$html .= "<td><center>$mn</center></td>";
