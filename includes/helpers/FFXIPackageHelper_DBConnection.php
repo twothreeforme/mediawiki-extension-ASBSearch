@@ -423,6 +423,8 @@ class DBConnection {
 						'item_basic.changes_tag AS itemChanges',
 						'mob_droplist.changes_tag AS dropChanges',
 						'mob_pools.mobType',
+                        'mob_pools.aggro',
+                        'mob_pools.true_detection',
                         'mob_family_system.superFamily',
                         'mob_family_system.ecosystem',
                         'mob_family_system.detects',

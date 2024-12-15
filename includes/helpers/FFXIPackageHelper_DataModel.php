@@ -49,6 +49,8 @@ class DataModel {
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0;
 			$r_mobChanges = ( property_exists($row, 'mobChanges' ) ) ? $row->mobChanges : 0;
+			$r_aggro = ( property_exists($row, 'aggro' ) ) ? $row->aggro : -1;
+			$r_trueDetection = ( property_exists($row, 'true_detection' ) ) ? $row->true_detection : -1;
 
 			// Doing it this way - itemChanges will take precendence over dropChanges...
 			// so a Horizon changes tag will take precendence over a nuanced label
@@ -85,6 +87,8 @@ class DataModel {
 				'family' => $row->superFamily,
 				'ecosystem' => $row->ecosystem,
 				'detects' => $row->detects,
+				'aggro' => $r_aggro,
+				'trueDetection' => $r_trueDetection,
 				'dropData' => array (
 					'groupId' => $row->groupId,
 					'groupRate' => $row->groupRate,

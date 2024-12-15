@@ -42,29 +42,53 @@ class ParserHelper {
 		//else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
-		else if ( $mobType == 2 || $mobType == 16 || $mobType == 18 ) return "[NM] " . $mobName;
+		else if ( 0x002 & $mobType ) return "[NM] " . $mobName;
 		
+        // MOBTYPE_NORMAL      = 0x00,
+        // MOBTYPE_0X01        = 0x01, // available for use
+        // MOBTYPE_NOTORIOUS   = 0x02,
+        // MOBTYPE_FISHED      = 0x04,
+        // MOBTYPE_CALLED      = 0x08,
+        // MOBTYPE_BATTLEFIELD = 0x10,
+        // MOBTYPE_EVENT       = 0x20
+
         if ($bcnmChanges == 1) $mobName = " {{changes}}" . $mobName;
 
 		return $mobName;
 	}
 
-    public static function addDetects($mobName, $detects){
-        //$var = new FFXIPackageHelper_Variables();
-        $detectsString = "<sub>(";
-        if ( 0x001 & $detects) $detectsString .= "S,";
-        if ( 0x002 & $detects) $detectsString .= "H,";
-        if ( 0x004 & $detects) $detectsString .= "HP,";
-        if ( 0x020 & $detects) $detectsString .= "M,";
-        if ( 0x040 & $detects) $detectsString .= "WS,";
-        if ( 0x080 & $detects) $detectsString .= "JA,";
-        if ( 0x100 & $detects) $detectsString .= "Sc,";
-        rtrim($detectsString, ',');
-        if ($detectsString != "<sub>(" )  {
-            $detectsString = substr(trim($detectsString), 0, -1) . ")</sub>";
+    public static function addDetects($mobName, $detects, $aggro, $truedetection, $mobType){
+        $size = "14px";
+        $detectsString = "<br>";
+        if ( $aggro == 0 ) {
+            if ( $mobType == 2 ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
+            else $detectsString .= "[[File:Detect_PassiveNQ.png|" . $size . "|" . $size. "|Passive NQ]] ";
+        }
+        else if ( $aggro == 1 ) {
+            if ( $mobType == 2 ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
+            else $detectsString .= "[[File:Detect_AggroNQ.png|" . $size . "|" . $size. "|Aggressive NQ]] ";
+        }
+
+        if ( 0x001 & $detects) {
+            if ( $truedetection == 1 ) $detectsString .= "[[File:Detect_Truesight.png|" . $size . "|" . $size. "|True Sight]] ";
+            else $detectsString .= "[[File:Detect_Sight.png|" . $size . "|" . $size. "|Sight]] ";
+        }
+        if ( 0x002 & $detects) {
+            if ( $truedetection == 1 ) $detectsString .= "[[File:Detect_Sound.png|" . $size . "|" . $size. "|True Hearing]] ";
+            else $detectsString .= "[[File:Detect_Sound.png|" . $size . "|" . $size. "|Sound]] ";
+        }
+        if ( 0x004 & $detects) $detectsString .= "[[File:Detect_Blood.png|" . $size . "|" . $size. "|Low HP]] ";
+        if ( 0x020 & $detects) $detectsString .= "[[File:Detect_Magic.png|" . $size . "|" . $size. "|Magic]] ";
+        //if ( 0x040 & $detects) $detectsString .= "WS,";
+        if ( 0x080 & $detects) $detectsString .= "[[File:Detect_JA.png|" . $size . "|" . $size. "|Job Ability]] ";
+        if ( 0x100 & $detects) $detectsString .= "[[File:Detect_Scent.png|" . $size . "|" . $size. "|Scent]] ";
+        //rtrim($detectsString, ',');
+        if ($detectsString != "<br>" )  {
+            //$detectsString = substr(trim($detectsString), 0, -1) . "";
             return $mobName .= $detectsString;
         }
         else $mobName;
+
     }
 
 
