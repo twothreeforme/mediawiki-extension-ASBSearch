@@ -1,4 +1,4 @@
-module.exports.actionAPI = function (params, forTab, currentButton) {
+module.exports.actionAPI = function (params, forTab, currentButton, callback) {
   //console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
@@ -7,7 +7,7 @@ module.exports.actionAPI = function (params, forTab, currentButton) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
-        if ( forTab.includes("search") ) updateEquipsets_Search(result);
+        if ( forTab.includes("search") )  return result; //updateEquipsets_Search(result);
         else updateEquipsets(result);
       }
       //else if ( forTab == "equipsets_search") updateEquipsets_Search(result);
@@ -37,7 +37,7 @@ function updateEquipmentFromQuery(updatedHTML){
 }
 
 function updateEquipsets(updatedStats){
-  console.log(updatedStats);
+  //console.log(updatedStats);
 
   let stat = document.getElementById("FFXIPackageHelper_Equipsets_statHP"); stat.innerHTML = updatedStats[0];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statMP"); stat.innerHTML = updatedStats[1];
@@ -54,17 +54,22 @@ function updateEquipsets(updatedStats){
 }
 
 function updateEquipsets_Search(results){
+
+
   const slot = results[1];
   const arr = results[0];
-  const classname = "FFXIPackageHelper_equipsets_searchResults" + slot;
-  var ul = document.getElementById(classname);
-  ul.innerHTML = "";
-
+  const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
+  var dl = document.getElementById(idname);
+  dl.innerHTML = "";
 
   for ( let i = 0; i < arr.length; i++ ){
-    console.log(arr[i]["name"]);
+    //console.log(arr[i]["name"]);
 
-    var li = document.createElement("li");
+    var dt = document.createElement("dt");
+    dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
+    dt.onmouseout = function() { this.style="background-color:none;"; };
+
+
     // li.appendChild(document.createTextNode(arr[i]["name"]));
 
     // var iconurl = "[[File:itemid_" + arr["name"]
@@ -75,12 +80,17 @@ function updateEquipsets_Search(results){
 
     var img = document.createElement("img");
     img.src=iconurl;
-    img.width=16;
-    img.height=16;
+    img.width=12;
+    img.height=12;
 
-    li.appendChild(img);
-    li.appendChild(t);
-    ul.appendChild(li);
+    dt.addEventListener('click', () => {
+      // need item id
+      console.log("clicked");
+    });
+
+    dt.appendChild(img);
+    dt.appendChild(t);
+    dl.appendChild(dt);
   }
   //mw.hook( 'wikipage.content' ).fire($(classname));
 

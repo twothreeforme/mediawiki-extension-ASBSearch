@@ -27,7 +27,7 @@ let _default2 = `
     <button class="close-modal">Cancel</button>`;
 
 function searchInput(slot){
-    return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"25\">";
+    return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
 }
 
 function searchButton(slot){
@@ -35,7 +35,7 @@ function searchButton(slot){
 }
 
 function searchResults(slot){
-    return "<br><ul id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\"></ul>";
+    return "<br><div id=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
 }
 
 function searchEquip(slot){
@@ -116,12 +116,45 @@ class ModalWindow {
         const searchButton = document.getElementById("FFXIPackageHelper_equipsets_search" + this.slot);
         searchButton.addEventListener('click', (e) =>  {
             //console.log("search clicked: " + this.slot);
-            this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null)
+            this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, returnCallback())
         });
         //console.log(searchButton.data("events"));
 
     }
   
+    returnCallback(results){
+        const slot = results[1];
+        const arr = results[0];
+        const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
+        var dl = document.getElementById(idname);
+        dl.innerHTML = "";
+
+        for ( let i = 0; i < arr.length; i++ ){
+            //console.log(arr[i]["name"]);
+
+            var dt = document.createElement("dt");
+            dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
+            dt.onmouseout = function() { this.style="background-color:none;"; };
+
+            var t = document.createTextNode(arr[i]["name"]);
+            var iconurl = "/index.php/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
+
+            var img = document.createElement("img");
+            img.src=iconurl;
+            img.width=12;
+            img.height=12;
+
+            dt.addEventListener('click', () => {
+                // need item id
+                console.log("clicked: " + arr[i]["id"]);
+            });
+
+            dt.appendChild(img);
+            dt.appendChild(t);
+            dl.appendChild(dt);
+  }
+
+    }
     // searchClicked() {
     //     console.log("search clicked: " + this.slot);
     //     this.options.searchCallback(searchEquip(), "equipsets_search", null)

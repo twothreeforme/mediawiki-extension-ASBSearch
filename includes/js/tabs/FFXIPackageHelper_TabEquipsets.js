@@ -28,7 +28,7 @@ var slvlDropdown = null;
 
 module.exports.setLinks = function (){
     for (let v = 0; v <= 15; v++) {
-        const modal = new ModalWindow(v, { searchCallback: API.actionAPI});
+        const modal = new ModalWindow(v, { searchCallback: API.actionAPI });
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
@@ -93,6 +93,10 @@ module.exports.setLinks = function (){
     raceDropdown.value=3;
 
     //updateStats();
+}
+
+function updateEquipmentGrid(id, slot){
+
 }
 
 function getEquipIDs(){

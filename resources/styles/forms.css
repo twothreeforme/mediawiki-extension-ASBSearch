@@ -305,11 +305,11 @@ Modal Windows
     z-index: 1000;
   }
 
-  .modal.open {
+.modal.open {
     display: block;
-  }
+}
 
-  .modal-content {
+.modal-content {
     background-color: white;
     position: absolute;
     top: 50%;
@@ -317,10 +317,7 @@ Modal Windows
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 5px;
-  }
-
-
-
+}
 
 
 /*
