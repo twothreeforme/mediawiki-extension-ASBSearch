@@ -27,10 +27,10 @@ class FFXIPackageHelper_Equipsets  {
     }
 
 
-    // static function onParserInit( Parser $parser ) {
-    //     $parser->setHook('Equipsets','FFXIPackageHelper_Equipsets::showequipset' );
-    //     return true;
-	// }
+    static function onParserInit( Parser $parser ) {
+        $parser->setHook('Equipsets','FFXIPackageHelper_Equipsets::showequipset' );
+        return true;
+	}
 
     public static function showequipset( $input, array $params, Parser $parser, PPFrame $frame ) {
 
