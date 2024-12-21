@@ -674,20 +674,20 @@ class DBConnection {
             return $returnarray;
     }
 
-    private function getItemModsFromDB($db, $name){
-        $items = $db->newSelectQueryBuilder()
-            ->select( [ 'item_basic.name, item_basic.itemid' ] )
-            ->from( 'item_basic' )
-            ->where( "item_basic.name LIKE '%$name%'"	)
-            ->fetchResultSet();
+    // private function getItemModsFromDB($db, $name){
+    //     $items = $db->newSelectQueryBuilder()
+    //         ->select( [ 'item_basic.name, item_basic.itemid' ] )
+    //         ->from( 'item_basic' )
+    //         ->where( "item_basic.name LIKE '%$name%'"	)
+    //         ->fetchResultSet();
 
-            $returnarray = [];
-            if ( count($items) == 0 || count($items) == NULL) return NULL;
-            foreach ( $items as $row ) {
-                array_push( $returnarray , strval($row->itemid));
-            }
-            return $returnarray;
-    }
+    //         $returnarray = [];
+    //         if ( count($items) == 0 || count($items) == NULL) return NULL;
+    //         foreach ( $items as $row ) {
+    //             array_push( $returnarray , strval($row->itemid));
+    //         }
+    //         return $returnarray;
+    // }
 
     public function getEquipmentFromDB($queryData){
         $dbr = $this->openConnection();
@@ -740,6 +740,72 @@ class DBConnection {
         ->orderBy( 'level', 'DESC' )
         ->where( $query	)
         ->fetchResultSet();
+    }
+
+    public function getTraits( $mlvl, $slvl, $mjob, $sjob){
+        $dbr = $this->openConnection();
+        $query = [
+            "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
+            "( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
+        ];
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'traits.modifier',
+                    'traits.value',
+                    'traits.traitid'
+                    ] )
+        ->from( 'traits' )
+        ->orderBy( 'modifier' )
+        ->where( $query	)
+        ->fetchResultSet();
+    }
+
+    public function getItem( $itemid ){
+        $dbr = $this->openConnection();
+        $query = [ "item_equipment.itemId = '$itemid'" ];
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'item_equipment.itemId',
+                    'item_equipment.slot',
+                    'item_equipment.rslot',
+                    'item_mods.modId AS modid',
+                    'item_mods.value AS modValue'
+                    ] )
+        ->from( 'item_equipment' )
+        ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->where( $query	)
+        ->fetchResultSet();
+    }
+
+    public function getEquipment( $name, $mlvl ){
+        $mlvl = intval($mlvl);
+
+        $dbr = $this->openConnection();
+        // $query = [  "item_equipment.name LIKE '%$name%'",
+        //            // "item_equipment.level <= $mlvl"
+        //         ];
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'item_equipment.itemId',
+                    'item_equipment.name',
+                    'item_equipment.slot',
+                    'item_equipment.rslot',
+                    'item_mods.modId AS modid',
+                    'item_mods.value AS modValue'
+                    ] )
+        ->from( 'item_equipment' )
+        ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->where( [ "item_equipment.name LIKE '%$name%'",
+                   "item_equipment.level <= $mlvl"
+            ])
+        ->fetchResultSet();
+
+        // $returnarray = [];
+        // if ( count($items) == 0 || count($items) == NULL) return NULL;
+        // foreach ( $items as $row ) {
+        //     array_push( $returnarray , [$row->itemid, $row->name, $row->slot, $row->rslot, $row->modid, $row->modValue ]);
+        // }
+        // return $returnarray;
     }
 }
 

@@ -449,7 +449,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Item name
 			 *
 			 */
-			$html .= "<td><center>[[" . ParserHelper::itemName($row['name']) . "]]</center></td>";
+			$html .= "<td><center>[[" . $row['name'] . "]]</center></td>";
 
 			/**
 			 *

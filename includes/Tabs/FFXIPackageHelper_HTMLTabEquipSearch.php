@@ -15,7 +15,7 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
                             <td>Equipment <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"equipmentNameSearch\" size=\"25\" />
                         </tr>
                         <tr>
-                            <td>Job " . $this->jobDropDown() . "
+                            <td>Job " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_dynamiccontent_selectJob") . "
                             <br>Slot ". $this->slotTypeDropDown() . "
                             <br>Max Item Level " . $this->minItemLevel("FFXIPackageHelper_dynamiccontent_selectMinItemLvl") . "</td>
                         </tr>
@@ -25,35 +25,6 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
                         </td></tr></tbody></table>
                     <div id=\"FFXIPackageHelper_tabs_equipment_queryresult\"></div>
                 </div>";
-        return $html;
-    }
-
-    private function jobDropDown(){
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectJob\" defaultValue=\"0\" >";
-        $html .= "<option value=\"0\">Any</option>";
-        $html .= "<option value=\"1\">Warrior</option>";
-        $html .= "<option value=\"2\">Monk</option>";
-        $html .= "<option value=\"3\">White Mage</option>";
-        $html .= "<option value=\"4\">Black Mage</option>";
-        $html .= "<option value=\"5\">Red Mage</option>";
-        $html .= "<option value=\"6\">Thief</option>";
-        $html .= "<option value=\"7\">Paladin</option>";
-        $html .= "<option value=\"8\">Dark Knight</option>";
-        $html .= "<option value=\"9\">Beastmaster</option>";
-        $html .= "<option value=\"10\">Bard</option>";
-        $html .= "<option value=\"11\">Ranger</option>";
-        $html .= "<option value=\"12\">Samurai</option>";
-        $html .= "<option value=\"13\">Ninja</option>";
-        $html .= "<option value=\"14\">Dragoon</option>";
-        $html .= "<option value=\"15\">Summoner</option>";
-        $html .= "<option value=\"16\">Blue Mage</option>";
-        $html .= "<option value=\"17\">Scholar</option>";
-        $html .= "<option value=\"18\">Puppetmaster</option>";
-        $html .= "<option value=\"19\">Dancer</option>";
-        $html .= "<option value=\"20\">Scholar</option>";
-        $html .= "<option value=\"21\">Geomancer</option>";
-        $html .= "<option value=\"22\">Rune Fencer</option>";
-        $html .= "</select>";
         return $html;
     }
 
@@ -68,8 +39,6 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
         $html .= "</select>";
         return $html;
     }
-
-
 
     private function slotTypeDropDown(){
         // main: 1=nothing in offhand, 3= can have offhand

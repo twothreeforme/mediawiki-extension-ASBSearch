@@ -10,8 +10,10 @@
     "type": "other",
     "AutoloadClasses": {
         "FFXIPackageHelper_Effects": "includes/helpers/FFXIPackageHelper_Effects.php",
-        "FFXIPackageHelper_Variables": "includes/helpers/FFXIPackageHelper_Variables.php",
+        "FFXIPackageHelper_Variables": "includes/helpers/data/FFXIPackageHelper_Variables.php",
+        "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
+        "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
         "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
@@ -33,7 +35,8 @@
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
-        "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php"
+        "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
+        "APIModuleEquipsets" : "includes/APIModules/APIModuleEquipsets.php"
 
 	},
     "SpecialPages": {
@@ -81,17 +84,22 @@
 				"includes/WeatherForecast/FFXIPackageHelper_WeatherForecast_Styles.css"
 			]
 		},
-        "FFXIPackageHelper_dynamicContent" : {
+        "FFXIPackageHelper_TabsController" : {
 			"localBasePath": "",
 			"remoteExtPath": "ASBSearch",
 			"packageFiles": [
-                "includes/js/FFXIPackageHelper_dynamicContent.js" 
+                "includes/js/tabs/FFXIPackageHelper_TabsController.js",
+                "includes/js/tabs/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/FFXIPackageHelper_ModalWindow.js",
+                "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
+                "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
+                "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
+                "includes/js/tabs/FFXIPackageHelper_TabEquipsets.js"
 			],
             "styles": [
 				"resources/styles/forms.css",
                 "resources/styles/tabs.css"
 			]
-                   
         }
 	},
     "APIModules": {
@@ -103,6 +111,12 @@
 		},
         "equipmentsearch": {
 			"class": "APIModuleEquipmentSearch"
+		},
+        "equipsets": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_search": {
+			"class": "APIModuleEquipsets"
 		}
 	},
     "manifest_version": 2,

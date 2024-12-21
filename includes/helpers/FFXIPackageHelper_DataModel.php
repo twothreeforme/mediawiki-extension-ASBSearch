@@ -199,13 +199,13 @@ class DataModel {
 	function parseEquipment($param, $job){
         //print_r($this->dataset);
         if ( !$param ) return NULL;
-		
-		$prevItem = "";
+
+		//$prevItem = "";
 		//$modIsEffect = 0;	
 
 		foreach ( $param as $row ) {
-
-			if ( $job != NULL && $job > 0) {
+			//throw new Exception($row->jobs);
+			if ( $job != NULL && $job > 0 && isset($row->jobs)) {
 				if ( !ParserHelper::checkJob($job, $row->jobs) ) continue;
 			}
 
@@ -254,10 +254,12 @@ class DataModel {
 			// }
 
 			$workingRow = array (
-				'name' => $row->name,
+				'id' => $row->itemId,
+				'name' => ParserHelper::itemName($row->name),
 				'level' => $row->level,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
+				'rslot' => $row->rslot,
 				'hasstatuseffect' => $statusEffect,
 				'mods' => array ( $_mod )
 			);

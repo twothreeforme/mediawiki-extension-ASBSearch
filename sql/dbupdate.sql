@@ -75,6 +75,10 @@ DROP TABLE IF EXISTS `mob_family_system`;
 source mob_family_system.sql;
 \! echo mob_family_system done
 
+\! echo traits
+DROP TABLE IF EXISTS `traits`;
+source traits.sql;
+\! echo traits done
 
 \! echo hxi_changes
 source hxi_changes.sql;

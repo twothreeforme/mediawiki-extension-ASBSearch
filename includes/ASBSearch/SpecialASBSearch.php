@@ -12,11 +12,11 @@ class SpecialASBSearch extends SpecialPage {
         parent::__construct( 'ASBSearch' );
     }
 
-	static function onBeforePageDisplay( $out, $skin ) : void  { 
+	static function onBeforePageDisplay( $out, $skin ) : void  {
 		//$out->addModules(['FFXIPackageHelper_ASBSearch']);
-		$out->addModules(['FFXIPackageHelper_dynamicContent']);
+		$out->addModules(['FFXIPackageHelper_TabsController']);
 	}
-	
+
 	function execute( $par ) {
 
 		//$this->testing();
@@ -25,7 +25,7 @@ class SpecialASBSearch extends SpecialPage {
 		$output = $this->getOutput();
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 
-		// # Get request data 
+		// # Get request data
 		$levelRangeMIN =  (int)$request->getText( 'levelRangeMIN' );
 		//$levelRangeMIN = isset($levelRangeMIN) ? $levelRangeMIN : 0;
 
@@ -71,14 +71,14 @@ class SpecialASBSearch extends SpecialPage {
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
-        //$tabEquipsets = new FFXIPackageHelper_Equipsets();
+        $tabEquipsets = new FFXIPackageHelper_Equipsets();
 
         $html = "<div id=\"initialHide\" style=\"display: none;\">" .
                 $tabs->header() . 
                 $tabs->tab1($tabDropRates->searchForm()) .
                 $tabs->tab2($tabRecipes->searchForm()) .
 				$tabs->tab3($tabEquipment->searchForm()) .
-                //$tabs->tab4($tabEquipment->equipsets()) .
+                $tabs->tab4($tabEquipsets->equipment()) .
                 "</div>";
 
 		$output->addHTML( $html );
