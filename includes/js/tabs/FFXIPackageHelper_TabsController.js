@@ -1,7 +1,7 @@
 var TabDropRates = require("./FFXIPackageHelper_TabDropRates.js");
 var TabRecipes = require("./FFXIPackageHelper_TabRecipes.js");
 var TabEquipment = require("./FFXIPackageHelper_TabEquipment.js");
-var TabEquipsets = require("./FFXIPackageHelper_TabEquipsets.js");
+var TabEquipsets = require("./Equipsets/FFXIPackageHelper_TabEquipsets.js");
 
 
 function showTab(evt, tabName) { //https://www.w3schools.com/howto/howto_js_tabs.asp
@@ -34,7 +34,7 @@ function onPageLoad(){
       showTab(e,tabsButton_droprates.id);
     });
   // set the current tab to be "Drop Rates"
-  //tabsButton_droprates.click();
+  tabsButton_droprates.click();
 
   const tabsButton_recipes = document.getElementById("FFXIPackageHelper_tabs_recipes");
   tabsButton_recipes.addEventListener("click", function (e) {
@@ -50,12 +50,11 @@ function onPageLoad(){
   tabsButton_equipsets.addEventListener("click", function (e) {
       showTab(e,tabsButton_equipsets.id);
   });
-  tabsButton_equipsets.click();
+  //tabsButton_equipsets.click();
 
 }
 
-//mw.hook('wikipage.content').add(onPageLoad());
-$( document ).ready( function () {
+mw.hook('wikipage.content').add( function () {
 
     onPageLoad();
     document.getElementById("initialHide").style.display = "block";
@@ -65,4 +64,16 @@ $( document ).ready( function () {
     TabEquipment.setLinks();
     TabEquipsets.setLinks();
 
-  } );
+  });
+
+// $( document ).ready( function () {
+
+//     onPageLoad();
+//     document.getElementById("initialHide").style.display = "block";
+
+//     TabDropRates.setLinks();
+//     TabRecipes.setLinks();
+//     TabEquipment.setLinks();
+//     TabEquipsets.setLinks();
+
+//   } );

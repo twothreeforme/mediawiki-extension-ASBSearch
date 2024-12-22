@@ -1,4 +1,4 @@
-module.exports.actionAPI = function (params, forTab, currentButton, callback) {
+module.exports.actionAPI = function (params, forTab, currentButton, sender) {
   //console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
@@ -7,7 +7,8 @@ module.exports.actionAPI = function (params, forTab, currentButton, callback) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
-        if ( forTab.includes("search") )  return result; //updateEquipsets_Search(result);
+        if ( forTab.includes("search") )  sender.returnCallback(result);
+        else if ( forTab.includes("change")) console.log(result);
         else updateEquipsets(result);
       }
       //else if ( forTab == "equipsets_search") updateEquipsets_Search(result);
@@ -53,45 +54,3 @@ function updateEquipsets(updatedStats){
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statATT"); stat.innerHTML = updatedStats[10];
 }
 
-function updateEquipsets_Search(results){
-
-
-  const slot = results[1];
-  const arr = results[0];
-  const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
-  var dl = document.getElementById(idname);
-  dl.innerHTML = "";
-
-  for ( let i = 0; i < arr.length; i++ ){
-    //console.log(arr[i]["name"]);
-
-    var dt = document.createElement("dt");
-    dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
-    dt.onmouseout = function() { this.style="background-color:none;"; };
-
-
-    // li.appendChild(document.createTextNode(arr[i]["name"]));
-
-    // var iconurl = "[[File:itemid_" + arr["name"]
-    // mw.hook( 'wikipage.content' ).fire( $content );
-
-    var t = document.createTextNode(arr[i]["name"]);
-    var iconurl = "/index.php/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
-
-    var img = document.createElement("img");
-    img.src=iconurl;
-    img.width=12;
-    img.height=12;
-
-    dt.addEventListener('click', () => {
-      // need item id
-      console.log("clicked");
-    });
-
-    dt.appendChild(img);
-    dt.appendChild(t);
-    dl.appendChild(dt);
-  }
-  //mw.hook( 'wikipage.content' ).fire($(classname));
-
-}

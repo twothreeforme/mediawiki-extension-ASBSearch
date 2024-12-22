@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 // SQL
 // item_equipment
 // main: 1=nothing in offhand, 3= can have offhand
@@ -26,25 +28,20 @@ class FFXIPackageHelper_Equipsets  {
         $this->imgPath = $wgServer . $wgScriptPath . "/index.php/Special:Filepath/";
     }
 
-
+    // Testing only
     static function onParserInit( Parser $parser ) {
         $parser->setHook('Equipsets','FFXIPackageHelper_Equipsets::showequipset' );
         return true;
 	}
 
+    // Testing only
     public static function showequipset( $input, array $params, Parser $parser, PPFrame $frame ) {
-
-        // $parser->getOutput()->updateCacheExpiry(0);
-
-        //$html = searchForm();
-
         $test = new FFXIPackageHelper_Equipsets();
         $html = $test->showTables();
-
-
         return 	$html;
     }
 
+    // Testing only
     public function showTables(){
         $html = "<div id=\"FFXIPackageHelper_tabs_equipment_searchForm\">" .
                     "<table><tbody><tr><td>
@@ -68,27 +65,20 @@ class FFXIPackageHelper_Equipsets  {
         return "<img class=\"\" src=\"" . $this->imgPath . "Trans_" . $res . ".gif\" width=\"20\" height=\"20\">";
     }
 
-    public function equipment(){
-        $iSize = 64;
-
+     public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
-
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_container\" >
-        <table class=\"FFXIPackageHelper_Equipsets_showset\">
-            <tr>
-                <td colspan=\"2\">
-                    <div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
                     <p>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</p>
                     <p>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</p>
                     <p>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <div class=\"FFXIPackageHelper_Equipsets_showstats\">
-                    <p><center><b>Statistics</b></center></p>
+                 </div>";
 
+        return $html;
+    }
+
+    public function statsSection(){
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats\">
+                    <p><center><b>Statistics</b></center></p>
                     <table class=\"FFXIPackageHelper_Equipsets_showstats_basestats\">
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>HP&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statHP\">0</p></td></tr>
@@ -104,39 +94,76 @@ class FFXIPackageHelper_Equipsets  {
                         <tr><td>DEF&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statDEF\">0</p></td></tr>
                         <tr><td>ATT&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statATT\">0</p></td></tr>
                     </table>
-                </div>
-                </td>
-                <td>
-                    <table class=\"FFXIPackageHelper_Equipsets_equipmentgrid\">
-                        <tr>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\" src=\"" . $this->imgPath . "Main.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"1\" src=\"" . $this->imgPath . "Sub.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"2\" src=\"" . $this->imgPath . "Range.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"3\" src=\"" . $this->imgPath . "Ammo.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                        </tr>
-                        <tr>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"4\" src=\"" . $this->imgPath . "Head.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"5\" src=\"" . $this->imgPath . "Neck.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"6\" src=\"" . $this->imgPath . "Ear1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"7\" src=\"" . $this->imgPath . "Ear2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                        </tr>
-                        <tr>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"8\" src=\"" . $this->imgPath . "Body.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"9\" src=\"" . $this->imgPath . "Hands.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"10\" src=\"" . $this->imgPath . "Ring1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"11\" src=\"" . $this->imgPath . "Ring2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                        </tr>
-                        <tr>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"12\" src=\"" . $this->imgPath . "Back.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"13\" src=\"" . $this->imgPath . "Waist.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"14\" src=\"" . $this->imgPath . "Legs.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                            <td><img class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"15\" src=\"" . $this->imgPath . "Feet.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr><td colspan=\"2\">
-                <div class=\"FFXIPackageHelper_Equipsets_showstats_res\">
+                </div>";
+        return $html;
+    }
+
+    public function equipmentGrid(){
+        /*
+                <tr>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\" src=\"" . $this->imgPath . "Main.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\" src=\"" . $this->imgPath . "Sub.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\" src=\"" . $this->imgPath . "Range.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\" src=\"" . $this->imgPath . "Ammo.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                </tr>
+                <tr>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\" src=\"" . $this->imgPath . "Head.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\" src=\"" . $this->imgPath . "Neck.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\" src=\"" . $this->imgPath . "Ear1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\" src=\"" . $this->imgPath . "Ear2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                </tr>
+                <tr>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\" src=\"" . $this->imgPath . "Body.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\" src=\"" . $this->imgPath . "Hands.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\" src=\"" . $this->imgPath . "Ring1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\" src=\"" . $this->imgPath . "Ring2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                </tr>
+                <tr>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\" src=\"" . $this->imgPath . "Back.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\" src=\"" . $this->imgPath . "Waist.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\" src=\"" . $this->imgPath . "Legs.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                    <td><img class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\" src=\"" . $this->imgPath . "Feet.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
+                </tr>
+        */
+
+        $iSize = 64;
+
+        $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
+        $imageURL = $f->getCanonicalUrl();
+        $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px; width:64px; height:64px;\">";
+
+        //$td = "<td style=\"background-image:url(" . $this->imgPath . "Blank.jpg);background-repeat:no-repeat;background-size:64px 64px; width:64px; height:64px;\">";
+        $html = "<table class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >
+                    <tr>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
+                    </tr>
+                    <tr>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
+                    </tr>
+                    <tr>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
+                    </tr>
+                    <tr>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
+                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
+                    </tr>
+                </table>";
+        return $html;
+    }
+
+    public function resistances(){
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\">
                     <table >
                         <tr>
                             <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
@@ -151,81 +178,95 @@ class FFXIPackageHelper_Equipsets  {
                             <td style=\"width:100px;\">". $this->resCircle("Dark") ."<p id=\"FFXIPackageHelper_Equipsets_statDark\"></p></td>
                         </tr>
                     </table>
-                </div>
-            </td></tr>
-        </table>
+                </div>";
+    return $html;
+    }
 
-        <div>
-            <table class=\"FFXIPackageHelper_Equipsets_table\">
-                <tr>
-                    <td>Main</td>
-                    <td id=\"grid0_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Sub</td>
-                    <td id=\"grid1_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Range</td>
-                    <td id=\"grid2_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Ammo</td>
-                    <td id=\"grid3_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Head</td>
-                    <td id=\"grid4_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Neck</td>
-                    <td id=\"grid5_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Ear1</td>
-                    <td id=\"grid6_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Ear2</td>
-                    <td id=\"grid7_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Body</td>
-                    <td id=\"grid8_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Hands</td>
-                    <td id=\"grid9_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Ring1</td>
-                    <td id=\"grid10_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Ring2</td>
-                    <td id=\"grid11_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Back</td>
-                    <td id=\"grid12_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Waist</td>
-                    <td id=\"grid13_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Legs</td>
-                    <td id=\"grid14_value\">Empty</td>
-                </tr>
-                <tr>
-                    <td>Feet</td>
-                    <td id=\"grid15_value\">Empty</td>
-                </tr>
-            </table>
-        </div>
+    public function equipLabels(){
+        $html =  "<div><table class=\"FFXIPackageHelper_Equipsets_table\">
+                            <tr>
+                                <td>Main</td>
+                                <td id=\"grid0_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Sub</td>
+                                <td id=\"grid1_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Range</td>
+                                <td id=\"grid2_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Ammo</td>
+                                <td id=\"grid3_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Head</td>
+                                <td id=\"grid4_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Neck</td>
+                                <td id=\"grid5_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Ear1</td>
+                                <td id=\"grid6_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Ear2</td>
+                                <td id=\"grid7_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Body</td>
+                                <td id=\"grid8_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Hands</td>
+                                <td id=\"grid9_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Ring1</td>
+                                <td id=\"grid10_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Ring2</td>
+                                <td id=\"grid11_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Back</td>
+                                <td id=\"grid12_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Waist</td>
+                                <td id=\"grid13_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Legs</td>
+                                <td id=\"grid14_value\">Empty</td>
+                            </tr>
+                            <tr>
+                                <td>Feet</td>
+                                <td id=\"grid15_value\">Empty</td>
+                            </tr>
+                        </table>
+                    </div>";
+        return $html;
+    }
 
-        </div>
-        ";
+    public function showEquipsets(){
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_container\" >
+                    <table class=\"FFXIPackageHelper_Equipsets_showset\">
+                        <tr>
+                            <td colspan=\"2\">" . $this->querySection() . "</td>
+                        </tr>
+                        <tr>
+                            <td>" . $this->statsSection() . "</td>
+                            <td>" . $this->equipmentGrid() . "</td>
+                        </tr>
+                        <tr><td colspan=\"2\">" . $this->resistances() ."</td></tr>
+                    </table>" .
+                    $this->equipLabels() .
+                "</div>";
 
         return $html;
     }

@@ -16,15 +16,8 @@ const  _waist = `<h2>Waist Slot</h2>`;
 const  _legs = `<h2>Legs Slot</h2>`;
 const  _feet = `<h2>Feet Slot</h2>`;
 
-let _default = `
-    <p>Search for item...</p>`;
-    //<input id="FFXIPackageHelper_equipsets_searchInput" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"25\">`;
-
-    //<button id="FFXIPackageHelper_equipsets_search" >Search</button>
-let _default2 = `
-    <button class="close-modal">Use</button>
-    <br><br>
-    <button class="close-modal">Cancel</button>`;
+let _default = `<p>Search for item...</p>`;
+let _default2 = `<br><br><button class="close-modal">Cancel</button>`;
 
 function searchInput(slot){
     return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
@@ -35,7 +28,7 @@ function searchButton(slot){
 }
 
 function searchResults(slot){
-    return "<br><div id=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
+    return "<br><br><sub>click item to add to set...</sub><div id=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
 }
 
 function searchEquip(slot){
@@ -48,6 +41,12 @@ function searchEquip(slot){
     };
   }
 
+ function changeEquip(stats, equipment){
+    return {
+        action: "equipsets_change",
+        equipment: "asdf"
+    };
+  }
 
 class ModalWindow {
     //searchCallback = null;
@@ -116,10 +115,9 @@ class ModalWindow {
         const searchButton = document.getElementById("FFXIPackageHelper_equipsets_search" + this.slot);
         searchButton.addEventListener('click', (e) =>  {
             //console.log("search clicked: " + this.slot);
-            this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, returnCallback())
+            this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
+            //this.options.searchCallback(changeEquip(this.slot), "equipsets_change", null, this);
         });
-        //console.log(searchButton.data("events"));
-
     }
   
     returnCallback(results){
@@ -146,15 +144,17 @@ class ModalWindow {
 
             dt.addEventListener('click', () => {
                 // need item id
-                console.log("clicked: " + arr[i]["id"]);
+                //console.log("clicked: " + arr[i]["id"]);
+                document.getElementById(idname).innerHTML = "";
+                this.options.returnCallback(arr[i]["id"], slot, this);
             });
 
             dt.appendChild(img);
             dt.appendChild(t);
             dl.appendChild(dt);
-  }
-
+        }
     }
+
     // searchClicked() {
     //     console.log("search clicked: " + this.slot);
     //     this.options.searchCallback(searchEquip(), "equipsets_search", null)
@@ -165,7 +165,7 @@ class ModalWindow {
     }
   
     close() {
-        //this.searchButton.removeEventListener('click', this.searchClicked());
+        document.getElementById("FFXIPackageHelper_equipsets_searchResults" + this.slot).innerHTML = "";
         this.modal.classList.remove('open');
     }
 }

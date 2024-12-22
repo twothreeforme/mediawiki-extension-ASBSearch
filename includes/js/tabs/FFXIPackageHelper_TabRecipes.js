@@ -1,4 +1,4 @@
-const API = require("./FFXIPackageHelper_ActionAPI.js");
+const API = require("./Equipsets/FFXIPackageHelper_ActionAPI.js");
 
 module.exports.setLinks = function (){
     const searchRecipeSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchRecipeSubmit");

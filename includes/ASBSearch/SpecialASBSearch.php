@@ -78,7 +78,7 @@ class SpecialASBSearch extends SpecialPage {
                 $tabs->tab1($tabDropRates->searchForm()) .
                 $tabs->tab2($tabRecipes->searchForm()) .
 				$tabs->tab3($tabEquipment->searchForm()) .
-                $tabs->tab4($tabEquipsets->equipment()) .
+                $tabs->tab4($tabEquipsets->showEquipsets()) .
                 "</div>";
 
 		$output->addHTML( $html );

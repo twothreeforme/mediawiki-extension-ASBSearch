@@ -1,4 +1,4 @@
-var API = require("./FFXIPackageHelper_ActionAPI.js");
+var API = require("./Equipsets/FFXIPackageHelper_ActionAPI.js");
 
 module.exports.setLinks = function (){
     const searchDropRatesSubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit");

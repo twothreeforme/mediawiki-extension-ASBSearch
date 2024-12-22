@@ -26,18 +26,81 @@ var sJobDropdown = null;
 var mlvlDropdown = null;
 var slvlDropdown = null;
 
+const blankSlotIMG = new Image();
+blankSlotIMG.src = "/index.php/Special:Filepath/Blank.jpg";
+
+// function replaceImageWithCanvas(imageId) {
+//     imageId = "grid0";
+//     const image = document.getElementById(imageId);
+
+//     const canvas = document.createElement('canvas');
+//     const ctx = canvas.getContext('2d');
+
+//     // Set canvas dimensions to match the image
+//     canvas.width = 64;
+//     canvas.height = 64;
+
+//     // Draw the image onto the canvas
+//     ctx.drawImage(image, 0, 0);
+
+//     // Replace the image with the canvas
+//     image.parentNode.replaceChild(canvas, image);
+//   }
+
+function updateEquipmentGrid(id, slot, sender){
+    console.log("clicked: " + id + ", " + slot);
+    const ids = getEquipIDs();
+    ids[slot] = id; // updated equip
+    //console.log(ids);
+    var all = getStatsData(ids);
+    all.action = "equipsets_change";
+
+    API.actionAPI(all, "equipsets_change", null, null);
+    // close modal window
+    sender.close();
+}
+
+function getEquipIDs(){
+    let equipIDs = [];
+    for (let v = 0; v <= 15; v++) {
+        let str = "grid" + v;
+        let slot = document.getElementById(str);
+        equipIDs[v] = slot.dataset.value;
+    }
+    return equipIDs;
+}
+
+
+function getStatsData(equipIDString){
+    if ( equipIDString == null ) equipIDString =  getEquipIDs().join(",");
+
+    return {
+        action: "equipsets",
+        race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+        mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
+        slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
+        mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
+        sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
+        equipment: equipIDString,
+    };
+  }
+
+function updateStats(data){
+    if ( data == null ) data = getStatsData();
+    //console.log(getStatData());
+    API.actionAPI(data, "equipsets", null);
+}
+
 module.exports.setLinks = function (){
     for (let v = 0; v <= 15; v++) {
-        const modal = new ModalWindow(v, { searchCallback: API.actionAPI });
+        const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: updateEquipmentGrid});
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
         slot.addEventListener("click", function (e) {
-            //changeEquip(e.target.dataset.value);
-
             modal.open();
             // DEV ONLY
-            updateStats();
+            //updateStats();
         });
     }
 
@@ -92,39 +155,8 @@ module.exports.setLinks = function (){
     sJobDropdown.value=3;
     raceDropdown.value=3;
 
-    //updateStats();
-}
-
-function updateEquipmentGrid(id, slot){
-
-}
-
-function getEquipIDs(){
-    let equipIDs = [];
-    for (let v = 0; v <= 15; v++) {
-        let str = "grid" + v + "_value";
-        let slot = document.getElementById(str);
-        if ( slot.innerHTML == "Empty") equipIDs.push(0);
-        else equipIDs.push(slot.innerHTML);
-    }
-    return equipIDs;
-}
-
-function getStatsData(){
-    const equipIDString =  getEquipIDs().join(",");
-    return {
-        action: "equipsets",
-        race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
-        mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
-        slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
-        mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
-        sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
-        equipment: equipIDString,
-        //equipment: [17090,0,0,0].join(",")
-    };
-  }
-
-function updateStats(){
-    //console.log(getStatData());
-    API.actionAPI(getStatsData(), "equipsets", null);
+    /**
+     * On page load
+     */
+    updateStats();
 }

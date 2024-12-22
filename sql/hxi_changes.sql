@@ -264,6 +264,17 @@ UPDATE mob_droplist set itemRate = 100, changes_tag = 1 WHERE (dropId < 1674 OR 
 UPDATE mob_droplist set itemRate = 50, groupId =  3, changes_tag = 1 WHERE itemId = 16555; -- ZoneID: 154 - Fafnir -- Ridill 1% -> 5%; move to new group with Andvaranauts
 UPDATE mob_droplist set itemRate = 950, groupId =  3, changes_tag = 1 WHERE itemId = 14075; -- ZoneID: 154 - Fafnir -- Andvaranauts move to new group with Ridill
 UPDATE mob_droplist SET itemId = '1318', changes_tag = 1 WHERE itemId = '1324' AND dropId = '946'; -- Replace A-Head with D-Feet in Genbu drops (since removed from Aspidochelone)
+UPDATE mob_droplist SET groupRate = 1000, changes_tag = 1 WHERE dropId = '2819' AND groupId = 1; -- Kirin has 100% chance to drop at least 1 Abj now
+
+
+
+
+-- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1340,334);   -- Neptunal Abjuration Body (Group 1 - 33.4%)
+-- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1315,333);   -- Dryadic Abjuration Body (Group 1 - 33.3%)
+-- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1337,333);   -- Wyrmal Abjuration Legs (Group 1 - 33.3%)
+
+
+
 
 UNLOCK TABLES;
 

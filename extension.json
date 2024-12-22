@@ -89,12 +89,12 @@
 			"remoteExtPath": "ASBSearch",
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
-                "includes/js/tabs/FFXIPackageHelper_ActionAPI.js",
-                "includes/js/tabs/FFXIPackageHelper_ModalWindow.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
                 "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
-                "includes/js/tabs/FFXIPackageHelper_TabEquipsets.js"
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js"
 			],
             "styles": [
 				"resources/styles/forms.css",
@@ -116,6 +116,9 @@
 			"class": "APIModuleEquipsets"
 		},
         "equipsets_search": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_change": {
 			"class": "APIModuleEquipsets"
 		}
 	},

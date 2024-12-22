@@ -210,7 +210,7 @@ Showing Equipsets stats table
 */
 .FFXIPackageHelper_Equipsets_showset {
     /* background-color: #00ccff; */
-    width: 425px;
+    /* width: 425px; */
     /* height: 400px; */
     display:flex;
     border-collapse: collapse;
@@ -271,25 +271,42 @@ Showing Equipsets stats table
 /*
 Equipsets equipment grid (table)
 */
-.FFXIPackageHelper_Equipsets_equipmentgrid td {
-    padding:0;
+.FFXIPackageHelper_Equipsets_equipmentgrid {
+    background-color: #505050bb;
+    width: 256px;
+    height: 256px;
+    overflow-y: auto;
+    border-collapse: collapse;
 }
 
-.FFXIPackageHelper_Equipsets_equipmentgrid {
+.FFXIPackageHelper_Equipsets_equipmentgrid td,img {
+    padding:0px;
+    border-width:0px;
+    margin:0px;
+}
+
+.FFXIPackageHelper_Equipsets_equipmentgrid tr {
+    margin: 0;
+    padding:0;
     display:flex;
-    background-color: #505050bb;
-    width: 265px;
-    height: 265px;
+    height:64px;
+    border-collapse: collapse;
+    flex-direction: row;
+    align-items: center;
+}
+
+.equipsetsGridImage {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    border-collapse: collapse;
 }
 
 .equipsetsGridImage:hover {
-    box-shadow: 0 0 25px #ffd000b7;
-    -webkit-box-shadow: 0 0 25px #ffd000b7;
-    -moz-box-shadow: 0 0 25px #ffd000b7;
-    -o-box-shadow: 0 0 25px #ffd000b7;
-    -ms-box-shadow: 0 0 25px #ffd000b7;
-    opacity: 0.5;
+    -webkit-filter: brightness(1.25);
 }
+
+
 
 /*
 Modal Windows
@@ -318,7 +335,6 @@ Modal Windows
     padding: 20px;
     border-radius: 5px;
 }
-
 
 /*
 Weather table
