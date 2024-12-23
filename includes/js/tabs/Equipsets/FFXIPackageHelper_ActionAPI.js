@@ -8,7 +8,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
         if ( forTab.includes("search") )  sender.returnCallback(result);
-        else if ( forTab.includes("change")) console.log(result);
+        else if ( forTab.includes("change")) chagneGrid(result);
         else updateEquipsets(result);
       }
       //else if ( forTab == "equipsets_search") updateEquipsets_Search(result);
@@ -52,5 +52,10 @@ function updateEquipsets(updatedStats){
 
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statDEF"); stat.innerHTML = updatedStats[9];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statATT"); stat.innerHTML = updatedStats[10];
+}
+
+function chagneGrid(updatedGrid){
+
+  document.getElementById("FFXIPackageHelper_Equipsets_equipmentgrid").innerHTML = updatedGrid;
 }
 

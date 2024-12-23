@@ -44,19 +44,29 @@ class APIModuleEquipsets extends ApiBase {
             $result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot'] ]);
         }
         else if ( $params['action'] == "equipsets_change" ) {
+
+            $incomingEquipmentList = explode('|', $params['equipment']);
+
+
+
+            //throw new Exception(gettype($params['equipment']) . " : " . $params['equipment'] . $test);
+
             // need all equipment
-            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $params['equipment'] );
+            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $incomingEquipmentList );
 
             //change stats in HTML
 
-
-
             // db query for all items
-            // change equipment icon for slot
-            // wikiparse the html
-            // send updated HTML back as result
 
-            $result->addValue($params['action'], $params['querytype'], $params['equipment']);
+            // change equipment icon for slot
+
+            // wikiparse the html
+
+            // send updated HTML back as result
+            $tabEquipsets = new FFXIPackageHelper_Equipsets();
+            $updatedHTML = $tabEquipsets->equipmentGrid($incomingEquipmentList);
+
+            $result->addValue($params['action'], $params['querytype'], $updatedHTML);
         }
     }
 }

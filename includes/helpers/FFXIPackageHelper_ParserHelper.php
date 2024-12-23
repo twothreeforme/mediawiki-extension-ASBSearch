@@ -456,14 +456,31 @@ class ParserHelper {
     }
 
     public static function wikiParse($html){
+
 		$context = RequestContext::getMain();
         $title = $context->getTitle();
         $parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$user = RequestContext::getMain()->getUser();
         $parserOptions = new ParserOptions($user);
-        $parserOutput = $parser->parse( $html, $title, $parserOptions );
 
-        return $parserOutput->getText();
+        if (is_array($html)){
+            $response = array();
+            foreach($html as $line){
+                $parserOutput = $parser->parse( $line, $title, $parserOptions );
+                $response[] = $parserOutput->getText();
+            }
+            return $response;
+        }
+        else{
+            if ($html != null){
+                $parserOutput = $parser->parse( $html, $title, $parserOptions );
+                return $parserOutput->getText();
+            }
+        }
+        return null;
+
+        // $parserOutput = $parser->parse( $html, $title, $parserOptions );
+        // return $parserOutput->getText();
 	}
 
     public static function checkJob($job, $item){

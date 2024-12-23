@@ -39,7 +39,7 @@ class FFXIPackageHelper_Stats {
         $this->applyToModifiers($traits);
 
         // Pull equipment from SQL
-        $this->applyEquipment(explode(",", $equipmentString));
+        if ( gettype($equipmentString) == 'string') $this->applyEquipment(explode(",", $equipmentString));
 
         // Set all base stats in the class
         $this->setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob);

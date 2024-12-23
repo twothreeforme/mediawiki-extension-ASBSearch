@@ -96,6 +96,7 @@ module.exports.setLinks = function (){
         const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: updateEquipmentGrid});
 
         let str = "grid" + v;
+
         let slot = document.getElementById(str);
         slot.addEventListener("click", function (e) {
             modal.open();

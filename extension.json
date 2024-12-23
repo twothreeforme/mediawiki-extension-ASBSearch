@@ -59,8 +59,7 @@
             "SpecialWeatherForecast::onBeforePageDisplay"
         ],
         "ParserFirstCallInit": [
-            "ZoneForecast::onParserInit",
-            "FFXIPackageHelper_Equipsets::onParserInit"
+            "ZoneForecast::onParserInit"
         ]
     },
 	"ResourceModules": {

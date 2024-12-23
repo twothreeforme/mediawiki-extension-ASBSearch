@@ -275,31 +275,12 @@ Equipsets equipment grid (table)
     background-color: #505050bb;
     width: 256px;
     height: 256px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     border-collapse: collapse;
 }
 
-.FFXIPackageHelper_Equipsets_equipmentgrid td,img {
-    padding:0px;
-    border-width:0px;
-    margin:0px;
-}
-
-.FFXIPackageHelper_Equipsets_equipmentgrid tr {
-    margin: 0;
-    padding:0;
-    display:flex;
-    height:64px;
-    border-collapse: collapse;
-    flex-direction: row;
-    align-items: center;
-}
-
-.equipsetsGridImage {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    border-collapse: collapse;
+.FFXIPackageHelper_Equipsets_equipmentgrid p {
+    margin: 0 0;
 }
 
 .equipsetsGridImage:hover {

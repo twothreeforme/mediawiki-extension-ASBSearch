@@ -8,7 +8,7 @@ const  _neck = `<h2>Neck Slot</h2>`;
 const  _ear1 = `<h2>Ear1 Slot</h2>`;
 const  _ear2 = `<h2>Ear2 Slot</h2>`;
 const  _body = `<h2>Body Slot</h2>`;
-const  _hands = `<h2>Body Slot</h2>`;
+const  _hands = `<h2>Hands Slot</h2>`;
 const  _ring1 = `<h2>Ring1 Slot</h2>`;
 const  _ring2 = `<h2>Ring2 Slot</h2>`;
 const  _back = `<h2>Back Slot</h2>`;
@@ -41,12 +41,12 @@ function searchEquip(slot){
     };
   }
 
- function changeEquip(stats, equipment){
-    return {
-        action: "equipsets_change",
-        equipment: "asdf"
-    };
-  }
+//  function changeEquip(stats, equipment){
+//     return {
+//         action: "equipsets_change",
+//         equipment: "asdf"
+//     };
+//   }
 
 class ModalWindow {
     //searchCallback = null;
@@ -56,21 +56,21 @@ class ModalWindow {
         let def = _default + searchInput(this.slot) + searchButton(this.slot) + searchResults(this.slot) + _default2;
 
         if ( this.slot == 0 ) this.content = _main + def;
-        if ( this.slot == 1 ) this.content = _sub + def;
-        if ( this.slot == 2 ) this.content = _range + def;
-        if ( this.slot == 3 ) this.content = _ammo + def;
-        if ( this.slot == 4 ) this.content = _head + def;
-        if ( this.slot == 5 ) this.content = _neck + def;
-        if ( this.slot == 6 ) this.content = _ear1 + def;
-        if ( this.slot == 7 ) this.content = _ear2 + def;
-        if ( this.slot == 8 ) this.content = _body + def;
-        if ( this.slot == 9 ) this.content = _hands + def;
-        if ( this.slot == 10 ) this.content = _ring1 + def;
-        if ( this.slot == 11 ) this.content = _ring2 + def;
-        if ( this.slot == 12 ) this.content = _back + def;
-        if ( this.slot == 13 ) this.content = _waist + def;
-        if ( this.slot == 14 ) this.content = _legs + def;
-        if ( this.slot == 15 ) this.content = _feet + def;
+        else if ( this.slot == 1 ) this.content = _sub + def;
+        else if ( this.slot == 2 ) this.content = _range + def;
+        else if ( this.slot == 3 ) this.content = _ammo + def;
+        else if ( this.slot == 4 ) this.content = _head + def;
+        else if ( this.slot == 5 ) this.content = _neck + def;
+        else if ( this.slot == 6 ) this.content = _ear1 + def;
+        else if ( this.slot == 7 ) this.content = _ear2 + def;
+        else if ( this.slot == 8 ) this.content = _body + def;
+        else if ( this.slot == 9 ) this.content = _hands + def;
+        else if ( this.slot == 10 ) this.content = _ring1 + def;
+        else if ( this.slot == 11 ) this.content = _ring2 + def;
+        else if ( this.slot == 12 ) this.content = _back + def;
+        else if ( this.slot == 13 ) this.content = _waist + def;
+        else if ( this.slot == 14 ) this.content = _legs + def;
+        else if ( this.slot == 15 ) this.content = _feet + def;
 
         this.options = {
             overlay: true,

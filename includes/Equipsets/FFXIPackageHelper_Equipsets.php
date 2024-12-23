@@ -21,48 +21,7 @@ use MediaWiki\MediaWikiServices;
 
 
 class FFXIPackageHelper_Equipsets  {
-    private $imgPath;
-
     public function __construct() {
-        global $wgServer, $wgScriptPath;
-        $this->imgPath = $wgServer . $wgScriptPath . "/index.php/Special:Filepath/";
-    }
-
-    // Testing only
-    static function onParserInit( Parser $parser ) {
-        $parser->setHook('Equipsets','FFXIPackageHelper_Equipsets::showequipset' );
-        return true;
-	}
-
-    // Testing only
-    public static function showequipset( $input, array $params, Parser $parser, PPFrame $frame ) {
-        $test = new FFXIPackageHelper_Equipsets();
-        $html = $test->showTables();
-        return 	$html;
-    }
-
-    // Testing only
-    public function showTables(){
-        $html = "<div id=\"FFXIPackageHelper_tabs_equipment_searchForm\">" .
-                    "<table><tbody><tr><td>
-                        <tr>
-                            <td>Equipment <input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"equipmentNameSearch\" size=\"25\" />
-                        </tr>
-                        <tr>
-                            <td>Job " . $this->jobDropDown() . "
-                            <br>Min. Item Level " . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_dynamiccontent_selectMinItemLvl") . "</td>
-                        </tr>
-                        <tr>
-                            <td><button id=\"FFXIPackageHelper_dynamiccontent_searchEquipmentSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
-                        </tr>
-                        </td></tr></tbody></table>
-                    <div id=\"FFXIPackageHelper_tabs_recipeSearch_queryresult\"></div>
-                </div>";
-        return $html;
-    }
-
-    private function resCircle($res){
-        return "<img class=\"\" src=\"" . $this->imgPath . "Trans_" . $res . ".gif\" width=\"20\" height=\"20\">";
     }
 
      public function querySection(){
@@ -98,7 +57,8 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function equipmentGrid(){
+    public function equipmentGrid($slot = null){
+
         /*
                 <tr>
                     <td><img class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\" src=\"" . $this->imgPath . "Main.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
@@ -128,58 +88,146 @@ class FFXIPackageHelper_Equipsets  {
 
         $iSize = 64;
 
+        if (!is_array($slot)){
+            for ( $s = 0; $s <= 15; $s++){ $slot[$s] = 0; }
+        }
+
+        $slot[0] = ( intval($slot[0]) != 0 ) ? "itemid_" . intval($slot[0]) . ".png" : "Main.jpg";
+        $slot[1] = ( intval($slot[1]) != 0 ) ? "itemid_" . intval($slot[1]) . ".png" : "Sub.jpg";
+        $slot[2] = ( intval($slot[2]) != 0 ) ? "itemid_" . intval($slot[2]) . ".png" : "Range.jpg";
+        $slot[3] = ( intval($slot[3]) != 0 ) ? "itemid_" . intval($slot[3]) . ".png" : "Ammo.jpg";
+        $slot[4] = ( intval($slot[4]) != 0 ) ? "itemid_" . intval($slot[4]) . ".png" : "Head.jpg";
+        $slot[5] = ( intval($slot[5]) != 0 ) ? "itemid_" . intval($slot[5]) . ".png" : "Neck.jpg";
+        $slot[6] = ( intval($slot[6]) != 0 ) ? "itemid_" . intval($slot[6]) . ".png" : "Ear1.jpg";
+        $slot[7] = ( intval($slot[7]) != 0 ) ? "itemid_" . intval($slot[7]) . ".png" : "Ear2.jpg";
+        $slot[8] = ( intval($slot[8]) != 0 ) ? "itemid_" . intval($slot[8]) . ".png" : "Body.jpg";
+        $slot[9] = ( intval($slot[9]) != 0 ) ? "itemid_" . intval($slot[9]) . ".png" : "Hands.jpg";
+        $slot[10] = ( intval($slot[10]) != 0 ) ? "itemid_" . intval($slot[10]) . ".png" : "Ring1.jpg";
+        $slot[11] = ( intval($slot[11]) != 0 ) ? "itemid_" . intval($slot[11]) . ".png" : "Ring2.jpg";
+        $slot[12] = ( intval($slot[12]) != 0 ) ? "itemid_" . intval($slot[12]) . ".png" : "Back.jpg";
+        $slot[13] = ( intval($slot[13]) != 0 ) ? "itemid_" . intval($slot[13]) . ".png" : "Waist.jpg";
+        $slot[14] = ( intval($slot[14]) != 0 ) ? "itemid_" . intval($slot[14]) . ".png" : "Legs.jpg";
+        $slot[15] = ( intval($slot[15]) != 0 ) ? "itemid_" . intval($slot[15]) . ".png" : "Feet.jpg";
+
+        for ( $s = 0; $s <= 15; $s++){
+            $slot[$s] = "[[File:". $slot[$s] . "|64px|link=]]";
+        }
+
+        $slot = ParserHelper::wikiParse($slot);
+
+    //     <tr>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
+    // </tr>
+    // <tr>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
+    // </tr>
+    // <tr>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
+    // </tr>
+    // <tr>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
+    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
+
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
         $imageURL = $f->getCanonicalUrl();
-        $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px; width:64px; height:64px;\">";
+        $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\">";
+
+        $html = ""; //"<table class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >";
+
+        for ( $s = 0; $s <= 15; $s++){
+            if ( $s == 0 ) $html .= "<tr>";
+            else if ( $s == 4 || $s == 8 || $s == 12 ) $html .= "</tr><tr>";
+
+           $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid" . $s . "\" data-value=\"0\">". $slot[$s] . "</div></td>";
+           // $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:". $slot[$s] . "|64px|link=]]") ."</div></td>";
+        }
+        // $html .= "</tr></table>";
+        $html .= "</tr>";
+
+
 
         //$td = "<td style=\"background-image:url(" . $this->imgPath . "Blank.jpg);background-repeat:no-repeat;background-size:64px 64px; width:64px; height:64px;\">";
-        $html = "<table class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >
-                    <tr>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
-                    </tr>
-                    <tr>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
-                    </tr>
-                    <tr>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
-                    </tr>
-                    <tr>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
-                        ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
-                    </tr>
-                </table>";
+
+                    // <tr>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
+                    // </tr>
+                    // <tr>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
+                    // </tr>
+                    // <tr>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
+                    // </tr>
+                    // <tr>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
+                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
+                //     </tr>
+                // </table>";
         return $html;
     }
 
     public function resistances(){
+        $resCircles = array();
+        $resCircles[] = "Trans_Fire.gif";
+        $resCircles[] = "Trans_Wind.gif";
+        $resCircles[] = "Trans_Ice.gif";
+        $resCircles[] = "Trans_Light.gif";
+        $resCircles[] = "Trans_Water.gif";
+        $resCircles[] = "Trans_Earth.gif";
+        $resCircles[] = "Trans_Lightning.gif";
+        $resCircles[] = "Trans_Dark.gif";
+
+        for ( $r = 0; $r <= 7; $r++){
+            $resCircles[$r] = "[[File:".  $resCircles[$r] . "|20px|link=]]";
+        }
+
+        $resCircles = ParserHelper::wikiParse($resCircles);
+
         $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\">
-                    <table >
-                        <tr>
-                            <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Wind") ."<p id=\"FFXIPackageHelper_Equipsets_statWind\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Ice") ."<p id=\"FFXIPackageHelper_Equipsets_statIce\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Light") ."<p id=\"FFXIPackageHelper_Equipsets_statLight\"></p></td>
-                        </tr>
-                        <tr>
-                            <td style=\"width:100px;\">". $this->resCircle("Water") ."<p id=\"FFXIPackageHelper_Equipsets_statWater\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Earth") ."<p id=\"FFXIPackageHelper_Equipsets_statEarth\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Lightning") ."<p id=\"FFXIPackageHelper_Equipsets_statLightning\"></p></td>
-                            <td style=\"width:100px;\">". $this->resCircle("Dark") ."<p id=\"FFXIPackageHelper_Equipsets_statDark\"></p></td>
-                        </tr>
-                    </table>
-                </div>";
-    return $html;
+        <table >";
+            // <tr>
+            //     <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Wind") ."<p id=\"FFXIPackageHelper_Equipsets_statWind\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Ice") ."<p id=\"FFXIPackageHelper_Equipsets_statIce\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Light") ."<p id=\"FFXIPackageHelper_Equipsets_statLight\"></p></td>
+            // </tr>
+            // <tr>
+            //     <td style=\"width:100px;\">". $this->resCircle("Water") ."<p id=\"FFXIPackageHelper_Equipsets_statWater\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Earth") ."<p id=\"FFXIPackageHelper_Equipsets_statEarth\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Lightning") ."<p id=\"FFXIPackageHelper_Equipsets_statLightning\"></p></td>
+            //     <td style=\"width:100px;\">". $this->resCircle("Dark") ."<p id=\"FFXIPackageHelper_Equipsets_statDark\"></p></td>
+            // </tr>
+
+        $td = "<td style=\"width:100px;\">";
+        for ( $r = 0; $r <= 7; $r++){
+            if ( $r == 0 ) $html .= "<tr>";
+            else if ( $r == 4 ) $html .= "</tr><tr>";
+            $html .= $td . $resCircles[$r];
+        }
+
+        $html .= "</tr></table></div>";
+        return $html;
     }
 
     public function equipLabels(){
@@ -259,9 +307,9 @@ class FFXIPackageHelper_Equipsets  {
                         <tr>
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
-                        <tr>
+                        <tr style=\"height:256px;\">
                             <td>" . $this->statsSection() . "</td>
-                            <td>" . $this->equipmentGrid() . "</td>
+                            <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid() . "</table></td>
                         </tr>
                         <tr><td colspan=\"2\">" . $this->resistances() ."</td></tr>
                     </table>" .
