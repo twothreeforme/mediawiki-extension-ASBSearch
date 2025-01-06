@@ -2,7 +2,6 @@
 
 
 class FFXIPackageHelper_Variables {
-    
     public function __construct() {
     }
 
@@ -17,6 +16,72 @@ class FFXIPackageHelper_Variables {
         0x040 => "WEAPONSKILL",
         0x080 => "JOBABILITY",
         0x100 => "SCENT"
+    );
+
+    public $skill = array(
+        //-- Combat Skills
+        0 => "NONE" ,
+        1 => "HAND_TO_HAND" ,
+        2 => "DAGGER" ,
+        3 => "SWORD" ,
+        4 => "GREAT_SWORD" ,
+        5 => "AXE",
+        6 => "GREAT_AXE",
+        7 => "SCYTHE",
+        8 => "POLEARM" ,
+        9 => "KATANA" ,
+        10 => "GREAT_KATANA",
+        11 => "CLUB",
+        12 => "STAFF",
+        //-- 13~21 unused
+        // 22 => "AUTOMATON_MELEE" ,
+        // 23 => "AUTOMATON_RANGED" ,
+        // 24 => "AUTOMATON_MAGIC" ,
+        25 => "ARCHERY",
+        26 => "MARKSMANSHIP",
+        27 => "THROWING",
+
+        //-- Defensive Skills
+        28 => "GUARD",
+        29 => "EVASION",
+        30 => "SHIELD",
+        31 => "PARRY",
+
+        //-- Magic Skills
+        32 => "DIVINE_MAGIC",
+        33 => "HEALING_MAGIC",
+        34 => "ENHANCING_MAGIC",
+        35 => "ENFEEBLING_MAGIC",
+        36 => "ELEMENTAL_MAGIC",
+        37 => "DARK_MAGIC",
+        38 => 'SUMMONING_MAGIC',
+        39 => "NINJUTSU",
+        40 => "SINGING",
+        41 => "STRING_INSTRUMENT",
+        42 => "WIND_INSTRUMENT",
+        // 43 => "BLUE_MAGIC",
+        // 44 => "GEOMANCY",
+        // 45 => "HANDBELL"
+        //-- 46~47 unused
+
+        // -- Crafting Skills
+        // FISHING      = 48,
+        // WOODWORKING  = 49,
+        // SMITHING     = 50,
+        // GOLDSMITHING = 51,
+        // CLOTHCRAFT   = 52,
+        // LEATHERCRAFT = 53,
+        // BONECRAFT    = 54,
+        // ALCHEMY      = 55,
+        // COOKING      = 56,
+        // SYNERGY      = 57,
+
+        // -- Other Skills
+        // RID          = 58,
+        // DIG          = 59,
+        // -- 60~63 unused
+        // -- MAX_SKILLTYPE = 64
+
     );
 
     public $jobArray = array(

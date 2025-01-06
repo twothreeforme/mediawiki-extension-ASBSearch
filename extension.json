@@ -10,7 +10,9 @@
     "type": "other",
     "AutoloadClasses": {
         "FFXIPackageHelper_Effects": "includes/helpers/FFXIPackageHelper_Effects.php",
+        "FFXIPackageHelper_Equipment": "includes/helpers/data/FFXIPackageHelper_Equipment.php",
         "FFXIPackageHelper_Variables": "includes/helpers/data/FFXIPackageHelper_Variables.php",
+        "FFXIPackageHelper_ItemDetails": "includes/helpers/data/FFXIPackageHelper_ItemDetails.php",
         "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
         "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
@@ -89,15 +91,19 @@
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
                 "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js"
+
+
 			],
             "styles": [
 				"resources/styles/forms.css",
-                "resources/styles/tabs.css"
+                "resources/styles/tabs.css",
+                "resources/styles/hint.css"
 			]
         }
 	},

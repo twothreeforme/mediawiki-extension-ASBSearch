@@ -30,40 +30,64 @@ function onPageLoad(){
 //console.log("onReady")
 
   const tabsButton_droprates = document.getElementById("FFXIPackageHelper_tabs_droprates");
+  if ( tabsButton_droprates == null ) {
+    //console.log("droprates null");
+    return ;
+  }
   tabsButton_droprates.addEventListener("click", function (e) {
       showTab(e,tabsButton_droprates.id);
     });
   // set the current tab to be "Drop Rates"
-  // tabsButton_droprates.click();
+  tabsButton_droprates.click();
 
   const tabsButton_recipes = document.getElementById("FFXIPackageHelper_tabs_recipes");
+  if ( tabsButton_recipes == null ) {
+    //console.log("recipes null");
+    return ;
+  }
   tabsButton_recipes.addEventListener("click", function (e) {
       showTab(e,tabsButton_recipes.id);
   });
 
   const tabsButton_equipment = document.getElementById("FFXIPackageHelper_tabs_equipment");
+  if ( tabsButton_equipment == null )  {
+    //console.log("equipment null");
+    return ;
+  }
   tabsButton_equipment.addEventListener("click", function (e) {
       showTab(e,tabsButton_equipment.id);
   });
 
   const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
+  if ( tabsButton_equipsets == null )  {
+    //console.log("equipsets null");
+    return ;
+  }
   tabsButton_equipsets.addEventListener("click", function (e) {
       showTab(e,tabsButton_equipsets.id);
   });
-  tabsButton_equipsets.click();
+  //tabsButton_equipsets.click();
 
+  return 0;
 }
 
+var initiallyLoaded = false;
 mw.hook('wikipage.content').add( function () {
+  if ( initiallyLoaded == true) return;
 
-    onPageLoad();
-    document.getElementById("initialHide").style.display = "block";
+  if ( onPageLoad() == null) {
+    //console.log("Tab Controller: Tabs not found. ");
+    return;
+  }
 
-    TabDropRates.setLinks();
-    TabRecipes.setLinks();
-    TabEquipment.setLinks();
-    TabEquipsets.setLinks();
+  document.getElementById("initialHide").style.display = "block";
 
+  TabDropRates.setLinks();
+  TabRecipes.setLinks();
+  TabEquipment.setLinks();
+  TabEquipsets.setLinks();
+
+  initiallyLoaded = true;
   });
 
 // $( document ).ready( function () {

@@ -1,3 +1,7 @@
+
+var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
+
+
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
   //console.log(params["action"]);
   var api = new mw.Api();
@@ -7,8 +11,15 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
-        if ( forTab.includes("search") )  sender.returnCallback(result);
-        else if ( forTab.includes("change")) chagneGrid(result);
+        if ( forTab.includes("search") )  {
+          //console.log("api: equipsets_search: fired");
+          sender.returnCallback(result);
+        }
+        else if ( forTab.includes("change")) {
+          //console.log("api: equipsets_change: fired");
+          updateEquipsets(result[0]);
+          changeGrid(result[1]);
+        }
         else updateEquipsets(result);
       }
       //else if ( forTab == "equipsets_search") updateEquipsets_Search(result);
@@ -37,8 +48,40 @@ function updateEquipmentFromQuery(updatedHTML){
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_equipment_queryresult'));
 }
 
+function changeGrid(updatedGrid){
+  console.log(updatedGrid);
+  //var gridArray = updatedGrid.split(",");
+  slotChanged = updatedGrid[0][0];
+  slot_ID = updatedGrid[0][1][0];
+  slot_HTML = updatedGrid[0][1][1];
+  slot_Flag = updatedGrid[0][1][2];
+  slot_name = updatedGrid[0][1][3];
+  slot_tooltip = updatedGrid[0][2];
+
+  for (let v = 0; v <= 15; v++) {
+    if ( slotChanged != v ) continue;
+    if ( slot_Flag[2] == 0 ) continue;
+
+    let str = "grid" + v;
+    let slot = document.getElementById(str);
+
+    slot.innerHTML = slot_HTML;
+    slot.dataset.value = slot_ID;
+
+    //let tempName = slot_name + "\n" + slot_name + "\n" + slot_name + "\n" + slot_name;
+    if( slot_ID == 0 ) Tooltip.handleTooltip(slot);
+    else {
+      Tooltip.handleTooltip(slot, slot_tooltip);
+    }
+    break;
+  }
+}
+
+
 function updateEquipsets(updatedStats){
   //console.log(updatedStats);
+
+  //let tempTooltip = `<span class="myTooltip" data-options="background:#fff;animation:fade;">Hello</span>`;
 
   let stat = document.getElementById("FFXIPackageHelper_Equipsets_statHP"); stat.innerHTML = updatedStats[0];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statMP"); stat.innerHTML = updatedStats[1];
@@ -49,13 +92,14 @@ function updateEquipsets(updatedStats){
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statINT"); stat.innerHTML = updatedStats[6];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statMND"); stat.innerHTML = updatedStats[7];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statCHR"); stat.innerHTML = updatedStats[8];
-
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statDEF"); stat.innerHTML = updatedStats[9];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statATT"); stat.innerHTML = updatedStats[10];
+
+
+  for ( var r = 11; r <= 18; r++){
+    stat = document.getElementById("FFXIPackageHelper_Equipsets_statRes" + (r - 11)); stat.innerHTML = updatedStats[r];
+  }
 }
 
-function chagneGrid(updatedGrid){
 
-  document.getElementById("FFXIPackageHelper_Equipsets_equipmentgrid").innerHTML = updatedGrid;
-}
 

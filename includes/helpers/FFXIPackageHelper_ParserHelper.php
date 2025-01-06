@@ -455,13 +455,20 @@ class ParserHelper {
         return false;
     }
 
-    public static function wikiParse($html){
-
-		$context = RequestContext::getMain();
+    public static function wikiParseOptions(){
+        $context = RequestContext::getMain();
         $title = $context->getTitle();
         $parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$user = RequestContext::getMain()->getUser();
         $parserOptions = new ParserOptions($user);
+        return [ $title, $parser, $parserOptions ];
+    }
+
+    public static function wikiParse($html){
+        $wParser = self::wikiParseOptions();
+        $title = $wParser[0];
+        $parser = $wParser[1];
+        $parserOptions = $wParser[2];
 
         if (is_array($html)){
             $response = array();

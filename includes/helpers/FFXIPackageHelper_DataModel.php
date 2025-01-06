@@ -196,7 +196,7 @@ class DataModel {
 		return $finalMod;
 	}
 
-	function parseEquipment($param, $job){
+	function parseEquipment($param, $job = null){
         //print_r($this->dataset);
         if ( !$param ) return NULL;
 
@@ -257,6 +257,7 @@ class DataModel {
 				'id' => $row->itemId,
 				'name' => ParserHelper::itemName($row->name),
 				'level' => $row->level,
+				'skilltype' => (property_exists($row, 'skill' )) ? $row->skill : 0,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
 				'rslot' => $row->rslot,

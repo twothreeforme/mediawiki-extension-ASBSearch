@@ -86,34 +86,69 @@ class FFXIPackageHelper_Equipsets  {
                 </tr>
         */
 
-        $iSize = 64;
+        // $iSize = 64;
 
-        if (!is_array($slot)){
-            for ( $s = 0; $s <= 15; $s++){ $slot[$s] = 0; }
-        }
+        /*
+        slot array
+        [
+            key = slot number, (ie: 0-15)
+            value =  [
+                        [0] = item id,
+                        [1] = html, -- only needs to be here if flag = 1
+                        [2] = flag  -- 1 = needs updating
+                    ]
+        ]
 
-        $slot[0] = ( intval($slot[0]) != 0 ) ? "itemid_" . intval($slot[0]) . ".png" : "Main.jpg";
-        $slot[1] = ( intval($slot[1]) != 0 ) ? "itemid_" . intval($slot[1]) . ".png" : "Sub.jpg";
-        $slot[2] = ( intval($slot[2]) != 0 ) ? "itemid_" . intval($slot[2]) . ".png" : "Range.jpg";
-        $slot[3] = ( intval($slot[3]) != 0 ) ? "itemid_" . intval($slot[3]) . ".png" : "Ammo.jpg";
-        $slot[4] = ( intval($slot[4]) != 0 ) ? "itemid_" . intval($slot[4]) . ".png" : "Head.jpg";
-        $slot[5] = ( intval($slot[5]) != 0 ) ? "itemid_" . intval($slot[5]) . ".png" : "Neck.jpg";
-        $slot[6] = ( intval($slot[6]) != 0 ) ? "itemid_" . intval($slot[6]) . ".png" : "Ear1.jpg";
-        $slot[7] = ( intval($slot[7]) != 0 ) ? "itemid_" . intval($slot[7]) . ".png" : "Ear2.jpg";
-        $slot[8] = ( intval($slot[8]) != 0 ) ? "itemid_" . intval($slot[8]) . ".png" : "Body.jpg";
-        $slot[9] = ( intval($slot[9]) != 0 ) ? "itemid_" . intval($slot[9]) . ".png" : "Hands.jpg";
-        $slot[10] = ( intval($slot[10]) != 0 ) ? "itemid_" . intval($slot[10]) . ".png" : "Ring1.jpg";
-        $slot[11] = ( intval($slot[11]) != 0 ) ? "itemid_" . intval($slot[11]) . ".png" : "Ring2.jpg";
-        $slot[12] = ( intval($slot[12]) != 0 ) ? "itemid_" . intval($slot[12]) . ".png" : "Back.jpg";
-        $slot[13] = ( intval($slot[13]) != 0 ) ? "itemid_" . intval($slot[13]) . ".png" : "Waist.jpg";
-        $slot[14] = ( intval($slot[14]) != 0 ) ? "itemid_" . intval($slot[14]) . ".png" : "Legs.jpg";
-        $slot[15] = ( intval($slot[15]) != 0 ) ? "itemid_" . intval($slot[15]) . ".png" : "Feet.jpg";
+        */
 
-        for ( $s = 0; $s <= 15; $s++){
-            $slot[$s] = "[[File:". $slot[$s] . "|64px|link=]]";
-        }
 
-        $slot = ParserHelper::wikiParse($slot);
+        // **********************************************************
+        // if (!is_array($slot)){
+        //     for ( $s = 0; $s <= 15; $s++){
+        //         $slot[$s] = [0, 0, 1]; // set flag = 1 on the first iteration to show initial grid with no items
+        //     }
+        // }
+
+        // $slot[0][1] =  ( intval($slot[0][0] )  != 0 ) ? "itemid_" . intval($slot[0][0] ). ".png" : "Main.jpg";
+        // $slot[1][1] =  ( intval($slot[1][0] )  != 0 ) ? "itemid_" . intval($slot[1][0] ). ".png" : "Sub.jpg";
+        // $slot[2][1] =  ( intval($slot[2][0] )  != 0 ) ? "itemid_" . intval($slot[2][0] ). ".png" : "Range.jpg";
+        // $slot[3][1] =  ( intval($slot[3][0] )  != 0 ) ? "itemid_" . intval($slot[3][0] ). ".png" : "Ammo.jpg";
+        // $slot[4][1] =  ( intval($slot[4][0] )  != 0 ) ? "itemid_" . intval($slot[4][0] ). ".png" : "Head.jpg";
+        // $slot[5][1] =  ( intval($slot[5][0] )  != 0 ) ? "itemid_" . intval($slot[5][0] ). ".png" : "Neck.jpg";
+        // $slot[6][1] =  ( intval($slot[6][0] )  != 0 ) ? "itemid_" . intval($slot[6][0] ). ".png" : "Ear1.jpg";
+        // $slot[7][1] =  ( intval($slot[7][0] )  != 0 ) ? "itemid_" . intval($slot[7][0] ). ".png" : "Ear2.jpg";
+        // $slot[8][1] =  ( intval($slot[8][0] )  != 0 ) ? "itemid_" . intval($slot[8][0] ). ".png" : "Body.jpg";
+        // $slot[9][1] =  ( intval($slot[9][0] )  != 0 ) ? "itemid_" . intval($slot[9][0] ). ".png" : "Hands.jpg";
+        // $slot[10][1] = ( intval($slot[10][0])  != 0 ) ? "itemid_" . intval($slot[10][0]) . ".png" : "Ring1.jpg";
+        // $slot[11][1] = ( intval($slot[11][0])  != 0 ) ? "itemid_" . intval($slot[11][0]) . ".png" : "Ring2.jpg";
+        // $slot[12][1] = ( intval($slot[12][0])  != 0 ) ? "itemid_" . intval($slot[12][0]) . ".png" : "Back.jpg";
+        // $slot[13][1] = ( intval($slot[13][0])  != 0 ) ? "itemid_" . intval($slot[13][0]) . ".png" : "Waist.jpg";
+        // $slot[14][1] = ( intval($slot[14][0])  != 0 ) ? "itemid_" . intval($slot[14][0]) . ".png" : "Legs.jpg";
+        // $slot[15][1] = ( intval($slot[15][0])  != 0 ) ? "itemid_" . intval($slot[15][0]) . ".png" : "Feet.jpg";
+
+        // $wParser = ParserHelper::wikiParseOptions();
+        // $title = $wParser[0];
+        // $parser = $wParser[1];
+        // $parserOptions = $wParser[2];
+
+        // for ( $s = 0; $s <= 15; $s++){
+        //     if ( $slot[15][2] == 1 ){
+        //     $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
+
+        //     $parserOutput = $parser->parse( $slot[$s][1], $title, $parserOptions );
+        //     $slot[$s][1] = $parserOutput->getText();
+        //     }
+        // }
+
+        $griditems = self::updateGridItems($slot);
+        // throw new Exception( implode(',',$griditems));
+
+        // $slot = $griditems[1];
+        // throw new Exception( implode(',',$slot[1]));
+        // **********************************************************
+
+
+        //$slot = ParserHelper::wikiParse($slot);
 
     //     <tr>
     //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
@@ -143,13 +178,13 @@ class FFXIPackageHelper_Equipsets  {
         $imageURL = $f->getCanonicalUrl();
         $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\">";
 
-        $html = ""; //"<table class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >";
+        $html = "";
 
         for ( $s = 0; $s <= 15; $s++){
             if ( $s == 0 ) $html .= "<tr>";
             else if ( $s == 4 || $s == 8 || $s == 12 ) $html .= "</tr><tr>";
 
-           $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid" . $s . "\" data-value=\"0\">". $slot[$s] . "</div></td>";
+           $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid" . $s . "\" data-value=\"" . $griditems[$s][1][0]  . "\">". $griditems[$s][1][1] . "</div></td>";
            // $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:". $slot[$s] . "|64px|link=]]") ."</div></td>";
         }
         // $html .= "</tr></table>";
@@ -204,8 +239,7 @@ class FFXIPackageHelper_Equipsets  {
 
         $resCircles = ParserHelper::wikiParse($resCircles);
 
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\">
-        <table >";
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;\" >";
             // <tr>
             //     <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
             //     <td style=\"width:100px;\">". $this->resCircle("Wind") ."<p id=\"FFXIPackageHelper_Equipsets_statWind\"></p></td>
@@ -219,11 +253,11 @@ class FFXIPackageHelper_Equipsets  {
             //     <td style=\"width:100px;\">". $this->resCircle("Dark") ."<p id=\"FFXIPackageHelper_Equipsets_statDark\"></p></td>
             // </tr>
 
-        $td = "<td style=\"width:100px;\">";
+        $td = "<td class=\"FFXIPackageHelper_Equipsets_statRes\" >";
         for ( $r = 0; $r <= 7; $r++){
             if ( $r == 0 ) $html .= "<tr>";
             else if ( $r == 4 ) $html .= "</tr><tr>";
-            $html .= $td . $resCircles[$r];
+            $html .= $td . $resCircles[$r] . "<span id=\"FFXIPackageHelper_Equipsets_statRes" . $r . "\"  >0</span>";
         }
 
         $html .= "</tr></table></div>";
@@ -302,21 +336,86 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function showEquipsets(){
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_container\" >
+        $html = "<div ><i><b>Disclosure:</b>  This is for experimentation only. When complete this will serve as a place to assist people with theorycrafting and equipment sets design. This
+            is by no means complete and is currently being tested by senior editors. If you have any questions/comments please reach out via Discord.</i></div>
+                    <div class=\"FFXIPackageHelper_Equipsets_container\" >
                     <table class=\"FFXIPackageHelper_Equipsets_showset\">
                         <tr>
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
-                        <tr style=\"height:256px;\">
-                            <td>" . $this->statsSection() . "</td>
+                        <tr>
+                            <td rowspan=\"2\">" . $this->statsSection() . "</td>
                             <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid() . "</table></td>
                         </tr>
-                        <tr><td colspan=\"2\">" . $this->resistances() ."</td></tr>
+                        <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                    $this->equipLabels() .
+                 /*   $this->equipLabels() . */
                 "</div>";
 
         return $html;
+    }
+
+    public function generateTooltip($details){
+        //throw new Exception(json_encode($details));
+        $output = $details["name"] . "\n\n" . $details["descr"];
+        return $output;
+    }
+
+    public function updateGridItems($slot){
+        //throw new Exception($slot);
+
+        if ($slot == null){
+            for ( $s = 0; $s <= 15; $s++){
+                $slot[$s] = [0, 0, 1, null]; // set flag = 1 on the first iteration to show initial grid with no items
+            }
+        }
+
+        $slot[0][1] =  ( intval($slot[0][0] )  != 0 ) ? "itemid_" . intval($slot[0][0] ). ".png" : "Main.jpg";
+        $slot[1][1] =  ( intval($slot[1][0] )  != 0 ) ? "itemid_" . intval($slot[1][0] ). ".png" : "Sub.jpg";
+        $slot[2][1] =  ( intval($slot[2][0] )  != 0 ) ? "itemid_" . intval($slot[2][0] ). ".png" : "Range.jpg";
+        $slot[3][1] =  ( intval($slot[3][0] )  != 0 ) ? "itemid_" . intval($slot[3][0] ). ".png" : "Ammo.jpg";
+        $slot[4][1] =  ( intval($slot[4][0] )  != 0 ) ? "itemid_" . intval($slot[4][0] ). ".png" : "Head.jpg";
+        $slot[5][1] =  ( intval($slot[5][0] )  != 0 ) ? "itemid_" . intval($slot[5][0] ). ".png" : "Neck.jpg";
+        $slot[6][1] =  ( intval($slot[6][0] )  != 0 ) ? "itemid_" . intval($slot[6][0] ). ".png" : "Ear1.jpg";
+        $slot[7][1] =  ( intval($slot[7][0] )  != 0 ) ? "itemid_" . intval($slot[7][0] ). ".png" : "Ear2.jpg";
+        $slot[8][1] =  ( intval($slot[8][0] )  != 0 ) ? "itemid_" . intval($slot[8][0] ). ".png" : "Body.jpg";
+        $slot[9][1] =  ( intval($slot[9][0] )  != 0 ) ? "itemid_" . intval($slot[9][0] ). ".png" : "Hands.jpg";
+        $slot[10][1] = ( intval($slot[10][0])  != 0 ) ? "itemid_" . intval($slot[10][0]) . ".png" : "Ring1.jpg";
+        $slot[11][1] = ( intval($slot[11][0])  != 0 ) ? "itemid_" . intval($slot[11][0]) . ".png" : "Ring2.jpg";
+        $slot[12][1] = ( intval($slot[12][0])  != 0 ) ? "itemid_" . intval($slot[12][0]) . ".png" : "Back.jpg";
+        $slot[13][1] = ( intval($slot[13][0])  != 0 ) ? "itemid_" . intval($slot[13][0]) . ".png" : "Waist.jpg";
+        $slot[14][1] = ( intval($slot[14][0])  != 0 ) ? "itemid_" . intval($slot[14][0]) . ".png" : "Legs.jpg";
+        $slot[15][1] = ( intval($slot[15][0])  != 0 ) ? "itemid_" . intval($slot[15][0]) . ".png" : "Feet.jpg";
+
+        $wParser = ParserHelper::wikiParseOptions();
+        $title = $wParser[0];
+        $parser = $wParser[1];
+        $parserOptions = $wParser[2];
+
+        $iDetails = new FFXIPackageHelper_ItemDetails();
+        $tooltip = null;
+
+        $updatedGrid = array();
+        for ( $s = 0; $s <= 15; $s++){
+            //throw new Exception($slot[$s][2]);
+            if ( $slot[$s][2] == 1 ){
+                $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
+                //<span class="hint--bottom" aria-label="Thank you!">hover me.</span>
+                $parserOutput = $parser->parse( $slot[$s][1], $title, $parserOptions );
+                $slot[$s][1] = $parserOutput->getText();
+
+                if ( $slot[$s][0] != 0 ){
+                    $id = intval($slot[$s][0]);
+                    $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
+                }
+                else $tooltip = null;
+
+                $updatedGrid[] = [$s, $slot[$s], $tooltip];
+                //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
+            }
+        }
+
+        return $updatedGrid;
     }
 }
 

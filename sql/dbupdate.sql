@@ -43,22 +43,25 @@ source mob_pools.sql;
 \! echo mob_pools done
 
 
-\! echo item_basic
-DROP TABLE IF EXISTS `item_basic`;
-source item_basic.sql;
-\! echo item_basic done
-
-
 \! echo hxi_bcnm_crate_list
 DROP TABLE IF EXISTS `hxi_bcnm_crate_list`;
 source hxi_bcnm_crate_list.sql;
 \! echo hxi_bcnm_crate_list done
 
-
 \! echo bcnm_info
 DROP TABLE IF EXISTS `bcnm_info`;
 source bcnm_info.sql;
 \! echo bcnm_info done
+
+\! echo item_basic
+DROP TABLE IF EXISTS `item_basic`;
+source item_basic.sql;
+\! echo item_basic done
+
+\! echo item_weapon
+DROP TABLE IF EXISTS `item_weapon`;
+source item_weapon.sql;
+\! echo item_weapon done
 
 \! echo item_equipment
 DROP TABLE IF EXISTS `item_equipment`;
@@ -79,6 +82,11 @@ source mob_family_system.sql;
 DROP TABLE IF EXISTS `traits`;
 source traits.sql;
 \! echo traits done
+
+\! echo skill_ranks
+DROP TABLE IF EXISTS `skill_ranks`;
+source skill_ranks.sql;
+\! echo skill_ranks done
 
 \! echo hxi_changes
 source hxi_changes.sql;

@@ -30,26 +30,41 @@ class FFXIPackageHelper_Stats {
 
 
     public $modifiers = [];
-    public $equipment = [];
+    public $equipment;
+    public $skillCaps = [];
 
-    public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $equipmentString) {
+    public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $e) {
+
+        // Get skill ranks
+        $this->setSkillCaps($mjob, $mlvl, $sjob, $slvl);
+
 
         // Pull traits from SQL
         $traits = $this->getTraits( $mlvl, $slvl, $mjob, $sjob );
         $this->applyToModifiers($traits);
 
         // Pull equipment from SQL
-        if ( gettype($equipmentString) == 'string') $this->applyEquipment(explode(",", $equipmentString));
+        if ( $e != null){
+            $this->equipment = $e;
+            //throw new Exception(json_encode($e));
+            // if ( gettype($equipmentString) == 'string') $this->applyEquipment(explode(",", $equipmentString));
+
+            $this->applyEquipment();
+        }
+        // else throw new Exception("equipment null");
 
         // Set all base stats in the class
         $this->setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob);
 
         // Apply modifiers to the base stats
         $this->modifiers["DEF"] += $mlvl + $this->clamp($mlvl - 50, 0, 10);
+
+        // Apply modifiers from equipment
         $this->applyMods($mlvl);
 
+        // Calc additional stats after all modifiers and equipment have been applied
         // $this->DEF = $this->getDEF();
-        // $this->ATT = $this->getATT();
+        $this->ATT = $this->getATT();
     }
 
     /**
@@ -151,7 +166,7 @@ class FFXIPackageHelper_Stats {
 
     public $StatScale = array(
       // base, <60, <75, >75
-        [ 0, 0, 0, 0 ],             // 0
+        [ 0,    0,   0,    0 ],             // 0
         [ 5, 0.50, 0.10, 0.35 ],    // A
         [ 4, 0.45, 0.225, 0.35 ],   // B
         [ 4, 0.40, 0.285, 0.35 ],   // C
@@ -161,12 +176,73 @@ class FFXIPackageHelper_Stats {
         [ 2, 0.20, 0.425, 0.35 ]    // G
     );
 
+    /*
+    --     SKILL LEVEL CALCULATOR
+    --     Returns a skill level based on level and rating.
+    --
+    --    See: https://wiki.ffo.jp/html/2570.html
+    --
+    --    The arguments are skill rank (numerical), and level.  1 is A+, 2 is A-, and so on.
+
+    -- skillLevelTable contains matched pairs based on rank; First value is multiplier, second is additive value.  Index is the subtracted
+    -- baseInRange value (see below)
+    -- Original formula: ((level - <baseInRange>) * <multiplier>) + <additive>; where level is a range defined in utils.getSkillLvl
+
+    */
+
+    public $SkillLevelTable = array(
+
+    //  --         A+             A-             B+             B              B-             C+             C              C-             D              E              F             G
+    1  => [ [ 3.00,   6 ], [ 3.00,   6 ], [ 2.90,   5 ], [ 2.90,   5 ], [ 2.90,   5 ], [ 2.80,   5 ], [ 2.80,   5 ], [ 2.80,   5 ], [ 2.70,   4 ], [ 2.50,   4 ], [ 2.30,   4 ], [ 2.00,   3 ] ], //-- Level <= 50
+    50 => [ [ 5.00, 153 ], [ 5.00, 153 ], [ 4.90, 147 ], [ 4.90, 147 ], [ 4.90, 147 ], [ 4.80, 142 ], [ 4.80, 142 ], [ 4.80, 142 ], [ 4.70, 136 ], [ 4.50, 126 ], [ 4.30, 116 ], [ 4.00, 101 ] ], //-- Level > 50 and Level <= 60
+    60 => [ [ 4.85, 203 ], [ 4.10, 203 ], [ 3.70, 196 ], [ 3.23, 196 ], [ 2.70, 196 ], [ 2.50, 190 ], [ 2.25, 190 ], [ 2.00, 190 ], [ 1.85, 183 ], [ 1.95, 171 ], [ 2.05, 159 ], [ 2.00, 141 ] ], //-- Level > 60 and Level <= 70
+    70 => [ [ 5.00, 251 ], [ 5.00, 244 ], [ 4.60, 233 ], [ 4.40, 228 ], [ 3.40, 223 ], [ 3.00, 215 ], [ 2.60, 212 ], [ 2.00, 210 ], [ 1.85, 201 ], [ 2.00, 190 ], [ 2.00, 179 ], [ 2.00, 161 ] ], //-- Level > 70 and Level <= 75
+    75 => [ [ 5.00, 251 ], [ 5.00, 244 ], [ 5.00, 256 ], [ 5.00, 250 ], [ 5.00, 240 ], [ 5.00, 230 ], [ 5.00, 225 ], [ 5.00, 220 ], [ 4.00, 210 ], [ 3.00, 200 ], [ 2.00, 189 ], [ 2.00, 171 ] ], //-- Level > 75 and Level <= 80
+    // [80] = [ [ 6.00, 301 ], [ 6.00, 294 ], [ 6.00, 281 ], [ 6.00, 275 ], [ 6.00, 265 ], [ 6.00, 255 ], [ 6.00, 250 ], [ 6.00, 245 ], [ 5.00, 230 ], [ 4.00, 215 ], [ 3.00, 199 ], [ 2.00, 181 ] ], //-- Level > 80 and Level <= 90
+    // [90] = [ [ 7.00, 361 ], [ 7.00, 354 ], [ 7.00, 341 ], [ 7.00, 335 ], [ 7.00, 325 ], [ 7.00, 315 ], [ 7.00, 310 ], [ 7.00, 305 ], [ 6.00, 280 ], [ 5.00, 255 ], [ 4.00, 229 ], [ 2.00, 201 ] ], //- Level > 90
+    );
+
+    // -- Get the corresponding table entry to use in skillLevelTable based on level range
+    private function getSkillLevelIndex($level, $rank){
+        $rangeId = null;
+
+        if ( $level <= 50 ) $rangeId = 1;
+        elseif ($level <= 60) $rangeId = 50;
+        elseif ($level <= 70) $rangeId = 60;
+        elseif ($level <= 75 && $rank > 2) $rangeId = 75;
+        else $rangeId = 70;
+
+        return $rangeId;
+    }
+
+    private function getSkillLvl($rank, $level){
+        $rank = $rank - 1;
+        $levelTableIndex = $this->getSkillLevelIndex($level, $rank);
+        return floor(( ($level - $levelTableIndex) * $this->SkillLevelTable[$levelTableIndex][$rank][0]) + $this->SkillLevelTable[$levelTableIndex][$rank][1]);
+    }
+
+    private function setSkillCaps( $mjob, $mlvl, $sjob, $slvl ){
+        $db = new DBConnection();
+        $results = $db->getSkillRanks($mjob, $sjob);
+        foreach( $results as $row ){ // [skillid], [mjob], [sjob]
+            if ( $row->sjob >= $row->mjob ){ $this->skillCaps[$row->skillid] = $this->getSkillLvl(intval($row->sjob), $slvl ); }
+            else { $this->skillCaps[$row->skillid] = $this->getSkillLvl(intval($row->mjob), $mlvl ); }
+        }
+    }
+
+    public function getSkillCap( $skillid ){
+        if ( isset($this->skillCaps[$skillid]) ) return $this->skillCaps[$skillid];
+        else return 0;
+    }
+
+
 // ASB/LSB functions
     function getJobGrade($job, $stat)
     {
         return $this->JobGrades[$job][$stat];
     }
 
+    // shown as RANK in other formulas
     function getRaceGrades($race, $stat)
     {
         return $this->RaceGrades[$race][$stat];
@@ -189,11 +265,11 @@ class FFXIPackageHelper_Stats {
 
 
     // https://stackoverflow.com/questions/17664565/does-a-clamp-number-function-exist-in-php
-    function clamp($current, $min, $max) {
+    private function clamp($current, $min, $max) {
         return max($min, min($max, $current));
     }
 
-    function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions
+    private function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions
         // $HP = 0; $MP = 0; $STR = 0; $DEX = 0; $VIT = 0; $AGI = 0; $INT = 0; $MND = 0; $CHR = 0; $DEF = 0; $ATTACK = 0;
         // $Fire = 0; $Wind = 0; $Ice = 0; $Light = 0; $Water = 0; $Earth = 0; $Lightning = 0; $Dark = 0;
 
@@ -343,19 +419,19 @@ class FFXIPackageHelper_Stats {
                     $this->DEX = $temp;
                     break;
                 case 2:
-                    $this->VIT = $this->modifiers["VIT"] + $temp;
+                    $this->VIT = $temp;
                     break;
                 case 3:
-                    $this->AGI = $this->modifiers["AGI"] + $temp;
+                    $this->AGI = $temp;
                     break;
                 case 4:
-                    $this->INT = $this->modifiers["INT"] + $temp;
+                    $this->INT = $temp;
                     break;
                 case 5:
-                    $this->MND = $this->modifiers["MND"] + $temp;
+                    $this->MND = $temp;
                     break;
                 case 6:
-                    $this->CHR = $this->modifiers["CHR"] + $temp;
+                    $this->CHR = $temp;
                     break;
             }
             $counter++;
@@ -364,8 +440,10 @@ class FFXIPackageHelper_Stats {
 
 
 
-    function getStats(){
+    public function getStats(){
+
         return [
+            // base stats
                 $this->HP,      //0
                 $this->MP,      //1
                 $this->STR,     //2
@@ -375,8 +453,12 @@ class FFXIPackageHelper_Stats {
                 $this->INT,     //6
                 $this->MND,     //7
                 $this->CHR,     //8
+
+            //additional stats
                 $this->DEF,     //9
                 $this->ATT,     //10
+
+            //resistances
                 $this->Fire,    //11
                 $this->Wind,    //12
                 $this->Ice,     //13
@@ -403,20 +485,34 @@ class FFXIPackageHelper_Stats {
         $this->CHR += $this->modifiers["CHR"];
 
         $this->DEF = floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
+        $this->ATT += $this->modifiers["ATT"];
 
+        $this->Fire += $this->modifiers["FIRE_MEVA"];
+        $this->Wind += $this->modifiers["WIND_MEVA"];
+        $this->Ice += $this->modifiers["ICE_MEVA"];
+        $this->Light += $this->modifiers["LIGHT_MEVA"];
+        $this->Water += $this->modifiers["WATER_MEVA"];
+        $this->Earth += $this->modifiers["EARTH_MEVA"];
+        $this->Lightning += $this->modifiers["THUNDER_MEVA"];
+        $this->Dark += $this->modifiers["DARK_MEVA"];
+        // throw new Exception (  json_encode($this->modifiers)) ;
     }
 
     private function applyToModifiers($mods){
+        $vars = new FFXIPackageHelper_Variables();
+
         foreach ($mods as $m => $v) {
-            if ( !isset($this->modifiers[$m]) ) $this->modifiers[$m] = $v;
-            else $this->modifiers[$m] += $v;
+
+            $mod = $vars->modArray[$m];
+            if ( !isset($this->modifiers[$mod]) ) $this->modifiers[$mod] = intval($v);
+            else $this->modifiers[$mod] += intval($v);
         }
-        //throw new Exception(implode(',', array_values($this->modifiers)) );
+        // throw new Exception(implode(',', array_keys($this->modifiers)) );
     }
 
-    function getTraits( $mlvl, $slvl, $mjob, $sjob ){
+    private function getTraits( $mlvl, $slvl, $mjob, $sjob ){
         $db = new DBConnection();
-        $vars = new FFXIPackageHelper_Variables();
+       // $vars = new FFXIPackageHelper_Variables();
 
         $results = $db->getTraits( $mlvl, $slvl, $mjob, $sjob );
 
@@ -424,48 +520,67 @@ class FFXIPackageHelper_Stats {
         // highest traits.value takes precedence
         $traits = [];
         foreach ( $results as $row ) {
-            $mod = $vars->modArray[$row->modifier];
-            if ( !isset($traits[$mod]) ) $traits[$mod] = $row->value;
-            else if ( $traits[$mod] < $row->value ) $traits[$mod] = $row->value;
+           // $mod = $vars->modArray[$row->modifier];
+            if ( !isset($traits[$row->modifier]) ) $traits[$row->modifier] = $row->value;
+            else if ( $traits[$row->modifier] < $row->value ) $traits[$row->modifier] = $row->value;
         }
 
         return $traits;
     }
 
-    function applyEquipment( $equipmentArray ){
-        $db = new DBConnection();
+    function applyEquipment( ){
+       // $db = new DBConnection();
+        //$vars = new FFXIPackageHelper_Variables();
+
         for ( $i = 0; $i <= 15; $i++ ){
-            if ( $equipmentArray[$i] != 0 ) {
-                $results = $db->getItem($equipmentArray[$i]);
-                foreach ( $results as $row ) {
-                    $this->equipment[] = [ $row->itemId, $row->slot, $row->rslot, $row->modid, $row->modValue ];
+            if ( $this->equipment[$i][0] != 0 ) {
+
+                // $dm = new DataModel();
+                // $results = $db->getItem($equipmentArray[$i]);
+                // $initialQuery = $dm->parseEquipment($results);
+
+                // $this->equipment[$initialQuery[0]["slot"]] = [ $initialQuery[0]["id"], $initialQuery[0]["rslot"], $initialQuery[0]["mods"], $initialQuery[0]["skill"]];
+
+
+                foreach( $this->equipment[$i][3] as $mod ){
+                    //throw new Exception($mod["id"]) ;
+                    $this->applyToModifiers([$mod["id"] => $mod["value"]] );
+                    //if ( $mod["id"] == 23 ) throw new Exception($this->modifiers["ATT"]) ;
                 }
+
+
             }
         }
-        //throw new Exception(json_encode($this->equipment));
+        //throw new Exeception(json_encode($this->equipment));
     }
 
     function getDEF(){
         return floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
     }
 
-    function getATT(){
+    function getATT(){ // https://horizonffxi.wiki/Attack
         $ATT = 8 + $this->modifiers["ATT"];
-        //2H weapon means the item has
-        // item_equipment
-        // slot = 1
-        // rslot = 0
+        $ATTP = 0;
 
-        // auto* weapon = dynamic_cast<CItemWeapon*>(m_Weapons[slot]);
-        // if (weapon && weapon->isTwoHanded())
-        // {
-        //     ATT += (STR() * 3) / 4;
-        // }
-        // else
-        // {
-        //     ATT += STR() / 2;
-        // }
-        return $ATT;
+        if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
+            $ATT += $this->STR * 0.7; //Horizon change
+        }
+        else if ( FFXIPackageHelper_Equipment::isH2H($this->equipment[0]) ){
+            $ATT += $this->STR * 0.625; //Horizon change
+        }
+        else {
+            $ATT += $this->STR * 0.65; //Horizon change
+        }
+
+        $ATT +=  $this->getSkillCap( $this->equipment[0]["skill"] );
+
+        // Smite applies when using 2H or H2H weapons
+        if ( ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) || FFXIPackageHelper_Equipment::isH2H($this->equipment[0])) && isset($this->modifiers["SMITE"]) ) {
+            $ATTP += $this->modifiers["SMITE"] / 256; // Divide smite value by 256
+        }
+
+        //throw new Exception(json_encode($this->equipment));
+        return max(1, floor($ATT + ($ATT * $ATTP / 100)));
     }
 }
 

@@ -17,7 +17,7 @@ const  _legs = `<h2>Legs Slot</h2>`;
 const  _feet = `<h2>Feet Slot</h2>`;
 
 let _default = `<p>Search for item...</p>`;
-let _default2 = `<br><br><button class="close-modal">Cancel</button>`;
+let _default2 = `<br><br><button style="float: left;" class="close-modal">Cancel</button>`;
 
 function searchInput(slot){
     return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
@@ -28,7 +28,16 @@ function searchButton(slot){
 }
 
 function searchResults(slot){
-    return "<br><br><sub>click item to add to set...</sub><div id=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
+    return "<br><br><div class=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><p></p><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
+}
+
+function removeItemButton(slot){
+    const newElement = document.createElement("button");
+    newElement.id = `FFXIPackageHelper_equipsets_removeButton${slot}`;
+    newElement.innerText = "Remove Item";
+    newElement.classList.add('close-modal');
+    newElement.setAttribute("style", "display: none; float: right; background-color:rgba(244, 67, 54, 0.50);");
+    return newElement;
 }
 
 function searchEquip(slot){
@@ -74,30 +83,33 @@ class ModalWindow {
 
         this.options = {
             overlay: true,
-            closeOnOverlayClick: true,
+            closeOnOverlayClick: false,
             ...options
         };
         this.createModal();
     }
   
     createModal() {
-      this.modal = document.createElement('div');
-      this.modal.classList.add('modal');
-  
-      if (this.options.overlay) {
-        this.overlay = document.createElement('div');
-        this.overlay.classList.add('overlay');
-        this.modal.appendChild(this.overlay);
-      }
-  
-      const contentWrapper = document.createElement('div');
-      contentWrapper.classList.add('modal-content');
-      contentWrapper.innerHTML = this.content;
-      this.modal.appendChild(contentWrapper);
-  
-      document.body.appendChild(this.modal);
-  
-      this.addEventListeners();
+        this.modal = document.createElement('div');
+        this.modal.classList.add('modal');
+
+
+        if (this.options.overlay) {
+            this.overlay = document.createElement('div');
+            this.overlay.classList.add('overlay');
+            this.modal.appendChild(this.overlay);
+        }
+
+        const contentWrapper = document.createElement('div');
+        contentWrapper.id = `FFXIPackageHelper_equipsets_contentWrapper${this.slot}`;
+        contentWrapper.classList.add('modal-content');
+        contentWrapper.innerHTML = this.content;
+        contentWrapper.appendChild(removeItemButton(this.slot));
+        this.modal.appendChild(contentWrapper);
+
+        document.body.appendChild(this.modal);
+
+        this.addEventListeners();
     }
   
     addEventListeners() {
@@ -107,7 +119,12 @@ class ModalWindow {
   
         const closeButtons = this.modal.querySelectorAll('.close-modal');
             closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                if ( button.id == `FFXIPackageHelper_equipsets_removeButton${this.slot}` ){
+                    //console.log(button);
+                    this.options.returnCallback(0, this.slot, this);
+                }
+
                 this.close();
             });
         });
@@ -121,11 +138,22 @@ class ModalWindow {
     }
   
     returnCallback(results){
-        const slot = results[1];
+
+        const slot = Number(results[1]);
         const arr = results[0];
         const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
+
+        let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
+        //commentNode[this.slot].getElementsByTagName('p')[0];
+
+        if ( results[0].length == 0 ) {
+            commentNode.innerText = "No results found";
+            return;
+        }
+        //div.innerText = "Click item to add to set...\n";
+
         var dl = document.getElementById(idname);
-        dl.innerHTML = "";
+        commentNode.innerText = "Click item to add to set...\n";
 
         for ( let i = 0; i < arr.length; i++ ){
             //console.log(arr[i]["name"]);
@@ -160,14 +188,25 @@ class ModalWindow {
     //     this.options.searchCallback(searchEquip(), "equipsets_search", null)
     // }
 
-    open() {
+    open(itemid) {
+        let rButton = document.getElementById(`FFXIPackageHelper_equipsets_removeButton${this.slot}`);
+        if ( itemid != 0 ) rButton.style.display = "block";
+        else  rButton.style.display = "none";
+
         this.modal.classList.add('open');
     }
   
     close() {
         document.getElementById("FFXIPackageHelper_equipsets_searchResults" + this.slot).innerHTML = "";
+
+        let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
+        commentNode.innerText = "";
+
+        document.getElementById("FFXIPackageHelper_equipsets_searchInput" + this.slot).value = "";
+
         this.modal.classList.remove('open');
     }
 }
+
 
 module.exports = ModalWindow;

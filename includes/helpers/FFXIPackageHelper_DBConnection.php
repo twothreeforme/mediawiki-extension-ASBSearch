@@ -590,6 +590,7 @@ class DBConnection {
                                         $dbr::LIST_OR);
             array_push ( $query, $q);
         }
+        throw new Exception ( json_encode($query) );
 
         if ( isset($crystal) && $crystal != 0 ){ array_push ( $query, "synth_recipes.Crystal = '$crystal'"); }
 
@@ -769,21 +770,119 @@ class DBConnection {
                     'item_equipment.slot',
                     'item_equipment.rslot',
                     'item_mods.modId AS modid',
-                    'item_mods.value AS modValue'
+                    'item_mods.value AS modValue',
+                    'item_basic.name',
+                    'item_weapon.skill',
+
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->leftjoin( 'item_basic', null, 'item_mods.itemId=item_basic.itemid' )
+        ->leftjoin( 'item_weapon', null, 'item_mods.itemId=item_weapon.itemId' )
         ->where( $query	)
         ->fetchResultSet();
     }
 
-    public function getEquipment( $name, $mlvl ){
+    public function getSkillRanks( $mjob, $sjob ){
+        $dbr = $this->openConnection();
+        $vars = new FFXIPackageHelper_Variables();
+
+        // $mjobLabel =  "skill_ranks." . strtolower($vars->jobArray[$mjob]);
+        // $sjobLabel =  "skill_ranks." . strtolower($vars->jobArray[$sjob]);
+        $mjobLabel =  strtolower($vars->jobArray[$mjob]);
+        $sjobLabel =  strtolower($vars->jobArray[$sjob]);
+
+        $query = [ "$mjobLabel > 0 OR $sjobLabel > 0" ];
+
+        $mjobLabel .= " as mjob";
+        $sjobLabel .= " as sjob";
+       // throw new Exception(json_encode($query));
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ $mjobLabel, $sjobLabel, 'skillid' ] )
+        ->from( 'skill_ranks' )
+        ->where( $query	)
+        ->fetchResultSet();
+    }
+
+    public function getEquipment( $name, $mlvl, $gridSlot = null ){
+        $dbr = $this->openConnection();
+
         $mlvl = intval($mlvl);
 
-        $dbr = $this->openConnection();
-        // $query = [  "item_equipment.name LIKE '%$name%'",
-        //            // "item_equipment.level <= $mlvl"
-        //         ];
+        $query = [ "item_equipment.name LIKE '%$name%'",
+                   "item_equipment.level <= $mlvl"
+        ];
+
+        if ( $gridSlot != null ) {
+            $gridSlot = intval($gridSlot) ;
+
+            // main: 1=nothing in offhand, 3= can have offhand
+            // sub 2
+            // range 4
+            // ammo 8
+            // head 16
+            // neck 512
+            // ear 6144
+            // body 32
+            // hands 64
+            // rings 24576
+            // back 32768
+            // waist 1024
+            // legs 128
+            // feet 256
+
+            $q = null;
+                switch($gridSlot){
+                    case 0: // main
+                        $q = $dbr->makeList( [ 'item_equipment.slot' => [ 0x1, 0x3] ], $dbr::LIST_OR);
+                        break;
+                    case 1: // sub
+                        $q = $dbr->makeList( [ 'item_equipment.slot' => [ 0x2, 0x3] ], $dbr::LIST_OR);
+                        break;
+                    case 2: // range
+                        $q = "item_equipment.slot = 0x4";
+                        break;
+                    case 3: // ammo
+                        $q = "item_equipment.slot = 0x8";
+                        break;
+                    case 4: // head
+                        $q = "item_equipment.slot = 0x10";
+                        break;
+                    case 5: // neck
+                        $q = "item_equipment.slot = 0x200";
+                        break;
+                    case 6: // ear1
+                    case 7: // ear2
+                        $q = "item_equipment.slot = 0x1800";
+                        break;
+                    case 8: // body
+                        $q = "item_equipment.slot = 0x20";
+                        break;
+                    case 9: // hands
+                        $q = "item_equipment.slot = 0x40";
+                        break;
+                    case 10: // ring1
+                    case 11: // ring2
+                        $q = "item_equipment.slot = 0x6000";
+                        break;
+                    case 12: // back
+                        $q = "item_equipment.slot = 0x8000";
+                        break;
+                    case 13: // waist
+                        $q = "item_equipment.slot = 0x400";
+                        break;
+                    case 14: // legs
+                        $q = "item_equipment.slot = 0x80";
+                        break;
+                    case 15: // feet
+                        $q = "item_equipment.slot = 0x100";
+                        break;
+                }
+            if ( $q != null ) array_push ( $query, $q);
+        }
+
+        //throw new Exception( json_encode ($query));
 
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.itemId',
@@ -791,21 +890,14 @@ class DBConnection {
                     'item_equipment.slot',
                     'item_equipment.rslot',
                     'item_mods.modId AS modid',
-                    'item_mods.value AS modValue'
+                    'item_mods.value AS modValue',
+                    'item_weapon.skill AS skill'
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
-        ->where( [ "item_equipment.name LIKE '%$name%'",
-                   "item_equipment.level <= $mlvl"
-            ])
+        ->leftjoin( 'item_weapon', null, 'item_weapon.itemId=item_equipment.itemId' )
+        ->where( $query )
         ->fetchResultSet();
-
-        // $returnarray = [];
-        // if ( count($items) == 0 || count($items) == NULL) return NULL;
-        // foreach ( $items as $row ) {
-        //     array_push( $returnarray , [$row->itemid, $row->name, $row->slot, $row->rslot, $row->modid, $row->modValue ]);
-        // }
-        // return $returnarray;
     }
 }
 

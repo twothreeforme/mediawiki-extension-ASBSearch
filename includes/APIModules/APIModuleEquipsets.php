@@ -30,7 +30,10 @@ class APIModuleEquipsets extends ApiBase {
         //$finalHtml = $this->queryEquipment($queryData);
         //$finalHtml = ParserHelper::wikiParse($finalHtml);
         if ( $params['action'] == "equipsets" ) {
-            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $params['equipment'] );
+            // throw new Exception($params['equipment']);
+            $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
+            $newEquipmentArray = $equipmentModel->getEquipmentArray();
+            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
             $result->addValue($params['action'], $params['querytype'], $newStats->getStats());
         }
@@ -38,35 +41,39 @@ class APIModuleEquipsets extends ApiBase {
             $db = new DBConnection();
             $dm = new DataModel();
 
-            $equipList = $db->getEquipment($params['search'], $params['mlvl']);
+            $equipList = $db->getEquipment($params['search'], $params['mlvl'], $params['slot']);
+           // throw new Exception (json_encode($equipList));
+
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
-            $result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot'] ]);
+            $result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot']]);
         }
         else if ( $params['action'] == "equipsets_change" ) {
 
-            $incomingEquipmentList = explode('|', $params['equipment']);
-
-
-
-            //throw new Exception(gettype($params['equipment']) . " : " . $params['equipment'] . $test);
+            // $equipIDs = [];
+            // $incomingEquipmentList = explode('|', $params['equipment']);
+            // for ( $i = 0; $i <= 15; $i++){
+            //     $temp = explode(',', $incomingEquipmentList[$i]);
+            //     $incomingEquipmentList[$i] = [ $temp[0], "", $temp[1] ];
+            //     $equipIDs[] =  $temp[0];
+            // }
 
             // need all equipment
-            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $incomingEquipmentList );
-
-            //change stats in HTML
-
-            // db query for all items
-
-            // change equipment icon for slot
-
-            // wikiparse the html
+            //throw new Exception($params['equipment']);
+            $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
+            $newEquipmentArray = $equipmentModel->getEquipmentArray();
+            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
             // send updated HTML back as result
-            $tabEquipsets = new FFXIPackageHelper_Equipsets();
-            $updatedHTML = $tabEquipsets->equipmentGrid($incomingEquipmentList);
+            $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
 
-            $result->addValue($params['action'], $params['querytype'], $updatedHTML);
+            $tabEquipsets = new FFXIPackageHelper_Equipsets();
+            $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
+
+            //$updatedStats = $newStats->getStats();
+            //throw new Exception (  json_encode($updatedStats)) ;
+
+            $result->addValue($params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid]);
         }
     }
 }

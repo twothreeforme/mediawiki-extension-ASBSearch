@@ -176,7 +176,7 @@ Main Equipsets DIV
 .FFXIPackageHelper_Equipsets_container {
     /* display: grid;
     grid-template-columns: auto 400px; */
-    background-color: #87878750;
+    /* background-color: #87878750; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -202,7 +202,7 @@ Selecting Equipsets table
     /* width: 1%;
     white-space: nowrap;
      */
-     flex-grow:1;
+    flex-grow:1;
 }
 
 /*
@@ -210,46 +210,54 @@ Showing Equipsets stats table
 */
 .FFXIPackageHelper_Equipsets_showset {
     /* background-color: #00ccff; */
-    /* width: 425px; */
-    /* height: 400px; */
-    display:flex;
+    background-color: #87878725;
+    width: 425px;
+    height: 1px;
+    /* display:flex; */
     border-collapse: collapse;
 }
 
 .FFXIPackageHelper_Equipsets_showstats {
-    background-color: #1eff00;
+    /* background-color: #1eff00; */
     width: 150px;
-    height: 265px;
+    height: 100%;
     border-collapse: collapse;
 }
 
 .FFXIPackageHelper_Equipsets_showstats > p {
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
     font-size:13px;
     line-height:13px;
 }
 
 .FFXIPackageHelper_Equipsets_showstats_res {
-    background-color:rgb(255, 174, 174);
-    width:415px;
+    /* background-color:rgb(255, 174, 174); */
+    width:100%;
     /* height:55px; */
     padding:0;
 }
 
+.FFXIPackageHelper_Equipsets_showstats_res > p {
+    margin:0px;
+    padding:0px;
+}
+
+
+
 .FFXIPackageHelper_Equipsets_selectOptions {
-    background-color:rgb(255, 174, 174);
+    /* background-color:rgb(255, 174, 174); */
     width:415px;
     height:75px;
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
     font-size:13px;
     line-height:13px;
     border-collapse: collapse;
 }
 
 .FFXIPackageHelper_Equipsets_showstats_basestats {
-    background-color:rgba(252, 155, 155, 0.473);
+    /* background-color:rgba(252, 155, 155, 0.473); */
     font-size:14px;
     line-height:0px;
     border-collapse: collapse;
@@ -258,21 +266,22 @@ Showing Equipsets stats table
 .FFXIPackageHelper_Equipsets_showstats_basestats td {
     border: none;
     margin: 0px;
-    padding: 0;
+    padding: 0px;
     border-spacing: 0px;
     text-align: right;
 
 }
 
-/* .FFXIPackageHelper_Equipsets_showstats_basestats  td > p {
-    text-align: left;
-} */
+.FFXIPackageHelper_Equipsets_statRes div.mw-parser-output p {
+    margin: 0px;
+    padding: 0px;
+}
 
 /*
 Equipsets equipment grid (table)
 */
 .FFXIPackageHelper_Equipsets_equipmentgrid {
-    background-color: #505050bb;
+    /* background-color: #505050bb; */
     width: 256px;
     height: 256px;
     /* overflow-y: auto; */
@@ -280,7 +289,8 @@ Equipsets equipment grid (table)
 }
 
 .FFXIPackageHelper_Equipsets_equipmentgrid p {
-    margin: 0 0;
+    margin:0px;
+    padding:0px;
 }
 
 .equipsetsGridImage:hover {
