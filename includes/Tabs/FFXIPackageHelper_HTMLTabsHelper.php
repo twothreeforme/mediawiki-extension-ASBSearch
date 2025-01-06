@@ -44,7 +44,7 @@ class FFXIPackageHelper_HTMLTabsHelper {
         if ( !isset($content) ) $content = "<p>no content yet</p>";
 
         //remove when setting up for use on HXI
-        if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] != 'localhost' ) $content = "<p><b>This site is still under construction. Coming soon !</b></p>";
+        //if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] != 'localhost' ) $content = "<p><b>This site is still under construction. Coming soon !</b></p>";
 
         $html = "<div id=\"FFXIPackageHelper_tabs_equipsets_shown\" class=\"tabcontent\">" . $content . "</div>";
         return $html; 
