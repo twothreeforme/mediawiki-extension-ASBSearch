@@ -101,7 +101,7 @@
 
 			],
             "styles": [
-				"resources/styles/forms.css",
+				"resources/styles/FFXIPackageHelper_Forms.css",
                 "resources/styles/tabs.css",
                 "resources/styles/hint.css"
 			]
