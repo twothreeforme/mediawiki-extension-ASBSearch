@@ -49,7 +49,7 @@ function updateEquipmentFromQuery(updatedHTML){
 }
 
 function changeGrid(updatedGrid){
-  console.log(updatedGrid);
+  //console.log(updatedGrid);
   //var gridArray = updatedGrid.split(",");
   slotChanged = updatedGrid[0][0];
   slot_ID = updatedGrid[0][1][0];
