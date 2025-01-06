@@ -71,9 +71,30 @@ function onPageLoad(){
   return 0;
 }
 
-var initiallyLoaded = false;
-mw.hook('wikipage.content').add( function () {
-  if ( initiallyLoaded == true) return;
+// var initiallyLoaded = false;
+// mw.hook('wikipage.content').add( function () {
+//   if ( initiallyLoaded == true) return;
+
+//   if ( onPageLoad() == null) {
+//     console.log("Tab Controller: Tabs not found. ");
+//     return;
+//   }
+
+//   document.getElementById("initialHide").style.display = "block";
+
+//   TabDropRates.setLinks();
+//   TabRecipes.setLinks();
+//   TabEquipment.setLinks();
+//   TabEquipsets.setLinks();
+
+//   initiallyLoaded = true;
+//   console.log("Tab Controller: initiallyLoaded");
+
+//   });
+
+$( document ).ready( function () {
+
+//     if ( initiallyLoaded == true) return;
 
   if ( onPageLoad() == null) {
     console.log("Tab Controller: Tabs not found. ");
@@ -87,19 +108,7 @@ mw.hook('wikipage.content').add( function () {
   TabEquipment.setLinks();
   TabEquipsets.setLinks();
 
-  initiallyLoaded = true;
+  //initiallyLoaded = true;
   console.log("Tab Controller: initiallyLoaded");
 
-  });
-
-// $( document ).ready( function () {
-
-//     onPageLoad();
-//     document.getElementById("initialHide").style.display = "block";
-
-//     TabDropRates.setLinks();
-//     TabRecipes.setLinks();
-//     TabEquipment.setLinks();
-//     TabEquipsets.setLinks();
-
-//   } );
+  } );
