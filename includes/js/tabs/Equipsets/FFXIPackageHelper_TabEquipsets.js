@@ -69,6 +69,8 @@ module.exports.setLinks = function (){
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
+
+        console.log(v);
         slot.addEventListener("click", function (e) {
             modal.open(getEquipID(v));
             // DEV ONLY

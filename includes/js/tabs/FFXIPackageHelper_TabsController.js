@@ -76,7 +76,7 @@ mw.hook('wikipage.content').add( function () {
   if ( initiallyLoaded == true) return;
 
   if ( onPageLoad() == null) {
-    //console.log("Tab Controller: Tabs not found. ");
+    console.log("Tab Controller: Tabs not found. ");
     return;
   }
 
@@ -88,6 +88,8 @@ mw.hook('wikipage.content').add( function () {
   TabEquipsets.setLinks();
 
   initiallyLoaded = true;
+  console.log("Tab Controller: initiallyLoaded");
+
   });
 
 // $( document ).ready( function () {

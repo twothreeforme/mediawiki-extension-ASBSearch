@@ -590,7 +590,7 @@ class DBConnection {
                                         $dbr::LIST_OR);
             array_push ( $query, $q);
         }
-        throw new Exception ( json_encode($query) );
+        //throw new Exception ( json_encode($query) );
 
         if ( isset($crystal) && $crystal != 0 ){ array_push ( $query, "synth_recipes.Crystal = '$crystal'"); }
 
