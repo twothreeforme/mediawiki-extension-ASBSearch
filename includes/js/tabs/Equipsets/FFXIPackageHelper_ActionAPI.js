@@ -12,7 +12,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
         if ( forTab.includes("search") )  {
-          //console.log("api: equipsets_search: fired");
+          console.log(result);
           sender.returnCallback(result);
         }
         else if ( forTab.includes("change")) {

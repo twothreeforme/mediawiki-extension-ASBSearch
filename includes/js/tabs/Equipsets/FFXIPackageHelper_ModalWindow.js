@@ -144,15 +144,17 @@ class ModalWindow {
         const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
 
         let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
-        //commentNode[this.slot].getElementsByTagName('p')[0];
+
+        //remove all list items and start over
+        var dl = document.getElementById(idname);
+        dl.innerHTML = '';
 
         if ( results[0].length == 0 ) {
             commentNode.innerText = "No results found";
             return;
         }
-        //div.innerText = "Click item to add to set...\n";
 
-        var dl = document.getElementById(idname);
+
         commentNode.innerText = "Click item to add to set...\n";
 
         for ( let i = 0; i < arr.length; i++ ){
