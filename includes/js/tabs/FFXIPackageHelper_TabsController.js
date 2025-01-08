@@ -73,7 +73,7 @@ function onPageLoad(){
 
 var initiallyLoaded = false;
 mw.hook('wikipage.content').add( function () {
-  console.log('wikipage.content: fired');
+  //console.log('wikipage.content: fired');
   if ( initiallyLoaded == true) return;
 
   if ( onPageLoad() == null) {
