@@ -131,7 +131,7 @@ class ModalWindow {
 
         const searchButton = document.getElementById("FFXIPackageHelper_equipsets_search" + this.slot);
         searchButton.addEventListener('click', (e) =>  {
-            //console.log("search clicked: " + this.slot);
+            console.log("search clicked: " + this.slot);
             this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
             //this.options.searchCallback(changeEquip(this.slot), "equipsets_change", null, this);
         });
