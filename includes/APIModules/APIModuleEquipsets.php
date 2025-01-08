@@ -24,7 +24,7 @@ class APIModuleEquipsets extends ApiBase {
     function execute( ) {
         $params = $this->extractRequestParams();
         $result = $this->getResult();
-
+        throw new Exception("here");
         //$equipmentList = (explode(",",$params['equipment']));
 
         //$finalHtml = $this->queryEquipment($queryData);

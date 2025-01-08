@@ -7,7 +7,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
       const result = d[forTab][0];
-      console.log(result);
+      //console.log(result);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
