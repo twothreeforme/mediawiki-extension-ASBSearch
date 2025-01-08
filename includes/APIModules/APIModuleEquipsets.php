@@ -24,9 +24,6 @@ class APIModuleEquipsets extends ApiBase {
     function execute( ) {
 
         $params = $this->extractRequestParams();
-
-        throw new Exception($params['search']);
-
         $result = $this->getResult();
 
         //throw new Exception($params['action']);
