@@ -37,7 +37,10 @@ class APIModuleEquipsets extends ApiBase {
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
+            throw new Exception($params['action']);
+
             $result->addValue($params['action'], $params['querytype'], $newStats->getStats());
+
         }
         else if ( $params['action'] == "equipsets_search" ) {
             $db = new DBConnection();
