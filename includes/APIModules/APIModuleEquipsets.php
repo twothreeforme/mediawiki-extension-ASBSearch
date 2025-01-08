@@ -49,8 +49,6 @@ class APIModuleEquipsets extends ApiBase {
             $equipList = $db->getEquipment($params['search'], $params['mlvl'], $params['slot']);
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
-            throw new Exception( $params['querytype'] );
-
             $result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot']]);
         }
         else if ( $params['action'] == "equipsets_change" ) {
