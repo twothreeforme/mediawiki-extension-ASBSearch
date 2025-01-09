@@ -279,7 +279,7 @@ class DataModel {
 			array_push ( $this->dataset[$l]['mods'], $_mod );
 
 		}
-
+		throw new Exception( json_encode($this->dataset) );
 		return $this->dataset;
 	}
 }
