@@ -197,12 +197,7 @@ class DataModel {
 	}
 
 	function parseEquipment($param, $job = null){
-        //print_r($this->dataset);
         if ( !$param ) return NULL;
-
-		//$prevItem = "";
-		//$modIsEffect = 0;	
-		throw new Exception ( $job);
 
 		foreach ( $param as $row ) {
 			//throw new Exception($row->jobs);
@@ -220,7 +215,7 @@ class DataModel {
 				$row->modid == 953 ||	 	//-- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 				$row->modid == 1180 )		//-- Additional parameters for more specific latents required to proc
 				$statusEffect = true;
-
+				throw new Exception ( $row->modid);
 			// if ( $row->modid == 951 ) {
 			// 	$modIsEffect = $row->modValue;
 			// 	continue;
