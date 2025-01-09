@@ -202,6 +202,7 @@ class DataModel {
 
 		//$prevItem = "";
 		//$modIsEffect = 0;	
+		throw new Exception ( $job);
 
 		foreach ( $param as $row ) {
 			//throw new Exception($row->jobs);
