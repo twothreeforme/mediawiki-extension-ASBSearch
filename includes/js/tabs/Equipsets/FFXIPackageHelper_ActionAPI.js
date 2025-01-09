@@ -14,7 +14,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab.includes("equipsets") ){
         if ( forTab.includes("search") )  {
           console.log(result);
-          //sender.returnCallback(result);
+          sender.returnCallback(result);
         }
         else if ( forTab.includes("change")) {
           //console.log("api: equipsets_change: fired");
