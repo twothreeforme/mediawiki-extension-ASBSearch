@@ -51,7 +51,7 @@ class APIModuleEquipsets extends ApiBase {
 
             // throw new Exception(json_encode($finalList));
             //$result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot']]);
-            $result->addValue($params['action'], $params['querytype'], "query done" );
+            //$result->addValue($params['action'], $params['querytype'], "query done" );
         }
         else if ( $params['action'] == "equipsets_change" ) {
 
