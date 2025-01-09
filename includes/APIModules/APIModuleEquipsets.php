@@ -47,7 +47,7 @@ class APIModuleEquipsets extends ApiBase {
 
 
             $equipList = $db->getEquipment( $params['search'], $params['mlvl'], $params['slot']);
-            throw new Exception (json_encode($equipList ) );
+            throw new Exception (json_encode($equipList[0]) );
 
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
