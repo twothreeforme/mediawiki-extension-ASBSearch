@@ -208,46 +208,51 @@ class DataModel {
 			/**
 			 * We can skip some of these effects...
 			 */
-			$statusEffect = false;
-			if ( $row->modid == 499 || 		//-- Animation ID of Spikes and Additional Effects
-				$row->modid == 501 || 		//-- Chance of an items Additional Effect or Spikes
-				$row->modid == 950 ||		//-- Element of the Additional Effect or Spikes, for resist purposes
-				$row->modid == 953 ||	 	//-- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
-				$row->modid == 1180 )		//-- Additional parameters for more specific latents required to proc
-				$statusEffect = true;
-				throw new Exception ( $row->modid);
-			// if ( $row->modid == 951 ) {
-			// 	$modIsEffect = $row->modValue;
-			// 	continue;
-			// }
-			
-			$_mod = array(
-				'id' => $row->modid,
-				'value' => $row->modValue
-			);
 
-			// $last = array_key_last($this->dataset);
-			// if ( ($row->modid == 431 ||		//-- ITEM_ADDEFFECT_TYPE
-			// 	$row->modid == 499 || 		//-- ITEM_SUBEFFECT: Animation ID of Spikes and Additional Effects
-			// 	$row->modid == 501 || 		//-- ITEM_ADDEFFECT_CHANCE
-			// 	$row->modid == 950 ||		//-- ITEM_ADDEFFECT_ELEMENT
-			// 	$row->modid == 951 ||		//-- ITEM_ADDEFFECT_STATUS
-			// 	$row->modid == 952 ||		//-- ITEM_ADDEFFECT_POWER
-			// 	$row->modid == 953) && 		//-- ITEM_ADDEFFECT_DURATION
-			// 	($last != NULL && $last['name'] == $row->name) ){		
+			 $_mod = null;
+			if  ( property_exists($row, 'modid' ) ){
+				$statusEffect = false;
+				if ( $row->modid == 499 || 		//-- Animation ID of Spikes and Additional Effects
+					$row->modid == 501 || 		//-- Chance of an items Additional Effect or Spikes
+					$row->modid == 950 ||		//-- Element of the Additional Effect or Spikes, for resist purposes
+					$row->modid == 953 ||	 	//-- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
+					$row->modid == 1180 )		//-- Additional parameters for more specific latents required to proc
+					$statusEffect = true;
+
+				// if ( $row->modid == 951 ) {
+				// 	$modIsEffect = $row->modValue;
+				// 	continue;
+				// }
 				
-			// 	// if ( $prev_row['dropData']['groupId'] != $workingRow['dropData']['groupId'] ){
-			// 	// 	array_push ( $this->dataset, $workingRow ); continue;
-			// 	// }
-			// 	// else{
-			// 	// 	array_push ( $this->dataset[$l]['dropData']['items'], $_item );
-			// 	// }	
-			// }
-			// else {
-			// 	$_mod['id'] = $row->modid;
-			// 	$_mod['value'] = $row->modValue;
-			// 	$modIsEffect = 0;	
-			// }
+				$_mod = array(
+					'id' => $row->modid,
+					'value' => $row->modValue
+				);
+
+				// $last = array_key_last($this->dataset);
+				// if ( ($row->modid == 431 ||		//-- ITEM_ADDEFFECT_TYPE
+				// 	$row->modid == 499 || 		//-- ITEM_SUBEFFECT: Animation ID of Spikes and Additional Effects
+				// 	$row->modid == 501 || 		//-- ITEM_ADDEFFECT_CHANCE
+				// 	$row->modid == 950 ||		//-- ITEM_ADDEFFECT_ELEMENT
+				// 	$row->modid == 951 ||		//-- ITEM_ADDEFFECT_STATUS
+				// 	$row->modid == 952 ||		//-- ITEM_ADDEFFECT_POWER
+				// 	$row->modid == 953) && 		//-- ITEM_ADDEFFECT_DURATION
+				// 	($last != NULL && $last['name'] == $row->name) ){
+
+				// 	// if ( $prev_row['dropData']['groupId'] != $workingRow['dropData']['groupId'] ){
+				// 	// 	array_push ( $this->dataset, $workingRow ); continue;
+				// 	// }
+				// 	// else{
+				// 	// 	array_push ( $this->dataset[$l]['dropData']['items'], $_item );
+				// 	// }
+				// }
+				// else {
+				// 	$_mod['id'] = $row->modid;
+				// 	$_mod['value'] = $row->modValue;
+				// 	$modIsEffect = 0;
+				// }
+			}
+
 
 			$workingRow = array (
 				'id' => $row->itemId,
