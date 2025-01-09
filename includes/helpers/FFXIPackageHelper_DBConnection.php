@@ -886,6 +886,8 @@ class DBConnection {
 
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.itemId',
+                    'item_equipment.level',
+                    'item_equipment.jobs',
                     'item_equipment.name',
                     'item_equipment.slot',
                     'item_equipment.rslot',
