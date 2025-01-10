@@ -40,9 +40,9 @@ class FFXIPackageHelper_Equipsets  {
                     <p><center><b>Statistics</b></center></p>
                     <table class=\"FFXIPackageHelper_Equipsets_showstats_basestats\">
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                        <tr><td>HP&emsp;</td><td style=\"height:14px;\"><p  id=\"FFXIPackageHelper_Equipsets_statHP\">0</p></td></tr>
-                        <tr><td>MP&emsp;</td><td style=\"height:14px;\"><p id=\"FFXIPackageHelper_Equipsets_statMP\">0</p></td></tr>
-                        <tr><td>STR&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statSTR\">0</p></td></tr>
+                        <tr style=\"height:14px;\"><td>HP&emsp;</td><td><p  id=\"FFXIPackageHelper_Equipsets_statHP\">0</p></td></tr>
+                        <tr style=\"height:14px;\"><td>MP&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statMP\">0</p></td></tr>
+                        <tr style=\"height:14px;\"><td>STR&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statSTR\">0</p></td></tr>
                         <tr><td>DEX&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statDEX\">0</p></td></tr>
                         <tr><td>VIT&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statVIT\">0</p></td></tr>
                         <tr><td>AGI&emsp;</td><td><p id=\"FFXIPackageHelper_Equipsets_statAGI\">0</p></td></tr>
