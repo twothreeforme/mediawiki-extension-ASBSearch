@@ -287,9 +287,9 @@ Showing Equipsets stats table
     border-collapse: collapse;
 }
 
-.FFXIPackageHelper_Equipsets_showstats_basestats tr{
+/* .FFXIPackageHelper_Equipsets_showstats_basestats tr{
     line-height:1px;
-}
+} */
 
 .FFXIPackageHelper_Equipsets_showstats_basestats td {
     border: none;
@@ -297,7 +297,7 @@ Showing Equipsets stats table
     padding: 0px;
     border-spacing: 0px;
     text-align: right;
-
+    line-height:1px;
 }
 
 .FFXIPackageHelper_Equipsets_statRes div.mw-parser-output p {
