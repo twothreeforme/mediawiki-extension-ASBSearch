@@ -74,6 +74,10 @@ Custom Buttons
     transition-duration: 0.1s;
 }
 
+.FFXIPackageHelper_dynamiccontent_customDropDown {
+    padding: 0;
+}
+
 /*
 Leftover from old ASB page
 */

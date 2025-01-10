@@ -29,7 +29,7 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
     }
 
     private function minItemLevel($classname){
-        $html = "<select id=\"". $classname ."\" >";
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         
         $html .= "<option value=\"0\">None</option>";
         
@@ -55,7 +55,7 @@ class FFXIPackageHelper_HTMLTabEquipSearch {
         // waist 1024
         // legs 128
         // feet 256
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectSlotType\" defaultValue=\"0\">";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectSlotType\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Main</option>";
         $html .= "<option value=\"2\">Sub</option>";

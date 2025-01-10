@@ -71,7 +71,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     private function zonesDropDown(){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" >";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $zoneNamesList = $this->zoneNameList();
         foreach ($zoneNamesList as $key => $value) {
            // print_r($key . $value);
@@ -110,7 +110,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
     private function selectLvlDropDown($classname){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> FFXIPackageHelper_dynamiccontent_selectMinCraftLvl
-        $html = "<select id=\"". $classname ."\" >";
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 85; $i++) {
             if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";

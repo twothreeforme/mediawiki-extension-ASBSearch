@@ -6,7 +6,7 @@ class FFXIPackageHelper_HTMLOptions {
       }
 
       public static function jobDropDown($classname){
-        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" >";
+        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Warrior</option>";
         $html .= "<option value=\"2\">Monk</option>";
@@ -35,7 +35,7 @@ class FFXIPackageHelper_HTMLOptions {
     }
 
     public static function raceDropDown($classname){
-        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" >";
+        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">Hume</option>";
         $html .= "<option value=\"1\">Elvaan</option>";
         $html .= "<option value=\"2\">Tarutaru</option>";
@@ -46,7 +46,7 @@ class FFXIPackageHelper_HTMLOptions {
     }
 
     public static function levelRange($classname){
-        $html = "<select id=\"". $classname ."\" >";
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 75; $i++) {
             if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
@@ -57,7 +57,7 @@ class FFXIPackageHelper_HTMLOptions {
     }
 
     public static function subLevelRange($classname){
-        $html = "<select id=\"". $classname ."\" >";
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 37; $i++) {
             if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
