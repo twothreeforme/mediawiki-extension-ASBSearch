@@ -51,6 +51,26 @@ Custom Buttons
   color: #666666;
 }
 
+.customButton_cancel {
+    background-color: #b1b1b1c7;
+    border: 1px solid #b1b1b1c7;
+}
+.customButton_cancel:hover {
+    background-color: #b1b1b1;
+    border-color: #5c5c5cbd;
+}
+
+.customButton_removeItem {
+    background-color: #b14444f1;
+    border: 1px solid #3a0000c7;
+    float: right;
+}
+.customButton_removeItem:hover {
+    background-color: #632424f1;
+    border-color: #3a0000c7;
+}
+
+
 .FFXIPackageHelper_dynamiccontent_shareButton {
     display: inline-block;
     outline: none;

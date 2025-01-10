@@ -17,14 +17,14 @@ const  _legs = `<h2>Legs Slot</h2>`;
 const  _feet = `<h2>Feet Slot</h2>`;
 
 let _default = `<p>Search for item...</p>`;
-let _default2 = `<br><br><button style="float: left;" class="close-modal">Cancel</button>`;
+let _default2 = `<br><br><button style="float: left;" class="close-modal FFXIPackageHelper_dynamiccontent_customButton customButton_cancel">Cancel</button>`;
 
 function searchInput(slot){
     return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
 }
 
 function searchButton(slot){
-    return "<button id=\"FFXIPackageHelper_equipsets_search" + slot + "\">Search</button>";
+    return "<button id=\"FFXIPackageHelper_equipsets_search" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>";
 }
 
 function searchResults(slot){
@@ -35,8 +35,10 @@ function removeItemButton(slot){
     const newElement = document.createElement("button");
     newElement.id = `FFXIPackageHelper_equipsets_removeButton${slot}`;
     newElement.innerText = "Remove Item";
-    newElement.classList.add('close-modal');
-    newElement.setAttribute("style", "display: none; float: right; background-color:rgba(244, 67, 54, 0.50);");
+    newElement.classList.add('close-modal'); // FFXIPackageHelper_dynamiccontent_customButton customButton_removeItem
+    newElement.classList.add('FFXIPackageHelper_dynamiccontent_customButton');
+    newElement.classList.add('customButton_removeItem');
+    //newElement.setAttribute("style", "display: none; float: right; background-color:rgba(244, 67, 54, 0.50);");
     return newElement;
 }
 
