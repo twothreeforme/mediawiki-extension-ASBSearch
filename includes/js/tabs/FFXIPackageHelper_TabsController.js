@@ -68,6 +68,16 @@ function onPageLoad(){
   });
   //tabsButton_equipsets.click();
 
+  const tabsButton_fishing = document.getElementById("FFXIPackageHelper_tabs_fishing");
+  if ( tabsButton_fishing == null )  {
+    //console.log("fishing tab null");
+    return ;
+  }
+  tabsButton_fishing.addEventListener("click", function (e) {
+      showTab(e,tabsButton_fishing.id);
+  });
+  //tabsButton_equipsets.click();
+
   return 0;
 }
 

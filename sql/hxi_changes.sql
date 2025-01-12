@@ -265,16 +265,11 @@ UPDATE mob_droplist set itemRate = 50, groupId =  3, changes_tag = 1 WHERE itemI
 UPDATE mob_droplist set itemRate = 950, groupId =  3, changes_tag = 1 WHERE itemId = 14075; -- ZoneID: 154 - Fafnir -- Andvaranauts move to new group with Ridill
 UPDATE mob_droplist SET itemId = '1318', changes_tag = 1 WHERE itemId = '1324' AND dropId = '946'; -- Replace A-Head with D-Feet in Genbu drops (since removed from Aspidochelone)
 UPDATE mob_droplist SET groupRate = 1000, changes_tag = 1 WHERE dropId = '2819' AND groupId = 1; -- Kirin has 100% chance to drop at least 1 Abj now
-
-
-
+UPDATE mob_droplist SET itemRate = 10, changes_tag = 1 WHERE dropId = '2824' AND itemId = '2388'; -- Diorite rate increased to 1% on HXI
 
 -- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1340,334);   -- Neptunal Abjuration Body (Group 1 - 33.4%)
 -- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1315,333);   -- Dryadic Abjuration Body (Group 1 - 33.3%)
 -- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1337,333);   -- Wyrmal Abjuration Legs (Group 1 - 33.3%)
-
-
-
 
 UNLOCK TABLES;
 
@@ -330,6 +325,7 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
 UPDATE item_basic SET name = 'perforator', sortname = 'perforator', changes_tag = 1 WHERE itemid = 18097;
 UPDATE item_basic SET name = "warlock\'s_belt", sortname = "warlock\'s_belt", changes_tag = 1 WHERE itemid = 15275; -- Change Rapier's Belt to be Warlocks Belt
-
+DELETE FROM `item_basic` WHERE itemid=3343; -- Blue Pondweed OOE
+DELETE FROM `item_basic` WHERE itemid=3344; -- Red Pondweed OOE
 
 UNLOCK TABLES;

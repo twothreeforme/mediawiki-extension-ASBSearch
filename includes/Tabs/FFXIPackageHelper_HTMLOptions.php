@@ -66,6 +66,40 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</select>";
         return $html;
     }
+
+    private static function zoneNamelist($fishing = null){
+        $db = new DBConnection();
+        if ( $fishing == true ) $zonelist = $db->getZoneListFishing();
+        else $zonelist = $db->getZoneList();
+
+        foreach ($zonelist as $row) {
+			$temp = ParserHelper::zoneERA_forList($row->name);
+			if ( !isset($temp) ) { continue; }
+            if ( ctype_digit($temp) ) continue;
+			$result[$temp]=$row->name;
+			//print_r($result[$temp] .", " . $row->name);
+		}
+		$result[' ** Search All Zones ** '] = "searchallzones";
+		ksort($result);
+		return $result ;
+    }
+
+    public static function zonesDropDown($classname = null, $forFishing = null){
+        ($classname != null) ? : $classname = "FFXIPackageHelper_dynamiccontent_customDropDown";
+
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"$classname\">";
+        $zoneNamesList = self::zoneNameList($forFishing);
+
+        foreach ($zoneNamesList as $key => $value) {
+           // print_r($key . $value);
+            // if ( $this->zoneName != "" && $this->zoneName == $key ) $html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
+            // else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+            $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+        }
+
+        $html .= "</select>";
+        return $html;
+    }
 }
 
 ?>

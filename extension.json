@@ -15,6 +15,7 @@
         "FFXIPackageHelper_ItemDetails": "includes/helpers/data/FFXIPackageHelper_ItemDetails.php",
         "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
+        "FFXIPackageHelper_HTMLTabFishingSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabFishingSearch.php",
         "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
         "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",

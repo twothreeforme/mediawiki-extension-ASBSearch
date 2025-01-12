@@ -88,6 +88,11 @@ DROP TABLE IF EXISTS `skill_ranks`;
 source skill_ranks.sql;
 \! echo skill_ranks done
 
+\! echo fishing_zone
+DROP TABLE IF EXISTS `fishing_zone`;
+source fishing_zone.sql;
+\! echo fishing_zone done
+
 \! echo hxi_changes
 source hxi_changes.sql;
 \! echo hxi_changes done

@@ -112,6 +112,17 @@ class DBConnection {
         return $zoneList;
     }
 
+    function getZoneListFishing() {
+		$dbr = $this->openConnection();
+		$zoneList = $dbr->newSelectQueryBuilder()
+			->select( [ 'zoneid, name' ] )
+			->from( 'fishing_zone' )
+			->fetchResultSet();
+
+        return $zoneList;
+    }
+
+
     function getZoneWeather($zone, $numberOfDays ) {
 		$dbr = $this->openConnection();
         $query = "zone_weather.zone = $zone";

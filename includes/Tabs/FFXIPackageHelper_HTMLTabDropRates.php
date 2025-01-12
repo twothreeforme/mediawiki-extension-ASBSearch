@@ -15,7 +15,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
         private $includeSteal;
         private $includeFished;
 
-    public function __construct( $query) {
+    public function __construct( $query = null ) {
         if ( gettype($query) == 'array'){
             $this->query_limit = $query[0];
             $this->mobName = $query[1];
