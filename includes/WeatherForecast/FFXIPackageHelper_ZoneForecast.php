@@ -54,11 +54,18 @@ class ZoneForecast  {
                 $zoneid = $zone->zoneid;
                 break;
             }
-            // else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay_-_Purgonorgo_Isle' ){
-            //     $zoneid = $zone->zoneid;
-            //     break;
-            // }
-
+            else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay-Purgonorgo_Isle' ){
+                $zoneid = $zone->zoneid;
+                break;
+            }
+            else if ( $zone->zoneid == 29 && $pagename == 'Riverne-Site_#B01' ){
+                $zoneid = $zone->zoneid;
+                break;
+            }
+            else if ( $zone->zoneid == 30 && $pagename == 'Riverne-Site_#A01' ){
+                $zoneid = $zone->zoneid;
+                break;
+            }
         }
         
         //var_dump($zoneid);
