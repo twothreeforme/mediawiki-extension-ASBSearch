@@ -23,7 +23,8 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
         }
         else updateEquipsets(result);
       }
-      //else if ( forTab == "equipsets_search") updateEquipsets_Search(result);
+      else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
+
 
       if ( currentButton != null){
         const button = document.getElementById(currentButton);
@@ -47,6 +48,11 @@ function updateRecipesFromQuery(updatedHTML){
 function updateEquipmentFromQuery(updatedHTML){
   document.getElementById("FFXIPackageHelper_tabs_equipment_queryresult").innerHTML = updatedHTML;
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_equipment_queryresult'));
+}
+
+function updateFishingFromQuery(updatedHTML){
+  document.getElementById("FFXIPackageHelper_tabs_fishing_queryresult").innerHTML = updatedHTML;
+  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_fishing_queryresult'));
 }
 
 function changeGrid(updatedGrid){

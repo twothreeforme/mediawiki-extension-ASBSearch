@@ -188,6 +188,8 @@ class ParserHelper {
 		$zone = ParserHelper::replaceSpaces($zone);
 		//$zone = str_replace("(S)", "[S]", $zone);
 		$zone = str_replace(" - ", "-", $zone);
+        $zone = str_replace("_-_", "-", $zone);
+
 		return $zone;
 	}
 

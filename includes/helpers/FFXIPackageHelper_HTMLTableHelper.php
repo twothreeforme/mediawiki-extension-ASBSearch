@@ -521,6 +521,31 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 		return $finalHtml;
 	}
+
+	public static function table_FishingQuery($queryResults){
+		$html = "<br><div ><i></i></div>
+		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
+		<table id=\"asbsearch_fishingtable\" class=\"horizon-table general-table sortable\">
+			<tr><th>Fish</th>
+			<th>Zone</th>
+			<th>Bait</th>
+			</tr>
+			";
+
+		foreach($queryResults as $row){
+			$zn = ParserHelper::zoneName($row['zonename']);
+
+			$html .= "<tr><td><center>" . $row['fishname'] . "</center></td><td><center>" . $zn . "</center></td>";
+			$html .= "<td><center>";
+			foreach($row['baitlist'] as $bait){
+				$html .= $bait . "<br>";
+			}
+			$html .= "</center></td></tr>";
+		}
+
+
+		return $html;
+	}
 }
 
 ?>

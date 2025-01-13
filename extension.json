@@ -39,8 +39,9 @@
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
         "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
-        "APIModuleEquipsets" : "includes/APIModules/APIModuleEquipsets.php"
-
+        "APIModuleEquipsets" : "includes/APIModules/APIModuleEquipsets.php",
+        "APIModuleFishingSearch" : "includes/APIModules/APIModuleFishingSearch.php"
+        
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",
@@ -94,6 +95,7 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
+                "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
                 "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
@@ -126,6 +128,9 @@
 		},
         "equipsets_change": {
 			"class": "APIModuleEquipsets"
+		},
+        "fishingsearch": {
+			"class": "APIModuleFishingSearch"
 		}
 	},
     "manifest_version": 2,

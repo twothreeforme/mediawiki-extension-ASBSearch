@@ -40,12 +40,13 @@ class ZoneForecast  {
 
         }
         // $pagename = $pagename->getText() ;
-     
+
+        
         //$name = ParserHelper::zoneName($row['name']);
         //print_r($pagename);
        // print_r(str_replace("\'", "", $pagename));
         $pagename = ParserHelper::replaceApostrophe($pagename);
-        $pagename = ParserHelper::replaceSpaces($pagename);
+        $pagename = ParserHelper::zoneERA_forQuery($pagename);
         //var_dump($pagename);
         
         foreach ( $zoneList as $zone){
@@ -53,14 +54,15 @@ class ZoneForecast  {
                 $zoneid = $zone->zoneid;
                 break;
             }
-            else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay_-_Purgonorgo_Isle' ){
-                $zoneid = $zone->zoneid;
-                break;
-            }
+            // else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay_-_Purgonorgo_Isle' ){
+            //     $zoneid = $zone->zoneid;
+            //     break;
+            // }
+
         }
         
         //var_dump($zoneid);
-
+        
         if ( $zoneid == 0 ){
             return "<div>Error: Forecast for ' $pagename ' not found. Please report to Wiki devs on Discord. </div>";
         }

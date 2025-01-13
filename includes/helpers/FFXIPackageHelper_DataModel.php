@@ -283,6 +283,39 @@ class DataModel {
 
 		return $this->dataset;
 	}
+
+	function parseFishing($param){
+        if ( !$param ) return NULL;
+
+		foreach ( $param as $row ) {
+
+			//throw new Exception ( json_encode( $row) );
+
+			$_bait = $row->baitname;
+
+			$workingRow = array (
+				'fishname' => $row->fishname,
+				'zonename' => $row->zonename,
+				'baitlist' => array( $_bait)
+			);
+
+			// it doenst exist, so create new entry
+			if ( !$this->dataset ) { array_push ( $this->dataset, $workingRow ); continue; }
+			
+			// i think i only need to view the last item in the array
+			// over each iteration
+			// fastest method: $x = array_slice($array, -1)[0];
+			$prev_row = array_slice($this->dataset, -1)[0];
+			if ( $prev_row['fishname'] != $workingRow['fishname']) { array_push ( $this->dataset, $workingRow ); continue; }
+
+			$l = array_key_last($this->dataset);
+			if ( !in_array($_bait, $this->dataset[$l]['baitlist'])) array_push ( $this->dataset[$l]['baitlist'], $_bait );
+			else continue;
+
+		}
+
+		return $this->dataset;
+	}
 }
 
 ?>

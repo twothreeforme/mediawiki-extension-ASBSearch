@@ -3,10 +3,10 @@
 
 class FFXIPackageHelper_HTMLTabFishingSearch {
     
-    private $query_limit;
-    private $baitName;
-    private $fishName;
-    private $zoneName;
+    private $query_limit = 0;
+    private $baitName = "";
+    private $fishName = "";
+    private $zoneName = "";
 
     public function __construct($query = null) {
         if ( gettype($query) == 'array'){
@@ -23,13 +23,13 @@ class FFXIPackageHelper_HTMLTabFishingSearch {
                     <tr><td>
                         <table><tbody>
                         <tr>
-                            <td>Bait<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"baitSearch\" value=\"temp\" size=\"25\"></td>
+                            <td>Bait<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"baitSearch\" value=\"$this->baitName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Fish<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"fishNameSearch\" value=\"temp\" size=\"25\"></td>
+                            <td>Fish<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"fishNameSearch\" value=\"$this->fishName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown(null, true) . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
+                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::fishZonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchFishingSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
                             </tr>
                         </tbody></table>
                         </td>

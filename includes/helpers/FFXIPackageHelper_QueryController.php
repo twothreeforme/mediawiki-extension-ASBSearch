@@ -71,58 +71,23 @@ class FFXIPackageHelper_QueryController {
 
 		if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
 
-		/************************
-		 * Row counter
-		 */
         $html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
 
-		//$html .= "<p>" . $recipesQuery . "</p>";
-        // if ( gettype($recipesQuery) == 'string' ){
-        //     $html .= "<p>" . $recipesQuery . "</p>";
-        // }
-        // if ( gettype($recipesQuery) == 'array' ){
-        //     $html .= "<p>" . $row->Crystal . "</p>";
-        // }
-
-
-        //$html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
-		// $html .= '</table></div>';
 		return $html;
 	}
 
-    // public static function showDropRatesQueryResults($dropRatesArray, $showTH){
-	// 	$html = "";
+	public static function queryFishing($queryData){
+		$dm = new DataModel();
+        $db = new DBConnection();
+		$initialQuery = $db->getFi($queryData);
 
-	// 	if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
+ 		$html = "";
 
-	// 	/************************
-	// 	 * Row counter
-	// 	 */
-	// 	$totalRows = -1;
-		
-	// 	foreach ($dropRatesArray as $row) // test total records query'd
-	// 	{
-	// 		//print_r("row: " .$row['mobName']);
-	// 		if ( $totalRows < 0 ) $totalRows = 0;
-	// 		foreach($row['dropData']['items'] as $item ){
-	// 			$totalRows ++;
-	// 			// if ( $totalRows > $this->query_limit){
-	// 			// 	return "<b><i>Query produced too many results to display. Queries are limited to 1000 results, for efficiency.
-	// 			// 		Please reduce search pool by adding more to any of the search parameters.</i></b>";
-	// 			// }
-	// 		}
-	// 	}
+		if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
+        //$html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
+		return $html;
+	}
 
-	// 	if ( $totalRows >= 0 ) {  
-	// 		if ( $totalRows == 1500 ) $html .= "<i><b> $totalRows records (items) found, which is the search limit. Narrow search parameters.</i></b>";
-	// 		else $html .= "<i><b> $totalRows records (items) found.</i></b>";
-	// 		$html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
-	// 	}
-
-	// 	$html .= '</table></div>';
-
-	// 	return $html;
-	// }
 }
 
 ?>

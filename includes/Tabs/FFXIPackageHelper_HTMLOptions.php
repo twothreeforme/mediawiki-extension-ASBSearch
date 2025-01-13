@@ -84,16 +84,23 @@ class FFXIPackageHelper_HTMLOptions {
 		return $result ;
     }
 
-    public static function zonesDropDown($classname = null, $forFishing = null){
-        ($classname != null) ? : $classname = "FFXIPackageHelper_dynamiccontent_customDropDown";
-
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"$classname\">";
-        $zoneNamesList = self::zoneNameList($forFishing);
+    public static function zonesDropDown(){
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+        $zoneNamesList = self::zoneNameList();
 
         foreach ($zoneNamesList as $key => $value) {
-           // print_r($key . $value);
-            // if ( $this->zoneName != "" && $this->zoneName == $key ) $html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
-            // else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+            $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+        }
+
+        $html .= "</select>";
+        return $html;
+    }
+
+    public static function fishZonesDropDown(){
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectFishingZone\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+        $zoneNamesList = self::zoneNameList(true);
+
+        foreach ($zoneNamesList as $key => $value) {
             $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
         }
 

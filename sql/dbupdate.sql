@@ -93,6 +93,36 @@ DROP TABLE IF EXISTS `fishing_zone`;
 source fishing_zone.sql;
 \! echo fishing_zone done
 
+\! echo fishing_area
+DROP TABLE IF EXISTS `fishing_area`;
+source fishing_area.sql;
+\! echo fishing_area done
+
+\! echo fishing_bait
+DROP TABLE IF EXISTS `fishing_bait`;
+source fishing_bait.sql;
+\! echo fishing_bait done
+
+\! echo fishing_fish
+DROP TABLE IF EXISTS `fishing_fish`;
+source fishing_fish.sql;
+\! echo fishing_fish done
+
+\! echo fishing_catch
+DROP TABLE IF EXISTS `fishing_catch`;
+source fishing_catch.sql;
+\! echo fishing_catch done
+
+\! echo fishing_group
+DROP TABLE IF EXISTS `fishing_group`;
+source fishing_group.sql;
+\! echo fishing_group done
+
+\! echo fishing_bait_affinity
+DROP TABLE IF EXISTS `fishing_bait_affinity`;
+source fishing_bait_affinity.sql;
+\! echo fishing_bait_affinity done
+
 \! echo hxi_changes
 source hxi_changes.sql;
 \! echo hxi_changes done

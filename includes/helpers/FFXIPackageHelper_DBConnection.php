@@ -115,8 +115,9 @@ class DBConnection {
     function getZoneListFishing() {
 		$dbr = $this->openConnection();
 		$zoneList = $dbr->newSelectQueryBuilder()
-			->select( [ 'zoneid, name' ] )
+			->select( [ 'fishing_zone.zoneid, fishing_zone.name' ] )
 			->from( 'fishing_zone' )
+            ->join( 'fishing_area', null, 'fishing_area.zoneid=fishing_zone.zoneid')
 			->fetchResultSet();
 
         return $zoneList;
@@ -910,6 +911,56 @@ class DBConnection {
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->leftjoin( 'item_weapon', null, 'item_weapon.itemId=item_equipment.itemId' )
         ->where( $query )
+        ->fetchResultSet();
+    }
+
+
+    public function getFishing( $queryData ){
+        $bait = $queryData[0];
+        $fish = $queryData[1];
+        $zone = $queryData[2];
+
+        
+        $dbr = $this->openConnection();
+        //$vars = new FFXIPackageHelper_Variables();
+
+        $query = [];
+
+        if ( $bait != null && $bait != "") {
+            $bait =  strtolower($bait);
+            $bait = ParserHelper::replaceSpaces($bait);
+            $bait = ParserHelper::replaceApostrophe($bait);
+
+            array_push($query, "fishing_bait.name LIKE '%$bait%'");
+        }
+        if ( $fish != null && $fish != "") {
+            $fish =  strtolower($fish);
+            $fish = ParserHelper::replaceSpaces($fish);
+            $fish = ParserHelper::replaceApostrophe($fish);
+
+            array_push($query, "fishing_fish.name LIKE '%$fish%'");
+        }
+        if ( $zone != null && $zone != "searchallzones") {
+            //$zone =  strtolower($zone);
+            $zone = ParserHelper::replaceSpaces($zone);
+            $zone = ParserHelper::replaceApostrophe($zone); 
+
+            array_push($query, "fishing_zone.name LIKE '%$zone%'");
+        }
+        //throw new Exception( json_encode($query));
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'fishing_fish.name AS fishname',
+                    'fishing_bait.name AS baitname',
+                    'fishing_zone.name AS zonename'
+                ] )
+        ->from( 'fishing_fish' )
+        ->join( 'fishing_group', null, 'fishing_group.fishid=fishing_fish.fishid')
+        ->join( 'fishing_bait_affinity', null, 'fishing_bait_affinity.fishid=fishing_fish.fishid')
+        ->join( 'fishing_bait', null, 'fishing_bait.baitid=fishing_bait_affinity.baitid')
+        ->join( 'fishing_catch', null, 'fishing_catch.groupid=fishing_group.groupid')
+        ->join( 'fishing_zone', null, 'fishing_zone.zoneid=fishing_catch.zoneid')
+        ->orderBy( 'fishing_fish.name', 'ASC' )        
+        ->where( $query	)
         ->fetchResultSet();
     }
 }

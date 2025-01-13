@@ -2,6 +2,7 @@ var TabDropRates = require("./FFXIPackageHelper_TabDropRates.js");
 var TabRecipes = require("./FFXIPackageHelper_TabRecipes.js");
 var TabEquipment = require("./FFXIPackageHelper_TabEquipment.js");
 var TabEquipsets = require("./Equipsets/FFXIPackageHelper_TabEquipsets.js");
+var TabFishing = require("./FFXIPackageHelper_TabFishing.js");
 
 
 function showTab(evt, tabName) { //https://www.w3schools.com/howto/howto_js_tabs.asp
@@ -38,7 +39,7 @@ function onPageLoad(){
       showTab(e,tabsButton_droprates.id);
     });
   // set the current tab to be "Drop Rates"
-  tabsButton_droprates.click();
+  //tabsButton_droprates.click();
 
   const tabsButton_recipes = document.getElementById("FFXIPackageHelper_tabs_recipes");
   if ( tabsButton_recipes == null ) {
@@ -76,7 +77,7 @@ function onPageLoad(){
   tabsButton_fishing.addEventListener("click", function (e) {
       showTab(e,tabsButton_fishing.id);
   });
-  //tabsButton_equipsets.click();
+  tabsButton_fishing.click();
 
   return 0;
 }
@@ -97,6 +98,7 @@ mw.hook('wikipage.content').add( function () {
   TabRecipes.setLinks();
   TabEquipment.setLinks();
   TabEquipsets.setLinks();
+  TabFishing.setLinks();
 
   initiallyLoaded = true;
   console.log("Tab Controller: initiallyLoaded");
