@@ -39,7 +39,7 @@ function onPageLoad(){
       showTab(e,tabsButton_droprates.id);
     });
   // set the current tab to be "Drop Rates"
-  //tabsButton_droprates.click();
+  tabsButton_droprates.click();
 
   const tabsButton_recipes = document.getElementById("FFXIPackageHelper_tabs_recipes");
   if ( tabsButton_recipes == null ) {
@@ -77,7 +77,7 @@ function onPageLoad(){
   tabsButton_fishing.addEventListener("click", function (e) {
       showTab(e,tabsButton_fishing.id);
   });
-  tabsButton_fishing.click();
+  //tabsButton_fishing.click();
 
   return 0;
 }
