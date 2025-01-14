@@ -142,52 +142,52 @@ class DataModel {
 	}
 
 
-	function parseRecipes($param){
+	// function parseRecipes($param){
 
-        if ( !$param ) return NULL;
+    //     if ( !$param ) return NULL;
 
-		// need to add throw exception here
-		// $param should be array from DBConnection
-		// [ $recipesQueryResult, $items ]
-		if ( gettype($param) != 'array' ) return NULL;
+	// 	// need to add throw exception here
+	// 	// $param should be array from DBConnection
+	// 	// [ $recipesQueryResult, $items ]
+	// 	if ( gettype($param) != 'array' ) return NULL;
 
-		foreach ( $param[0] as $row ) {
+	// 	foreach ( $param[0] as $row ) {
 
-			$workingRow = array (
-				'Desynth' => $row->Desynth,
-				'KeyItem' => $this->getItemName($param[1], $row->KeyItem),
-				'Wood' => $row->Wood,
-				'Smith' => $row->Smith,
-				'Gold' => $row->Gold,
-				'Cloth' => $row->Cloth,
-				'Leather' => $row->Leather,
-				'Bone' => $row->Bone,
-				'Alchemy' => $row->Alchemy,
-				'Cook' => $row->Cook,
-				'Crystal' => $this->getItemName($param[1], $row->Crystal),
-				'HQCrystal' => $this->getItemName($param[1], $row->HQCrystal),
-				'Ingredient1' => $this->getItemName($param[1], $row->Ingredient1),
-				'Ingredient2' => $this->getItemName($param[1], $row->Ingredient2),
-				'Ingredient3' => $this->getItemName($param[1], $row->Ingredient3),
-				'Ingredient4' => $this->getItemName($param[1], $row->Ingredient4),
-				'Ingredient5' => $this->getItemName($param[1], $row->Ingredient5),
-				'Ingredient6' => $this->getItemName($param[1], $row->Ingredient6),
-				'Ingredient7' => $this->getItemName($param[1], $row->Ingredient7),
-				'Ingredient8' => $this->getItemName($param[1], $row->Ingredient8),
-				'Result' => $this->getItemName($param[1], $row->Result),
-				'ResultHQ1' => $this->getItemName($param[1], $row->ResultHQ1),
-				'ResultHQ2' => $this->getItemName($param[1], $row->ResultHQ2),
-				'ResultHQ3' => $this->getItemName($param[1], $row->ResultHQ3),
-				'ResultQty' => $row->ResultQt,
-				'ResultHQ1Qty' => $row->ResultHQ1Qty,
-				'ResultHQ2Qty' => $row->ResultHQ2Qty,
-				'ResultHQ3Qty' => $row->ResultHQ3Qty,
-				'ResultName' => $row->ResultName,
-			);
-			array_push ( $this->dataset, $workingRow );
-		}
-        return $this->dataset;
-    }
+	// 		$workingRow = array (
+	// 			'Desynth' => $row->Desynth,
+	// 			'KeyItem' => $this->getItemName($param[1], $row->KeyItem),
+	// 			'Wood' => $row->Wood,
+	// 			'Smith' => $row->Smith,
+	// 			'Gold' => $row->Gold,
+	// 			'Cloth' => $row->Cloth,
+	// 			'Leather' => $row->Leather,
+	// 			'Bone' => $row->Bone,
+	// 			'Alchemy' => $row->Alchemy,
+	// 			'Cook' => $row->Cook,
+	// 			'Crystal' => $this->getItemName($param[1], $row->Crystal),
+	// 			'HQCrystal' => $this->getItemName($param[1], $row->HQCrystal),
+	// 			'Ingredient1' => $this->getItemName($param[1], $row->Ingredient1),
+	// 			'Ingredient2' => $this->getItemName($param[1], $row->Ingredient2),
+	// 			'Ingredient3' => $this->getItemName($param[1], $row->Ingredient3),
+	// 			'Ingredient4' => $this->getItemName($param[1], $row->Ingredient4),
+	// 			'Ingredient5' => $this->getItemName($param[1], $row->Ingredient5),
+	// 			'Ingredient6' => $this->getItemName($param[1], $row->Ingredient6),
+	// 			'Ingredient7' => $this->getItemName($param[1], $row->Ingredient7),
+	// 			'Ingredient8' => $this->getItemName($param[1], $row->Ingredient8),
+	// 			'Result' => $this->getItemName($param[1], $row->Result),
+	// 			'ResultHQ1' => $this->getItemName($param[1], $row->ResultHQ1),
+	// 			'ResultHQ2' => $this->getItemName($param[1], $row->ResultHQ2),
+	// 			'ResultHQ3' => $this->getItemName($param[1], $row->ResultHQ3),
+	// 			'ResultQty' => $row->ResultQt,
+	// 			'ResultHQ1Qty' => $row->ResultHQ1Qty,
+	// 			'ResultHQ2Qty' => $row->ResultHQ2Qty,
+	// 			'ResultHQ3Qty' => $row->ResultHQ3Qty,
+	// 			'ResultName' => $row->ResultName,
+	// 		);
+	// 		array_push ( $this->dataset, $workingRow );
+	// 	}
+    //     return $this->dataset;
+    // }
 
 	function buildStatusEffectMod($id, $value){
 		$finalMod = array();
@@ -292,10 +292,12 @@ class DataModel {
 			//throw new Exception ( json_encode( $row) );
 
 			$_bait = $row->baitname;
+			$_zone = $row->zonename;
 
 			$workingRow = array (
 				'fishname' => $row->fishname,
-				'zonename' => $row->zonename,
+				'fishid' => $row->fishid,
+				'zonelist' => array( $_zone),
 				'baitlist' => array( $_bait)
 			);
 
@@ -309,6 +311,7 @@ class DataModel {
 			if ( $prev_row['fishname'] != $workingRow['fishname']) { array_push ( $this->dataset, $workingRow ); continue; }
 
 			$l = array_key_last($this->dataset);
+			if ( !in_array($_zone, $this->dataset[$l]['zonelist'])) array_push ( $this->dataset[$l]['zonelist'], $_zone );
 			if ( !in_array($_bait, $this->dataset[$l]['baitlist'])) array_push ( $this->dataset[$l]['baitlist'], $_bait );
 			else continue;
 

@@ -533,12 +533,17 @@ class FFXIPackageHelper_HTMLTableHelper {
 			";
 
 		foreach($queryResults as $row){
-			$zn = ParserHelper::zoneName($row['zonename']);
+			$html .= "<tr><td><center>" . ParserHelper::brackets($row['fishname']) . "</center></td>";
+			$html .= "<td><center>";
+			foreach($row['zonelist'] as $zone){
+				$zn = ParserHelper::zoneName($zone);
+				$html .= $zn . "<br>";
+			}
+			$html .= "</center></td>";
 
-			$html .= "<tr><td><center>" . $row['fishname'] . "</center></td><td><center>" . $zn . "</center></td>";
 			$html .= "<td><center>";
 			foreach($row['baitlist'] as $bait){
-				$html .= $bait . "<br>";
+				$html .= ParserHelper::brackets($bait) . "<br>";
 			}
 			$html .= "</center></td></tr>";
 		}

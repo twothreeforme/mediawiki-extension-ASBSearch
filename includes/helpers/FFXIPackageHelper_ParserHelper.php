@@ -31,8 +31,8 @@ class ParserHelper {
         $mobName = str_replace(" Of ", " of ", $mobName);
 
 		// print_r($mobName ."-". $mobType ."...");
-        $mobName = "[[$mobName]]";
-
+        $mobName = self::brackets($mobName);
+        
 		if ( ExclusionsHelper::zoneIsBCNM($zoneName) ) $mobName .= "<sup>(BCNM)</sup> ";
 		else if ( $minLvl == $maxLvl ) {
 			if ( $maxLvl == 255) $mobName = " {{changes}}" . $mobName . "<sup>(HENM)</sup> ";
@@ -113,7 +113,8 @@ class ParserHelper {
 
 		if ( $item['changes'] == 1 )  return " {{changes}}[[$itemName]] ";
 		else if ( $item['changes'] == 2 )  return " ** [[$itemName]] ";
-		else return " [[$itemName]] ";
+		else return self::brackets($itemName);
+
 	}
 
     public static function itemName($name){
@@ -168,7 +169,7 @@ class ParserHelper {
 		$zone = str_replace("-", " - ", $zone);
         $zone = str_replace(" Of ", " of ", $zone);
 
-		return " [[$zone]] ";
+		return self::brackets($zone);
 	}
 
     public static function zoneERA_forList($zone){
@@ -226,6 +227,10 @@ class ParserHelper {
 	public static function replaceUnderscores($inputStr){
 		return str_replace("_", " ", $inputStr);
 	}
+
+    public static function brackets($string){
+        return " [[$string]] "; 
+    }
 
 	// public static function replaceOf($inputStr){
 	// 	return str_replace(" Of ", " of ", $inputStr);

@@ -950,6 +950,7 @@ class DBConnection {
         //throw new Exception( json_encode($query));
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'fishing_fish.name AS fishname',
+                    'fishing_fish.fishid',
                     'fishing_bait.name AS baitname',
                     'fishing_zone.name AS zonename'
                 ] )
