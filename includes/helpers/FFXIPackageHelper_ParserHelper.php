@@ -174,14 +174,12 @@ class ParserHelper {
 
     public static function zoneERA_forList($zone){
 		$zone = ParserHelper::replaceUnderscores($zone);
-        
-		$zone = str_replace("[S]", "(S)", $zone);
+        $zone = str_replace("[S]", "(S)", $zone);
 
         if ( ExclusionsHelper::zoneIsOOE($zone) ) return NULL;
 
 		$zone = str_replace("-", " - ", $zone);
         $zone = str_replace(" Of ", " of ", $zone);
-
 		return $zone;
 	}
 

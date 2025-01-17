@@ -316,7 +316,7 @@ class DBConnection {
         foreach( $allZonesWeather as $row ){
             //Filter zones for those in Era
             $temp = ParserHelper::zoneERA_forList($row->name);
-			if ( !isset($temp) ) { continue; }
+			if ( !isset($temp) || ExclusionsHelper::zoneIsTown($temp)) { continue; }
 
             $dayCount = 30;
             //check if on the diggers special page

@@ -324,8 +324,14 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
 
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
 UPDATE item_basic SET name = 'perforator', sortname = 'perforator', changes_tag = 1 WHERE itemid = 18097;
-UPDATE item_basic SET name = "warlock\'s_belt", sortname = "warlock\'s_belt", changes_tag = 1 WHERE itemid = 15275; -- Change Rapier's Belt to be Warlocks Belt
 DELETE FROM `item_basic` WHERE itemid=3343; -- Blue Pondweed OOE
 DELETE FROM `item_basic` WHERE itemid=3344; -- Red Pondweed OOE
+UPDATE item_basic SET name = "healer\'s_belt", sortname = "healer\'s_belt", changes_tag = 1 WHERE itemid = 15273; -- Change Mace Belt to be Healers Belt
+UPDATE item_basic SET name = "wizard\'s_belt", sortname = "wizard\'s_belt", changes_tag = 1 WHERE itemid = 15274; -- Change Staff Belt to be Wizards Belt
+UPDATE item_basic SET name = "warlock\'s_belt", sortname = "warlock\'s_belt", changes_tag = 1 WHERE itemid = 15275; -- Change Rapier's Belt to be Warlocks Belt
+UPDATE item_basic SET name = "pilferer\'s_belt", sortname = "pilferer\'s_belt", changes_tag = 1 WHERE itemid = 15276; -- Change Dagger Belt to be Pilferers Belt
+UPDATE item_basic SET name = "wyvern_belt", sortname = "wyvern_belt", changes_tag = 1 WHERE itemid = 15284; -- Change Lance Belt to be Wyvern Belt
+
+
 
 UNLOCK TABLES;

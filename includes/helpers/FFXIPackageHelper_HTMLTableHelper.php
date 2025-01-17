@@ -90,7 +90,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			// 	if ( $zn == $v ) { $skipRow = true; break; } }
 			// if ( $skipRow == true ) continue;
 			$zn = ParserHelper::zoneERA_forList($row['zoneName']);
-			if ( !$zn ) { continue; }
+			if ( !$zn || ExclusionsHelper::zoneIsTown($zn)) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row['mobName']) ) { continue; }
 			/*******************************************************/
 

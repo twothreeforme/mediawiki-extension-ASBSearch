@@ -60,7 +60,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
 
         foreach ($zonelist as $row) {
 			$temp = ParserHelper::zoneERA_forList($row->name);
-			if ( !isset($temp) ) { continue; }
+			if ( !isset($temp) || ExclusionsHelper::zoneIsTown($temp) ) { continue; }
 			$result[$temp]=$row->name;
 			//print_r($result[$temp] .", " . $row->name);
 		}

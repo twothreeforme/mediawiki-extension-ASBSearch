@@ -74,7 +74,8 @@ class FFXIPackageHelper_HTMLOptions {
 
         foreach ($zonelist as $row) {
 			$temp = ParserHelper::zoneERA_forList($row->name);
-			if ( !isset($temp) ) { continue; }
+			if ( !isset($temp) ) continue;
+            if ( $fishing == false && ExclusionsHelper::zoneIsTown($temp) ) continue;
             if ( ctype_digit($temp) ) continue;
 			$result[$temp]=$row->name;
 			//print_r($result[$temp] .", " . $row->name);

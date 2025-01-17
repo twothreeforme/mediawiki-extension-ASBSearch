@@ -14,6 +14,16 @@ class ExclusionsHelper {
         return false;
     }
 
+    public static function zoneIsTown($t){
+        if ( gettype($t) == 'string' || gettype($t) == 'integer' ){
+            foreach( ExclusionsHelper::$towns as $z) {
+                if ( $t == $z) {
+                    return true; }
+            }
+        }
+        return false;
+    }
+
     public static function mobIsOOE($m){
         if ( substr($m, -2) == "_G" ) return true;  // Garrison Mobs
         foreach( ExclusionsHelper::$mobs as $mob) {
@@ -178,36 +188,6 @@ class ExclusionsHelper {
         'Dynamis-Windurst [D]',
         'Dynamis-Jeuno [D]',
         
-        // Towns
-        'Upper Jeuno',
-        'Lower Jeuno',
-        'Port Jeuno',
-        'RuLude Gardens',
-        'Northern San dOria',
-        'Southern San dOria',
-        'Port San dOria',
-        'Chateau dOraguille',
-        'Bastok Markets',
-        'Bastok Mines',
-        'Port Bastok',
-        'Metalworks',
-        'Windurst Woods',
-        'Windurst Walls', 
-        'Windurst Waters',
-        'Port Windurst', 
-        'Heavens Tower',
-        'Kazham',
-        'Selbina',
-        'Rabao',
-        'Mhaura',
-        'Norg',
-        'Tavnazian Safehold',
-        'Windurst-Jeuno Airship',
-        'San dOria-Jeuno Airship', 
-        'Bastok-Jeuno Airship', 
-        'Kazham-Jeuno Airship', 
-        'Ship bound for Mhaura', 
-        'Ship bound for Selbina',
 
         // Avatar Battlefields
         'Cloister of Flames',
@@ -245,6 +225,39 @@ class ExclusionsHelper {
         'LaLoff Amphitheater',
         'Sealions Den'
 
+    ];
+
+    public static $towns = [
+        // Towns
+        'Upper Jeuno',
+        'Lower Jeuno',
+        'Port Jeuno',
+        'RuLude Gardens',
+        'Northern San dOria',
+        'Southern San dOria',
+        'Port San dOria',
+        'Chateau dOraguille',
+        'Bastok Markets',
+        'Bastok Mines',
+        'Port Bastok',
+        'Metalworks',
+        'Windurst Woods',
+        'Windurst Walls',
+        'Windurst Waters',
+        'Port Windurst',
+        'Heavens Tower',
+        'Kazham',
+        'Selbina',
+        'Rabao',
+        'Mhaura',
+        'Norg',
+        'Tavnazian Safehold',
+        'Windurst - Jeuno Airship',
+        'San dOria - Jeuno Airship',
+        'Bastok - Jeuno Airship',
+        'Kazham - Jeuno Airship',
+        'Ship bound for Mhaura',
+        'Ship bound for Selbina'
     ];
 
     public static $items = [
