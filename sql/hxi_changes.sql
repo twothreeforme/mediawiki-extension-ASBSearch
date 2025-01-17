@@ -80,6 +80,8 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHE
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHERE itemId='1525' AND bcnmId='76'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15515' WHERE itemId='13056' AND bcnmId='12'; -- Update Peacock Charm to be Peacock Amulet in 'Under Observation'
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='50' WHERE itemId='14080' AND bcnmId='76' and groupId='4'; -- Update STRIDER BOOTS drop rate to 5.0%...
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='1000' WHERE itemId='1013' AND bcnmId='17' and groupId='3'; -- Update Morbolger Vine drop rate to 100% in Contaminated Colosseum
+
 
 -- Remove all scrolls from 'Under Observation'
 DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4717' AND bcnmId='12'; -- SCROLL_OF_REFRESH
@@ -319,7 +321,6 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50019,0,'buffalo_helm','buffalo_helm',1,63552,0,1,0,1), -- Buffalo Helm
 
     (50020,0,'ancient_adamantoise_egg','ancient_adamantoise_egg',1,63552,0,1,0,1) -- Ancient Adamantoise Egg
-
 ;
 
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
