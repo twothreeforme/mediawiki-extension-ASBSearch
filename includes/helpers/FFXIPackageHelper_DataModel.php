@@ -315,13 +315,19 @@ class DataModel {
 			// over each iteration
 			// fastest method: $x = array_slice($array, -1)[0];
 			$prev_row = array_slice($this->dataset, -1)[0];
-			if ( $prev_row['fishname'] != $workingRow['fishname']) { array_push ( $this->dataset, $workingRow ); continue; }
+			if ( $prev_row['fishname'] != $workingRow['fishname']) {
+				array_push ( $this->dataset, $workingRow );
+				continue;
+			}
 
 			$l = array_key_last($this->dataset);
 			if ( !in_array($_zone, $this->dataset[$l]['zonelist'])) array_push ( $this->dataset[$l]['zonelist'], $_zone );
 			if ( !in_array($_bait, $this->dataset[$l]['baitlist'])) array_push ( $this->dataset[$l]['baitlist'], $_bait );
 			else continue;
+		}
 
+		for( $f = 0; $f < count($this->dataset); $f++ ){
+			sort($this->dataset[$f]['zonelist']);
 		}
 
 		return $this->dataset;

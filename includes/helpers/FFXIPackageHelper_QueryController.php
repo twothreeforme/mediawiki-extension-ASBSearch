@@ -87,18 +87,6 @@ class FFXIPackageHelper_QueryController {
 		return $html;
 	}
 
-	public static function queryFishing($queryData){
-		$dm = new DataModel();
-        $db = new DBConnection();
-		$initialQuery = $db->getFi($queryData);
-
- 		$html = "";
-
-		if ( !$initialQuery[0] )  return "<i><b> No records (items) found</i></b>";
-        //$html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
-		return $html;
-	}
-
 }
 
 ?>
