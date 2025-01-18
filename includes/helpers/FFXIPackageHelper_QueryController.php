@@ -21,14 +21,14 @@ class FFXIPackageHelper_QueryController {
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
 
-			$temp = 0;
-			foreach ($bcnmDropRatesData as $row){ $temp++;  }
-            throw new Exception($temp);
-
 			$dm->parseData($bcnmDropRatesData);
         }
         
         $dropRatesArray = $dm->getDataSet();
+
+			$temp = 0;
+			foreach ($dropRatesArray as $row){ $temp++;  }
+			throw new Exception($temp);
 
 		$html = "";
 		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
