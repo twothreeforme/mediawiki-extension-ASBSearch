@@ -18,14 +18,19 @@ class FFXIPackageHelper_QueryController {
         $mobDropRatesData = $db->getDropRates($queryData);
 
         $dm->parseData($mobDropRatesData);
+
+		$temp = [];
+		foreach ($mobDropRatesData as $row){ $temp[]=$row; break; }
+
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
 
-			$dm->parseData($bcnmDropRatesData);
-
 			$temp = 0;
-			foreach ($dm->getDataSet() as $row){ $temp++;  }
-			throw new Exception($temp);
+			foreach ($bcnmDropRatesData as $row){ $temp[]=$row; break; }
+			throw new Exception( json_encode($temp) );
+
+
+			$dm->parseData($bcnmDropRatesData);
         }
         
         $dropRatesArray = $dm->getDataSet();
