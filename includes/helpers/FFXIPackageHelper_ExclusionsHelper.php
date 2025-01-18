@@ -322,7 +322,8 @@ class ExclusionsHelper {
         'FeiYin' => 'QuBia Arena',
         'Den of Rancor' => 'Sacrificial Chamber',
         'PsoXja' => 'The Shrouded Maw',
-        'Palborough Mines' => 'Waughroon Shrine'
+        'Palborough Mines' => 'Waughroon Shrine',
+        'Kindred Spirits' => 'Throne Room'
     );
 
     public static $diggingRelevantZones = array(
