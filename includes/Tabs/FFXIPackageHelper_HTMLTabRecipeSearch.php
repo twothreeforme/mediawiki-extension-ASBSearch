@@ -35,7 +35,7 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
 
     private function craftDropDown(){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectCraft\" >";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectCraft\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" >";
         $html .= "<option value=\"none\">None Specified</option>";
         $html .= "<option value=\"Wood\">Woodworking</option>";
         $html .= "<option value=\"Smith\">Smithing</option>";
@@ -51,7 +51,7 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
 
     private function crystalDropDown(){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectCrystal\" >";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectCrystal\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" >";
         $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"4096\">Fire</option>";
         $html .= "<option value=\"4097\">Ice</option>";
