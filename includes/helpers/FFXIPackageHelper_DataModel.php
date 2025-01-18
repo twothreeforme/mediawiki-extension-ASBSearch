@@ -52,6 +52,9 @@ class DataModel {
 			$r_mobChanges = ( property_exists($row, 'mobChanges' ) ) ? $row->mobChanges : 0;
 			$r_aggro = ( property_exists($row, 'aggro' ) ) ? $row->aggro : -1;
 			$r_trueDetection = ( property_exists($row, 'true_detection' ) ) ? $row->true_detection : -1;
+			$r_detects = ( property_exists($row, 'detects' ) ) ? $row->detects : 0;
+			$r_eco = ( property_exists($row, 'ecosystem' ) ) ? $row->ecosystem : 0;
+			$r_family = ( property_exists($row, 'superFamily' ) ) ? $row->superFamily : 0;
 
 			// Doing it this way - itemChanges will take precendence over dropChanges...
 			// so a Horizon changes tag will take precendence over a nuanced label
@@ -63,6 +66,9 @@ class DataModel {
 			$r_gilAmt = ( property_exists($row, 'gilAmt' ) ) ? $row->gilAmt : 0;
 			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
 			$r_bcnmChanges = ( property_exists($row, 'bcnmChanges' ) ) ? $row->bcnmChanges : 0;
+
+
+
 
 			/**
 			 * Begin additional exclusions here to prevent building the model in the first place
@@ -85,9 +91,9 @@ class DataModel {
 				'mobMaxLevel' => $r_mobMaxLevel,
 				'mobType' => $r_mobType,
 				'bcnmChanges' => $r_bcnmChanges,
-				'family' => $row->superFamily,
-				'ecosystem' => $row->ecosystem,
-				'detects' => $row->detects,
+				'family' => $r_family,
+				'ecosystem' => $r_eco,
+				'detects' => $r_detects,
 				'aggro' => $r_aggro,
 				'trueDetection' => $r_trueDetection,
 				'dropData' => array (
