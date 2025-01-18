@@ -67,7 +67,7 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
 
     private function craftLvlDropDown($classname){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> FFXIPackageHelper_dynamiccontent_selectMinCraftLvl
-        $html = "<select id=\"". $classname ."\" disabled=\"disabled\">";
+        $html = "<select id=\"". $classname ."\" disabled=\"disabled\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 120; $i++) {
             if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
@@ -79,7 +79,7 @@ class FFXIPackageHelper_HTMLTabRecipeSearch {
 
     private function skillRankDropDown(){
         // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectSkillRank\" disabled=\"disabled\" defaultValue=\"0\">";
+        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectSkillRank\" disabled=\"disabled\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Amatuer</option>";
         $html .= "<option value=\"11\">Recruit</option>";
