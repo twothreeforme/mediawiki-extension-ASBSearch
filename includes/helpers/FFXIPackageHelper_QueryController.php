@@ -11,7 +11,7 @@ class FFXIPackageHelper_QueryController {
     public static function queryDropRates($queryData){
         $showTH = intval($queryData[8]);
         $showBCNMdrops = intval($queryData[4]);
-
+		throw new Exception( "showBCNMdrops: " . $showBCNMdrops );
         $dm = new DataModel();
         $db = new DBConnection();
 
@@ -35,7 +35,7 @@ class FFXIPackageHelper_QueryController {
 		
 		foreach ($dropRatesArray as $row) // test total records query'd
 		{
-			throw new Exception( json_encode($row));
+
 			//print_r("row: " .$row['mobName']);
 			if ( $totalRows < 0 ) $totalRows = 0;
 			foreach($row['dropData']['items'] as $item ){
@@ -47,7 +47,7 @@ class FFXIPackageHelper_QueryController {
 			}
 		}
 
-		throw new Exception( "Total rows: " . $totalRows );
+		//throw new Exception( "Total rows: " . $totalRows );
 
 
 		if ( $totalRows >= 0 ) {  
