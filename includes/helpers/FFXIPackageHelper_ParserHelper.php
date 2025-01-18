@@ -168,6 +168,7 @@ class ParserHelper {
 		$zone = str_replace("[S]", "(S)", $zone);
 		$zone = str_replace("-", " - ", $zone);
         $zone = str_replace(" Of ", " of ", $zone);
+        $zone = str_replace("dOria", "d'Oria", $zone);
 
 		return self::brackets($zone);
 	}
