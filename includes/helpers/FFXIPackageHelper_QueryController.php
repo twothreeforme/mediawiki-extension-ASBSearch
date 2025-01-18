@@ -22,13 +22,13 @@ class FFXIPackageHelper_QueryController {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
 
 			$dm->parseData($bcnmDropRatesData);
+
+			$temp = 0;
+			foreach ($dm->getDataSet() as $row){ $temp++;  }
+			throw new Exception($temp);
         }
         
         $dropRatesArray = $dm->getDataSet();
-
-			$temp = 0;
-			foreach ($dropRatesArray as $row){ $temp++;  }
-			throw new Exception($temp);
 
 		$html = "";
 		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
