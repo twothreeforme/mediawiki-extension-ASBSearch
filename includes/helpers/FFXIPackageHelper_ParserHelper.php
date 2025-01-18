@@ -52,7 +52,7 @@ class ParserHelper {
         // MOBTYPE_BATTLEFIELD = 0x10,
         // MOBTYPE_EVENT       = 0x20
 
-        if (intval($bcnmChanges) == 1) $mobName = " {{changes}}" . $mobName;
+        //if (intval($bcnmChanges) == 1) $mobName = " {{changes}}" . $mobName;
 
 		return $mobName;
 	}
