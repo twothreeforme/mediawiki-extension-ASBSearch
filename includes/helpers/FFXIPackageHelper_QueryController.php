@@ -35,7 +35,7 @@ class FFXIPackageHelper_QueryController {
 		
 		foreach ($dropRatesArray as $row) // test total records query'd
 		{
-			throw new
+
 			//print_r("row: " .$row['mobName']);
 			if ( $totalRows < 0 ) $totalRows = 0;
 			foreach($row['dropData']['items'] as $item ){
