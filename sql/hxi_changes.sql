@@ -82,7 +82,12 @@ UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='500', groupId='11' WHE
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15515' WHERE itemId='13056' AND bcnmId='12'; -- Update Peacock Charm to be Peacock Amulet in 'Under Observation'
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='50' WHERE itemId='14080' AND bcnmId='76' and groupId='4'; -- Update STRIDER BOOTS drop rate to 5.0%...
 UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemRate='1000' WHERE itemId='1013' AND bcnmId='17' and groupId='3'; -- Update Morbolger Vine drop rate to 100% in Contaminated Colosseum
-
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15224' WHERE itemId='12486' AND bcnmId='10'; -- Dropping like Flies (BCNM ID 10) drops Empress Hairpin (15224) instead of 12486
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='14986' WHERE itemId='13952' AND bcnmId='98'; -- Divine Punishers (BCNM ID 98) drops Ochimusha Kote (14986) instead of 13952.
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15737' WHERE itemId='13054' AND bcnmId='98'; -- Divine Punishers (BCNM ID 98) drops Sarutobi Kyahan (15737) instead of 13054.
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18714' WHERE itemId='17187' AND bcnmId='523'; -- Brothers D Aurphe (BCNM ID 523) drops Valis Bow (18714) instead of 17187.
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='18752' WHERE itemId='17472' AND bcnmId='523'; -- Brothers D Aurphe (BCNM ID 523) drops Retaliators (18752) instead of 17472.
+UPDATE hxi_bcnm_crate_list SET changes_tag='1', itemId='15351', itemRate='200' WHERE itemId='13014' AND bcnmId='35'; -- Petrifying Pair (BCNM ID 35) drops Bounding Boots (15351) at 20% instead of 13014 (which was set to 10%).
 
 -- Remove all scrolls from 'Under Observation'
 DELETE FROM `hxi_bcnm_crate_list` WHERE itemId='4717' AND bcnmId='12'; -- SCROLL_OF_REFRESH
