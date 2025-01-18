@@ -67,8 +67,7 @@ class DataModel {
 			$r_mobType = ( property_exists($row, 'mobType' ) ) ? $row->mobType : 0;
 			$r_bcnmChanges = ( property_exists($row, 'bcnmChanges' ) ) ? $row->bcnmChanges : 0;
 
-
-
+			if ( $r_bcnmChanges == 1 ) $r_itemChanges = 1;
 
 			/**
 			 * Begin additional exclusions here to prevent building the model in the first place
@@ -140,6 +139,8 @@ class DataModel {
 				array_push ( $this->dataset[$l]['dropData']['items'], $_item );
 			}
 		}
+
+		// foreach ( $this->dataset as $row ){ throw new Exception ( json_encode($this->dataset));}
 
 		return $this->dataset;
     }
