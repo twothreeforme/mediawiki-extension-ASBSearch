@@ -269,10 +269,15 @@ UPDATE mob_droplist set itemRate = 950, groupId =  3, changes_tag = 1 WHERE item
 UPDATE mob_droplist SET itemId = '1318', changes_tag = 1 WHERE itemId = '1324' AND dropId = '946'; -- Replace A-Head with D-Feet in Genbu drops (since removed from Aspidochelone)
 UPDATE mob_droplist SET groupRate = 1000, changes_tag = 1 WHERE dropId = '2819' AND groupId = 1; -- Kirin has 100% chance to drop at least 1 Abj now
 UPDATE mob_droplist SET itemRate = 10, changes_tag = 1 WHERE dropId = '2824' AND itemId = '2388'; -- Diorite rate increased to 1% on HXI
-
--- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1340,334);   -- Neptunal Abjuration Body (Group 1 - 33.4%)
--- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1315,333);   -- Dryadic Abjuration Body (Group 1 - 33.3%)
--- INSERT INTO `mob_droplist` VALUES (2819,1,1,@VCOMMON,1337,333);   -- Wyrmal Abjuration Legs (Group 1 - 33.3%)
+UPDATE mob_droplist SET itemId = '12486', changes_tag = 1 WHERE dropId = '2536' AND itemId = '15224'; -- Valkurm Emperor (NM) drops Emperor Hairpin (12486) instead of 15224
+UPDATE mob_droplist SET itemId = '13952', changes_tag = 1 WHERE dropId = '1652' AND itemId = '14986'; -- Mee Deggi the Punisher (NM) drops Ochiudos Kote (13952) instead of 14986.
+UPDATE mob_droplist SET itemId = '13054', changes_tag = 1 WHERE dropId = '2069' AND itemId = '15737'; -- Quu Domi the Gallant (NM) drops Fuma Kyahan (13054) instead of 15737.
+UPDATE mob_droplist SET itemId = '17187', changes_tag = 1 WHERE dropId = '738' AND itemId = '18714'; -- Eastern Shadow (NM) drops Eurytos Bow (17187) instead of 18714
+UPDATE mob_droplist SET itemId = '17472', changes_tag = 1 WHERE dropId = '2645' AND itemId = '18752'; -- Western Shadow (NM) drops Cross-Counters (17472) instead of 18752
+UPDATE mob_droplist SET itemId = '13514', changes_tag = 1 WHERE dropId = '2349' AND itemId = '15551'; -- Stroper Chyme drops Archer's Ring (13514) instead of 15551.
+UPDATE mob_droplist SET itemId = '13189', changes_tag = 1 WHERE dropId = '1449' AND itemId = '15899'; -- King Arthro drops Speed Belt (13189) instead of 15899.
+UPDATE mob_droplist SET itemId = '13056', changes_tag = 1 WHERE dropId = '165' AND itemId = '15515'; -- Argus drops Peacock Charm (13056) instead of 15515.
+UPDATE mob_droplist SET itemId = '14080', changes_tag = 1 WHERE dropId = '2255' AND itemId = '15736'; -- Simurgh drops Strider Boots (14080) instead of 15736.
 
 UNLOCK TABLES;
 
