@@ -20,8 +20,12 @@ class FFXIPackageHelper_QueryController {
         $dm->parseData($mobDropRatesData);
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
-			foreach ($bcnmDropRatesData as $row){ throw new Exception(json_encode($row)); }
-            $dm->parseData($bcnmDropRatesData);
+
+			$temp = 0;
+			foreach ($bcnmDropRatesData as $row){ $temp++;  }
+            throw new Exception($temp);
+
+			$dm->parseData($bcnmDropRatesData);
         }
         
         $dropRatesArray = $dm->getDataSet();
