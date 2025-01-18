@@ -42,6 +42,7 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
 
     -- Steamed Sprouts: BCNM 97
     (97,7,1000,4706,150,0,1), -- ADD Scroll of Enlight (15%)
+    (97,0,0,1013,0,0,1), -- ADD Morbolger Vine ( ??? %)
 
     -- Under Observation: BCNM 12
     (12,8,1000,1311,1000,0,1), -- ADD Oxblood (100%)
