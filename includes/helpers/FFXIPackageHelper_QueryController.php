@@ -11,7 +11,7 @@ class FFXIPackageHelper_QueryController {
     public static function queryDropRates($queryData){
         $showTH = intval($queryData[8]);
         $showBCNMdrops = intval($queryData[4]);
-		throw new Exception( "showBCNMdrops: " . $showBCNMdrops );
+
         $dm = new DataModel();
         $db = new DBConnection();
 
@@ -20,6 +20,7 @@ class FFXIPackageHelper_QueryController {
         $dm->parseData($mobDropRatesData);
         if ( $showBCNMdrops == 1) {
             $bcnmDropRatesData = $db->getBCNMCrateRates($queryData); //object output
+			foreach ($bcnmDropRatesData as $row){ throw new Exception(json_encode($row)); }
             $dm->parseData($bcnmDropRatesData);
         }
         
