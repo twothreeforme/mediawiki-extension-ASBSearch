@@ -533,7 +533,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			";
 
 		foreach($queryResults as $row){
-			$html .= "<tr><td><center>" . ParserHelper::brackets($row['fishname']) . "<br>[[File:itemid_" . intval($row['fishid']) . ".png|20px|". $row['fishname'] . "]]</center></td>";
+			$html .= "<tr><td><center>" . ParserHelper::brackets($row['fishname']) . "<br>[[File:itemid_" . intval($row['fishid']) . ".png|32px|". $row['fishname'] . "]]</center></td>";
 			$html .= "<td><center>";
 			foreach($row['zonelist'] as $zone){
 				$zn = ParserHelper::zoneName($zone);
