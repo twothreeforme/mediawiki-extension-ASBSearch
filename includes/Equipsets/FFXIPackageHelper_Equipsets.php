@@ -368,7 +368,11 @@ class FFXIPackageHelper_Equipsets  {
 
         if ($slot == null){
             for ( $s = 0; $s <= 15; $s++){
-                $slot[$s] = [0, 0, 1, ""]; // set flag = 1 on the first iteration to show initial grid with no items
+                $slot[$s] = [
+                    0,
+                    0,
+                    1,  // set flag = 1 on the first iteration to show initial grid with no items
+                    ""];
             }
         }
 
@@ -416,7 +420,7 @@ class FFXIPackageHelper_Equipsets  {
                 //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
             }
         }
-        if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
+        //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
         return $updatedGrid;
     }
 }
