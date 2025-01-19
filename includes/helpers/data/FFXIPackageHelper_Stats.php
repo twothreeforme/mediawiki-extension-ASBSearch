@@ -498,6 +498,8 @@ class FFXIPackageHelper_Stats {
         $this->MND += $this->modifiers["MND"];
         $this->CHR += $this->modifiers["CHR"];
 
+        //throw new Exception ( $this->modifiers["VIT"] );
+
         $this->DEF = floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
         //$this->ATT += $this->modifiers["ATT"];
         $this->ATT += $this->getATT();
@@ -525,6 +527,8 @@ class FFXIPackageHelper_Stats {
             $mod = $vars->modArray[$m];
             if ( !isset($this->modifiers[$mod]) ) $this->modifiers[$mod] = intval($v);
             else $this->modifiers[$mod] += intval($v);
+
+            //if ( $mod == "VIT" )  throw new Exception($this->modifiers[$mod]);
         }
         // throw new Exception(implode(',', array_keys($this->modifiers)) );
     }
@@ -553,12 +557,14 @@ class FFXIPackageHelper_Stats {
 
         for ( $i = 0; $i <= 15; $i++ ){
             if ( $this->equipment[$i][0] != 0 ) {
-
+                //throw new Exception(json_encode($this->equipment[$i])) ;
                 foreach( $this->equipment[$i][3] as $mod ){
                     //throw new Exception($mod["id"]) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
-                    //if ( $mod["id"] == 23 ) throw new Exception($this->modifiers["ATT"]) ;
+
                 }
+
+                //throw new Exception(gettype($this->equipment[$i][0])) ;
             }
         }
         //throw new Exception(json_encode($this->equipment[6]));

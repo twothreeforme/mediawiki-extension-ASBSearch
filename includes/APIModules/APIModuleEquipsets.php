@@ -31,7 +31,6 @@ class APIModuleEquipsets extends ApiBase {
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
 
-
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
             $result->addValue($params['action'], "stats", $newStats->getStats());

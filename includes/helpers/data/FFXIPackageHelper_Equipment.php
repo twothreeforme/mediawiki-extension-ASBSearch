@@ -36,7 +36,7 @@ class FFXIPackageHelper_Equipment {
                     intval($model["id"]),
                     intval($model["slot"]),
                     intval($model["rslot"]),
-                    intval($model["mods"]),
+                    $model["mods"],
                     intval($model["skilltype"]),
                     $model["name"]
                 ];
