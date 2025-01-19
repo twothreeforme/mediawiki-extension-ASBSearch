@@ -30,6 +30,7 @@ class FFXIPackageHelper_Stats {
 
     //Advanced Stats
     public $ACC = 0;
+    public $EVA = 0;
 
 
 
@@ -229,9 +230,13 @@ class FFXIPackageHelper_Stats {
     private function setSkillCaps( $mjob, $mlvl, $sjob, $slvl ){
         $db = new DBConnection();
         $results = $db->getSkillRanks($mjob, $sjob);
+
         foreach( $results as $row ){ // [skillid], [mjob], [sjob]
-            if ( $row->sjob >= $row->mjob ){ $this->skillCaps[$row->skillid] = $this->getSkillLvl(intval($row->sjob), $slvl ); }
-            else { $this->skillCaps[$row->skillid] = $this->getSkillLvl(intval($row->mjob), $mlvl ); }
+            $mainSkillCap = $this->getSkillLvl(intval($row->mjob), $mlvl );
+            $subSkillCap = $this->getSkillLvl(intval($row->sjob), $slvl );
+
+            if ( $subSkillCap >= $mainSkillCap ){ $this->skillCaps[$row->skillid] = $subSkillCap; }
+            else { $this->skillCaps[$row->skillid] = $mainSkillCap; }
         }
     }
 
@@ -449,32 +454,34 @@ class FFXIPackageHelper_Stats {
 
         return [
             // base stats
-                $this->HP,      //0
-                $this->MP,      //1
-                $this->STR,     //2
-                $this->DEX,     //3
-                $this->VIT,     //4
-                $this->AGI,     //5
-                $this->INT,     //6
-                $this->MND,     //7
-                $this->CHR,     //8
+            $this->HP,      //0
+            $this->MP,      //1
+            $this->STR,     //2
+            $this->DEX,     //3
+            $this->VIT,     //4
+            $this->AGI,     //5
+            $this->INT,     //6
+            $this->MND,     //7
+            $this->CHR,     //8
 
             //additional stats
-                $this->DEF,     //9
-                $this->ATT,     //10
+            $this->DEF,     //9
+            $this->ATT,     //10
 
             //resistances
-                $this->Fire,    //11
-                $this->Wind,    //12
-                $this->Ice,     //13
-                $this->Light,   //14
-                $this->Water,   //15
-                $this->Earth,   //16
-                $this->Lightning, //17
-                $this->Dark,     //18
+            $this->Fire,    //11
+            $this->Wind,    //12
+            $this->Ice,     //13
+            $this->Light,   //14
+            $this->Water,   //15
+            $this->Earth,   //16
+            $this->Lightning, //17
+            $this->Dark,     //18
+
             //advanced stats
-                $this->ACC      //19
-            ];
+            $this->ACC,       //19
+            $this->EVA       //20
+        ];
     }
 
     private function setStatsWithMods(  ){
@@ -506,6 +513,7 @@ class FFXIPackageHelper_Stats {
         // throw new Exception (  json_encode($this->modifiers)) ;
 
         $this->ACC += $this->getACC();
+        $this->EVA += $this->getEVA();
 
     }
 
@@ -546,23 +554,14 @@ class FFXIPackageHelper_Stats {
         for ( $i = 0; $i <= 15; $i++ ){
             if ( $this->equipment[$i][0] != 0 ) {
 
-                // $dm = new DataModel();
-                // $results = $db->getItem($equipmentArray[$i]);
-                // $initialQuery = $dm->parseEquipment($results);
-
-                // $this->equipment[$initialQuery[0]["slot"]] = [ $initialQuery[0]["id"], $initialQuery[0]["rslot"], $initialQuery[0]["mods"], $initialQuery[0]["skill"]];
-
-
                 foreach( $this->equipment[$i][3] as $mod ){
                     //throw new Exception($mod["id"]) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
                     //if ( $mod["id"] == 23 ) throw new Exception($this->modifiers["ATT"]) ;
                 }
-
-
             }
         }
-        //throw new Exeception(json_encode($this->equipment));
+        //throw new Exception(json_encode($this->equipment[6]));
     }
 
     function getDEF(){
@@ -583,7 +582,8 @@ class FFXIPackageHelper_Stats {
             $ATT += $this->STR * 0.65; //Horizon change
         }
 
-        $ATT +=  $this->getSkillCap( $this->equipment[0]["skill"] );
+        $ATT +=  $this->getSkillCap( intval($this->equipment[0][4]) );
+        //throw new Exception($ATT . ":" .  $this->STR);
 
         // Smite applies when using 2H or H2H weapons
         if ( ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) || FFXIPackageHelper_Equipment::isH2H($this->equipment[0])) && isset($this->modifiers["SMITE"]) ) {
@@ -595,7 +595,7 @@ class FFXIPackageHelper_Stats {
     }
 
     function getACC(){
-        $ACC = $this->getSkillCap( $this->equipment[0]["skill"] );
+        $ACC = $this->getSkillCap( intval($this->equipment[0][4]) );
         $ACC = ($ACC > 200) ? ((($ACC - 200) * 0.9) + 200) : $ACC;
         if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
             $ACC += ($this->DEX * 0.70); //Horizon change
@@ -609,6 +609,15 @@ class FFXIPackageHelper_Stats {
         $ACC += $this->modifiers["ACC"];
         return max(0, floor($ACC));
     }
+
+    function getEVA(){
+        //  29 => "EVASION",
+        $EVA = $this->getSkillCap(29);
+        if ( $EVA > 200) $EVA = 200 + ($EVA - 200) * 0.9;
+        $EVA += $this->AGI / 2;
+        return max(1, floor($EVA + $this->modifiers["EVASION"]));
+    }
+
 }
 
 ?>

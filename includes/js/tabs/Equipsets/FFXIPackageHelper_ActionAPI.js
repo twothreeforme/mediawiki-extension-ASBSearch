@@ -107,6 +107,7 @@ function updateEquipsets(updatedStats){
   }
 
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statACC"); stat.innerHTML = updatedStats[19];
+  stat = document.getElementById("FFXIPackageHelper_Equipsets_statEVA"); stat.innerHTML = updatedStats[20];
 
 }
 
