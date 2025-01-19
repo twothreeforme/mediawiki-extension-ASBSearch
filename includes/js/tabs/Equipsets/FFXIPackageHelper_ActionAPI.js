@@ -3,10 +3,10 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
-  console.log(params);
+  //console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
-    console.log(d);
+    //console.log(d);
     const result = d[forTab];
       //console.log(result);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
