@@ -66,9 +66,9 @@ class APIModuleEquipsets extends ApiBase {
             //$updatedStats = $newStats->getStats();
 
             $result->addValue($params['action'], "stats", $newStats->getStats() );
-            $result->addValue($params['action'], "changeGrid", $updatedGrid );
+            //$result->addValue($params['action'], "changeGrid", $updatedGrid );
 
-            //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid ]]) );
+            //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode($result['action']['stats']) );
 
         }
     }
