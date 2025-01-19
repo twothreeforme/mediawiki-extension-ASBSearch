@@ -165,7 +165,8 @@ class ModalWindow {
             dt.onmouseout = function() { this.style="background-color:none;"; };
 
             var t = document.createTextNode(arr[i]["name"]);
-            var iconurl = "/w/index.php/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
+
+            var iconurl = mw.config.get( 'wgScript' ) + "/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
 
             var img = document.createElement("img");
             img.src=iconurl;

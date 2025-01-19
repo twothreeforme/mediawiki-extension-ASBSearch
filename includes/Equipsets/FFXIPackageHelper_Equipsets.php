@@ -52,6 +52,7 @@ class FFXIPackageHelper_Equipsets  {
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">0</span></td></tr>
                         <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">0</span></td></tr>
+                        <tr><td>ACC&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statACC\">0</span></td></tr>
                     </table>
                 </div>";
         return $html;

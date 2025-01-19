@@ -7,9 +7,6 @@ var sJobDropdown = null;
 var mlvlDropdown = null;
 var slvlDropdown = null;
 
-// const blankSlotIMG = new Image();
-// blankSlotIMG.src = "/index.php/Special:Filepath/Blank.jpg";
-
 function updateEquipmentGrid(id, slot, sender){
     //console.log("clicked: " + id + ", " + slot);
     const equipment = getEquipIDs();

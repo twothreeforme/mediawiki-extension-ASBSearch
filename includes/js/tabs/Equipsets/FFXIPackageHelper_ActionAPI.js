@@ -102,10 +102,12 @@ function updateEquipsets(updatedStats){
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statDEF"); stat.innerHTML = updatedStats[9];
   stat = document.getElementById("FFXIPackageHelper_Equipsets_statATT"); stat.innerHTML = updatedStats[10];
 
-
   for ( var r = 11; r <= 18; r++){
     stat = document.getElementById("FFXIPackageHelper_Equipsets_statRes" + (r - 11)); stat.innerHTML = updatedStats[r];
   }
+
+  stat = document.getElementById("FFXIPackageHelper_Equipsets_statACC"); stat.innerHTML = updatedStats[19];
+
 }
 
 

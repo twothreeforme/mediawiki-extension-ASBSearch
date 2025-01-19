@@ -28,6 +28,10 @@ class FFXIPackageHelper_Stats {
     public $Lightning = 0;
     public $Dark = 0;
 
+    //Advanced Stats
+    public $ACC = 0;
+
+
 
     public $modifiers = [];
     public $equipment;
@@ -60,11 +64,12 @@ class FFXIPackageHelper_Stats {
         $this->modifiers["DEF"] += $mlvl + $this->clamp($mlvl - 50, 0, 10);
 
         // Apply modifiers from equipment
-        $this->applyMods($mlvl);
+        $this->setStatsWithMods($mlvl);
 
         // Calc additional stats after all modifiers and equipment have been applied
         // $this->DEF = $this->getDEF();
-        $this->ATT = $this->getATT();
+        // $this->ATT = $this->getATT();
+        // $this->ACC = $this->getACC();
     }
 
     /**
@@ -466,11 +471,13 @@ class FFXIPackageHelper_Stats {
                 $this->Water,   //15
                 $this->Earth,   //16
                 $this->Lightning, //17
-                $this->Dark     //18
+                $this->Dark,     //18
+            //advanced stats
+                $this->ACC      //19
             ];
     }
 
-    private function applyMods(  ){
+    private function setStatsWithMods(  ){
 
         $this->HP += $this->modifiers["HP"];
 
@@ -485,7 +492,8 @@ class FFXIPackageHelper_Stats {
         $this->CHR += $this->modifiers["CHR"];
 
         $this->DEF = floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
-        $this->ATT += $this->modifiers["ATT"];
+        //$this->ATT += $this->modifiers["ATT"];
+        $this->ATT += $this->getATT();
 
         $this->Fire += $this->modifiers["FIRE_MEVA"];
         $this->Wind += $this->modifiers["WIND_MEVA"];
@@ -496,6 +504,9 @@ class FFXIPackageHelper_Stats {
         $this->Lightning += $this->modifiers["THUNDER_MEVA"];
         $this->Dark += $this->modifiers["DARK_MEVA"];
         // throw new Exception (  json_encode($this->modifiers)) ;
+
+        $this->ACC += $this->getACC();
+
     }
 
     private function applyToModifiers($mods){
@@ -581,6 +592,22 @@ class FFXIPackageHelper_Stats {
 
         //throw new Exception(json_encode($this->equipment));
         return max(1, floor($ATT + ($ATT * $ATTP / 100)));
+    }
+
+    function getACC(){
+        $ACC = $this->getSkillCap( $this->equipment[0]["skill"] );
+        $ACC = ($ACC > 200) ? ((($ACC - 200) * 0.9) + 200) : $ACC;
+        if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
+            $ACC += ($this->DEX * 0.70); //Horizon change
+        }
+        else if ( FFXIPackageHelper_Equipment::isH2H($this->equipment[0]) ){
+            $ACC += $this->DEX * 0.65; //Horizon change
+        }
+        else{
+            $ACC += ($this->DEX * 0.65); //Horizon change
+        }
+        $ACC += $this->modifiers["ACC"];
+        return max(0, floor($ACC));
     }
 }
 
