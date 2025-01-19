@@ -395,7 +395,7 @@ class FFXIPackageHelper_Equipsets  {
         $parserOptions = $wParser[2];
 
         $iDetails = new FFXIPackageHelper_ItemDetails();
-        $tooltip = null;
+        $tooltip = "";
 
         $updatedGrid = array();
         for ( $s = 0; $s <= 15; $s++){
@@ -408,7 +408,7 @@ class FFXIPackageHelper_Equipsets  {
 
                 if ( $slot[$s][0] != 0 ){
                     $id = intval($slot[$s][0]);
-                    $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
+                    //$tooltip = $this->generateTooltip($iDetails->items[ $id ]);
                 }
                 else $tooltip = "";
 
