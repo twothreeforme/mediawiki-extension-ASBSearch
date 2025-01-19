@@ -266,7 +266,7 @@ class DataModel {
 				'id' => $row->itemId,
 				'name' => ParserHelper::itemName($row->name),
 				'level' => $row->level,
-				'skilltype' => (property_exists($row, 'skill' )) ? $row->skill : 0,
+				'skilltype' => (property_exists($row, 'skilltype' )) ? $row->skilltype : 0,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
 				'rslot' => $row->rslot,
