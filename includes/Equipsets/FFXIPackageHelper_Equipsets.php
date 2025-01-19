@@ -410,10 +410,12 @@ class FFXIPackageHelper_Equipsets  {
                     $id = intval($slot[$s][0]);
                     $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
                 }
-                else $tooltip = null;
+                else $tooltip = "";
 
                 $updatedGrid[] = [$s, $slot[$s], $tooltip];
                 //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
+
+                if ( $slot[$s][3] == null ) $slot[$s][3] = "";
             }
         }
 
