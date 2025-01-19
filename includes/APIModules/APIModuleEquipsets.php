@@ -26,12 +26,6 @@ class APIModuleEquipsets extends ApiBase {
         $params = $this->extractRequestParams();
         $result = $this->getResult();
 
-        //throw new Exception($params['action']);
-
-        //$equipmentList = (explode(",",$params['equipment']));
-
-        //$finalHtml = $this->queryEquipment($queryData);
-        //$finalHtml = ParserHelper::wikiParse($finalHtml);
         if ( $params['action'] == "equipsets" ) {
             // throw new Exception($params['equipment']);
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
@@ -39,7 +33,6 @@ class APIModuleEquipsets extends ApiBase {
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
             $result->addValue($params['action'], $params['querytype'], $newStats->getStats());
-
         }
         else if ( $params['action'] == "equipsets_search" ) {
             $db = new DBConnection();
@@ -76,8 +69,6 @@ class APIModuleEquipsets extends ApiBase {
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
             //$updatedStats = $newStats->getStats();
-            //throw new Exception (  json_encode( [ $newStats->getStats(), $updatedGrid ])) ;
-
 
             $result->addValue($params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid ]);
         }

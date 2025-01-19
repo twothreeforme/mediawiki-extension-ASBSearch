@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
-  //console.log(params["action"]);
+  console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
       const result = d[forTab][0];
@@ -17,7 +17,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           sender.returnCallback(result);
         }
         else if ( forTab.includes("change")) {
-          console.log("api: equipsets_change: fired");
+          //console.log("api: equipsets_change: fired");
           updateEquipsets(result[0]);
           changeGrid(result[1]);
         }
