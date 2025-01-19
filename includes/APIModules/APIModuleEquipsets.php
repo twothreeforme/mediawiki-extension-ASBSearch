@@ -76,7 +76,7 @@ class APIModuleEquipsets extends ApiBase {
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
             //$updatedStats = $newStats->getStats();
-            //throw new Exception (  json_encode($updatedStats)) ;
+            throw new Exception (  json_encode($newStats->getStats())) ;
 
 
             $result->addValue($params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid ]);
