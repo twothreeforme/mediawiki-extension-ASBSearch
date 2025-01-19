@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
-  console.log(params["action"]);
+  //console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
       const result = d[forTab][0];
