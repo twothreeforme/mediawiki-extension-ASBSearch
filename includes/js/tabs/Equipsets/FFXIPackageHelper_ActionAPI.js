@@ -6,22 +6,22 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
   //console.log(params["action"]);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
-      const result = d[forTab][0];
-      //console.log(result);
+      const result = d[forTab];
+      console.log(result);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
         if ( forTab.includes("search") )  {
           //console.log(result);
-          sender.returnCallback(result);
+          sender.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
           //console.log("api: equipsets_change: fired");
-          updateEquipsets(result[0]);
-          changeGrid(result[1]);
+          updateEquipsets(result['stats']);
+          changeGrid(result['changeGrid']);
         }
-        else updateEquipsets(result);
+        else updateEquipsets(result['stats']);
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
 

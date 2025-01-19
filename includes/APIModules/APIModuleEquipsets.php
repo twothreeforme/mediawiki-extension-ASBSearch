@@ -30,9 +30,14 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception($params['equipment']);
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
+
+
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 
-            $result->addValue($params['action'], $params['querytype'], $newStats->getStats());
+            $result->addValue($params['action'], "stats", $newStats->getStats());
+
+            //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], "stats", $newStats->getStats()]) );
+
         }
         else if ( $params['action'] == "equipsets_search" ) {
             $db = new DBConnection();
@@ -43,20 +48,10 @@ class APIModuleEquipsets extends ApiBase {
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
             //throw new Exception(json_encode($finalList));
-            $result->addValue($params['action'], $params['querytype'], [$finalList, $params['slot']]);
+            $result->addValue($params['action'], "search", [$finalList, $params['slot']]);
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
         }
         else if ( $params['action'] == "equipsets_change" ) {
-
-            // $equipIDs = [];
-            // $incomingEquipmentList = explode('|', $params['equipment']);
-            // for ( $i = 0; $i <= 15; $i++){
-            //     $temp = explode(',', $incomingEquipmentList[$i]);
-            //     $incomingEquipmentList[$i] = [ $temp[0], "", $temp[1] ];
-            //     $equipIDs[] =  $temp[0];
-            // }
-
-            // need all equipment
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
@@ -70,7 +65,11 @@ class APIModuleEquipsets extends ApiBase {
 
             //$updatedStats = $newStats->getStats();
 
-            $result->addValue($params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid ]);
+            $result->addValue($params['action'], "stats", $newStats->getStats() );
+            $result->addValue($params['action'], "changeGrid", $updatedGrid );
+
+            //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], $params['querytype'], [ $newStats->getStats(), $updatedGrid ]]) );
+
         }
     }
 }
