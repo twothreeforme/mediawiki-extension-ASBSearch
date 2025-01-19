@@ -399,7 +399,7 @@ class FFXIPackageHelper_Equipsets  {
 
         $updatedGrid = array();
         for ( $s = 0; $s <= 15; $s++){
-            //throw new Exception($slot[$s][2]);
+
             if ( $slot[$s][2] == 1 ){
                 $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
                 //<span class="hint--bottom" aria-label="Thank you!">hover me.</span>
@@ -408,7 +408,7 @@ class FFXIPackageHelper_Equipsets  {
 
                 if ( $slot[$s][0] != 0 ){
                     $id = intval($slot[$s][0]);
-                    //$tooltip = $this->generateTooltip($iDetails->items[ $id ]);
+                    $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
                 }
                 else $tooltip = "";
 
@@ -416,7 +416,7 @@ class FFXIPackageHelper_Equipsets  {
                 //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
             }
         }
-
+        if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
         return $updatedGrid;
     }
 }
