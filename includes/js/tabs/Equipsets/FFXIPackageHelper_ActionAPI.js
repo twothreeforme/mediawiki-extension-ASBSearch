@@ -3,11 +3,12 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
-  //console.log(params["action"]);
+  console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
-      const result = d[forTab];
-      console.log(result);
+    console.log(d);
+    const result = d[forTab];
+      //console.log(result);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);

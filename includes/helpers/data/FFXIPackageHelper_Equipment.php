@@ -18,68 +18,29 @@ class FFXIPackageHelper_Equipment {
             //throw new Exception($equipment[$i]);
 
             $temp = explode(',', $equipment[$i]);
-            $incItemID = $temp[0];
-            $incItemChangeFlag = $temp[1];
+            $incItemID = intval($temp[0]);
+            $incItemChangeFlag = intval($temp[1]);
 
             $model = null;
             //if ( $incItemID != 0 ) {
                 $model = $this->queryItem(intval($temp[0]));
-                $this->incomingEquipmentList[$i] = [ $incItemID, "", $incItemChangeFlag, $model["name"]];
-                $this->equipment[$i] = [
-                    $model["id"],
-                    $model["slot"],
-                    $model["rslot"],
-                    $model["mods"],
-                    $model["skilltype"],
+
+                $this->incomingEquipmentList[$i] = [
+                    $incItemID,
+                    "",
+                    $incItemChangeFlag,
                     $model["name"]
                 ];
-            // }
 
-            // if ( $model != null){
-            //     if ( $incItemChangeFlag != 0 ){
-            //         $this->incomingEquipmentList[$i] = [ $incItemID, "", $incItemChangeFlag, $model["name"]];
-            //     }
+                $this->equipment[$i] = [
+                    intval($model["id"]),
+                    intval($model["slot"]),
+                    intval($model["rslot"]),
+                    intval($model["mods"]),
+                    intval($model["skilltype"]),
+                    $model["name"]
+                ];
 
-            //     $this->equipment[$i] = [
-            //         $model["id"],
-            //         $model["slot"],
-            //         $model["rslot"],
-            //         $model["mods"],
-            //         $model["skilltype"],
-            //         $model["name"]
-            //     ];
-
-            // }
-            // else{
-            //     if ( $incItemChangeFlag != 0 ){
-            //         $this->incomingEquipmentList[$i] = [ $incItemID, "", $incItemChangeFlag, ""];
-            //     }
-            // }
-
-
-
-            // if ( $incItemID != 0 ) {
-            //     //throw new Exception(gettype($equipment[$i]));
-            //    // if (  $this->detectDelimiter($equipment[$i]) == "," ){
-            //         //throw new Exception ( $equipment[$i] );
-
-            //     $model = $this->queryItem(intval($temp[0]));
-            //     $this->incomingEquipmentList[$i] = [ $temp[0], "", $temp[1], $model["name"]];
-
-
-            //     $this->equipment[$i] = [
-            //                             $model["id"],
-            //                             $model["slot"],
-            //                             $model["rslot"],
-            //                             $model["mods"],
-            //                             $model["skilltype"],
-            //                             $model["name"]
-            //                         ];
-            // }
-            // else {
-            //     $model = $this->queryItem(intval($temp[0]));
-            //     $this->incomingEquipmentList[$i] = [ $temp[0], "", $temp[1], $model["name"]];
-            // }
         }
 
         //throw new Exception(json_encode($this->equipment));
