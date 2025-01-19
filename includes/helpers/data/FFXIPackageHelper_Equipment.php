@@ -23,7 +23,7 @@ class FFXIPackageHelper_Equipment {
 
             $model = null;
             //if ( $incItemID != 0 ) {
-                $model = $this->queryItem(intval($temp[0]));
+                $model = $this->queryItem($incItemID );
 
                 $this->incomingEquipmentList[$i] = [
                     $incItemID,
