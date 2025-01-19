@@ -19,7 +19,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
         else if ( forTab.includes("change")) {
           //console.log("api: equipsets_change: fired");
           updateEquipsets(result['stats']);
-          changeGrid(result['changeGrid']);
+          changeGrid(result['grid']);
         }
         else updateEquipsets(result['stats']);
       }
