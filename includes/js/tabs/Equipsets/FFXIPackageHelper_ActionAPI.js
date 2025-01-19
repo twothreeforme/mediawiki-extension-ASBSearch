@@ -17,7 +17,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           sender.returnCallback(result);
         }
         else if ( forTab.includes("change")) {
-          //console.log("api: equipsets_change: fired");
+          console.log("api: equipsets_change: fired");
           updateEquipsets(result[0]);
           changeGrid(result[1]);
         }
