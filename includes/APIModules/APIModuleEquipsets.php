@@ -26,6 +26,7 @@ class APIModuleEquipsets extends ApiBase {
         $params = $this->extractRequestParams();
         $result = $this->getResult();
 
+
         if ( $params['action'] == "equipsets" ) {
             //throw new Exception($params['equipment']);
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );

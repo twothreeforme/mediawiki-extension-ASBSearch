@@ -10,9 +10,14 @@ class FFXIPackageHelper_Equipment {
 
     public function __construct($equipment) {
 
+        $equipment = base64_decode($equipment);
+        //throw new Exception($equipment);
+
         if ( $this->detectDelimiter($equipment) == ',') $equipment = explode( ",", $equipment);
         else if ( $this->detectDelimiter($equipment) == '|' ) $equipment = explode( "|", $equipment);
         else throw new Exception("unknown detectDelimiter: " . json_encode($equipment));
+
+
 
         for ( $i = 0; $i <= 15; $i++ ){
 
@@ -85,6 +90,10 @@ class FFXIPackageHelper_Equipment {
 
         $test=explode(',', $line);
         if (count($test)>1) return ',';
+
+        $url=rawurldecode($line);
+        $test=explode('|', $url);
+        if (count($test)>1) return '|';
 
         return null;
     }

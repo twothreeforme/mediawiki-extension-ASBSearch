@@ -56,7 +56,7 @@ function getEquipIDs(updateAll){
 function getStatsData(equipIDString){
     if ( equipIDString == true ) {
         equipIDString = getEquipIDs(true);
-        console.log(equipIDString);
+        //console.log(equipIDString);
     }
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     //if ( updateSpecificItem != null) equipIDString =  getEquipIDs(updateSpecificItem).join(",");
@@ -171,13 +171,13 @@ function shareQueryClicked(shareID, params) {
                     "&slvl=" + params['slvl'] +
                     "&mjob=" + params['mjob'] +
                     "&sjob=" + params['sjob'] +
-                    "&equipment=" + params['equipment'];
-
+                    "&equipment=" + btoa(params['equipment']);
     }
     else {
     //   mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
       return;
     }
+    //const encodedParams = encodeURIComponent(GETparams);
     var url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
     //console.log(url);
     //return;
@@ -192,9 +192,11 @@ function shareQueryClicked(shareID, params) {
 };
 
 function loadSharedLink(url){
+
     let paramString = url.split('?')[1];
     let params_arr = paramString.split('&');
     var race, mlvl, slvl, mjob, sjob, equipment;
+
     for(let i = 0; i < params_arr.length; i++) {
         let pair = params_arr[i].split('=');
         // console.log("Key is:" + pair[0]);
@@ -230,6 +232,7 @@ function loadSharedLink(url){
         sjob:sjob,
         equipment: equipment,
     }
+    //console.log(url, data);
     API.actionAPI(data, data.action, null, this);
 
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
