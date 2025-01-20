@@ -32,18 +32,32 @@ function updateStats(data){
     API.actionAPI(data, "equipsets", null);
 }
 
-function getEquipIDs(){
+function getEquipIDs(updateAll){
     let equipIDs = [];
     //const flag = ( updateSpecificItem != null) ? 1 : 0;
+    let shareEquipIDs = "";
     for (let v = 0; v <= 15; v++) {
         let str = "grid" + v;
         let slot = document.getElementById(str);
-        equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
+        if ( updateAll == true ) {
+            if ( slot.dataset.value != 0) shareEquipIDs += slot.dataset.value + ",1|";
+            else shareEquipIDs += "0,0|";
+        }
+        else  equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
     }
-    return equipIDs;
+
+    if ( updateAll == true ) {
+        shareEquipIDs = shareEquipIDs.slice(0, -1);
+        return shareEquipIDs;
+    }
+    else return equipIDs;
 }
 
 function getStatsData(equipIDString){
+    if ( equipIDString == true ) {
+        equipIDString = getEquipIDs(true);
+        console.log(equipIDString);
+    }
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     //if ( updateSpecificItem != null) equipIDString =  getEquipIDs(updateSpecificItem).join(",");
     //console.log("getStatsData: " + equipIDString);
@@ -57,7 +71,6 @@ function getStatsData(equipIDString){
         equipment: equipIDString,
     };
   }
-
 
 
 module.exports.setLinks = function (){
@@ -123,6 +136,10 @@ module.exports.setLinks = function (){
         updateStats();
     });
 
+    const shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
+    shareEquipset.addEventListener("click", function (e) {
+        shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", getStatsData(true));
+    });
 
     /**
      * DEV ONLY
@@ -136,7 +153,85 @@ module.exports.setLinks = function (){
     /**
      * On page load
      */
-    updateStats();
+    const url = window.location.href;
+    if ( url.includes("action=equipsets_share")) {
+        loadSharedLink(url);
+    }
+    else updateStats();
 
+    //console.log(window.location.href);
     //updateEquipmentGrid(18270, 0, null);
+}
+
+function shareQueryClicked(shareID, params) {
+    var GETparams = "";
+    if ( shareID == "FFXIPackageHelper_dynamiccontent_shareEquipset" ){
+        GETparams = "&race=" + params['race'] +
+                    "&mlvl=" + params['mlvl'] +
+                    "&slvl=" + params['slvl'] +
+                    "&mjob=" + params['mjob'] +
+                    "&sjob=" + params['sjob'] +
+                    "&equipment=" + params['equipment'];
+
+    }
+    else {
+    //   mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
+      return;
+    }
+    var url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
+    //console.log(url);
+    //return;
+
+    navigator.clipboard.writeText(url).then(function() {
+        //console.log('copyURLToClipboard(): Copied!');
+        mw.notify( 'Copied to Clipboard !', { autoHide: true,  type: 'warn' } );
+    }, function() {
+      mw.notify( 'Error copying to clipboard. Please report on our Discord.', { autoHide: true,  type: 'error' } );
+      //console.log('Clipboard error');
+    });
+};
+
+function loadSharedLink(url){
+    let paramString = url.split('?')[1];
+    let params_arr = paramString.split('&');
+    var race, mlvl, slvl, mjob, sjob, equipment;
+    for(let i = 0; i < params_arr.length; i++) {
+        let pair = params_arr[i].split('=');
+        // console.log("Key is:" + pair[0]);
+        // console.log("Value is:" + pair[1]);
+        switch(pair[0]){
+            case "race":
+                race = pair[1];
+                break;
+            case "mlvl":
+                mlvl = pair[1];
+                break;
+            case "slvl":
+                slvl = pair[1];
+                break;
+            case "mjob":
+                mjob = pair[1];
+                break;
+            case "sjob":
+                sjob = pair[1];
+                break;
+            case "equipment":
+                equipment = pair[1];
+                break;
+        }
+    }
+
+    const data = {
+        action: "equipsets_change",
+        race:race,
+        mlvl:mlvl,
+        slvl:slvl,
+        mjob:mjob,
+        sjob:sjob,
+        equipment: equipment,
+    }
+    API.actionAPI(data, data.action, null, this);
+
+    const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
+    tabsButton_equipsets.click();
 }

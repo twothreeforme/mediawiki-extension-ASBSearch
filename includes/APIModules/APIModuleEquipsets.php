@@ -51,6 +51,7 @@ class APIModuleEquipsets extends ApiBase {
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
         }
         else if ( $params['action'] == "equipsets_change" ) {
+            //throw new Exception ( json_encode($params));
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();

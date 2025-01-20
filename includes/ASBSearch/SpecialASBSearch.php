@@ -26,15 +26,13 @@ class SpecialASBSearch extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'asbsearch' ) );
 
 		// # Get request data
+
+		/**
+		 *	Drop Rates Query Request Data
+		 */
 		$levelRangeMIN =  (int)$request->getText( 'levelRangeMIN' );
-		//$levelRangeMIN = isset($levelRangeMIN) ? $levelRangeMIN : 0;
-
 		$levelRangeMAX =  (int)$request->getText( 'levelRangeMAX' );
-		//$levelRangeMAX = isset($levelRangeMAX) ? $levelRangeMAX : 0;
-
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
-		//$zoneNameDropDown = isset($zoneNameDropDown) ? $zoneNameDropDown : 0;
-
 		$mobNameSearch = $request->getText( 'mobNameSearch' );
 		$itemNameSearch = $request->getText( 'itemNameSearch' );
 		$thRatesCheck = (int)$request->getText( 'thRatesCheck' );
@@ -65,13 +63,36 @@ class SpecialASBSearch extends SpecialPage {
 				$includeFished
 			];
 		}
-		//print_r($queryDataDR);
+
+		/**
+		 *	Equipsets Request Data
+		 */
+		$race = (int)$request->getText( 'race' );
+		$mlvl = (int)$request->getText( 'mlvl' );
+		$slvl = (int)$request->getText( 'slvl' );
+		$mjob = (int)$request->getText( 'mjob' );
+		$sjob = (int)$request->getText( 'sjob' );
+		$equipment = $request->getText( 'equipment' );
+
+		$equipsetsData = null;
+		if ( strlen($equipment) > 0 ){
+			$equipsetsData = [
+				$race,
+				$mlvl,
+				$slvl,
+				$mjob,
+				$sjob,
+				$equipment
+			];
+
+		}
+
 
         $tabs = new FFXIPackageHelper_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets();
+        $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
         $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
 
         $html = "<div id=\"initialHide\" style=\"display: none;\">" .

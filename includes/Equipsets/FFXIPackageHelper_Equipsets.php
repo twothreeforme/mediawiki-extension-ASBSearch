@@ -21,12 +21,28 @@ use MediaWiki\MediaWikiServices;
 
 
 class FFXIPackageHelper_Equipsets  {
-    public function __construct() {
+
+    // private $race;
+    // private $mlvl;
+    // private $slvl;
+    // private $mjob;
+    // private $sjob;
+    // private $equipment;
+
+    public function __construct($query = null) {
+        // if ( gettype($query) == 'array'){
+        //     $this->race = $query[0];
+        //     $this->mlvl = $query[1];
+        //     $this->slvl = $query[2];
+        //     $this->mjob = $query[3];
+        //     $this->sjob = $query[4];
+        //     $this->equipment = $query[5];
+        // }
     }
 
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
+        $html = "<span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
                     <span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>
                     <span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
                     <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br><br>
@@ -422,6 +438,10 @@ class FFXIPackageHelper_Equipsets  {
         }
         //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
         return $updatedGrid;
+    }
+
+    private function showShareButton($id){
+        return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
     }
 }
 

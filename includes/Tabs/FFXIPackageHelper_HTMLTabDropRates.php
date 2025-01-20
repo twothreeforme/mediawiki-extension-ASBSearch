@@ -47,7 +47,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             </tr>
                         </tbody></table>
                         </td>
-                        <td style=\"vertical-align:top;\">".$this->showShareButton()."<br><br>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br><br>" . $this->selectionOptions() . "</td>
+                        <td style=\"vertical-align:top;\">".$this->showShareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery")."<br><br>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br><br>" . $this->selectionOptions() . "</td>
                     </tr></tbody></table>
                     <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\">". $this->postQueryResults() ."</div>
                 </div>";
@@ -120,9 +120,8 @@ class FFXIPackageHelper_HTMLTabDropRates {
         return $html;
     }
 
-    private function showShareButton(){
-        return FFXIPackageHelper_HTMLTableHelper::shareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery");
-
+    private function showShareButton($id){
+        return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
     }
 
     private function postQueryResults(){
