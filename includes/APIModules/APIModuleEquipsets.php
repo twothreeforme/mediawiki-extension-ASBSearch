@@ -57,10 +57,11 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception ( json_encode($params));
             //throw new Exception ( ' here' );
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
+            throw new Exception ( ' here' );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
             
-            throw new Exception ( ' here' );
+            
             
             // send updated HTML back as result
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
