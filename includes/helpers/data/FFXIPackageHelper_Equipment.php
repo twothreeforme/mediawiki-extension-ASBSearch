@@ -23,13 +23,14 @@ class FFXIPackageHelper_Equipment {
 
             $model = null;
             //if ( $incItemID != 0 ) {
-                $model = $this->queryItem($incItemID );
+                $model = $this->queryItem( $incItemID );
+                $name = ($model["name"] == null) ? "" : $model["name"];
 
                 $this->incomingEquipmentList[$i] = [
                     $incItemID,
                     "",
                     $incItemChangeFlag,
-                    $model["name"]
+                    $name
                 ];
 
                 $this->equipment[$i] = [
@@ -38,7 +39,7 @@ class FFXIPackageHelper_Equipment {
                     intval($model["rslot"]),
                     $model["mods"],
                     intval($model["skilltype"]),
-                    $model["name"]
+                    $name
                 ];
 
         }
