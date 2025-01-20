@@ -471,9 +471,9 @@ class FFXIPackageHelper_Stats {
             //resistances
             $this->Fire,    //11
             $this->Wind,    //12
-            $this->Ice,     //13
+            $this->Water,     //13
             $this->Light,   //14
-            $this->Water,   //15
+            $this->Ice,   //15
             $this->Earth,   //16
             $this->Lightning, //17
             $this->Dark,     //18
