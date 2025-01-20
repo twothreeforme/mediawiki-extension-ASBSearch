@@ -239,6 +239,12 @@ function loadSharedLink(url){
     //console.log("loadSharedLink", url, data, decodeURIComponent(data.equipment), atob( decodeURIComponent(data.equipment)));
     API.actionAPI(data, data.action, null, this);
 
+    mlvlDropdown.value=data.mlvl;
+    slvlDropdown.value=data.slvl;
+    mJobDropdown.value=data.mjob;
+    sJobDropdown.value=data.sjob;
+    raceDropdown.value=data.race;
+
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
     tabsButton_equipsets.click();
 }
