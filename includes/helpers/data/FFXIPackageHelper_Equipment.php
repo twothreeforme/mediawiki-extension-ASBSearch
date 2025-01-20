@@ -36,7 +36,9 @@ class FFXIPackageHelper_Equipment {
                     $incItemChangeFlag,
                     $name
                 ];
-                if ( $model != null )  throw new Exception ( json_encode($model));
+                
+                //if ( $model != null )  throw new Exception ( json_encode($model));
+
                 $this->equipment[$i] = [
                     intval($model["id"]),
                     intval($model["slot"]),

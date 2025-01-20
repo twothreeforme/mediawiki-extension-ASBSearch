@@ -786,7 +786,7 @@ class DBConnection {
                     'item_mods.value AS modValue',
                     'item_basic.name',
                     'item_weapon.skill',
-
+                    'item_equipment.level',
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
