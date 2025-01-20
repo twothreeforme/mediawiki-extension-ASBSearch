@@ -15,7 +15,6 @@ class FFXIPackageHelper_Equipment {
         else throw new Exception("unknown detectDelimiter: " . json_encode($equipment));
 
         for ( $i = 0; $i <= 15; $i++ ){
-            //throw new Exception($equipment[$i]);
 
             $temp = explode(',', $equipment[$i]);
             $incItemID = intval($temp[0]);
@@ -41,7 +40,6 @@ class FFXIPackageHelper_Equipment {
                     intval($model["skilltype"]),
                     $name
                 ];
-
         }
 
         //throw new Exception(json_encode($this->equipment));

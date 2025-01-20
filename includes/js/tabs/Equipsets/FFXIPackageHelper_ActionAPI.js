@@ -56,34 +56,37 @@ function updateFishingFromQuery(updatedHTML){
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_fishing_queryresult'));
 }
 
-function changeGrid(updatedGrid){
+function changeGrid(incomingGridData){
   //console.log("changeGrid: " ,updatedGrid);
-  if ( updatedGrid == null ) return;
 
-  //var gridArray = updatedGrid.split(",");
-  slotChanged = updatedGrid[0][0];
-  slot_ID = updatedGrid[0][1][0];
-  slot_HTML = updatedGrid[0][1][1];
-  slot_Flag = updatedGrid[0][1][2];
-  slot_name = updatedGrid[0][1][3];
-  slot_tooltip = updatedGrid[0][2];
+  for (const updatedGrid of incomingGridData){
+      if ( updatedGrid == null ) return;
 
-  for (let v = 0; v <= 15; v++) {
-    if ( slotChanged != v ) continue;
-    if ( slot_Flag[2] == 0 ) continue;
+    //var gridArray = updatedGrid.split(",");
+    slotChanged = updatedGrid[0];
+    slot_ID = updatedGrid[1][0];
+    slot_HTML = updatedGrid[1][1];
+    slot_Flag = updatedGrid[1][2];
+    slot_name = updatedGrid[1][3];
+    slot_tooltip = updatedGrid[2];
 
-    let str = "grid" + v;
-    let slot = document.getElementById(str);
+    for (let v = 0; v <= 15; v++) {
+      if ( slotChanged != v ) continue;
+      if ( slot_Flag[2] == 0 ) continue;
 
-    slot.innerHTML = slot_HTML;
-    slot.dataset.value = slot_ID;
+      let str = "grid" + v;
+      let slot = document.getElementById(str);
 
-    //let tempName = slot_name + "\n" + slot_name + "\n" + slot_name + "\n" + slot_name;
-    if( slot_ID == 0 ) Tooltip.handleTooltip(slot);
-    else {
-      Tooltip.handleTooltip(slot, slot_tooltip);
+      slot.innerHTML = slot_HTML;
+      slot.dataset.value = slot_ID;
+
+      //let tempName = slot_name + "\n" + slot_name + "\n" + slot_name + "\n" + slot_name;
+      if( slot_ID == 0 ) Tooltip.handleTooltip(slot);
+      else {
+        Tooltip.handleTooltip(slot, slot_tooltip);
+      }
+      break;
     }
-    break;
   }
 }
 
