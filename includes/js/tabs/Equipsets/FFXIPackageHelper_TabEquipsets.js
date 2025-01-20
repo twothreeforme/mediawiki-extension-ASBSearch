@@ -59,7 +59,6 @@ function getStatsData(equipIDString){
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     else if ( equipIDString == true ) {
         equipIDString = getEquipIDs(true);
-        console.log(equipIDString);
     }
     equipIDString = equipIDString.join("|");
 
