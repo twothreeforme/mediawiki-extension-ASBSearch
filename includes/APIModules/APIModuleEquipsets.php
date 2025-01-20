@@ -26,10 +26,12 @@ class APIModuleEquipsets extends ApiBase {
         $params = $this->extractRequestParams();
         $result = $this->getResult();
 
+        $decoded = urldecode($params['equipment']);
+        $equipmentString = base64_decode($decoded);
+        //throw new Exception($equipmentString);
 
         if ( $params['action'] == "equipsets" ) {
-            //throw new Exception($params['equipment']);
-            $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
+            $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
 
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
@@ -54,7 +56,7 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "equipsets_change" ) {
             //throw new Exception ( json_encode($params));
 
-            $equipmentModel = new FFXIPackageHelper_Equipment( $params['equipment'] );
+            $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
 

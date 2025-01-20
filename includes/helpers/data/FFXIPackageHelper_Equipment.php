@@ -9,15 +9,11 @@ class FFXIPackageHelper_Equipment {
     private $incomingEquipmentList = [];
 
     public function __construct($equipment) {
-
         if ($equipment == null ) return;
-
-        if ( base64_decode($equipment, true) == false ) throw new Exception($equipment);
-        $equipment = base64_decode($equipment, true);
-        //if ( gettype($equipment) == "string" ) throw new Exception($equipment);
 
         if ( $this->detectDelimiter($equipment) == ',') $equipment = explode( ",", $equipment);
         else if ( $this->detectDelimiter($equipment) == '|' ) $equipment = explode( "|", $equipment);
+        else if ( strlen($equipment) == 0 ) throw new Exception ("equp string len = 0");
         else throw new Exception("unknown detectDelimiter: " . json_encode($equipment));
 
         for ( $i = 0; $i <= 15; $i++ ){

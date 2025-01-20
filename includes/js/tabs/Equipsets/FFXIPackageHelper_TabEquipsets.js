@@ -59,12 +59,12 @@ function getStatsData(equipIDString){
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     else if ( equipIDString == true ) {
         equipIDString = getEquipIDs(true);
-        //console.log(equipIDString);
+        console.log(equipIDString);
     }
     equipIDString = equipIDString.join("|");
-    //console.log("getStatsData", equipIDString);
-    //if ( updateSpecificItem != null) equipIDString =  getEquipIDs(updateSpecificItem).join(",");
-    //console.log("getStatsData: ", equipIDString);
+
+    //console.log("getStatsData: ", equipIDString, encodeURIComponent(btoa(equipIDString)));
+
     return {
         action: "equipsets",
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -72,7 +72,7 @@ function getStatsData(equipIDString){
         slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
-        equipment: btoa(equipIDString),
+        equipment: encodeURIComponent(btoa(equipIDString)),
     };
   }
 
@@ -176,7 +176,7 @@ function shareQueryClicked(shareID, params) {
                     "&slvl=" + params['slvl'] +
                     "&mjob=" + params['mjob'] +
                     "&sjob=" + params['sjob'] +
-                    "&equipment=" + btoa(params['equipment']);
+                    "&equipment=" + params['equipment'];
     }
     else {
     //   mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
@@ -237,7 +237,7 @@ function loadSharedLink(url){
         sjob:sjob,
         equipment: equipment,
     }
-    //console.log(url, data);
+    //console.log("loadSharedLink", url, data, decodeURIComponent(data.equipment), atob( decodeURIComponent(data.equipment)));
     API.actionAPI(data, data.action, null, this);
 
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
