@@ -10,6 +10,8 @@ class FFXIPackageHelper_Equipment {
 
     public function __construct($equipment) {
         //throw new Exception($equipment);
+        if ($equipment == null ) return;
+
         $equipment = base64_decode($equipment);
 
 

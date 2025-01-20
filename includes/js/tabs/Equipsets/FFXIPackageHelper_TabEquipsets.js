@@ -45,7 +45,6 @@ function getEquipIDs(updateAll){
         }
         else  equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
     }
-    // console.log("fired");
     if ( updateAll == true ) {
         shareEquipIDs = shareEquipIDs.slice(0, -1);
         return shareEquipIDs;
