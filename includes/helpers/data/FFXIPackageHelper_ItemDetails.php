@@ -297,7 +297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16416 => array(
-            "descr" => "DMG:+13 Delay:+66 \uEF1F+5 \nAdditional effect: Fire damage",
+            "descr" => "DMG:+13 Delay:+66 Fire+5 \nAdditional effect: Fire damage",
             "name" => "Dragon Claws",
             "longname" => "dragon claws",
             "lvl" => 68,
@@ -767,7 +767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16470 => array(
-            "descr" => "DMG:29 Delay:205 HP+10 DEX+2 VIT+2 \n\uEF24+8",
+            "descr" => "DMG:29 Delay:205 HP+10 DEX+2 VIT+2 \nWater+8",
             "name" => "Gully",
             "longname" => "gully",
             "lvl" => 72,
@@ -1467,7 +1467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16548 => array(
-            "descr" => "DMG:36 Delay:233 \uEF24+8 \nAdditional effect: Water damage",
+            "descr" => "DMG:36 Delay:233 Water+8 \nAdditional effect: Water damage",
             "name" => "Coral Sword",
             "longname" => "coral sword",
             "lvl" => 66,
@@ -2137,7 +2137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16620 => array(
-            "descr" => "DMG:37 Delay:227 \uEF24+9 \nAdditional effect: Water damage",
+            "descr" => "DMG:37 Delay:227 Water+9 \nAdditional effect: Water damage",
             "name" => "Merman's Sword",
             "longname" => "merman's sword",
             "lvl" => 66,
@@ -2647,7 +2647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16675 => array(
-            "descr" => "DMG:32 Delay:276 \uEF20-10 \uEF21+10 \uEF22+10 \nAdditional effect: Wind damage",
+            "descr" => "DMG:32 Delay:276 Ice-10 Wind+10 Earth+10 \nAdditional effect: Wind damage",
             "name" => "Storm Axe",
             "longname" => "storm axe",
             "lvl" => 43,
@@ -2807,7 +2807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16691 => array(
-            "descr" => "DMG:+2 Delay:+43 \uEF1F+2 Accuracy+3",
+            "descr" => "DMG:+2 Delay:+43 Fire+2 Accuracy+3",
             "name" => "Ryl.Arc. Cesti",
             "longname" => "Royal Archer's cesti",
             "lvl" => 10,
@@ -2917,7 +2917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16702 => array(
-            "descr" => "DMG:+6 Delay:+51 \uEF20+4 \nAdditional effect: Ice damage",
+            "descr" => "DMG:+6 Delay:+51 Ice+4 \nAdditional effect: Ice damage",
             "name" => "Cougar Baghnakhs",
             "longname" => "cougar baghnakhs",
             "lvl" => 20,
@@ -3167,7 +3167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16728 => array(
-            "descr" => "DMG:80 Delay:504 \uEF25-11 \uEF26+11\nNighttime: Accuracy+10",
+            "descr" => "DMG:80 Delay:504 Light-11 Dark+11\nNighttime: Accuracy+10",
             "name" => "Schwarz Axt",
             "longname" => "schwarz axt",
             "lvl" => 56,
@@ -3237,7 +3237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16735 => array(
-            "descr" => "DMG:87 Delay:504 \nLatent effect: HP+20 \uEF22+10 \uEF24+10",
+            "descr" => "DMG:87 Delay:504 \nLatent effect: HP+20 Earth+10 Water+10",
             "name" => "Axe of Trials",
             "longname" => "axe of trials",
             "lvl" => 71,
@@ -3607,7 +3607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16773 => array(
-            "descr" => "DMG:40 Delay:513 INT+2 MND-2 \n\uEF25-2 \uEF26+2 \nAdditional effect: Impairs evasion",
+            "descr" => "DMG:40 Delay:513 INT+2 MND-2 \nLight-2 Dark+2 \nAdditional effect: Impairs evasion",
             "name" => "Cruel Scythe",
             "longname" => "cruel scythe",
             "lvl" => 20,
@@ -3717,7 +3717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16784 => array(
-            "descr" => "DMG:42 Delay:480 \uEF20+6 \nAdditional effect: Ice damage",
+            "descr" => "DMG:42 Delay:480 Ice+6 \nAdditional effect: Ice damage",
             "name" => "Frostreaper",
             "longname" => "Frostreaper",
             "lvl" => 27,
@@ -3747,7 +3747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16787 => array(
-            "descr" => "DMG:74 Delay:480 \uEF26+12 \nAdditional effect: Darkness damage",
+            "descr" => "DMG:74 Delay:480 Dark+12 \nAdditional effect: Darkness damage",
             "name" => "Demonslicer",
             "longname" => "Demonslicer",
             "lvl" => 55,
@@ -3807,7 +3807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16793 => array(
-            "descr" => "DMG:82 Delay:480 \nLatent effect: HP+20 \uEF23+10 \uEF25+10",
+            "descr" => "DMG:82 Delay:480 \nLatent effect: HP+20 Thunder+10 Light+10",
             "name" => "Scythe of Trials",
             "longname" => "scythe of trials",
             "lvl" => 71,
@@ -4427,7 +4427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16857 => array(
-            "descr" => "DMG:56 Delay:385 \uEF21+4 \nAdditional effect: Wind damage",
+            "descr" => "DMG:56 Delay:385 Wind+4 \nAdditional effect: Wind damage",
             "name" => "Wind Spear",
             "longname" => "wind spear",
             "lvl" => 49,
@@ -4487,7 +4487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16863 => array(
-            "descr" => "DMG:29 Delay:385 INT+2 MND-2 \n\uEF25-2 \uEF26+2 \nAdditional effect: Impairs evasion",
+            "descr" => "DMG:29 Delay:385 INT+2 MND-2 \nLight-2 Dark+2 \nAdditional effect: Impairs evasion",
             "name" => "Cruel Spear",
             "longname" => "cruel spear",
             "lvl" => 20,
@@ -4547,7 +4547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16869 => array(
-            "descr" => "DMG:59 Delay:396 DEX+3 \uEF20+11 \n\uEF22-11 \uEF23+11 \nAdditional effect: Lightning damage",
+            "descr" => "DMG:59 Delay:396 DEX+3 Ice+11 \nEarth-11 Thunder+11 \nAdditional effect: Lightning damage",
             "name" => "Thundercloud",
             "longname" => "Thundercloud",
             "lvl" => 53,
@@ -4707,7 +4707,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16885 => array(
-            "descr" => "DMG:92 Delay:551 HP+10 MP+10 \uEF24+7",
+            "descr" => "DMG:92 Delay:551 HP+10 MP+10 Water+7",
             "name" => "Gae Bolg",
             "longname" => "Gae Bolg",
             "lvl" => 68,
@@ -4777,7 +4777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16892 => array(
-            "descr" => "DMG:68 Delay:396 \nLatent effect: HP+20 \uEF24+10 \uEF26+10",
+            "descr" => "DMG:68 Delay:396 \nLatent effect: HP+20 Water+10 Dark+10",
             "name" => "Spear of Trials",
             "longname" => "spear of trials",
             "lvl" => 71,
@@ -5217,7 +5217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16936 => array(
-            "descr" => "DMG:44 Delay:456 \uEF26+8 \nAdditional effect: Darkness damage",
+            "descr" => "DMG:44 Delay:456 Dark+8 \nAdditional effect: Darkness damage",
             "name" => "Demonic Sword",
             "longname" => "demonic sword",
             "lvl" => 31,
@@ -5227,7 +5227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16937 => array(
-            "descr" => "DMG:53 Delay:456 \uEF20+8 \nAdditional effect: Ice damage",
+            "descr" => "DMG:53 Delay:456 Ice+8 \nAdditional effect: Ice damage",
             "name" => "Icicle Sword",
             "longname" => "icicle sword",
             "lvl" => 39,
@@ -5237,7 +5237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16938 => array(
-            "descr" => "DMG:68 Delay:456 \uEF25+12 \nAdditional effect: Light damage",
+            "descr" => "DMG:68 Delay:456 Light+12 \nAdditional effect: Light damage",
             "name" => "Glorious Sword",
             "longname" => "glorious sword",
             "lvl" => 53,
@@ -5307,7 +5307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16945 => array(
-            "descr" => "DMG:79 Delay:480 \uEF1F+7 \uEF24+7\nAdditional effect: Water damage",
+            "descr" => "DMG:79 Delay:480 Fire+7 Water+7\nAdditional effect: Water damage",
             "name" => "Arondight",
             "longname" => "Arondight",
             "lvl" => 62,
@@ -5377,7 +5377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16952 => array(
-            "descr" => "DMG:74 Delay:444 \nLatent effect: HP+20 \uEF20+10 \uEF22+10",
+            "descr" => "DMG:74 Delay:444 \nLatent effect: HP+20 Ice+10 Earth+10",
             "name" => "Sword of Trials",
             "longname" => "sword of trials",
             "lvl" => 71,
@@ -5467,7 +5467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16961 => array(
-            "descr" => "DMG:72 Delay:420 HP-5% \uEF1F+15\nAdditional effect: Water damage",
+            "descr" => "DMG:72 Delay:420 HP-5% Fire+15\nAdditional effect: Water damage",
             "name" => "Murasame",
             "longname" => "Murasame",
             "lvl" => 70,
@@ -6347,7 +6347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17056 => array(
-            "descr" => "DMG:17 Delay:216 INT+8 MND+8 \uEF26+15",
+            "descr" => "DMG:17 Delay:216 INT+8 MND+8 Dark+15",
             "name" => "Mythic Wand",
             "longname" => "mythic wand",
             "lvl" => 65,
@@ -6527,7 +6527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17080 => array(
-            "descr" => "DMG:31 Delay:324 MND+2 \uEF26+3 \nAdditional effect: Light damage",
+            "descr" => "DMG:31 Delay:324 MND+2 Dark+3 \nAdditional effect: Light damage",
             "name" => "Holy Maul",
             "longname" => "holy maul",
             "lvl" => 38,
@@ -6727,7 +6727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17101 => array(
-            "descr" => "DMG:55 Delay:402 \uEF26+15",
+            "descr" => "DMG:55 Delay:402 Dark+15",
             "name" => "Mythic Pole",
             "longname" => "mythic pole",
             "lvl" => 70,
@@ -6797,7 +6797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17114 => array(
-            "descr" => "DMG:32 Delay:315 MND+3 \uEF26+4 \nAdditional effect: Light damage",
+            "descr" => "DMG:32 Delay:315 MND+3 Dark+4 \nAdditional effect: Light damage",
             "name" => "Holy Maul +1",
             "longname" => "holy maul +1",
             "lvl" => 38,
@@ -6977,7 +6977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17134 => array(
-            "descr" => "DMG:16 Delay:366 HP+7 MP+7 \uEF24+6 \nAdditional effect: Water damage",
+            "descr" => "DMG:16 Delay:366 HP+7 MP+7 Water+6 \nAdditional effect: Water damage",
             "name" => "Dolphin Staff",
             "longname" => "dolphin staff",
             "lvl" => 27,
@@ -6987,7 +6987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17135 => array(
-            "descr" => "DMG:26 Delay:366 HP+9 MP+9 \uEF20+10 \nAdditional effect: Ice damage",
+            "descr" => "DMG:26 Delay:366 HP+9 MP+9 Ice+10 \nAdditional effect: Ice damage",
             "name" => "Walrus Staff",
             "longname" => "walrus staff",
             "lvl" => 50,
@@ -7637,7 +7637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17204 => array(
-            "descr" => "DMG:53 Delay:450 Ranged Accuracy+5\nOn Windsdays: DMG:63 \uEF21+15",
+            "descr" => "DMG:53 Delay:450 Ranged Accuracy+5\nOn Windsdays: DMG:63 Wind+15",
             "name" => "Mighty Bow",
             "longname" => "mighty bow",
             "lvl" => 70,
@@ -7997,7 +7997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17240 => array(
-            "descr" => "DMG:35 Delay:360 DEX+2 \uEF23+6",
+            "descr" => "DMG:35 Delay:360 DEX+2 Thunder+6",
             "name" => "Lightning Bow",
             "longname" => "lightning bow",
             "lvl" => 55,
@@ -8007,7 +8007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17241 => array(
-            "descr" => "DMG:36 Delay:352 DEX+3 \uEF23+7\nRanged Accuracy+3",
+            "descr" => "DMG:36 Delay:352 DEX+3 Thunder+7\nRanged Accuracy+3",
             "name" => "Lightning Bow +1",
             "longname" => "lightning bow +1",
             "lvl" => 55,
@@ -8147,7 +8147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17255 => array(
-            "descr" => "DMG:9 Delay:600 \uEF1F+2",
+            "descr" => "DMG:9 Delay:600 Fire+2",
             "name" => "Hakenbuechse",
             "longname" => "hakenbuechse",
             "lvl" => 6,
@@ -8187,7 +8187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17259 => array(
-            "descr" => "DMG:20 Delay:600 \uEF22-3 \uEF24+6",
+            "descr" => "DMG:20 Delay:600 Earth-3 Water+6",
             "name" => "Pirate's Gun",
             "longname" => "pirate's gun",
             "lvl" => 27,
@@ -8197,7 +8197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17260 => array(
-            "descr" => "DMG:21 Delay:582 \uEF22-3 \uEF23+3 \uEF24+9 \nRanged Accuracy+5",
+            "descr" => "DMG:21 Delay:582 Earth-3 Thunder+3 Water+9 \nRanged Accuracy+5",
             "name" => "Pirate's Gun +1",
             "longname" => "pirate's gun +1",
             "lvl" => 27,
@@ -8497,7 +8497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17291 => array(
-            "descr" => "DMG:13 Delay:294 \uEF1F+4 \nAdditional effect: Fire damage",
+            "descr" => "DMG:13 Delay:294 Fire+4 \nAdditional effect: Fire damage",
             "name" => "Flame Boomerang",
             "longname" => "flame boomerang",
             "lvl" => 19,
@@ -8527,7 +8527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17294 => array(
-            "descr" => "DMG:26 Delay:265 HP+15 MP+15 \uEF25+4 \n\uEF26+4 Ranged Accuracy+10 \nRanged Attack+20",
+            "descr" => "DMG:26 Delay:265 HP+15 MP+15 Light+4 \nDark+4 Ranged Accuracy+10 \nRanged Attack+20",
             "name" => "Comet Tail",
             "longname" => "comet tail",
             "lvl" => 55,
@@ -9167,7 +9167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17359 => array(
-            "descr" => "\uEF26+15 \"Etude\"+1",
+            "descr" => "Dark+15 \"Etude\"+1",
             "name" => "Mythic Harp",
             "longname" => "mythic harp",
             "lvl" => 70,
@@ -9197,7 +9197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17364 => array(
-            "descr" => "CHR+2 \uEF25+5\n\"Virelai\"+1",
+            "descr" => "CHR+2 Light+5\n\"Virelai\"+1",
             "name" => "Cythara Anglica",
             "longname" => "Cythara Anglica",
             "lvl" => 75,
@@ -9657,7 +9657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17410 => array(
-            "descr" => "DMG:18 Delay:280 HP+13 \uEF26+3",
+            "descr" => "DMG:18 Delay:280 HP+13 Dark+3",
             "name" => "Bone Rod +1",
             "longname" => "bone rod +1",
             "lvl" => 43,
@@ -9697,7 +9697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17414 => array(
-            "descr" => "DMG:19 Delay:300 \uEF25+3 \uEF26+3 \nAccuracy+5 \nAdditional effect: Light damage",
+            "descr" => "DMG:19 Delay:300 Light+3 Dark+3 \nAccuracy+5 \nAdditional effect: Light damage",
             "name" => "Pixie Mace",
             "longname" => "pixie mace",
             "lvl" => 24,
@@ -9887,7 +9887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17433 => array(
-            "descr" => "DMG:18 Delay:210 INT+9 MND+9 \uEF26+20",
+            "descr" => "DMG:18 Delay:210 INT+9 MND+9 Dark+20",
             "name" => "Mythic Wand +1",
             "longname" => "mythic wand +1",
             "lvl" => 65,
@@ -10107,7 +10107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17455 => array(
-            "descr" => "DMG:17 Delay:216 INT+7 MND+7 CHR+7\n\uEF25+15 Divine magic skill +3",
+            "descr" => "DMG:17 Delay:216 INT+7 MND+7 CHR+7\nLight+15 Divine magic skill +3",
             "name" => "Skirnir's Wand",
             "longname" => "Skirnir's wand",
             "lvl" => 68,
@@ -10117,7 +10117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17456 => array(
-            "descr" => "DMG:29 Delay:267 \nLatent effect: HP+10 MP+10 \uEF22+10\n\uEF24+10",
+            "descr" => "DMG:29 Delay:267 \nLatent effect: HP+10 MP+10 Earth+10\nWater+10",
             "name" => "Club of Trials",
             "longname" => "club of trials",
             "lvl" => 71,
@@ -10207,7 +10207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17465 => array(
-            "descr" => "DMG:30 Delay:288 INT+1 MND+1 \nOn Firesdays: INT+9 MND+9 \uEF1F+15",
+            "descr" => "DMG:30 Delay:288 INT+1 MND+1 \nOn Firesdays: INT+9 MND+9 Fire+15",
             "name" => "Mighty Cudgel",
             "longname" => "mighty cudgel",
             "lvl" => 70,
@@ -10407,7 +10407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17485 => array(
-            "descr" => "DMG:+14 Delay:+61 \uEF1F+6 \nAdditional effect: Fire damage",
+            "descr" => "DMG:+14 Delay:+61 Fire+6 \nAdditional effect: Fire damage",
             "name" => "Dragon Claws +1",
             "longname" => "dragon claws +1",
             "lvl" => 68,
@@ -10507,7 +10507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17495 => array(
-            "descr" => "DMG:+3 Delay:+38 \uEF1F+2 Accuracy+3\nAttack+2",
+            "descr" => "DMG:+3 Delay:+38 Fire+2 Accuracy+3\nAttack+2",
             "name" => "San d'Orian Cesti",
             "longname" => "San d'Orian cesti",
             "lvl" => 15,
@@ -10517,7 +10517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17496 => array(
-            "descr" => "DMG:+4 Delay:+33 \uEF1F+2 Accuracy+3\nAttack+3",
+            "descr" => "DMG:+4 Delay:+33 Fire+2 Accuracy+3\nAttack+3",
             "name" => "Kingdom Cesti",
             "longname" => "Kingdom cesti",
             "lvl" => 15,
@@ -10587,7 +10587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17503 => array(
-            "descr" => "DMG:+10 Delay:+51 DEX+1 AGI+1 \uEF24+9",
+            "descr" => "DMG:+10 Delay:+51 DEX+1 AGI+1 Water+9",
             "name" => "Exocets",
             "longname" => "exocets",
             "lvl" => 46,
@@ -10597,7 +10597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17504 => array(
-            "descr" => "DMG:+14 Delay:+106 VIT+3 \uEF24+11\nAccuracy+2",
+            "descr" => "DMG:+14 Delay:+106 VIT+3 Water+11\nAccuracy+2",
             "name" => "Pagures",
             "longname" => "pagures",
             "lvl" => 60,
@@ -10627,7 +10627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17507 => array(
-            "descr" => "DMG:+16 Delay:+96 \nLatent effect: HP+20 \uEF22+10 \uEF24+10",
+            "descr" => "DMG:+16 Delay:+96 \nLatent effect: HP+20 Earth+10 Water+10",
             "name" => "Knuckles of Trials",
             "longname" => "knuckles of trials",
             "lvl" => 71,
@@ -10817,7 +10817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17526 => array(
-            "descr" => "DMG:56 Delay:390 \uEF26+20",
+            "descr" => "DMG:56 Delay:390 Dark+20",
             "name" => "Mythic Pole +1",
             "longname" => "mythic pole +1",
             "lvl" => 70,
@@ -10827,7 +10827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17527 => array(
-            "descr" => "DMG:55 Delay:402 \nLatent effect: HP+10 MP+10 \uEF1F+10\n\uEF25+10",
+            "descr" => "DMG:55 Delay:402 \nLatent effect: HP+10 MP+10 Fire+10\nLight+10",
             "name" => "Pole of Trials",
             "longname" => "pole of trials",
             "lvl" => 71,
@@ -10887,7 +10887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17533 => array(
-            "descr" => "DMG:18 Delay:366 HP+14 MP+7 \uEF24+7\nAdditional effect: Water damage",
+            "descr" => "DMG:18 Delay:366 HP+14 MP+7 Water+7\nAdditional effect: Water damage",
             "name" => "Whale Staff",
             "longname" => "whale staff",
             "lvl" => 32,
@@ -10897,7 +10897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17534 => array(
-            "descr" => "DMG:19 Delay:356 HP+15 MP+7 \uEF24+8\nAdditional effect: Water damage",
+            "descr" => "DMG:19 Delay:356 HP+15 MP+7 Water+8\nAdditional effect: Water damage",
             "name" => "Whale Staff +1",
             "longname" => "whale staff +1",
             "lvl" => 32,
@@ -11007,7 +11007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17545 => array(
-            "descr" => "DMG:30 Delay:366 STR+4 \uEF20+15\nAttack+10 Ranged Attack+10 \nAdditional effect: Fire damage",
+            "descr" => "DMG:30 Delay:366 STR+4 Ice+15\nAttack+10 Ranged Attack+10 \nAdditional effect: Fire damage",
             "name" => "Fire Staff",
             "longname" => "fire staff",
             "lvl" => 51,
@@ -11017,7 +11017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17546 => array(
-            "descr" => "DMG:35 Delay:356 STR+5 \uEF20+20\nAttack+10 Ranged Attack+10\nAdditional effect: Fire damage",
+            "descr" => "DMG:35 Delay:356 STR+5 Ice+20\nAttack+10 Ranged Attack+10\nAdditional effect: Fire damage",
             "name" => "Vulcan's Staff",
             "longname" => "Vulcan's staff",
             "lvl" => 51,
@@ -11027,7 +11027,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17547 => array(
-            "descr" => "DMG:30 Delay:366 INT+4 \uEF21+15\nElemental magic skill +10\nAdditional effect: Ice damage",
+            "descr" => "DMG:30 Delay:366 INT+4 Wind+15\nElemental magic skill +10\nAdditional effect: Ice damage",
             "name" => "Ice Staff",
             "longname" => "ice staff",
             "lvl" => 51,
@@ -11037,7 +11037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17548 => array(
-            "descr" => "DMG:35 Delay:356 INT+5 \uEF21+20\nElemental magic skill +10\nAdditional effect: Ice damage",
+            "descr" => "DMG:35 Delay:356 INT+5 Wind+20\nElemental magic skill +10\nAdditional effect: Ice damage",
             "name" => "Aquilo's Staff",
             "longname" => "Aquilo's staff",
             "lvl" => 51,
@@ -11047,7 +11047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17549 => array(
-            "descr" => "DMG:30 Delay:366 AGI+4 \uEF22+15\nEvasion+10\nAdditional effect: Wind damage",
+            "descr" => "DMG:30 Delay:366 AGI+4 Earth+15\nEvasion+10\nAdditional effect: Wind damage",
             "name" => "Wind Staff",
             "longname" => "wind staff",
             "lvl" => 51,
@@ -11057,7 +11057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17550 => array(
-            "descr" => "DMG:35 Delay:356 AGI+5 \uEF22+20\nEvasion+10\nAdditional effect: Wind damage",
+            "descr" => "DMG:35 Delay:356 AGI+5 Earth+20\nEvasion+10\nAdditional effect: Wind damage",
             "name" => "Auster's Staff",
             "longname" => "Auster's staff",
             "lvl" => 51,
@@ -11067,7 +11067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17551 => array(
-            "descr" => "DMG:30 Delay:366 VIT+4 \uEF23+15\nPhysical damage taken -20%\nAdditional effect: Earth damage",
+            "descr" => "DMG:30 Delay:366 VIT+4 Thunder+15\nPhysical damage taken -20%\nAdditional effect: Earth damage",
             "name" => "Earth Staff",
             "longname" => "earth staff",
             "lvl" => 51,
@@ -11077,7 +11077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17552 => array(
-            "descr" => "DMG:35 Delay:356 VIT+5 \uEF23+20\nPhysical damage taken -20%\nAdditional effect: Earth damage",
+            "descr" => "DMG:35 Delay:356 VIT+5 Thunder+20\nPhysical damage taken -20%\nAdditional effect: Earth damage",
             "name" => "Terra's Staff",
             "longname" => "Terra's staff",
             "lvl" => 51,
@@ -11087,7 +11087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17553 => array(
-            "descr" => "DMG:30 Delay:366 DEX+4 \uEF24+15\nCritical hit rate +15%\nAdditional effect: Lightning damage",
+            "descr" => "DMG:30 Delay:366 DEX+4 Water+15\nCritical hit rate +15%\nAdditional effect: Lightning damage",
             "name" => "Thunder Staff",
             "longname" => "thunder staff",
             "lvl" => 51,
@@ -11097,7 +11097,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17554 => array(
-            "descr" => "DMG:35 Delay:356 DEX+5 \uEF24+20\nCritical hit rate +15%\nAdditional effect: Lightning damage",
+            "descr" => "DMG:35 Delay:356 DEX+5 Water+20\nCritical hit rate +15%\nAdditional effect: Lightning damage",
             "name" => "Jupiter's Staff",
             "longname" => "Jupiter's staff",
             "lvl" => 51,
@@ -11107,7 +11107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17555 => array(
-            "descr" => "DMG:30 Delay:366 MND+4 \uEF1F+15\nDivine magic skill +10\nAdditional effect: Water damage",
+            "descr" => "DMG:30 Delay:366 MND+4 Fire+15\nDivine magic skill +10\nAdditional effect: Water damage",
             "name" => "Water Staff",
             "longname" => "water staff",
             "lvl" => 51,
@@ -11117,7 +11117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17556 => array(
-            "descr" => "DMG:35 Delay:356 MND+5 \uEF1F+20\nDivine magic skill +10\nAdditional effect: Water damage",
+            "descr" => "DMG:35 Delay:356 MND+5 Fire+20\nDivine magic skill +10\nAdditional effect: Water damage",
             "name" => "Neptune's Staff",
             "longname" => "Neptune's staff",
             "lvl" => 51,
@@ -11127,7 +11127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17557 => array(
-            "descr" => "DMG:30 Delay:366 STR+1 DEX+1 VIT+1\nAGI+1 INT+1 MND+1 CHR+1 \uEF26+15 \n\"Cure\" potency +10%\nAdditional effect: Light damage",
+            "descr" => "DMG:30 Delay:366 STR+1 DEX+1 VIT+1\nAGI+1 INT+1 MND+1 CHR+1 Dark+15 \n\"Cure\" potency +10%\nAdditional effect: Light damage",
             "name" => "Light Staff",
             "longname" => "light staff",
             "lvl" => 51,
@@ -11137,7 +11137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17558 => array(
-            "descr" => "DMG:35 Delay:356 STR+2 DEX+2 VIT+2\nAGI+2 INT+2 MND+2 CHR+2 \uEF26+20\n\"Cure\" potency +10%\nAdditional effect: Light damage",
+            "descr" => "DMG:35 Delay:356 STR+2 DEX+2 VIT+2\nAGI+2 INT+2 MND+2 CHR+2 Dark+20\n\"Cure\" potency +10%\nAdditional effect: Light damage",
             "name" => "Apollo's Staff",
             "longname" => "Apollo's staff",
             "lvl" => 51,
@@ -11147,7 +11147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17559 => array(
-            "descr" => "DMG:30 Delay:366 STR+1 DEX+1 VIT+1\nAGI+1 INT+1 MND+1 CHR+1 \uEF25+15\nMP recovered while healing +10\nAdditional effect: Darkness damage",
+            "descr" => "DMG:30 Delay:366 STR+1 DEX+1 VIT+1\nAGI+1 INT+1 MND+1 CHR+1 Light+15\nMP recovered while healing +10\nAdditional effect: Darkness damage",
             "name" => "Dark Staff",
             "longname" => "dark staff",
             "lvl" => 51,
@@ -11157,7 +11157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17560 => array(
-            "descr" => "DMG:35 Delay:356 STR+2 DEX+2 VIT+2\nAGI+2 INT+2 MND+2 CHR+2 \uEF25+20\nMP recovered while healing +10\nAdditional effect: Darkness damage",
+            "descr" => "DMG:35 Delay:356 STR+2 DEX+2 VIT+2\nAGI+2 INT+2 MND+2 CHR+2 Light+20\nMP recovered while healing +10\nAdditional effect: Darkness damage",
             "name" => "Pluto's Staff",
             "longname" => "Pluto's staff",
             "lvl" => 51,
@@ -11197,7 +11197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17564 => array(
-            "descr" => "DMG:52 Delay:402 HP+13 \uEF20+20 \nAdditional effect: \"Ice Spikes\"",
+            "descr" => "DMG:52 Delay:402 HP+13 Ice+20 \nAdditional effect: \"Ice Spikes\"",
             "name" => "Cocytus Pole",
             "longname" => "Cocytus pole",
             "lvl" => 69,
@@ -11227,7 +11227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17567 => array(
-            "descr" => "DMG:60 Delay:402 HP+20 MP+20 INT+10\nMND+10 \uEF1F+15 \uEF20+15 \uEF21+15 \uEF22+15\n\uEF23+15 \uEF24+15 \uEF25+15 \uEF26+15",
+            "descr" => "DMG:60 Delay:402 HP+20 MP+20 INT+10\nMND+10 Fire+15 Ice+15 Wind+15 Earth+15\nThunder+15 Water+15 Light+15 Dark+15",
             "name" => "Kirin's Pole",
             "longname" => "Kirin's pole",
             "lvl" => 75,
@@ -11367,7 +11367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17581 => array(
-            "descr" => "DMG:56 Delay:402\nOn Windsdays: \uEF21+15\nDivine magic skill +13\nElemental magic skill +13",
+            "descr" => "DMG:56 Delay:402\nOn Windsdays: Wind+15\nDivine magic skill +13\nElemental magic skill +13",
             "name" => "Mighty Pole",
             "longname" => "mighty pole",
             "lvl" => 72,
@@ -11377,7 +11377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17582 => array(
-            "descr" => "DMG:55 Delay:402 INT-4 MND+4\n\uEF1F+6 \uEF20+6 \uEF21+6 \uEF22+6\n\uEF23+6 \uEF24+6 \uEF25+6 \uEF26+6\nHealing magic skill +10",
+            "descr" => "DMG:55 Delay:402 INT-4 MND+4\nFire+6 Ice+6 Wind+6 Earth+6\nThunder+6 Water+6 Light+6 Dark+6\nHealing magic skill +10",
             "name" => "Prelatic Pole",
             "longname" => "prelatic pole",
             "lvl" => 71,
@@ -11657,7 +11657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17610 => array(
-            "descr" => "DMG:17 Delay:195 \uEF25-5 Accuracy+3 \nAttack+3",
+            "descr" => "DMG:17 Delay:195 Light-5 Accuracy+3 \nAttack+3",
             "name" => "Bone Knife",
             "longname" => "bone knife",
             "lvl" => 46,
@@ -11667,7 +11667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17611 => array(
-            "descr" => "DMG:18 Delay:190 \uEF25-5 Accuracy+5 \nAttack+5",
+            "descr" => "DMG:18 Delay:190 Light-5 Accuracy+5 \nAttack+5",
             "name" => "Bone Knife +1",
             "longname" => "bone knife +1",
             "lvl" => 46,
@@ -11717,7 +11717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17616 => array(
-            "descr" => "DMG:27 Delay:200 \nLatent effect: HP+20 \uEF20+10 \uEF22+10",
+            "descr" => "DMG:27 Delay:200 \nLatent effect: HP+20 Ice+10 Earth+10",
             "name" => "Dagger of Trials",
             "longname" => "dagger of trials",
             "lvl" => 71,
@@ -11767,7 +11767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17621 => array(
-            "descr" => "DMG:30 Delay:200 HP+11 DEX+3 VIT+3\n\uEF24+9",
+            "descr" => "DMG:30 Delay:200 HP+11 DEX+3 VIT+3\nWater+9",
             "name" => "Gully +1",
             "longname" => "gully +1",
             "lvl" => 72,
@@ -11777,7 +11777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17622 => array(
-            "descr" => "DMG:17 Delay:200 \uEF24+7",
+            "descr" => "DMG:17 Delay:200 Water+7",
             "name" => "Buccaneer's Knife",
             "longname" => "buccaneer's knife",
             "lvl" => 71,
@@ -11787,7 +11787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17623 => array(
-            "descr" => "DMG:27 Delay:200 AGI+2 \uEF24+8 \n\"Steal\"+2\nAdditional effect: Water damage",
+            "descr" => "DMG:27 Delay:200 AGI+2 Water+8 \n\"Steal\"+2\nAdditional effect: Water damage",
             "name" => "Btm. Knife",
             "longname" => "Bartholomew's knife",
             "lvl" => 71,
@@ -11807,7 +11807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17625 => array(
-            "descr" => "DMG:29 Delay:205 HP+10\nDEX+2 VIT+2 \uEF24+8\nEnchantment: \"Stone\"",
+            "descr" => "DMG:29 Delay:205 HP+10\nDEX+2 VIT+2 Water+8\nEnchantment: \"Stone\"",
             "name" => "Ponderous Gully",
             "longname" => "ponderous gully",
             "lvl" => 72,
@@ -12047,7 +12047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17650 => array(
-            "descr" => "DMG:18 Delay:236 \uEF24+3\nAdditional effect: Poison",
+            "descr" => "DMG:18 Delay:236 Water+3\nAdditional effect: Poison",
             "name" => "Nadrs",
             "longname" => "Nadrs",
             "lvl" => 24,
@@ -12067,7 +12067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17652 => array(
-            "descr" => "DMG:35 Delay:224 \uEF26+14\nOccasionally attacks twice",
+            "descr" => "DMG:35 Delay:224 Dark+14\nOccasionally attacks twice",
             "name" => "Joyeuse",
             "longname" => "Joyeuse",
             "lvl" => 70,
@@ -12077,7 +12077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17653 => array(
-            "descr" => "DMG:48 Delay:277 \uEF1F+15 \uEF24-15\nBreath damage taken -10%\nEnhances effect of \"Dragon Killer\"",
+            "descr" => "DMG:48 Delay:277 Fire+15 Water-15\nBreath damage taken -10%\nEnhances effect of \"Dragon Killer\"",
             "name" => "Hrotti",
             "longname" => "Hrotti",
             "lvl" => 70,
@@ -12087,7 +12087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17654 => array(
-            "descr" => "DMG:38 Delay:236 \nLatent effect: HP+20 \uEF1F+10 \uEF21+10",
+            "descr" => "DMG:38 Delay:236 \nLatent effect: HP+20 Fire+10 Wind+10",
             "name" => "Sapara of Trials",
             "longname" => "sapara of trials",
             "lvl" => 71,
@@ -12137,7 +12137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17659 => array(
-            "descr" => "DMG:45 Delay:240 \uEF24+10 Evasion+5\nEnhances \"Plantoid Killer\" effect\nAdditional effect: Water damage",
+            "descr" => "DMG:45 Delay:240 Water+10 Evasion+5\nEnhances \"Plantoid Killer\" effect\nAdditional effect: Water damage",
             "name" => "Seiryu's Sword",
             "longname" => "Seiryu's sword",
             "lvl" => 74,
@@ -12487,7 +12487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17697 => array(
-            "descr" => "DMG:40 Delay:240 DEX+2\nOn Windsdays: DMG:48 \uEF21+15",
+            "descr" => "DMG:40 Delay:240 DEX+2\nOn Windsdays: DMG:48 Wind+15",
             "name" => "Mighty Talwar",
             "longname" => "mighty talwar",
             "lvl" => 72,
@@ -13047,7 +13047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17754 => array(
-            "descr" => "DMG:39 Delay:224 \uEF21+10 \uEF22-10",
+            "descr" => "DMG:39 Delay:224 Wind+10 Earth-10",
             "name" => "Sylphid Epee",
             "longname" => "sylphid epee",
             "lvl" => 72,
@@ -13237,7 +13237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17773 => array(
-            "descr" => "DMG:33 Delay:227 \nLatent effect: HP+20 \uEF1F+10 \uEF25+10",
+            "descr" => "DMG:33 Delay:227 \nLatent effect: HP+20 Fire+10 Light+10",
             "name" => "Kodachi of Trials",
             "longname" => "kodachi of trials",
             "lvl" => 71,
@@ -13417,7 +13417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17791 => array(
-            "descr" => "DMG:34 Delay:227 Critical hit rate +5%\nOn Firesdays: DMG:41 \uEF1F+15",
+            "descr" => "DMG:34 Delay:227 Critical hit rate +5%\nOn Firesdays: DMG:41 Fire+15",
             "name" => "Rai Kunimitsu",
             "longname" => "rai kunimitsu",
             "lvl" => 74,
@@ -13627,7 +13627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17815 => array(
-            "descr" => "DMG:76 Delay:450 \nLatent effect: HP+20 \uEF20+10 \uEF26+10",
+            "descr" => "DMG:76 Delay:450 \nLatent effect: HP+20 Ice+10 Dark+10",
             "name" => "Tachi of Trials",
             "longname" => "tachi of trials",
             "lvl" => 71,
@@ -13717,7 +13717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17824 => array(
-            "descr" => "DMG:77 Delay:450 STR+2\nOn Firesdays: DMG:87 \uEF1F+15",
+            "descr" => "DMG:77 Delay:450 STR+2\nOn Firesdays: DMG:87 Fire+15",
             "name" => "Nukemaru",
             "longname" => "nukemaru",
             "lvl" => 73,
@@ -13817,7 +13817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17834 => array(
-            "descr" => "\uEF26+20 \"Etude\"+2",
+            "descr" => "Dark+20 \"Etude\"+2",
             "name" => "Mythic Harp +1",
             "longname" => "mythic harp +1",
             "lvl" => 70,
@@ -13847,7 +13847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17837 => array(
-            "descr" => "CHR+3 \uEF25+6\n\"Virelai\"+2",
+            "descr" => "CHR+3 Light+6\n\"Virelai\"+2",
             "name" => "Cyt. Anglica +1",
             "longname" => "Cythara Anglica +1",
             "lvl" => 75,
@@ -14437,7 +14437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17933 => array(
-            "descr" => "DMG:46 Delay:312 \nLatent effect: HP+20 \uEF21+10 \uEF23+10",
+            "descr" => "DMG:46 Delay:312 \nLatent effect: HP+20 Wind+10 Thunder+10",
             "name" => "Pick of Trials",
             "longname" => "pick of trials",
             "lvl" => 71,
@@ -14517,7 +14517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17941 => array(
-            "descr" => "DMG:47 Delay:312 VIT+1 CHR+1\nOn Windsdays: DMG:52 \uEF21+15",
+            "descr" => "DMG:47 Delay:312 VIT+1 CHR+1\nOn Windsdays: DMG:52 Wind+15",
             "name" => "Mighty Pick",
             "longname" => "mighty pick",
             "lvl" => 73,
@@ -14597,7 +14597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17949 => array(
-            "descr" => "DMG:49 Delay:288 HP+10\nDEX+2 VIT+2 \uEF1F+8\nEnchantment: \"Fire\"",
+            "descr" => "DMG:49 Delay:288 HP+10\nDEX+2 VIT+2 Fire+8\nEnchantment: \"Fire\"",
             "name" => "Furnace Tabarzin",
             "longname" => "furnace tabarzin",
             "lvl" => 71,
@@ -14757,7 +14757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17965 => array(
-            "descr" => "DMG:41 Delay:258 \uEF20+5 \uEF21+5\nAdditional effect: Wind damage",
+            "descr" => "DMG:41 Delay:258 Ice+5 Wind+5\nAdditional effect: Wind damage",
             "name" => "Sirocco Axe",
             "longname" => "sirocco axe",
             "lvl" => 60,
@@ -14917,7 +14917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         17981 => array(
-            "descr" => "DMG:20 Delay:178 \uEF26+10\nAdditional effect vs. slimes:\nLight damage",
+            "descr" => "DMG:20 Delay:178 Dark+10\nAdditional effect vs. slimes:\nLight damage",
             "name" => "Bano del Sol",
             "longname" => "bano del sol",
             "lvl" => 61,
@@ -15107,7 +15107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18000 => array(
-            "descr" => "DMG:28 Delay:200 AGI+1 CHR+1\nOn Windsdays: DMG:38 \uEF21+15",
+            "descr" => "DMG:28 Delay:200 AGI+1 CHR+1\nOn Windsdays: DMG:38 Wind+15",
             "name" => "Mighty Knife",
             "longname" => "mighty knife",
             "lvl" => 73,
@@ -15287,7 +15287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18018 => array(
-            "descr" => "DMG:26 Delay:150 \uEF20-7 \uEF21+7\nAdditional effect: Wind damage",
+            "descr" => "DMG:26 Delay:150 Ice-7 Wind+7\nAdditional effect: Wind damage",
             "name" => "Sirocco Kukri",
             "longname" => "sirocco kukri",
             "lvl" => 69,
@@ -15457,7 +15457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18035 => array(
-            "descr" => "DMG:17 Delay:195 \uEF25-5\nAccuracy+3 Attack+3\nEnchantment: TP+100",
+            "descr" => "DMG:17 Delay:195 Light-5\nAccuracy+3 Attack+3\nEnchantment: TP+100",
             "name" => "Deathbone Knife",
             "longname" => "deathbone knife",
             "lvl" => 46,
@@ -15527,7 +15527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18042 => array(
-            "descr" => "DMG:79 Delay:480 \uEF1F+8 \uEF25+8\nAdditional effect vs. undead:\nFire damage",
+            "descr" => "DMG:79 Delay:480 Fire+8 Light+8\nAdditional effect vs. undead:\nFire damage",
             "name" => "Ascention",
             "longname" => "Ascention",
             "lvl" => 67,
@@ -15537,7 +15537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18043 => array(
-            "descr" => "DMG:88 Delay:480 \uEF1F+10 Accuracy+5\nEnhances \"Bird Killer\" effect\nAdditional effect: Fire damage",
+            "descr" => "DMG:88 Delay:480 Fire+10 Accuracy+5\nEnhances \"Bird Killer\" effect\nAdditional effect: Fire damage",
             "name" => "Suzaku's Scythe",
             "longname" => "Suzaku's scythe",
             "lvl" => 74,
@@ -15597,7 +15597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18049 => array(
-            "descr" => "DMG:86 Delay:494 INT+2\nOn Windsdays: DMG:94 \uEF21+15",
+            "descr" => "DMG:86 Delay:494 INT+2\nOn Windsdays: DMG:94 Wind+15",
             "name" => "Mighty Zaghnal",
             "longname" => "mighty zaghnal",
             "lvl" => 72,
@@ -16017,7 +16017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18091 => array(
-            "descr" => "DMG:87 Delay:507 VIT+2\nOn Firesdays: DMG:99 \uEF1F+15",
+            "descr" => "DMG:87 Delay:507 VIT+2\nOn Firesdays: DMG:99 Fire+15",
             "name" => "Mighty Lance",
             "longname" => "mighty lance",
             "lvl" => 73,
@@ -16497,7 +16497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18139 => array(
-            "descr" => "\uEF1F-6 Attack+12",
+            "descr" => "Fire-6 Attack+12",
             "name" => "Bomb Core",
             "longname" => "bomb core",
             "lvl" => 63,
@@ -16517,7 +16517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18141 => array(
-            "descr" => "DMG:30 Delay:220 HP+8 MP+8 \uEF21+8\nEvasion+8",
+            "descr" => "DMG:30 Delay:220 HP+8 MP+8 Wind+8\nEvasion+8",
             "name" => "Ungur Boomerang",
             "longname" => "ungur boomerang",
             "lvl" => 70,
@@ -16547,7 +16547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18144 => array(
-            "descr" => "DMG:39 Delay:360 \nLatent effect: HP+20 \uEF21+10 \uEF23+10",
+            "descr" => "DMG:39 Delay:360 \nLatent effect: HP+20 Wind+10 Thunder+10",
             "name" => "Bow of Trials",
             "longname" => "bow of trials",
             "lvl" => 71,
@@ -16567,7 +16567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18146 => array(
-            "descr" => "DMG:39 Delay:600 \nLatent effect: HP+20 \uEF22+10 \uEF24+10",
+            "descr" => "DMG:39 Delay:600 \nLatent effect: HP+20 Earth+10 Water+10",
             "name" => "Gun of Trials",
             "longname" => "gun of trials",
             "lvl" => 71,
@@ -17087,7 +17087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18198 => array(
-            "descr" => "DMG:94 Delay:504 \uEF21+10 Attack+5 \nEnhances \"Beast Killer\" effect\nAdditional effect: Wind damage",
+            "descr" => "DMG:94 Delay:504 Wind+10 Attack+5 \nEnhances \"Beast Killer\" effect\nAdditional effect: Wind damage",
             "name" => "Byakko's Axe",
             "longname" => "Byakko's axe",
             "lvl" => 74,
@@ -17237,7 +17237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18213 => array(
-            "descr" => "DMG:88 Delay:504 VIT+1 AGI+1\nOn Firesdays: DMG:98 \uEF1F+15",
+            "descr" => "DMG:88 Delay:504 VIT+1 AGI+1\nOn Firesdays: DMG:98 Fire+15",
             "name" => "Mighty Axe",
             "longname" => "mighty axe",
             "lvl" => 73,
@@ -17337,7 +17337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18223 => array(
-            "descr" => "DMG:92 Delay:504 HP+10\nDEX+2 VIT+2 \uEF20+8 ",
+            "descr" => "DMG:92 Delay:504 HP+10\nDEX+2 VIT+2 Ice+8 ",
             "name" => "Toporok",
             "longname" => "toporok",
             "lvl" => 73,
@@ -17347,7 +17347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18224 => array(
-            "descr" => "DMG:93 Delay:489 HP+11\nDEX+3 VIT+3 \uEF20+9 ",
+            "descr" => "DMG:93 Delay:489 HP+11\nDEX+3 VIT+3 Ice+9 ",
             "name" => "Toporok +1",
             "longname" => "toporok +1",
             "lvl" => 73,
@@ -17357,7 +17357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18225 => array(
-            "descr" => "DMG:92 Delay:504 HP+10\nDEX+2 VIT+2 \uEF20+8\nEnchantment: \"Blizzard\"",
+            "descr" => "DMG:92 Delay:504 HP+10\nDEX+2 VIT+2 Ice+8\nEnchantment: \"Blizzard\"",
             "name" => "Blizzard Toporok",
             "longname" => "blizzard toporok",
             "lvl" => 73,
@@ -17677,7 +17677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18257 => array(
-            "descr" => "VIT+4 \uEF24+3 \nEnhances \"Aquan Killer\" effect",
+            "descr" => "VIT+4 Water+3 \nEnhances \"Aquan Killer\" effect",
             "name" => "Bibiki Seashell",
             "longname" => "Bibiki seashell",
             "lvl" => 60,
@@ -17717,7 +17717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18261 => array(
-            "descr" => "DMG:+1 Delay:+96\nIn Dynamis: DMG:+16 Delay:+96\n\uEF24+7",
+            "descr" => "DMG:+1 Delay:+96\nIn Dynamis: DMG:+16 Delay:+96\nWater+7",
             "name" => "Militant Knuckles",
             "longname" => "militant knuckles",
             "lvl" => 75,
@@ -17727,7 +17727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18262 => array(
-            "descr" => "DMG:+16 Delay:+96\nIn Dynamis: DMG:+18 Delay:+96\n\uEF24+9",
+            "descr" => "DMG:+16 Delay:+96\nIn Dynamis: DMG:+18 Delay:+96\nWater+9",
             "name" => "Dynamis Knuckles",
             "longname" => "Dynamis knuckles",
             "lvl" => 75,
@@ -17767,7 +17767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18267 => array(
-            "descr" => "DMG:1 Delay:200\nIn Dynamis: DMG:23 Delay:200 \uEF26+7",
+            "descr" => "DMG:1 Delay:200\nIn Dynamis: DMG:23 Delay:200 Dark+7",
             "name" => "Malefic Dagger",
             "longname" => "malefic dagger",
             "lvl" => 75,
@@ -17777,7 +17777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18268 => array(
-            "descr" => "DMG:23 Delay:200\nIn Dynamis: DMG:26 Delay:200 \uEF26+9",
+            "descr" => "DMG:23 Delay:200\nIn Dynamis: DMG:26 Delay:200 Dark+9",
             "name" => "Dynamis Dagger",
             "longname" => "Dynamis dagger",
             "lvl" => 75,
@@ -17827,7 +17827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18273 => array(
-            "descr" => "DMG:1 Delay:240\nIn Dynamis: DMG:40 Delay:240 \uEF23+7",
+            "descr" => "DMG:1 Delay:240\nIn Dynamis: DMG:40 Delay:240 Thunder+7",
             "name" => "Glyptic Sword",
             "longname" => "glyptic sword",
             "lvl" => 75,
@@ -17837,7 +17837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18274 => array(
-            "descr" => "DMG:40 Delay:240\nIn Dynamis: DMG:48 Delay:240 \uEF23+9",
+            "descr" => "DMG:40 Delay:240\nIn Dynamis: DMG:48 Delay:240 Thunder+9",
             "name" => "Dynamis Sword",
             "longname" => "Dynamis sword",
             "lvl" => 75,
@@ -17877,7 +17877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18279 => array(
-            "descr" => "DMG:1 Delay:444\nIn Dynamis: DMG:80 Delay:444 \uEF21+7",
+            "descr" => "DMG:1 Delay:444\nIn Dynamis: DMG:80 Delay:444 Wind+7",
             "name" => "Gilded Blade",
             "longname" => "gilded blade",
             "lvl" => 75,
@@ -17887,7 +17887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18280 => array(
-            "descr" => "DMG:80 Delay:444\nIn Dynamis: DMG:85 Delay:444 \uEF21+9",
+            "descr" => "DMG:80 Delay:444\nIn Dynamis: DMG:85 Delay:444 Wind+9",
             "name" => "Dynamis Blade",
             "longname" => "Dynamis blade",
             "lvl" => 75,
@@ -17927,7 +17927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18285 => array(
-            "descr" => "DMG:1 Delay:288\nIn Dynamis: DMG:46 Delay:288 \uEF25+7",
+            "descr" => "DMG:1 Delay:288\nIn Dynamis: DMG:46 Delay:288 Light+7",
             "name" => "Leonine Axe",
             "longname" => "leonine axe",
             "lvl" => 75,
@@ -17937,7 +17937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18286 => array(
-            "descr" => "DMG:46 Delay:288\nIn Dynamis: DMG:50 Delay:288 \uEF25+9",
+            "descr" => "DMG:46 Delay:288\nIn Dynamis: DMG:50 Delay:288 Light+9",
             "name" => "Dynamis Axe",
             "longname" => "Dynamis axe",
             "lvl" => 75,
@@ -17977,7 +17977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18291 => array(
-            "descr" => "DMG:1 Delay:504\nIn Dynamis: DMG:87 Delay:504 \uEF25+7",
+            "descr" => "DMG:1 Delay:504\nIn Dynamis: DMG:87 Delay:504 Light+7",
             "name" => "Agonal Bhuj",
             "longname" => "agonal bhuj",
             "lvl" => 75,
@@ -17987,7 +17987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18292 => array(
-            "descr" => "DMG:89 Delay:504\nIn Dynamis: DMG:93 Delay:504 \uEF25+9",
+            "descr" => "DMG:89 Delay:504\nIn Dynamis: DMG:93 Delay:504 Light+9",
             "name" => "Dynamis Bhuj",
             "longname" => "Dynamis bhuj",
             "lvl" => 75,
@@ -18017,7 +18017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18295 => array(
-            "descr" => "DMG:96 Delay:510 HP+10 MP+10 \uEF20+7\nAccuracy+5 ",
+            "descr" => "DMG:96 Delay:510 HP+10 MP+10 Ice+7\nAccuracy+5 ",
             "name" => "Wyrm Tongue",
             "longname" => "Wyrm Tongue",
             "lvl" => 75,
@@ -18037,7 +18037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18297 => array(
-            "descr" => "DMG:1 Delay:507\nIn Dynamis: DMG:82 Delay:507 \uEF22+7",
+            "descr" => "DMG:1 Delay:507\nIn Dynamis: DMG:82 Delay:507 Earth+7",
             "name" => "Hotspur Lance",
             "longname" => "hotspur lance",
             "lvl" => 75,
@@ -18047,7 +18047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18298 => array(
-            "descr" => "DMG:82 Delay:507\nIn Dynamis: DMG:84 Delay:507 \uEF22+9",
+            "descr" => "DMG:82 Delay:507\nIn Dynamis: DMG:84 Delay:507 Earth+9",
             "name" => "Dynamis Lance",
             "longname" => "Dynamis lance",
             "lvl" => 75,
@@ -18097,7 +18097,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18303 => array(
-            "descr" => "DMG:1 Delay:528\nIn Dynamis: DMG:82 Delay:528 \uEF20+7",
+            "descr" => "DMG:1 Delay:528\nIn Dynamis: DMG:82 Delay:528 Ice+7",
             "name" => "Memento Scythe",
             "longname" => "memento scythe",
             "lvl" => 75,
@@ -18107,7 +18107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18304 => array(
-            "descr" => "DMG:82 Delay:528\nIn Dynamis: DMG:85 Delay:528 \uEF20+9",
+            "descr" => "DMG:82 Delay:528\nIn Dynamis: DMG:85 Delay:528 Ice+9",
             "name" => "Dynamis Scythe",
             "longname" => "Dynamis scythe",
             "lvl" => 75,
@@ -18147,7 +18147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18309 => array(
-            "descr" => "DMG:1 Delay:227\nIn Dynamis: DMG:33 Delay:227 \uEF26+7",
+            "descr" => "DMG:1 Delay:227\nIn Dynamis: DMG:33 Delay:227 Dark+7",
             "name" => "Mimizuku",
             "longname" => "mimizuku",
             "lvl" => 75,
@@ -18157,7 +18157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18310 => array(
-            "descr" => "DMG:33 Delay:227\nIn Dynamis: DMG:40 Delay:227 \uEF26+9",
+            "descr" => "DMG:33 Delay:227\nIn Dynamis: DMG:40 Delay:227 Dark+9",
             "name" => "Rogetsu",
             "longname" => "rogetsu",
             "lvl" => 75,
@@ -18197,7 +18197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18315 => array(
-            "descr" => "DMG:1 Delay:450\nIn Dynamis: DMG:76 Delay:450 \uEF21+7",
+            "descr" => "DMG:1 Delay:450\nIn Dynamis: DMG:76 Delay:450 Wind+7",
             "name" => "Hayatemaru",
             "longname" => "hayatemaru",
             "lvl" => 75,
@@ -18207,7 +18207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18316 => array(
-            "descr" => "DMG:76 Delay:450\nIn Dynamis: DMG:79 Delay:450 \uEF21+9",
+            "descr" => "DMG:76 Delay:450\nIn Dynamis: DMG:79 Delay:450 Wind+9",
             "name" => "Oboromaru",
             "longname" => "oboromaru",
             "lvl" => 75,
@@ -18247,7 +18247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18321 => array(
-            "descr" => "DMG:1 Delay:340\nIn Dynamis: DMG:29 Delay:340 \uEF23+7",
+            "descr" => "DMG:1 Delay:340\nIn Dynamis: DMG:29 Delay:340 Thunder+7",
             "name" => "Battering Maul",
             "longname" => "battering maul",
             "lvl" => 75,
@@ -18257,7 +18257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18322 => array(
-            "descr" => "DMG:30 Delay:340\nIn Dynamis: DMG:35 Delay:340 \uEF23+9",
+            "descr" => "DMG:30 Delay:340\nIn Dynamis: DMG:35 Delay:340 Thunder+9",
             "name" => "Dynamis Maul",
             "longname" => "Dynamis maul",
             "lvl" => 75,
@@ -18297,7 +18297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18327 => array(
-            "descr" => "DMG:1 Delay:402\nIn Dynamis: DMG:55 Delay:402 \uEF1F+7",
+            "descr" => "DMG:1 Delay:402\nIn Dynamis: DMG:55 Delay:402 Fire+7",
             "name" => "Sage's Staff",
             "longname" => "sage's staff",
             "lvl" => 75,
@@ -18307,7 +18307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18328 => array(
-            "descr" => "DMG:55 Delay:402\nIn Dynamis: DMG:58 Delay:402 \uEF1F+9",
+            "descr" => "DMG:55 Delay:402\nIn Dynamis: DMG:58 Delay:402 Fire+9",
             "name" => "Dynamis Staff",
             "longname" => "Dynamis staff",
             "lvl" => 75,
@@ -18347,7 +18347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18333 => array(
-            "descr" => "DMG:1 Delay:600\nIn Dynamis: DMG:39 Delay:600 \uEF1F+7",
+            "descr" => "DMG:1 Delay:600\nIn Dynamis: DMG:39 Delay:600 Fire+7",
             "name" => "Marksman Gun",
             "longname" => "marksman gun",
             "lvl" => 75,
@@ -18357,7 +18357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18334 => array(
-            "descr" => "DMG:39 Delay:600\nIn Dynamis: DMG:42 Delay:600 \uEF1F+9",
+            "descr" => "DMG:39 Delay:600\nIn Dynamis: DMG:42 Delay:600 Fire+9",
             "name" => "Dynamis Gun",
             "longname" => "Dynamis gun",
             "lvl" => 75,
@@ -18397,7 +18397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18339 => array(
-            "descr" => "In Dynamis: CHR+1 \uEF20+7",
+            "descr" => "In Dynamis: CHR+1 Ice+7",
             "name" => "Pyrrhic Horn",
             "longname" => "pyrrhic horn",
             "lvl" => 75,
@@ -18407,7 +18407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18340 => array(
-            "descr" => "In Dynamis: CHR+2 \uEF20+9",
+            "descr" => "In Dynamis: CHR+2 Ice+9",
             "name" => "Dynamis Horn",
             "longname" => "Dynamis horn",
             "lvl" => 75,
@@ -18447,7 +18447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18345 => array(
-            "descr" => "DMG:1 Delay:540\nIn Dynamis: DMG:68 Delay:540 \uEF24+7",
+            "descr" => "DMG:1 Delay:540\nIn Dynamis: DMG:68 Delay:540 Water+7",
             "name" => "Wolver Bow",
             "longname" => "wolver bow",
             "lvl" => 75,
@@ -18457,7 +18457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18346 => array(
-            "descr" => "DMG:68 Delay:540\nIn Dynamis: DMG:71 Delay:540 \uEF24+9",
+            "descr" => "DMG:68 Delay:540\nIn Dynamis: DMG:71 Delay:540 Water+9",
             "name" => "Dynamis Bow",
             "longname" => "Dynamis bow",
             "lvl" => 75,
@@ -18507,7 +18507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18352 => array(
-            "descr" => "DMG:+17 Delay:+96 Evasion+5\nOn Firesdays: DMG:+22 \uEF1F+15",
+            "descr" => "DMG:+17 Delay:+96 Evasion+5\nOn Firesdays: DMG:+22 Fire+15",
             "name" => "Mighty Patas",
             "longname" => "mighty patas",
             "lvl" => 72,
@@ -18727,7 +18727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18374 => array(
-            "descr" => "DMG:75 Delay:444 STR+1 DEX+1\nOn Firesdays: DMG:84 \uEF1F+15",
+            "descr" => "DMG:75 Delay:444 STR+1 DEX+1\nOn Firesdays: DMG:84 Fire+15",
             "name" => "Mighty Sword",
             "longname" => "mighty sword",
             "lvl" => 72,
@@ -18907,7 +18907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18392 => array(
-            "descr" => "DMG:31 Delay:324 MND+2 \uEF26+3 \nAdditional effect: Light damage \nEnchantment: \"Enlight\"",
+            "descr" => "DMG:31 Delay:324 MND+2 Dark+3 \nAdditional effect: Light damage \nEnchantment: \"Enlight\"",
             "name" => "Sacred Maul",
             "longname" => "sacred maul",
             "lvl" => 38,
@@ -19297,7 +19297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18431 => array(
-            "descr" => "DMG:80 Delay:450 HP+10\nDEX+2 VIT+2 \uEF1F+8",
+            "descr" => "DMG:80 Delay:450 HP+10\nDEX+2 VIT+2 Fire+8",
             "name" => "Butachi",
             "longname" => "butachi",
             "lvl" => 73,
@@ -19307,7 +19307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18432 => array(
-            "descr" => "DMG:81 Delay:437 HP+11\nDEX+3 VIT+3 \uEF1F+9",
+            "descr" => "DMG:81 Delay:437 HP+11\nDEX+3 VIT+3 Fire+9",
             "name" => "Butachi +1",
             "longname" => "butachi +1",
             "lvl" => 73,
@@ -19317,7 +19317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18433 => array(
-            "descr" => "DMG:80 Delay:450 HP+10\nDEX+2 VIT+2 \uEF1F+8\nEnchantment: \"Fire\"",
+            "descr" => "DMG:80 Delay:450 HP+10\nDEX+2 VIT+2 Fire+8\nEnchantment: \"Fire\"",
             "name" => "Kagiroi",
             "longname" => "kagiroi",
             "lvl" => 73,
@@ -20057,7 +20057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18600 => array(
-            "descr" => "DMG:1 Delay:402 \uEF22+2",
+            "descr" => "DMG:1 Delay:402 Earth+2",
             "name" => "Caver's Shovel",
             "longname" => "caver's shovel",
             "lvl" => 1,
@@ -20477,7 +20477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18695 => array(
-            "descr" => "DMG:72 Delay:600 AGI+2 \uEF1F+13 \uEF26+13 ",
+            "descr" => "DMG:72 Delay:600 AGI+2 Fire+13 Dark+13 ",
             "name" => "Cerberus Bow",
             "longname" => "Cerberus bow",
             "lvl" => 75,
@@ -20537,7 +20537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18701 => array(
-            "descr" => "DMG:73 Delay:582 AGI+4 \uEF1F+14 \uEF26+14\nRanged Attack+24",
+            "descr" => "DMG:73 Delay:582 AGI+4 Fire+14 Dark+14\nRanged Attack+24",
             "name" => "Cerberus Bow +1",
             "longname" => "Cerberus bow +1",
             "lvl" => 75,
@@ -20597,7 +20597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18707 => array(
-            "descr" => "\uEF1F-6\nAccuracy+6 Attack+6 ",
+            "descr" => "Fire-6\nAccuracy+6 Attack+6 ",
             "name" => "Fire Bomblet",
             "longname" => "fire bomblet",
             "lvl" => 70,
@@ -21327,7 +21327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18847 => array(
-            "descr" => "DMG:27 Delay:217 HP+27 MP+27\n\uEF23+7 \uEF24+7 \uEF25+7\n\"Conserve MP\"+7\nElemental magic skill +7",
+            "descr" => "DMG:27 Delay:217 HP+27 MP+27\nThunder+7 Water+7 Light+7\n\"Conserve MP\"+7\nElemental magic skill +7",
             "name" => "Seveneyes",
             "longname" => "seveneyes",
             "lvl" => 71,
@@ -21387,7 +21387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         18853 => array(
-            "descr" => "DMG:26 Delay:324 MND+2 \uEF26+3\nAdditional effect: Light damage\nEnchantment: TP+100",
+            "descr" => "DMG:26 Delay:324 MND+2 Dark+3\nAdditional effect: Light damage\nEnchantment: TP+100",
             "name" => "Spirit Maul",
             "longname" => "spirit maul",
             "lvl" => 38,
@@ -23357,7 +23357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         19223 => array(
-            "descr" => "HP+8 \uEF22+3",
+            "descr" => "HP+8 Earth+3",
             "name" => "Attar of Roses",
             "longname" => "attar of roses",
             "lvl" => 11,
@@ -23567,7 +23567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         19244 => array(
-            "descr" => "HP+30 CHR+1 \uEF26-30",
+            "descr" => "HP+30 CHR+1 Dark-30",
             "name" => "Verthandi's Gem",
             "longname" => "Verthandi's gem",
             "lvl" => 75,
@@ -24867,7 +24867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         20909 => array(
-            "descr" => "DMG:1 Delay:999 \uEF22+3",
+            "descr" => "DMG:1 Delay:999 Earth+3",
             "name" => "Hoe",
             "longname" => "hoe",
             "lvl" => 1,
@@ -26447,7 +26447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         10446 => array(
-            "descr" => "\uEF26+5",
+            "descr" => "Dark+5",
             "name" => "Ahriman Cap",
             "longname" => "ahriman cap",
             "lvl" => 1,
@@ -26657,7 +26657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         10875 => array(
-            "descr" => "DEF:1 \uEF1F-12 \uEF20+12\nEnchantment: Costume",
+            "descr" => "DEF:1 Fire-12 Ice+12\nEnchantment: Costume",
             "name" => "Snowman Cap",
             "longname" => "snowman cap",
             "lvl" => 1,
@@ -27277,7 +27277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11309 => array(
-            "descr" => "Cannot Equip Handgear DEF:4 \uEF25+15",
+            "descr" => "Cannot Equip Handgear DEF:4 Light+15",
             "name" => "Benedight Coat",
             "longname" => "benedight coat",
             "lvl" => 20,
@@ -27477,7 +27477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11329 => array(
-            "descr" => "DEF:3 \uEF21+2 \uEF22+2\nWoodworking skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:3 Wind+2 Earth+2\nWoodworking skill +1\nSynergy damage taken -25%",
             "name" => "Carpenter's Smock",
             "longname" => "carpenter's smock",
             "lvl" => 1,
@@ -27487,7 +27487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11330 => array(
-            "descr" => "DEF:4 \uEF1F+4\nSmithing skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:4 Fire+4\nSmithing skill +1\nSynergy damage taken -25%",
             "name" => "Blksmith. Smock",
             "longname" => "blacksmith's smock",
             "lvl" => 1,
@@ -27497,7 +27497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11331 => array(
-            "descr" => "DEF:3 \uEF1F+2 \uEF22+2\nGoldsmithing skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:3 Fire+2 Earth+2\nGoldsmithing skill +1\nSynergy damage taken -25%",
             "name" => "Goldsmith's Smock",
             "longname" => "goldsmith's smock",
             "lvl" => 1,
@@ -27507,7 +27507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11332 => array(
-            "descr" => "DEF:2 \uEF22+4\nClothcraft skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:2 Earth+4\nClothcraft skill +1\nSynergy damage taken -25%",
             "name" => "Weaver's Smock",
             "longname" => "weaver's smock",
             "lvl" => 1,
@@ -27517,7 +27517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11333 => array(
-            "descr" => "DEF:3 \uEF23+2 \uEF26+2\nLeathercraft skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:3 Thunder+2 Dark+2\nLeathercraft skill +1\nSynergy damage taken -25%",
             "name" => "Tanner's Smock",
             "longname" => "tanner's smock",
             "lvl" => 1,
@@ -27527,7 +27527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11334 => array(
-            "descr" => "DEF:3 \uEF22+2 \uEF26+2\nBonecraft skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:3 Earth+2 Dark+2\nBonecraft skill +1\nSynergy damage taken -25%",
             "name" => "Bonewrk. Smock",
             "longname" => "boneworker's smock",
             "lvl" => 1,
@@ -27537,7 +27537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11335 => array(
-            "descr" => "DEF:3 \uEF1F+2 \uEF23+2\nAlchemy skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:3 Fire+2 Thunder+2\nAlchemy skill +1\nSynergy damage taken -25%",
             "name" => "Alchemist's Smock",
             "longname" => "alchemist's smock",
             "lvl" => 1,
@@ -27547,7 +27547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11336 => array(
-            "descr" => "DEF:2 \uEF1F+2 \uEF24+2\nCooking skill +1\nSynergy damage taken -25%",
+            "descr" => "DEF:2 Fire+2 Water+2\nCooking skill +1\nSynergy damage taken -25%",
             "name" => "Culinarian's Smock",
             "longname" => "culinarian's smock",
             "lvl" => 1,
@@ -27557,7 +27557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11337 => array(
-            "descr" => "DEF:4 \uEF20+2 \uEF24+2\nFishing skill +1\nReduces chances of fishing up items\n",
+            "descr" => "DEF:4 Ice+2 Water+2\nFishing skill +1\nReduces chances of fishing up items\n",
             "name" => "Fisherman's Smock",
             "longname" => "fisherman's smock",
             "lvl" => 1,
@@ -28227,7 +28227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11409 => array(
-            "descr" => "DEF:11 \uEF25+5 Singing skill +3",
+            "descr" => "DEF:11 Light+5 Singing skill +3",
             "name" => "Aoide's Pumps",
             "longname" => "Aoide's pumps",
             "lvl" => 72,
@@ -28647,7 +28647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11502 => array(
-            "descr" => "DEF:28 Accuracy-10 \uEF23-15 \uEF24+15\nHaste+6%",
+            "descr" => "DEF:28 Accuracy-10 Thunder-15 Water+15\nHaste+6%",
             "name" => "Acubens Helm",
             "longname" => "acubens helm",
             "lvl" => 75,
@@ -28967,7 +28967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11589 => array(
-            "descr" => "\uEF26+20\nElemental magic skill +7\nDark magic skill +7\nOn Darksdays:\nElemental magic skill +10\nDark magic skill +10",
+            "descr" => "Dark+20\nElemental magic skill +7\nDark magic skill +7\nOn Darksdays:\nElemental magic skill +10\nDark magic skill +10",
             "name" => "Aesir Torque",
             "longname" => "aesir torque",
             "lvl" => 75,
@@ -28977,7 +28977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11590 => array(
-            "descr" => "\uEF25+20\nHealing magic skill +7\nEnhancing magic skill +7\nOn Lightsdays:\nHealing magic skill +10\nEnhancing magic skill +10",
+            "descr" => "Light+20\nHealing magic skill +7\nEnhancing magic skill +7\nOn Lightsdays:\nHealing magic skill +10\nEnhancing magic skill +10",
             "name" => "Colossus's Torque",
             "longname" => "Colossus's torque",
             "lvl" => 75,
@@ -29147,7 +29147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11853 => array(
-            "descr" => "Cannot Equip Handgear\nDEF:1 HP+9 \uEF25+9",
+            "descr" => "Cannot Equip Handgear\nDEF:1 HP+9 Light+9",
             "name" => "Novennial Coat",
             "longname" => "novennial coat",
             "lvl" => 1,
@@ -29157,7 +29157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11854 => array(
-            "descr" => "Cannot Equip Handgear\nDEF:1 HP+9 \uEF25+9",
+            "descr" => "Cannot Equip Handgear\nDEF:1 HP+9 Light+9",
             "name" => "Novennial Dress",
             "longname" => "novennial dress",
             "lvl" => 1,
@@ -29187,7 +29187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11956 => array(
-            "descr" => "Cannot Equip Footgear\nDEF:1 MP+9 \uEF26+9",
+            "descr" => "Cannot Equip Footgear\nDEF:1 MP+9 Dark+9",
             "name" => "Novennial Hose",
             "longname" => "novennial hose",
             "lvl" => 1,
@@ -29197,7 +29197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         11957 => array(
-            "descr" => "Cannot Equip Footgear\nDEF:1 MP+9 \uEF26+9",
+            "descr" => "Cannot Equip Footgear\nDEF:1 MP+9 Dark+9",
             "name" => "Novennial Boots",
             "longname" => "novennial thigh boots",
             "lvl" => 1,
@@ -31317,7 +31317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12296 => array(
-            "descr" => "DEF:24 \uEF1F-10 \uEF22+10 Evasion+10 \nPhysical damage taken -10%",
+            "descr" => "DEF:24 Fire-10 Earth+10 Evasion+10 \nPhysical damage taken -10%",
             "name" => "Genbu's Shield",
             "longname" => "Genbu's shield",
             "lvl" => 74,
@@ -31327,7 +31327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12298 => array(
-            "descr" => "DEF:2 \uEF20+4",
+            "descr" => "DEF:2 Ice+4",
             "name" => "Parana Shield",
             "longname" => "parana shield",
             "lvl" => 9,
@@ -31377,7 +31377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12303 => array(
-            "descr" => "DEF:15 \uEF26+3",
+            "descr" => "DEF:15 Dark+3",
             "name" => "Gold Buckler",
             "longname" => "gold buckler",
             "lvl" => 65,
@@ -31397,7 +31397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12305 => array(
-            "descr" => "DEF:23 VIT+2 \uEF20+20 \uEF23+10\nPhysical damage: \"Ice Spikes\" effect",
+            "descr" => "DEF:23 VIT+2 Ice+20 Thunder+10\nPhysical damage: \"Ice Spikes\" effect",
             "name" => "Ice Shield",
             "longname" => "ice shield",
             "lvl" => 72,
@@ -31427,7 +31427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12308 => array(
-            "descr" => "DEF:16 \uEF25+5 \uEF26+5",
+            "descr" => "DEF:16 Light+5 Dark+5",
             "name" => "Darksteel Shield",
             "longname" => "darksteel shield",
             "lvl" => 60,
@@ -31437,7 +31437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12309 => array(
-            "descr" => "DEF:21 HP+10 MP+10 \uEF25+8 \uEF26+8\nPLD: DEF+2",
+            "descr" => "DEF:21 HP+10 MP+10 Light+8 Dark+8\nPLD: DEF+2",
             "name" => "Ritter Shield",
             "longname" => "ritter shield",
             "lvl" => 71,
@@ -31447,7 +31447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12310 => array(
-            "descr" => "DEF:18 VIT+2 \uEF23+10",
+            "descr" => "DEF:18 VIT+2 Thunder+10",
             "name" => "Diamond Shield",
             "longname" => "diamond shield",
             "lvl" => 66,
@@ -31487,7 +31487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12316 => array(
-            "descr" => "DEF:3 \uEF1F+2 \uEF20+2 \uEF23-4",
+            "descr" => "DEF:3 Fire+2 Ice+2 Thunder-4",
             "name" => "Fish Scale Shield",
             "longname" => "fish scale shield",
             "lvl" => 14,
@@ -31497,7 +31497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12317 => array(
-            "descr" => "DEF:12 \uEF1F+30\nPhysical damage: \"Blaze Spikes\" effect",
+            "descr" => "DEF:12 Fire+30\nPhysical damage: \"Blaze Spikes\" effect",
             "name" => "Flame Shield",
             "longname" => "flame shield",
             "lvl" => 58,
@@ -31517,7 +31517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12321 => array(
-            "descr" => "DEF:15 MND+3 CHR+3 \uEF26+12",
+            "descr" => "DEF:15 MND+3 CHR+3 Dark+12",
             "name" => "Ryl.Grd. Shield",
             "longname" => "Royal Guard's shield",
             "lvl" => 55,
@@ -31677,7 +31677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12338 => array(
-            "descr" => "DEF:5 \uEF20+3",
+            "descr" => "DEF:5 Ice+3",
             "name" => "Frost Shield",
             "longname" => "frost shield",
             "lvl" => 28,
@@ -31697,7 +31697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12340 => array(
-            "descr" => "DEF:1 VIT+1 AGI+1 \uEF24+1",
+            "descr" => "DEF:1 VIT+1 AGI+1 Water+1",
             "name" => "Marine Shield",
             "longname" => "marine shield",
             "lvl" => 1,
@@ -31707,7 +31707,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12341 => array(
-            "descr" => "DEF:3 \uEF21+3 \uEF22+3",
+            "descr" => "DEF:3 Wind+3 Earth+3",
             "name" => "Tropical Shield",
             "longname" => "tropical shield",
             "lvl" => 17,
@@ -31727,7 +31727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12343 => array(
-            "descr" => "\uEF1F+3 \uEF20+3 \uEF21+3 \uEF22+3\n\uEF23+3 \uEF24+3 \uEF25+3 \uEF26+3",
+            "descr" => "Fire+3 Ice+3 Wind+3 Earth+3\nThunder+3 Water+3 Light+3 Dark+3",
             "name" => "Faerie Shield",
             "longname" => "faerie shield",
             "lvl" => 29,
@@ -31747,7 +31747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12346 => array(
-            "descr" => "DEF:17 \uEF25+6 \uEF26+6",
+            "descr" => "DEF:17 Light+6 Dark+6",
             "name" => "Dst. Shield +1",
             "longname" => "darksteel shield +1",
             "lvl" => 60,
@@ -31767,7 +31767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12348 => array(
-            "descr" => "DEF:12 \uEF20-5",
+            "descr" => "DEF:12 Ice-5",
             "name" => "Serket Shield",
             "longname" => "Serket shield",
             "lvl" => 51,
@@ -31797,7 +31797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12351 => array(
-            "descr" => "\uEF1F+2 \uEF20+2 \uEF21+2 \uEF22+2\n\uEF23+2 \uEF24+2 \uEF25+2 \uEF26+2 \nConverts 30 HP to MP",
+            "descr" => "Fire+2 Ice+2 Wind+2 Earth+2\nThunder+2 Water+2 Light+2 Dark+2 \nConverts 30 HP to MP",
             "name" => "Astral Shield",
             "longname" => "astral shield",
             "lvl" => 58,
@@ -31817,7 +31817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12353 => array(
-            "descr" => "DEF:16 \uEF26+4",
+            "descr" => "DEF:16 Dark+4",
             "name" => "Gilt Buckler",
             "longname" => "gilt buckler",
             "lvl" => 65,
@@ -31837,7 +31837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12355 => array(
-            "descr" => "DEF:19 VIT+3 \uEF23+12",
+            "descr" => "DEF:19 VIT+3 Thunder+12",
             "name" => "Diamond Shield +1",
             "longname" => "diamond shield +1",
             "lvl" => 66,
@@ -31857,7 +31857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12357 => array(
-            "descr" => "DEF:24 VIT+2 \uEF20+25 \uEF23+10\nPhysical damage: \"Ice Spikes\" effect",
+            "descr" => "DEF:24 VIT+2 Ice+25 Thunder+10\nPhysical damage: \"Ice Spikes\" effect",
             "name" => "Ice Shield +1",
             "longname" => "ice shield +1",
             "lvl" => 72,
@@ -31867,7 +31867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12358 => array(
-            "descr" => "DEF:22 HP+11 MP+11 \uEF25+9 \uEF26+9\nPLD: DEF+2",
+            "descr" => "DEF:22 HP+11 MP+11 Light+9 Dark+9\nPLD: DEF+2",
             "name" => "Ritter Shield +1",
             "longname" => "ritter shield +1",
             "lvl" => 71,
@@ -31897,7 +31897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12361 => array(
-            "descr" => "DEF:20 \uEF20-20",
+            "descr" => "DEF:20 Ice-20",
             "name" => "Sipar",
             "longname" => "sipar",
             "lvl" => 70,
@@ -31927,7 +31927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12364 => array(
-            "descr" => "DEF:2 \uEF1F+3 \uEF20+3 \uEF21+3 \uEF22+3 \n\uEF23+3 \uEF24+3 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:2 Fire+3 Ice+3 Wind+3 Earth+3 \nThunder+3 Water+3 Light+3 Dark+3",
             "name" => "Nymph Shield",
             "longname" => "nymph shield",
             "lvl" => 39,
@@ -31937,7 +31937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12365 => array(
-            "descr" => "DEF:3 \uEF1F+4 \uEF20+4 \uEF21+4 \uEF22+4 \n\uEF23+4 \uEF24+4 \uEF25+4 \uEF26+4",
+            "descr" => "DEF:3 Fire+4 Ice+4 Wind+4 Earth+4 \nThunder+4 Water+4 Light+4 Dark+4",
             "name" => "Nymph Shield +1",
             "longname" => "nymph shield +1",
             "lvl" => 39,
@@ -32107,7 +32107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12382 => array(
-            "descr" => "DEF:3 AGI+3 INT+3 \uEF21-5 \uEF22+5 \uEF23+5\nConverts 25 HP to MP",
+            "descr" => "DEF:3 AGI+3 INT+3 Wind-5 Earth+5 Thunder+5\nConverts 25 HP to MP",
             "name" => "Astral Aspis",
             "longname" => "astral aspis",
             "lvl" => 68,
@@ -32137,7 +32137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12385 => array(
-            "descr" => "DEF:27 \uEF20-10 \nShield skill +10",
+            "descr" => "DEF:27 Ice-10 \nShield skill +10",
             "name" => "Acheron Shield",
             "longname" => "acheron shield",
             "lvl" => 75,
@@ -32147,7 +32147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12386 => array(
-            "descr" => "DEF:28 \uEF20-11 \nShield skill +11",
+            "descr" => "DEF:28 Ice-11 \nShield skill +11",
             "name" => "Acheron Shield +1",
             "longname" => "acheron shield +1",
             "lvl" => 75,
@@ -32377,7 +32377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12409 => array(
-            "descr" => "DEF:10 MP+10 MND+2\n\uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10\n\uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10",
+            "descr" => "DEF:10 MP+10 MND+2\nFire+10 Ice+10 Wind+10 Earth+10\nThunder+10 Water+10 Light+10 Dark+10",
             "name" => "Numinous Shield",
             "longname" => "numinous shield",
             "lvl" => 69,
@@ -32387,7 +32387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12410 => array(
-            "descr" => "DEF:11 MP+15 MND+3\n\uEF1F+15 \uEF20+15 \uEF21+15 \uEF22+15\n\uEF23+15 \uEF24+15 \uEF25+15 \uEF26+15",
+            "descr" => "DEF:11 MP+15 MND+3\nFire+15 Ice+15 Wind+15 Earth+15\nThunder+15 Water+15 Light+15 Dark+15",
             "name" => "Nms. Shield +1",
             "longname" => "numinous shield +1",
             "lvl" => 69,
@@ -32397,7 +32397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12411 => array(
-            "descr" => "DEF:10 MP+10 MND+2\n\uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10\n\uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10\nEnchantment: Recover MP",
+            "descr" => "DEF:10 MP+10 MND+2\nFire+10 Ice+10 Wind+10 Earth+10\nThunder+10 Water+10 Light+10 Dark+10\nEnchantment: Recover MP",
             "name" => "Dominus Shield",
             "longname" => "dominus shield",
             "lvl" => 69,
@@ -32417,7 +32417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12413 => array(
-            "descr" => "DEF:6 VIT+4 AGI-7 \uEF24+7",
+            "descr" => "DEF:6 VIT+4 AGI-7 Water+7",
             "name" => "Turtle Shield +1",
             "longname" => "turtle shield +1",
             "lvl" => 24,
@@ -32427,7 +32427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12414 => array(
-            "descr" => "DEF:6 VIT+3 AGI-6 \uEF24+6",
+            "descr" => "DEF:6 VIT+3 AGI-6 Water+6",
             "name" => "Turtle Shield",
             "longname" => "turtle shield",
             "lvl" => 24,
@@ -32437,7 +32437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12415 => array(
-            "descr" => "DEF:2 VIT+1 AGI-2 \uEF24+2",
+            "descr" => "DEF:2 VIT+1 AGI-2 Water+2",
             "name" => "Shell Shield",
             "longname" => "shell shield",
             "lvl" => 7,
@@ -32467,7 +32467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12418 => array(
-            "descr" => "DEF:22 VIT+2 \uEF26+4",
+            "descr" => "DEF:22 VIT+2 Dark+4",
             "name" => "Gold Armet",
             "longname" => "gold armet",
             "lvl" => 60,
@@ -32477,7 +32477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12419 => array(
-            "descr" => "DEF:25 MP+8 INT+3 MND-1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:25 MP+8 INT+3 MND-1 Light+2 Dark+2",
             "name" => "Darksteel Armet",
             "longname" => "darksteel armet",
             "lvl" => 65,
@@ -32517,7 +32517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12423 => array(
-            "descr" => "DEF:26 MP+9 INT+4 MND-1 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:26 MP+9 INT+4 MND-1 Light+3 Dark+3",
             "name" => "Dst. Armet +1",
             "longname" => "darksteel armet +1",
             "lvl" => 65,
@@ -32627,7 +32627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12434 => array(
-            "descr" => "DEF:35 HP+50 VIT+15 \uEF24+50",
+            "descr" => "DEF:35 HP+50 VIT+15 Water+50",
             "name" => "Genbu's Kabuto",
             "longname" => "Genbu's kabuto",
             "lvl" => 75,
@@ -32637,7 +32637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12435 => array(
-            "descr" => "DEF:21 \uEF23-4 \uEF24+4 \nMagic damage taken -1%",
+            "descr" => "DEF:21 Thunder-4 Water+4 \nMagic damage taken -1%",
             "name" => "Coral Visor",
             "longname" => "coral visor",
             "lvl" => 63,
@@ -32647,7 +32647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12436 => array(
-            "descr" => "DEF:23 HP+10 \uEF25+10 \uEF26+10 \nBreath damage taken -4%",
+            "descr" => "DEF:23 HP+10 Light+10 Dark+10 \nBreath damage taken -4%",
             "name" => "Dragon Mask",
             "longname" => "dragon mask",
             "lvl" => 68,
@@ -32727,7 +32727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12444 => array(
-            "descr" => "DEF:18 \uEF1F+2 \uEF24-1",
+            "descr" => "DEF:18 Fire+2 Water-1",
             "name" => "Raptor Helm",
             "longname" => "raptor helm",
             "lvl" => 48,
@@ -32747,7 +32747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12446 => array(
-            "descr" => "DEF:21 \uEF1F-4 \uEF20+4 Attack+3",
+            "descr" => "DEF:21 Fire-4 Ice+4 Attack+3",
             "name" => "Tiger Helm",
             "longname" => "tiger helm",
             "lvl" => 65,
@@ -32797,7 +32797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12451 => array(
-            "descr" => "DEF:20 HP+3 \uEF20-2 \uEF24+5 \uEF26+5",
+            "descr" => "DEF:20 HP+3 Ice-2 Water+5 Dark+5",
             "name" => "Scorpion Mask",
             "longname" => "scorpion mask",
             "lvl" => 57,
@@ -32807,7 +32807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12452 => array(
-            "descr" => "DEF:21 \uEF25+1 \uEF26+1 \nPhysical damage taken -1%",
+            "descr" => "DEF:21 Light+1 Dark+1 \nPhysical damage taken -1%",
             "name" => "Darksteel Cap",
             "longname" => "darksteel cap",
             "lvl" => 65,
@@ -32867,7 +32867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12458 => array(
-            "descr" => "DEF:10 \uEF22+1 \uEF23+1",
+            "descr" => "DEF:10 Earth+1 Thunder+1",
             "name" => "Soil Hachimaki",
             "longname" => "soil hachimaki",
             "lvl" => 29,
@@ -32897,7 +32897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12461 => array(
-            "descr" => "DEF:23 \uEF1F+8\nEnhances \"Resist Paralyze\" effect\nParalysis: Adds \"Refresh\" effect",
+            "descr" => "DEF:23 Fire+8\nEnhances \"Resist Paralyze\" effect\nParalysis: Adds \"Refresh\" effect",
             "name" => "Scorpion Helm +1",
             "longname" => "scorpion helm +1",
             "lvl" => 66,
@@ -33107,7 +33107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12482 => array(
-            "descr" => "DEF:21 HP+4 \uEF20-2 \uEF24+7 \uEF26+7",
+            "descr" => "DEF:21 HP+4 Ice-2 Water+7 Dark+7",
             "name" => "Scorpion Mask +1",
             "longname" => "scorpion mask +1",
             "lvl" => 57,
@@ -33137,7 +33137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12485 => array(
-            "descr" => "DEF:6 \uEF24+5 \uEF26+5",
+            "descr" => "DEF:6 Water+5 Dark+5",
             "name" => "Fungus Hat",
             "longname" => "fungus hat",
             "lvl" => 14,
@@ -33297,7 +33297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12505 => array(
-            "descr" => "HP-1 MP+3 \uEF26+2",
+            "descr" => "HP-1 MP+3 Dark+2",
             "name" => "Bone Hairpin",
             "longname" => "bone hairpin",
             "lvl" => 5,
@@ -33307,7 +33307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12506 => array(
-            "descr" => "HP-3 MP+9 \uEF24+6",
+            "descr" => "HP-3 MP+9 Water+6",
             "name" => "Shell Hairpin",
             "longname" => "shell hairpin",
             "lvl" => 14,
@@ -33317,7 +33317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12507 => array(
-            "descr" => "HP-4 MP+12 \uEF22+8",
+            "descr" => "HP-4 MP+12 Earth+8",
             "name" => "Horn Hairpin",
             "longname" => "horn hairpin",
             "lvl" => 30,
@@ -33327,7 +33327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12508 => array(
-            "descr" => "HP-7 MP+21 \uEF24+14",
+            "descr" => "HP-7 MP+21 Water+14",
             "name" => "Coral Hairpin",
             "longname" => "coral hairpin",
             "lvl" => 60,
@@ -33437,7 +33437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12519 => array(
-            "descr" => "DEF:16 HP+12 DEX+2 \uEF23+10 \nWyvern uses breaths more effectively",
+            "descr" => "DEF:16 HP+12 DEX+2 Thunder+10 \nWyvern uses breaths more effectively",
             "name" => "Drachen Armet",
             "longname" => "drachen armet",
             "lvl" => 60,
@@ -33457,7 +33457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12521 => array(
-            "descr" => "\uEF1F+6 \uEF20+6 \uEF21+6 \uEF22+6 \n\uEF23+6 \uEF24+6 \uEF25+6 \uEF26+6",
+            "descr" => "Fire+6 Ice+6 Wind+6 Earth+6 \nThunder+6 Water+6 Light+6 Dark+6",
             "name" => "Blue Ribbon",
             "longname" => "blue ribbon",
             "lvl" => 50,
@@ -33637,7 +33637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12539 => array(
-            "descr" => "DEF:11 \uEF22+2 \uEF23+2",
+            "descr" => "DEF:11 Earth+2 Thunder+2",
             "name" => "Soil Hachimaki +1",
             "longname" => "soil hachimaki +1",
             "lvl" => 29,
@@ -33677,7 +33677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12543 => array(
-            "descr" => "DEF:2 \uEF21+1",
+            "descr" => "DEF:2 Wind+1",
             "name" => "Windshear Hat",
             "longname" => "windshear hat",
             "lvl" => 4,
@@ -33707,7 +33707,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12546 => array(
-            "descr" => "DEF:44 VIT+2 \uEF26+5",
+            "descr" => "DEF:44 VIT+2 Dark+5",
             "name" => "Gold Cuirass",
             "longname" => "gold cuirass",
             "lvl" => 60,
@@ -33717,7 +33717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12547 => array(
-            "descr" => "DEF:48 MP+10 VIT+3 AGI-1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:48 MP+10 VIT+3 AGI-1 Light+2 Dark+2",
             "name" => "Darksteel Cuirass",
             "longname" => "darksteel cuirass",
             "lvl" => 66,
@@ -33867,7 +33867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12562 => array(
-            "descr" => "DEF:52 MP+30 STR+10 DEX+10 VIT+10 \nAGI+10 INT+10 MND+10 CHR+10 \n\uEF25+50",
+            "descr" => "DEF:52 MP+30 STR+10 DEX+10 VIT+10 \nAGI+10 INT+10 MND+10 CHR+10 \nLight+50",
             "name" => "Kirin's Osode",
             "longname" => "Kirin's Osode",
             "lvl" => 75,
@@ -33877,7 +33877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12563 => array(
-            "descr" => "DEF:42 \uEF23-5 \uEF24+5 \nMagic damage taken -3%",
+            "descr" => "DEF:42 Thunder-5 Water+5 \nMagic damage taken -3%",
             "name" => "Coral Scale Mail",
             "longname" => "coral scale mail",
             "lvl" => 65,
@@ -33887,7 +33887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12564 => array(
-            "descr" => "DEF:47 HP+12 \uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10 \n\uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10 \nBreath damage taken -9%",
+            "descr" => "DEF:47 HP+12 Fire+10 Ice+10 Wind+10 Earth+10 \nThunder+10 Water+10 Light+10 Dark+10 \nBreath damage taken -9%",
             "name" => "Dragon Mail",
             "longname" => "dragon mail",
             "lvl" => 70,
@@ -33917,7 +33917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12567 => array(
-            "descr" => "DEF:23 \uEF1F+3 \uEF21+3 \uEF24+3",
+            "descr" => "DEF:23 Fire+3 Wind+3 Water+3",
             "name" => "Steam Scale Mail",
             "longname" => "steam scale mail",
             "lvl" => 27,
@@ -33967,7 +33967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12572 => array(
-            "descr" => "DEF:35 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:35 Fire+3 Water-1",
             "name" => "Raptor Jerkin",
             "longname" => "raptor jerkin",
             "lvl" => 48,
@@ -33987,7 +33987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12574 => array(
-            "descr" => "DEF:41 \uEF1F-5 \uEF20+5 Attack+5",
+            "descr" => "DEF:41 Fire-5 Ice+5 Attack+5",
             "name" => "Tiger Jerkin",
             "longname" => "tiger jerkin",
             "lvl" => 65,
@@ -34037,7 +34037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12579 => array(
-            "descr" => "DEF:40 HP+15 \uEF20-20 \uEF24+15 \uEF26+15 \nAccuracy+10 Evasion+10",
+            "descr" => "DEF:40 HP+15 Ice-20 Water+15 Dark+15 \nAccuracy+10 Evasion+10",
             "name" => "Scorpion Harness",
             "longname" => "scorpion harness",
             "lvl" => 57,
@@ -34047,7 +34047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12580 => array(
-            "descr" => "DEF:39 \uEF25+2 \uEF26+2 \nPhysical damage taken -3%",
+            "descr" => "DEF:39 Light+2 Dark+2 \nPhysical damage taken -3%",
             "name" => "Darksteel Harness",
             "longname" => "darksteel harness",
             "lvl" => 65,
@@ -34107,7 +34107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12586 => array(
-            "descr" => "DEF:20 \uEF22+1 \uEF23+1",
+            "descr" => "DEF:20 Earth+1 Thunder+1",
             "name" => "Soil Gi",
             "longname" => "soil gi",
             "lvl" => 29,
@@ -34137,7 +34137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12589 => array(
-            "descr" => "DEF:46 \uEF1F+10\nEnhances \"Resist Poison\" effect\nPoison: Adds \"Regen\" effect",
+            "descr" => "DEF:46 Fire+10\nEnhances \"Resist Poison\" effect\nPoison: Adds \"Regen\" effect",
             "name" => "Scp. Brstplate +1",
             "longname" => "scorpion breastplate +1",
             "lvl" => 66,
@@ -34307,7 +34307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12606 => array(
-            "descr" => "DEF:31 INT+1 MND+1 CHR+1 \uEF25+3 \n\uEF26+3",
+            "descr" => "DEF:31 INT+1 MND+1 CHR+1 Light+3 \nDark+3",
             "name" => "Tct.Mgc. Coat",
             "longname" => "Tactician Magician's coat",
             "lvl" => 50,
@@ -34337,7 +34337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12609 => array(
-            "descr" => "Cannot Equip Headgear DEF:18 \nINT+1 \uEF26+2",
+            "descr" => "Cannot Equip Headgear DEF:18 \nINT+1 Dark+2",
             "name" => "Black Tunic",
             "longname" => "black tunic",
             "lvl" => 20,
@@ -34357,7 +34357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12611 => array(
-            "descr" => "Cannot Equip Headgear DEF:39 \nMND+2 \uEF25+4",
+            "descr" => "Cannot Equip Headgear DEF:39 \nMND+2 Light+4",
             "name" => "White Cloak",
             "longname" => "white cloak",
             "lvl" => 50,
@@ -34367,7 +34367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12612 => array(
-            "descr" => "Cannot Equip Headgear DEF:44 \nHP+12 \uEF25+9 \uEF26-9",
+            "descr" => "Cannot Equip Headgear DEF:44 \nHP+12 Light+9 Dark-9",
             "name" => "Silk Cloak",
             "longname" => "silk cloak",
             "lvl" => 64,
@@ -34437,7 +34437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12621 => array(
-            "descr" => "DEF:45 \uEF1F+9\nEnhances \"Resist Poison\" effect\nPoison: Adds \"Regen\" effect",
+            "descr" => "DEF:45 Fire+9\nEnhances \"Resist Poison\" effect\nPoison: Adds \"Regen\" effect",
             "name" => "Scp. Breastplate",
             "longname" => "scorpion breastplate",
             "lvl" => 66,
@@ -34497,7 +34497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12629 => array(
-            "descr" => "DEF:10 \uEF1F+5",
+            "descr" => "DEF:10 Fire+5",
             "name" => "Lgn. Harness",
             "longname" => "Legionnaire's harness",
             "lvl" => 10,
@@ -34507,7 +34507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12630 => array(
-            "descr" => "DEF:10 \uEF20+5",
+            "descr" => "DEF:10 Ice+5",
             "name" => "Ryl.Ftm. Vest",
             "longname" => "Royal Footman's vest",
             "lvl" => 10,
@@ -34587,7 +34587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12638 => array(
-            "descr" => "DEF:47 HP+20\nVIT+5 Accuracy+3\uEF1F+10\nEnmity+8",
+            "descr" => "DEF:47 HP+20\nVIT+5 Accuracy+3Fire+10\nEnmity+8",
             "name" => "Fighter's Lorica",
             "longname" => "fighter's lorica",
             "lvl" => 60,
@@ -34607,7 +34607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12640 => array(
-            "descr" => "DEF:40 MP+25 \uEF21+10 \nEnfeebling magic skill +10 Enmity-4",
+            "descr" => "DEF:40 MP+25 Wind+10 \nEnfeebling magic skill +10 Enmity-4",
             "name" => "Healer's Bliaut",
             "longname" => "healer's bliaut",
             "lvl" => 58,
@@ -34637,7 +34637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12643 => array(
-            "descr" => "DEF:44 HP+20\nSTR+3 Accuracy+3\uEF22+10\nIncreases \"Hide\" duration",
+            "descr" => "DEF:44 HP+20\nSTR+3 Accuracy+3Earth+10\nIncreases \"Hide\" duration",
             "name" => "Rogue's Vest",
             "longname" => "rogue's vest",
             "lvl" => 58,
@@ -34697,7 +34697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12649 => array(
-            "descr" => "DEF:38 HP+15 STR+3 Attack+3 \uEF20+10 \nAdds \"Regen\" effect to wyvern",
+            "descr" => "DEF:38 HP+15 STR+3 Attack+3 Ice+10 \nAdds \"Regen\" effect to wyvern",
             "name" => "Drachen Mail",
             "longname" => "drachen mail",
             "lvl" => 58,
@@ -34717,7 +34717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12651 => array(
-            "descr" => "Cannot Equip Headgear DEF:40 \nMND+3 \uEF25+5",
+            "descr" => "Cannot Equip Headgear DEF:40 \nMND+3 Light+5",
             "name" => "White Cloak +1",
             "longname" => "white cloak +1",
             "lvl" => 50,
@@ -34917,7 +34917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12671 => array(
-            "descr" => "DEF:21 \uEF22+2 \uEF23+2",
+            "descr" => "DEF:21 Earth+2 Thunder+2",
             "name" => "Soil Gi +1",
             "longname" => "soil gi +1",
             "lvl" => 29,
@@ -34947,7 +34947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12674 => array(
-            "descr" => "DEF:15 VIT+1 \uEF26+3",
+            "descr" => "DEF:15 VIT+1 Dark+3",
             "name" => "Gold Gauntlets",
             "longname" => "gold gauntlets",
             "lvl" => 60,
@@ -34957,7 +34957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12675 => array(
-            "descr" => "DEF:17 MP+7 STR+3 DEX-1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:17 MP+7 STR+3 DEX-1 Light+2 Dark+2",
             "name" => "Dst. Gauntlets",
             "longname" => "darksteel gauntlets",
             "lvl" => 67,
@@ -35037,7 +35037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12683 => array(
-            "descr" => "DEF:16 \uEF25+2",
+            "descr" => "DEF:16 Light+2",
             "name" => "Darksteel Mufflers",
             "longname" => "darksteel mufflers",
             "lvl" => 59,
@@ -35117,7 +35117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12691 => array(
-            "descr" => "DEF:14 \uEF23-3 \uEF24+3 \nMagic damage taken -1%",
+            "descr" => "DEF:14 Thunder-3 Water+3 \nMagic damage taken -1%",
             "name" => "Coral Fng. Gnt.",
             "longname" => "coral finger gauntlets",
             "lvl" => 65,
@@ -35127,7 +35127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12692 => array(
-            "descr" => "DEF:15 HP+8 \uEF23+10 \uEF24+10 \nBreath damage taken -4%",
+            "descr" => "DEF:15 HP+8 Thunder+10 Water+10 \nBreath damage taken -4%",
             "name" => "Dragon Fng. Gnt.",
             "longname" => "dragon finger gauntlets",
             "lvl" => 68,
@@ -35207,7 +35207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12700 => array(
-            "descr" => "DEF:12 \uEF1F+2 \uEF24-1",
+            "descr" => "DEF:12 Fire+2 Water-1",
             "name" => "Raptor Gloves",
             "longname" => "raptor gloves",
             "lvl" => 48,
@@ -35227,7 +35227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12702 => array(
-            "descr" => "DEF:14 \uEF1F-3 \uEF20+3 Attack+3",
+            "descr" => "DEF:14 Fire-3 Ice+3 Attack+3",
             "name" => "Tiger Gloves",
             "longname" => "tiger gloves",
             "lvl" => 65,
@@ -35277,7 +35277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12707 => array(
-            "descr" => "DEF:13 HP+3 \uEF20-2 \uEF24+5 \uEF26+5",
+            "descr" => "DEF:13 HP+3 Ice-2 Water+5 Dark+5",
             "name" => "Scorpion Mittens",
             "longname" => "scorpion mittens",
             "lvl" => 57,
@@ -35287,7 +35287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12708 => array(
-            "descr" => "DEF:14 \uEF25+1 \uEF26+1\nPhysical damage taken -1%",
+            "descr" => "DEF:14 Light+1 Dark+1\nPhysical damage taken -1%",
             "name" => "Darksteel Mittens",
             "longname" => "darksteel mittens",
             "lvl" => 63,
@@ -35347,7 +35347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12714 => array(
-            "descr" => "DEF:7 \uEF22+1 \uEF23+1",
+            "descr" => "DEF:7 Earth+1 Thunder+1",
             "name" => "Soil Tekko",
             "longname" => "soil tekko",
             "lvl" => 29,
@@ -35377,7 +35377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12717 => array(
-            "descr" => "DEF:13 \uEF1F+6\nEnhances \"Resist Silence\" effect\nSilence: MP recovered while healing +5",
+            "descr" => "DEF:13 Fire+6\nEnhances \"Resist Silence\" effect\nSilence: MP recovered while healing +5",
             "name" => "Scp. Gnt. +1",
             "longname" => "scorpion gauntlets +1",
             "lvl" => 66,
@@ -35597,7 +35597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12740 => array(
-            "descr" => "DEF:11 HP+5 \uEF25+3 \uEF26-3",
+            "descr" => "DEF:11 HP+5 Light+3 Dark-3",
             "name" => "Silk Mitts",
             "longname" => "silk mitts",
             "lvl" => 61,
@@ -35667,7 +35667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12751 => array(
-            "descr" => "DEF:12 \uEF1F+5\nEnhances \"Resist Silence\" effect\nSilence: MP recovered while healing +4",
+            "descr" => "DEF:12 Fire+5\nEnhances \"Resist Silence\" effect\nSilence: MP recovered while healing +4",
             "name" => "Scp. Gauntlets",
             "longname" => "scorpion gauntlets",
             "lvl" => 66,
@@ -35937,7 +35937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12778 => array(
-            "descr" => "DEF:4 STR+1 \uEF1F+3",
+            "descr" => "DEF:4 STR+1 Fire+3",
             "name" => "Linen Cuffs +1",
             "longname" => "linen cuffs +1",
             "lvl" => 12,
@@ -35967,7 +35967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12781 => array(
-            "descr" => "DEF:8 \uEF22+2 \uEF23+2",
+            "descr" => "DEF:8 Earth+2 Thunder+2",
             "name" => "Soil Tekko +1",
             "longname" => "soil tekko +1",
             "lvl" => 29,
@@ -35977,7 +35977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12782 => array(
-            "descr" => "DEF:7 AGI+1 \uEF21+3",
+            "descr" => "DEF:7 AGI+1 Wind+3",
             "name" => "Wool Cuffs +1",
             "longname" => "wool cuffs +1",
             "lvl" => 28,
@@ -36037,7 +36037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12788 => array(
-            "descr" => "DEF:5 \uEF1F-3 Evasion+1",
+            "descr" => "DEF:5 Fire-3 Evasion+1",
             "name" => "Bone Mittens +1",
             "longname" => "bone mittens +1",
             "lvl" => 16,
@@ -36047,7 +36047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12789 => array(
-            "descr" => "DEF:7 \uEF20-3 Evasion+1",
+            "descr" => "DEF:7 Ice-3 Evasion+1",
             "name" => "Beetle Mittens +1",
             "longname" => "beetle mittens +1",
             "lvl" => 21,
@@ -36057,7 +36057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12790 => array(
-            "descr" => "DEF:11 \uEF23-3 Evasion+1",
+            "descr" => "DEF:11 Thunder-3 Evasion+1",
             "name" => "Cpc. Mittens +1",
             "longname" => "carapace mittens +1",
             "lvl" => 45,
@@ -36087,7 +36087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12793 => array(
-            "descr" => "DEF:9 AGI+2 \uEF21+5",
+            "descr" => "DEF:9 AGI+2 Wind+5",
             "name" => "Mage's Cuffs",
             "longname" => "mage's cuffs",
             "lvl" => 38,
@@ -36107,7 +36107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12795 => array(
-            "descr" => "DEF:13 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:13 Fire+3 Water-1",
             "name" => "Dino Gloves",
             "longname" => "dino gloves",
             "lvl" => 48,
@@ -36117,7 +36117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12796 => array(
-            "descr" => "DEF:2 \uEF1F+1 \uEF20+1",
+            "descr" => "DEF:2 Fire+1 Ice+1",
             "name" => "Asbestos Mitts",
             "longname" => "asbestos mitts",
             "lvl" => 6,
@@ -36177,7 +36177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12802 => array(
-            "descr" => "DEF:31 VIT+2 \uEF26+4",
+            "descr" => "DEF:31 VIT+2 Dark+4",
             "name" => "Gold Cuisses",
             "longname" => "gold cuisses",
             "lvl" => 60,
@@ -36187,7 +36187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12803 => array(
-            "descr" => "DEF:35 MP+9 AGI+3 INT-1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:35 MP+9 AGI+3 INT-1 Light+2 Dark+2",
             "name" => "Darksteel Cuisses",
             "longname" => "darksteel cuisses",
             "lvl" => 66,
@@ -36267,7 +36267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12811 => array(
-            "descr" => "DEF:33 \uEF25+2",
+            "descr" => "DEF:33 Light+2",
             "name" => "Dst. Breeches",
             "longname" => "darksteel breeches",
             "lvl" => 59,
@@ -36337,7 +36337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12818 => array(
-            "descr" => "DEF:42 DEX+15 \uEF23+50 Haste+5%",
+            "descr" => "DEF:42 DEX+15 Thunder+50 Haste+5%",
             "name" => "Byakko's Haidate",
             "longname" => "Byakko's haidate",
             "lvl" => 75,
@@ -36347,7 +36347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12819 => array(
-            "descr" => "DEF:30 \uEF23-5 \uEF24+5 \nMagic damage taken -2%",
+            "descr" => "DEF:30 Thunder-5 Water+5 \nMagic damage taken -2%",
             "name" => "Coral Cuisses",
             "longname" => "coral cuisses",
             "lvl" => 64,
@@ -36357,7 +36357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12820 => array(
-            "descr" => "DEF:31 HP+11 \uEF1F+10 \uEF20+10 \nBreath damage taken -4%",
+            "descr" => "DEF:31 HP+11 Fire+10 Ice+10 \nBreath damage taken -4%",
             "name" => "Dragon Cuisses",
             "longname" => "dragon cuisses",
             "lvl" => 69,
@@ -36437,7 +36437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12828 => array(
-            "descr" => "DEF:25 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:25 Fire+3 Water-1",
             "name" => "Raptor Trousers",
             "longname" => "raptor trousers",
             "lvl" => 48,
@@ -36447,7 +36447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12829 => array(
-            "descr" => "DEF:30 VIT+1 \uEF22+5",
+            "descr" => "DEF:30 VIT+1 Earth+5",
             "name" => "Beak Trousers",
             "longname" => "beak trousers",
             "lvl" => 58,
@@ -36457,7 +36457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12830 => array(
-            "descr" => "DEF:29 \uEF1F-4 \uEF20+4 Attack+4",
+            "descr" => "DEF:29 Fire-4 Ice+4 Attack+4",
             "name" => "Tiger Trousers",
             "longname" => "tiger trousers",
             "lvl" => 63,
@@ -36467,7 +36467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12831 => array(
-            "descr" => "DEF:30 HP-1% \uEF23+15 Evasion+2",
+            "descr" => "DEF:30 HP-1% Thunder+15 Evasion+2",
             "name" => "Coeurl Trousers",
             "longname" => "coeurl trousers",
             "lvl" => 70,
@@ -36537,7 +36537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12838 => array(
-            "descr" => "DEF:28 HP+3 \uEF20-2 \uEF24+5 \uEF26+5",
+            "descr" => "DEF:28 HP+3 Ice-2 Water+5 Dark+5",
             "name" => "Scorpion Subligar",
             "longname" => "scorpion subligar",
             "lvl" => 57,
@@ -36547,7 +36547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12839 => array(
-            "descr" => "DEF:28 \uEF25+2 \uEF26+2 \nPhysical damage taken -2%",
+            "descr" => "DEF:28 Light+2 Dark+2 \nPhysical damage taken -2%",
             "name" => "Darksteel Subligar",
             "longname" => "darksteel subligar",
             "lvl" => 65,
@@ -36577,7 +36577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12842 => array(
-            "descr" => "DEF:14 \uEF22+1 \uEF23+1",
+            "descr" => "DEF:14 Earth+1 Thunder+1",
             "name" => "Soil Sitabaki",
             "longname" => "soil sitabaki",
             "lvl" => 29,
@@ -36757,7 +36757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12862 => array(
-            "descr" => "DEF:22 \uEF26+6",
+            "descr" => "DEF:22 Dark+6",
             "name" => "Tct.Mgc. Slops",
             "longname" => "Tactician Magician's slops",
             "lvl" => 50,
@@ -36817,7 +36817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12868 => array(
-            "descr" => "DEF:24 HP+8 \uEF25+5 \uEF26-5",
+            "descr" => "DEF:24 HP+8 Light+5 Dark-5",
             "name" => "Silk Slacks",
             "longname" => "silk slacks",
             "lvl" => 63,
@@ -37177,7 +37177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12905 => array(
-            "descr" => "DEF:15 \uEF22+2 \uEF23+2",
+            "descr" => "DEF:15 Earth+2 Thunder+2",
             "name" => "Soil Sitabaki +1",
             "longname" => "soil sitabaki +1",
             "lvl" => 29,
@@ -37247,7 +37247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12912 => array(
-            "descr" => "DEF:11 \uEF1F-3 Evasion+1",
+            "descr" => "DEF:11 Fire-3 Evasion+1",
             "name" => "Bone Subligar +1",
             "longname" => "bone subligar +1",
             "lvl" => 16,
@@ -37257,7 +37257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12913 => array(
-            "descr" => "DEF:13 \uEF20-3 Evasion+1",
+            "descr" => "DEF:13 Ice-3 Evasion+1",
             "name" => "Beetle Subligar +1",
             "longname" => "beetle subligar +1",
             "lvl" => 21,
@@ -37267,7 +37267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12914 => array(
-            "descr" => "DEF:23 \uEF23-3 Evasion+1",
+            "descr" => "DEF:23 Thunder-3 Evasion+1",
             "name" => "Cpc. Subligar +1",
             "longname" => "carapace subligar +1",
             "lvl" => 45,
@@ -37317,7 +37317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12919 => array(
-            "descr" => "DEF:26 \uEF1F+4 \uEF24-1",
+            "descr" => "DEF:26 Fire+4 Water-1",
             "name" => "Dino Trousers",
             "longname" => "dino trousers",
             "lvl" => 48,
@@ -37377,7 +37377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12927 => array(
-            "descr" => "DEF:24 \uEF25+2",
+            "descr" => "DEF:24 Light+2",
             "name" => "Silk Slops +1",
             "longname" => "silk slops +1",
             "lvl" => 53,
@@ -37407,7 +37407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12930 => array(
-            "descr" => "DEF:12 VIT+1 \uEF26+3",
+            "descr" => "DEF:12 VIT+1 Dark+3",
             "name" => "Gold Sabatons",
             "longname" => "gold sabatons",
             "lvl" => 60,
@@ -37417,7 +37417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12931 => array(
-            "descr" => "DEF:15 MP+6 DEX+3 VIT-1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:15 MP+6 DEX+3 VIT-1 Light+2 Dark+2",
             "name" => "Dst. Sabatons",
             "longname" => "darksteel sabatons",
             "lvl" => 66,
@@ -37497,7 +37497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12939 => array(
-            "descr" => "DEF:14 \uEF25+2",
+            "descr" => "DEF:14 Light+2",
             "name" => "Dst. Sollerets",
             "longname" => "darksteel sollerets",
             "lvl" => 59,
@@ -37567,7 +37567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12946 => array(
-            "descr" => "DEF:30 MND+15 \uEF1F+50\nPhysical damage: \"Blaze Spikes\" effect",
+            "descr" => "DEF:30 MND+15 Fire+50\nPhysical damage: \"Blaze Spikes\" effect",
             "name" => "Suzaku's Sune-Ate",
             "longname" => "Suzaku's sune-ate",
             "lvl" => 75,
@@ -37577,7 +37577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12947 => array(
-            "descr" => "DEF:12 \uEF23-3 \uEF24+3 \nMagic damage taken -1%",
+            "descr" => "DEF:12 Thunder-3 Water+3 \nMagic damage taken -1%",
             "name" => "Coral Greaves",
             "longname" => "coral greaves",
             "lvl" => 64,
@@ -37587,7 +37587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12948 => array(
-            "descr" => "DEF:13 HP+9 \uEF21+10 \uEF22+10 \nBreath damage taken -4%",
+            "descr" => "DEF:13 HP+9 Wind+10 Earth+10 \nBreath damage taken -4%",
             "name" => "Dragon Greaves",
             "longname" => "dragon greaves",
             "lvl" => 68,
@@ -37667,7 +37667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12956 => array(
-            "descr" => "DEF:10 \uEF1F+2 \uEF24-1",
+            "descr" => "DEF:10 Fire+2 Water-1",
             "name" => "Raptor Ledelsens",
             "longname" => "raptor ledelsens",
             "lvl" => 48,
@@ -37687,7 +37687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12958 => array(
-            "descr" => "DEF:11 \uEF1F-3 \uEF20+3 Attack+3",
+            "descr" => "DEF:11 Fire-3 Ice+3 Attack+3",
             "name" => "Tiger Ledelsens",
             "longname" => "tiger ledelsens",
             "lvl" => 63,
@@ -37737,7 +37737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12963 => array(
-            "descr" => "DEF:11 HP+3 \uEF20-2 \uEF24+5 \uEF26+5",
+            "descr" => "DEF:11 HP+3 Ice-2 Water+5 Dark+5",
             "name" => "Scorpion Leggings",
             "longname" => "scorpion leggings",
             "lvl" => 57,
@@ -37747,7 +37747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12964 => array(
-            "descr" => "DEF:12 \uEF25+1 \uEF26+1 \nPhysical damage taken -1%",
+            "descr" => "DEF:12 Light+1 Dark+1 \nPhysical damage taken -1%",
             "name" => "Dst. Leggings",
             "longname" => "darksteel leggings",
             "lvl" => 65,
@@ -37807,7 +37807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12970 => array(
-            "descr" => "DEF:6 \uEF22+1 \uEF23+1",
+            "descr" => "DEF:6 Earth+1 Thunder+1",
             "name" => "Soil Kyahan",
             "longname" => "soil kyahan",
             "lvl" => 29,
@@ -37857,7 +37857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12975 => array(
-            "descr" => "DEF:4 \uEF22+6",
+            "descr" => "DEF:4 Earth+6",
             "name" => "Mrc. Kyahan",
             "longname" => "Mercenary's kyahan",
             "lvl" => 20,
@@ -38007,7 +38007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12990 => array(
-            "descr" => "DEF:9 INT+1 \uEF20+10",
+            "descr" => "DEF:9 INT+1 Ice+10",
             "name" => "Tct.Mgc. Pigaches",
             "longname" => "Tactician Magician's pigaches",
             "lvl" => 50,
@@ -38067,7 +38067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12996 => array(
-            "descr" => "DEF:9 HP+5 \uEF25+3 \uEF26-3",
+            "descr" => "DEF:9 HP+5 Light+3 Dark-3",
             "name" => "Silk Pumps",
             "longname" => "silk pumps",
             "lvl" => 61,
@@ -38077,7 +38077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         12998 => array(
-            "descr" => "DEF:7 MP+5 \uEF20+4 \uEF22+4\nAccuracy+1",
+            "descr" => "DEF:7 MP+5 Ice+4 Earth+4\nAccuracy+1",
             "name" => "Cmb.Cst. Shoes",
             "longname" => "Combat Caster's shoes",
             "lvl" => 40,
@@ -38097,7 +38097,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13003 => array(
-            "descr" => "DEF:2 \uEF21+3 \uEF22+3",
+            "descr" => "DEF:2 Wind+3 Earth+3",
             "name" => "Lgn. Leggings",
             "longname" => "Legionnaire's leggings",
             "lvl" => 10,
@@ -38107,7 +38107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13004 => array(
-            "descr" => "DEF:3 \uEF1F+3 \uEF20+3",
+            "descr" => "DEF:3 Fire+3 Ice+3",
             "name" => "Ryl.Ftm. Boots",
             "longname" => "Royal Footman's boots",
             "lvl" => 10,
@@ -38187,7 +38187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13012 => array(
-            "descr" => "DEF:3 VIT+3 \uEF1F+7",
+            "descr" => "DEF:3 VIT+3 Fire+7",
             "name" => "Power Sandals",
             "longname" => "power sandals",
             "lvl" => 18,
@@ -38417,7 +38417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13035 => array(
-            "descr" => "DEF:7 \uEF22+2 \uEF23+2",
+            "descr" => "DEF:7 Earth+2 Thunder+2",
             "name" => "Soil Kyahan +1",
             "longname" => "soil kyahan +1",
             "lvl" => 29,
@@ -38487,7 +38487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13042 => array(
-            "descr" => "DEF:5 \uEF1F-3 Evasion+1",
+            "descr" => "DEF:5 Fire-3 Evasion+1",
             "name" => "Bone Leggings +1",
             "longname" => "bone leggings +1",
             "lvl" => 16,
@@ -38497,7 +38497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13043 => array(
-            "descr" => "DEF:6 \uEF20-3 Evasion+1",
+            "descr" => "DEF:6 Ice-3 Evasion+1",
             "name" => "Btl. Leggings +1",
             "longname" => "beetle leggings +1",
             "lvl" => 21,
@@ -38507,7 +38507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13044 => array(
-            "descr" => "DEF:10 \uEF23-3 Evasion+1",
+            "descr" => "DEF:10 Thunder-3 Evasion+1",
             "name" => "Cpc. Leggings +1",
             "longname" => "carapace leggings +1",
             "lvl" => 45,
@@ -38557,7 +38557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13049 => array(
-            "descr" => "DEF:11 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:11 Fire+3 Water-1",
             "name" => "Dino Ledelsens",
             "longname" => "dino ledelsens",
             "lvl" => 48,
@@ -38617,7 +38617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13056 => array(
-            "descr" => "\uEF26-10 Accuracy+10 \nRanged Accuracy+10",
+            "descr" => "Dark-10 Accuracy+10 \nRanged Accuracy+10",
             "name" => "Peacock Charm",
             "longname" => "peacock charm",
             "lvl" => 33,
@@ -38627,7 +38627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13057 => array(
-            "descr" => "\uEF1F+10 \uEF23-10 \uEF24+10 \uEF25-10 \n\uEF26+10",
+            "descr" => "Fire+10 Thunder-10 Water+10 Light-10 \nDark+10",
             "name" => "Buburimu Gorget",
             "longname" => "Buburimu gorget",
             "lvl" => 27,
@@ -38677,7 +38677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13062 => array(
-            "descr" => "DEF:3 \uEF20-3 Evasion+1",
+            "descr" => "DEF:3 Ice-3 Evasion+1",
             "name" => "Green Gorget",
             "longname" => "green gorget",
             "lvl" => 21,
@@ -38687,7 +38687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13063 => array(
-            "descr" => "DEF:5 \uEF23-3 Evasion+1",
+            "descr" => "DEF:5 Thunder-3 Evasion+1",
             "name" => "Blue Gorget",
             "longname" => "blue gorget",
             "lvl" => 45,
@@ -38717,7 +38717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13066 => array(
-            "descr" => "\uEF23+5 \uEF24+5",
+            "descr" => "Thunder+5 Water+5",
             "name" => "Red Choker",
             "longname" => "red choker",
             "lvl" => 24,
@@ -38827,7 +38827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13077 => array(
-            "descr" => "CHR+3 \uEF25+9 \uEF26+9",
+            "descr" => "CHR+3 Light+9 Dark+9",
             "name" => "Star Pendant",
             "longname" => "star pendant",
             "lvl" => 40,
@@ -38847,7 +38847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13079 => array(
-            "descr" => "DEF:10 MP+5 STR-1 MND+3 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:10 MP+5 STR-1 MND+3 Light+2 Dark+2",
             "name" => "Darksteel Gorget",
             "longname" => "darksteel gorget",
             "lvl" => 67,
@@ -38887,7 +38887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13083 => array(
-            "descr" => "\uEF23+3 \uEF24+3",
+            "descr" => "Thunder+3 Water+3",
             "name" => "Chain Choker",
             "longname" => "chain choker",
             "lvl" => 24,
@@ -38917,7 +38917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13086 => array(
-            "descr" => "\uEF21+6 \uEF25+6",
+            "descr" => "Wind+6 Light+6",
             "name" => "Cerulean Pendant",
             "longname" => "cerulean pendant",
             "lvl" => 18,
@@ -38927,7 +38927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13087 => array(
-            "descr" => "\uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10 \n\uEF23+10 \uEF24+10",
+            "descr" => "Fire+10 Ice+10 Wind+10 Earth+10 \nThunder+10 Water+10",
             "name" => "Jeweled Collar",
             "longname" => "jeweled collar",
             "lvl" => 70,
@@ -39007,7 +39007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13095 => array(
-            "descr" => "\uEF20+5 \uEF22+5 \uEF26+5",
+            "descr" => "Ice+5 Earth+5 Dark+5",
             "name" => "Sand Charm",
             "longname" => "sand charm",
             "lvl" => 27,
@@ -39187,7 +39187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13113 => array(
-            "descr" => "DEF:2 INT+1 \uEF26+3",
+            "descr" => "DEF:2 INT+1 Dark+3",
             "name" => "Black Neckerchief",
             "longname" => "black silk neckerchief",
             "lvl" => 20,
@@ -39197,7 +39197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13114 => array(
-            "descr" => "\uEF25+11 \uEF26+11",
+            "descr" => "Light+11 Dark+11",
             "name" => "Moon Amulet",
             "longname" => "moon amulet",
             "lvl" => 50,
@@ -39207,7 +39207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13115 => array(
-            "descr" => "\uEF1F+6 \uEF20+6 \uEF21+6 \uEF22+6 \n\uEF23+6 \uEF24+6",
+            "descr" => "Fire+6 Ice+6 Wind+6 Earth+6 \nThunder+6 Water+6",
             "name" => "Elemental Charm",
             "longname" => "elemental charm",
             "lvl" => 50,
@@ -39217,7 +39217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13116 => array(
-            "descr" => "\uEF24+5",
+            "descr" => "Water+5",
             "name" => "Silver Name Tag",
             "longname" => "silver name tag",
             "lvl" => 7,
@@ -39257,7 +39257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13120 => array(
-            "descr" => "DEF:4 \uEF22+11",
+            "descr" => "DEF:4 Earth+11",
             "name" => "Clay Amulet",
             "longname" => "clay amulet",
             "lvl" => 42,
@@ -39337,7 +39337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13128 => array(
-            "descr" => "DEF:2 \uEF20-7 Accuracy+7 \nRanged Accuracy+7",
+            "descr" => "DEF:2 Ice-7 Accuracy+7 \nRanged Accuracy+7",
             "name" => "Spectacles",
             "longname" => "spectacles",
             "lvl" => 59,
@@ -39357,7 +39357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13130 => array(
-            "descr" => "STR+1 DEX+1 VIT+1 AGI+1 INT+1 \nMND+1 \uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10 \n\uEF23+10 \uEF24+10",
+            "descr" => "STR+1 DEX+1 VIT+1 AGI+1 INT+1 \nMND+1 Fire+10 Ice+10 Wind+10 Earth+10 \nThunder+10 Water+10",
             "name" => "Jeweled Collar +1",
             "longname" => "jeweled collar +1",
             "lvl" => 70,
@@ -39367,7 +39367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13131 => array(
-            "descr" => "DEF:11 MP+6 STR-1 MND+4 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:11 MP+6 STR-1 MND+4 Light+3 Dark+3",
             "name" => "Dst. Gorget +1",
             "longname" => "darksteel gorget +1",
             "lvl" => 67,
@@ -39487,7 +39487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13143 => array(
-            "descr" => "DEX+1 \uEF23+3 \nWhile asleep: \"Regain\"+25",
+            "descr" => "DEX+1 Thunder+3 \nWhile asleep: \"Regain\"+25",
             "name" => "Opo-opo Necklace",
             "longname" => "Opo-opo necklace",
             "lvl" => 61,
@@ -39567,7 +39567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13152 => array(
-            "descr" => "\uEF25+5 \nDivine magic skill +7",
+            "descr" => "Light+5 \nDivine magic skill +7",
             "name" => "Divine Torque",
             "longname" => "divine torque",
             "lvl" => 65,
@@ -39577,7 +39577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13153 => array(
-            "descr" => "\uEF26+5 \nDark magic skill +7",
+            "descr" => "Dark+5 \nDark magic skill +7",
             "name" => "Dark Torque",
             "longname" => "dark torque",
             "lvl" => 65,
@@ -39587,7 +39587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13154 => array(
-            "descr" => "\uEF22+5 \nEnhancing magic skill +7",
+            "descr" => "Earth+5 \nEnhancing magic skill +7",
             "name" => "Enhancing Torque",
             "longname" => "enhancing torque",
             "lvl" => 65,
@@ -39597,7 +39597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13155 => array(
-            "descr" => "\uEF1F+5 \nEnfeebling magic skill +7",
+            "descr" => "Fire+5 \nEnfeebling magic skill +7",
             "name" => "Enfeebling Torque",
             "longname" => "enfeebling torque",
             "lvl" => 65,
@@ -39607,7 +39607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13156 => array(
-            "descr" => "\uEF21+5 \nElemental magic skill +7",
+            "descr" => "Wind+5 \nElemental magic skill +7",
             "name" => "Elemental Torque",
             "longname" => "elemental torque",
             "lvl" => 65,
@@ -39617,7 +39617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13157 => array(
-            "descr" => "\uEF24+5 \nHealing magic skill +7",
+            "descr" => "Water+5 \nHealing magic skill +7",
             "name" => "Healing Torque",
             "longname" => "healing torque",
             "lvl" => 65,
@@ -39627,7 +39627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13158 => array(
-            "descr" => "\uEF23+5 \nSummoning magic skill +7",
+            "descr" => "Thunder+5 \nSummoning magic skill +7",
             "name" => "Smn. Torque",
             "longname" => "summoning torque",
             "lvl" => 65,
@@ -39637,7 +39637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13159 => array(
-            "descr" => "\uEF20+5 \nNinjutsu skill +7",
+            "descr" => "Ice+5 \nNinjutsu skill +7",
             "name" => "Ninjutsu Torque",
             "longname" => "ninjutsu torque",
             "lvl" => 65,
@@ -39647,7 +39647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13160 => array(
-            "descr" => "\uEF21+5 \nString instrument skill +7",
+            "descr" => "Wind+5 \nString instrument skill +7",
             "name" => "String Torque",
             "longname" => "string torque",
             "lvl" => 65,
@@ -39657,7 +39657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13161 => array(
-            "descr" => "\uEF21+5 \nWind instrument skill +7",
+            "descr" => "Wind+5 \nWind instrument skill +7",
             "name" => "Wind Torque",
             "longname" => "wind torque",
             "lvl" => 65,
@@ -39877,7 +39877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13183 => array(
-            "descr" => "AGI+1 \uEF21+1 \uEF22+1",
+            "descr" => "AGI+1 Wind+1 Earth+1",
             "name" => "Wing Pendant",
             "longname" => "wing pendant",
             "lvl" => 7,
@@ -40157,7 +40157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13211 => array(
-            "descr" => "DEF:2 MP+5 MND+1 \uEF25+2 \uEF26+2",
+            "descr" => "DEF:2 MP+5 MND+1 Light+2 Dark+2",
             "name" => "Friar's Rope",
             "longname" => "friar's rope",
             "lvl" => 14,
@@ -40207,7 +40207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13216 => array(
-            "descr" => "HP+3% \uEF24+3",
+            "descr" => "HP+3% Water+3",
             "name" => "Gold Mog. Belt",
             "longname" => "gold moogle belt",
             "lvl" => 1,
@@ -40217,7 +40217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13217 => array(
-            "descr" => "HP+2% \uEF24+2",
+            "descr" => "HP+2% Water+2",
             "name" => "Silver Mog. Belt",
             "longname" => "silver moogle belt",
             "lvl" => 1,
@@ -40227,7 +40227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13218 => array(
-            "descr" => "HP+1% \uEF24+1",
+            "descr" => "HP+1% Water+1",
             "name" => "Bronze Mog. Belt",
             "longname" => "bronze moogle belt",
             "lvl" => 1,
@@ -40457,7 +40457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13241 => array(
-            "descr" => "DEF:6 \uEF20+20 \uEF24-20 \nOn Firesdays: STR+3",
+            "descr" => "DEF:6 Ice+20 Water-20 \nOn Firesdays: STR+3",
             "name" => "Fire Belt",
             "longname" => "fire belt",
             "lvl" => 65,
@@ -40467,7 +40467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13242 => array(
-            "descr" => "DEF:6 \uEF1F-20 \uEF21+20 \nOn Icedays: INT+3",
+            "descr" => "DEF:6 Fire-20 Wind+20 \nOn Icedays: INT+3",
             "name" => "Ice Belt",
             "longname" => "ice belt",
             "lvl" => 65,
@@ -40477,7 +40477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13243 => array(
-            "descr" => "DEF:6 \uEF20-20 \uEF22+20 \nOn Windsdays: AGI+3",
+            "descr" => "DEF:6 Ice-20 Earth+20 \nOn Windsdays: AGI+3",
             "name" => "Wind Belt",
             "longname" => "wind belt",
             "lvl" => 65,
@@ -40487,7 +40487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13244 => array(
-            "descr" => "DEF:6 \uEF21-20 \uEF23+20 \nOn Earthsdays: VIT+3",
+            "descr" => "DEF:6 Wind-20 Thunder+20 \nOn Earthsdays: VIT+3",
             "name" => "Earth Belt",
             "longname" => "earth belt",
             "lvl" => 65,
@@ -40497,7 +40497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13245 => array(
-            "descr" => "DEF:6 \uEF22-20 \uEF24+20 \nOn Lightningsdays: DEX+3",
+            "descr" => "DEF:6 Earth-20 Water+20 \nOn Lightningsdays: DEX+3",
             "name" => "Lightning Belt",
             "longname" => "lightning belt",
             "lvl" => 65,
@@ -40507,7 +40507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13246 => array(
-            "descr" => "DEF:6 \uEF1F+20 \uEF23-20 \nOn Watersdays: MND+3",
+            "descr" => "DEF:6 Fire+20 Thunder-20 \nOn Watersdays: MND+3",
             "name" => "Water Belt",
             "longname" => "water belt",
             "lvl" => 65,
@@ -40527,7 +40527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13248 => array(
-            "descr" => "DEF:4 AGI+1 \uEF21+3\nParalysis: Haste+8%",
+            "descr" => "DEF:4 AGI+1 Wind+3\nParalysis: Haste+8%",
             "name" => "Flagellant's Rope",
             "longname" => "flagellant's rope",
             "lvl" => 53,
@@ -40847,7 +40847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13280 => array(
-            "descr" => "\uEF26-20 Accuracy+5 \nRanged Accuracy+5 DEF-10",
+            "descr" => "Dark-20 Accuracy+5 \nRanged Accuracy+5 DEF-10",
             "name" => "Sniper's Ring",
             "longname" => "sniper's ring",
             "lvl" => 40,
@@ -40857,7 +40857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13281 => array(
-            "descr" => "\uEF26-25 Accuracy+7 \nRanged Accuracy+7 DEF-12",
+            "descr" => "Dark-25 Accuracy+7 \nRanged Accuracy+7 DEF-12",
             "name" => "Sniper's Ring +1",
             "longname" => "sniper's ring +1",
             "lvl" => 40,
@@ -41087,7 +41087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13304 => array(
-            "descr" => "AGI+5 \uEF21+10",
+            "descr" => "AGI+5 Wind+10",
             "name" => "Nimble Ring",
             "longname" => "nimble ring",
             "lvl" => 72,
@@ -41097,7 +41097,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13305 => array(
-            "descr" => "STR+5 \uEF1F+10",
+            "descr" => "STR+5 Fire+10",
             "name" => "Triumph Ring",
             "longname" => "triumph ring",
             "lvl" => 72,
@@ -41107,7 +41107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13306 => array(
-            "descr" => "INT+5 \uEF20+10",
+            "descr" => "INT+5 Ice+10",
             "name" => "Omniscient Ring",
             "longname" => "omniscient ring",
             "lvl" => 72,
@@ -41117,7 +41117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13307 => array(
-            "descr" => "DEX+5 \uEF23+10",
+            "descr" => "DEX+5 Thunder+10",
             "name" => "Adroit Ring",
             "longname" => "adroit ring",
             "lvl" => 72,
@@ -41127,7 +41127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13308 => array(
-            "descr" => "MND+5 \uEF24+10",
+            "descr" => "MND+5 Water+10",
             "name" => "Communion Ring",
             "longname" => "communion ring",
             "lvl" => 72,
@@ -41137,7 +41137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13309 => array(
-            "descr" => "VIT+5 \uEF22+10",
+            "descr" => "VIT+5 Earth+10",
             "name" => "Robust Ring",
             "longname" => "robust ring",
             "lvl" => 72,
@@ -41147,7 +41147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13310 => array(
-            "descr" => "MP+9 \uEF26+10",
+            "descr" => "MP+9 Dark+10",
             "name" => "Hades Ring",
             "longname" => "Hades ring",
             "lvl" => 72,
@@ -41157,7 +41157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13311 => array(
-            "descr" => "CHR+5 \uEF25+10",
+            "descr" => "CHR+5 Light+10",
             "name" => "Heavens Ring",
             "longname" => "Heavens ring",
             "lvl" => 72,
@@ -41177,7 +41177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13313 => array(
-            "descr" => "\uEF1F+2 \uEF23-2 \uEF24+2",
+            "descr" => "Fire+2 Thunder-2 Water+2",
             "name" => "Shell Earring",
             "longname" => "shell earring",
             "lvl" => 11,
@@ -41187,7 +41187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13314 => array(
-            "descr" => "\uEF1F+3 \uEF23-2 \uEF24+3",
+            "descr" => "Fire+3 Thunder-2 Water+3",
             "name" => "Shell Earring +1",
             "longname" => "shell earring +1",
             "lvl" => 11,
@@ -41217,7 +41217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13317 => array(
-            "descr" => "HP+4 \uEF25+4",
+            "descr" => "HP+4 Light+4",
             "name" => "Pearl Earring",
             "longname" => "pearl earring",
             "lvl" => 31,
@@ -41227,7 +41227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13318 => array(
-            "descr" => "\uEF22+10 \uEF23+10",
+            "descr" => "Earth+10 Thunder+10",
             "name" => "Topaz Earring",
             "longname" => "topaz earring",
             "lvl" => 67,
@@ -41237,7 +41237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13319 => array(
-            "descr" => "\uEF21+4 \uEF22+4",
+            "descr" => "Wind+4 Earth+4",
             "name" => "Peridot Earring",
             "longname" => "peridot earring",
             "lvl" => 31,
@@ -41247,7 +41247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13320 => array(
-            "descr" => "MP+4 \uEF26+4",
+            "descr" => "MP+4 Dark+4",
             "name" => "Black Earring",
             "longname" => "black earring",
             "lvl" => 31,
@@ -41267,7 +41267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13322 => array(
-            "descr" => "AGI+2 \uEF21+4",
+            "descr" => "AGI+2 Wind+4",
             "name" => "Wing Earring",
             "longname" => "wing earring",
             "lvl" => 35,
@@ -41347,7 +41347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13330 => array(
-            "descr" => "\uEF21+2 \uEF22+2",
+            "descr" => "Wind+2 Earth+2",
             "name" => "Tml. Earring",
             "longname" => "tourmaline earring",
             "lvl" => 10,
@@ -41357,7 +41357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13331 => array(
-            "descr" => "\uEF1F+2 \uEF20+2",
+            "descr" => "Fire+2 Ice+2",
             "name" => "Sardonyx Earring",
             "longname" => "sardonyx earring",
             "lvl" => 10,
@@ -41367,7 +41367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13332 => array(
-            "descr" => "\uEF20+2 \uEF21+2",
+            "descr" => "Ice+2 Wind+2",
             "name" => "Clear Earring",
             "longname" => "clear earring",
             "lvl" => 10,
@@ -41377,7 +41377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13333 => array(
-            "descr" => "\uEF23+2 \uEF24+2",
+            "descr" => "Thunder+2 Water+2",
             "name" => "Amethyst Earring",
             "longname" => "amethyst earring",
             "lvl" => 10,
@@ -41387,7 +41387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13334 => array(
-            "descr" => "\uEF1F+2 \uEF24+2",
+            "descr" => "Fire+2 Water+2",
             "name" => "Lapis Laz. Earring",
             "longname" => "lapis lazuli earring",
             "lvl" => 10,
@@ -41397,7 +41397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13335 => array(
-            "descr" => "\uEF22+2 \uEF23+2",
+            "descr" => "Earth+2 Thunder+2",
             "name" => "Amber Earring",
             "longname" => "amber earring",
             "lvl" => 10,
@@ -41407,7 +41407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13336 => array(
-            "descr" => "MP+2 \uEF26+2",
+            "descr" => "MP+2 Dark+2",
             "name" => "Onyx Earring",
             "longname" => "onyx earring",
             "lvl" => 10,
@@ -41417,7 +41417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13337 => array(
-            "descr" => "HP+2 \uEF25+2",
+            "descr" => "HP+2 Light+2",
             "name" => "Opal Earring",
             "longname" => "opal earring",
             "lvl" => 10,
@@ -41427,7 +41427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13338 => array(
-            "descr" => "\uEF1F+4 \uEF20+4",
+            "descr" => "Fire+4 Ice+4",
             "name" => "Blood Earring",
             "longname" => "blood earring",
             "lvl" => 31,
@@ -41437,7 +41437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13339 => array(
-            "descr" => "\uEF20+4 \uEF21+4",
+            "descr" => "Ice+4 Wind+4",
             "name" => "Goshenite Earring",
             "longname" => "goshenite earring",
             "lvl" => 31,
@@ -41447,7 +41447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13340 => array(
-            "descr" => "\uEF23+4 \uEF24+4",
+            "descr" => "Thunder+4 Water+4",
             "name" => "Ametrine Earring",
             "longname" => "ametrine earring",
             "lvl" => 31,
@@ -41457,7 +41457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13341 => array(
-            "descr" => "\uEF1F+4 \uEF24+4",
+            "descr" => "Fire+4 Water+4",
             "name" => "Turquoise Earring",
             "longname" => "turquoise earring",
             "lvl" => 31,
@@ -41467,7 +41467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13342 => array(
-            "descr" => "\uEF22+4 \uEF23+4",
+            "descr" => "Earth+4 Thunder+4",
             "name" => "Sphene Earring",
             "longname" => "sphene earring",
             "lvl" => 31,
@@ -41477,7 +41477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13343 => array(
-            "descr" => "\uEF21+6 \uEF22+6",
+            "descr" => "Wind+6 Earth+6",
             "name" => "Green Earring",
             "longname" => "green earring",
             "lvl" => 49,
@@ -41487,7 +41487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13344 => array(
-            "descr" => "\uEF1F+6 \uEF20+6",
+            "descr" => "Fire+6 Ice+6",
             "name" => "Sun Earring",
             "longname" => "sun earring",
             "lvl" => 49,
@@ -41497,7 +41497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13345 => array(
-            "descr" => "\uEF20+6 \uEF21+6",
+            "descr" => "Ice+6 Wind+6",
             "name" => "Zircon Earring",
             "longname" => "zircon earring",
             "lvl" => 49,
@@ -41507,7 +41507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13346 => array(
-            "descr" => "\uEF23+6 \uEF24+6",
+            "descr" => "Thunder+6 Water+6",
             "name" => "Purple Earring",
             "longname" => "purple earring",
             "lvl" => 49,
@@ -41517,7 +41517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13347 => array(
-            "descr" => "\uEF1F+6 \uEF24+6",
+            "descr" => "Fire+6 Water+6",
             "name" => "Aquamrne. Earring",
             "longname" => "aquamarine earring",
             "lvl" => 49,
@@ -41527,7 +41527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13348 => array(
-            "descr" => "\uEF22+6 \uEF23+6",
+            "descr" => "Earth+6 Thunder+6",
             "name" => "Yellow Earring",
             "longname" => "yellow earring",
             "lvl" => 49,
@@ -41537,7 +41537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13349 => array(
-            "descr" => "MP+6 \uEF26+6",
+            "descr" => "MP+6 Dark+6",
             "name" => "Night Earring",
             "longname" => "night earring",
             "lvl" => 49,
@@ -41547,7 +41547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13350 => array(
-            "descr" => "HP+6 \uEF25+6",
+            "descr" => "HP+6 Light+6",
             "name" => "Moon Earring",
             "longname" => "moon earring",
             "lvl" => 49,
@@ -41557,7 +41557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13351 => array(
-            "descr" => "\uEF21+10 \uEF22+10",
+            "descr" => "Wind+10 Earth+10",
             "name" => "Emerald Earring",
             "longname" => "emerald earring",
             "lvl" => 67,
@@ -41567,7 +41567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13352 => array(
-            "descr" => "\uEF1F+10 \uEF20+10",
+            "descr" => "Fire+10 Ice+10",
             "name" => "Ruby Earring",
             "longname" => "ruby earring",
             "lvl" => 67,
@@ -41577,7 +41577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13353 => array(
-            "descr" => "\uEF20+10 \uEF21+10",
+            "descr" => "Ice+10 Wind+10",
             "name" => "Diamond Earring",
             "longname" => "diamond earring",
             "lvl" => 67,
@@ -41587,7 +41587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13354 => array(
-            "descr" => "\uEF23+10 \uEF24+10",
+            "descr" => "Thunder+10 Water+10",
             "name" => "Spinel Earring",
             "longname" => "spinel earring",
             "lvl" => 67,
@@ -41597,7 +41597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13355 => array(
-            "descr" => "\uEF1F+10 \uEF24+10",
+            "descr" => "Fire+10 Water+10",
             "name" => "Sapphire Earring",
             "longname" => "sapphire earring",
             "lvl" => 67,
@@ -41607,7 +41607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13356 => array(
-            "descr" => "MP+10 \uEF26+10",
+            "descr" => "MP+10 Dark+10",
             "name" => "Death Earring",
             "longname" => "death earring",
             "lvl" => 67,
@@ -41617,7 +41617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13357 => array(
-            "descr" => "HP+10 \uEF25+10",
+            "descr" => "HP+10 Light+10",
             "name" => "Angel's Earring",
             "longname" => "angel's earring",
             "lvl" => 67,
@@ -41647,7 +41647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13360 => array(
-            "descr" => "\uEF20-4 \uEF21+4",
+            "descr" => "Ice-4 Wind+4",
             "name" => "Twinstone Earring",
             "longname" => "twinstone earring",
             "lvl" => 24,
@@ -41657,7 +41657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13361 => array(
-            "descr" => "AGI+3 \uEF21+6",
+            "descr" => "AGI+3 Wind+6",
             "name" => "Drone Earring",
             "longname" => "drone earring",
             "lvl" => 35,
@@ -41777,7 +41777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13373 => array(
-            "descr" => "\uEF21+3 \uEF22+3",
+            "descr" => "Wind+3 Earth+3",
             "name" => "Reflex Earring",
             "longname" => "reflex earring",
             "lvl" => 10,
@@ -41787,7 +41787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13374 => array(
-            "descr" => "\uEF1F+3 \uEF20+3",
+            "descr" => "Fire+3 Ice+3",
             "name" => "Courage Earring",
             "longname" => "courage earring",
             "lvl" => 10,
@@ -41797,7 +41797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13375 => array(
-            "descr" => "\uEF20+3 \uEF21+3",
+            "descr" => "Ice+3 Wind+3",
             "name" => "Knowledge Earring",
             "longname" => "knowledge earring",
             "lvl" => 10,
@@ -41807,7 +41807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13376 => array(
-            "descr" => "\uEF23+3 \uEF24+3",
+            "descr" => "Thunder+3 Water+3",
             "name" => "Balance Earring",
             "longname" => "balance earring",
             "lvl" => 10,
@@ -41817,7 +41817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13377 => array(
-            "descr" => "\uEF1F+3 \uEF24+3",
+            "descr" => "Fire+3 Water+3",
             "name" => "Tranquility Earring",
             "longname" => "tranquility earring",
             "lvl" => 10,
@@ -41827,7 +41827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13378 => array(
-            "descr" => "\uEF22+3 \uEF23+3",
+            "descr" => "Earth+3 Thunder+3",
             "name" => "Stamina Earring",
             "longname" => "stamina earring",
             "lvl" => 10,
@@ -41837,7 +41837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13379 => array(
-            "descr" => "MP+3 \uEF26+3",
+            "descr" => "MP+3 Dark+3",
             "name" => "Energy Earring",
             "longname" => "energy earring",
             "lvl" => 10,
@@ -41847,7 +41847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13380 => array(
-            "descr" => "HP+3 \uEF25+3",
+            "descr" => "HP+3 Light+3",
             "name" => "Hope Earring",
             "longname" => "hope earring",
             "lvl" => 10,
@@ -41857,7 +41857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13381 => array(
-            "descr" => "\uEF21+5 \uEF22+5",
+            "descr" => "Wind+5 Earth+5",
             "name" => "Alacrity Earring",
             "longname" => "alacrity earring",
             "lvl" => 31,
@@ -41867,7 +41867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13382 => array(
-            "descr" => "\uEF1F+5 \uEF20+5",
+            "descr" => "Fire+5 Ice+5",
             "name" => "Puissance Earring",
             "longname" => "puissance earring",
             "lvl" => 31,
@@ -41877,7 +41877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13383 => array(
-            "descr" => "\uEF20+5 \uEF21+5",
+            "descr" => "Ice+5 Wind+5",
             "name" => "Wisdom Earring",
             "longname" => "wisdom earring",
             "lvl" => 31,
@@ -41887,7 +41887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13384 => array(
-            "descr" => "\uEF23+5 \uEF24+5",
+            "descr" => "Thunder+5 Water+5",
             "name" => "Deft Earring",
             "longname" => "deft earring",
             "lvl" => 31,
@@ -41897,7 +41897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13385 => array(
-            "descr" => "\uEF1F+5 \uEF24+5",
+            "descr" => "Fire+5 Water+5",
             "name" => "Solace Earring",
             "longname" => "solace earring",
             "lvl" => 31,
@@ -41907,7 +41907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13386 => array(
-            "descr" => "\uEF22+5 \uEF23+5",
+            "descr" => "Earth+5 Thunder+5",
             "name" => "Verve Earring",
             "longname" => "verve earring",
             "lvl" => 31,
@@ -41917,7 +41917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13387 => array(
-            "descr" => "MP+5 \uEF26+5",
+            "descr" => "MP+5 Dark+5",
             "name" => "Aura Earring",
             "longname" => "aura earring",
             "lvl" => 31,
@@ -41927,7 +41927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13388 => array(
-            "descr" => "HP+5 \uEF25+5",
+            "descr" => "HP+5 Light+5",
             "name" => "Loyalty Earring",
             "longname" => "loyalty earring",
             "lvl" => 31,
@@ -41937,7 +41937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13389 => array(
-            "descr" => "\uEF21+8 \uEF22+8",
+            "descr" => "Wind+8 Earth+8",
             "name" => "Celerity Earring",
             "longname" => "celerity earring",
             "lvl" => 49,
@@ -41947,7 +41947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13390 => array(
-            "descr" => "\uEF1F+8 \uEF20+8",
+            "descr" => "Fire+8 Ice+8",
             "name" => "Victory Earring",
             "longname" => "victory earring",
             "lvl" => 49,
@@ -41957,7 +41957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13391 => array(
-            "descr" => "\uEF20+8 \uEF21+8",
+            "descr" => "Ice+8 Wind+8",
             "name" => "Genius Earring",
             "longname" => "genius earring",
             "lvl" => 49,
@@ -41967,7 +41967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13392 => array(
-            "descr" => "\uEF23+8 \uEF24+8",
+            "descr" => "Thunder+8 Water+8",
             "name" => "Grace Earring",
             "longname" => "grace earring",
             "lvl" => 49,
@@ -41977,7 +41977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13393 => array(
-            "descr" => "\uEF1F+8 \uEF24+8",
+            "descr" => "Fire+8 Water+8",
             "name" => "Serenity Earring",
             "longname" => "serenity earring",
             "lvl" => 49,
@@ -41987,7 +41987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13394 => array(
-            "descr" => "\uEF22+8 \uEF23+8",
+            "descr" => "Earth+8 Thunder+8",
             "name" => "Vigor Earring",
             "longname" => "vigor earring",
             "lvl" => 49,
@@ -41997,7 +41997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13395 => array(
-            "descr" => "MP+8 \uEF26+8",
+            "descr" => "MP+8 Dark+8",
             "name" => "Mana Earring",
             "longname" => "mana earring",
             "lvl" => 49,
@@ -42007,7 +42007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13396 => array(
-            "descr" => "HP+8 \uEF25+8",
+            "descr" => "HP+8 Light+8",
             "name" => "Allure Earring",
             "longname" => "allure earring",
             "lvl" => 49,
@@ -42047,7 +42047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13400 => array(
-            "descr" => "DEF:5 \uEF26+4\nCurse: Ranged Accuracy+5",
+            "descr" => "DEF:5 Dark+4\nCurse: Ranged Accuracy+5",
             "name" => "Bitter Earring",
             "longname" => "bitter earring",
             "lvl" => 56,
@@ -42057,7 +42057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13401 => array(
-            "descr" => "\uEF25+12\nEnhances \"Resist Stun\" effect\nEnhances \"Resist Bind\" effect\nEnhances \"Resist Gravity\" effect",
+            "descr" => "Light+12\nEnhances \"Resist Stun\" effect\nEnhances \"Resist Bind\" effect\nEnhances \"Resist Gravity\" effect",
             "name" => "Arete del Sol",
             "longname" => "arete del sol",
             "lvl" => 71,
@@ -42117,7 +42117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13407 => array(
-            "descr" => "AGI+2 \uEF21+11 \uEF22+11",
+            "descr" => "AGI+2 Wind+11 Earth+11",
             "name" => "Nimble Earring",
             "longname" => "nimble earring",
             "lvl" => 67,
@@ -42127,7 +42127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13408 => array(
-            "descr" => "STR+2 \uEF1F+11 \uEF20+11",
+            "descr" => "STR+2 Fire+11 Ice+11",
             "name" => "Triumph Earring",
             "longname" => "triumph earring",
             "lvl" => 67,
@@ -42137,7 +42137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13409 => array(
-            "descr" => "INT+2 \uEF20+11 \uEF21+11",
+            "descr" => "INT+2 Ice+11 Wind+11",
             "name" => "Omn. Earring",
             "longname" => "omniscient earring",
             "lvl" => 67,
@@ -42147,7 +42147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13410 => array(
-            "descr" => "DEX+2 \uEF23+11 \uEF24+11",
+            "descr" => "DEX+2 Thunder+11 Water+11",
             "name" => "Adroit Earring",
             "longname" => "adroit earring",
             "lvl" => 67,
@@ -42157,7 +42157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13411 => array(
-            "descr" => "MND+2 \uEF1F+11 \uEF24+11",
+            "descr" => "MND+2 Fire+11 Water+11",
             "name" => "Cmn. Earring",
             "longname" => "communion earring",
             "lvl" => 67,
@@ -42167,7 +42167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13412 => array(
-            "descr" => "VIT+2 \uEF22+11 \uEF23+11",
+            "descr" => "VIT+2 Earth+11 Thunder+11",
             "name" => "Robust Earring",
             "longname" => "robust earring",
             "lvl" => 67,
@@ -42177,7 +42177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13413 => array(
-            "descr" => "MP+11 \uEF26+11 Enmity+1",
+            "descr" => "MP+11 Dark+11 Enmity+1",
             "name" => "Hades Earring",
             "longname" => "Hades earring",
             "lvl" => 67,
@@ -42187,7 +42187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13414 => array(
-            "descr" => "HP+11 \uEF25+11 Enmity-1",
+            "descr" => "HP+11 Light+11 Enmity-1",
             "name" => "Heavens Earring",
             "longname" => "Heavens earring",
             "lvl" => 67,
@@ -42207,7 +42207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13416 => array(
-            "descr" => "MP+5 \uEF26+3 \nWhile blinded: Evasion+15",
+            "descr" => "MP+5 Dark+3 \nWhile blinded: Evasion+15",
             "name" => "Bat Earring",
             "longname" => "bat earring",
             "lvl" => 57,
@@ -42467,7 +42467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13442 => array(
-            "descr" => "\uEF1F+2 \uEF24+2",
+            "descr" => "Fire+2 Water+2",
             "name" => "Shell Ring",
             "longname" => "shell ring",
             "lvl" => 11,
@@ -42477,7 +42477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13443 => array(
-            "descr" => "CHR+1 \uEF25+3",
+            "descr" => "CHR+1 Light+3",
             "name" => "Opal Ring",
             "longname" => "opal ring",
             "lvl" => 14,
@@ -42487,7 +42487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13444 => array(
-            "descr" => "STR+1 \uEF1F+3",
+            "descr" => "STR+1 Fire+3",
             "name" => "Sardonyx Ring",
             "longname" => "sardonyx ring",
             "lvl" => 14,
@@ -42527,7 +42527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13448 => array(
-            "descr" => "AGI+4 \uEF21+9",
+            "descr" => "AGI+4 Wind+9",
             "name" => "Emerald Ring",
             "longname" => "emerald ring",
             "lvl" => 72,
@@ -42537,7 +42537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13449 => array(
-            "descr" => "STR+4 \uEF1F+9",
+            "descr" => "STR+4 Fire+9",
             "name" => "Ruby Ring",
             "longname" => "ruby ring",
             "lvl" => 72,
@@ -42547,7 +42547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13450 => array(
-            "descr" => "INT+4 \uEF20+9",
+            "descr" => "INT+4 Ice+9",
             "name" => "Diamond Ring",
             "longname" => "diamond ring",
             "lvl" => 72,
@@ -42557,7 +42557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13451 => array(
-            "descr" => "DEX+4 \uEF23+9",
+            "descr" => "DEX+4 Thunder+9",
             "name" => "Spinel Ring",
             "longname" => "spinel ring",
             "lvl" => 72,
@@ -42567,7 +42567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13452 => array(
-            "descr" => "MND+4 \uEF24+9",
+            "descr" => "MND+4 Water+9",
             "name" => "Sapphire Ring",
             "longname" => "sapphire ring",
             "lvl" => 72,
@@ -42577,7 +42577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13453 => array(
-            "descr" => "VIT+4 \uEF22+9",
+            "descr" => "VIT+4 Earth+9",
             "name" => "Topaz Ring",
             "longname" => "topaz ring",
             "lvl" => 72,
@@ -42667,7 +42667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13462 => array(
-            "descr" => "MP+8 \uEF26+9",
+            "descr" => "MP+8 Dark+9",
             "name" => "Death Ring",
             "longname" => "death ring",
             "lvl" => 72,
@@ -42677,7 +42677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13463 => array(
-            "descr" => "CHR+4 \uEF25+9",
+            "descr" => "CHR+4 Light+9",
             "name" => "Angel's Ring",
             "longname" => "angel's ring",
             "lvl" => 72,
@@ -42687,7 +42687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13464 => array(
-            "descr" => "DEF:2 HP+10 MP+10 \uEF25-20 \uEF26+10",
+            "descr" => "DEF:2 HP+10 MP+10 Light-20 Dark+10",
             "name" => "Demon's Ring",
             "longname" => "demon's ring",
             "lvl" => 60,
@@ -42727,7 +42727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13468 => array(
-            "descr" => "AGI+1 \uEF21+3",
+            "descr" => "AGI+1 Wind+3",
             "name" => "Tourmaline Ring",
             "longname" => "tourmaline ring",
             "lvl" => 14,
@@ -42747,7 +42747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13470 => array(
-            "descr" => "INT+1 \uEF20+3",
+            "descr" => "INT+1 Ice+3",
             "name" => "Clear Ring",
             "longname" => "clear ring",
             "lvl" => 14,
@@ -42757,7 +42757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13471 => array(
-            "descr" => "DEX+1 \uEF23+3",
+            "descr" => "DEX+1 Thunder+3",
             "name" => "Amethyst Ring",
             "longname" => "amethyst ring",
             "lvl" => 14,
@@ -42767,7 +42767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13472 => array(
-            "descr" => "MND+1 \uEF24+3",
+            "descr" => "MND+1 Water+3",
             "name" => "Lapis Lazuli Ring",
             "longname" => "lapis lazuli ring",
             "lvl" => 14,
@@ -42777,7 +42777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13473 => array(
-            "descr" => "VIT+1 \uEF22+3",
+            "descr" => "VIT+1 Earth+3",
             "name" => "Amber Ring",
             "longname" => "amber ring",
             "lvl" => 14,
@@ -42787,7 +42787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13474 => array(
-            "descr" => "MP+2 \uEF26+3",
+            "descr" => "MP+2 Dark+3",
             "name" => "Onyx Ring",
             "longname" => "onyx ring",
             "lvl" => 14,
@@ -42807,7 +42807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13476 => array(
-            "descr" => "AGI+2 \uEF21+5",
+            "descr" => "AGI+2 Wind+5",
             "name" => "Peridot Ring",
             "longname" => "peridot ring",
             "lvl" => 36,
@@ -42817,7 +42817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13477 => array(
-            "descr" => "STR+2 \uEF1F+5",
+            "descr" => "STR+2 Fire+5",
             "name" => "Garnet Ring",
             "longname" => "garnet ring",
             "lvl" => 36,
@@ -42827,7 +42827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13478 => array(
-            "descr" => "INT+2 \uEF20+5",
+            "descr" => "INT+2 Ice+5",
             "name" => "Goshenite Ring",
             "longname" => "goshenite ring",
             "lvl" => 36,
@@ -42837,7 +42837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13479 => array(
-            "descr" => "DEX+2 \uEF23+5",
+            "descr" => "DEX+2 Thunder+5",
             "name" => "Ametrine Ring",
             "longname" => "ametrine ring",
             "lvl" => 36,
@@ -42847,7 +42847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13480 => array(
-            "descr" => "MND+2 \uEF24+5",
+            "descr" => "MND+2 Water+5",
             "name" => "Turquoise Ring",
             "longname" => "turquoise ring",
             "lvl" => 36,
@@ -42857,7 +42857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13481 => array(
-            "descr" => "VIT+2 \uEF22+5",
+            "descr" => "VIT+2 Earth+5",
             "name" => "Sphene Ring",
             "longname" => "sphene ring",
             "lvl" => 36,
@@ -42867,7 +42867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13482 => array(
-            "descr" => "MP+4 \uEF26+5",
+            "descr" => "MP+4 Dark+5",
             "name" => "Black Ring",
             "longname" => "black ring",
             "lvl" => 36,
@@ -42877,7 +42877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13483 => array(
-            "descr" => "CHR+2 \uEF25+5",
+            "descr" => "CHR+2 Light+5",
             "name" => "Pearl Ring",
             "longname" => "pearl ring",
             "lvl" => 36,
@@ -42887,7 +42887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13484 => array(
-            "descr" => "AGI+3 \uEF21+7",
+            "descr" => "AGI+3 Wind+7",
             "name" => "Jadeite Ring",
             "longname" => "jadeite ring",
             "lvl" => 54,
@@ -42897,7 +42897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13485 => array(
-            "descr" => "STR+3 \uEF1F+7",
+            "descr" => "STR+3 Fire+7",
             "name" => "Sun Ring",
             "longname" => "sun ring",
             "lvl" => 54,
@@ -42907,7 +42907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13486 => array(
-            "descr" => "INT+3 \uEF20+7",
+            "descr" => "INT+3 Ice+7",
             "name" => "Zircon Ring",
             "longname" => "zircon ring",
             "lvl" => 54,
@@ -42917,7 +42917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13487 => array(
-            "descr" => "DEX+3 \uEF23+7",
+            "descr" => "DEX+3 Thunder+7",
             "name" => "Fluorite Ring",
             "longname" => "fluorite ring",
             "lvl" => 54,
@@ -42927,7 +42927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13488 => array(
-            "descr" => "MND+3 \uEF24+7",
+            "descr" => "MND+3 Water+7",
             "name" => "Aquamarine Ring",
             "longname" => "aquamarine ring",
             "lvl" => 54,
@@ -42937,7 +42937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13489 => array(
-            "descr" => "VIT+3 \uEF22+7",
+            "descr" => "VIT+3 Earth+7",
             "name" => "Chrysoberyl Ring",
             "longname" => "chrysoberyl ring",
             "lvl" => 54,
@@ -42947,7 +42947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13490 => array(
-            "descr" => "MP+6 \uEF26+7",
+            "descr" => "MP+6 Dark+7",
             "name" => "Painite Ring",
             "longname" => "painite ring",
             "lvl" => 54,
@@ -42957,7 +42957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13491 => array(
-            "descr" => "CHR+3 \uEF25+7",
+            "descr" => "CHR+3 Light+7",
             "name" => "Moon Ring",
             "longname" => "moon ring",
             "lvl" => 54,
@@ -42987,7 +42987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13494 => array(
-            "descr" => "\uEF1F+3 \uEF24+3",
+            "descr" => "Fire+3 Water+3",
             "name" => "Shell Ring +1",
             "longname" => "shell ring +1",
             "lvl" => 11,
@@ -43107,7 +43107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13506 => array(
-            "descr" => "DEF:2 HP+15 \uEF1F-5",
+            "descr" => "DEF:2 HP+15 Fire-5",
             "name" => "Bomb Ring",
             "longname" => "bomb ring",
             "lvl" => 16,
@@ -43117,7 +43117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13507 => array(
-            "descr" => "MND-3 CHR-3 \uEF24+10",
+            "descr" => "MND-3 CHR-3 Water+10",
             "name" => "Malflood Ring",
             "longname" => "malflood ring",
             "lvl" => 36,
@@ -43127,7 +43127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13508 => array(
-            "descr" => "VIT-3 CHR-3 \uEF22+10",
+            "descr" => "VIT-3 CHR-3 Earth+10",
             "name" => "Maldust Ring",
             "longname" => "maldust ring",
             "lvl" => 36,
@@ -43137,7 +43137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13509 => array(
-            "descr" => "INT-3 CHR-3 \uEF20+10",
+            "descr" => "INT-3 CHR-3 Ice+10",
             "name" => "Malfrost Ring",
             "longname" => "malfrost ring",
             "lvl" => 36,
@@ -43147,7 +43147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13510 => array(
-            "descr" => "STR-3 CHR-3 \uEF1F+10",
+            "descr" => "STR-3 CHR-3 Fire+10",
             "name" => "Malflame Ring",
             "longname" => "malflame ring",
             "lvl" => 36,
@@ -43157,7 +43157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13511 => array(
-            "descr" => "DEX-3 CHR-3 \uEF23+10",
+            "descr" => "DEX-3 CHR-3 Thunder+10",
             "name" => "Malflash Ring",
             "longname" => "malflash ring",
             "lvl" => 36,
@@ -43167,7 +43167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13512 => array(
-            "descr" => "AGI-3 CHR-3 \uEF21+10",
+            "descr" => "AGI-3 CHR-3 Wind+10",
             "name" => "Malgust Ring",
             "longname" => "malgust ring",
             "lvl" => 36,
@@ -43257,7 +43257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13521 => array(
-            "descr" => "AGI+2 \uEF21+4",
+            "descr" => "AGI+2 Wind+4",
             "name" => "Reflex Ring",
             "longname" => "reflex ring",
             "lvl" => 14,
@@ -43267,7 +43267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13522 => array(
-            "descr" => "STR+2 \uEF1F+4",
+            "descr" => "STR+2 Fire+4",
             "name" => "Courage Ring",
             "longname" => "courage ring",
             "lvl" => 14,
@@ -43277,7 +43277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13523 => array(
-            "descr" => "INT+2 \uEF20+4",
+            "descr" => "INT+2 Ice+4",
             "name" => "Knowledge Ring",
             "longname" => "knowledge ring",
             "lvl" => 14,
@@ -43287,7 +43287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13524 => array(
-            "descr" => "DEX+2 \uEF23+4",
+            "descr" => "DEX+2 Thunder+4",
             "name" => "Balance Ring",
             "longname" => "balance ring",
             "lvl" => 14,
@@ -43297,7 +43297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13525 => array(
-            "descr" => "MND+2 \uEF24+4",
+            "descr" => "MND+2 Water+4",
             "name" => "Tranquility Ring",
             "longname" => "tranquility ring",
             "lvl" => 14,
@@ -43307,7 +43307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13526 => array(
-            "descr" => "VIT+2 \uEF22+4",
+            "descr" => "VIT+2 Earth+4",
             "name" => "Stamina Ring",
             "longname" => "stamina ring",
             "lvl" => 14,
@@ -43317,7 +43317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13527 => array(
-            "descr" => "MP+3 \uEF26+4",
+            "descr" => "MP+3 Dark+4",
             "name" => "Energy Ring",
             "longname" => "energy ring",
             "lvl" => 14,
@@ -43327,7 +43327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13528 => array(
-            "descr" => "CHR+2 \uEF25+4",
+            "descr" => "CHR+2 Light+4",
             "name" => "Hope Ring",
             "longname" => "hope ring",
             "lvl" => 14,
@@ -43337,7 +43337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13529 => array(
-            "descr" => "AGI+3 \uEF21+6",
+            "descr" => "AGI+3 Wind+6",
             "name" => "Alacrity Ring",
             "longname" => "alacrity ring",
             "lvl" => 36,
@@ -43347,7 +43347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13530 => array(
-            "descr" => "STR+3 \uEF1F+6",
+            "descr" => "STR+3 Fire+6",
             "name" => "Puissance Ring",
             "longname" => "puissance ring",
             "lvl" => 36,
@@ -43357,7 +43357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13531 => array(
-            "descr" => "INT+3 \uEF20+6",
+            "descr" => "INT+3 Ice+6",
             "name" => "Wisdom Ring",
             "longname" => "wisdom ring",
             "lvl" => 36,
@@ -43367,7 +43367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13532 => array(
-            "descr" => "DEX+3 \uEF23+6",
+            "descr" => "DEX+3 Thunder+6",
             "name" => "Deft Ring",
             "longname" => "deft ring",
             "lvl" => 36,
@@ -43377,7 +43377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13533 => array(
-            "descr" => "MND+3 \uEF24+6",
+            "descr" => "MND+3 Water+6",
             "name" => "Solace Ring",
             "longname" => "solace ring",
             "lvl" => 36,
@@ -43387,7 +43387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13534 => array(
-            "descr" => "VIT+3 \uEF22+6",
+            "descr" => "VIT+3 Earth+6",
             "name" => "Verve Ring",
             "longname" => "verve ring",
             "lvl" => 36,
@@ -43397,7 +43397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13535 => array(
-            "descr" => "MP+5 \uEF26+6",
+            "descr" => "MP+5 Dark+6",
             "name" => "Aura Ring",
             "longname" => "aura ring",
             "lvl" => 36,
@@ -43407,7 +43407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13536 => array(
-            "descr" => "CHR+3 \uEF25+6",
+            "descr" => "CHR+3 Light+6",
             "name" => "Loyalty Ring",
             "longname" => "loyalty ring",
             "lvl" => 36,
@@ -43417,7 +43417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13537 => array(
-            "descr" => "AGI+4 \uEF21+8",
+            "descr" => "AGI+4 Wind+8",
             "name" => "Celerity Ring",
             "longname" => "celerity ring",
             "lvl" => 54,
@@ -43427,7 +43427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13538 => array(
-            "descr" => "STR+4 \uEF1F+8",
+            "descr" => "STR+4 Fire+8",
             "name" => "Victory Ring",
             "longname" => "victory ring",
             "lvl" => 54,
@@ -43437,7 +43437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13539 => array(
-            "descr" => "INT+4 \uEF20+8",
+            "descr" => "INT+4 Ice+8",
             "name" => "Genius Ring",
             "longname" => "genius ring",
             "lvl" => 54,
@@ -43447,7 +43447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13540 => array(
-            "descr" => "DEX+4 \uEF23+8",
+            "descr" => "DEX+4 Thunder+8",
             "name" => "Grace Ring",
             "longname" => "grace ring",
             "lvl" => 54,
@@ -43457,7 +43457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13541 => array(
-            "descr" => "MND+4 \uEF24+8",
+            "descr" => "MND+4 Water+8",
             "name" => "Serenity Ring",
             "longname" => "serenity ring",
             "lvl" => 54,
@@ -43467,7 +43467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13542 => array(
-            "descr" => "VIT+4 \uEF22+8",
+            "descr" => "VIT+4 Earth+8",
             "name" => "Vigor Ring",
             "longname" => "vigor ring",
             "lvl" => 54,
@@ -43477,7 +43477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13543 => array(
-            "descr" => "MP+7 \uEF26+8",
+            "descr" => "MP+7 Dark+8",
             "name" => "Mystic Ring",
             "longname" => "mystic ring",
             "lvl" => 54,
@@ -43487,7 +43487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13544 => array(
-            "descr" => "CHR+4 \uEF25+8",
+            "descr" => "CHR+4 Light+8",
             "name" => "Allure Ring",
             "longname" => "allure ring",
             "lvl" => 54,
@@ -43497,7 +43497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13545 => array(
-            "descr" => "DEF:3 HP+13 MP+13 \uEF25-20 \uEF26+13",
+            "descr" => "DEF:3 HP+13 MP+13 Light-20 Dark+13",
             "name" => "Demon's Ring +1",
             "longname" => "demon's ring +1",
             "lvl" => 60,
@@ -43717,7 +43717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13567 => array(
-            "descr" => "HP+75 \uEF1F-75",
+            "descr" => "HP+75 Fire-75",
             "name" => "Bomb Queen Ring",
             "longname" => "bomb queen ring",
             "lvl" => 57,
@@ -43727,7 +43727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13568 => array(
-            "descr" => "\uEF1F+2 \uEF20+2 \uEF21+2 \uEF22+2 \n\uEF23+2 \uEF24+2 \uEF25+2 \uEF26+2",
+            "descr" => "Fire+2 Ice+2 Wind+2 Earth+2 \nThunder+2 Water+2 Light+2 Dark+2",
             "name" => "Scarlet Ribbon",
             "longname" => "scarlet ribbon",
             "lvl" => 14,
@@ -43737,7 +43737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13569 => array(
-            "descr" => "\uEF1F+4 \uEF20+4 \uEF21+4 \uEF22+4 \n\uEF23+4 \uEF24+4 \uEF25+4 \uEF26+4",
+            "descr" => "Fire+4 Ice+4 Wind+4 Earth+4 \nThunder+4 Water+4 Light+4 Dark+4",
             "name" => "Purple Ribbon",
             "longname" => "purple ribbon",
             "lvl" => 36,
@@ -43747,7 +43747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13570 => array(
-            "descr" => "DEF:5 \uEF20+5",
+            "descr" => "DEF:5 Ice+5",
             "name" => "Ram Mantle",
             "longname" => "ram mantle",
             "lvl" => 36,
@@ -43757,7 +43757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13571 => array(
-            "descr" => "DEF:4 \uEF25+4",
+            "descr" => "DEF:4 Light+4",
             "name" => "Wolf Mantle",
             "longname" => "wolf mantle",
             "lvl" => 28,
@@ -43777,7 +43777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13574 => array(
-            "descr" => "\uEF1F+12 \uEF20+12 \uEF21+12 \uEF22+12 \n\uEF23+12 \uEF24+12 \uEF25+12 \uEF26+12",
+            "descr" => "Fire+12 Ice+12 Wind+12 Earth+12 \nThunder+12 Water+12 Light+12 Dark+12",
             "name" => "Black Ribbon",
             "longname" => "black ribbon",
             "lvl" => 70,
@@ -43787,7 +43787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13575 => array(
-            "descr" => "DEF:6 \uEF20+6",
+            "descr" => "DEF:6 Ice+6",
             "name" => "Ram Mantle +1",
             "longname" => "ram mantle +1",
             "lvl" => 36,
@@ -43797,7 +43797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13576 => array(
-            "descr" => "DEF:3 \uEF26+3 Evasion+3",
+            "descr" => "DEF:3 Dark+3 Evasion+3",
             "name" => "Night Cape",
             "longname" => "night cape",
             "lvl" => 21,
@@ -43817,7 +43817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13578 => array(
-            "descr" => "DEF:6 MP+15 \uEF1F-10 \uEF20+5 \uEF21+5 \uEF22+5 \n\uEF23-10 \uEF24+5 \uEF25+5 \uEF26+5\nConverts 15 HP to MP",
+            "descr" => "DEF:6 MP+15 Fire-10 Ice+5 Wind+5 Earth+5 \nThunder-10 Water+5 Light+5 Dark+5\nConverts 15 HP to MP",
             "name" => "Blue Cape",
             "longname" => "blue cape",
             "lvl" => 68,
@@ -43937,7 +43937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13590 => array(
-            "descr" => "\uEF1F+8 \uEF20+8 \uEF21+8 \uEF22+8 \n\uEF23+8 \uEF24+8 \uEF25+8 \uEF26+8",
+            "descr" => "Fire+8 Ice+8 Wind+8 Earth+8 \nThunder+8 Water+8 Light+8 Dark+8",
             "name" => "Green Ribbon",
             "longname" => "green ribbon",
             "lvl" => 60,
@@ -43967,7 +43967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13593 => array(
-            "descr" => "DEF:6 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:6 Fire+3 Water-1",
             "name" => "Raptor Mantle",
             "longname" => "raptor mantle",
             "lvl" => 48,
@@ -43997,7 +43997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13596 => array(
-            "descr" => "DEF:4 \uEF20+3 \uEF21+3 \uEF22+3 \uEF24+3",
+            "descr" => "DEF:4 Ice+3 Wind+3 Earth+3 Water+3",
             "name" => "Green Cape",
             "longname" => "green cape",
             "lvl" => 45,
@@ -44007,7 +44007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13597 => array(
-            "descr" => "DEF:8 VIT+1 \uEF22+5",
+            "descr" => "DEF:8 VIT+1 Earth+5",
             "name" => "Beak Mantle",
             "longname" => "beak mantle",
             "lvl" => 58,
@@ -44017,7 +44017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13598 => array(
-            "descr" => "DEF:6 \uEF26+5 Evasion+5",
+            "descr" => "DEF:6 Dark+5 Evasion+5",
             "name" => "Bat Cape",
             "longname" => "bat cape",
             "lvl" => 46,
@@ -44107,7 +44107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13607 => array(
-            "descr" => "DEF:3 MND+1 \uEF25+3",
+            "descr" => "DEF:3 MND+1 Light+3",
             "name" => "Mist Silk Cape",
             "longname" => "mist silk cape",
             "lvl" => 10,
@@ -44127,7 +44127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13609 => array(
-            "descr" => "DEF:5 \uEF1F+3 \uEF20+3 \uEF21+3 \uEF22+3 \n\uEF23+3 \uEF24+3 \uEF25+3",
+            "descr" => "DEF:5 Fire+3 Ice+3 Wind+3 Earth+3 \nThunder+3 Water+3 Light+3",
             "name" => "Wolf Mantle +1",
             "longname" => "wolf mantle +1",
             "lvl" => 28,
@@ -44157,7 +44157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13612 => array(
-            "descr" => "DEF:7 \uEF1F+4 \uEF24-1",
+            "descr" => "DEF:7 Fire+4 Water-1",
             "name" => "Dino Mantle",
             "longname" => "dino mantle",
             "lvl" => 48,
@@ -44207,7 +44207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13617 => array(
-            "descr" => "DEF:7 \uEF23+6",
+            "descr" => "DEF:7 Thunder+6",
             "name" => "Lightning Mantle",
             "longname" => "lightning mantle",
             "lvl" => 53,
@@ -44237,7 +44237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13621 => array(
-            "descr" => "DEF:9 VIT+2 \uEF22+7",
+            "descr" => "DEF:9 VIT+2 Earth+7",
             "name" => "Beak Mantle +1",
             "longname" => "beak mantle +1",
             "lvl" => 58,
@@ -44257,7 +44257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13623 => array(
-            "descr" => "DEF:6 VIT+1 \uEF22+5 \uEF23+5",
+            "descr" => "DEF:6 VIT+1 Earth+5 Thunder+5",
             "name" => "Earth Mantle",
             "longname" => "earth mantle",
             "lvl" => 40,
@@ -44277,7 +44277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13625 => array(
-            "descr" => "DEF:4 MP+5 \uEF20+5 \uEF21+5",
+            "descr" => "DEF:4 MP+5 Ice+5 Wind+5",
             "name" => "Tundra Mantle",
             "longname" => "tundra mantle",
             "lvl" => 39,
@@ -44287,7 +44287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13626 => array(
-            "descr" => "DEF:7 MP+20 \uEF1F-8 \uEF20+7 \uEF21+7 \uEF22+7 \n\uEF23-8 \uEF24+7 \uEF25+7 \uEF26+7\nConverts 20 HP to MP",
+            "descr" => "DEF:7 MP+20 Fire-8 Ice+7 Wind+7 Earth+7 \nThunder-8 Water+7 Light+7 Dark+7\nConverts 20 HP to MP",
             "name" => "Blue Cape +1",
             "longname" => "blue cape +1",
             "lvl" => 68,
@@ -44397,7 +44397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13637 => array(
-            "descr" => "DEF:7 VIT+1 \uEF22+10 \uEF23+10",
+            "descr" => "DEF:7 VIT+1 Earth+10 Thunder+10",
             "name" => "Gaia Mantle",
             "longname" => "Gaia mantle",
             "lvl" => 51,
@@ -44407,7 +44407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13638 => array(
-            "descr" => "DEF:8 VIT+2 \uEF22+12 \uEF23+12",
+            "descr" => "DEF:8 VIT+2 Earth+12 Thunder+12",
             "name" => "Gaia Mantle +1",
             "longname" => "Gaia mantle +1",
             "lvl" => 51,
@@ -44417,7 +44417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13639 => array(
-            "descr" => "DEF:5 MP+10 \uEF20+7 \uEF21+7",
+            "descr" => "DEF:5 MP+10 Ice+7 Wind+7",
             "name" => "Aurora Mantle",
             "longname" => "aurora mantle",
             "lvl" => 44,
@@ -44427,7 +44427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13640 => array(
-            "descr" => "DEF:6 MP+12 \uEF20+8 \uEF21+8",
+            "descr" => "DEF:6 MP+12 Ice+8 Wind+8",
             "name" => "Aurora Mantle +1",
             "longname" => "aurora mantle +1",
             "lvl" => 44,
@@ -44437,7 +44437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13641 => array(
-            "descr" => "DEF:9 STR+1 \uEF26+8",
+            "descr" => "DEF:9 STR+1 Dark+8",
             "name" => "Black Mantle",
             "longname" => "black mantle",
             "lvl" => 66,
@@ -44447,7 +44447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13642 => array(
-            "descr" => "DEF:10 STR+1 \uEF26+10",
+            "descr" => "DEF:10 STR+1 Dark+10",
             "name" => "Black Mantle +1",
             "longname" => "black mantle +1",
             "lvl" => 66,
@@ -44457,7 +44457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13643 => array(
-            "descr" => "DEF:3 \uEF26+5 Evasion+3",
+            "descr" => "DEF:3 Dark+5 Evasion+3",
             "name" => "Sarcenet Cape",
             "longname" => "sarcenet cape",
             "lvl" => 30,
@@ -44467,7 +44467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13644 => array(
-            "descr" => "DEF:4 \uEF26+6 Evasion+4",
+            "descr" => "DEF:4 Dark+6 Evasion+4",
             "name" => "Midnight Cape",
             "longname" => "midnight cape",
             "lvl" => 30,
@@ -44517,7 +44517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13649 => array(
-            "descr" => "DEF:5 \uEF26+13 Evasion+4",
+            "descr" => "DEF:5 Dark+13 Evasion+4",
             "name" => "Taffeta Cape",
             "longname" => "taffeta cape",
             "lvl" => 65,
@@ -44527,7 +44527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13650 => array(
-            "descr" => "DEF:6 \uEF26+14 Evasion+5",
+            "descr" => "DEF:6 Dark+14 Evasion+5",
             "name" => "Taffeta Cape +1",
             "longname" => "taffeta cape +1",
             "lvl" => 65,
@@ -44537,7 +44537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13651 => array(
-            "descr" => "DEF:5 \uEF26+13 \nPhysical damage taken -5%",
+            "descr" => "DEF:5 Dark+13 \nPhysical damage taken -5%",
             "name" => "Cheviot Cape",
             "longname" => "cheviot cape",
             "lvl" => 68,
@@ -44547,7 +44547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13652 => array(
-            "descr" => "DEF:6 \uEF26+14 \nPhysical damage taken -6%",
+            "descr" => "DEF:6 Dark+14 \nPhysical damage taken -6%",
             "name" => "Umbra Cape",
             "longname" => "umbra cape",
             "lvl" => 68,
@@ -44877,7 +44877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13685 => array(
-            "descr" => "DEF:4 \uEF25+4 \nEnchantment: \"Invisible\"",
+            "descr" => "DEF:4 Light+4 \nEnchantment: \"Invisible\"",
             "name" => "Invisible Mantle",
             "longname" => "Invisible mantle",
             "lvl" => 28,
@@ -45007,7 +45007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13698 => array(
-            "descr" => "DEF:21 VIT+1 \uEF22+4",
+            "descr" => "DEF:21 VIT+1 Earth+4",
             "name" => "Beak Helm",
             "longname" => "beak helm",
             "lvl" => 58,
@@ -45017,7 +45017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13699 => array(
-            "descr" => "DEF:42 VIT+1 \uEF22+5",
+            "descr" => "DEF:42 VIT+1 Earth+5",
             "name" => "Beak Jerkin",
             "longname" => "beak jerkin",
             "lvl" => 58,
@@ -45027,7 +45027,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13700 => array(
-            "descr" => "DEF:14 VIT+1 \uEF22+3",
+            "descr" => "DEF:14 VIT+1 Earth+3",
             "name" => "Beak Gloves",
             "longname" => "beak gloves",
             "lvl" => 58,
@@ -45037,7 +45037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13701 => array(
-            "descr" => "DEF:22 VIT+1 \uEF22+6",
+            "descr" => "DEF:22 VIT+1 Earth+6",
             "name" => "Beak Helm +1",
             "longname" => "beak helm +1",
             "lvl" => 58,
@@ -45047,7 +45047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13702 => array(
-            "descr" => "DEF:12 VIT+1 \uEF22+3",
+            "descr" => "DEF:12 VIT+1 Earth+3",
             "name" => "Beak Ledelsens",
             "longname" => "beak ledelsens",
             "lvl" => 58,
@@ -45167,7 +45167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13714 => array(
-            "descr" => "DEF:32 \uEF23-3 Evasion+1",
+            "descr" => "DEF:32 Thunder-3 Evasion+1",
             "name" => "Cpc. Harness +1",
             "longname" => "carapace harness +1",
             "lvl" => 45,
@@ -45187,7 +45187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13716 => array(
-            "descr" => "DEF:15 \uEF1F-3 Evasion+1",
+            "descr" => "DEF:15 Fire-3 Evasion+1",
             "name" => "Bone Harness +1",
             "longname" => "bone harness +1",
             "lvl" => 16,
@@ -45197,7 +45197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13717 => array(
-            "descr" => "DEF:18 \uEF20-3 Evasion+1",
+            "descr" => "DEF:18 Ice-3 Evasion+1",
             "name" => "Beetle Harness +1",
             "longname" => "beetle harness +1",
             "lvl" => 21,
@@ -45227,7 +45227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13720 => array(
-            "descr" => "Cannot Equip Headgear\nDEF:40 INT+1 \uEF25+12 \uEF26+12",
+            "descr" => "Cannot Equip Headgear\nDEF:40 INT+1 Light+12 Dark+12",
             "name" => "Ryl.Kgt. Cloak",
             "longname" => "Royal Knight's cloak",
             "lvl" => 50,
@@ -45247,7 +45247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13722 => array(
-            "descr" => "DEF:36 \uEF26+12 Evasion+5",
+            "descr" => "DEF:36 Dark+12 Evasion+5",
             "name" => "Ryl.Kgt. Aketon",
             "longname" => "Royal Knight's aketon",
             "lvl" => 55,
@@ -45257,7 +45257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13723 => array(
-            "descr" => "DEF:29 MP+8 \uEF1F+4",
+            "descr" => "DEF:29 MP+8 Fire+4",
             "name" => "Pyro Robe",
             "longname" => "pyro robe",
             "lvl" => 45,
@@ -45277,7 +45277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13725 => array(
-            "descr" => "Cannot Equip Headgear DEF:19 \nINT+2 \uEF26+3",
+            "descr" => "Cannot Equip Headgear DEF:19 \nINT+2 Dark+3",
             "name" => "Mage's Tunic",
             "longname" => "mage's tunic",
             "lvl" => 20,
@@ -45297,7 +45297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13727 => array(
-            "descr" => "DEF:36 \uEF1F+4 \uEF24-1",
+            "descr" => "DEF:36 Fire+4 Water-1",
             "name" => "Dino Jerkin",
             "longname" => "dino jerkin",
             "lvl" => 48,
@@ -45317,7 +45317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13729 => array(
-            "descr" => "DEF:14 MND+1 \uEF26+2",
+            "descr" => "DEF:14 MND+1 Dark+2",
             "name" => "Priest's Robe",
             "longname" => "priest's robe",
             "lvl" => 19,
@@ -45327,7 +45327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13730 => array(
-            "descr" => "DEF:21 MP+6 \uEF20+2",
+            "descr" => "DEF:21 MP+6 Ice+2",
             "name" => "Frost Robe",
             "longname" => "frost robe",
             "lvl" => 33,
@@ -45337,7 +45337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13731 => array(
-            "descr" => "Cannot Equip Headgear DEF:22 \nHP+6 \uEF1F+2 \uEF20+2 \uEF21+2 \uEF22+2 \n\uEF23+2 \uEF24+2 \uEF25+2 \uEF26+2",
+            "descr" => "Cannot Equip Headgear DEF:22 \nHP+6 Fire+2 Ice+2 Wind+2 Earth+2 \nThunder+2 Water+2 Light+2 Dark+2",
             "name" => "Faerie Tunic",
             "longname" => "faerie tunic",
             "lvl" => 27,
@@ -45347,7 +45347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13732 => array(
-            "descr" => "DEF:27 VIT+4 \uEF22+5",
+            "descr" => "DEF:27 VIT+4 Earth+5",
             "name" => "Earth Doublet",
             "longname" => "earth doublet",
             "lvl" => 42,
@@ -45367,7 +45367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13734 => array(
-            "descr" => "DEF:41 HP+20 \uEF20-20 \uEF24+20 \uEF26+20 \nAccuracy+12 Evasion+12",
+            "descr" => "DEF:41 HP+20 Ice-20 Water+20 Dark+20 \nAccuracy+12 Evasion+12",
             "name" => "Scp. Harness +1",
             "longname" => "scorpion harness +1",
             "lvl" => 57,
@@ -45397,7 +45397,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13737 => array(
-            "descr" => "DEF:40 INT+1 \uEF1F+4 \uEF23+3",
+            "descr" => "DEF:40 INT+1 Fire+4 Thunder+3",
             "name" => "Mtl. Brstplate +1",
             "longname" => "mythril breastplate +1",
             "lvl" => 49,
@@ -45407,7 +45407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13738 => array(
-            "descr" => "DEF:49 STR+1 VIT+3 \uEF26+7",
+            "descr" => "DEF:49 STR+1 VIT+3 Dark+7",
             "name" => "Gilt Cuirass",
             "longname" => "gilt cuirass",
             "lvl" => 60,
@@ -45417,7 +45417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13739 => array(
-            "descr" => "DEF:43 VIT+2 \uEF22+7",
+            "descr" => "DEF:43 VIT+2 Earth+7",
             "name" => "Beak Jerkin +1",
             "longname" => "beak jerkin +1",
             "lvl" => 58,
@@ -45447,7 +45447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13742 => array(
-            "descr" => "DEF:39 HP+10 AGI+5 \uEF1F+1 \uEF20+1 \uEF21+1 \n\uEF22+1 \uEF23+1 \uEF24+1 Evasion+5",
+            "descr" => "DEF:39 HP+10 AGI+5 Fire+1 Ice+1 Wind+1 \nEarth+1 Thunder+1 Water+1 Evasion+5",
             "name" => "Aketon",
             "longname" => "aketon",
             "lvl" => 60,
@@ -45457,7 +45457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13743 => array(
-            "descr" => "DEF:40 HP+15 AGI+6 \uEF1F+3 \uEF20+3 \uEF21+3 \n\uEF22+3 \uEF23+3 \uEF24+3 Evasion+7",
+            "descr" => "DEF:40 HP+15 AGI+6 Fire+3 Ice+3 Wind+3 \nEarth+3 Thunder+3 Water+3 Evasion+7",
             "name" => "Aketon +1",
             "longname" => "aketon +1",
             "lvl" => 60,
@@ -45567,7 +45567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13754 => array(
-            "descr" => "DEF:39 STR+3 DEX+2 VIT-2 AGI+3\nINT+2 MND-3 CHR-3 \uEF1F-30 \uEF20+3\n\uEF21+3 \uEF22+3 \uEF23+3 \uEF24+3 \uEF25+3 \uEF26+3 \nConverts 25 HP to MP",
+            "descr" => "DEF:39 STR+3 DEX+2 VIT-2 AGI+3\nINT+2 MND-3 CHR-3 Fire-30 Ice+3\nWind+3 Earth+3 Thunder+3 Water+3 Light+3 Dark+3 \nConverts 25 HP to MP",
             "name" => "Black Cotehardie",
             "longname" => "black cotehardie",
             "lvl" => 59,
@@ -45577,7 +45577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13755 => array(
-            "descr" => "DEF:40 STR+4 DEX+3 VIT-2 AGI+4 \nINT+3 MND-3 CHR-3 \uEF1F-25 \uEF20+5\n\uEF21+5 \uEF22+5 \uEF23+5 \uEF24+5 \uEF25+5 \uEF26+5 \nConverts 30 HP to MP",
+            "descr" => "DEF:40 STR+4 DEX+3 VIT-2 AGI+4 \nINT+3 MND-3 CHR-3 Fire-25 Ice+5\nWind+5 Earth+5 Thunder+5 Water+5 Light+5 Dark+5 \nConverts 30 HP to MP",
             "name" => "Flora Cotehardie",
             "longname" => "flora cotehardie",
             "lvl" => 59,
@@ -45587,7 +45587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13756 => array(
-            "descr" => "DEF:49 MP+11 VIT+4 AGI-1 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:49 MP+11 VIT+4 AGI-1 Light+3 Dark+3",
             "name" => "Dst. Cuirass +1",
             "longname" => "darksteel cuirass +1",
             "lvl" => 66,
@@ -45597,7 +45597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13757 => array(
-            "descr" => "DEF:49 VIT+5 CHR+1 \uEF25+2 \uEF26+2\nConverts 25 MP to HP",
+            "descr" => "DEF:49 VIT+5 CHR+1 Light+2 Dark+2\nConverts 25 MP to HP",
             "name" => "Lord's Cuirass",
             "longname" => "lord's cuirass",
             "lvl" => 70,
@@ -45607,7 +45607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13758 => array(
-            "descr" => "DEF:50 VIT+6 CHR+1 \uEF25+3 \uEF26+3\nConverts 30 MP to HP",
+            "descr" => "DEF:50 VIT+6 CHR+1 Light+3 Dark+3\nConverts 30 MP to HP",
             "name" => "King's Cuirass",
             "longname" => "king's cuirass",
             "lvl" => 70,
@@ -45617,7 +45617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13761 => array(
-            "descr" => "DEF:43 \uEF23-4 \uEF24+6 \nMagic damage taken -4%",
+            "descr" => "DEF:43 Thunder-4 Water+6 \nMagic damage taken -4%",
             "name" => "Cor. Scale Mail +1",
             "longname" => "coral scale mail +1",
             "lvl" => 65,
@@ -45627,7 +45627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13762 => array(
-            "descr" => "DEF:48 HP+14 \uEF1F+12 \uEF20+12 \uEF21+12 \n\uEF22+12 \uEF23+12 \uEF24+12 \uEF25+12 \uEF26+12 \nBreath damage taken -10%",
+            "descr" => "DEF:48 HP+14 Fire+12 Ice+12 Wind+12 \nEarth+12 Thunder+12 Water+12 Light+12 Dark+12 \nBreath damage taken -10%",
             "name" => "Dragon Mail +1",
             "longname" => "dragon mail +1",
             "lvl" => 70,
@@ -45637,7 +45637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13763 => array(
-            "descr" => "DEF:42 \uEF1F-4 \uEF20+6 Attack+6",
+            "descr" => "DEF:42 Fire-4 Ice+6 Attack+6",
             "name" => "Feral Jerkin",
             "longname" => "feral jerkin",
             "lvl" => 65,
@@ -45657,7 +45657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13765 => array(
-            "descr" => "DEF:40 \uEF25+3 \uEF26+3 \nPhysical damage taken -4%",
+            "descr" => "DEF:40 Light+3 Dark+3 \nPhysical damage taken -4%",
             "name" => "Dst. Harness +1",
             "longname" => "darksteel harness +1",
             "lvl" => 65,
@@ -45727,7 +45727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13772 => array(
-            "descr" => "DEF:40 HP+20 AGI+6 \uEF1F+1 \uEF20+1 \uEF21+1 \n\uEF22+1 \uEF23+1 \uEF24+1 \nConverts 50 MP to HP",
+            "descr" => "DEF:40 HP+20 AGI+6 Fire+1 Ice+1 Wind+1 \nEarth+1 Thunder+1 Water+1 \nConverts 50 MP to HP",
             "name" => "Bloody Aketon",
             "longname" => "bloody aketon",
             "lvl" => 70,
@@ -45737,7 +45737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13773 => array(
-            "descr" => "DEF:41 HP+25 AGI+7 \uEF1F+3 \uEF20+3 \uEF21+3 \n\uEF22+3 \uEF23+3 \uEF24+3 \nConverts 60 MP to HP",
+            "descr" => "DEF:41 HP+25 AGI+7 Fire+3 Ice+3 Wind+3 \nEarth+3 Thunder+3 Water+3 \nConverts 60 MP to HP",
             "name" => "Carnage Aketon",
             "longname" => "carnage aketon",
             "lvl" => 70,
@@ -45757,7 +45757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13775 => array(
-            "descr" => "DEF:43 STR+4 DEX+3 VIT-3 AGI+4 \nINT+3 MND-4 CHR-4 \uEF1F-30 \uEF20+5\n\uEF21+5 \uEF22+5 \uEF23-30 \uEF24+5 \uEF25+5 \uEF26+5 \nConverts 40 HP to MP",
+            "descr" => "DEF:43 STR+4 DEX+3 VIT-3 AGI+4 \nINT+3 MND-4 CHR-4 Fire-30 Ice+5\nWind+5 Earth+5 Thunder-30 Water+5 Light+5 Dark+5 \nConverts 40 HP to MP",
             "name" => "Blue Cotehardie",
             "longname" => "blue cotehardie",
             "lvl" => 69,
@@ -45767,7 +45767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13776 => array(
-            "descr" => "DEF:44 STR+5 DEX+4 VIT-3 AGI+5 \nINT+4 MND-4 CHR-4 \uEF1F-25 \uEF20+7\n\uEF21+7 \uEF22+7 \uEF23-25 \uEF24+7 \uEF25+7 \uEF26+7 \nConverts 50 HP to MP",
+            "descr" => "DEF:44 STR+5 DEX+4 VIT-3 AGI+5 \nINT+4 MND-4 CHR-4 Fire-25 Ice+7\nWind+7 Earth+7 Thunder-25 Water+7 Light+7 Dark+7 \nConverts 50 HP to MP",
             "name" => "Blue Cotehard. +1",
             "longname" => "blue cotehardie +1",
             "lvl" => 69,
@@ -45777,7 +45777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13777 => array(
-            "descr" => "Cannot Equip Headgear DEF:45 \nHP+14 \uEF25+10 \uEF26-8",
+            "descr" => "Cannot Equip Headgear DEF:45 \nHP+14 Light+10 Dark-8",
             "name" => "Silk Cloak +1",
             "longname" => "silk cloak +1",
             "lvl" => 64,
@@ -45807,7 +45807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13781 => array(
-            "descr" => "DEF:41 HP+10\nVIT+3 Accuracy+3\uEF26+15\nOccasionally boosts TP when damaged",
+            "descr" => "DEF:41 HP+10\nVIT+3 Accuracy+3Dark+15\nOccasionally boosts TP when damaged",
             "name" => "Myochin Domaru",
             "longname" => "myochin domaru",
             "lvl" => 58,
@@ -45887,7 +45887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13789 => array(
-            "descr" => "DEF:44 \uEF24+9 \nLatent effect: Attack+12 DEF+44",
+            "descr" => "DEF:44 Water+9 \nLatent effect: Attack+12 DEF+44",
             "name" => "Cpc. Breastplate",
             "longname" => "carapace breastplate",
             "lvl" => 61,
@@ -45897,7 +45897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13790 => array(
-            "descr" => "DEF:45 \uEF24+10 \nLatent effect: Attack+13 DEF+45",
+            "descr" => "DEF:45 Water+10 \nLatent effect: Attack+13 DEF+45",
             "name" => "Cpc. Brstplate +1",
             "longname" => "carapace breastplate +1",
             "lvl" => 61,
@@ -45917,7 +45917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13794 => array(
-            "descr" => "DEF:60 AGI-5 \uEF20-20",
+            "descr" => "DEF:60 AGI-5 Ice-20",
             "name" => "Heavy Cuirass",
             "longname" => "heavy cuirass",
             "lvl" => 70,
@@ -45937,7 +45937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13796 => array(
-            "descr" => "DEF:22 MP+3 MND+2 \uEF26+3",
+            "descr" => "DEF:22 MP+3 MND+2 Dark+3",
             "name" => "Bishop's Robe",
             "longname" => "bishop's robe",
             "lvl" => 35,
@@ -45947,7 +45947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13797 => array(
-            "descr" => "DEF:23 MP+4 MND+3 \uEF26+4",
+            "descr" => "DEF:23 MP+4 MND+3 Dark+4",
             "name" => "Bishop's Robe +1",
             "longname" => "bishop's robe +1",
             "lvl" => 35,
@@ -45957,7 +45957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13798 => array(
-            "descr" => "DEF:35 VIT+4 \uEF22+10",
+            "descr" => "DEF:35 VIT+4 Earth+10",
             "name" => "Gaia Doublet",
             "longname" => "gaia doublet",
             "lvl" => 52,
@@ -45967,7 +45967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13799 => array(
-            "descr" => "DEF:36 VIT+5 \uEF22+12",
+            "descr" => "DEF:36 VIT+5 Earth+12",
             "name" => "Gaia Doublet +1",
             "longname" => "gaia doublet +1",
             "lvl" => 52,
@@ -46207,7 +46207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13823 => array(
-            "descr" => "DEF:49 VIT+5 CHR+1 \uEF25+2 \uEF26+2  \nConverts 25 MP to HP\nEnchantment: Adds \"Regen\" effect",
+            "descr" => "DEF:49 VIT+5 CHR+1 Light+2 Dark+2  \nConverts 25 MP to HP\nEnchantment: Adds \"Regen\" effect",
             "name" => "Regen Cuirass",
             "longname" => "Regen cuirass",
             "lvl" => 70,
@@ -46227,7 +46227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13825 => array(
-            "descr" => "HP-1 MP+4 \uEF26+3",
+            "descr" => "HP-1 MP+4 Dark+3",
             "name" => "Bone Hairpin +1",
             "longname" => "bone hairpin +1",
             "lvl" => 5,
@@ -46237,7 +46237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13826 => array(
-            "descr" => "DEF:8 \uEF1F-3 Evasion+1",
+            "descr" => "DEF:8 Fire-3 Evasion+1",
             "name" => "Bone Mask +1",
             "longname" => "bone mask +1",
             "lvl" => 16,
@@ -46247,7 +46247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13827 => array(
-            "descr" => "DEF:10 \uEF20-3 Evasion+1",
+            "descr" => "DEF:10 Ice-3 Evasion+1",
             "name" => "Beetle Mask +1",
             "longname" => "beetle mask +1",
             "lvl" => 21,
@@ -46257,7 +46257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13828 => array(
-            "descr" => "HP-4 MP+13 \uEF22+9",
+            "descr" => "HP-4 MP+13 Earth+9",
             "name" => "Horn Hairpin +1",
             "longname" => "horn hairpin +1",
             "lvl" => 30,
@@ -46267,7 +46267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13829 => array(
-            "descr" => "DEF:17 \uEF23-3 Evasion+1",
+            "descr" => "DEF:17 Thunder-3 Evasion+1",
             "name" => "Carapace Mask +1",
             "longname" => "carapace mask +1",
             "lvl" => 45,
@@ -46277,7 +46277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13830 => array(
-            "descr" => "DEF:10 MP+5 MND+1 \uEF21+4 \uEF22+4",
+            "descr" => "DEF:10 MP+5 MND+1 Wind+4 Earth+4",
             "name" => "Lgn. Circlet",
             "longname" => "Legionnaire's circlet",
             "lvl" => 30,
@@ -46307,7 +46307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13833 => array(
-            "descr" => "CHR+3 \uEF1F+3 \uEF20+3 \uEF21+3 \uEF22+3 \n\uEF23+3 \uEF24+3 \uEF25+3 \uEF26+3",
+            "descr" => "CHR+3 Fire+3 Ice+3 Wind+3 Earth+3 \nThunder+3 Water+3 Light+3 Dark+3",
             "name" => "Noble's Ribbon",
             "longname" => "noble's ribbon",
             "lvl" => 14,
@@ -46327,7 +46327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13835 => array(
-            "descr" => "DEF:19 \uEF1F+3 \uEF24-1",
+            "descr" => "DEF:19 Fire+3 Water-1",
             "name" => "Dino Helm",
             "longname" => "dino helm",
             "lvl" => 48,
@@ -46337,7 +46337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13836 => array(
-            "descr" => "HP-3 MP+10 \uEF24+7",
+            "descr" => "HP-3 MP+10 Water+7",
             "name" => "Shell Hairpin +1",
             "longname" => "shell hairpin +1",
             "lvl" => 14,
@@ -46367,7 +46367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13839 => array(
-            "descr" => "DEF:11 \uEF1F+7 \uEF23-7 \uEF24+7",
+            "descr" => "DEF:11 Fire+7 Thunder-7 Water+7",
             "name" => "Marine Hat",
             "longname" => "marine hat",
             "lvl" => 34,
@@ -46417,7 +46417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13844 => array(
-            "descr" => "DEF:18 \uEF26+3",
+            "descr" => "DEF:18 Dark+3",
             "name" => "Shn. Hachigane +1",
             "longname" => "shinobi hachigane +1",
             "lvl" => 49,
@@ -46437,7 +46437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13846 => array(
-            "descr" => "DEF:22 \uEF1F+7\nEnhances \"Resist Paralyze\" effect\nParalysis: Adds \"Refresh\" effect",
+            "descr" => "DEF:22 Fire+7\nEnhances \"Resist Paralyze\" effect\nParalysis: Adds \"Refresh\" effect",
             "name" => "Scorpion Helm",
             "longname" => "scorpion helm",
             "lvl" => 66,
@@ -46447,7 +46447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13847 => array(
-            "descr" => "DEF:21 INT+2 \uEF22-1 \uEF26+3",
+            "descr" => "DEF:21 INT+2 Earth-1 Dark+3",
             "name" => "Mythril Sallet +1",
             "longname" => "mythril sallet +1",
             "lvl" => 49,
@@ -46457,7 +46457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13848 => array(
-            "descr" => "DEF:25 VIT+3 \uEF26+6",
+            "descr" => "DEF:25 VIT+3 Dark+6",
             "name" => "Gilt Armet",
             "longname" => "gilt armet",
             "lvl" => 60,
@@ -46477,7 +46477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13850 => array(
-            "descr" => "HP-7 MP+24 \uEF24+15",
+            "descr" => "HP-7 MP+24 Water+15",
             "name" => "Merman's Hairpin",
             "longname" => "merman's hairpin",
             "lvl" => 60,
@@ -46497,7 +46497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13854 => array(
-            "descr" => "\uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10 \n\uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10",
+            "descr" => "Fire+10 Ice+10 Wind+10 Earth+10 \nThunder+10 Water+10 Light+10 Dark+10",
             "name" => "Green Ribbon +1",
             "longname" => "green ribbon +1",
             "lvl" => 60,
@@ -46507,7 +46507,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13855 => array(
-            "descr" => "DEF:21 MP+13 MND+4 \uEF26+15 Enmity-1",
+            "descr" => "DEF:21 MP+13 MND+4 Dark+15 Enmity-1",
             "name" => "Healer's Cap",
             "longname" => "healer's cap",
             "lvl" => 54,
@@ -46517,7 +46517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13856 => array(
-            "descr" => "DEF:20 MP+25 INT+4 \uEF23+10 Enmity-4",
+            "descr" => "DEF:20 MP+25 INT+4 Thunder+10 Enmity-4",
             "name" => "Wizard's Petasos",
             "longname" => "wizard's petasos",
             "lvl" => 60,
@@ -46547,7 +46547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13859 => array(
-            "descr" => "DEF:22 \uEF23-3 \uEF24+5 \nMagic damage taken -2%",
+            "descr" => "DEF:22 Thunder-3 Water+5 \nMagic damage taken -2%",
             "name" => "Coral Visor +1",
             "longname" => "coral visor +1",
             "lvl" => 63,
@@ -46557,7 +46557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13860 => array(
-            "descr" => "DEF:24 HP+12 \uEF25+12 \uEF26+12 \nBreath damage taken -5%",
+            "descr" => "DEF:24 HP+12 Light+12 Dark+12 \nBreath damage taken -5%",
             "name" => "Dragon Mask +1",
             "longname" => "dragon mask +1",
             "lvl" => 68,
@@ -46567,7 +46567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13861 => array(
-            "descr" => "DEF:22 \uEF1F-3 \uEF20+5 Attack+4",
+            "descr" => "DEF:22 Fire-3 Ice+5 Attack+4",
             "name" => "Feral Helm",
             "longname" => "feral helm",
             "lvl" => 65,
@@ -46587,7 +46587,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13863 => array(
-            "descr" => "DEF:22 \uEF25+2 \uEF26+2\nPhysical damage taken -2%",
+            "descr" => "DEF:22 Light+2 Dark+2\nPhysical damage taken -2%",
             "name" => "Darksteel Cap +1",
             "longname" => "darksteel cap +1",
             "lvl" => 65,
@@ -46647,7 +46647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13869 => array(
-            "descr" => "DEF:21 HP+10 AGI+3 CHR+5 \uEF20+10 \nNinjutsu skill +5",
+            "descr" => "DEF:21 HP+10 AGI+3 CHR+5 Ice+10 \nNinjutsu skill +5",
             "name" => "Ninja Hatsuburi",
             "longname" => "ninja hatsuburi",
             "lvl" => 56,
@@ -46737,7 +46737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13878 => array(
-            "descr" => "DEF:23 \uEF24+7 \nLatent effect: Attack+10 DEF+23",
+            "descr" => "DEF:23 Water+7 \nLatent effect: Attack+10 DEF+23",
             "name" => "Carapace Helm",
             "longname" => "carapace helm",
             "lvl" => 61,
@@ -46747,7 +46747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13879 => array(
-            "descr" => "DEF:24 \uEF24+8 \nLatent effect: Attack+11 DEF+24",
+            "descr" => "DEF:24 Water+8 \nLatent effect: Attack+11 DEF+24",
             "name" => "Carapace Helm +1",
             "longname" => "carapace helm +1",
             "lvl" => 61,
@@ -46777,7 +46777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13882 => array(
-            "descr" => "DEF:14 DEX+1 \uEF1F+8 \uEF23-6 \uEF24+8",
+            "descr" => "DEF:14 DEX+1 Fire+8 Thunder-6 Water+8",
             "name" => "Corsair's Hat",
             "longname" => "corsair's hat",
             "lvl" => 44,
@@ -46787,7 +46787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13883 => array(
-            "descr" => "DEF:15 DEX+2 \uEF1F+9 \uEF23-6 \uEF24+9",
+            "descr" => "DEF:15 DEX+2 Fire+9 Thunder-6 Water+9",
             "name" => "Corsair's Hat +1",
             "longname" => "corsair's hat +1",
             "lvl" => 44,
@@ -46947,7 +46947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13899 => array(
-            "descr" => "DEF:11 MP+5 MND+1 \uEF21+4 \uEF22+4 \nIn areas under own nation's control:\n\"Magic Atk. Bonus\"+3",
+            "descr" => "DEF:11 MP+5 MND+1 Wind+4 Earth+4 \nIn areas under own nation's control:\n\"Magic Atk. Bonus\"+3",
             "name" => "Bastokan Circlet",
             "longname" => "Bastokan circlet",
             "lvl" => 34,
@@ -46957,7 +46957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13900 => array(
-            "descr" => "DEF:12 MP+5 MND+1 \uEF21+4 \uEF22+4 \nIn areas under own nation's control:\n\"Magic Atk. Bonus\"+5",
+            "descr" => "DEF:12 MP+5 MND+1 Wind+4 Earth+4 \nIn areas under own nation's control:\n\"Magic Atk. Bonus\"+5",
             "name" => "Republic Circlet",
             "longname" => "Republic circlet",
             "lvl" => 34,
@@ -47077,7 +47077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13912 => array(
-            "descr" => "DEF:20 MP+10 STR+2 VIT-2 \uEF25-10",
+            "descr" => "DEF:20 MP+10 STR+2 VIT-2 Light-10",
             "name" => "Shadow Mask",
             "longname" => "shadow mask",
             "lvl" => 62,
@@ -47087,7 +47087,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13913 => array(
-            "descr" => "DEF:18 INT+2 MND+2 \uEF24+7 \uEF26+7\nOn Watersdays and Darksdays:\nAdds \"Regen\" effect",
+            "descr" => "DEF:18 INT+2 MND+2 Water+7 Dark+7\nOn Watersdays and Darksdays:\nAdds \"Regen\" effect",
             "name" => "Mushroom Helm",
             "longname" => "mushroom helm",
             "lvl" => 62,
@@ -47157,7 +47157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13920 => array(
-            "descr" => "DEF:30 HP+30 STR+5 \uEF1F+10\nPhysical damage: \"Blaze Spikes\" effect",
+            "descr" => "DEF:30 HP+30 STR+5 Fire+10\nPhysical damage: \"Blaze Spikes\" effect",
             "name" => "Wyvern Helm",
             "longname" => "wyvern helm",
             "lvl" => 75,
@@ -47167,7 +47167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13921 => array(
-            "descr" => "DEF:31 HP+31 STR+6 \uEF1F+11\nPhysical damage: \"Blaze Spikes\" effect",
+            "descr" => "DEF:31 HP+31 STR+6 Fire+11\nPhysical damage: \"Blaze Spikes\" effect",
             "name" => "Wyvern Helm +1",
             "longname" => "wyvern helm +1",
             "lvl" => 75,
@@ -47287,7 +47287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13933 => array(
-            "descr" => "DEF:1 \uEF25+5",
+            "descr" => "DEF:1 Light+5",
             "name" => "Bridal Corsage",
             "longname" => "bridal corsage",
             "lvl" => 20,
@@ -47407,7 +47407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13945 => array(
-            "descr" => "DEF:1 \uEF25+1\nGoldsmithing skill +1",
+            "descr" => "DEF:1 Light+1\nGoldsmithing skill +1",
             "name" => "Shaded Specs.",
             "longname" => "shaded spectacles",
             "lvl" => 1,
@@ -47417,7 +47417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13946 => array(
-            "descr" => "DEF:1 \uEF26+1\nClothcraft skill +1",
+            "descr" => "DEF:1 Dark+1\nClothcraft skill +1",
             "name" => "Magnifying Specs.",
             "longname" => "magnifying spectacles",
             "lvl" => 1,
@@ -47427,7 +47427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13947 => array(
-            "descr" => "DEF:1 \uEF22+1\nBonecraft skill +1",
+            "descr" => "DEF:1 Earth+1\nBonecraft skill +1",
             "name" => "Protective Specs.",
             "longname" => "protective spectacles",
             "lvl" => 1,
@@ -47477,7 +47477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13952 => array(
-            "descr" => "DEF:8 \uEF25-8 \uEF26+8 Attack+20 \nEvasion-5",
+            "descr" => "DEF:8 Light-8 Dark+8 Attack+20 \nEvasion-5",
             "name" => "Ochiudo's Kote",
             "longname" => "ochiudo's kote",
             "lvl" => 34,
@@ -47497,7 +47497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13954 => array(
-            "descr" => "DEF:12 MND+3 \uEF24+7",
+            "descr" => "DEF:12 MND+3 Water+7",
             "name" => "Silk Cuffs +1",
             "longname" => "silk cuffs +1",
             "lvl" => 53,
@@ -47517,7 +47517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13956 => array(
-            "descr" => "DEF:14 HP+4 \uEF20-2 \uEF24+7 \uEF26+7",
+            "descr" => "DEF:14 HP+4 Ice-2 Water+7 Dark+7",
             "name" => "Scp. Mittens +1",
             "longname" => "scorpion mittens +1",
             "lvl" => 57,
@@ -47537,7 +47537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13958 => array(
-            "descr" => "DEF:14 INT+1 \uEF1F-1 \uEF20+3 \uEF25+3",
+            "descr" => "DEF:14 INT+1 Fire-1 Ice+3 Light+3",
             "name" => "Mythril Gnt. +1",
             "longname" => "mythril gauntlets +1",
             "lvl" => 49,
@@ -47547,7 +47547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13959 => array(
-            "descr" => "DEF:17 VIT+2 \uEF26+4",
+            "descr" => "DEF:17 VIT+2 Dark+4",
             "name" => "Gilt Gauntlets",
             "longname" => "gilt gauntlets",
             "lvl" => 60,
@@ -47557,7 +47557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13960 => array(
-            "descr" => "DEF:15 VIT+2 \uEF22+4",
+            "descr" => "DEF:15 VIT+2 Earth+4",
             "name" => "Beak Gloves +1",
             "longname" => "beak gloves +1",
             "lvl" => 58,
@@ -47577,7 +47577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13962 => array(
-            "descr" => "DEF:14 HP+14 STR+4 \uEF26+10\nEnhances \"Boost\" effect",
+            "descr" => "DEF:14 HP+14 STR+4 Dark+10\nEnhances \"Boost\" effect",
             "name" => "Temple Gloves",
             "longname" => "temple gloves",
             "lvl" => 54,
@@ -47607,7 +47607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13965 => array(
-            "descr" => "DEF:16 MP+12 DEX+4 \uEF26+10\nParrying skill +10",
+            "descr" => "DEF:16 MP+12 DEX+4 Dark+10\nParrying skill +10",
             "name" => "Warlock's Gloves",
             "longname" => "warlock's gloves",
             "lvl" => 54,
@@ -47617,7 +47617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13966 => array(
-            "descr" => "DEF:15 HP+10 DEX+3 \uEF20+10 \"Steal\"+1",
+            "descr" => "DEF:15 HP+10 DEX+3 Ice+10 \"Steal\"+1",
             "name" => "Rogue's Armlets",
             "longname" => "rogue's armlets",
             "lvl" => 52,
@@ -47627,7 +47627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13967 => array(
-            "descr" => "DEF:16 HP+11 DEX+3 \uEF25+10 Enmity+2",
+            "descr" => "DEF:16 HP+11 DEX+3 Light+10 Enmity+2",
             "name" => "Gallant Gauntlets",
             "longname" => "gallant gauntlets",
             "lvl" => 54,
@@ -47637,7 +47637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13968 => array(
-            "descr" => "DEF:12 HP+11 DEX+3 \uEF26+10\n\"Weapon Bash\"+10",
+            "descr" => "DEF:12 HP+11 DEX+3 Dark+10\n\"Weapon Bash\"+10",
             "name" => "Chaos Gauntlets",
             "longname" => "chaos gauntlets",
             "lvl" => 54,
@@ -47667,7 +47667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13971 => array(
-            "descr" => "DEF:10 HP+10 AGI+3 \uEF26+10\nEnhances \"Shadowbind\" effect",
+            "descr" => "DEF:10 HP+10 AGI+3 Dark+10\nEnhances \"Shadowbind\" effect",
             "name" => "Hunter's Bracers",
             "longname" => "hunter's bracers",
             "lvl" => 52,
@@ -47717,7 +47717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13976 => array(
-            "descr" => "DEF:17 \uEF25+3",
+            "descr" => "DEF:17 Light+3",
             "name" => "Dst. Mufflers +1",
             "longname" => "darksteel mufflers +1",
             "lvl" => 59,
@@ -47847,7 +47847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13989 => array(
-            "descr" => "DEF:18 MP+8 STR+4 DEX-1 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:18 MP+8 STR+4 DEX-1 Light+3 Dark+3",
             "name" => "Dst. Gauntlets +1",
             "longname" => "darksteel gauntlets +1",
             "lvl" => 67,
@@ -47857,7 +47857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13990 => array(
-            "descr" => "DEF:15 \uEF23-2 \uEF24+4 \nMagic damage taken -2%",
+            "descr" => "DEF:15 Thunder-2 Water+4 \nMagic damage taken -2%",
             "name" => "Coral Fng. Gnt. +1",
             "longname" => "coral finger gauntlets +1",
             "lvl" => 65,
@@ -47867,7 +47867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13991 => array(
-            "descr" => "DEF:16 HP+10 \uEF23+12 \uEF24+12 \nBreath damage taken -5%",
+            "descr" => "DEF:16 HP+10 Thunder+12 Water+12 \nBreath damage taken -5%",
             "name" => "Dragon F. Gnt. +1",
             "longname" => "dragon finger gauntlets +1",
             "lvl" => 68,
@@ -47877,7 +47877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13992 => array(
-            "descr" => "DEF:15 \uEF1F-2 \uEF20+4 Attack+4",
+            "descr" => "DEF:15 Fire-2 Ice+4 Attack+4",
             "name" => "Feral Gloves",
             "longname" => "feral gloves",
             "lvl" => 65,
@@ -47897,7 +47897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         13994 => array(
-            "descr" => "DEF:15 \uEF25+2 \uEF26+2\nPhysical damage taken -2%",
+            "descr" => "DEF:15 Light+2 Dark+2\nPhysical damage taken -2%",
             "name" => "Dst. Mittens +1",
             "longname" => "darksteel mittens +1",
             "lvl" => 63,
@@ -47957,7 +47957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14000 => array(
-            "descr" => "DEF:12 HP+6 \uEF25+4 \uEF26-2",
+            "descr" => "DEF:12 HP+6 Light+4 Dark-2",
             "name" => "Silk Mitts +1",
             "longname" => "silk mitts +1",
             "lvl" => 61,
@@ -48037,7 +48037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14008 => array(
-            "descr" => "DEF:16 \uEF24+5 \nLatent effect: Attack+8 DEF+16",
+            "descr" => "DEF:16 Water+5 \nLatent effect: Attack+8 DEF+16",
             "name" => "Cpc. Gauntlets",
             "longname" => "carapace gauntlets",
             "lvl" => 61,
@@ -48047,7 +48047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14009 => array(
-            "descr" => "DEF:17 \uEF24+6 \nLatent effect: Attack+9 DEF+17",
+            "descr" => "DEF:17 Water+6 \nLatent effect: Attack+9 DEF+17",
             "name" => "Cpc. Gauntlets +1",
             "longname" => "carapace gauntlets +1",
             "lvl" => 61,
@@ -48217,7 +48217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14026 => array(
-            "descr" => "DEF:12 \uEF20+10 \nRainy weather: Accuracy+9",
+            "descr" => "DEF:12 Ice+10 \nRainy weather: Accuracy+9",
             "name" => "Hailstorm Tekko",
             "longname" => "hailstorm tekko",
             "lvl" => 58,
@@ -48227,7 +48227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14027 => array(
-            "descr" => "DEF:13 \uEF20+12 \nRainy weather: Accuracy+10",
+            "descr" => "DEF:13 Ice+12 \nRainy weather: Accuracy+10",
             "name" => "Hailst. Tekko +1",
             "longname" => "hailstorm tekko +1",
             "lvl" => 58,
@@ -48557,7 +48557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14063 => array(
-            "descr" => "DEF:30 \uEF20-6",
+            "descr" => "DEF:30 Ice-6",
             "name" => "Prt. Bangles",
             "longname" => "protecting bangles",
             "lvl" => 56,
@@ -48567,7 +48567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14064 => array(
-            "descr" => "DEF:13 DEX+2 AGI+2 \uEF22+11 \nIn sandstorms: Evasion+7",
+            "descr" => "DEF:13 DEX+2 AGI+2 Earth+11 \nIn sandstorms: Evasion+7",
             "name" => "Sand Gloves",
             "longname" => "sand gloves",
             "lvl" => 58,
@@ -48597,7 +48597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14067 => array(
-            "descr" => "DEF:7 CHR-5 \uEF1F+5 Attack+10",
+            "descr" => "DEF:7 CHR-5 Fire+5 Attack+10",
             "name" => "Tarasque Mitts",
             "longname" => "Tarasque mitts",
             "lvl" => 70,
@@ -48667,7 +48667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14074 => array(
-            "descr" => "DEF:8 CHR-6 \uEF1F+6 Attack+12",
+            "descr" => "DEF:8 CHR-6 Fire+6 Attack+12",
             "name" => "Tarasque Mitts +1",
             "longname" => "Tarasque mitts +1",
             "lvl" => 70,
@@ -48757,7 +48757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14083 => array(
-            "descr" => "DEF:12 HP+4 \uEF20-2 \uEF24+7 \uEF26+7",
+            "descr" => "DEF:12 HP+4 Ice-2 Water+7 Dark+7",
             "name" => "Scp. Leggings +1",
             "longname" => "scorpion leggings +1",
             "lvl" => 57,
@@ -48767,7 +48767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14084 => array(
-            "descr" => "DEF:15 \uEF25+3",
+            "descr" => "DEF:15 Light+3",
             "name" => "Dst. Sollerets +1",
             "longname" => "darksteel sollerets +1",
             "lvl" => 59,
@@ -48777,7 +48777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14086 => array(
-            "descr" => "DEF:12 INT+1 \uEF1F-1 \uEF22+4 \uEF24+3",
+            "descr" => "DEF:12 INT+1 Fire-1 Earth+4 Water+3",
             "name" => "Mtl. Leggings +1",
             "longname" => "mythril leggings +1",
             "lvl" => 49,
@@ -48787,7 +48787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14087 => array(
-            "descr" => "DEF:14 VIT+2 \uEF26+4",
+            "descr" => "DEF:14 VIT+2 Dark+4",
             "name" => "Gilt Sabatons",
             "longname" => "gilt sabatons",
             "lvl" => 60,
@@ -48797,7 +48797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14088 => array(
-            "descr" => "DEF:13 VIT+2 \uEF22+4",
+            "descr" => "DEF:13 VIT+2 Earth+4",
             "name" => "Bk. Ledelsens +1",
             "longname" => "beak ledelsens +1",
             "lvl" => 58,
@@ -48817,7 +48817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14090 => array(
-            "descr" => "DEF:12 HP+12 DEX+3 \uEF25+10 \nEnhances \"Dodge\" effect",
+            "descr" => "DEF:12 HP+12 DEX+3 Light+10 \nEnhances \"Dodge\" effect",
             "name" => "Temple Gaiters",
             "longname" => "temple gaiters",
             "lvl" => 52,
@@ -48847,7 +48847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14093 => array(
-            "descr" => "DEF:13 MP+11 MND+1 INT+1 \uEF24+10 \nShield skill +10",
+            "descr" => "DEF:13 MP+11 MND+1 INT+1 Water+10 \nShield skill +10",
             "name" => "Warlock's Boots",
             "longname" => "warlock's boots",
             "lvl" => 52,
@@ -48897,7 +48897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14098 => array(
-            "descr" => "DEF:10 HP+10 AGI+2 DEX+2 \uEF21+10 Evasion+5",
+            "descr" => "DEF:10 HP+10 AGI+2 DEX+2 Wind+10 Evasion+5",
             "name" => "Choral Slippers",
             "longname" => "choral slippers",
             "lvl" => 52,
@@ -48917,7 +48917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14100 => array(
-            "descr" => "DEF:13 HP+20 AGI+4 \uEF1F+10\nEvasion skill +5\nEnmity+5",
+            "descr" => "DEF:13 HP+20 AGI+4 Fire+10\nEvasion skill +5\nEnmity+5",
             "name" => "Myochin Sune-Ate",
             "longname" => "myochin sune-ate",
             "lvl" => 52,
@@ -48967,7 +48967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14105 => array(
-            "descr" => "DEF:16 MP+7 DEX+4 VIT-1 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:16 MP+7 DEX+4 VIT-1 Light+3 Dark+3",
             "name" => "Dst. Sabatons +1",
             "longname" => "darksteel sabatons +1",
             "lvl" => 66,
@@ -48977,7 +48977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14106 => array(
-            "descr" => "DEF:13 \uEF23-2 \uEF24+4 \nMagic damage taken -2%",
+            "descr" => "DEF:13 Thunder-2 Water+4 \nMagic damage taken -2%",
             "name" => "Coral Greaves +1",
             "longname" => "coral greaves +1",
             "lvl" => 64,
@@ -48987,7 +48987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14107 => array(
-            "descr" => "DEF:14 HP+11 \uEF21+12 \uEF22+12 \nBreath damage taken -5%",
+            "descr" => "DEF:14 HP+11 Wind+12 Earth+12 \nBreath damage taken -5%",
             "name" => "Drg. Greaves +1",
             "longname" => "dragon greaves +1",
             "lvl" => 68,
@@ -48997,7 +48997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14108 => array(
-            "descr" => "DEF:12 \uEF1F-2 \uEF20+4 Attack+4",
+            "descr" => "DEF:12 Fire-2 Ice+4 Attack+4",
             "name" => "Feral Ledelsens",
             "longname" => "feral ledelsens",
             "lvl" => 63,
@@ -49017,7 +49017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14110 => array(
-            "descr" => "DEF:13 \uEF25+2 \uEF26+2\nPhysical damage taken -2%",
+            "descr" => "DEF:13 Light+2 Dark+2\nPhysical damage taken -2%",
             "name" => "Dst. Leggings +1",
             "longname" => "darksteel leggings +1",
             "lvl" => 65,
@@ -49067,7 +49067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14115 => array(
-            "descr" => "DEF:10 HP+6 \uEF25+4 \uEF26-2",
+            "descr" => "DEF:10 HP+6 Light+4 Dark-2",
             "name" => "Silk Pumps +1",
             "longname" => "silk pumps +1",
             "lvl" => 61,
@@ -49177,7 +49177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14126 => array(
-            "descr" => "DEF:1 \uEF25+5",
+            "descr" => "DEF:1 Light+5",
             "name" => "Wedding Boots",
             "longname" => "wedding boots",
             "lvl" => 20,
@@ -49257,7 +49257,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14134 => array(
-            "descr" => "DEF:5 \uEF21+3 Evasion+4",
+            "descr" => "DEF:5 Wind+3 Evasion+4",
             "name" => "Air Solea",
             "longname" => "air solea",
             "lvl" => 28,
@@ -49267,7 +49267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14135 => array(
-            "descr" => "DEF:6 \uEF21+4 Evasion+5",
+            "descr" => "DEF:6 Wind+4 Evasion+5",
             "name" => "Air Solea +1",
             "longname" => "air solea +1",
             "lvl" => 28,
@@ -49307,7 +49307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14139 => array(
-            "descr" => "DEF:3 HP+2 MP+2 \uEF21+3 \uEF22+3",
+            "descr" => "DEF:3 HP+2 MP+2 Wind+3 Earth+3",
             "name" => "Bas. Leggings",
             "longname" => "Bastokan leggings",
             "lvl" => 15,
@@ -49317,7 +49317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14140 => array(
-            "descr" => "DEF:4 HP+3 MP+3 \uEF21+3 \uEF22+3",
+            "descr" => "DEF:4 HP+3 MP+3 Wind+3 Earth+3",
             "name" => "Republic Leggings",
             "longname" => "Republic leggings",
             "lvl" => 15,
@@ -49367,7 +49367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14145 => array(
-            "descr" => "DEF:4 HP+4 \uEF1F+3 \uEF20+3",
+            "descr" => "DEF:4 HP+4 Fire+3 Ice+3",
             "name" => "San d'Orian Boots",
             "longname" => "San d'Orian boots",
             "lvl" => 15,
@@ -49377,7 +49377,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14146 => array(
-            "descr" => "DEF:5 HP+6 \uEF1F+3 \uEF20+3",
+            "descr" => "DEF:5 HP+6 Fire+3 Ice+3",
             "name" => "Kingdom Boots",
             "longname" => "Kingdom boots",
             "lvl" => 15,
@@ -49427,7 +49427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14151 => array(
-            "descr" => "DEF:5 \uEF22+6 Attack+3\nRanged Attack+3",
+            "descr" => "DEF:5 Earth+6 Attack+3\nRanged Attack+3",
             "name" => "Win. Kyahan",
             "longname" => "Windurstian kyahan",
             "lvl" => 25,
@@ -49437,7 +49437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14152 => array(
-            "descr" => "DEF:6 \uEF22+6 Attack+4\nRanged Attack+4",
+            "descr" => "DEF:6 Earth+6 Attack+4\nRanged Attack+4",
             "name" => "Fed. Kyahan",
             "longname" => "Federation kyahan",
             "lvl" => 25,
@@ -49467,7 +49467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14155 => array(
-            "descr" => "DEF:8 MP+5 \uEF20+4 \uEF22+4 \nAccuracy+1 \nIn areas under own nation's control: \nAccuracy+2",
+            "descr" => "DEF:8 MP+5 Ice+4 Earth+4 \nAccuracy+1 \nIn areas under own nation's control: \nAccuracy+2",
             "name" => "C.C. Shoes +1",
             "longname" => "Combat Caster's shoes +1",
             "lvl" => 43,
@@ -49477,7 +49477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14156 => array(
-            "descr" => "DEF:9 MP+5 \uEF20+4 \uEF22+4\nAccuracy+1\nIn areas under own nation's control: \nAccuracy+3",
+            "descr" => "DEF:9 MP+5 Ice+4 Earth+4\nAccuracy+1\nIn areas under own nation's control: \nAccuracy+3",
             "name" => "C.C. Shoes +2",
             "longname" => "Combat Caster's shoes +2",
             "lvl" => 43,
@@ -49487,7 +49487,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14157 => array(
-            "descr" => "DEF:10 INT+1 \uEF20+10\nIn areas under own nation's control: \nINT+2",
+            "descr" => "DEF:10 INT+1 Ice+10\nIn areas under own nation's control: \nINT+2",
             "name" => "T.M. Pigaches +1",
             "longname" => "Tactician Magician's pigaches +1",
             "lvl" => 52,
@@ -49497,7 +49497,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14158 => array(
-            "descr" => "DEF:11 INT+1 \uEF20+10\nIn areas under own nation's control: \nINT+3",
+            "descr" => "DEF:11 INT+1 Ice+10\nIn areas under own nation's control: \nINT+3",
             "name" => "T.M. Pigaches +2",
             "longname" => "Tactician Magician's pigaches +2",
             "lvl" => 52,
@@ -49517,7 +49517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14160 => array(
-            "descr" => "DEF:24 HP+15 MP+15 DEX+3 AGI+3 \n\uEF20+20 \uEF21+20 \uEF22+20 \uEF25+20",
+            "descr" => "DEF:24 HP+15 MP+15 DEX+3 AGI+3 \nIce+20 Wind+20 Earth+20 Light+20",
             "name" => "Crimson Greaves",
             "longname" => "crimson greaves",
             "lvl" => 73,
@@ -49527,7 +49527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14161 => array(
-            "descr" => "DEF:25 HP+17 MP+17 DEX+4 AGI+4 \n\uEF20+21 \uEF21+21 \uEF22+21 \uEF25+21",
+            "descr" => "DEF:25 HP+17 MP+17 DEX+4 AGI+4 \nIce+21 Wind+21 Earth+21 Light+21",
             "name" => "Blood Greaves",
             "longname" => "blood greaves",
             "lvl" => 73,
@@ -49867,7 +49867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14195 => array(
-            "descr" => "DEF:2 \uEF24+1 Fishing skill +2",
+            "descr" => "DEF:2 Water+1 Fishing skill +2",
             "name" => "Waders",
             "longname" => "waders",
             "lvl" => 1,
@@ -49987,7 +49987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14207 => array(
-            "descr" => "DEF:5 DEX+2 \uEF26+2",
+            "descr" => "DEF:5 DEX+2 Dark+2",
             "name" => "Noct Gaiters +1",
             "longname" => "noct gaiters +1",
             "lvl" => 30,
@@ -49997,7 +49997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14208 => array(
-            "descr" => "DEF:29 HP+4 \uEF20-2 \uEF24+7 \uEF26+7",
+            "descr" => "DEF:29 HP+4 Ice-2 Water+7 Dark+7",
             "name" => "Scp. Subligar +1",
             "longname" => "scorpion subligar +1",
             "lvl" => 57,
@@ -50007,7 +50007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14209 => array(
-            "descr" => "DEF:34 \uEF25+3",
+            "descr" => "DEF:34 Light+3",
             "name" => "Dst. Breeches +1",
             "longname" => "darksteel breeches +1",
             "lvl" => 59,
@@ -50017,7 +50017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14211 => array(
-            "descr" => "DEF:29 INT+1 \uEF1F+1 \uEF21+3",
+            "descr" => "DEF:29 INT+1 Fire+1 Wind+3",
             "name" => "Mythril Cuisses +1",
             "longname" => "mythril cuisses +1",
             "lvl" => 49,
@@ -50027,7 +50027,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14212 => array(
-            "descr" => "DEF:35 STR+1 VIT+3 \uEF26+6",
+            "descr" => "DEF:35 STR+1 VIT+3 Dark+6",
             "name" => "Gilt Cuisses",
             "longname" => "gilt cuisses",
             "lvl" => 60,
@@ -50037,7 +50037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14213 => array(
-            "descr" => "DEF:31 VIT+2 \uEF22+7",
+            "descr" => "DEF:31 VIT+2 Earth+7",
             "name" => "Beak Trousers +1",
             "longname" => "beak trousers +1",
             "lvl" => 58,
@@ -50157,7 +50157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14225 => array(
-            "descr" => "DEF:30 HP+15 STR+3 \uEF22+10\nParrying skill +5",
+            "descr" => "DEF:30 HP+15 STR+3 Earth+10\nParrying skill +5",
             "name" => "Myochin Haidate",
             "longname" => "myochin haidate",
             "lvl" => 54,
@@ -50177,7 +50177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14227 => array(
-            "descr" => "DEF:27 HP+15 Accuracy+3 \uEF22+10\nEnhances \"Ancient Circle\" effect\nWyvern: HP+10%",
+            "descr" => "DEF:27 HP+15 Accuracy+3 Earth+10\nEnhances \"Ancient Circle\" effect\nWyvern: HP+10%",
             "name" => "Drachen Brais",
             "longname" => "drachen brais",
             "lvl" => 52,
@@ -50197,7 +50197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14229 => array(
-            "descr" => "DEF:36 MP+10 AGI+4 INT-1 \uEF25+3 \uEF26+3",
+            "descr" => "DEF:36 MP+10 AGI+4 INT-1 Light+3 Dark+3",
             "name" => "Dst. Cuisses +1",
             "longname" => "darksteel cuisses +1",
             "lvl" => 66,
@@ -50207,7 +50207,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14230 => array(
-            "descr" => "DEF:31 \uEF23-4 \uEF24+6 \nMagic damage taken -3%",
+            "descr" => "DEF:31 Thunder-4 Water+6 \nMagic damage taken -3%",
             "name" => "Coral Cuisses +1",
             "longname" => "coral cuisses +1",
             "lvl" => 64,
@@ -50217,7 +50217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14231 => array(
-            "descr" => "DEF:32 HP+13 \uEF1F+12 \uEF20+12 \nBreath damage taken -5%",
+            "descr" => "DEF:32 HP+13 Fire+12 Ice+12 \nBreath damage taken -5%",
             "name" => "Dragon Cuisses +1",
             "longname" => "dragon cuisses +1",
             "lvl" => 69,
@@ -50227,7 +50227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14232 => array(
-            "descr" => "DEF:30 \uEF1F-4 \uEF20+6 Attack+5",
+            "descr" => "DEF:30 Fire-4 Ice+6 Attack+5",
             "name" => "Feral Trousers",
             "longname" => "feral trousers",
             "lvl" => 63,
@@ -50237,7 +50237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14233 => array(
-            "descr" => "DEF:31 HP-1% \uEF23+17 Evasion+3",
+            "descr" => "DEF:31 HP-1% Thunder+17 Evasion+3",
             "name" => "Torama Trousers",
             "longname" => "torama trousers",
             "lvl" => 70,
@@ -50247,7 +50247,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14234 => array(
-            "descr" => "DEF:29 \uEF25+3 \uEF26+3\nPhysical damage taken -3%",
+            "descr" => "DEF:29 Light+3 Dark+3\nPhysical damage taken -3%",
             "name" => "Dst. Subligar +1",
             "longname" => "darksteel subligar +1",
             "lvl" => 65,
@@ -50307,7 +50307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14240 => array(
-            "descr" => "DEF:25 HP+9 \uEF25+6 \uEF26-4",
+            "descr" => "DEF:25 HP+9 Light+6 Dark-4",
             "name" => "Silk Slacks +1",
             "longname" => "silk slacks +1",
             "lvl" => 63,
@@ -50407,7 +50407,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14251 => array(
-            "descr" => "DEF:1 \uEF25+5",
+            "descr" => "DEF:1 Light+5",
             "name" => "Wedding Hose",
             "longname" => "wedding hose",
             "lvl" => 20,
@@ -50647,7 +50647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14277 => array(
-            "descr" => "DEF:23 \uEF26+6\nIn areas under own nation's control: \nMND+3",
+            "descr" => "DEF:23 Dark+6\nIn areas under own nation's control: \nMND+3",
             "name" => "T.M. Slops +1",
             "longname" => "Tactician Magician's slops +1",
             "lvl" => 52,
@@ -50657,7 +50657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14278 => array(
-            "descr" => "DEF:24 \uEF26+6\nIn areas under own nation's control: \nMND+4",
+            "descr" => "DEF:24 Dark+6\nIn areas under own nation's control: \nMND+4",
             "name" => "T.M. Slops +2",
             "longname" => "Tactician Magician's slops +2",
             "lvl" => 52,
@@ -50677,7 +50677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14280 => array(
-            "descr" => "DEF:43 HP+25 MP+25 \uEF1F+20 \n\uEF23+20 \uEF24+20 \uEF26+20 \nMovement speed +12%",
+            "descr" => "DEF:43 HP+25 MP+25 Fire+20 \nThunder+20 Water+20 Dark+20 \nMovement speed +12%",
             "name" => "Crimson Cuisses",
             "longname" => "crimson cuisses",
             "lvl" => 73,
@@ -50687,7 +50687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14281 => array(
-            "descr" => "DEF:44 HP+27 MP+27 \uEF1F+21 \n\uEF23+21 \uEF24+21 \uEF26+21 \nMovement speed +12%",
+            "descr" => "DEF:44 HP+27 MP+27 Fire+21 \nThunder+21 Water+21 Dark+21 \nMovement speed +12%",
             "name" => "Blood Cuisses",
             "longname" => "blood cuisses",
             "lvl" => 73,
@@ -50707,7 +50707,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14284 => array(
-            "descr" => "DEF:42 \uEF1F-4 \uEF20+6 \uEF21+6 Attack+6",
+            "descr" => "DEF:42 Fire-4 Ice+6 Wind+6 Attack+6",
             "name" => "Northern Jerkin",
             "longname" => "northern jerkin",
             "lvl" => 67,
@@ -50717,7 +50717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14285 => array(
-            "descr" => "DEF:43 \uEF1F-3 \uEF20+7 \uEF21+7 Attack+7",
+            "descr" => "DEF:43 Fire-3 Ice+7 Wind+7 Attack+7",
             "name" => "Tundra Jerkin",
             "longname" => "tundra jerkin",
             "lvl" => 67,
@@ -50727,7 +50727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14286 => array(
-            "descr" => "DEF:19 HP-5 MP+20 \uEF24+7",
+            "descr" => "DEF:19 HP-5 MP+20 Water+7",
             "name" => "Frog Trousers",
             "longname" => "frog trousers",
             "lvl" => 42,
@@ -51097,7 +51097,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14323 => array(
-            "descr" => "DEF:12 DEX+1 \uEF26+1\nRanged Accuracy+1",
+            "descr" => "DEF:12 DEX+1 Dark+1\nRanged Accuracy+1",
             "name" => "Noct Brais",
             "longname" => "noct brais",
             "lvl" => 30,
@@ -51197,7 +51197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14333 => array(
-            "descr" => "DEF:13 DEX+2 \uEF26+2\nRanged Accuracy+2",
+            "descr" => "DEF:13 DEX+2 Dark+2\nRanged Accuracy+2",
             "name" => "Noct Brais +1",
             "longname" => "noct brais +1",
             "lvl" => 30,
@@ -51227,7 +51227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14338 => array(
-            "descr" => "DEF:11 HP+2 MP+2 \uEF1F+5",
+            "descr" => "DEF:11 HP+2 MP+2 Fire+5",
             "name" => "Bastokan Harness",
             "longname" => "Bastokan harness",
             "lvl" => 15,
@@ -51237,7 +51237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14339 => array(
-            "descr" => "DEF:12 HP+3 MP+3 \uEF1F+5",
+            "descr" => "DEF:12 HP+3 MP+3 Fire+5",
             "name" => "Republic Harness",
             "longname" => "Republic harness",
             "lvl" => 15,
@@ -51287,7 +51287,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14344 => array(
-            "descr" => "DEF:11 HP+4 \uEF20+5",
+            "descr" => "DEF:11 HP+4 Ice+5",
             "name" => "San d'Orian Vest",
             "longname" => "San d'Orian vest",
             "lvl" => 15,
@@ -51297,7 +51297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14345 => array(
-            "descr" => "DEF:12 HP+6 \uEF20+5",
+            "descr" => "DEF:12 HP+6 Ice+5",
             "name" => "Kingdom Vest",
             "longname" => "Kingdom vest",
             "lvl" => 15,
@@ -51447,7 +51447,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14360 => array(
-            "descr" => "Cannot Equip Headgear\nDEF:41 INT+1 \uEF25+13 \uEF26+13 \nIn areas under own nation's control: \nAGI+3",
+            "descr" => "Cannot Equip Headgear\nDEF:41 INT+1 Light+13 Dark+13 \nIn areas under own nation's control: \nAGI+3",
             "name" => "R.K. Cloak +1",
             "longname" => "Royal Knight's cloak +1",
             "lvl" => 52,
@@ -51457,7 +51457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14361 => array(
-            "descr" => "Cannot Equip Headgear\nDEF:42 INT+1 \uEF25+14 \uEF26+14 \nIn areas under own nation's control: \nAGI+4",
+            "descr" => "Cannot Equip Headgear\nDEF:42 INT+1 Light+14 Dark+14 \nIn areas under own nation's control: \nAGI+4",
             "name" => "R.K. Cloak +2",
             "longname" => "Royal Knight's cloak +2",
             "lvl" => 52,
@@ -51467,7 +51467,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14362 => array(
-            "descr" => "DEF:32 INT+1 MND+1 CHR+1 \uEF25+3 \n\uEF26+3\nIn areas under own nation's control: \nMP+18",
+            "descr" => "DEF:32 INT+1 MND+1 CHR+1 Light+3 \nDark+3\nIn areas under own nation's control: \nMP+18",
             "name" => "T.M. Coat +1",
             "longname" => "Tactician Magician's coat +1",
             "lvl" => 52,
@@ -51477,7 +51477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14363 => array(
-            "descr" => "DEF:33 INT+1 MND+1 CHR+1 \uEF25+3 \n\uEF26+3\nIn areas under own nation's control: \nMP+20",
+            "descr" => "DEF:33 INT+1 MND+1 CHR+1 Light+3 \nDark+3\nIn areas under own nation's control: \nMP+20",
             "name" => "T.M. Coat +2",
             "longname" => "Tactician Magician's coat +2",
             "lvl" => 52,
@@ -51677,7 +51677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14386 => array(
-            "descr" => "Cannot Equip Handgear DEF:3 \n\uEF25+10",
+            "descr" => "Cannot Equip Handgear DEF:3 \nLight+10",
             "name" => "Wedding Dress",
             "longname" => "wedding dress",
             "lvl" => 20,
@@ -51737,7 +51737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14392 => array(
-            "descr" => "DEF:3 \uEF21+1 \uEF22+1\nWoodworking skill +1",
+            "descr" => "DEF:3 Wind+1 Earth+1\nWoodworking skill +1",
             "name" => "Carpenter's Apron",
             "longname" => "carpenter's apron",
             "lvl" => 1,
@@ -51747,7 +51747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14393 => array(
-            "descr" => "DEF:4 \uEF1F+2\nSmithing skill +1",
+            "descr" => "DEF:4 Fire+2\nSmithing skill +1",
             "name" => "Blacksmith's Apn.",
             "longname" => "blacksmith's apron",
             "lvl" => 1,
@@ -51757,7 +51757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14394 => array(
-            "descr" => "DEF:3 \uEF1F+1 \uEF22+1\nGoldsmithing skill +1",
+            "descr" => "DEF:3 Fire+1 Earth+1\nGoldsmithing skill +1",
             "name" => "Goldsmith's Apron",
             "longname" => "goldsmith's apron",
             "lvl" => 1,
@@ -51767,7 +51767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14395 => array(
-            "descr" => "DEF:2 \uEF22+2\nClothcraft skill +1",
+            "descr" => "DEF:2 Earth+2\nClothcraft skill +1",
             "name" => "Weaver's Apron",
             "longname" => "weaver's apron",
             "lvl" => 1,
@@ -51777,7 +51777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14396 => array(
-            "descr" => "DEF:3 \uEF23+1 \uEF26+1\nLeathercraft skill +1",
+            "descr" => "DEF:3 Thunder+1 Dark+1\nLeathercraft skill +1",
             "name" => "Tanner's Apron",
             "longname" => "tanner's apron",
             "lvl" => 1,
@@ -51787,7 +51787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14397 => array(
-            "descr" => "DEF:3 \uEF22+1 \uEF26+1\nBonecraft skill +1",
+            "descr" => "DEF:3 Earth+1 Dark+1\nBonecraft skill +1",
             "name" => "Boneworker's Apn.",
             "longname" => "boneworker's apron",
             "lvl" => 1,
@@ -51797,7 +51797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14398 => array(
-            "descr" => "DEF:3 \uEF1F+1 \uEF23+1\nAlchemy skill +1",
+            "descr" => "DEF:3 Fire+1 Thunder+1\nAlchemy skill +1",
             "name" => "Alchemist's Apron",
             "longname" => "alchemist's apron",
             "lvl" => 1,
@@ -51807,7 +51807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14399 => array(
-            "descr" => "DEF:2 \uEF1F+1 \uEF24+1\nCooking skill +1",
+            "descr" => "DEF:2 Fire+1 Water+1\nCooking skill +1",
             "name" => "Culinarian's Apron",
             "longname" => "culinarian's apron",
             "lvl" => 1,
@@ -51817,7 +51817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14400 => array(
-            "descr" => "DEF:4 \uEF20+1 \uEF24+1\nReduces chances of fishing up items",
+            "descr" => "DEF:4 Ice+1 Water+1\nReduces chances of fishing up items",
             "name" => "Fisherman's Apron",
             "longname" => "fisherman's apron",
             "lvl" => 1,
@@ -52037,7 +52037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14422 => array(
-            "descr" => "DEF:18 \uEF26+1 Ranged Accuracy+2",
+            "descr" => "DEF:18 Dark+1 Ranged Accuracy+2",
             "name" => "Noct Doublet",
             "longname" => "noct doublet",
             "lvl" => 30,
@@ -52157,7 +52157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14434 => array(
-            "descr" => "DEF:19 \uEF26+2 Ranged Accuracy+3",
+            "descr" => "DEF:19 Dark+2 Ranged Accuracy+3",
             "name" => "Noct Doublet +1",
             "longname" => "noct doublet +1",
             "lvl" => 30,
@@ -52457,7 +52457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14464 => array(
-            "descr" => "DEF:14 AGI+1 \uEF20+5 \uEF22+5",
+            "descr" => "DEF:14 AGI+1 Ice+5 Earth+5",
             "name" => "Trailer's Tunica",
             "longname" => "trailer's tunica",
             "lvl" => 16,
@@ -52517,7 +52517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14470 => array(
-            "descr" => "DEF:65 \uEF1F+15 \uEF20+15 \uEF21+15 \uEF22+15\n\uEF23+15 \uEF24+15 \uEF25+15 \uEF26+15",
+            "descr" => "DEF:65 Fire+15 Ice+15 Wind+15 Earth+15\nThunder+15 Water+15 Light+15 Dark+15",
             "name" => "Assault Brstplate",
             "longname" => "assault breastplate",
             "lvl" => 75,
@@ -52737,7 +52737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14492 => array(
-            "descr" => "Cannot Equip Headgear DEF:39\nMND+2 \uEF25+4 Enchantment: Recover MP",
+            "descr" => "Cannot Equip Headgear DEF:39\nMND+2 Light+4 Enchantment: Recover MP",
             "name" => "High Mana Cloak",
             "longname" => "high mana cloak",
             "lvl" => 50,
@@ -52757,7 +52757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14494 => array(
-            "descr" => "DEF:47 HP+12 \uEF1F+10 \uEF20+10\n\uEF21+10 \uEF22+10 \uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10 \nBreath damage taken -9%\nEnchantment: Recover Wyvern HP",
+            "descr" => "DEF:47 HP+12 Fire+10 Ice+10\nWind+10 Earth+10 Thunder+10 Water+10 Light+10 Dark+10 \nBreath damage taken -9%\nEnchantment: Recover Wyvern HP",
             "name" => "Healing Mail",
             "longname" => "healing mail",
             "lvl" => 70,
@@ -53647,7 +53647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14583 => array(
-            "descr" => "DEF:32 INT+2 MND+2 CHR+2 \uEF25+4 \uEF26+4\nSet: Increases MP",
+            "descr" => "DEF:32 INT+2 MND+2 CHR+2 Light+4 Dark+4\nSet: Increases MP",
             "name" => "Cobra Coat",
             "longname" => "Cobra Unit coat",
             "lvl" => 55,
@@ -53737,7 +53737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14592 => array(
-            "descr" => "DEF:1 AGI+2 \uEF21+5",
+            "descr" => "DEF:1 AGI+2 Wind+5",
             "name" => "Reflex Ring +1",
             "longname" => "reflex ring +1",
             "lvl" => 14,
@@ -53747,7 +53747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14593 => array(
-            "descr" => "DEF:1 STR+2 \uEF1F+5",
+            "descr" => "DEF:1 STR+2 Fire+5",
             "name" => "Courage Ring +1",
             "longname" => "courage ring +1",
             "lvl" => 14,
@@ -53757,7 +53757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14594 => array(
-            "descr" => "DEF:1 INT+2 \uEF20+5",
+            "descr" => "DEF:1 INT+2 Ice+5",
             "name" => "Kldg. Ring +1",
             "longname" => "knowledge ring +1",
             "lvl" => 14,
@@ -53767,7 +53767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14595 => array(
-            "descr" => "DEF:1 DEX+2 \uEF23+5",
+            "descr" => "DEF:1 DEX+2 Thunder+5",
             "name" => "Balance Ring +1",
             "longname" => "balance ring +1",
             "lvl" => 14,
@@ -53777,7 +53777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14596 => array(
-            "descr" => "DEF:1 MND+2 \uEF24+5",
+            "descr" => "DEF:1 MND+2 Water+5",
             "name" => "Trq. Ring +1",
             "longname" => "tranquility ring +1",
             "lvl" => 14,
@@ -53787,7 +53787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14597 => array(
-            "descr" => "DEF:1 VIT+2 \uEF22+5",
+            "descr" => "DEF:1 VIT+2 Earth+5",
             "name" => "Stamina Ring +1",
             "longname" => "stamina ring +1",
             "lvl" => 14,
@@ -53797,7 +53797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14598 => array(
-            "descr" => "DEF:1 MP+5 \uEF26+5",
+            "descr" => "DEF:1 MP+5 Dark+5",
             "name" => "Energy Ring +1",
             "longname" => "energy ring +1",
             "lvl" => 14,
@@ -53807,7 +53807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14599 => array(
-            "descr" => "DEF:1 CHR+2 \uEF25+5",
+            "descr" => "DEF:1 CHR+2 Light+5",
             "name" => "Hope Ring +1",
             "longname" => "hope ring +1",
             "lvl" => 14,
@@ -53817,7 +53817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14600 => array(
-            "descr" => "DEF:2 AGI+3 \uEF21+7",
+            "descr" => "DEF:2 AGI+3 Wind+7",
             "name" => "Alacrity Ring +1",
             "longname" => "alacrity ring +1",
             "lvl" => 36,
@@ -53827,7 +53827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14601 => array(
-            "descr" => "DEF:2 STR+3 \uEF1F+7",
+            "descr" => "DEF:2 STR+3 Fire+7",
             "name" => "Puissance Ring +1",
             "longname" => "puissance ring +1",
             "lvl" => 36,
@@ -53837,7 +53837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14602 => array(
-            "descr" => "DEF:2 INT+3 \uEF20+7",
+            "descr" => "DEF:2 INT+3 Ice+7",
             "name" => "Wisdom Ring +1",
             "longname" => "wisdom ring +1",
             "lvl" => 36,
@@ -53847,7 +53847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14603 => array(
-            "descr" => "DEF:2 DEX+3 \uEF23+7",
+            "descr" => "DEF:2 DEX+3 Thunder+7",
             "name" => "Deft Ring +1",
             "longname" => "deft ring +1",
             "lvl" => 36,
@@ -53857,7 +53857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14604 => array(
-            "descr" => "DEF:2 MND+3 \uEF24+7",
+            "descr" => "DEF:2 MND+3 Water+7",
             "name" => "Solace Ring +1",
             "longname" => "solace ring +1",
             "lvl" => 36,
@@ -53867,7 +53867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14605 => array(
-            "descr" => "DEF:2 VIT+3 \uEF22+7",
+            "descr" => "DEF:2 VIT+3 Earth+7",
             "name" => "Verve Ring +1",
             "longname" => "verve ring +1",
             "lvl" => 36,
@@ -53877,7 +53877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14606 => array(
-            "descr" => "DEF:2 MP+7 \uEF26+7",
+            "descr" => "DEF:2 MP+7 Dark+7",
             "name" => "Aura Ring +1",
             "longname" => "aura ring +1",
             "lvl" => 36,
@@ -53887,7 +53887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14607 => array(
-            "descr" => "DEF:2 CHR+3 \uEF25+7",
+            "descr" => "DEF:2 CHR+3 Light+7",
             "name" => "Loyalty Ring +1",
             "longname" => "loyalty ring +1",
             "lvl" => 36,
@@ -53897,7 +53897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14608 => array(
-            "descr" => "DEF:3 AGI+4 \uEF21+9",
+            "descr" => "DEF:3 AGI+4 Wind+9",
             "name" => "Celerity Ring +1",
             "longname" => "celerity ring +1",
             "lvl" => 54,
@@ -53907,7 +53907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14609 => array(
-            "descr" => "DEF:3 STR+4 \uEF1F+9",
+            "descr" => "DEF:3 STR+4 Fire+9",
             "name" => "Victory Ring +1",
             "longname" => "victory ring +1",
             "lvl" => 54,
@@ -53917,7 +53917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14610 => array(
-            "descr" => "DEF:3 INT+4 \uEF20+9",
+            "descr" => "DEF:3 INT+4 Ice+9",
             "name" => "Genius Ring +1",
             "longname" => "genius ring +1",
             "lvl" => 54,
@@ -53927,7 +53927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14611 => array(
-            "descr" => "DEF:3 DEX+4 \uEF23+9",
+            "descr" => "DEF:3 DEX+4 Thunder+9",
             "name" => "Grace Ring +1",
             "longname" => "grace ring +1",
             "lvl" => 54,
@@ -53937,7 +53937,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14612 => array(
-            "descr" => "DEF:3 MND+4 \uEF24+9",
+            "descr" => "DEF:3 MND+4 Water+9",
             "name" => "Serenity Ring +1",
             "longname" => "serenity ring +1",
             "lvl" => 54,
@@ -53947,7 +53947,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14613 => array(
-            "descr" => "DEF:3 VIT+4 \uEF22+9",
+            "descr" => "DEF:3 VIT+4 Earth+9",
             "name" => "Vigor Ring +1",
             "longname" => "vigor ring +1",
             "lvl" => 54,
@@ -53957,7 +53957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14614 => array(
-            "descr" => "DEF:3 MP+9 \uEF26+9",
+            "descr" => "DEF:3 MP+9 Dark+9",
             "name" => "Mystic Ring +1",
             "longname" => "mystic ring +1",
             "lvl" => 54,
@@ -53967,7 +53967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14615 => array(
-            "descr" => "DEF:3 CHR+4 \uEF25+9",
+            "descr" => "DEF:3 CHR+4 Light+9",
             "name" => "Allure Ring +1",
             "longname" => "allure ring +1",
             "lvl" => 54,
@@ -53987,7 +53987,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14617 => array(
-            "descr" => "DEF:4 AGI+5 \uEF21+11",
+            "descr" => "DEF:4 AGI+5 Wind+11",
             "name" => "Nimble Ring +1",
             "longname" => "nimble ring +1",
             "lvl" => 72,
@@ -53997,7 +53997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14618 => array(
-            "descr" => "DEF:4 STR+5 \uEF1F+11",
+            "descr" => "DEF:4 STR+5 Fire+11",
             "name" => "Triumph Ring +1",
             "longname" => "triumph ring +1",
             "lvl" => 72,
@@ -54007,7 +54007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14619 => array(
-            "descr" => "DEF:4 INT+5 \uEF20+11",
+            "descr" => "DEF:4 INT+5 Ice+11",
             "name" => "Omn. Ring +1",
             "longname" => "omniscient ring +1",
             "lvl" => 72,
@@ -54017,7 +54017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14620 => array(
-            "descr" => "DEF:4 DEX+5 \uEF23+11",
+            "descr" => "DEF:4 DEX+5 Thunder+11",
             "name" => "Adroit Ring +1",
             "longname" => "adroit ring +1",
             "lvl" => 72,
@@ -54027,7 +54027,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14621 => array(
-            "descr" => "DEF:4 MND+5 \uEF24+11",
+            "descr" => "DEF:4 MND+5 Water+11",
             "name" => "Cmn. Ring +1",
             "longname" => "communion ring +1",
             "lvl" => 72,
@@ -54037,7 +54037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14622 => array(
-            "descr" => "DEF:4 VIT+5 \uEF22+11",
+            "descr" => "DEF:4 VIT+5 Earth+11",
             "name" => "Robust Ring +1",
             "longname" => "robust ring +1",
             "lvl" => 72,
@@ -54047,7 +54047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14623 => array(
-            "descr" => "DEF:4 MP+11 \uEF26+11",
+            "descr" => "DEF:4 MP+11 Dark+11",
             "name" => "Hades Ring +1",
             "longname" => "Hades ring +1",
             "lvl" => 72,
@@ -54057,7 +54057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14624 => array(
-            "descr" => "DEF:4 CHR+5 \uEF25+11",
+            "descr" => "DEF:4 CHR+5 Light+11",
             "name" => "Heavens Ring +1",
             "longname" => "Heavens ring +1",
             "lvl" => 72,
@@ -54077,7 +54077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14626 => array(
-            "descr" => "\uEF24+3 Enmity+2",
+            "descr" => "Water+3 Enmity+2",
             "name" => "Mermaid Ring",
             "longname" => "mermaid's ring",
             "lvl" => 43,
@@ -54227,7 +54227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14649 => array(
-            "descr" => "\uEF23+20",
+            "descr" => "Thunder+20",
             "name" => "Telluric Ring",
             "longname" => "telluric ring",
             "lvl" => 50,
@@ -54617,7 +54617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14688 => array(
-            "descr" => "DEF:1 \uEF21+4 \uEF22+4",
+            "descr" => "DEF:1 Wind+4 Earth+4",
             "name" => "Reflex Earring +1",
             "longname" => "reflex earring +1",
             "lvl" => 10,
@@ -54627,7 +54627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14689 => array(
-            "descr" => "DEF:1 \uEF1F+4 \uEF20+4",
+            "descr" => "DEF:1 Fire+4 Ice+4",
             "name" => "Crg. Earring +1",
             "longname" => "courage earring +1",
             "lvl" => 10,
@@ -54637,7 +54637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14690 => array(
-            "descr" => "DEF:1 \uEF20+4 \uEF21+4",
+            "descr" => "DEF:1 Ice+4 Wind+4",
             "name" => "Kldg. Earring +1",
             "longname" => "knowledge earring +1",
             "lvl" => 10,
@@ -54647,7 +54647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14691 => array(
-            "descr" => "DEF:1 \uEF23+4 \uEF24+4",
+            "descr" => "DEF:1 Thunder+4 Water+4",
             "name" => "Blc. Earring +1",
             "longname" => "balance earring +1",
             "lvl" => 10,
@@ -54657,7 +54657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14692 => array(
-            "descr" => "DEF:1 \uEF1F+4 \uEF24+4",
+            "descr" => "DEF:1 Fire+4 Water+4",
             "name" => "Trq. Earring +1",
             "longname" => "tranquility earring +1",
             "lvl" => 10,
@@ -54667,7 +54667,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14693 => array(
-            "descr" => "DEF:1 \uEF22+4 \uEF23+4",
+            "descr" => "DEF:1 Earth+4 Thunder+4",
             "name" => "Stm. Earring +1",
             "longname" => "stamina earring +1",
             "lvl" => 10,
@@ -54677,7 +54677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14694 => array(
-            "descr" => "DEF:1 MP+4 \uEF26+4",
+            "descr" => "DEF:1 MP+4 Dark+4",
             "name" => "Energy Earring +1",
             "longname" => "energy earring +1",
             "lvl" => 10,
@@ -54687,7 +54687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14695 => array(
-            "descr" => "DEF:1 HP+4 \uEF25+4",
+            "descr" => "DEF:1 HP+4 Light+4",
             "name" => "Hope Earring +1",
             "longname" => "hope earring +1",
             "lvl" => 10,
@@ -54697,7 +54697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14696 => array(
-            "descr" => "DEF:1 \uEF21+6 \uEF22+6",
+            "descr" => "DEF:1 Wind+6 Earth+6",
             "name" => "Alc. Earring +1",
             "longname" => "alacrity earring +1",
             "lvl" => 31,
@@ -54707,7 +54707,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14697 => array(
-            "descr" => "DEF:1 \uEF1F+6 \uEF20+6",
+            "descr" => "DEF:1 Fire+6 Ice+6",
             "name" => "Puis. Earring +1",
             "longname" => "puissance earring +1",
             "lvl" => 31,
@@ -54717,7 +54717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14698 => array(
-            "descr" => "DEF:1 \uEF20+6 \uEF21+6",
+            "descr" => "DEF:1 Ice+6 Wind+6",
             "name" => "Wisdom Earring +1",
             "longname" => "wisdom earring +1",
             "lvl" => 31,
@@ -54727,7 +54727,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14699 => array(
-            "descr" => "DEF:1 \uEF23+6 \uEF24+6",
+            "descr" => "DEF:1 Thunder+6 Water+6",
             "name" => "Deft Earring +1",
             "longname" => "deft earring +1",
             "lvl" => 31,
@@ -54737,7 +54737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14700 => array(
-            "descr" => "DEF:1 \uEF1F+6 \uEF24+6",
+            "descr" => "DEF:1 Fire+6 Water+6",
             "name" => "Solace Earring +1",
             "longname" => "solace earring +1",
             "lvl" => 31,
@@ -54747,7 +54747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14701 => array(
-            "descr" => "DEF:1 \uEF22+6 \uEF23+6",
+            "descr" => "DEF:1 Earth+6 Thunder+6",
             "name" => "Verve Earring +1",
             "longname" => "verve earring +1",
             "lvl" => 31,
@@ -54757,7 +54757,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14702 => array(
-            "descr" => "DEF:1 MP+6 \uEF26+6",
+            "descr" => "DEF:1 MP+6 Dark+6",
             "name" => "Aura Earring +1",
             "longname" => "aura earring +1",
             "lvl" => 31,
@@ -54767,7 +54767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14703 => array(
-            "descr" => "DEF:1 HP+6 \uEF25+6",
+            "descr" => "DEF:1 HP+6 Light+6",
             "name" => "Lyt. Earring +1",
             "longname" => "loyalty earring +1",
             "lvl" => 31,
@@ -54777,7 +54777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14704 => array(
-            "descr" => "DEF:1 \uEF21+10 \uEF22+10",
+            "descr" => "DEF:1 Wind+10 Earth+10",
             "name" => "Cel. Earring +1",
             "longname" => "celerity earring +1",
             "lvl" => 49,
@@ -54787,7 +54787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14705 => array(
-            "descr" => "DEF:1 \uEF1F+10 \uEF20+10",
+            "descr" => "DEF:1 Fire+10 Ice+10",
             "name" => "Victory Earring +1",
             "longname" => "victory earring +1",
             "lvl" => 49,
@@ -54797,7 +54797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14706 => array(
-            "descr" => "DEF:1 \uEF20+10 \uEF21+10",
+            "descr" => "DEF:1 Ice+10 Wind+10",
             "name" => "Genius Earring +1",
             "longname" => "genius earring +1",
             "lvl" => 49,
@@ -54807,7 +54807,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14707 => array(
-            "descr" => "DEF:1 \uEF23+10 \uEF24+10",
+            "descr" => "DEF:1 Thunder+10 Water+10",
             "name" => "Grace Earring +1",
             "longname" => "grace earring +1",
             "lvl" => 49,
@@ -54817,7 +54817,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14708 => array(
-            "descr" => "DEF:1 \uEF1F+10 \uEF24+10",
+            "descr" => "DEF:1 Fire+10 Water+10",
             "name" => "Ser. Earring +1",
             "longname" => "serenity earring +1",
             "lvl" => 49,
@@ -54827,7 +54827,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14709 => array(
-            "descr" => "DEF:1 \uEF22+10 \uEF23+10",
+            "descr" => "DEF:1 Earth+10 Thunder+10",
             "name" => "Vigor Earring +1",
             "longname" => "vigor earring +1",
             "lvl" => 49,
@@ -54837,7 +54837,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14710 => array(
-            "descr" => "DEF:1 MP+10 \uEF26+10",
+            "descr" => "DEF:1 MP+10 Dark+10",
             "name" => "Mana Earring +1",
             "longname" => "mana earring +1",
             "lvl" => 49,
@@ -54847,7 +54847,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14711 => array(
-            "descr" => "DEF:1 HP+10 \uEF25+10",
+            "descr" => "DEF:1 HP+10 Light+10",
             "name" => "Allure Earring +1",
             "longname" => "allure earring +1",
             "lvl" => 49,
@@ -54857,7 +54857,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14712 => array(
-            "descr" => "DEF:1 AGI+2 \uEF21+12 \uEF22+12",
+            "descr" => "DEF:1 AGI+2 Wind+12 Earth+12",
             "name" => "Nimble Earring +1",
             "longname" => "nimble earring +1",
             "lvl" => 67,
@@ -54867,7 +54867,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14713 => array(
-            "descr" => "DEF:1 STR+2 \uEF1F+12 \uEF20+12",
+            "descr" => "DEF:1 STR+2 Fire+12 Ice+12",
             "name" => "Tmph. Earring +1",
             "longname" => "triumph earring +1",
             "lvl" => 67,
@@ -54877,7 +54877,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14714 => array(
-            "descr" => "DEF:1 INT+2 \uEF20+12 \uEF21+12",
+            "descr" => "DEF:1 INT+2 Ice+12 Wind+12",
             "name" => "Omn. Earring +1",
             "longname" => "omniscient earring +1",
             "lvl" => 67,
@@ -54887,7 +54887,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14715 => array(
-            "descr" => "DEF:1 DEX+2 \uEF23+12 \uEF24+12",
+            "descr" => "DEF:1 DEX+2 Thunder+12 Water+12",
             "name" => "Adroit Earring +1",
             "longname" => "adroit earring +1",
             "lvl" => 67,
@@ -54897,7 +54897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14716 => array(
-            "descr" => "DEF:1 MND+2 \uEF1F+12 \uEF24+12",
+            "descr" => "DEF:1 MND+2 Fire+12 Water+12",
             "name" => "Cmn. Earring +1",
             "longname" => "communion earring +1",
             "lvl" => 67,
@@ -54907,7 +54907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14717 => array(
-            "descr" => "DEF:1 VIT+2 \uEF22+12 \uEF23+12",
+            "descr" => "DEF:1 VIT+2 Earth+12 Thunder+12",
             "name" => "Robust Earring +1",
             "longname" => "robust earring +1",
             "lvl" => 67,
@@ -54917,7 +54917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14718 => array(
-            "descr" => "DEF:1 MP+12 \uEF26+12 Enmity+2",
+            "descr" => "DEF:1 MP+12 Dark+12 Enmity+2",
             "name" => "Hades Earring +1",
             "longname" => "hades earring +1",
             "lvl" => 67,
@@ -54927,7 +54927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14719 => array(
-            "descr" => "DEF:1 HP+12 \uEF25+12 Enmity-2",
+            "descr" => "DEF:1 HP+12 Light+12 Enmity-2",
             "name" => "Hvn. Earring +1",
             "longname" => "heavens earring +1",
             "lvl" => 67,
@@ -54957,7 +54957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14722 => array(
-            "descr" => "HP+20 \uEF24+5",
+            "descr" => "HP+20 Water+5",
             "name" => "Pigeon Earring",
             "longname" => "pigeon earring",
             "lvl" => 33,
@@ -54967,7 +54967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14723 => array(
-            "descr" => "HP+25 \uEF24+7",
+            "descr" => "HP+25 Water+7",
             "name" => "Pigeon Earring +1",
             "longname" => "pigeon earring +1",
             "lvl" => 33,
@@ -56037,7 +56037,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14830 => array(
-            "descr" => "DEF:2 \uEF22+1\nWoodworking skill +1",
+            "descr" => "DEF:2 Earth+1\nWoodworking skill +1",
             "name" => "Carpenter's Gloves",
             "longname" => "carpenter's gloves",
             "lvl" => 1,
@@ -56047,7 +56047,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14831 => array(
-            "descr" => "DEF:3 \uEF1F+1\nSmithing skill +1",
+            "descr" => "DEF:3 Fire+1\nSmithing skill +1",
             "name" => "Smithy's Mitts",
             "longname" => "smithy's mitts",
             "lvl" => 1,
@@ -56057,7 +56057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14832 => array(
-            "descr" => "DEF:2 \uEF26+1\nLeathercraft skill +1",
+            "descr" => "DEF:2 Dark+1\nLeathercraft skill +1",
             "name" => "Tanner's Gloves",
             "longname" => "tanner's gloves",
             "lvl" => 1,
@@ -56277,7 +56277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14854 => array(
-            "descr" => "DEF:5 \uEF26+1 Ranged Accuracy+1",
+            "descr" => "DEF:5 Dark+1 Ranged Accuracy+1",
             "name" => "Noct Gloves",
             "longname" => "noct gloves",
             "lvl" => 30,
@@ -56387,7 +56387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14865 => array(
-            "descr" => "DEF:6 \uEF26+2 Ranged Accuracy+2",
+            "descr" => "DEF:6 Dark+2 Ranged Accuracy+2",
             "name" => "Noct Gloves +1",
             "longname" => "noct gloves +1",
             "lvl" => 30,
@@ -56457,7 +56457,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14873 => array(
-            "descr" => "DEF:21 HP+3% \uEF1F-5 \uEF20+5 \uEF21-5\n\uEF22+5 \uEF23-5 \uEF24+5 \uEF25-5 \uEF26+5\nAttack+22 Evasion-10",
+            "descr" => "DEF:21 HP+3% Fire-5 Ice+5 Wind-5\nEarth+5 Thunder-5 Water+5 Light-5 Dark+5\nAttack+22 Evasion-10",
             "name" => "Bandomusha Kote",
             "longname" => "bandomusha kote",
             "lvl" => 73,
@@ -56517,7 +56517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14879 => array(
-            "descr" => "DEF:18 VIT+2 \uEF25+2 \uEF26+2\nConverts 20 MP to HP\nEnmity+2",
+            "descr" => "DEF:18 VIT+2 Light+2 Dark+2\nConverts 20 MP to HP\nEnmity+2",
             "name" => "Lord's Gauntlets",
             "longname" => "lord's gauntlets",
             "lvl" => 70,
@@ -56557,7 +56557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14883 => array(
-            "descr" => "DEF:19 HP+20 VIT+3 \uEF25+3 \uEF26+3\nEnmity+3",
+            "descr" => "DEF:19 HP+20 VIT+3 Light+3 Dark+3\nEnmity+3",
             "name" => "King's Gauntlets",
             "longname" => "king's gauntlets",
             "lvl" => 70,
@@ -57117,7 +57117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14941 => array(
-            "descr" => "DEF:12 HP+15 \uEF24+5\nRanged Accuracy+2",
+            "descr" => "DEF:12 HP+15 Water+5\nRanged Accuracy+2",
             "name" => "Marid Mittens",
             "longname" => "marid mittens",
             "lvl" => 65,
@@ -57127,7 +57127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14942 => array(
-            "descr" => "DEF:13 HP+17 \uEF24+6\nRanged Accuracy+3",
+            "descr" => "DEF:13 HP+17 Water+6\nRanged Accuracy+3",
             "name" => "Marid Mittens +1",
             "longname" => "marid mittens +1",
             "lvl" => 65,
@@ -57177,7 +57177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14947 => array(
-            "descr" => "DEF:18 \uEF1F+6 Accuracy+6 Evasion+6",
+            "descr" => "DEF:18 Fire+6 Accuracy+6 Evasion+6",
             "name" => "Hanzo Tekko",
             "longname" => "hanzo tekko",
             "lvl" => 73,
@@ -57267,7 +57267,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14956 => array(
-            "descr" => "DEF:12 HP+13 MP+13 MND+3 \uEF24+7",
+            "descr" => "DEF:12 HP+13 MP+13 MND+3 Water+7",
             "name" => "Magi Cuffs",
             "longname" => "magi cuffs",
             "lvl" => 53,
@@ -57567,7 +57567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14986 => array(
-            "descr" => "DEF:8 \uEF25-8 \uEF26+8 Attack+20 Evasion-5",
+            "descr" => "DEF:8 Light-8 Dark+8 Attack+20 Evasion-5",
             "name" => "Ochimusha Kote",
             "longname" => "ochimusha kote",
             "lvl" => 34,
@@ -57607,7 +57607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         14990 => array(
-            "descr" => "DEF:12 \uEF1F+2 \uEF24-1\nEnchantment: \"Enblizzard\"",
+            "descr" => "DEF:12 Fire+2 Water-1\nEnchantment: \"Enblizzard\"",
             "name" => "Blizzard Gloves",
             "longname" => "blizzard gloves",
             "lvl" => 48,
@@ -58027,7 +58027,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15034 => array(
-            "descr" => "DEF:28 HP+10 MP+10 \uEF22+20\nEnhances \"Stoneskin\" effect",
+            "descr" => "DEF:28 HP+10 MP+10 Earth+20\nEnhances \"Stoneskin\" effect",
             "name" => "Stone Mufflers",
             "longname" => "stone mufflers",
             "lvl" => 71,
@@ -58117,7 +58117,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15043 => array(
-            "descr" => "DEF:1 \uEF21+2 \uEF22+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Wind+2 Earth+2\nSynergy damage taken -15%",
             "name" => "Carpenter's Cuffs",
             "longname" => "carpenter's cuffs",
             "lvl" => 1,
@@ -58127,7 +58127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15044 => array(
-            "descr" => "DEF:1 \uEF1F+4\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Fire+4\nSynergy damage taken -15%",
             "name" => "Blksmith. Cuffs",
             "longname" => "blacksmith's cuffs",
             "lvl" => 1,
@@ -58137,7 +58137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15045 => array(
-            "descr" => "DEF:1 \uEF1F+2 \uEF22+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Fire+2 Earth+2\nSynergy damage taken -15%",
             "name" => "Goldsmith's Cuffs",
             "longname" => "goldsmith's cuffs",
             "lvl" => 1,
@@ -58147,7 +58147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15046 => array(
-            "descr" => "DEF:1 \uEF22+4\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Earth+4\nSynergy damage taken -15%",
             "name" => "Weaver's Cuffs",
             "longname" => "weaver's cuffs",
             "lvl" => 1,
@@ -58157,7 +58157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15047 => array(
-            "descr" => "DEF:1 \uEF23+2 \uEF26+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Thunder+2 Dark+2\nSynergy damage taken -15%",
             "name" => "Tanner's Cuffs",
             "longname" => "tanner's cuffs",
             "lvl" => 1,
@@ -58167,7 +58167,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15048 => array(
-            "descr" => "DEF:1 \uEF22+2 \uEF26+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Earth+2 Dark+2\nSynergy damage taken -15%",
             "name" => "Bonewrk. Cuffs",
             "longname" => "boneworker's cuffs",
             "lvl" => 1,
@@ -58177,7 +58177,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15049 => array(
-            "descr" => "DEF:1 \uEF1F+2 \uEF23+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Fire+2 Thunder+2\nSynergy damage taken -15%",
             "name" => "Alchemist's Cuffs",
             "longname" => "alchemist's cuffs",
             "lvl" => 1,
@@ -58187,7 +58187,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15050 => array(
-            "descr" => "DEF:1 \uEF1F+2 \uEF24+2\nSynergy damage taken -15%",
+            "descr" => "DEF:1 Fire+2 Water+2\nSynergy damage taken -15%",
             "name" => "Culinarian's Cuffs",
             "longname" => "culinarian's cuffs",
             "lvl" => 1,
@@ -58197,7 +58197,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15051 => array(
-            "descr" => "DEF:1 \uEF20+2 \uEF24+2",
+            "descr" => "DEF:1 Ice+2 Water+2",
             "name" => "Fisherman's Cuffs",
             "longname" => "fisherman's cuffs",
             "lvl" => 1,
@@ -58227,7 +58227,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15054 => array(
-            "descr" => "DEF:11 MP+16 \uEF25+5\nSummoning magic skill +5",
+            "descr" => "DEF:11 MP+16 Light+5\nSummoning magic skill +5",
             "name" => "Beacon Cuffs",
             "longname" => "beacon cuffs",
             "lvl" => 59,
@@ -58387,7 +58387,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15076 => array(
-            "descr" => "DEF:24 MP+14 \uEF21+10\nEnfeebling magic skill +15\nAdds \"Refresh\" effect",
+            "descr" => "DEF:24 MP+14 Wind+10\nEnfeebling magic skill +15\nAdds \"Refresh\" effect",
             "name" => "Duelist's Chapeau",
             "longname" => "duelist's chapeau",
             "lvl" => 75,
@@ -58477,7 +58477,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15085 => array(
-            "descr" => "DEF:25 HP+16 STR+4 \uEF21+10\nEnhances effect of wyvern's breath",
+            "descr" => "DEF:25 HP+16 STR+4 Wind+10\nEnhances effect of wyvern's breath",
             "name" => "Wyrm Armet",
             "longname" => "wyrm armet",
             "lvl" => 75,
@@ -59077,7 +59077,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15145 => array(
-            "descr" => "DEF:16 HP+10 VIT+4 \uEF20+10\nWyvern: HP recovered while healing +6",
+            "descr" => "DEF:16 HP+10 VIT+4 Ice+10\nWyvern: HP recovered while healing +6",
             "name" => "Wyrm Greaves",
             "longname" => "wyrm greaves",
             "lvl" => 72,
@@ -59147,7 +59147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15152 => array(
-            "descr" => "AGI+4 \uEF1F+9\nEnhances \"Resist Sleep\" effect\nEnhances \"Resist Paralyze\" effect",
+            "descr" => "AGI+4 Fire+9\nEnhances \"Resist Sleep\" effect\nEnhances \"Resist Paralyze\" effect",
             "name" => "Cactuar Ribbon",
             "longname" => "cactuar ribbon",
             "lvl" => 70,
@@ -59237,7 +59237,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15161 => array(
-            "descr" => "DEF:9 AGI+1 \uEF26+1",
+            "descr" => "DEF:9 AGI+1 Dark+1",
             "name" => "Noct Beret",
             "longname" => "noct beret",
             "lvl" => 30,
@@ -59347,7 +59347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15172 => array(
-            "descr" => "DEF:10 AGI+2 \uEF26+2",
+            "descr" => "DEF:10 AGI+2 Dark+2",
             "name" => "Noct Beret +1",
             "longname" => "noct beret +1",
             "lvl" => 30,
@@ -59517,7 +59517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15189 => array(
-            "descr" => "DEF:26 VIT+2 \uEF25+2 \uEF26+2\nConverts 15 MP to HP\nEnmity+2",
+            "descr" => "DEF:26 VIT+2 Light+2 Dark+2\nConverts 15 MP to HP\nEnmity+2",
             "name" => "Lord's Armet",
             "longname" => "lord's armet",
             "lvl" => 70,
@@ -59557,7 +59557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15193 => array(
-            "descr" => "DEF:27 HP+15 VIT+3 \uEF25+3 \uEF26+3\nEnmity+3",
+            "descr" => "DEF:27 HP+15 VIT+3 Light+3 Dark+3\nEnmity+3",
             "name" => "King's Armet",
             "longname" => "king's armet",
             "lvl" => 70,
@@ -59627,7 +59627,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15200 => array(
-            "descr" => "DEF:5 \uEF1F+5 \uEF20+5 \uEF21+5 \uEF22+5\n\uEF23+5 \uEF24-25 \uEF25+5 \uEF26+5",
+            "descr" => "DEF:5 Fire+5 Ice+5 Wind+5 Earth+5\nThunder+5 Water-25 Light+5 Dark+5",
             "name" => "Orc Helm",
             "longname" => "Orc helm",
             "lvl" => 61,
@@ -59637,7 +59637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15201 => array(
-            "descr" => "DEF:5 \uEF1F+5 \uEF20+5 \uEF21+5 \uEF22+5\n\uEF23-25 \uEF24+5 \uEF25+5 \uEF26+5",
+            "descr" => "DEF:5 Fire+5 Ice+5 Wind+5 Earth+5\nThunder-25 Water+5 Light+5 Dark+5",
             "name" => "Quadav Barbut",
             "longname" => "Quadav barbut",
             "lvl" => 61,
@@ -59647,7 +59647,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15202 => array(
-            "descr" => "DEF:5 \uEF1F+5 \uEF20-25 \uEF21+5 \uEF22+5\n\uEF23+5 \uEF24+5 \uEF25+5 \uEF26+5",
+            "descr" => "DEF:5 Fire+5 Ice-25 Wind+5 Earth+5\nThunder+5 Water+5 Light+5 Dark+5",
             "name" => "Yagudo Headgear",
             "longname" => "Yagudo headgear",
             "lvl" => 61,
@@ -59657,7 +59657,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15203 => array(
-            "descr" => "DEF:5 \uEF1F+5 \uEF20+5 \uEF21+5 \uEF22+5\n\uEF23+5 \uEF24+5 \uEF25-25 \uEF26+5",
+            "descr" => "DEF:5 Fire+5 Ice+5 Wind+5 Earth+5\nThunder+5 Water+5 Light-25 Dark+5",
             "name" => "Goblin Coif",
             "longname" => "Goblin coif",
             "lvl" => 61,
@@ -59737,7 +59737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15211 => array(
-            "descr" => "HP-7 MP+21 \uEF24+14\nEnchantment: \"Reraise II\"",
+            "descr" => "HP-7 MP+21 Water+14\nEnchantment: \"Reraise II\"",
             "name" => "Reraise Hairpin",
             "longname" => "Reraise hairpin",
             "lvl" => 60,
@@ -59767,7 +59767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15214 => array(
-            "descr" => "DEF:10 \uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10\n\uEF23+10 \uEF24-50 \uEF25+10 \uEF26+10\nEnchantment: Calls Gadzradd",
+            "descr" => "DEF:10 Fire+10 Ice+10 Wind+10 Earth+10\nThunder+10 Water-50 Light+10 Dark+10\nEnchantment: Calls Gadzradd",
             "name" => "Gadzradd's Helm",
             "longname" => "Gadzradd's helm",
             "lvl" => 75,
@@ -59777,7 +59777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15215 => array(
-            "descr" => "DEF:10 \uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10\n\uEF23-50 \uEF24+10 \uEF25+10 \uEF26+10\nEnchantment: Calls Da'Vhu",
+            "descr" => "DEF:10 Fire+10 Ice+10 Wind+10 Earth+10\nThunder-50 Water+10 Light+10 Dark+10\nEnchantment: Calls Da'Vhu",
             "name" => "Da'Vhu's Barbut",
             "longname" => "Da'Vhu's barbut",
             "lvl" => 75,
@@ -59787,7 +59787,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15216 => array(
-            "descr" => "DEF:10 \uEF1F+10 \uEF20-50 \uEF21+10 \uEF22+10\n\uEF23+10 \uEF24+10 \uEF25+10 \uEF26+10\nEnchantment: Calls Tsoo Haja",
+            "descr" => "DEF:10 Fire+10 Ice-50 Wind+10 Earth+10\nThunder+10 Water+10 Light+10 Dark+10\nEnchantment: Calls Tsoo Haja",
             "name" => "Tsoo's Headgear",
             "longname" => "Tsoo Haja's headgear",
             "lvl" => 75,
@@ -59797,7 +59797,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15217 => array(
-            "descr" => "DEF:10 \uEF1F+10 \uEF20+10 \uEF21+10 \uEF22+10\n\uEF23+10 \uEF24+10 \uEF25-50 \uEF26+10\nEnchantment: Calls Choplix",
+            "descr" => "DEF:10 Fire+10 Ice+10 Wind+10 Earth+10\nThunder+10 Water+10 Light-50 Dark+10\nEnchantment: Calls Choplix",
             "name" => "Choplix's Coif",
             "longname" => "Choplix's coif",
             "lvl" => 75,
@@ -60067,7 +60067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15244 => array(
-            "descr" => "DEF:18 \uEF25+30 \uEF26+30\nEnhances \"Killer\" effects\nIncreases resistance to\nall status ailments",
+            "descr" => "DEF:18 Light+30 Dark+30\nEnhances \"Killer\" effects\nIncreases resistance to\nall status ailments",
             "name" => "Flawless Ribbon",
             "longname" => "flawless ribbon",
             "lvl" => 75,
@@ -60307,7 +60307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15268 => array(
-            "descr" => "HP-1 MP+3 \uEF26+2\nEnchantment: INT+2 MND+2",
+            "descr" => "HP-1 MP+3 Dark+2\nEnchantment: INT+2 MND+2",
             "name" => "Eld. Bone Hairpin",
             "longname" => "eldritch bone hairpin",
             "lvl" => 5,
@@ -60317,7 +60317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15269 => array(
-            "descr" => "HP-4 MP+12 \uEF22+8\nEnchantment: INT+3 MND+3",
+            "descr" => "HP-4 MP+12 Earth+8\nEnchantment: INT+3 MND+3",
             "name" => "Eld. Horn Hairpin",
             "longname" => "eldritch horn hairpin",
             "lvl" => 30,
@@ -60737,7 +60737,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15311 => array(
-            "descr" => "DEF:4 DEX+1 \uEF26+1",
+            "descr" => "DEF:4 DEX+1 Dark+1",
             "name" => "Noct Gaiters",
             "longname" => "noct gaiters",
             "lvl" => 30,
@@ -60957,7 +60957,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15333 => array(
-            "descr" => "DEF:16 VIT+1 CHR+1 \uEF25+2 \uEF26+2\nConverts 10 MP to HP\nMP recovered while healing +3",
+            "descr" => "DEF:16 VIT+1 CHR+1 Light+2 Dark+2\nConverts 10 MP to HP\nMP recovered while healing +3",
             "name" => "Lord's Sabatons",
             "longname" => "lord's sabatons",
             "lvl" => 70,
@@ -60997,7 +60997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15337 => array(
-            "descr" => "DEF:17 HP+10 VIT+2 CHR+2\n\uEF25+3 \uEF26+3\nMP recovered while healing +4",
+            "descr" => "DEF:17 HP+10 VIT+2 CHR+2\nLight+3 Dark+3\nMP recovered while healing +4",
             "name" => "King's Sabatons",
             "longname" => "king's sabatons",
             "lvl" => 70,
@@ -61517,7 +61517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15389 => array(
-            "descr" => "DEF:30 \uEF25+9",
+            "descr" => "DEF:30 Light+9",
             "name" => "Vir Subligar",
             "longname" => "vir subligar",
             "lvl" => 51,
@@ -61527,7 +61527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15390 => array(
-            "descr" => "DEF:30 \uEF25+9",
+            "descr" => "DEF:30 Light+9",
             "name" => "Femina Subligar",
             "longname" => "femina subligar",
             "lvl" => 51,
@@ -61577,7 +61577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15395 => array(
-            "descr" => "DEF:38 VIT+2 \uEF25+2 \uEF26+2\nConverts 12 MP to HP\nEnmity+2",
+            "descr" => "DEF:38 VIT+2 Light+2 Dark+2\nConverts 12 MP to HP\nEnmity+2",
             "name" => "Lord's Cuisses",
             "longname" => "lord's cuisses",
             "lvl" => 70,
@@ -61617,7 +61617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15399 => array(
-            "descr" => "DEF:39 HP+12 VIT+3 \uEF25+3 \uEF26+3\nEnmity+3",
+            "descr" => "DEF:39 HP+12 VIT+3 Light+3 Dark+3\nEnmity+3",
             "name" => "King's Cuisses",
             "longname" => "king's cuisses",
             "lvl" => 70,
@@ -62217,7 +62217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15464 => array(
-            "descr" => "DEF:9 \uEF26+7 Evasion+7",
+            "descr" => "DEF:9 Dark+7 Evasion+7",
             "name" => "Corse Cape",
             "longname" => "corse cape",
             "lvl" => 71,
@@ -62437,7 +62437,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15487 => array(
-            "descr" => "DEF:5 \uEF20+5\nEnchantment: HP+38 Enmity+5",
+            "descr" => "DEF:5 Ice+5\nEnchantment: HP+38 Enmity+5",
             "name" => "High Brth. Mantle",
             "longname" => "high breath mantle",
             "lvl" => 36,
@@ -62717,7 +62717,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15515 => array(
-            "descr" => "\uEF26-10 Accuracy+10\nRanged Accuracy+10",
+            "descr" => "Dark-10 Accuracy+10\nRanged Accuracy+10",
             "name" => "Peacock Amulet",
             "longname" => "peacock amulet",
             "lvl" => 33,
@@ -62747,7 +62747,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15518 => array(
-            "descr" => "DEF:2 MP+10 \uEF24+30\nEnhances \"Resist Charm\" effect",
+            "descr" => "DEF:2 MP+10 Water+30\nEnhances \"Resist Charm\" effect",
             "name" => "M. No.17's Locket",
             "longname" => "Merrow No.17's Locket",
             "lvl" => 65,
@@ -63137,7 +63137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15558 => array(
-            "descr" => "STR+1 \uEF1F+3\nEnchantment:\nAttack+5 Ranged Attack+5",
+            "descr" => "STR+1 Fire+3\nEnchantment:\nAttack+5 Ranged Attack+5",
             "name" => "Mighty Ring",
             "longname" => "mighty ring",
             "lvl" => 14,
@@ -63147,7 +63147,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15559 => array(
-            "descr" => "DEX+1 \uEF23+3\nEnchantment:\nAccuracy+2 Ranged Accuracy+2",
+            "descr" => "DEX+1 Thunder+3\nEnchantment:\nAccuracy+2 Ranged Accuracy+2",
             "name" => "Vision Ring",
             "longname" => "vision ring",
             "lvl" => 14,
@@ -63767,7 +63767,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15621 => array(
-            "descr" => "DEF:24 HP+11 MP+11 \uEF25+2",
+            "descr" => "DEF:24 HP+11 MP+11 Light+2",
             "name" => "Magi Slops",
             "longname" => "magi slops",
             "lvl" => 53,
@@ -64067,7 +64067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15651 => array(
-            "descr" => "DEF:25 \uEF1F+3 \uEF24-1\nEnchantment: \"Ice Spikes\"",
+            "descr" => "DEF:25 Fire+3 Water-1\nEnchantment: \"Ice Spikes\"",
             "name" => "Ice Trousers",
             "longname" => "ice trousers",
             "lvl" => 48,
@@ -64337,7 +64337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15678 => array(
-            "descr" => "DEF:17 HP+10 VIT+5 \uEF20+10 \nWyvern: HP recovered while healing +7",
+            "descr" => "DEF:17 HP+10 VIT+5 Ice+10 \nWyvern: HP recovered while healing +7",
             "name" => "Wym. Greaves +1",
             "longname" => "wyrm greaves +1",
             "lvl" => 75,
@@ -64417,7 +64417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15686 => array(
-            "descr" => "DEF:11 HP+9 STR+3 \uEF23+10 \nEnhances \"Repair\" effect",
+            "descr" => "DEF:11 HP+9 STR+3 Thunder+10 \nEnhances \"Repair\" effect",
             "name" => "Pup. Babouches",
             "longname" => "puppetry babouches",
             "lvl" => 54,
@@ -64517,7 +64517,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15696 => array(
-            "descr" => "DEF:13 HP+20 \uEF24+5\nRanged Accuracy+1",
+            "descr" => "DEF:13 HP+20 Water+5\nRanged Accuracy+1",
             "name" => "Marid Leggings",
             "longname" => "marid leggings",
             "lvl" => 65,
@@ -64527,7 +64527,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15697 => array(
-            "descr" => "DEF:14 HP+25 \uEF24+6\nRanged Accuracy+2 ",
+            "descr" => "DEF:14 HP+25 Water+6\nRanged Accuracy+2 ",
             "name" => "Marid Leggings +1",
             "longname" => "marid leggings +1",
             "lvl" => 65,
@@ -64557,7 +64557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15700 => array(
-            "descr" => "DEF:13 \uEF21+8 \uEF22+8\nEnhances \"Jump\" effects\nEnhances \"Resist Gravity\" effect ",
+            "descr" => "DEF:13 Wind+8 Earth+8\nEnhances \"Jump\" effects\nEnhances \"Resist Gravity\" effect ",
             "name" => "Skanda Boots",
             "longname" => "skanda boots",
             "lvl" => 70,
@@ -64577,7 +64577,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15702 => array(
-            "descr" => "DEF:14 CHR+4 \uEF23+8\nEnhances \"Resist Silence\" effect\nEnhances \"Resist Virus\" effect",
+            "descr" => "DEF:14 CHR+4 Thunder+8\nEnhances \"Resist Silence\" effect\nEnhances \"Resist Virus\" effect",
             "name" => "Spagyric Nails",
             "longname" => "spagyric nails",
             "lvl" => 74,
@@ -64637,7 +64637,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15708 => array(
-            "descr" => "DEF:13 HP+9 \uEF21+10 \uEF22+10 \nBreath damage taken -4%\nEnchantment: Wyvern gains effect\nof \"Stoneskin\"",
+            "descr" => "DEF:13 HP+9 Wind+10 Earth+10 \nBreath damage taken -4%\nEnchantment: Wyvern gains effect\nof \"Stoneskin\"",
             "name" => "Earth Greaves",
             "longname" => "earth greaves",
             "lvl" => 68,
@@ -64997,7 +64997,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15744 => array(
-            "descr" => "DEF:13 \uEF1F+15 \uEF20+15 \uEF21+15\nAccuracy+4 Ranged Accuracy+4\nSet: Increases Ranged Attack",
+            "descr" => "DEF:13 Fire+15 Ice+15 Wind+15\nAccuracy+4 Ranged Accuracy+4\nSet: Increases Ranged Attack",
             "name" => "Bowman's Led.",
             "longname" => "bowman's ledelsens",
             "lvl" => 70,
@@ -65007,7 +65007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15745 => array(
-            "descr" => "DEF:11 STR+2 DEX+1 \uEF1F+15 \uEF20+15\n\uEF21+15 Haste+1%\nSet:\nEnhances effect of \"Drain\" and \"Aspir\"",
+            "descr" => "DEF:11 STR+2 DEX+1 Fire+15 Ice+15\nWind+15 Haste+1%\nSet:\nEnhances effect of \"Drain\" and \"Aspir\"",
             "name" => "Vampiric Boots",
             "longname" => "vampiric boots",
             "lvl" => 70,
@@ -65067,7 +65067,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15751 => array(
-            "descr" => "DEF:10 MND+2 CHR+2 \uEF20+11\nSet: Increases MP",
+            "descr" => "DEF:10 MND+2 CHR+2 Ice+11\nSet: Increases MP",
             "name" => "Cobra Pigaches",
             "longname" => "Cobra Unit pigaches",
             "lvl" => 55,
@@ -65157,7 +65157,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15760 => array(
-            "descr" => "DEF:12 \uEF1F+10\nOn Firesdays:\nMP+15\n\"Magic Atk. Bonus\"+4",
+            "descr" => "DEF:12 Fire+10\nOn Firesdays:\nMP+15\n\"Magic Atk. Bonus\"+4",
             "name" => "Marabout Sandals",
             "longname" => "marabout sandals",
             "lvl" => 71,
@@ -65307,7 +65307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15780 => array(
-            "descr" => "DEF:3 \uEF1F+5 Attack+3\nRanged Attack+4",
+            "descr" => "DEF:3 Fire+5 Attack+3\nRanged Attack+4",
             "name" => "Cerberus Ring",
             "longname" => "Cerberus ring",
             "lvl" => 75,
@@ -65317,7 +65317,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15781 => array(
-            "descr" => "DEF:4 \uEF1F+6 Attack+4\nRanged Attack+5",
+            "descr" => "DEF:4 Fire+6 Attack+4\nRanged Attack+5",
             "name" => "Cerberus Ring +1",
             "longname" => "Cerberus ring +1",
             "lvl" => 75,
@@ -65327,7 +65327,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15782 => array(
-            "descr" => "\uEF1F+2 \uEF24+2 \nEnchantment: MP+9",
+            "descr" => "Fire+2 Water+2 \nEnchantment: MP+9",
             "name" => "Manashell Ring",
             "longname" => "manashell ring",
             "lvl" => 11,
@@ -65537,7 +65537,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15803 => array(
-            "descr" => "HP+18 STR+4 \uEF1F+9",
+            "descr" => "HP+18 STR+4 Fire+9",
             "name" => "Crimson Ring",
             "longname" => "crimson ring",
             "lvl" => 72,
@@ -65547,7 +65547,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15804 => array(
-            "descr" => "HP+20 STR+5 \uEF1F+10",
+            "descr" => "HP+20 STR+5 Fire+10",
             "name" => "Harmonius Ring",
             "longname" => "harmonius ring",
             "lvl" => 72,
@@ -65557,7 +65557,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15805 => array(
-            "descr" => "MP+20 MND+4 \uEF24+9\nMP recovered while healing +1",
+            "descr" => "MP+20 MND+4 Water+9\nMP recovered while healing +1",
             "name" => "Star Ring",
             "longname" => "star ring",
             "lvl" => 72,
@@ -65567,7 +65567,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15806 => array(
-            "descr" => "MP+20 MND+5 \uEF24+10\nMP recovered while healing +1",
+            "descr" => "MP+20 MND+5 Water+10\nMP recovered while healing +1",
             "name" => "Celestial Ring",
             "longname" => "celestial ring",
             "lvl" => 72,
@@ -66007,7 +66007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15850 => array(
-            "descr" => "\uEF1F+5 \uEF21+5 \uEF23+5 \uEF25+5\nSet: DEF:+6 Accuracy+12 Attack+6",
+            "descr" => "Fire+5 Wind+5 Thunder+5 Light+5\nSet: DEF:+6 Accuracy+12 Attack+6",
             "name" => "Lava's Ring",
             "longname" => "Lava's ring",
             "lvl" => 55,
@@ -66017,7 +66017,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15851 => array(
-            "descr" => "\uEF24+5 \uEF22+5 \uEF20+5 \uEF26+5\nSet: DEF:+6 Accuracy+12 Attack+6",
+            "descr" => "Water+5 Earth+5 Ice+5 Dark+5\nSet: DEF:+6 Accuracy+12 Attack+6",
             "name" => "Kusha's Ring",
             "longname" => "Kusha's ring",
             "lvl" => 55,
@@ -67337,7 +67337,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15991 => array(
-            "descr" => "MP+20 MND+2 \uEF1F+11 \uEF24+11",
+            "descr" => "MP+20 MND+2 Fire+11 Water+11",
             "name" => "Star Earring",
             "longname" => "star earring",
             "lvl" => 67,
@@ -67347,7 +67347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15992 => array(
-            "descr" => "MP+22 MND+3 \uEF1F+12 \uEF24+12",
+            "descr" => "MP+22 MND+3 Fire+12 Water+12",
             "name" => "Celestial Earring",
             "longname" => "celestial earring",
             "lvl" => 67,
@@ -67357,7 +67357,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15993 => array(
-            "descr" => "HP+20 \uEF1F+10 \uEF20+10",
+            "descr" => "HP+20 Fire+10 Ice+10",
             "name" => "Crimson Earring",
             "longname" => "crimson earring",
             "lvl" => 67,
@@ -67367,7 +67367,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         15994 => array(
-            "descr" => "HP+25 STR+2 \uEF1F+11 \uEF20+11",
+            "descr" => "HP+25 STR+2 Fire+11 Ice+11",
             "name" => "Harmonius Earring",
             "longname" => "harmonius earring",
             "lvl" => 67,
@@ -67967,7 +67967,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16055 => array(
-            "descr" => "\uEF25+10 Increases \"Step\" accuracy",
+            "descr" => "Light+10 Increases \"Step\" accuracy",
             "name" => "Choreia Earring",
             "longname" => "choreia earring",
             "lvl" => 75,
@@ -68607,7 +68607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16121 => array(
-            "descr" => "DEF:21\nLatent effect: STR+4 \uEF21+15 \uEF25+15",
+            "descr" => "DEF:21\nLatent effect: STR+4 Wind+15 Light+15",
             "name" => "Mamool Ja Helm",
             "longname" => "Mamool Ja helm",
             "lvl" => 65,
@@ -68617,7 +68617,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16122 => array(
-            "descr" => "DEF:23\nLatent effect: HP+32 VIT+5 \uEF24-50 ",
+            "descr" => "DEF:23\nLatent effect: HP+32 VIT+5 Water-50 ",
             "name" => "Troll Coif",
             "longname" => "Troll coif",
             "lvl" => 65,
@@ -68677,7 +68677,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16128 => array(
-            "descr" => "DEF:15 HP-20 MP+38 \uEF22+10 ",
+            "descr" => "DEF:15 HP-20 MP+38 Earth+10 ",
             "name" => "Wivre Hairpin",
             "longname" => "wivre hairpin",
             "lvl" => 68,
@@ -68687,7 +68687,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16129 => array(
-            "descr" => "DEF:16 HP-22 MP+40 \uEF22+12",
+            "descr" => "DEF:16 HP-22 MP+40 Earth+12",
             "name" => "Wivre Hairpin +1",
             "longname" => "wivre hairpin +1",
             "lvl" => 68,
@@ -68897,7 +68897,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16150 => array(
-            "descr" => "DEF:26 HP+50 \uEF21+10\nIncreases breath damage\nWyvern: Increases breath damage",
+            "descr" => "DEF:26 HP+50 Wind+10\nIncreases breath damage\nWyvern: Increases breath damage",
             "name" => "Saurian Helm",
             "longname" => "saurian helm",
             "lvl" => 73,
@@ -69307,7 +69307,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16212 => array(
-            "descr" => "DEF:12 STR+3 \uEF1F+10 Attack+12\nEnmity+3",
+            "descr" => "DEF:12 STR+3 Fire+10 Attack+12\nEnmity+3",
             "name" => "Cerberus Mantle",
             "longname" => "Cerberus mantle",
             "lvl" => 75,
@@ -69347,7 +69347,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16216 => array(
-            "descr" => "DEF:13 STR+4 \uEF1F+12 Attack+15\nEnmity+4",
+            "descr" => "DEF:13 STR+4 Fire+12 Attack+15\nEnmity+4",
             "name" => "Cerb. Mantle +1",
             "longname" => "Cerberus mantle +1",
             "lvl" => 75,
@@ -69697,7 +69697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16251 => array(
-            "descr" => "DEF:6 \uEF1F+7\nFire weather:\nMP recovered while healing +3\nDispense: Melon Juice",
+            "descr" => "DEF:6 Fire+7\nFire weather:\nMP recovered while healing +3\nDispense: Melon Juice",
             "name" => "C. Melon Tank",
             "longname" => "casaba melon tank",
             "lvl" => 42,
@@ -70007,7 +70007,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16284 => array(
-            "descr" => "\uEF1F+5 \uEF20+5 \uEF21+5 \uEF22+5\n\uEF23+5 \uEF24+5 \uEF25+5 \uEF26+5\n\"Magic Atk. Bonus\"+2",
+            "descr" => "Fire+5 Ice+5 Wind+5 Earth+5\nThunder+5 Water+5 Light+5 Dark+5\n\"Magic Atk. Bonus\"+2",
             "name" => "Caract Choker",
             "longname" => "caract choker",
             "lvl" => 73,
@@ -70217,7 +70217,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16305 => array(
-            "descr" => "DEF:3 MP+10 \uEF26+20\nEnhances \"Demon Killer\" effect",
+            "descr" => "DEF:3 MP+10 Dark+20\nEnhances \"Demon Killer\" effect",
             "name" => "Sanctus Rosary",
             "longname" => "sanctus rosary",
             "lvl" => 75,
@@ -70277,7 +70277,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16314 => array(
-            "descr" => "DEF:23 INT+1 CHR+1 \uEF26+7\nSet: Increases MP",
+            "descr" => "DEF:23 INT+1 CHR+1 Dark+7\nSet: Increases MP",
             "name" => "Cobra Slops",
             "longname" => "Cobra Unit slops",
             "lvl" => 55,
@@ -70697,7 +70697,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16356 => array(
-            "descr" => "DEF:28 CHR+8\n\uEF25+20 Attack+4\n\"Magic Atk. Bonus\"+4",
+            "descr" => "DEF:28 CHR+8\nLight+20 Attack+4\n\"Magic Atk. Bonus\"+4",
             "name" => "Nimue's Tights",
             "longname" => "Nimue's tights",
             "lvl" => 71,
@@ -70777,7 +70777,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         16364 => array(
-            "descr" => "Cannot Equip Footgear DEF:2 \uEF25+10",
+            "descr" => "Cannot Equip Footgear DEF:2 Light+10",
             "name" => "Benedight Hose",
             "longname" => "benedight hose",
             "lvl" => 20,
@@ -71107,7 +71107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         23754 => array(
-            "descr" => "DEF:2 \uEF1F+10 \uEF20+10 \uEF24+10\nEnhances effects of rice balls\nDispense: Rice Ball",
+            "descr" => "DEF:2 Fire+10 Ice+10 Water+10\nEnhances effects of rice balls\nDispense: Rice Ball",
             "name" => "Sandogasa +1",
             "longname" => "sandogasa +1",
             "lvl" => 1,
@@ -71297,7 +71297,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         23811 => array(
-            "descr" => "DEF:2\n\uEF20+50\nOn Icedays: Magic Accuracy+10\n\"Magic Atk. Bonus\"+10\n\"Magic Def. Bonus\"+10\n\"Refresh\"+1",
+            "descr" => "DEF:2\nIce+50\nOn Icedays: Magic Accuracy+10\n\"Magic Atk. Bonus\"+10\n\"Magic Def. Bonus\"+10\n\"Refresh\"+1",
             "name" => "Knit Cap +1",
             "longname" => "knit cap +1",
             "lvl" => 1,
@@ -73057,7 +73057,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         26515 => array(
-            "descr" => "Cannot equip headgear.\nDEF:2 \uEF24+30\nWater Elemental Magic Accuracy +30\nWater Elemental \"Magic Atk. Bonus\"+30",
+            "descr" => "Cannot equip headgear.\nDEF:2 Water+30\nWater Elemental Magic Accuracy +30\nWater Elemental \"Magic Atk. Bonus\"+30",
             "name" => "Poroggo Fleece +1",
             "longname" => "poroggo fleece +1",
             "lvl" => 1,
@@ -73907,7 +73907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27597 => array(
-            "descr" => "DEF:12 HP+20 VIT+3 \uEF22+10\nEnmity+4",
+            "descr" => "DEF:12 HP+20 VIT+3 Earth+10\nEnmity+4",
             "name" => "Emico Mantle",
             "longname" => "emico mantle",
             "lvl" => 75,
@@ -73917,7 +73917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27598 => array(
-            "descr" => "DEF:7 MND+5 \uEF25+10\nEnmity-2\n\"Cure\" potency +2%",
+            "descr" => "DEF:7 MND+5 Light+10\nEnmity-2\n\"Cure\" potency +2%",
             "name" => "Dew Silk Cape",
             "longname" => "dew silk cape",
             "lvl" => 75,
@@ -73927,7 +73927,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27599 => array(
-            "descr" => "DEF:8 MND+6 \uEF25+15\nEnmity-3\n\"Cure\" potency +3%",
+            "descr" => "DEF:8 MND+6 Light+15\nEnmity-3\n\"Cure\" potency +3%",
             "name" => "Dew Silk Cape +1",
             "longname" => "dew silk cape +1",
             "lvl" => 75,
@@ -74127,7 +74127,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27733 => array(
-            "descr" => "DEF:1 \uEF25+3",
+            "descr" => "DEF:1 Light+3",
             "name" => "Straw Hat",
             "longname" => "straw hat",
             "lvl" => 1,
@@ -74137,7 +74137,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27734 => array(
-            "descr" => "DEF:1 \uEF25+3",
+            "descr" => "DEF:1 Light+3",
             "name" => "Straw Hat",
             "longname" => "straw hat",
             "lvl" => 1,
@@ -74417,7 +74417,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27879 => array(
-            "descr" => "Cannot Equip Leggear DEF:2 \uEF22+3",
+            "descr" => "Cannot Equip Leggear DEF:2 Earth+3",
             "name" => "Overalls",
             "longname" => "overalls",
             "lvl" => 1,
@@ -74427,7 +74427,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         27880 => array(
-            "descr" => "Cannot Equip Leggear DEF:2 \uEF22+3",
+            "descr" => "Cannot Equip Leggear DEF:2 Earth+3",
             "name" => "Overalls",
             "longname" => "overalls",
             "lvl" => 1,
@@ -74597,7 +74597,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28023 => array(
-            "descr" => "DEF:1 \uEF22+3",
+            "descr" => "DEF:1 Earth+3",
             "name" => "Work Gloves",
             "longname" => "work gloves",
             "lvl" => 1,
@@ -74607,7 +74607,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28024 => array(
-            "descr" => "DEF:1 \uEF22+3",
+            "descr" => "DEF:1 Earth+3",
             "name" => "Work Gloves",
             "longname" => "work gloves",
             "lvl" => 1,
@@ -74907,7 +74907,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28302 => array(
-            "descr" => "DEF:1 \uEF24+3",
+            "descr" => "DEF:1 Water+3",
             "name" => "Thatch Boots",
             "longname" => "thatch boots",
             "lvl" => 1,
@@ -74917,7 +74917,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28303 => array(
-            "descr" => "DEF:1 \uEF24+3",
+            "descr" => "DEF:1 Water+3",
             "name" => "Thatch Boots",
             "longname" => "thatch boots",
             "lvl" => 1,
@@ -74977,7 +74977,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28382 => array(
-            "descr" => "\uEF25+20 Divine magic skill +7\nHealing magic skill +7\nOn Lightsdays:\nDivine magic skill +10\nHealing magic skill +10",
+            "descr" => "Light+20 Divine magic skill +7\nHealing magic skill +7\nOn Lightsdays:\nDivine magic skill +10\nHealing magic skill +10",
             "name" => "Nesanica Torque",
             "longname" => "nesanica torque",
             "lvl" => 75,
@@ -75107,7 +75107,7 @@ class FFXIPackageHelper_ItemDetails {
         ),
         
         28529 => array(
-            "descr" => "HP+15 MP+15 \uEF22+10\nPhysical damage taken -1%",
+            "descr" => "HP+15 MP+15 Earth+10\nPhysical damage taken -1%",
             "name" => "Setae Ring",
             "longname" => "setae ring",
             "lvl" => 75,
