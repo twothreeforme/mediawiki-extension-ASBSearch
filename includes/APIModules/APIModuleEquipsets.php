@@ -55,7 +55,7 @@ class APIModuleEquipsets extends ApiBase {
         }
         else if ( $params['action'] == "equipsets_change" ) {
             //throw new Exception ( json_encode($params));
-
+            throw new Exception ( ' here' );
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
@@ -67,8 +67,8 @@ class APIModuleEquipsets extends ApiBase {
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
             //throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
-            throw new Exception ( ' here' );
-            
+            //throw new Exception ( ' here' );
+
             $result->addValue($params['action'], "stats", $newStats->getStats() );
             $result->addValue($params['action'], "grid", $updatedGrid );
 
