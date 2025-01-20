@@ -392,8 +392,8 @@ class DBConnection {
 
 
         if ( $itemNameSearch !=  '' ) {
-			array_push($query, "item_basic.name LIKE '%$itemNameSearch%'");
-		}
+			array_push($query, "item_basic.name LIKE '%$itemNameSearch%' OR item_basic.sortname LIKE '%$itemNameSearch%'");
+		}   
 			//up_property = 'enotifwatchlistpages'
 		if ( $zoneNameSearch !=  'searchallzones' ) {
 			$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
@@ -725,7 +725,7 @@ class DBConnection {
         // legs 128
         // feet 256
 
-        $query = [  "item_equipment.name LIKE '%$equipmentname%'" ];
+        $query = [ "item_equipment.name LIKE '%$equipmentname%' OR item_basic.name LIKE '%$equipmentname%' OR item_basic.sortname LIKE '%$equipmentname%'"];
         // if ( $queryData[0] !=  '' ) {
 		// 	array_push($query, "item_equipment.name LIKE '%$queryData[0]%'");
 		// }
@@ -741,7 +741,7 @@ class DBConnection {
         }
 
         return $dbr->newSelectQueryBuilder()
-        ->select( [ 'item_equipment.name',
+        ->select( [ 'item_basic.name',
                     'item_equipment.level',
                     'item_equipment.jobs',
                     'item_equipment.slot',
@@ -750,6 +750,7 @@ class DBConnection {
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
+        ->leftjoin( 'item_basic', null, 'item_basic.itemid=item_equipment.itemId' )
         ->orderBy( 'level', 'DESC' )
         ->where( $query	)
         ->fetchResultSet();
@@ -822,8 +823,8 @@ class DBConnection {
 
         $mlvl = intval($mlvl);
 
-        $query = [ "item_equipment.name LIKE '%$name%'",
-                   "item_equipment.level <= $mlvl"
+        $query = [  "item_equipment.name LIKE '%$name%' OR item_basic.name LIKE '%$name%' OR item_basic.sortname LIKE '%$name%'",
+                    "item_equipment.level <= $mlvl"
         ];
 
         if ( $gridSlot != null ) {
@@ -900,16 +901,17 @@ class DBConnection {
         ->select( [ 'item_equipment.itemId',
                     'item_equipment.level',
                     'item_equipment.jobs',
-                    'item_equipment.name',
                     'item_equipment.slot',
                     'item_equipment.rslot',
                     'item_mods.modId AS modid',
                     'item_mods.value AS modValue',
-                    'item_weapon.skill AS skill'
+                    'item_weapon.skill AS skill',
+                    'item_basic.name',
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->leftjoin( 'item_weapon', null, 'item_weapon.itemId=item_equipment.itemId' )
+        ->leftjoin( 'item_basic', null, 'item_basic.itemid=item_equipment.itemId' )
         ->where( $query )
         ->fetchResultSet();
     }
