@@ -57,7 +57,7 @@ function updateFishingFromQuery(updatedHTML){
 }
 
 function changeGrid(updatedGrid){
-  console.log("changeGrid: " ,updatedGrid);
+  //console.log("changeGrid: " ,updatedGrid);
   if ( updatedGrid == null ) return;
 
   //var gridArray = updatedGrid.split(",");
