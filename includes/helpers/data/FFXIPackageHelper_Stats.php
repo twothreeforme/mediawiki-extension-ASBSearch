@@ -51,7 +51,7 @@ class FFXIPackageHelper_Stats {
         // Pull equipment from SQL
         if ( $e != null){
             $this->equipment = $e;
-            //throw new Exception(json_encode($e));
+            throw new Exception(json_encode($e));
             // if ( gettype($equipmentString) == 'string') $this->applyEquipment(explode(",", $equipmentString));
 
             $this->applyEquipment();
