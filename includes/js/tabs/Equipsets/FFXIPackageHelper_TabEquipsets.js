@@ -12,11 +12,12 @@ function updateEquipmentGrid(id, slot, sender){
     const equipment = getEquipIDs();
     equipment[slot] = [ id, 1 ]; // updated equip flagged with 1 to trigger update
 
-    //console.log(ids);
     var all = getStatsData(equipment);
     all.action = "equipsets_change";
 
+    //console.log("updateEquipmentGrid", all);
     API.actionAPI(all, "equipsets_change", null, null);
+
     // close modal window
     if( sender !== null) sender.close();
 }
@@ -28,26 +29,28 @@ function getEquipID(forSlot){
 
 function updateStats(data){
     if ( data == null ) data = getStatsData();
-    //console.log(getStatData());
+    //console.log("updateStats: ", data);
     API.actionAPI(data, "equipsets", null);
 }
 
 function getEquipIDs(updateAll){
     let equipIDs = [];
-    //const flag = ( updateSpecificItem != null) ? 1 : 0;
-    let shareEquipIDs = "";
+    let shareEquipIDs = [];
+
     for (let v = 0; v <= 15; v++) {
         let str = "grid" + v;
         let slot = document.getElementById(str);
+        //console.log(v, slot.dataset.value);
         if ( updateAll == true ) {
-            if ( slot.dataset.value != 0) shareEquipIDs += slot.dataset.value + ",1|";
-            else shareEquipIDs += "0,0|";
+            if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
+            else shareEquipIDs[v] = [ 0, 0 ];
         }
-        else  equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
+        else  {
+            equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
+        }
     }
-    if ( updateAll == true ) {
-        shareEquipIDs = shareEquipIDs.slice(0, -1);
-        return shareEquipIDs;
+
+    if ( updateAll == true ) { return shareEquipIDs;
     }
     else return equipIDs;
 }
@@ -58,9 +61,10 @@ function getStatsData(equipIDString){
         equipIDString = getEquipIDs(true);
         //console.log(equipIDString);
     }
-
+    equipIDString = equipIDString.join("|");
+    //console.log("getStatsData", equipIDString);
     //if ( updateSpecificItem != null) equipIDString =  getEquipIDs(updateSpecificItem).join(",");
-    //console.log("getStatsData: " + equipIDString);
+    //console.log("getStatsData: ", equipIDString);
     return {
         action: "equipsets",
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -156,7 +160,7 @@ module.exports.setLinks = function (){
     const url = window.location.href;
     if ( url.includes("action=equipsets_share")) {
         loadSharedLink(url);
-        console.log("fired");
+        //console.log("fired");
     }
     else updateStats();
 
