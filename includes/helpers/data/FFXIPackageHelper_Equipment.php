@@ -9,9 +9,9 @@ class FFXIPackageHelper_Equipment {
     private $incomingEquipmentList = [];
 
     public function __construct($equipment) {
-
-        $equipment = base64_decode($equipment);
         //throw new Exception($equipment);
+        $equipment = base64_decode($equipment);
+
 
         if ( $this->detectDelimiter($equipment) == ',') $equipment = explode( ",", $equipment);
         else if ( $this->detectDelimiter($equipment) == '|' ) $equipment = explode( "|", $equipment);

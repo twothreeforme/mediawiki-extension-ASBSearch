@@ -45,7 +45,7 @@ function getEquipIDs(updateAll){
         }
         else  equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
     }
-
+    // console.log("fired");
     if ( updateAll == true ) {
         shareEquipIDs = shareEquipIDs.slice(0, -1);
         return shareEquipIDs;
@@ -54,11 +54,12 @@ function getEquipIDs(updateAll){
 }
 
 function getStatsData(equipIDString){
-    if ( equipIDString == true ) {
+    if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
+    else if ( equipIDString == true ) {
         equipIDString = getEquipIDs(true);
         //console.log(equipIDString);
     }
-    if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
+
     //if ( updateSpecificItem != null) equipIDString =  getEquipIDs(updateSpecificItem).join(",");
     //console.log("getStatsData: " + equipIDString);
     return {
@@ -68,7 +69,7 @@ function getStatsData(equipIDString){
         slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
-        equipment: equipIDString,
+        equipment: btoa(equipIDString),
     };
   }
 
@@ -156,6 +157,7 @@ module.exports.setLinks = function (){
     const url = window.location.href;
     if ( url.includes("action=equipsets_share")) {
         loadSharedLink(url);
+        console.log("fired");
     }
     else updateStats();
 
