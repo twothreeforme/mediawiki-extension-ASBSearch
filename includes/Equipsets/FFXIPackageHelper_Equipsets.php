@@ -375,7 +375,7 @@ class FFXIPackageHelper_Equipsets  {
 
     public function generateTooltip($details){
         $output = "";
-        if ( $details["name"] == $details["longname"] ) $output = $details["name"] . "\n\n" . $details["descr"];
+        if ( $details["name"] == ucwords($details["longname"]) ) $output = $details["name"] . "\n\n" . $details["descr"];
         else $output = $details["name"] . "\n(" . ucwords($details["longname"]) . ")\n\n" . $details["descr"];
         return $output;
     }
