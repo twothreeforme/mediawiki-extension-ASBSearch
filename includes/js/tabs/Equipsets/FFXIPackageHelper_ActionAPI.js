@@ -18,9 +18,19 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           sender.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
-          //console.log("api: equipsets_change: fired");
-          updateEquipsets(result['stats']);
-          changeGrid(result['grid']);
+          
+          // updateEquipsets(result['stats']);
+          // changeGrid(result['grid']);
+
+          const stats_base64 = decodeURIComponent(result['stats']);
+          const stats_ = JSON.parse(atob(stats_base64));
+          //console.log("api: equipsets_change: ", stats_);
+          updateEquipsets(stats_);
+
+          const grid_base64 = decodeURIComponent(result['grid']);
+          const grid_ = JSON.parse(atob(grid_base64));
+          //console.log("api: equipsets_change: ", grid_);
+          changeGrid(grid_);
         }
         else updateEquipsets(result['stats']);
       }

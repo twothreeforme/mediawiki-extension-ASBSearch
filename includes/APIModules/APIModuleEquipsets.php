@@ -65,14 +65,22 @@ class APIModuleEquipsets extends ApiBase {
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
-            throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
+            //throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
             //throw new Exception ( ' here' );
 
-            $result->addValue($params['action'], "stats", $newStats->getStats() );
-            $result->addValue($params['action'], "grid", $updatedGrid );
+            $statsEncoded = base64_encode(json_encode($newStats->getStats()));
+            $statsURLSafe = urlencode($statsEncoded);
+            $result->addValue($params['action'], "stats", $statsURLSafe );
+
+            $gridEncoded = base64_encode(json_encode($updatedGrid));
+            $gridURLSafe = urlencode($gridEncoded);
+            $result->addValue($params['action'], "grid", $gridURLSafe );
+
+            // $result->addValue($params['action'], "stats", $newStats->getStats() );
+            // $result->addValue($params['action'], "grid", $updatedGrid );
             
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
-            //throw new Exception (json_encode($result));
+            // throw new Exception (json_encode($result));
         }
     }
 }
