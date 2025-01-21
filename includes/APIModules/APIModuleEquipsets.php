@@ -59,6 +59,9 @@ class APIModuleEquipsets extends ApiBase {
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
             
+            // if( $newEquipmentArray[11]["id"] == 0 ) {
+            //     throw new Exception ( json_encode($newEquipmentArray) . "\n:::\n" . json_encode($equipmentModel));
+            // }
             // send updated HTML back as result
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
 

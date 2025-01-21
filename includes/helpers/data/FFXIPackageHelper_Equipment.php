@@ -38,15 +38,17 @@ class FFXIPackageHelper_Equipment {
                 ];
                 
                 //if ( $model != null )  throw new Exception ( json_encode($model));
-
-                $this->equipment[$i] = [
-                    intval($model["id"]),
-                    intval($model["slot"]),
-                    intval($model["rslot"]),
-                    $model["mods"],
-                    intval($model["skilltype"]),
-                    $name
-                ];
+                if ( $incItemID == 0 ) $this->equipment[$i] = [0,0,0,array(),0,""];
+                else {
+                    $this->equipment[$i] = [
+                        intval($model["id"]),
+                        intval($model["slot"]),
+                        intval($model["rslot"]),
+                        $model["mods"],
+                        intval($model["skilltype"]),
+                        $name
+                    ];
+                }
         }
 
         //throw new Exception(json_encode($this->equipment));
