@@ -244,11 +244,11 @@ class FFXIPackageHelper_Equipsets  {
         $resCircles = array();
         $resCircles[] = "Trans_Fire.gif";
         $resCircles[] = "Trans_Wind.gif";
-        $resCircles[] = "Trans_Ice.gif";
-        $resCircles[] = "Trans_Light.gif";
-        $resCircles[] = "Trans_Water.gif";
-        $resCircles[] = "Trans_Earth.gif";
         $resCircles[] = "Trans_Lightning.gif";
+        $resCircles[] = "Trans_Light.gif";
+        $resCircles[] = "Trans_Ice.gif";
+        $resCircles[] = "Trans_Earth.gif";
+        $resCircles[] = "Trans_Water.gif";
         $resCircles[] = "Trans_Dark.gif";
 
         for ( $r = 0; $r <= 7; $r++){
@@ -375,8 +375,20 @@ class FFXIPackageHelper_Equipsets  {
 
     public function generateTooltip($details){
         $output = "";
-        if ( $details["name"] == ucwords($details["longname"]) ) $output = $details["name"] . "\n\n" . $details["descr"];
-        else $output = $details["name"] . "\n(" . ucwords($details["longname"]) . ")\n\n" . $details["descr"];
+        if ( $details["name"] == ucwords($details["longname"]) ) $output = $details["name"] . "\n\n";
+        else $output = $details["name"] . "\n(" . ucwords($details["longname"]) . ")\n\n";
+
+        $output .= $details["descr"] . "\n\nLv." . $details["lvl"] . " ";
+
+        if ( count($details["jobs"]) == 22 )  $output .= " All Jobs";
+        else if ( count($details["jobs"]) <= 6 ) $output .= implode( "/", $details["jobs"]);
+        else  {
+            $chunks = array_chunk($details["jobs"], 6);
+            for( $c = 0; $c < count($chunks); $c++){
+                if ( $c != 0 ) $output .= "\t  ";
+                $output .= implode( "/", $chunks[$c]) . "\n";
+            }
+        }
         return $output;
     }
 
@@ -435,6 +447,7 @@ class FFXIPackageHelper_Equipsets  {
 
                 $updatedGrid[] = [$s, $slot[$s], $tooltip];
                 //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
+
             }
         }
         //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));

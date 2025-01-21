@@ -56,7 +56,8 @@ class FFXIPackageHelper_Stats {
 
             $this->applyEquipment();
         }
-        // else throw new Exception("equipment null");
+
+        //throw new Exception ( json_encode($this->modifiers));
 
         // Set all base stats in the class
         $this->setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob);
@@ -471,12 +472,13 @@ class FFXIPackageHelper_Stats {
             //resistances
             $this->Fire,    //11
             $this->Wind,    //12
-            $this->Water,     //13
+            $this->Lightning,     //13
             $this->Light,   //14
             $this->Ice,   //15
             $this->Earth,   //16
-            $this->Lightning, //17
+            $this->Water, //17
             $this->Dark,     //18
+
 
             //advanced stats
             $this->ACC,       //19
@@ -498,11 +500,7 @@ class FFXIPackageHelper_Stats {
         $this->MND += $this->modifiers["MND"];
         $this->CHR += $this->modifiers["CHR"];
 
-        //throw new Exception ( $this->modifiers["VIT"] );
 
-        $this->DEF = floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
-        //$this->ATT += $this->modifiers["ATT"];
-        $this->ATT += $this->getATT();
 
         $this->Fire += $this->modifiers["FIRE_MEVA"];
         $this->Wind += $this->modifiers["WIND_MEVA"];
@@ -512,8 +510,11 @@ class FFXIPackageHelper_Stats {
         $this->Earth += $this->modifiers["EARTH_MEVA"];
         $this->Lightning += $this->modifiers["THUNDER_MEVA"];
         $this->Dark += $this->modifiers["DARK_MEVA"];
-        // throw new Exception (  json_encode($this->modifiers)) ;
 
+
+        $this->DEF = floor((8 + $this->modifiers["DEF"]) + ($this->VIT / 2));
+
+        $this->ATT += $this->getATT();
         $this->ACC += $this->getACC();
         $this->EVA += $this->getEVA();
 
@@ -589,7 +590,9 @@ class FFXIPackageHelper_Stats {
         }
 
         $ATT +=  $this->getSkillCap( intval($this->equipment[0][4]) );
-        //throw new Exception($ATT . ":" .  $this->STR);
+        //if ( intval($this->equipment[0][4]) > 0)
+        //throw new Exception($ATT . ":" .  $this->STR . ":" . json_encode($this->equipment[0]) . ":" . intval($this->equipment[0][4]) . ":" . $this->getSkillCap( intval($this->equipment[0][4])) );
+
 
         // Smite applies when using 2H or H2H weapons
         if ( ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) || FFXIPackageHelper_Equipment::isH2H($this->equipment[0])) && isset($this->modifiers["SMITE"]) ) {

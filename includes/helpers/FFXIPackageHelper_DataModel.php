@@ -197,15 +197,10 @@ class DataModel {
     //     return $this->dataset;
     // }
 
-	function buildStatusEffectMod($id, $value){
-		$finalMod = array();
-		
-
-		return $finalMod;
-	}
-
 	function parseEquipment($param, $job = null){
         if ( !$param ) return NULL;
+
+		$iDetails = new FFXIPackageHelper_ItemDetails();
 
 		foreach ( $param as $row ) {
 			//throw new Exception($row->jobs);
@@ -261,12 +256,12 @@ class DataModel {
 				// }
 			}
 
-
 			$workingRow = array (
 				'id' => $row->itemId,
 				'name' => ParserHelper::itemName($row->name),
 				'level' => $row->level,
 				'skilltype' => (property_exists($row, 'skilltype' )) ? $row->skilltype : 0,
+				//'jobs' => $row->jobs,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
 				'rslot' => $row->rslot,

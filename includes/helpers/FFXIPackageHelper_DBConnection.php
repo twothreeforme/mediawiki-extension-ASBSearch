@@ -785,7 +785,7 @@ class DBConnection {
                     'item_mods.modId AS modid',
                     'item_mods.value AS modValue',
                     'item_basic.name',
-                    'item_weapon.skill',
+                    'item_weapon.skill AS skilltype',
                     'item_equipment.level',
                     'item_equipment.jobs',
                     ] )
