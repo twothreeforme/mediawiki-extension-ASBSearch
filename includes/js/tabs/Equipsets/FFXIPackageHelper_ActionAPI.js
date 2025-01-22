@@ -105,26 +105,53 @@ function updateEquipsets(updatedStats){
   //console.log(updatedStats);
 
   //let tempTooltip = `<span class="myTooltip" data-options="background:#fff;animation:fade;">Hello</span>`;
+  const _id = "FFXIPackageHelper_Equipsets_stat";
+  let stat = document.getElementById(_id + "HP"); stat.innerHTML = updatedStats[0];
+  stat = document.getElementById(_id + "MP"); stat.innerHTML = updatedStats[1];
 
-  let stat = document.getElementById("FFXIPackageHelper_Equipsets_statHP"); stat.innerHTML = updatedStats[0];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statMP"); stat.innerHTML = updatedStats[1];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statSTR"); stat.innerHTML = updatedStats[2];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statDEX"); stat.innerHTML = updatedStats[3];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statVIT"); stat.innerHTML = updatedStats[4];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statAGI"); stat.innerHTML = updatedStats[5];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statINT"); stat.innerHTML = updatedStats[6];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statMND"); stat.innerHTML = updatedStats[7];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statCHR"); stat.innerHTML = updatedStats[8];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statDEF"); stat.innerHTML = updatedStats[9];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statATT"); stat.innerHTML = updatedStats[10];
+  stat = document.getElementById(_id + "STR"); stat.innerHTML = updatedStats[2];
+  adjustStatColor(_id + "STRMod", updatedStats[3]);
 
-  for ( var r = 11; r <= 18; r++){
-    stat = document.getElementById("FFXIPackageHelper_Equipsets_statRes" + (r - 11)); stat.innerHTML = updatedStats[r];
+  stat = document.getElementById(_id + "DEX"); stat.innerHTML = updatedStats[4];
+  adjustStatColor(_id + "DEXMod", updatedStats[5]);
+
+  stat = document.getElementById(_id + "VIT"); stat.innerHTML = updatedStats[6];
+  adjustStatColor(_id + "VITMod", updatedStats[7]);
+
+  stat = document.getElementById(_id + "AGI"); stat.innerHTML = updatedStats[8];
+  adjustStatColor(_id + "AGIMod", updatedStats[9]);
+
+  stat = document.getElementById(_id + "INT"); stat.innerHTML = updatedStats[10];
+  adjustStatColor(_id + "INTMod", updatedStats[11]);
+
+  stat = document.getElementById(_id + "MND"); stat.innerHTML = updatedStats[12];
+  adjustStatColor(_id + "MNDMod", updatedStats[13]);
+
+  stat = document.getElementById(_id + "CHR"); stat.innerHTML = updatedStats[14];
+  adjustStatColor(_id + "CHRMod", updatedStats[15]);
+
+  stat = document.getElementById(_id + "DEF"); stat.innerHTML = updatedStats[16];
+  stat = document.getElementById(_id + "ATT"); stat.innerHTML = updatedStats[17];
+
+  for ( var r = 18; r <= 25; r++){
+    stat = document.getElementById(_id + "Res" + (r - 18)); stat.innerHTML = updatedStats[r];
   }
 
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statACC"); stat.innerHTML = updatedStats[19];
-  stat = document.getElementById("FFXIPackageHelper_Equipsets_statEVA"); stat.innerHTML = updatedStats[20];
+  stat = document.getElementById(_id + "ACC"); stat.innerHTML = updatedStats[26];
+  stat = document.getElementById(_id + "EVA"); stat.innerHTML = updatedStats[27];
+}
 
+function adjustStatColor(classname, modValue){
+  let stat = document.getElementById(classname);
+
+  if ( Number(modValue) > 0 ) {
+    stat.style.color = "green";
+    stat.innerHTML = "&nbsp;&nbsp;+" + modValue;
+  }
+  else if ( Number(modValue) > 0) {
+    stat.style.color = "red";
+    stat.innerHTML = "&nbsp;&nbsp;-" + modValue;
+  }
 }
 
 

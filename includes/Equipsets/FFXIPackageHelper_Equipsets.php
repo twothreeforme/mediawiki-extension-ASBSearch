@@ -58,13 +58,13 @@ class FFXIPackageHelper_Equipsets  {
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">0</span></td></tr>
                         <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">0</span></td></tr>
-                        <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">0</span></td></tr>
-                        <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">0</span></td></tr>
-                        <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">0</span></td></tr>
-                        <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">0</span></td></tr>
-                        <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">0</span></td></tr>
-                        <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">0</span></td></tr>
-                        <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">0</span></td></tr>
+                        <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\"></span></td></tr>
+                        <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\"></span></td></tr>
+                        <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\"></span></td></tr>
+                        <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statAGIMod\"></span></td></tr>
+                        <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statINTMod\"></span></td></tr>
+                        <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statMNDMod\"></span></td></tr>
+                        <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statCHRMod\"></span></td></tr>
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">0</span></td></tr>
                         <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">0</span></td></tr>

@@ -346,4 +346,16 @@ UPDATE item_basic SET name = "wyvern_belt", sortname = "wyvern_belt", changes_ta
 
 
 
+-- ---------------------------------------------------------------------------
+
+LOCK TABLE `item_mods` WRITE;
+ALTER TABLE `item_mods`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `value`;
+
+-- INSERT INTO `item_mods` ( `itemId`, `modId`, `value` ) VALUES
+-- ;
+UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
+
+
+
 UNLOCK TABLES;

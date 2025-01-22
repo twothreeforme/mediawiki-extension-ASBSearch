@@ -14,6 +14,14 @@ class FFXIPackageHelper_Stats {
     public $MND = 0;
     public $CHR = 0;
 
+    public $baseSTR = 0;
+    public $baseDEX = 0;
+    public $baseVIT = 0;
+    public $baseAGI = 0;
+    public $baseINT = 0;
+    public $baseMND = 0;
+    public $baseCHR = 0;
+
     // Additional Stats
     public $DEF = 0;
     public $ATT = 0;
@@ -393,7 +401,7 @@ class FFXIPackageHelper_Stats {
                 $raceStat += $this->getStatScale($grade, $scaleOver60) * $mainLevelOver60;
             }
 
-            // Calculation by profession
+            // Calculation for main job
             $grade   = $this->getJobGrade($mjob, $StatIndex);
             $jobStat = floor($this->getStatScale($grade, 0) + $this->getStatScale($grade, $scaleTo60Column) * $mainLevelUpTo60);
 
@@ -402,7 +410,7 @@ class FFXIPackageHelper_Stats {
                 $jobStat += $this->getStatScale($grade, $scaleOver60) * $mainLevelOver60;
             }
 
-            // Calculation for an additional profession
+            // Calculation for sub job
             if ($slvl > 0)
             {
                 $grade    = $this->getJobGrade($sjob, $StatIndex);
@@ -424,25 +432,25 @@ class FFXIPackageHelper_Stats {
 
             switch($counter){
                 case 0:
-                    $this->STR = $temp;
+                    $this->baseSTR = $temp;
                     break;
                 case 1:
-                    $this->DEX = $temp;
+                    $this->baseDEX = $temp;
                     break;
                 case 2:
-                    $this->VIT = $temp;
+                    $this->baseVIT = $temp;
                     break;
                 case 3:
-                    $this->AGI = $temp;
+                    $this->baseAGI = $temp;
                     break;
                 case 4:
-                    $this->INT = $temp;
+                    $this->baseINT = $temp;
                     break;
                 case 5:
-                    $this->MND = $temp;
+                    $this->baseMND = $temp;
                     break;
                 case 6:
-                    $this->CHR = $temp;
+                    $this->baseCHR = $temp;
                     break;
             }
             $counter++;
@@ -457,48 +465,63 @@ class FFXIPackageHelper_Stats {
             // base stats
             $this->HP,      //0
             $this->MP,      //1
-            $this->STR,     //2
-            $this->DEX,     //3
-            $this->VIT,     //4
-            $this->AGI,     //5
-            $this->INT,     //6
-            $this->MND,     //7
-            $this->CHR,     //8
+
+            //base stats
+            $this->baseSTR,     //2
+            $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
+
+            $this->baseDEX,     //4
+            $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
+
+            $this->baseVIT,     //6
+            $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
+
+            $this->baseAGI,     //8
+            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
+
+            $this->baseINT,     //10
+            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
+
+            $this->baseMND,     //12
+            $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
+
+            $this->baseCHR,     //14
+            $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
 
             //additional stats
-            $this->DEF,     //9
-            $this->ATT,     //10
+            $this->DEF,     //16
+            $this->ATT,     //17
 
             //resistances
-            $this->Fire,    //11
-            $this->Wind,    //12
-            $this->Lightning,     //13
-            $this->Light,   //14
-            $this->Ice,   //15
-            $this->Earth,   //16
-            $this->Water, //17
-            $this->Dark,     //18
+            $this->Fire,    //18
+            $this->Wind,    //19
+            $this->Lightning,     //20
+            $this->Light,   //21
+            $this->Ice,   //22
+            $this->Earth,   //23
+            $this->Water, //24
+            $this->Dark,     //25
 
 
             //advanced stats
-            $this->ACC,       //19
-            $this->EVA       //20
+            $this->ACC,       //26
+            $this->EVA       //27
         ];
     }
 
-    private function setStatsWithMods(  ){
+    private function setStatsWithMods(){
 
         $this->HP += $this->modifiers["HP"];
 
         $this->MP += $this->modifiers["MP"];
 
-        $this->STR += $this->modifiers["STR"];
-        $this->DEX += $this->modifiers["DEX"];
-        $this->VIT += $this->modifiers["VIT"];
-        $this->AGI += $this->modifiers["AGI"];
-        $this->INT += $this->modifiers["INT"];
-        $this->MND += $this->modifiers["MND"];
-        $this->CHR += $this->modifiers["CHR"];
+        $this->STR += $this->baseSTR + $this->modifiers["STR"];
+        $this->DEX += $this->baseDEX + $this->modifiers["DEX"];
+        $this->VIT += $this->baseVIT + $this->modifiers["VIT"];
+        $this->AGI += $this->baseAGI + $this->modifiers["AGI"];
+        $this->INT += $this->baseINT + $this->modifiers["INT"];
+        $this->MND += $this->baseMND + $this->modifiers["MND"];
+        $this->CHR += $this->baseCHR + $this->modifiers["CHR"];
 
 
 
@@ -580,14 +603,23 @@ class FFXIPackageHelper_Stats {
         $ATTP = 0;
 
         if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
-            $ATT += $this->STR * 0.7; //Horizon change
+            $ATT += $this->STR * 0.70; //Horizon change
         }
         else if ( FFXIPackageHelper_Equipment::isH2H($this->equipment[0]) ){
             $ATT += $this->STR * 0.625; //Horizon change
         }
         else {
-            $ATT += $this->STR * 0.65; //Horizon change
+            $ATT += ($this->STR) * 0.65; //Horizon change
         }
+        //throw new Exception ( $this->getSkillCap( intval($this->equipment[0][4]) ) );
+
+        /**
+         * Dejey test
+         * GearMods = 22
+         * Skillcap = 276
+         * STR + 2 =
+         */
+
 
         $ATT +=  $this->getSkillCap( intval($this->equipment[0][4]) );
         //if ( intval($this->equipment[0][4]) > 0)
@@ -599,7 +631,7 @@ class FFXIPackageHelper_Stats {
             $ATTP += $this->modifiers["SMITE"] / 256; // Divide smite value by 256
         }
 
-        //throw new Exception(json_encode($this->equipment));
+        // throw new Exception($this->modifiers["ATT"]);
         return max(1, floor($ATT + ($ATT * $ATTP / 100)));
     }
 
