@@ -199,46 +199,75 @@ class FFXIPackageHelper_Equipsets  {
                     <hr />
                     <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>
                     <div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
-                        <table style=\"line-height: 15px;\">
-                            <tr><td><h3>Stats</h3></td></tr>
-                            <tr><td style=\"width:55px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement() . "</td></tr>
-                            <tr><td style=\"width:55px;\"><span>DEX</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>VIT</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>AGI</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>INT</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>MND</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>CHR</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                        <table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
+                            <tr><td><h4>Stats</h4></td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">HP</span></td><td style=\"\">" . $this->meritIncrement("stats0") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MP</span></td><td style=\"\">" . $this->meritIncrement("stats1") . "</td></tr>
+                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
 
-                            <tr><td style=\"height:10px;\"></td></tr>
-                            <tr><td><h3>Skills</h3></td></tr>
-                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
-                        </table>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">DEX</span></td><td style=\"\">" . $this->meritIncrement("stats3") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">VIT</span></td><td style=\"\">" . $this->meritIncrement("stats4") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">AGI</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">INT</span></td><td style=\"\">" . $this->meritIncrement("stats6") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MND</span></td><td style=\"\">" . $this->meritIncrement("stats7") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">CHR</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
+
+                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
+                            <tr><td><h4>Combat Skills</h4></td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Hand to Hand</span></td><td style=\"\">" . $this->meritIncrement("stats1") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dagger</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Sword</span></td><td style=\"\">" . $this->meritIncrement("stats3") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Sword</span></td><td style=\"\">" . $this->meritIncrement("stats4") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Axe</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Axe</span></td><td style=\"\">" . $this->meritIncrement("stats6") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Scythe</span></td><td style=\"\">" . $this->meritIncrement("stats7") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Katana</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Katana</span></td><td style=\"\">" . $this->meritIncrement("stats9") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Club</span></td><td style=\"\">" . $this->meritIncrement("stats10") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Staff</span></td><td style=\"\">" . $this->meritIncrement("stats11") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Archery</span></td><td style=\"\">" . $this->meritIncrement("stats25") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Marksmanship</span></td><td style=\"\">" . $this->meritIncrement("stats26") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Throwing</span></td><td style=\"\">" . $this->meritIncrement("stats27") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Guard</span></td><td style=\"\">" . $this->meritIncrement("stats28") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Evasion</span></td><td style=\"\">" . $this->meritIncrement("stats29") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Shield</span></td><td style=\"\">" . $this->meritIncrement("stats30") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Parry</span></td><td style=\"\">" . $this->meritIncrement("stats31") . "</td></tr>
+
+                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
+                            <tr><td><h4>Magic Skills</h4></td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Divine Magic</span></td><td style=\"\">" . $this->meritIncrement("stats32") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Healing Magic</span></td><td style=\"\">" . $this->meritIncrement("stats33") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enhancing Magic</span></td><td style=\"\">" . $this->meritIncrement("stats34") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enfeebling Magic</span></td><td style=\"\">" . $this->meritIncrement("stats35") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Elemental Magic</span></td><td style=\"\">" . $this->meritIncrement("stats36") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dark Magic</span></td><td style=\"\">" . $this->meritIncrement("stats37") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Summoning Magic</span></td><td style=\"\">" . $this->meritIncrement("stats38") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Ninjutsu</span></td><td style=\"\">" . $this->meritIncrement("stats39") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Singing</span></td><td style=\"\">" . $this->meritIncrement("stats40") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">String Instrument</span></td><td style=\"\">" . $this->meritIncrement("stats41") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("stats42") . "</td></tr>
+                    </table>
                     </div>
                 </div>";
         return $html;
     }
 
-    // private function incrementButtons(){
-    //     return "<button id=\"merits_counter_minus\" class=\"FFXIPackageHelper_dynamiccontent_shareButton merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"FFXIPackageHelper_dynamiccontent_shareButton merits_counter\">+</button>";
-    // }
 
-    private function meritIncrement(){
-        return "<div class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
+    private function meritIncrement($stat){
+        return "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
             <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
                 <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"black\" />
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
                 </svg>
             </button>
-            <input type=\"text\" readonly >
+            <input id=\"FFXIPackageHelper_equipsets_merits_$stat\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"0\" readonly >
             <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
                 <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"black\" />
-                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"black\" />
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
                 </svg>
             </button>
             </div>";

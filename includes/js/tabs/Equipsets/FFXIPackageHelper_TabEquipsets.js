@@ -1,4 +1,5 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
+var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 
 var raceDropdown = null;
@@ -159,6 +160,9 @@ module.exports.setLinks = function (){
         shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", getStatsData(true));
     });
 
+    // Load Merit Edits section
+    MeritEdits.setLinks(updateMeritsList);
+    
     /**
      * DEV ONLY
      */
