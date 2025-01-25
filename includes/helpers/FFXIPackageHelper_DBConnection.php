@@ -794,6 +794,7 @@ class DBConnection {
         ->leftjoin( 'item_equipment', null, 'item_equipment.itemId=item_basic.itemid' )
         ->leftjoin( 'item_weapon', null, 'item_basic.itemid=item_weapon.itemId' )
         ->where( $query	)
+        ->orderBy( 'showname', 'ASC' ) 
         ->fetchResultSet();
     }
 
@@ -907,13 +908,14 @@ class DBConnection {
                     'item_mods.modId AS modid',
                     'item_mods.value AS modValue',
                     'item_weapon.skill AS skill',
-                    'item_basic.name',
+                    'item_basic.name AS showname',
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->leftjoin( 'item_weapon', null, 'item_weapon.itemId=item_equipment.itemId' )
         ->leftjoin( 'item_basic', null, 'item_basic.itemid=item_equipment.itemId' )
         ->where( $query )
+        ->orderBy( 'showname', 'ASC' ) 
         ->fetchResultSet();
     }
 

@@ -379,7 +379,7 @@ Equipsets equipment grid (table)
     overflow:auto;
     padding:0px;
     font-size:12px;
-    background-color: #1b96ff25;
+    /* background-color: #1b96ff25; */
     line-height: 1;
 }
 

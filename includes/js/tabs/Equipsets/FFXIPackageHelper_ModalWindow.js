@@ -171,8 +171,8 @@ class ModalWindow {
 
             var img = document.createElement("img");
             img.src=iconurl;
-            img.width=12;
-            img.height=12;
+            img.width=20;
+            img.height=20;
 
             dt.addEventListener('click', () => {
                 // need item id

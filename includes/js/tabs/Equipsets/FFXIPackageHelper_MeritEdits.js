@@ -1,4 +1,4 @@
-module.exports.setLinks = function (callback){
+module.exports.setLinks = function (applyMerits){
     
     // good test
     // callback("blah");
@@ -27,6 +27,7 @@ module.exports.setLinks = function (callback){
         else {
             editMerits.innerText = "Edit";
             editMerits.className = "FFXIPackageHelper_dynamiccontent_shareButton";
+            applyMerits(null);
         }
 
         // Adjust merit edit buttons for all stats
@@ -42,6 +43,7 @@ module.exports.setLinks = function (callback){
             }
         }
     });
+
 }
 
 function changeValue(forInput, val){

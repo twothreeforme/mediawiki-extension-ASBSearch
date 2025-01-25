@@ -201,52 +201,53 @@ class FFXIPackageHelper_Equipsets  {
                     <div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
                         <table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
                             <tr><td><h4>Stats</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">HP</span></td><td style=\"\">" . $this->meritIncrement("stats0") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MP</span></td><td style=\"\">" . $this->meritIncrement("stats1") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">HP</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MP</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
                             <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
 
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">DEX</span></td><td style=\"\">" . $this->meritIncrement("stats3") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">VIT</span></td><td style=\"\">" . $this->meritIncrement("stats4") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">AGI</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">INT</span></td><td style=\"\">" . $this->meritIncrement("stats6") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MND</span></td><td style=\"\">" . $this->meritIncrement("stats7") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">CHR</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">DEX</span></td><td style=\"\">" . $this->meritIncrement("stats9") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">VIT</span></td><td style=\"\">" . $this->meritIncrement("stats10") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">AGI</span></td><td style=\"\">" . $this->meritIncrement("stats11") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">INT</span></td><td style=\"\">" . $this->meritIncrement("stats12") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MND</span></td><td style=\"\">" . $this->meritIncrement("stats13") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">CHR</span></td><td style=\"\">" . $this->meritIncrement("stats14") . "</td></tr>
 
                             <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
                             <tr><td><h4>Combat Skills</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Hand to Hand</span></td><td style=\"\">" . $this->meritIncrement("stats1") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dagger</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Sword</span></td><td style=\"\">" . $this->meritIncrement("stats3") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Sword</span></td><td style=\"\">" . $this->meritIncrement("stats4") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Axe</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Axe</span></td><td style=\"\">" . $this->meritIncrement("stats6") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Scythe</span></td><td style=\"\">" . $this->meritIncrement("stats7") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Katana</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Katana</span></td><td style=\"\">" . $this->meritIncrement("stats9") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Club</span></td><td style=\"\">" . $this->meritIncrement("stats10") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Staff</span></td><td style=\"\">" . $this->meritIncrement("stats11") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Archery</span></td><td style=\"\">" . $this->meritIncrement("stats25") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Marksmanship</span></td><td style=\"\">" . $this->meritIncrement("stats26") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Throwing</span></td><td style=\"\">" . $this->meritIncrement("stats27") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Guard</span></td><td style=\"\">" . $this->meritIncrement("stats28") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Evasion</span></td><td style=\"\">" . $this->meritIncrement("stats29") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Shield</span></td><td style=\"\">" . $this->meritIncrement("stats30") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Parry</span></td><td style=\"\">" . $this->meritIncrement("stats31") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Hand to Hand</span></td><td style=\"\">" . $this->meritIncrement("skill80") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dagger</span></td><td style=\"\">" . $this->meritIncrement("skill81") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Sword</span></td><td style=\"\">" . $this->meritIncrement("skill82") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Sword</span></td><td style=\"\">" . $this->meritIncrement("skill83") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Axe</span></td><td style=\"\">" . $this->meritIncrement("skill84") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Axe</span></td><td style=\"\">" . $this->meritIncrement("skill85") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Scythe</span></td><td style=\"\">" . $this->meritIncrement("skill86") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Polearm</span></td><td style=\"\">" . $this->meritIncrement("skill87") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Katana</span></td><td style=\"\">" . $this->meritIncrement("skill88") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Katana</span></td><td style=\"\">" . $this->meritIncrement("skill89") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Club</span></td><td style=\"\">" . $this->meritIncrement("skill90") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Staff</span></td><td style=\"\">" . $this->meritIncrement("skill91") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Archery</span></td><td style=\"\">" . $this->meritIncrement("skill104") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Marksmanship</span></td><td style=\"\">" . $this->meritIncrement("skill105") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Throwing</span></td><td style=\"\">" . $this->meritIncrement("skill106") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Guard</span></td><td style=\"\">" . $this->meritIncrement("skill107") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Evasion</span></td><td style=\"\">" . $this->meritIncrement("skill108") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Shield</span></td><td style=\"\">" . $this->meritIncrement("skill109") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Parry</span></td><td style=\"\">" . $this->meritIncrement("skill110") . "</td></tr>
 
                             <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
                             <tr><td><h4>Magic Skills</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Divine Magic</span></td><td style=\"\">" . $this->meritIncrement("stats32") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Healing Magic</span></td><td style=\"\">" . $this->meritIncrement("stats33") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enhancing Magic</span></td><td style=\"\">" . $this->meritIncrement("stats34") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enfeebling Magic</span></td><td style=\"\">" . $this->meritIncrement("stats35") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Elemental Magic</span></td><td style=\"\">" . $this->meritIncrement("stats36") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dark Magic</span></td><td style=\"\">" . $this->meritIncrement("stats37") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Summoning Magic</span></td><td style=\"\">" . $this->meritIncrement("stats38") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Ninjutsu</span></td><td style=\"\">" . $this->meritIncrement("stats39") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Singing</span></td><td style=\"\">" . $this->meritIncrement("stats40") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">String Instrument</span></td><td style=\"\">" . $this->meritIncrement("stats41") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("stats42") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Divine Magic</span></td><td style=\"\">" . $this->meritIncrement("skill111") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Healing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill112") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enhancing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill113") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enfeebling Magic</span></td><td style=\"\">" . $this->meritIncrement("skill114") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Elemental Magic</span></td><td style=\"\">" . $this->meritIncrement("skill115") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dark Magic</span></td><td style=\"\">" . $this->meritIncrement("skill116") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Summoning Magic</span></td><td style=\"\">" . $this->meritIncrement("skill117") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Ninjutsu</span></td><td style=\"\">" . $this->meritIncrement("skill118") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Singing</span></td><td style=\"\">" . $this->meritIncrement("skill119") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">String Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill120") . "</td></tr>
+                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill121") . "</td></tr>
                     </table>
                     </div>
                 </div>";

@@ -15,6 +15,7 @@ class APIModuleEquipsets extends ApiBase {
             'slvl' => "",
             'mjob' => "",
             'sjob' => "",
+            'merits' => "",
             'equipment' => "",
             'search' => "",
             'slot' => "",
@@ -28,18 +29,21 @@ class APIModuleEquipsets extends ApiBase {
 
         $decoded = urldecode($params['equipment']);
         $equipmentString = base64_decode($decoded);
-        //throw new Exception($equipmentString);
+
+        $decoded = urldecode($params['merits']);
+        $meritsString = base64_decode($decoded);
+
+        //throw new Exception($meritsString);
 
         if ( $params['action'] == "equipsets" ) {
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
 
-            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
+            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
 
             $result->addValue($params['action'], "stats", $newStats->getStats());
 
             //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], "stats", $newStats->getStats()]) );
-
         }
         else if ( $params['action'] == "equipsets_search" ) {
             $db = new DBConnection();
@@ -57,7 +61,7 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception ( json_encode($params));
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
-            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $newEquipmentArray );
+            $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
             
             // if( $newEquipmentArray[11]["id"] == 0 ) {
             //     throw new Exception ( json_encode($newEquipmentArray) . "\n:::\n" . json_encode($equipmentModel));

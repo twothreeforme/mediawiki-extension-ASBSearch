@@ -41,12 +41,17 @@ class FFXIPackageHelper_Stats {
     public $EVA = 0;
 
 
-
     public $modifiers = [];
     public $equipment;
     public $skillCaps = [];
+    public $meritStats = null;
+    public $meritSkills = null;
 
-    public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $e) {
+    public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
+        
+        //Map Merits
+        $this->setMerits($merits);
+       // throw new Exception ( json_encode($this->modifiers) );
 
         // Get skill ranks
         $this->setSkillCaps($mjob, $mlvl, $sjob, $slvl);
@@ -286,6 +291,26 @@ class FFXIPackageHelper_Stats {
     // https://stackoverflow.com/questions/17664565/does-a-clamp-number-function-exist-in-php
     private function clamp($current, $min, $max) {
         return max($min, min($max, $current));
+    }
+
+    private function setMerits($meritsALL){
+        $temp = json_decode($meritsALL, false);
+        $this->$meritStats = $temp[0];
+        foreach( $this->$meritStats as $key => $value ){
+            // (2) HP and (5) MP are multiplied 10x the merit value
+            if ( intval($key) == 2 || intval($key) == 5 ) $this->applyToModifiers( [intval($key) => (intval($value) * 10)] );
+            
+            //all other stats are 1x merit value
+            else $this->applyToModifiers( [intval($key) => intval($value)] );
+        }
+
+        $this->$meritSkills = $temp[1];
+        foreach( $this->$meritSkills as $key => $value ){
+            //all skills are 2x merit value
+            $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+        }
+
+        //throw new Exception ( json_encode($this->$meritSkills) );
     }
 
     private function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions

@@ -56,6 +56,30 @@ function getEquipIDs(updateAll){
     else return equipIDs;
 }
 
+function getMeritsData(){
+    let meritStats = {};
+    let meritSkills = {};
+    
+    const _id = "FFXIPackageHelper_equipsets_merits_";
+    const allMerits = document.querySelectorAll("[id*='" + _id + "']");
+    //console.log(allMerits);
+    var meritsArray = [...allMerits];
+    meritsArray.forEach(merit => {
+        //console.log(merit);
+        if ( merit.id.includes("skill") ) {
+            var skillid = merit.id.replace(_id + "skill",'');
+            meritSkills[Number(skillid)] = merit.value;
+        }
+        else if ( merit.id.includes("stat") ) {
+            var statid = merit.id.replace(_id + "stats",'');
+            meritStats[Number(statid)] = merit.value;
+        }
+    });
+    
+    //console.log(JSON.stringify([meritStats, meritSkills]));
+    return JSON.stringify([meritStats, meritSkills]);
+}
+
 function getStatsData(equipIDString){
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     else if ( equipIDString == true ) {
@@ -64,7 +88,7 @@ function getStatsData(equipIDString){
     equipIDString = equipIDString.join("|");
 
     //console.log("getStatsData: ", equipIDString, encodeURIComponent(btoa(equipIDString)));
-
+    
     return {
         action: "equipsets",
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -72,11 +96,12 @@ function getStatsData(equipIDString){
         slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
+        merits: encodeURIComponent(btoa(getMeritsData())),
         equipment: encodeURIComponent(btoa(equipIDString)),
     };
   }
 
-  function updateMeritsList(updatedMerits){
+  function updateMeritsList(){
     console.log("updateMeritsList: ", updatedMerits);
   }
 
@@ -161,7 +186,7 @@ module.exports.setLinks = function (){
     });
 
     // Load Merit Edits section
-    MeritEdits.setLinks(updateMeritsList);
+    MeritEdits.setLinks(updateStats);
     
     /**
      * DEV ONLY
@@ -181,7 +206,7 @@ module.exports.setLinks = function (){
         //console.log("fired");
     }
     else updateStats();
-
+    getMeritsData();
     //console.log(window.location.href);
     //updateEquipmentGrid(18270, 0, null);
 }
@@ -218,7 +243,7 @@ function loadSharedLink(url){
 
     let paramString = url.split('?')[1];
     let params_arr = paramString.split('&');
-    var race, mlvl, slvl, mjob, sjob, equipment;
+    var race, mlvl, slvl, mjob, sjob, merits, equipment;
 
     for(let i = 0; i < params_arr.length; i++) {
         let pair = params_arr[i].split('=');
@@ -243,6 +268,9 @@ function loadSharedLink(url){
             case "equipment":
                 equipment = pair[1];
                 break;
+            case "merits":
+                merits = pair[1];
+                break;
         }
     }
 
@@ -253,6 +281,7 @@ function loadSharedLink(url){
         slvl:slvl,
         mjob:mjob,
         sjob:sjob,
+        merits: merits,
         equipment: equipment,
     }
     //console.log("loadSharedLink", url, data, decodeURIComponent(data.equipment), atob( decodeURIComponent(data.equipment)));
