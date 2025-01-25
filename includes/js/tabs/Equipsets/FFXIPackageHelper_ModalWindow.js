@@ -19,6 +19,7 @@ const  _feet = `<h2>Feet Slot</h2>`;
 let _default = `<p>Search for item...</p>`;
 let _default2 = `<br><br><button style="float: left;" class="close-modal FFXIPackageHelper_dynamiccontent_customButton customButton_cancel">Cancel</button>`;
 
+
 function searchInput(slot){
     return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
 }

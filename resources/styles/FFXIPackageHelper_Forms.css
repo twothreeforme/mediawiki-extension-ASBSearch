@@ -98,6 +98,35 @@ Custom Buttons
     padding: 0;
 }
 
+.FFXIPackageHelper_dynamiccontent_counterbox {
+    display:flex;
+    width:100%;
+    max-width: 100px;
+    height:14px;
+    border: 1px solid #5c9eb8;
+    border-radius: 10px;
+    overflow:hidden;
+}
+
+.FFXIPackageHelper_dynamiccontent_counterbox input {
+    width:25px;
+    background:#fff;
+    border:none;
+    outline:none;
+    font-size:14px;
+    border-left: 1px solid #ccdeef;
+    border-right: 1px solid #ccdeef;
+
+}
+
+.FFXIPackageHelper_dynamiccontent_incrementButton {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px;
+    width: 1.1rem;
+    border-width: 0px;
+}
+
 /*
 Leftover from old ASB page
 */
@@ -324,7 +353,29 @@ Equipsets equipment grid (table)
     -webkit-filter: brightness(1.25);
 }
 
+.FFXIPackageHelper_Equipsets_equipList{
+    font-size:14px;
+    line-height:14px;
+    border-collapse: collapse;
+}
 
+.FFXIPackageHelper_dynamiccontent_showMerits{
+    width:250px;
+    height:140px;
+    overflow:auto;
+    padding:0px;
+    /* font-size:12px; */
+    background-color: #1b96ff25;
+    line-height: 1;
+}
+
+/* .merits_counter{
+    padding: 1px 1px;
+    font-size: 1em;
+    margin: 1px;
+    height:18px;
+    width:18px;
+} */
 
 /*
 Modal Windows

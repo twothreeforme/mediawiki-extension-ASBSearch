@@ -42,10 +42,12 @@ class FFXIPackageHelper_Equipsets  {
 
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
-        $html = "<span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
+        $html = "
+                <div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
                     <span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>
                     <span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
-                    <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br><br>
+                    <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br>
+                    <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
                  </div>";
 
         return $html;
@@ -58,6 +60,7 @@ class FFXIPackageHelper_Equipsets  {
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">0</span></td></tr>
                         <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">0</span></td></tr>
+                        <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                         <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\"></span></td></tr>
                         <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\"></span></td></tr>
                         <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\"></span></td></tr>
@@ -77,120 +80,7 @@ class FFXIPackageHelper_Equipsets  {
 
     public function equipmentGrid($slot = null){
 
-        /*
-                <tr>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\" src=\"" . $this->imgPath . "Main.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\" src=\"" . $this->imgPath . "Sub.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\" src=\"" . $this->imgPath . "Range.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\" src=\"" . $this->imgPath . "Ammo.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                </tr>
-                <tr>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\" src=\"" . $this->imgPath . "Head.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\" src=\"" . $this->imgPath . "Neck.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\" src=\"" . $this->imgPath . "Ear1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\" src=\"" . $this->imgPath . "Ear2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                </tr>
-                <tr>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\" src=\"" . $this->imgPath . "Body.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\" src=\"" . $this->imgPath . "Hands.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\" src=\"" . $this->imgPath . "Ring1.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\" src=\"" . $this->imgPath . "Ring2.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                </tr>
-                <tr>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\" src=\"" . $this->imgPath . "Back.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\" src=\"" . $this->imgPath . "Waist.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\" src=\"" . $this->imgPath . "Legs.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                    <td><img class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\" src=\"" . $this->imgPath . "Feet.jpg\" width=\"$iSize\" height=\"$iSize\"></td>
-                </tr>
-        */
-
-        // $iSize = 64;
-
-        /*
-        slot array
-        [
-            key = slot number, (ie: 0-15)
-            value =  [
-                        [0] = item id,
-                        [1] = html, -- only needs to be here if flag = 1
-                        [2] = flag  -- 1 = needs updating
-                    ]
-        ]
-
-        */
-
-
-        // **********************************************************
-        // if (!is_array($slot)){
-        //     for ( $s = 0; $s <= 15; $s++){
-        //         $slot[$s] = [0, 0, 1]; // set flag = 1 on the first iteration to show initial grid with no items
-        //     }
-        // }
-
-        // $slot[0][1] =  ( intval($slot[0][0] )  != 0 ) ? "itemid_" . intval($slot[0][0] ). ".png" : "Main.jpg";
-        // $slot[1][1] =  ( intval($slot[1][0] )  != 0 ) ? "itemid_" . intval($slot[1][0] ). ".png" : "Sub.jpg";
-        // $slot[2][1] =  ( intval($slot[2][0] )  != 0 ) ? "itemid_" . intval($slot[2][0] ). ".png" : "Range.jpg";
-        // $slot[3][1] =  ( intval($slot[3][0] )  != 0 ) ? "itemid_" . intval($slot[3][0] ). ".png" : "Ammo.jpg";
-        // $slot[4][1] =  ( intval($slot[4][0] )  != 0 ) ? "itemid_" . intval($slot[4][0] ). ".png" : "Head.jpg";
-        // $slot[5][1] =  ( intval($slot[5][0] )  != 0 ) ? "itemid_" . intval($slot[5][0] ). ".png" : "Neck.jpg";
-        // $slot[6][1] =  ( intval($slot[6][0] )  != 0 ) ? "itemid_" . intval($slot[6][0] ). ".png" : "Ear1.jpg";
-        // $slot[7][1] =  ( intval($slot[7][0] )  != 0 ) ? "itemid_" . intval($slot[7][0] ). ".png" : "Ear2.jpg";
-        // $slot[8][1] =  ( intval($slot[8][0] )  != 0 ) ? "itemid_" . intval($slot[8][0] ). ".png" : "Body.jpg";
-        // $slot[9][1] =  ( intval($slot[9][0] )  != 0 ) ? "itemid_" . intval($slot[9][0] ). ".png" : "Hands.jpg";
-        // $slot[10][1] = ( intval($slot[10][0])  != 0 ) ? "itemid_" . intval($slot[10][0]) . ".png" : "Ring1.jpg";
-        // $slot[11][1] = ( intval($slot[11][0])  != 0 ) ? "itemid_" . intval($slot[11][0]) . ".png" : "Ring2.jpg";
-        // $slot[12][1] = ( intval($slot[12][0])  != 0 ) ? "itemid_" . intval($slot[12][0]) . ".png" : "Back.jpg";
-        // $slot[13][1] = ( intval($slot[13][0])  != 0 ) ? "itemid_" . intval($slot[13][0]) . ".png" : "Waist.jpg";
-        // $slot[14][1] = ( intval($slot[14][0])  != 0 ) ? "itemid_" . intval($slot[14][0]) . ".png" : "Legs.jpg";
-        // $slot[15][1] = ( intval($slot[15][0])  != 0 ) ? "itemid_" . intval($slot[15][0]) . ".png" : "Feet.jpg";
-
-        // $wParser = ParserHelper::wikiParseOptions();
-        // $title = $wParser[0];
-        // $parser = $wParser[1];
-        // $parserOptions = $wParser[2];
-
-        // for ( $s = 0; $s <= 15; $s++){
-        //     if ( $slot[15][2] == 1 ){
-        //     $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
-
-        //     $parserOutput = $parser->parse( $slot[$s][1], $title, $parserOptions );
-        //     $slot[$s][1] = $parserOutput->getText();
-        //     }
-        // }
-
         $griditems = self::updateGridItems($slot);
-        // throw new Exception( implode(',',$griditems));
-
-        // $slot = $griditems[1];
-        // throw new Exception( implode(',',$slot[1]));
-        // **********************************************************
-
-
-        //$slot = ParserHelper::wikiParse($slot);
-
-    //     <tr>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
-    // </tr>
-    // <tr>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
-    // </tr>
-    // <tr>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
-    // </tr>
-    // <tr>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
-    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
 
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
         $imageURL = $f->getCanonicalUrl();
@@ -208,35 +98,6 @@ class FFXIPackageHelper_Equipsets  {
         // $html .= "</tr></table>";
         $html .= "</tr>";
 
-
-
-        //$td = "<td style=\"background-image:url(" . $this->imgPath . "Blank.jpg);background-repeat:no-repeat;background-size:64px 64px; width:64px; height:64px;\">";
-
-                    // <tr>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:itemid_16594.png|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid1\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Sub.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid2\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Range.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid3\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ammo.jpg|64px|link=]]") ."</div></td>
-                    // </tr>
-                    // <tr>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid4\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Head.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid5\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Neck.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid6\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear1.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid7\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ear2.jpg|64px|link=]]") ."</div></td>
-                    // </tr>
-                    // <tr>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid8\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Body.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid9\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Hands.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid10\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring1.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid11\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Ring2.jpg|64px|link=]]") ."</div></td>
-                    // </tr>
-                    // <tr>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid12\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Back.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid13\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Waist.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid14\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Legs.jpg|64px|link=]]") ."</div></td>
-                    //     ". $td . "<div class=\"equipsetsGridImage\" id=\"grid15\" data-value=\"0\">". ParserHelper::wikiParse("[[File:Feet.jpg|64px|link=]]") ."</div></td>
-                //     </tr>
-                // </table>";
         return $html;
     }
 
@@ -257,7 +118,7 @@ class FFXIPackageHelper_Equipsets  {
 
         $resCircles = ParserHelper::wikiParse($resCircles);
 
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;\" >";
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;line-height: 14px;\" >";
             // <tr>
             //     <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
             //     <td style=\"width:100px;\">". $this->resCircle("Wind") ."<p id=\"FFXIPackageHelper_Equipsets_statWind\"></p></td>
@@ -282,80 +143,109 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function equipLabels(){
-        $html =  "<div><table class=\"FFXIPackageHelper_Equipsets_table\">
-                            <tr>
-                                <td>Main</td>
-                                <td id=\"grid0_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Sub</td>
-                                <td id=\"grid1_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Range</td>
-                                <td id=\"grid2_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Ammo</td>
-                                <td id=\"grid3_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Head</td>
-                                <td id=\"grid4_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Neck</td>
-                                <td id=\"grid5_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Ear1</td>
-                                <td id=\"grid6_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Ear2</td>
-                                <td id=\"grid7_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Body</td>
-                                <td id=\"grid8_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Hands</td>
-                                <td id=\"grid9_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Ring1</td>
-                                <td id=\"grid10_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Ring2</td>
-                                <td id=\"grid11_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Back</td>
-                                <td id=\"grid12_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Waist</td>
-                                <td id=\"grid13_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Legs</td>
-                                <td id=\"grid14_value\">Empty</td>
-                            </tr>
-                            <tr>
-                                <td>Feet</td>
-                                <td id=\"grid15_value\">Empty</td>
-                            </tr>
+    public function additionalData(){
+        $html =  "<div >
+                    <b>Equipment List</b><br>
+                    <table class=\"FFXIPackageHelper_Equipsets_equipList\">
+                        <tr>
+                            <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\">Temp item name</td>
+                        </tr>
+                        <tr>
+                            <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\">Temp item name</td>
+                        </tr>
+                        <tr>
+                            <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\">Empty</td>
+                        </tr>
+                        <tr>
+                            <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\">Empty</td>
+                        </tr>
+                    </table>
+                    <hr />
+                    <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>
+                    <div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
+                        <table style=\"line-height: 15px;\">
+                            <tr><td><h3>Stats</h3></td></tr>
+                            <tr><td style=\"width:55px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement() . "</td></tr>
+                            <tr><td style=\"width:55px;\"><span>DEX</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>VIT</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>AGI</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>INT</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>MND</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>CHR</span></td><td style=\"width:25px;\"><span class=\"counter-display\">1</span></td><td><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+
+                            <tr><td style=\"height:10px;\"></td></tr>
+                            <tr><td><h3>Skills</h3></td></tr>
+                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
+                            <tr><td style=\"width:55px;\"><span>merits go here</span><span class=\"counter-display\">1</span><button id=\"merits_counter_minus\" class=\"merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"merits_counter\">+</button></td></tr>
                         </table>
-                    </div>";
+                    </div>
+                </div>";
         return $html;
     }
 
+    // private function incrementButtons(){
+    //     return "<button id=\"merits_counter_minus\" class=\"FFXIPackageHelper_dynamiccontent_shareButton merits_counter\">-</button><button id=\"merits_counter_plus\" class=\"FFXIPackageHelper_dynamiccontent_shareButton merits_counter\">+</button>";
+    // }
+
+    private function meritIncrement(){
+        return "<div class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
+            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"black\" />
+                </svg>
+            </button>
+            <input type=\"text\" readonly >
+            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"black\" />
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"black\" />
+                </svg>
+            </button>
+            </div>";
+    }
+
     public function showEquipsets(){
-        $html = "<div ><i><b>Disclosure:</b>  This is for experimentation only. When complete this will serve as a place to assist people with theorycrafting and equipment sets design. This
-            is by no means complete and is currently being tested by senior editors. If you have any questions/comments please reach out via Discord.</i></div>
+        $html = "<div ><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></div>
                     <div class=\"FFXIPackageHelper_Equipsets_container\" >
                     <table class=\"FFXIPackageHelper_Equipsets_showset\">
                         <tr>
@@ -367,7 +257,7 @@ class FFXIPackageHelper_Equipsets  {
                         </tr>
                         <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                 /*   $this->equipLabels() . */
+                $this->additionalData() .
                 "</div>";
 
         return $html;

@@ -583,7 +583,7 @@ class FFXIPackageHelper_Stats {
             if ( $this->equipment[$i][0] != 0 ) {
                 //throw new Exception(json_encode($this->equipment[$i])) ;
                 foreach( $this->equipment[$i][3] as $mod ){
-                    //throw new Exception($mod["id"]) ;
+                    //throw new Exception($mod) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
 
                 }
@@ -591,7 +591,7 @@ class FFXIPackageHelper_Stats {
                 //throw new Exception(gettype($this->equipment[$i][0])) ;
             }
         }
-        //throw new Exception(json_encode($this->equipment[6]));
+        //throw new Exception(json_encode($this->equipment));
     }
 
     function getDEF(){
@@ -617,7 +617,7 @@ class FFXIPackageHelper_Stats {
          * Dejey test
          * GearMods = 22
          * Skillcap = 276
-         * STR + 2 =
+         * STR + 2
          */
 
 

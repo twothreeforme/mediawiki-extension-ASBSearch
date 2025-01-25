@@ -776,23 +776,23 @@ class DBConnection {
 
     public function getItem( $itemid ){
         $dbr = $this->openConnection();
-        $query = [ "item_equipment.itemId = '$itemid'" ];
+        $query = [ "item_basic.itemId = '$itemid'" ];
 
         return $dbr->newSelectQueryBuilder()
-        ->select( [ 'item_equipment.itemId',
+        ->select( [ 'item_basic.name AS showname',
+                    'item_equipment.itemId',
                     'item_equipment.slot',
                     'item_equipment.rslot',
                     'item_mods.modId AS modid',
                     'item_mods.value AS modValue',
-                    'item_basic.name',
                     'item_weapon.skill AS skilltype',
                     'item_equipment.level',
                     'item_equipment.jobs',
                     ] )
-        ->from( 'item_equipment' )
-        ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
-        ->leftjoin( 'item_basic', null, 'item_mods.itemId=item_basic.itemid' )
-        ->leftjoin( 'item_weapon', null, 'item_mods.itemId=item_weapon.itemId' )
+        ->from( 'item_basic' )
+        ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_basic.itemid' )
+        ->leftjoin( 'item_equipment', null, 'item_equipment.itemId=item_basic.itemid' )
+        ->leftjoin( 'item_weapon', null, 'item_basic.itemid=item_weapon.itemId' )
         ->where( $query	)
         ->fetchResultSet();
     }

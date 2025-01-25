@@ -200,7 +200,7 @@ class DataModel {
 	function parseEquipment($param, $job = null){
         if ( !$param ) return NULL;
 
-		$iDetails = new FFXIPackageHelper_ItemDetails();
+		//$iDetails = new FFXIPackageHelper_ItemDetails();
 
 		foreach ( $param as $row ) {
 			//throw new Exception($row->jobs);
@@ -213,7 +213,7 @@ class DataModel {
 			 */
 
 			 $_mod = null;
-			if  ( property_exists($row, 'modid' ) ){
+			if  ( $row->modid && $row->modValue){
 				$statusEffect = false;
 				if ( $row->modid == 499 || 		//-- Animation ID of Spikes and Additional Effects
 					$row->modid == 501 || 		//-- Chance of an items Additional Effect or Spikes
@@ -222,52 +222,24 @@ class DataModel {
 					$row->modid == 1180 )		//-- Additional parameters for more specific latents required to proc
 					$statusEffect = true;
 
-				// if ( $row->modid == 951 ) {
-				// 	$modIsEffect = $row->modValue;
-				// 	continue;
-				// }
-				
 				$_mod = array(
 					'id' => $row->modid,
 					'value' => $row->modValue
 				);
-
-				// $last = array_key_last($this->dataset);
-				// if ( ($row->modid == 431 ||		//-- ITEM_ADDEFFECT_TYPE
-				// 	$row->modid == 499 || 		//-- ITEM_SUBEFFECT: Animation ID of Spikes and Additional Effects
-				// 	$row->modid == 501 || 		//-- ITEM_ADDEFFECT_CHANCE
-				// 	$row->modid == 950 ||		//-- ITEM_ADDEFFECT_ELEMENT
-				// 	$row->modid == 951 ||		//-- ITEM_ADDEFFECT_STATUS
-				// 	$row->modid == 952 ||		//-- ITEM_ADDEFFECT_POWER
-				// 	$row->modid == 953) && 		//-- ITEM_ADDEFFECT_DURATION
-				// 	($last != NULL && $last['name'] == $row->name) ){
-
-				// 	// if ( $prev_row['dropData']['groupId'] != $workingRow['dropData']['groupId'] ){
-				// 	// 	array_push ( $this->dataset, $workingRow ); continue;
-				// 	// }
-				// 	// else{
-				// 	// 	array_push ( $this->dataset[$l]['dropData']['items'], $_item );
-				// 	// }
-				// }
-				// else {
-				// 	$_mod['id'] = $row->modid;
-				// 	$_mod['value'] = $row->modValue;
-				// 	$modIsEffect = 0;
-				// }
 			}
 
 			$workingRow = array (
 				'id' => $row->itemId,
-				'name' => ParserHelper::itemName($row->name),
+				'name' => ParserHelper::itemName($row->showname),
 				'level' => $row->level,
-				'skilltype' => (property_exists($row, 'skilltype' )) ? $row->skilltype : 0,
-				//'jobs' => $row->jobs,
+				'skilltype' => (property_exists($row, 'skilltype' ) ) ? $row->skilltype : 0,
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
 				'rslot' => $row->rslot,
 				'hasstatuseffect' => $statusEffect,
-				'mods' => array ( $_mod )
+				'mods' => ($_mod == null) ? array() : array ( $_mod )
 			);
+
 
 			// it doenst exist, so create new entry
 			if ( !$this->dataset ) { array_push ( $this->dataset, $workingRow ); continue; }

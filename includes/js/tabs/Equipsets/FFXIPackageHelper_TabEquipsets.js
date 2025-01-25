@@ -75,21 +75,36 @@ function getStatsData(equipIDString){
     };
   }
 
+  function updateMeritsList(updatedMerits){
+    console.log("updateMeritsList: ", updatedMerits);
+  }
 
 module.exports.setLinks = function (){
+
+    /**
+     * Modal Windows
+     * All equip slots
+     */
     for (let v = 0; v <= 15; v++) {
         const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: updateEquipmentGrid});
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
 
-        //console.log(v);
         slot.addEventListener("click", function (e) {
             modal.open(getEquipID(v));
-            // DEV ONLY
-            //updateStats();
         });
     }
+
+    // /**
+    //  * Modal Window
+    //  * Merits
+    //  */
+    // let slot = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits");
+    // const modal = new ModalWindow("merits", { returnCallback: updateMeritsList });
+    // slot.addEventListener("click", function (e) {
+    //     modal.open();
+    // });
 
     /**
      * Level range elements for both maind and sub jobs

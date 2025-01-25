@@ -134,9 +134,11 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
 
     -- Grand_Palace_of_HuXzoi (Zone: 34)
     (20000,4661,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
+
 ;
 
-UPDATE mob_groups SET changes_tag=1, dropid='644' WHERE poolid='6778' AND zoneid='113'; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
+UPDATE `mob_groups` SET `changes_tag`=1, `dropid`=644 WHERE `poolid`=6778 AND `zoneid`=113; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
+UPDATE `mob_groups` SET `changes_tag`=1, `minLevel`=47, `maxLevel`=49  WHERE `zoneid`=111 AND `groupid`=29 AND `poolid`=3781;     -- Stone Golems - all lvl ranges changed to 47-49
 
 UNLOCK TABLES;
 
@@ -283,6 +285,10 @@ UPDATE mob_droplist SET itemId = '13514', changes_tag = 1 WHERE dropId = '2349' 
 UPDATE mob_droplist SET itemId = '13189', changes_tag = 1 WHERE dropId = '1449' AND itemId = '15899'; -- King Arthro drops Speed Belt (13189) instead of 15899.
 UPDATE mob_droplist SET itemId = '13056', changes_tag = 1 WHERE dropId = '165' AND itemId = '15515'; -- Argus drops Peacock Charm (13056) instead of 15515.
 UPDATE mob_droplist SET itemId = '14080', changes_tag = 1 WHERE dropId = '2255' AND itemId = '15736'; -- Simurgh drops Strider Boots (14080) instead of 15736.
+UPDATE mob_droplist SET itemRate = 50, changes_tag = 1 WHERE dropId = '2342' AND itemId = '644'; -- Stone Golem - Mythril Ore decrease rate to 5%
+UPDATE mob_droplist SET itemRate = 100, changes_tag = 1 WHERE dropId = '2342' AND itemId = '955'; -- Stone Golem - Golem Shards increase rate to 10%
+
+
 
 UNLOCK TABLES;
 
@@ -356,6 +362,24 @@ ALTER TABLE `item_mods`
 -- ;
 UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
 
+-- ---------------------------------------------------------------------------
+LOCK TABLE `mob_spawn_points` WRITE;
+ALTER TABLE `mob_spawn_points`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `pos_rot`;
 
+INSERT INTO `mob_spawn_points` (`mobid`,`mobname`,`polutils_name`,`groupid`,`pos_x`,`pos_y`,`pos_z`,`pos_rot`,`changes_tag`) VALUES
+
+    -- Beaucedine Glacier (Zone 111)
+    -- Stone Golems add per Kiplink - starting DEC 22
+    (20000000,'Stone_Golem','Stone Golem',29,367,0,-94,0,1),
+    (20000001,'Stone_Golem','Stone Golem',29,334,0.2,-88,0,1),
+    (20000002,'Stone_Golem','Stone Golem',29,345,0.2,-57,0,1),
+    (20000003,'Stone_Golem','Stone Golem',29,363,0.3,-30,0,1),
+    (20000004,'Stone_Golem','Stone Golem',29,368,0.2,-5.1,0,1)
+
+;
+
+-- ---------------------------------------------------------------------------
+-- COMPLETE
 
 UNLOCK TABLES;
