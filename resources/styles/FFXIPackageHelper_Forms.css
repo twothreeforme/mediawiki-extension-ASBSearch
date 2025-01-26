@@ -244,17 +244,13 @@ Main Equipsets DIV
     /* display: grid;
     grid-template-columns: auto 400px; */
     /* background-color: #87878750; */
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    /* flex-wrap: wrap; */
     justify-content: center;
     overflow-x: none !important;
 }
 
-.FFXIPackageHelper_Equipsets_container > div.content-table {
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
 
-}
 /*
 Selecting Equipsets table
 */
