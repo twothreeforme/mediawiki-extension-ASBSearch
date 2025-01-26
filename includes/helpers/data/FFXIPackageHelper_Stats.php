@@ -644,12 +644,13 @@ class FFXIPackageHelper_Stats {
                 foreach( $this->equipment[$i][3] as $mod ){
                     //throw new Exception($mod) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
+
                 }
 
                 //throw new Exception(gettype($this->equipment[$i][0])) ;
             }
         }
-        //throw new Exception(json_encode($this->equipment));
+        // throw new Exception(json_encode($this->equipment));
     }
 
     function getDEF(){
@@ -743,11 +744,13 @@ class FFXIPackageHelper_Stats {
     }
 
     function getEVA(){
-        //  29 => "EVASION",
+        //  From skills array, 29 => "EVASION",
         $EVA = $this->getSkillCap(29);
-        if ( $EVA > 200) $EVA = 200 + ($EVA - 200) * 0.9;
-        $EVA += $this->AGI / 2;
-        return max(1, floor($EVA + $this->modifiers["EVASION"]));
+        $EVA = ($EVA > 200) ? floor(($EVA - 200) * 0.9) + 200 : $EVA;
+        $EVA += ($this->AGI / 2);
+        $EVA += $this->modifiers["EVA"];
+
+        return max(1, floor($EVA));
     }
 
     function getWeaponSkillMerits(){
