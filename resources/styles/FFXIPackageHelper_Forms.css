@@ -250,9 +250,10 @@ Main Equipsets DIV
     overflow-x: none !important;
 }
 
-.FFXIPackageHelper_Equipsets_container content-table-wrapper overflowed {
-    margin: 1em 0;
-    overflow-x: clip !important;
+.FFXIPackageHelper_Equipsets_container overflowed {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+
 }
 /*
 Selecting Equipsets table
