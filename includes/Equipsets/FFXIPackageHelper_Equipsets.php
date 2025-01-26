@@ -148,52 +148,52 @@ class FFXIPackageHelper_Equipsets  {
                     <b>Equipment List</b><br>
                     <table class=\"FFXIPackageHelper_Equipsets_equipList\">
                         <tr>
-                            <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\">Temp item name</td>
+                            <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>
                         </tr>
                         <tr>
-                            <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\">Empty</td>
+                            <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\"> - </td>
                         </tr>
                         <tr>
-                            <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\">Empty</td>
+                            <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\"> - </td>
                         </tr>
                         <tr>
-                            <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\">Empty</td>
+                            <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\"> - </td>
                         </tr>
                         <tr>
-                            <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\">Empty</td>
+                            <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\"> - </td>
                         </tr>
                         <tr>
-                            <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\">Empty</td>
+                            <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\"> - </td>
                         </tr>
                         <tr>
-                            <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\">Empty</td>
+                            <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\"> - </td>
                         </tr>
                         <tr>
-                            <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\">Empty</td>
+                            <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\"> - </td>
                         </tr>
                         <tr>
-                            <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\">Empty</td>
+                            <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\"> - </td>
                         </tr>
                         <tr>
-                            <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\">Empty</td>
+                            <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\"> - </td>
                         </tr>
                         <tr>
-                            <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\">Empty</td>
+                            <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\"> - </td>
                         </tr>
                         <tr>
-                            <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\">Temp item name</td>
+                            <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\"> - </td>
                         </tr>
                         <tr>
-                            <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\">Empty</td>
+                            <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\"> - </td>
                         </tr>
                         <tr>
-                            <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\">Empty</td>
+                            <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\"> - </td>
                         </tr>
                         <tr>
-                            <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\">Empty</td>
+                            <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\"> - </td>
                         </tr>
                         <tr>
-                            <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\">Empty</td>
+                            <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\"> - </td>
                         </tr>
                     </table>
                     <hr />

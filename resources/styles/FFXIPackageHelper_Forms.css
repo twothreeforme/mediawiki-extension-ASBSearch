@@ -372,6 +372,9 @@ Equipsets equipment grid (table)
     line-height:14px;
     border-collapse: collapse;
 }
+.FFXIPackageHelper_Equipsets_equipList p {
+    margin: 0px !important;
+}
 
 .FFXIPackageHelper_dynamiccontent_showMerits{
     width:180px;

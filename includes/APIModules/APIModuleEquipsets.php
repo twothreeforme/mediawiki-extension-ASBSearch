@@ -41,7 +41,8 @@ class APIModuleEquipsets extends ApiBase {
 
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
 
-            $result->addValue($params['action'], "stats", $newStats->getStats());
+            $result->addValue( $params['action'], "stats", $newStats->getStats() );
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], "stats", $newStats->getStats()]) );
         }
@@ -82,6 +83,7 @@ class APIModuleEquipsets extends ApiBase {
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
@@ -89,6 +91,16 @@ class APIModuleEquipsets extends ApiBase {
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
             // throw new Exception (json_encode($result));
         }
+    }
+
+    private function parseEquipmentLabels($equipmentArray){
+        $equipLabelsArray = [ ];
+        for ( $i = 0; $i <= 15; $i++ ){
+            $labelHtml = " - ";
+            if ( $equipmentArray[$i][5] != null && $equipmentArray[$i][5] != "" ) $labelHtml = ParserHelper::wikiParse( "[[" . $equipmentArray[$i][5] . "]]" );
+            $equipLabelsArray[$i] = $labelHtml;
+        }
+        return $equipLabelsArray;
     }
 }
 

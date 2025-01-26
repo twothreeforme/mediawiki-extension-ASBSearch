@@ -30,7 +30,9 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           const grid_base64 = decodeURIComponent(result['grid']);
           const grid_ = JSON.parse(atob(grid_base64));
           //console.log("api: equipsets_change: ", grid_);
-          changeGrid(grid_);
+          changeGrid(grid_, result['equipLabels']);
+
+          //console.log(result['equipLabels']);
         }
         else updateEquipsets(result['stats']);
       }
@@ -66,7 +68,7 @@ function updateFishingFromQuery(updatedHTML){
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_fishing_queryresult'));
 }
 
-function changeGrid(incomingGridData){
+function changeGrid(incomingGridData, equipLabels){
   //console.log("changeGrid: " ,updatedGrid);
 
   for (const updatedGrid of incomingGridData){
@@ -95,9 +97,13 @@ function changeGrid(incomingGridData){
       else {
         Tooltip.handleTooltip(slot, slot_tooltip);
       }
+
+      if ( equipLabels != null ) updateEquipmentList(v, equipLabels[v]);
       break;
     }
   }
+
+  //mw.hook( 'wikipage.content' ).fire($('.FFXIPackageHelper_Equipsets_equipList'));
 }
 
 
@@ -154,5 +160,11 @@ function adjustStatColor(classname, modValue){
   }
 }
 
+function updateEquipmentList(slotNumber, updatedName){
 
+  let linkID = "FFXIPackageHelper_Equipsets_gridLabel" + slotNumber;
+  let labelLink = document.getElementById(linkID);
+  labelLink.innerHTML = updatedName;
+
+}
 
