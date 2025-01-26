@@ -247,6 +247,7 @@ Main Equipsets DIV
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    overflow-x: none !important;
 }
 
 /*
