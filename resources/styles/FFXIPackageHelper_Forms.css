@@ -245,8 +245,8 @@ Main Equipsets DIV
     grid-template-columns: auto 400px; */
     /* background-color: #87878750; */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
     overflow-x: none !important;
 }
 
