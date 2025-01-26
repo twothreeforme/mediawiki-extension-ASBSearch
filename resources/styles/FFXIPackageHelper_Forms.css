@@ -244,10 +244,9 @@ Main Equipsets DIV
     /* display: grid;
     grid-template-columns: auto 400px; */
     /* background-color: #87878750; */
-    display: inline-flex;
-    /* flex-wrap: wrap; */
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    overflow-x: none !important;
 }
 
 
@@ -256,7 +255,7 @@ Selecting Equipsets table
 */
 .FFXIPackageHelper_Equipsets_table {
     border-collapse: collapse;
-    width: 425px;
+    width: 400px;
     /* display: flex; */
     /* float:left;
     flex-grow: 1; */
