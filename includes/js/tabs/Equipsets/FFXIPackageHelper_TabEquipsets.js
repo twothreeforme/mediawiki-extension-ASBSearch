@@ -66,13 +66,15 @@ function getMeritsData(){
     var meritsArray = [...allMerits];
     meritsArray.forEach(merit => {
         //console.log(merit);
-        if ( merit.id.includes("skill") ) {
-            var skillid = merit.id.replace(_id + "skill",'');
-            meritSkills[Number(skillid)] = merit.value;
-        }
-        else if ( merit.id.includes("stat") ) {
-            var statid = merit.id.replace(_id + "stats",'');
-            meritStats[Number(statid)] = merit.value;
+        if ( merit.value != 0 ){
+            if ( merit.id.includes("skill") ) {
+                var skillid = merit.id.replace(_id + "skill",'');
+                meritSkills[Number(skillid)] = merit.value;
+            }
+            else if ( merit.id.includes("stat") ) {
+                var statid = merit.id.replace(_id + "stats",'');
+                meritStats[Number(statid)] = merit.value;
+            }
         }
     });
     
@@ -99,10 +101,6 @@ function getStatsData(equipIDString){
         merits: encodeURIComponent(btoa(getMeritsData())),
         equipment: encodeURIComponent(btoa(equipIDString)),
     };
-  }
-
-  function updateMeritsList(){
-    console.log("updateMeritsList: ", updatedMerits);
   }
 
 module.exports.setLinks = function (){
@@ -219,11 +217,12 @@ function shareQueryClicked(shareID, params) {
                     "&slvl=" + params['slvl'] +
                     "&mjob=" + params['mjob'] +
                     "&sjob=" + params['sjob'] +
+                    "&merits=" + params['merits'] +
                     "&equipment=" + params['equipment'];
     }
     else {
-    //   mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
-      return;
+        mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
+        return;
     }
     //const encodedParams = encodeURIComponent(GETparams);
     var url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
@@ -274,7 +273,7 @@ function loadSharedLink(url){
         }
     }
 
-    const data = {
+    var data = {
         action: "equipsets_change",
         race:race,
         mlvl:mlvl,
@@ -292,6 +291,24 @@ function loadSharedLink(url){
     mJobDropdown.value=data.mjob;
     sJobDropdown.value=data.sjob;
     raceDropdown.value=data.race;
+
+    //encodeURIComponent(btoa(getMeritsData())),
+    merits = atob(decodeURIComponent(data.merits));
+    var meritObj = JSON.parse(merits);
+
+    // Set merit stats in table
+    Object.keys(meritObj[0]).forEach(key => {
+            let _id = "FFXIPackageHelper_equipsets_merits_stats"
+            const e = document.getElementById(_id + key);
+            e.value = meritObj[0][key];
+      });
+
+    // Set merit skills in table
+    Object.keys(meritObj[1]).forEach(key => {
+            let _id = "FFXIPackageHelper_equipsets_merits_skill"
+            const e = document.getElementById(_id + key);
+            e.value = meritObj[1][key];
+    });
 
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
     tabsButton_equipsets.click();

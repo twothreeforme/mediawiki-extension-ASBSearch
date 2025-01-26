@@ -48,14 +48,9 @@ class FFXIPackageHelper_Stats {
     public $meritSkills = null;
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
-        
-        //Map Merits
-        $this->setMerits($merits);
-       // throw new Exception ( json_encode($this->modifiers) );
 
         // Get skill ranks
         $this->setSkillCaps($mjob, $mlvl, $sjob, $slvl);
-
 
         // Pull traits from SQL
         $traits = $this->getTraits( $mlvl, $slvl, $mjob, $sjob );
@@ -70,10 +65,11 @@ class FFXIPackageHelper_Stats {
             $this->applyEquipment();
         }
 
-        //throw new Exception ( json_encode($this->modifiers));
-
         // Set all base stats in the class
         $this->setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob);
+
+        //Map Merits
+        $this->setMerits($merits);
 
         // Apply modifiers to the base stats
         $this->modifiers["DEF"] += $mlvl + $this->clamp($mlvl - 50, 0, 10);
@@ -297,17 +293,55 @@ class FFXIPackageHelper_Stats {
         $temp = json_decode($meritsALL, false);
         $this->$meritStats = $temp[0];
         foreach( $this->$meritStats as $key => $value ){
-            // (2) HP and (5) MP are multiplied 10x the merit value
-            if ( intval($key) == 2 || intval($key) == 5 ) $this->applyToModifiers( [intval($key) => (intval($value) * 10)] );
+
+            switch( intval($key) ){
+                case 2:// (2) HP multiplied 10x the merit value
+                    $this->HP += ($value * 10);
+                    break;
+                case 5:// (5) MP are multiplied 10x the merit value
+                    $this->MP += ($value * 10);
+                    break;
+                case 8:
+                    $this->baseSTR += $value;
+                    break;
+                case 9:
+                    $this->baseDEX += $value;
+                    break;
+                case 10:
+                    $this->baseVIT += $value;
+                    break;
+                case 11:
+                    $this->baseAGI += $value;
+                    break;
+                case 12:
+                    $this->baseINT += $value;
+                    break;
+                case 13:
+                    $this->baseMND += $value;
+                    break;
+                case 14:
+                    $this->baseCHR += $value;
+                    break;
+            }
+
+            // if ( intval($key) == 2 || intval($key) == 5 ) $this->applyToModifiers( [intval($key) => (intval($value) * 10)] );
             
-            //all other stats are 1x merit value
-            else $this->applyToModifiers( [intval($key) => intval($value)] );
+            // //all other stats are 1x merit value
+            // else $this->applyToModifiers( [intval($key) => intval($value)] );
         }
 
         $this->$meritSkills = $temp[1];
         foreach( $this->$meritSkills as $key => $value ){
-            //all skills are 2x merit value
-            $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+
+            // Check weapons skills
+            if ( intval($key) <= 12 ){
+                // Only skills for mainhand weapons added as modifiers to stats
+                if ( intval($key) == $this->equipment[0][4] ){
+                    $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+                }
+            }
+                 //all skills are 2x merit value
+            else $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
         }
 
         //throw new Exception ( json_encode($this->$meritSkills) );
@@ -457,25 +491,25 @@ class FFXIPackageHelper_Stats {
 
             switch($counter){
                 case 0:
-                    $this->baseSTR = $temp;
+                    $this->baseSTR += $temp;
                     break;
                 case 1:
-                    $this->baseDEX = $temp;
+                    $this->baseDEX += $temp;
                     break;
                 case 2:
-                    $this->baseVIT = $temp;
+                    $this->baseVIT += $temp;
                     break;
                 case 3:
-                    $this->baseAGI = $temp;
+                    $this->baseAGI += $temp;
                     break;
                 case 4:
-                    $this->baseINT = $temp;
+                    $this->baseINT += $temp;
                     break;
                 case 5:
-                    $this->baseMND = $temp;
+                    $this->baseMND += $temp;
                     break;
                 case 6:
-                    $this->baseCHR = $temp;
+                    $this->baseCHR += $temp;
                     break;
             }
             $counter++;
@@ -610,7 +644,6 @@ class FFXIPackageHelper_Stats {
                 foreach( $this->equipment[$i][3] as $mod ){
                     //throw new Exception($mod) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
-
                 }
 
                 //throw new Exception(gettype($this->equipment[$i][0])) ;
@@ -636,20 +669,50 @@ class FFXIPackageHelper_Stats {
         else {
             $ATT += ($this->STR) * 0.65; //Horizon change
         }
-        //throw new Exception ( $this->getSkillCap( intval($this->equipment[0][4]) ) );
-
-        /**
-         * Dejey test
-         * GearMods = 22
-         * Skillcap = 276
-         * STR + 2
-         */
-
 
         $ATT +=  $this->getSkillCap( intval($this->equipment[0][4]) );
-        //if ( intval($this->equipment[0][4]) > 0)
-        //throw new Exception($ATT . ":" .  $this->STR . ":" . json_encode($this->equipment[0]) . ":" . intval($this->equipment[0][4]) . ":" . $this->getSkillCap( intval($this->equipment[0][4])) );
 
+        // switch Skilltype for mainhand, apply modifier for weapon that is weilded in mainhand only
+        switch( intval($this->equipment[0][4] ) ){
+            case 1:
+                $ATT += ( $this->modifiers["H2H"] ) ? $this->modifiers["H2H"] : 0;
+                break;
+            case 2:
+                $ATT += ( $this->modifiers["DAGGER"] ) ? $this->modifiers["DAGGER"] : 0;
+                break;
+            case 3:
+                $ATT += ( $this->modifiers["SWORD"] ) ? $this->modifiers["SWORD"] : 0;
+                break;
+            case 4:
+                $ATT += ( $this->modifiers["GSWORD"] ) ? $this->modifiers["GSWORD"] : 0;
+                break;
+            case 5:
+                $ATT += ( $this->modifiers["AXE"] ) ? $this->modifiers["AXE"] : 0;
+                break;
+            case 6:
+                $ATT += ( $this->modifiers["GAXE"] ) ? $this->modifiers["GAXE"] : 0;
+                break;
+            case 7:
+                $ATT += ( $this->modifiers["SCYTHE"] ) ? $this->modifiers["SCYTHE"] : 0;
+                break;
+            case 8:
+                $ATT += ( $this->modifiers["POLEARM"] ) ? $this->modifiers["POLEARM"] : 0;
+                break;
+            case 9:
+                $ATT += ( $this->modifiers["KATANA"] ) ? $this->modifiers["KATANA"] : 0;
+                break;
+            case 10:
+                $ATT += ( $this->modifiers["GKATANA"] ) ? $this->modifiers["GKATANA"] : 0;
+                break;
+            case 11:
+                $ATT += ( $this->modifiers["CLUB"] ) ? $this->modifiers["CLUB"] : 0;
+                break;
+            case 12:
+                $ATT += ( $this->modifiers["STAFF"] ) ? $this->modifiers["STAFF"] : 0;
+                break;
+            default:
+                break;
+        }
 
         // Smite applies when using 2H or H2H weapons
         if ( ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) || FFXIPackageHelper_Equipment::isH2H($this->equipment[0])) && isset($this->modifiers["SMITE"]) ) {
@@ -662,7 +725,9 @@ class FFXIPackageHelper_Stats {
 
     function getACC(){
         $ACC = $this->getSkillCap( intval($this->equipment[0][4]) );
-        $ACC = ($ACC > 200) ? ((($ACC - 200) * 0.9) + 200) : $ACC;
+
+        $ACC = ($ACC > 200) ? floor((($ACC - 200) * 0.9) + 200) : $ACC;
+
         if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
             $ACC += ($this->DEX * 0.70); //Horizon change
         }
@@ -670,9 +735,10 @@ class FFXIPackageHelper_Stats {
             $ACC += $this->DEX * 0.65; //Horizon change
         }
         else{
-            $ACC += ($this->DEX * 0.65); //Horizon change
+            $ACC += ($this->DEX * 0.625); //Horizon change
         }
         $ACC += $this->modifiers["ACC"];
+        //throw new Exception ( $ACC );
         return max(0, floor($ACC));
     }
 
