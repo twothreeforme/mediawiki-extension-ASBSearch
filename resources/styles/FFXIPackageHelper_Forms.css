@@ -250,7 +250,7 @@ Main Equipsets DIV
     overflow-x: none !important;
 }
 
-.FFXIPackageHelper_Equipsets_container > div.overflowed {
+.FFXIPackageHelper_Equipsets_container > div.content-table {
     overflow-x: hidden !important;
     overflow-y: hidden !important;
 
