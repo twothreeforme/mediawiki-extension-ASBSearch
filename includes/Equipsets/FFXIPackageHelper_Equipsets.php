@@ -275,7 +275,7 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function showEquipsets(){
-        $html = "<div ><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></div>
+        $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></span>
                     <div class=\"FFXIPackageHelper_Equipsets_container\" >
                     <table class=\"FFXIPackageHelper_Equipsets_showset\">
                         <tr>

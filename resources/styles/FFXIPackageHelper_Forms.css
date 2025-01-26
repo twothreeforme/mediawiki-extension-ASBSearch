@@ -237,18 +237,6 @@ Equipment table
     text-align: right;
 }
 
-/*
-Main Equipsets DIV
-*/
-.FFXIPackageHelper_Equipsets_container {
-    /* display: grid;
-    grid-template-columns: auto 400px; */
-    /* background-color: #87878750; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 
 /*
 Selecting Equipsets table
@@ -274,8 +262,19 @@ Selecting Equipsets table
 }
 
 /*
+Main Equipsets DIV
+*/
+
+/*
 Showing Equipsets stats table
 */
+.FFXIPackageHelper_Equipsets_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
 .FFXIPackageHelper_Equipsets_showset {
     /* background-color: #00ccff; */
     background-color: #87878725;
