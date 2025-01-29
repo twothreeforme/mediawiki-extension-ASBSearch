@@ -38,6 +38,7 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         // USE THIS ONE
         $initialQuery = $db->getEquipmentFromDB($queryData);
+
         $initialQuery = $dm->parseEquipment($initialQuery, $queryData[1]);
 
         $html = "";

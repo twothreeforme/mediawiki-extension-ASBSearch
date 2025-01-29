@@ -1,6 +1,7 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
+var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 var raceDropdown = null;
 var mJobDropdown = null;
@@ -204,9 +205,9 @@ module.exports.setLinks = function (){
         //console.log("fired");
     }
     else updateStats();
+
     getMeritsData();
-    //console.log(window.location.href);
-    //updateEquipmentGrid(18270, 0, null);
+    Tooltip.setupPageTooltips();
 }
 
 function shareQueryClicked(shareID, params) {

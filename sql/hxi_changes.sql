@@ -288,6 +288,14 @@ UPDATE mob_droplist SET itemId = '14080', changes_tag = 1 WHERE dropId = '2255' 
 UPDATE mob_droplist SET itemRate = 50, changes_tag = 1 WHERE dropId = '2342' AND itemId = '644'; -- Stone Golem - Mythril Ore decrease rate to 5%
 UPDATE mob_droplist SET itemRate = 100, changes_tag = 1 WHERE dropId = '2342' AND itemId = '955'; -- Stone Golem - Golem Shards increase rate to 10%
 
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 712 WHERE dropId = 6026 AND groupRate = 712 AND groupId = 3 AND itemRate = 1000; -- Kunwu Iron
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 678 WHERE dropId = 6026 AND groupRate = 678 AND groupId = 4 AND itemRate = 1000; -- Kunwu Ore
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 864 WHERE dropId = 6026 AND groupRate = 864 AND groupId = 5 AND itemRate = 1000; -- Moly Ore
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 763 WHERE dropId = 6026 AND groupRate = 763 AND groupId = 6 AND itemRate = 1000; -- Moly Ore
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 576 WHERE dropId = 6026 AND groupRate = 576 AND groupId = 7 AND itemRate = 1000; -- Cashmere Cloth
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 593 WHERE dropId = 6026 AND groupRate = 593 AND groupId = 8 AND itemRate = 1000; -- Cashmere Thread
+UPDATE mob_droplist SET groupRate = 1000, itemRate = 746 WHERE dropId = 6026 AND groupRate = 746 AND groupId = 9 AND itemRate = 1000; -- Wyrm Horn
+
 
 
 UNLOCK TABLES;

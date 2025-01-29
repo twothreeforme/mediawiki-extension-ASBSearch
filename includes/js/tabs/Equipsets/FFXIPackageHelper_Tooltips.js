@@ -22,5 +22,8 @@ function removeTooltip(parElement){
     parElement.removeAttribute("aria-label");
 }
 
+function setupPageTooltips(){
+    //console.log("here");
+}
 
-module.exports = { handleTooltip, removeTooltip };
+module.exports = { handleTooltip, removeTooltip, setupPageTooltips };

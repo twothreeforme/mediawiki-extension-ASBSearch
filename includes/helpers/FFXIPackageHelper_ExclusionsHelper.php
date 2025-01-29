@@ -301,7 +301,10 @@ class ExclusionsHelper {
         // Post WoTG   Pre Abyssea 
          'Disciple Grip',
          'Succubus Grip',
-         'Tenax Strap'
+         'Tenax Strap',
+
+         // Other OOE Items
+         'Trump Crown'
 
     ];
 

@@ -741,7 +741,7 @@ class DBConnection {
         }
 
         return $dbr->newSelectQueryBuilder()
-        ->select( [ 'item_basic.name',
+        ->select( [ 'item_basic.name AS showname',
                     'item_equipment.level',
                     'item_equipment.jobs',
                     'item_equipment.slot',
