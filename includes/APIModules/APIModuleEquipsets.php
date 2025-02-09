@@ -85,13 +85,15 @@ class APIModuleEquipsets extends ApiBase {
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
+
+            throw new Exception ( ' here' );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
             
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
-            throw new Exception (json_encode($result));
+            //throw new Exception (json_encode($result));
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
             //throw new Exception($params['charname']);
