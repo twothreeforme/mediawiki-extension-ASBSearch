@@ -520,7 +520,27 @@ class FFXIPackageHelper_Stats {
 
     public function getStats(){
 
-        throw new Exception( json_encode([$this->HP, $this->MP, $this->baseSTR]) ) ;
+        throw new Exception( json_encode([
+
+            //additional stats
+            $this->DEF,     //16
+            $this->ATT,     //17
+
+            //resistances
+            $this->Fire,    //18
+            $this->Wind,    //19
+            $this->Lightning,     //20
+            $this->Light,   //21
+            $this->Ice,   //22
+            $this->Earth,   //23
+            $this->Water, //24
+            $this->Dark,     //25
+
+
+            //advanced stats
+            $this->ACC,       //26
+            $this->EVA       //27
+            ]) ) ;
 
         $stats = [
             // base stats
