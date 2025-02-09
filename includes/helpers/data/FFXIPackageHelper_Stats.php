@@ -533,8 +533,8 @@ class FFXIPackageHelper_Stats {
             $this->baseAGI,     //8
             $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
 
-            // $this->baseINT,     //10
-            // $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
+            $this->baseINT,     //10
+            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
 
             // $this->baseMND,     //12
             // $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
