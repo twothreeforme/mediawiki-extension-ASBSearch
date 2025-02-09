@@ -521,23 +521,23 @@ class FFXIPackageHelper_Stats {
     public function getStats(){
 
         throw new Exception( json_encode([
-            $this->baseSTR,     //2
-            $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
+            // $this->baseSTR,     //2
+            // $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
 
-            $this->baseDEX,     //4
-            $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
+            // $this->baseDEX,     //4
+            // $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
 
-            $this->baseVIT,     //6
-            $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
+            // $this->baseVIT,     //6
+            // $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
 
-            $this->baseAGI,     //8
-            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
+            // $this->baseAGI,     //8
+            // $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
 
-            $this->baseINT,     //10
-            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
+            // $this->baseINT,     //10
+            // $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
 
-            $this->baseMND,     //12
-            $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
+            // $this->baseMND,     //12
+            // $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
 
             $this->baseCHR,     //14
             $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0 //15
