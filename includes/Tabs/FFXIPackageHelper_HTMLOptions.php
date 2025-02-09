@@ -109,6 +109,14 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</select>";
         return $html;
     }
+
+    public static function userSetsDropDown($classname){
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+        $html .= "<option value=\"0\">None</option>";
+        $html .= "</select>";
+        return $html;
+    }
+
 }
 
 ?>

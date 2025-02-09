@@ -1,6 +1,9 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
+var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
+var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
+var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 var raceDropdown = null;
@@ -121,16 +124,6 @@ module.exports.setLinks = function (){
         });
     }
 
-    // /**
-    //  * Modal Window
-    //  * Merits
-    //  */
-    // let slot = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits");
-    // const modal = new ModalWindow("merits", { returnCallback: updateMeritsList });
-    // slot.addEventListener("click", function (e) {
-    //     modal.open();
-    // });
-
     /**
      * Level range elements for both maind and sub jobs
      */
@@ -182,6 +175,23 @@ module.exports.setLinks = function (){
     const shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
     shareEquipset.addEventListener("click", function (e) {
         shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", getStatsData(true));
+    });
+
+    // const saveSet = document.getElementById("FFXIPackageHelper_dynamiccontent_saveSet");
+    // saveSet.addEventListener("click", function (e) {
+    //     saveSetClicked();
+    // });
+
+    const manageChars = document.getElementById("FFXIPackageHelper_dynamiccontent_manageChars");
+    const modalChar = new ModalCharManagement();
+    manageChars.addEventListener("click", function (e) {
+        modalChar.open();
+    });
+
+    const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
+    const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
+    addChar.addEventListener("click", function (e) {
+        modalCharAdd.open();
     });
 
     // Load Merit Edits section
@@ -274,7 +284,7 @@ function loadSharedLink(url){
         }
     }
 
-    var data = {
+    const data = {
         action: "equipsets_change",
         race:race,
         mlvl:mlvl,
@@ -295,7 +305,7 @@ function loadSharedLink(url){
 
     //encodeURIComponent(btoa(getMeritsData())),
     merits = atob(decodeURIComponent(data.merits));
-    var meritObj = JSON.parse(merits);
+    const meritObj = JSON.parse(merits);
 
     // Set merit stats in table
     Object.keys(meritObj[0]).forEach(key => {
@@ -314,3 +324,21 @@ function loadSharedLink(url){
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
     tabsButton_equipsets.click();
 }
+
+function manageSetClicked() {
+
+}
+
+function saveCharacterClicked(charName){
+    //console.log(charName);
+
+    const data = {
+        action: "equipsets_savechar",
+        race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+        merits: encodeURIComponent(btoa(getMeritsData())),
+        charname: charName
+    }
+
+    API.actionAPI(data, data.action, null, this);
+}
+

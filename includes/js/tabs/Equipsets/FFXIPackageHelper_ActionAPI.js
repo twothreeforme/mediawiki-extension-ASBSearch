@@ -8,7 +8,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
   api.get( params ).done( function ( d ) {
     //console.log(d);
     const result = d[forTab];
-      //console.log(result);
+      console.log(forTab);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
@@ -34,10 +34,12 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
 
           //console.log(result['equipLabels']);
         }
+        else if ( forTab.includes("savechar")) {
+          mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
+        }
         else updateEquipsets(result['stats']);
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
-
 
       if ( currentButton != null){
         const button = document.getElementById(currentButton);

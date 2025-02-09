@@ -1,3 +1,5 @@
+
+-- ASB_Data updates:
 -- usage from within sql folder: mysql -u -p db < dbupdate.sql
 
 \! echo zone_weather

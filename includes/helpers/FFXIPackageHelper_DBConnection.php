@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\DatabaseFactory;
+use MediaWiki\MediaWikiServices;
 
 class DBConnection {
 
@@ -20,10 +21,11 @@ class DBConnection {
 	private $dbUsername = 'horizon_wiki'; 
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
-    public function openConnection() {
+    public function openConnection($database = null) {
         if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] == 'localhost' ){
 			$this->dbUsername = 'root'; $this->dbPassword = '';
 		}
+        if ( $database == null ) $database = "ASB_Data";
         try {
             $db = ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
@@ -31,7 +33,7 @@ class DBConnection {
                 'password' => $this->dbPassword,
                 // 'user' => 'horizon_wiki',
                 // 'password' => 'KamjycFLfKEyFsogDtqM',
-                'dbname' => 'ASB_Data',
+                'dbname' => $database,
                 'flags' => 0,
                 'tablePrefix' => ''] );
             //$status->value = $db;
@@ -40,11 +42,10 @@ class DBConnection {
             //$status->fatal( 'config-connection-error', $e->getMessage() );
             print_r('issue');
         }
-
-
         // return $status;
         return $returnDB;
     }
+
 
     function getWeatherHex($arr, $vanaDay){
         $hexweatherdata =  $arr[(($vanaDay * 2)  + 1 )] . $arr[($vanaDay * 2) ];
@@ -969,6 +970,48 @@ class DBConnection {
         ->where( $query	)
         ->fetchResultSet();
     }
+
+    public function setEquipsetForUser( $user, $equipset){
+		// $userId = $user->getId();
+
+		// if ( $userId != 0 ) {
+        //     $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		// 	$dbw = $lb->getConnectionRef( DB_PRIMARY );
+		// 	$dbw->delete(
+		// 		'ldap_domains',
+		// 		[
+		// 			'user_id' => $userId
+		// 		],
+		// 		__METHOD__
+		// 	);
+		// 	return $dbw->insert(
+		// 		'ldap_domains',
+		// 		[
+		// 			'domain' => $domain,
+		// 			'user_id' => $userId
+		// 		],
+		// 		__METHOD__
+		// 	);
+		// }
+		// return false;
+	}
+
+    public function getUserCharacters($uid){
+        $dbr = $this->openConnection();
+
+        $chars = $dbr->newSelectQueryBuilder()
+        ->select( [ 'charname' ] )
+        ->from( 'user_chars' )
+        ->where( [ "user_chars.userid = $uid" ] )
+        ->fetchResultSet();
+
+        $userCharacters = [];
+        foreach($chars as $row){
+            $userCharacters[] = $row->charname;
+        }
+        return $userCharacters;
+    }
+
 }
 
 ?>

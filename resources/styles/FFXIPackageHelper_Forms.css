@@ -139,6 +139,14 @@ Custom Buttons
     background-color: #12396c10;
 }
 
+.FFXIPackageHelper_dynamiccontent_addCharacter {
+    display: inline-block;
+    padding: 0px;
+    width: 1rem;
+    border-width: 0.5px;
+    border-radius: 4px;
+    border-color: #ffffff75;
+}
 
 
 /*
@@ -367,7 +375,7 @@ Equipsets equipment grid (table)
     -webkit-filter: brightness(1.25);
 }
 
-.FFXIPackageHelper_Equipsets_equipList{
+.FFXIPackageHelper_Equipsets_equipList {
     font-size:14px;
     line-height:14px;
     border-collapse: collapse;
@@ -375,6 +383,14 @@ Equipsets equipment grid (table)
 .FFXIPackageHelper_Equipsets_equipList p {
     margin: 0px !important;
 }
+
+.FFXIPackageHelper_Equipsets_setManagement{
+    width: 180px;
+    font-size:14px;
+    line-height:14px;
+    border-collapse: collapse;
+}
+
 
 .FFXIPackageHelper_dynamiccontent_showMerits{
     width:180px;

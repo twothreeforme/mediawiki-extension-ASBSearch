@@ -23,7 +23,8 @@ class DataModel {
     function parseData($param){
         //print_r($this->dataset);
         if ( !$param ) return NULL;
-		
+
+
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
 			

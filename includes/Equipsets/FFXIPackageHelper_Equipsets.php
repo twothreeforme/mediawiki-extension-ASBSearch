@@ -42,14 +42,21 @@ class FFXIPackageHelper_Equipsets  {
 
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
-        $html = "
-                <div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
+                    <span>Character  " . FFXIPackageHelper_HTMLOptions::userSetsDropDown("FFXIPackageHelper_equipsets_selectUserSet") . "</span>
+                    <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\" disabled>
+                        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                            <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                            <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                        </svg>
+                    </button>
+
+                    <br>
                     <span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>
                     <span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
                     <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br>
-                    <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
                  </div>";
-
+                // <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
         return $html;
     }
 
@@ -143,61 +150,32 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
+    public function userSetsData(){
+        // $html = "<div class=\"FFXIPackageHelper_Equipsets_setManagement\">
+        //             <b>Sets Management</b><br>
+        //             <span style=\"float:left;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
+        //             <span style=\"float:left;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Save Set</button></span><br><br>
+        //             <span style=\"float:left;\">Available Sets</span><br>
+        //             <table style=\"width:100%;height:150px;line-height: 14px;\">
+        //             </table>
+        //             <span style=\"float:left;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Manage Sets</button></span><br><br>
+
+        //         </div>";
+
+        $html = "<div style=\"width:100%;text-align: center; padding: 12px;\">
+                    <span>
+                        ". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
+                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Save</button>" .
+                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageChars\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Chars</button>" .
+                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageSets\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Sets</button>" .
+                    "</span>
+                </div>";
+        return $html;
+     }
+
     public function additionalData(){
         $html =  "<div >
-                    <b>Equipment List</b><br>
-                    <table class=\"FFXIPackageHelper_Equipsets_equipList\">
-                        <tr>
-                            <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\"> - </td>
-                        </tr>
-                        <tr>
-                            <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\"> - </td>
-                        </tr>
-                    </table>
-                    <hr />
-                    <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>
+        <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>
                     <div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
                         <table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
                             <tr><td><h4>Stats</h4></td></tr>
@@ -250,6 +228,59 @@ class FFXIPackageHelper_Equipsets  {
                             <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill121") . "</td></tr>
                     </table>
                     </div>
+                    <b>Equipment List</b><br>
+                    <table class=\"FFXIPackageHelper_Equipsets_equipList\">
+                        <tr>
+                            <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\"> - </td>
+                        </tr>
+                        <tr>
+                            <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\"> - </td>
+                        </tr>
+                    </table>
+
+
                 </div>";
         return $html;
     }
@@ -276,8 +307,9 @@ class FFXIPackageHelper_Equipsets  {
 
     public function showEquipsets(){
         $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></span>
-                    <div class=\"FFXIPackageHelper_Equipsets_container\" >
-                    <table class=\"FFXIPackageHelper_Equipsets_showset\">
+                    <div class=\"FFXIPackageHelper_Equipsets_container\" >" .
+                   $this->userSetsData() .
+                    "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
                         <tr>
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
@@ -287,7 +319,7 @@ class FFXIPackageHelper_Equipsets  {
                         </tr>
                         <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                $this->additionalData() .
+                    $this->additionalData() .
                 "</div>";
 
         return $html;

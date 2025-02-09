@@ -10,15 +10,16 @@ class APIModuleEquipsets extends ApiBase {
     protected function getAllowedParams() {
         return [
             'action' => null,
-			'race' => "",
-            'mlvl' => "",
-            'slvl' => "",
-            'mjob' => "",
-            'sjob' => "",
+			'race' => 0,
+            'mlvl' => 0,
+            'slvl' => 0,
+            'mjob' => 0,
+            'sjob' => 0,
             'merits' => "",
             'equipment' => "",
             'search' => "",
-            'slot' => "",
+            'slot' => 0,
+            'charname' => null,
     		];
 	}
 
@@ -90,6 +91,26 @@ class APIModuleEquipsets extends ApiBase {
             
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
             // throw new Exception (json_encode($result));
+        }
+        else if ( $params['action'] == "equipsets_savechar" ) {
+            //throw new Exception($params['charname']);
+            $user = RequestContext::getMain()->getUser();
+            $uid = $user->getId();
+            if ( $uid == 0 || $uid == null ){
+                $result->addValue( $params['action'], "savecharERROR", "User must be logged in to complete this task." );
+                return;
+            }
+
+            $db = new DBConnection();
+            $userCharacters = $db->getUserCharacters($uid);
+            if( count($userCharacters) == 0 ){
+                throw new Exception ( "No characters found ");
+            }
+            //check user for existing character name
+
+            //if doesnt exist then save
+
+
         }
     }
 

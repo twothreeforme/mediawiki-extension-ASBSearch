@@ -96,6 +96,9 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_MeritEdits.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalSetManagement.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharManagement.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharAdd.js",
                 "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
@@ -128,6 +131,9 @@
 			"class": "APIModuleEquipsets"
 		},
         "equipsets_change": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_savechar": {
 			"class": "APIModuleEquipsets"
 		},
         "fishingsearch": {
