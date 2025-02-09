@@ -519,7 +519,7 @@ class FFXIPackageHelper_Stats {
 
 
     public function getStats(){
-        throw new Exception( "here");
+        //throw new Exception( "here");
         $stats = [
             // base stats
             $this->HP,      //0
