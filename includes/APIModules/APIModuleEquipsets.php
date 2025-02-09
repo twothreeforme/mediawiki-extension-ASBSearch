@@ -71,11 +71,11 @@ class APIModuleEquipsets extends ApiBase {
             // }
             // send updated HTML back as result
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
+            throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
 
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
-            //throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
 
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
             $statsURLSafe = urlencode($statsEncoded);
