@@ -81,12 +81,12 @@ class APIModuleEquipsets extends ApiBase {
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
-
+            throw new Exception ( ' here' );
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
 
-            throw new Exception ( ' here' );
+
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
