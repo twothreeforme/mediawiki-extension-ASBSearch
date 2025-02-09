@@ -539,8 +539,8 @@ class FFXIPackageHelper_Stats {
             $this->baseMND,     //12
             $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
 
-            // $this->baseCHR,     //14
-            // $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0 //15
+            $this->baseCHR,     //14
+            $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0 //15
             ]) ) ;
 
         $stats = [
