@@ -79,9 +79,10 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception ( ' here' );
 
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
+            throw new Exception ( ' here' );
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
-            throw new Exception ( ' here' );
+
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
