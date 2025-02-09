@@ -75,7 +75,7 @@ class APIModuleEquipsets extends ApiBase {
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
-            throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
+            //throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
             //throw new Exception ( ' here' );
 
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
@@ -91,7 +91,7 @@ class APIModuleEquipsets extends ApiBase {
             // $result->addValue($params['action'], "grid", $updatedGrid );
             
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
-            // throw new Exception (json_encode($result));
+            throw new Exception (json_encode($result));
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
             //throw new Exception($params['charname']);
