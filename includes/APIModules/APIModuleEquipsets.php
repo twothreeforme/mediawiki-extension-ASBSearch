@@ -55,7 +55,7 @@ class APIModuleEquipsets extends ApiBase {
             $equipList = $db->getEquipment( $params['search'], $params['mlvl'], $params['slot']);
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
-            throw new Exception(json_encode($finalList));
+            //throw new Exception(json_encode($finalList));
 
             $result->addValue($params['action'], "search", [$finalList, $params['slot']]);
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
@@ -75,7 +75,7 @@ class APIModuleEquipsets extends ApiBase {
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
-            //throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
+            throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($updatedGrid));
             //throw new Exception ( ' here' );
 
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
