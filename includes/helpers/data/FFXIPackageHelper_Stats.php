@@ -520,53 +520,7 @@ class FFXIPackageHelper_Stats {
 
     public function getStats(){
 
-
-        $temp = array (
-            $this->HP,      //0
-            $this->MP,      //1
-
-            //base stats
-            $this->baseSTR,     //2
-            $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
-
-            $this->baseDEX,     //4
-            $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
-
-            $this->baseVIT,     //6
-            $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
-
-            $this->baseAGI,     //8
-            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
-
-            $this->baseINT,     //10
-            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
-
-            $this->baseMND,     //12
-            $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
-
-            $this->baseCHR,     //14
-            $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
-
-            //additional stats
-            $this->DEF,     //16
-            $this->ATT,     //17
-
-            //resistances
-            $this->Fire,    //18
-            $this->Wind,    //19
-            $this->Lightning,     //20
-            $this->Light,   //21
-            $this->Ice,   //22
-            $this->Earth,   //23
-            $this->Water, //24
-            $this->Dark,     //25
-
-
-            //advanced stats
-            $this->ACC,       //26
-            $this->EVA       //27
-        );
-        throw new Exception( implode(",", $temp) ) ;
+        throw new Exception( json_encode([$this->HP, $this->MP, $this->baseSTR]) ) ;
 
         $stats = [
             // base stats
