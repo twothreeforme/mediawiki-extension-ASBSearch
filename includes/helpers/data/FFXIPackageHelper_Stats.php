@@ -530,8 +530,8 @@ class FFXIPackageHelper_Stats {
             $this->baseVIT,     //6
             $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
 
-            // $this->baseAGI,     //8
-            // $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
+            $this->baseAGI,     //8
+            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
 
             // $this->baseINT,     //10
             // $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
