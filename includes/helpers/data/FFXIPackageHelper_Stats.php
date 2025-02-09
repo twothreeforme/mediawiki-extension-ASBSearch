@@ -520,7 +520,7 @@ class FFXIPackageHelper_Stats {
 
     public function getStats(){
 
-        return [
+        $stats = [
             // base stats
             $this->HP,      //0
             $this->MP,      //1
@@ -566,6 +566,8 @@ class FFXIPackageHelper_Stats {
             $this->ACC,       //26
             $this->EVA       //27
         ];
+        throw new Exception ( implode(",", $stats) );
+        return $stats;
     }
 
     private function setStatsWithMods(){
