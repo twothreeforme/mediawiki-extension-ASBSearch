@@ -94,7 +94,7 @@ function getStatsData(equipIDString){
     equipIDString = equipIDString.join("|");
 
     // console.log("getStatsData: ", equipIDString, encodeURIComponent(btoa(equipIDString)));
-    console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
+    //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
     return {
         action: "equipsets",
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
