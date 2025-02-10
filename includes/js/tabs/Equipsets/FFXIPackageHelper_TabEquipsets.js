@@ -20,7 +20,7 @@ function updateEquipmentGrid(id, slot, sender){
     var all = getStatsData(equipment);
     all.action = "equipsets_change";
 
-    //console.log("updateEquipmentGrid", all);
+    console.log("updateEquipmentGrid", all);
     API.actionAPI(all, "equipsets_change", null, null);
 
     // close modal window
