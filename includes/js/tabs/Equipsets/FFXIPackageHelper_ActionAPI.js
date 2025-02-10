@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
-  console.log(params);
+  //console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
     //console.log(d);
@@ -37,7 +37,9 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
         else if ( forTab.includes("savechar")) {
           mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
         }
-        else updateEquipsets(result['stats']);
+        else {
+          updateEquipsets(result['stats']);
+        }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
 
