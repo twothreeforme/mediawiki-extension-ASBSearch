@@ -30,7 +30,7 @@ class APIModuleEquipsets extends ApiBase {
 
         $decoded = urldecode($params['equipment']);
         $equipmentString = base64_decode($decoded);
-        throw new Exception($equipmentString);
+        if ( !str_contains($equipmentString, "13280") )  throw new Exception($equipmentString);
 
         $decoded = urldecode($params['merits']);
         $meritsString = base64_decode($decoded);
