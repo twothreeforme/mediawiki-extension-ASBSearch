@@ -520,55 +520,55 @@ class FFXIPackageHelper_Stats {
 
     public function getStats(){
 
-        $stats = array(
+        $stats = [
             // base stats
-            0 => $this->HP,      //0
-            1 => $this->MP,      //1
+            $this->HP,      //0
+            $this->MP,      //1
 
             //base stats
-            2 => $this->baseSTR,     //2
-            3 => $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
+            $this->baseSTR,     //2
+            $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
 
-            4 => $this->baseDEX,     //4
-            5 => $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
+            $this->baseDEX,     //4
+            $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
 
-            6 => $this->baseVIT,     //6
-            7 =>  $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
+            $this->baseVIT,     //6
+            $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
 
-            8 => $this->baseAGI,     //8
-            9 =>  $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
+            $this->baseAGI,     //8
+            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
 
-            10 => $this->baseINT,     //10
-            11 => $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
+            $this->baseINT,     //10
+            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
 
-            12 => $this->baseMND,     //12
-            13 => $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
+            $this->baseMND,     //12
+            $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
 
-            14 => $this->baseCHR,     //14
-            15 => $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
+            $this->baseCHR,     //14
+            $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
 
             //additional stats
-            16 => $this->DEF,     //16
-            17 => $this->ATT,     //17
+            $this->DEF,     //16
+            $this->ATT,     //17
 
             //resistances
-            18 => $this->Fire,    //18
-            19 => $this->Wind,    //19
-            20 => $this->Lightning,     //20
-            21 => $this->Light,   //21
-            22 => $this->Ice,   //22
-            23 => $this->Earth,   //23
-            24 => $this->Water, //24
-            25 => $this->Dark,     //25
+            $this->Fire,    //18
+            $this->Wind,    //19
+            $this->Lightning,     //20
+            $this->Light,   //21
+            $this->Ice,   //22
+            $this->Earth,   //23
+            $this->Water, //24
+            $this->Dark,     //25
 
 
             //advanced stats
-            26 => $this->ACC,       //26
-            27 => $this->EVA       //27
-        );
+            $this->ACC,       //26
+            $this->EVA       //27
+        ];
 
 
-        return json_encode($stats);
+        return $stats;
     }
 
     private function setStatsWithMods(){
