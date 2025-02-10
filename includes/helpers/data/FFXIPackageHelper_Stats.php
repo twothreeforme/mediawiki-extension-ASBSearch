@@ -520,78 +520,55 @@ class FFXIPackageHelper_Stats {
 
     public function getStats(){
 
-        // throw new Exception( json_encode([
-        //     $this->baseSTR,     //2
-        //     $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
-
-        //     $this->baseDEX,     //4
-        //     $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
-
-        //     $this->baseVIT,     //6
-        //     $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
-
-        //     $this->baseAGI,     //8
-        //     $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
-
-        //     $this->baseINT,     //10
-        //     $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
-
-        //     $this->baseMND,     //12
-        //     $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
-
-        //     $this->baseCHR,     //14
-        //     $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0 //15
-        //     ]) ) ;
-
-        $stats = [
+        $stats = array(
             // base stats
-            $this->HP,      //0
-            $this->MP,      //1
+            0 => $this->HP,      //0
+            1 => $this->MP,      //1
 
             //base stats
-            $this->baseSTR,     //2
-            $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
+            2 => $this->baseSTR,     //2
+            3 => $this->modifiers["STR"] ? $this->modifiers["STR"] : 0, //3
 
-            $this->baseDEX,     //4
-            $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
+            4 => $this->baseDEX,     //4
+            5 => $this->modifiers["DEX"] ? $this->modifiers["DEX"] : 0, //5
 
-            $this->baseVIT,     //6
-            $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
+            6 => $this->baseVIT,     //6
+            7 =>  $this->modifiers["VIT"] ? $this->modifiers["VIT"] : 0, //7
 
-            $this->baseAGI,     //8
-            $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
+            8 => $this->baseAGI,     //8
+            9 =>  $this->modifiers["AGI"] ? $this->modifiers["AGI"] : 0, //9
 
-            $this->baseINT,     //10
-            $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
+            10 => $this->baseINT,     //10
+            11 => $this->modifiers["INT"] ? $this->modifiers["INT"] : 0, //11
 
-            $this->baseMND,     //12
-            $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
+            12 => $this->baseMND,     //12
+            13 => $this->modifiers["MND"] ? $this->modifiers["MND"] : 0, //13
 
-            $this->baseCHR,     //14
-            $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
+            14 => $this->baseCHR,     //14
+            15 => $this->modifiers["CHR"] ? $this->modifiers["CHR"] : 0, //15
 
             //additional stats
-            $this->DEF,     //16
-            $this->ATT,     //17
+            16 => $this->DEF,     //16
+            17 => $this->ATT,     //17
 
             //resistances
-            $this->Fire,    //18
-            $this->Wind,    //19
-            $this->Lightning,     //20
-            $this->Light,   //21
-            $this->Ice,   //22
-            $this->Earth,   //23
-            $this->Water, //24
-            $this->Dark,     //25
+            18 => $this->Fire,    //18
+            19 => $this->Wind,    //19
+            20 => $this->Lightning,     //20
+            21 => $this->Light,   //21
+            22 => $this->Ice,   //22
+            23 => $this->Earth,   //23
+            24 => $this->Water, //24
+            25 => $this->Dark,     //25
 
 
             //advanced stats
-            $this->ACC,       //26
-            $this->EVA       //27
-        ];
+            26 => $this->ACC,       //26
+            27 => $this->EVA       //27
+        );
 
 
-        return $stats;
+        return json_encode($stats);
     }
 
     private function setStatsWithMods(){

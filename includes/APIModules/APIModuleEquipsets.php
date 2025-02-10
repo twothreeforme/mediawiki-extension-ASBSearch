@@ -79,15 +79,15 @@ class APIModuleEquipsets extends ApiBase {
             //if ( !str_contains($equipmentString, "13280") ) throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($newEquipmentArray));
 
 
-            if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
+            // if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
 
             $stats = $newStats->getStats();
 
 
-            $encodedStats = json_encode($stats);
+            //$encodedStats = json_encode($stats);
 
 
-            $statsEncoded = base64_encode($encodedStats);
+            $statsEncoded = base64_encode($stats);
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
 
