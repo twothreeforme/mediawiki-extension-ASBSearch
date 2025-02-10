@@ -76,9 +76,10 @@ class APIModuleEquipsets extends ApiBase {
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
 
-            if ( !str_contains($equipmentString, "13280") ) throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($newEquipmentArray));
+            //if ( !str_contains($equipmentString, "13280") ) throw new Exception ( json_encode($incomingEquipmentList) . "\n:::\n" . json_encode($newEquipmentArray));
 
             $statsEncoded = base64_encode(json_encode($newStats->getStats()));
+            if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
 
