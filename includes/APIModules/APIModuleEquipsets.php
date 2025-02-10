@@ -83,7 +83,7 @@ class APIModuleEquipsets extends ApiBase {
 
             $stats = $newStats->getStats();
 
-
+            throw new Exception ( "here" );
             //$encodedStats = json_encode($stats);
 
 
