@@ -13,8 +13,8 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
+        //console.log(result);
         if ( forTab.includes("search") )  {
-          //console.log(result);
           sender.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
@@ -33,12 +33,14 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           changeGrid(grid_, result['equipLabels']);
 
           //console.log(result['equipLabels']);
+          adjustLuaSet(result['luaNames']);
         }
         else if ( forTab.includes("savechar")) {
           mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
         }
         else {
           updateEquipsets(result['stats']);
+          adjustLuaSet(result['luaNames']);
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
@@ -84,6 +86,7 @@ function changeGrid(incomingGridData, equipLabels){
     slot_HTML = updatedGrid[1][1];
     slot_Flag = updatedGrid[1][2];
     slot_name = updatedGrid[1][3];
+    slot_longname = updatedGrid[1][4];
     slot_tooltip = updatedGrid[2];
 
     for (let v = 0; v <= 15; v++) {
@@ -106,8 +109,11 @@ function changeGrid(incomingGridData, equipLabels){
       break;
     }
   }
-
   //mw.hook( 'wikipage.content' ).fire($('.FFXIPackageHelper_Equipsets_equipList'));
+}
+
+function adjustLuaSet(set){
+  //console.log(set);
 }
 
 

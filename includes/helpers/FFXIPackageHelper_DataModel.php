@@ -201,7 +201,7 @@ class DataModel {
 	function parseEquipment($param, $job = null){
         if ( !$param ) return NULL;
 
-		//$iDetails = new FFXIPackageHelper_ItemDetails();
+		$iDetails = new FFXIPackageHelper_ItemDetails();
 
 		foreach ( $param as $row ) {
 			//throw new Exception($row->jobs);
@@ -229,9 +229,12 @@ class DataModel {
 				);
 			}
 
+			$name = $iDetails->items[ $row->itemId ]["name"];
+
 			$workingRow = array (
 				'id' => $row->itemId,
-				'name' => ParserHelper::itemName($row->showname),
+				//'name' => ParserHelper::itemName($row->showname),
+				'name' => $name,
 				'level' => $row->level,
 				'skilltype' => (property_exists($row, 'skilltype' ) ) ? $row->skilltype : 0,
 				'jobs' => $row->jobs,

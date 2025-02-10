@@ -87,7 +87,7 @@ class FFXIPackageHelper_Equipsets  {
 
     public function equipmentGrid($slot = null){
 
-        $griditems = self::updateGridItems($slot);
+        $griditems = self::updateGridItems($slot)[0];
 
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
         $imageURL = $f->getCanonicalUrl();
@@ -285,6 +285,12 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
+    public function showLuaSets(){
+            $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >
+                        <span id=\"FFXIPackageHelper_Equipsets_showLuaSets\"></span>
+                        </div>";
+            return $html;
+    }
 
     private function meritIncrement($stat){
         return "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
@@ -319,7 +325,7 @@ class FFXIPackageHelper_Equipsets  {
                         </tr>
                         <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                    $this->additionalData() .
+                    $this->additionalData() . $this->showLuaSets() .
                 "</div>";
 
         return $html;
@@ -383,7 +389,12 @@ class FFXIPackageHelper_Equipsets  {
         $tooltip = "";
 
         $updatedGrid = array();
+        $longNames = array();
         for ( $s = 0; $s <= 15; $s++){
+
+            $id = intval($slot[$s][0]);
+            if ( $id != 0 )  $longNames[] = ucwords($iDetails->items[ $id ]["longname"]);
+            else $longNames[] = 0;
 
             if ( $slot[$s][2] == 1 ){
                 $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
@@ -391,19 +402,20 @@ class FFXIPackageHelper_Equipsets  {
                 $parserOutput = $parser->parse( $slot[$s][1], $title, $parserOptions );
                 $slot[$s][1] = $parserOutput->getText();
 
+
                 if ( $slot[$s][0] != 0 ){
-                    $id = intval($slot[$s][0]);
+                    //$id = intval($slot[$s][0]);
                     $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
+
                 }
                 else $tooltip = "";
 
                 $updatedGrid[] = [$s, $slot[$s], $tooltip];
                 //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
-
             }
         }
         //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
-        return $updatedGrid;
+        return [$updatedGrid, $longNames];
     }
 
     private function showShareButton($id){

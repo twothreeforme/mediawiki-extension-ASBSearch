@@ -74,7 +74,8 @@ class APIModuleEquipsets extends ApiBase {
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
 
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
-            $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList);
+            $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList)[0];
+            $longNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
             // if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
 
@@ -89,8 +90,9 @@ class APIModuleEquipsets extends ApiBase {
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
 
-
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
+            $result->addValue( $params['action'], "luaNames", $longNamesArray );
+
 
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
