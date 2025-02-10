@@ -83,10 +83,10 @@ class APIModuleEquipsets extends ApiBase {
 
             $stats = $newStats->getStats();
 
-            //$encodedStats = json_encode($stats);
+            $encodedStats = json_encode($stats);
 
 
-            $statsEncoded = base64_encode($stats);
+            $statsEncoded = base64_encode($encodedStats);
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
 
