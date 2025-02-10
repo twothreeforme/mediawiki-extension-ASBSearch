@@ -93,7 +93,7 @@ function getStatsData(equipIDString){
     }
     equipIDString = equipIDString.join("|");
 
-    // console.log("getStatsData: ", equipIDString, encodeURIComponent(btoa(equipIDString)));
+    console.log("getStatsData: ", equipIDString);
     //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
     return {
         action: "equipsets",
