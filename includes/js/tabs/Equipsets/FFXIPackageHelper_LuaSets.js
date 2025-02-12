@@ -19,7 +19,7 @@ module.exports.adjustLuaSet = function (set) {
   luashitacast += "},</pre>";
   ashitacast += "&lt;/set&gt;";
 
-  document.getElementById("FFXIPackageHelper_Equipsets_showLuaSets").innerHTML = luashitacast; //+ ashitacast;
+  document.getElementById("FFXIPackageHelper_Equipsets_showLuaSets").innerHTML = luashitacast + ashitacast;
 }
 
 function LAC_slotName(slot){
