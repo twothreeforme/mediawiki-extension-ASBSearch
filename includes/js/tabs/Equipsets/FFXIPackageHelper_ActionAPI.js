@@ -1,5 +1,6 @@
 
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
+var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 
 
 module.exports.actionAPI = function (params, forTab, currentButton, sender) {
@@ -33,7 +34,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           changeGrid(grid_, result['equipLabels']);
 
           //console.log(result['equipLabels']);
-          adjustLuaSet(result['luaNames']);
+          LuaSets.adjustLuaSet(result['luaNames']);
         }
         else if ( forTab.includes("savechar")) {
           mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
@@ -176,41 +177,4 @@ function updateEquipmentList(slotNumber, updatedName){
   let labelLink = document.getElementById(linkID);
   labelLink.innerHTML = updatedName;
 
-}
-
-function adjustLuaSet(set){
-  if ( !set ) return;
-
-  let lua = "<h2>Luashitacast</h2><pre>SetName = {\n";
-  for (let e = 0; e <= 15; e++) {
-    console.log(set[e]);
-    if ( set[e] != 0 ){
-      let item = set[e].replace("\'", "\\\'");
-      lua += `\t${slotName(e)}\'${item}\',\n`
-    }
-  }
-  lua += "},</pre>";
-
-  document.getElementById("FFXIPackageHelper_Equipsets_showLuaSets").innerHTML = lua;
-}
-
-function slotName(slot){
-  switch(slot){
-    case 0: return "Main = ";
-    case 1: return "Sub = ";
-    case 2: return "Range = ";
-    case 3: return  "Ammo = ";
-    case 4: return  "Head = ";
-    case 5: return  "Neck = ";
-    case 6: return  "Ear1 = ";
-    case 7: return  "Ear2 = ";
-    case 8: return  "Body = ";
-    case 9: return  "Hands = ";
-    case 10: return "Ring1 = ";
-    case 11: return "Ring2 = ";
-    case 12: return "Back = ";
-    case 13: return "Waist = ";
-    case 14: return "Legs = ";
-    case 15: return "Feet = ";
-  }
 }

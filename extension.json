@@ -93,6 +93,7 @@
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_MeritEdits.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
