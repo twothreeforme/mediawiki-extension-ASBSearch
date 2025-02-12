@@ -8,14 +8,14 @@ module.exports.adjustLuaSet = function (set) {
 
 
   for (let e = 0; e <= 15; e++) {
-    console.log(set[e]);
+    //console.log(set[e]);
     if ( set[e] != 0 ){
       let item = set[e].replace("\'", "\\\'");
       luashitacast += `\t${LAC_slotName(e)}\'${item}\',\n`;
       ashitacast += AC_slotName(e, item) + ` \n`;
     }
   }
-  console.log(ashitacast);
+  //console.log(ashitacast);
   luashitacast += "},</pre>";
   ashitacast += "&lt;/set&gt;";
 
