@@ -15,6 +15,7 @@ module.exports.adjustLuaSet = function (set) {
       ashitacast += AC_slotName(e, item) + `\n`;
     }
   }
+  console.log(ashitacast);
   luashitacast += "},</pre>";
   ashitacast += "&lt/set&gt";
 
