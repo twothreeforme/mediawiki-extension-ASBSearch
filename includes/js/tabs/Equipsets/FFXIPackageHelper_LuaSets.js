@@ -8,11 +8,11 @@ module.exports.adjustLuaSet = function (set) {
 
 
   for (let e = 0; e <= 15; e++) {
-    //console.log(set[e]);
+    console.log(set[e]);
     if ( set[e] != 0 ){
       let item = set[e].replace("\'", "\\\'");
       luashitacast += `\t${LAC_slotName(e)}\'${item}\',\n`;
-      ashitacast += AC_slotName_front(e, item) + `\n`;
+      ashitacast += AC_slotName(e, item) + `\n`;
     }
   }
   luashitacast += "},</pre>";
@@ -43,7 +43,7 @@ function LAC_slotName(slot){
   }
 }
 
-function AC_slotName_front(slot,item){
+function AC_slotName(slot,item){
   switch(slot){
     case 0: return `\t&ltmain&gt${item}&lt/main&gt`;
     case 1: return `\t&ltsub&gt${item}&lt/sub&gt`;
