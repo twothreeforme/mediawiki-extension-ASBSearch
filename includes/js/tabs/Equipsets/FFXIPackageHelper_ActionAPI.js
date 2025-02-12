@@ -40,7 +40,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
         }
         else {
           updateEquipsets(result['stats']);
-          adjustLuaSet(result['luaNames']);
+          //adjustLuaSet(result['luaNames']);
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
@@ -90,6 +90,9 @@ function changeGrid(incomingGridData, equipLabels){
     slot_tooltip = updatedGrid[2];
 
     for (let v = 0; v <= 15; v++) {
+      /**
+       * Change Grid
+       */
       if ( slotChanged != v ) continue;
       if ( slot_Flag[2] == 0 ) continue;
 
@@ -100,6 +103,9 @@ function changeGrid(incomingGridData, equipLabels){
       slot.dataset.value = slot_ID;
 
       //let tempName = slot_name + "\n" + slot_name + "\n" + slot_name + "\n" + slot_name;
+      /**
+       * Handle Tooltip
+       */
       if( slot_ID == 0 ) Tooltip.handleTooltip(slot);
       else {
         Tooltip.handleTooltip(slot, slot_tooltip);
@@ -111,11 +117,6 @@ function changeGrid(incomingGridData, equipLabels){
   }
   //mw.hook( 'wikipage.content' ).fire($('.FFXIPackageHelper_Equipsets_equipList'));
 }
-
-function adjustLuaSet(set){
-  //console.log(set);
-}
-
 
 function updateEquipsets(updatedStats){
   //console.log(updatedStats);
@@ -171,10 +172,45 @@ function adjustStatColor(classname, modValue){
 }
 
 function updateEquipmentList(slotNumber, updatedName){
-
   let linkID = "FFXIPackageHelper_Equipsets_gridLabel" + slotNumber;
   let labelLink = document.getElementById(linkID);
   labelLink.innerHTML = updatedName;
 
 }
 
+function adjustLuaSet(set){
+  if ( !set ) return;
+
+  let lua = "<h2>Luashitacast</h2><pre>SetName = {\n";
+  for (let e = 0; e <= 15; e++) {
+    console.log(set[e]);
+    if ( set[e] != 0 ){
+      let item = set[e].replace("\'", "\\\'");
+      lua += `\t${slotName(e)}\'${item}\',\n`
+    }
+  }
+  lua += "},</pre>";
+
+  document.getElementById("FFXIPackageHelper_Equipsets_showLuaSets").innerHTML = lua;
+}
+
+function slotName(slot){
+  switch(slot){
+    case 0: return "Main = ";
+    case 1: return "Sub = ";
+    case 2: return "Range = ";
+    case 3: return  "Ammo = ";
+    case 4: return  "Head = ";
+    case 5: return  "Neck = ";
+    case 6: return  "Ear1 = ";
+    case 7: return  "Ear2 = ";
+    case 8: return  "Body = ";
+    case 9: return  "Hands = ";
+    case 10: return "Ring1 = ";
+    case 11: return "Ring2 = ";
+    case 12: return "Back = ";
+    case 13: return "Waist = ";
+    case 14: return "Legs = ";
+    case 15: return "Feet = ";
+  }
+}

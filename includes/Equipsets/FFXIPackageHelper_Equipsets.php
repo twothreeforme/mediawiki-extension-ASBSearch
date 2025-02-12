@@ -389,12 +389,12 @@ class FFXIPackageHelper_Equipsets  {
         $tooltip = "";
 
         $updatedGrid = array();
-        $longNames = array();
+        $luaNames = array();
         for ( $s = 0; $s <= 15; $s++){
 
             $id = intval($slot[$s][0]);
-            if ( $id != 0 )  $longNames[] = ucwords($iDetails->items[ $id ]["longname"]);
-            else $longNames[] = 0;
+            if ( $id != 0 )  $luaNames[] = ucwords($iDetails->items[ $id ]["name"]);
+            else $luaNames[] = 0;
 
             if ( $slot[$s][2] == 1 ){
                 $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
@@ -415,7 +415,7 @@ class FFXIPackageHelper_Equipsets  {
             }
         }
         //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
-        return [$updatedGrid, $longNames];
+        return [$updatedGrid, $luaNames];
     }
 
     private function showShareButton($id){
