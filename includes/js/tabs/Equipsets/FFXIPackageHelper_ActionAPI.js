@@ -19,31 +19,17 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           sender.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
-          // const stats_base64 = decodeURIComponent(result['stats']);
-          // const stats_ = JSON.parse(atob(stats_base64));
-          // updateEquipsets(stats_);
-
-          // const grid_base64 = decodeURIComponent(result['grid']);
-          // const grid_ = JSON.parse(atob(grid_base64));
-          // const labels_base64 = decodeURIComponent(result['equipLabels']);
-          // const labels_ = JSON.parse(atob(grid_base64));
-          // changeGrid(grid_, labels_);
-
-          // const luas_base64 = decodeURIComponent(result['luaNames']);
-          // const luas_ = JSON.parse(atob(luas_base64));
-          // LuaSets.adjustLuaSet(luas_);
-
-          const stats_base64 = decodeURIComponent(result['all'][0]);
+          const stats_base64 = decodeURIComponent(result['stats']);
           const stats_ = JSON.parse(atob(stats_base64));
           updateEquipsets(stats_);
 
-          const grid_base64 = decodeURIComponent(result['all'][1]);
+          const grid_base64 = decodeURIComponent(result['grid']);
           const grid_ = JSON.parse(atob(grid_base64));
-          const labels_base64 = decodeURIComponent(result['all'][2]);
+          const labels_base64 = decodeURIComponent(result['equipLabels']);
           const labels_ = JSON.parse(atob(grid_base64));
           changeGrid(grid_, labels_);
 
-          const luas_base64 = decodeURIComponent(result['all'][3]);
+          const luas_base64 = decodeURIComponent(result['luaNames']);
           const luas_ = JSON.parse(atob(luas_base64));
           LuaSets.adjustLuaSet(luas_);
 

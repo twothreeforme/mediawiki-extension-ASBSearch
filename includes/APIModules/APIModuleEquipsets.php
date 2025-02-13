@@ -83,22 +83,22 @@ class APIModuleEquipsets extends ApiBase {
 
             $statsEncoded = base64_encode(json_encode($stats));
             $statsURLSafe = urlencode($statsEncoded);
-            // $result->addValue($params['action'], "stats", $statsURLSafe );
+            $result->addValue($params['action'], "stats", $statsURLSafe );
 
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
-            // $result->addValue($params['action'], "grid", $gridURLSafe );
+            $result->addValue($params['action'], "grid", $gridURLSafe );
 
             $labelsEncoded = base64_encode(json_encode($this->parseEquipmentLabels($newEquipmentArray)));
             $labelsURLSafe = urlencode($labelsEncoded);
-            // $result->addValue( $params['action'], "equipLabels", $labelsURLSafe );
+            $result->addValue( $params['action'], "equipLabels", $labelsURLSafe );
 
             $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
-            // $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
+            $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
 
             //throw new Exception ( "here" );
-            $result->addValue($params['action'], "all", [$statsURLSafe, $gridURLSafe, $labelsURLSafe, $luaNamesURLSafe ] );
+            // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
             
             //if ( $params['sjob'] == 1  ) throw new Exception ( json_encode($incomingEquipmentList) ."::::\n". json_encode($updatedGrid) );
