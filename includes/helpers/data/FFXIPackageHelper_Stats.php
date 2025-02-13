@@ -291,8 +291,8 @@ class FFXIPackageHelper_Stats {
 
     private function setMerits($meritsALL){
         $temp = json_decode($meritsALL, false);
-        $this->$meritStats = $temp[0];
-        foreach( $this->$meritStats as $key => $value ){
+        $this->meritStats = $temp[0];
+        foreach( $this->meritStats as $key => $value ){
 
             switch( intval($key) ){
                 case 2:// (2) HP multiplied 10x the merit value
@@ -330,8 +330,8 @@ class FFXIPackageHelper_Stats {
             // else $this->applyToModifiers( [intval($key) => intval($value)] );
         }
 
-        $this->$meritSkills = $temp[1];
-        foreach( $this->$meritSkills as $key => $value ){
+        $this->meritSkills = $temp[1];
+        foreach( $this->meritSkills as $key => $value ){
 
             // Check weapons skills
             if ( intval($key) <= 12 ){
@@ -344,7 +344,7 @@ class FFXIPackageHelper_Stats {
             else $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
         }
 
-        //throw new Exception ( json_encode($this->$meritSkills) );
+        //throw new Exception ( json_encode($this->meritSkills) );
     }
 
     private function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions
