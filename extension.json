@@ -9,11 +9,19 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
+        "SpecialASBSearch": "includes/ASBSearch/SpecialASBSearch.php",
+
+        "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
+        "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
+        "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
+        "APIModuleEquipsets" : "includes/APIModules/APIModuleEquipsets.php",
+        "APIModuleFishingSearch" : "includes/APIModules/APIModuleFishingSearch.php",
+
+        "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_Effects": "includes/helpers/FFXIPackageHelper_Effects.php",
         "FFXIPackageHelper_Equipment": "includes/helpers/data/FFXIPackageHelper_Equipment.php",
         "FFXIPackageHelper_Variables": "includes/helpers/data/FFXIPackageHelper_Variables.php",
         "FFXIPackageHelper_ItemDetails": "includes/helpers/data/FFXIPackageHelper_ItemDetails.php",
-        "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
         "FFXIPackageHelper_HTMLTabFishingSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabFishingSearch.php",
         "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
@@ -24,24 +32,16 @@
         "FFXIPackageHelper_QueryController": "includes/helpers/FFXIPackageHelper_QueryController.php",
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
-        "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
         "DataModel": "includes/helpers/FFXIPackageHelper_DataModel.php",
         "DBConnection": "includes/helpers/FFXIPackageHelper_DBConnection.php",
         "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
-
-        "SpecialASBSearch": "includes/ASBSearch/SpecialASBSearch.php",
 
         "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
         "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
 
-        "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
-        "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
-        "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
-        "APIModuleEquipsets" : "includes/APIModules/APIModuleEquipsets.php",
-        "APIModuleFishingSearch" : "includes/APIModules/APIModuleFishingSearch.php"
-        
+        "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",

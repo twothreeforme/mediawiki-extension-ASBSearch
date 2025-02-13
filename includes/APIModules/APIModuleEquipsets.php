@@ -61,7 +61,7 @@ class APIModuleEquipsets extends ApiBase {
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
         }
         else if ( $params['action'] == "equipsets_change" ) {
-            //throw new Exception ( json_encode($params));
+
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
@@ -78,7 +78,7 @@ class APIModuleEquipsets extends ApiBase {
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
             // if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
-            if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" );
+            //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" );
 
             $stats = $newStats->getStats();
             $encodedStats = json_encode($stats);
