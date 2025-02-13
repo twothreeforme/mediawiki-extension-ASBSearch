@@ -80,7 +80,7 @@ class APIModuleEquipsets extends ApiBase {
 
             $stats = $newStats->getStats();
             $encodedStats = json_encode($stats);
-
+            throw new Exception ( "here" );
             //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
 
             $statsEncoded = base64_encode($encodedStats);
