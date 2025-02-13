@@ -78,11 +78,11 @@ class APIModuleEquipsets extends ApiBase {
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
             // if ( !str_contains($equipmentString, "13280") ) throw new Exception ( "here" );
+            if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" );
 
             $stats = $newStats->getStats();
             $encodedStats = json_encode($stats);
 
-            if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" );
 
             $statsEncoded = base64_encode($encodedStats);
             $statsURLSafe = urlencode($statsEncoded);
