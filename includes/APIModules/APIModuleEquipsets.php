@@ -95,7 +95,7 @@ class APIModuleEquipsets extends ApiBase {
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
             $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
 
-            throw new Exception ( "here" );
+            //throw new Exception ( "here" );
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
             
