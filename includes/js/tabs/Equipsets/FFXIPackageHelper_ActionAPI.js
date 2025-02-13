@@ -34,7 +34,9 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           changeGrid(grid_, result['equipLabels']);
 
           //console.log(result['equipLabels']);
-          LuaSets.adjustLuaSet(result['luaNames']);
+          const luas_base64 = decodeURIComponent(result['luaNames']);
+          const luas_ = JSON.parse(atob(luas_base64));
+          LuaSets.adjustLuaSet(luas_);
         }
         else if ( forTab.includes("savechar")) {
           mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
