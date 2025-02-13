@@ -93,7 +93,7 @@ class APIModuleEquipsets extends ApiBase {
 
             $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
-            $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
+            $result->addValue( $params['action'], "luaNames", $luaNamesArray );
 
             //throw new Exception ( "here" );
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
