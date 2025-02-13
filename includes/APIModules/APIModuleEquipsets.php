@@ -77,11 +77,11 @@ class APIModuleEquipsets extends ApiBase {
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList)[0];
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
-            if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
 
             $stats = $newStats->getStats();
             $encodedStats = json_encode($stats);
 
+            if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
 
             $statsEncoded = base64_encode($encodedStats);
             $statsURLSafe = urlencode($statsEncoded);
