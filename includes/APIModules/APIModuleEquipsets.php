@@ -89,9 +89,9 @@ class APIModuleEquipsets extends ApiBase {
             $gridURLSafe = urlencode($gridEncoded);
             $result->addValue($params['action'], "grid", $gridURLSafe );
 
-            $labelsEncoded = base64_encode(json_encode($this->parseEquipmentLabels($newEquipmentArray)));
-            $labelsURLSafe = urlencode($labelsEncoded);
-            $result->addValue( $params['action'], "equipLabels", $labelsURLSafe );
+            // $labelsEncoded = base64_encode(json_encode($this->parseEquipmentLabels($newEquipmentArray)));
+            // $labelsURLSafe = urlencode($labelsEncoded);
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
