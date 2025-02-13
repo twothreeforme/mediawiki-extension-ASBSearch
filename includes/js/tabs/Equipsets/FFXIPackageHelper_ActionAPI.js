@@ -19,24 +19,34 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           sender.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
-          
-          // updateEquipsets(result['stats']);
-          // changeGrid(result['grid']);
+          // const stats_base64 = decodeURIComponent(result['stats']);
+          // const stats_ = JSON.parse(atob(stats_base64));
+          // updateEquipsets(stats_);
 
-          const stats_base64 = decodeURIComponent(result['stats']);
+          // const grid_base64 = decodeURIComponent(result['grid']);
+          // const grid_ = JSON.parse(atob(grid_base64));
+          // const labels_base64 = decodeURIComponent(result['equipLabels']);
+          // const labels_ = JSON.parse(atob(grid_base64));
+          // changeGrid(grid_, labels_);
+
+          // const luas_base64 = decodeURIComponent(result['luaNames']);
+          // const luas_ = JSON.parse(atob(luas_base64));
+          // LuaSets.adjustLuaSet(luas_);
+
+          const stats_base64 = decodeURIComponent(result['all'][0]);
           const stats_ = JSON.parse(atob(stats_base64));
-          //console.log("api: equipsets_change: ", stats_);
           updateEquipsets(stats_);
 
-          const grid_base64 = decodeURIComponent(result['grid']);
+          const grid_base64 = decodeURIComponent(result['all'][1]);
           const grid_ = JSON.parse(atob(grid_base64));
-          //console.log("api: equipsets_change: ", grid_);
-          changeGrid(grid_, result['equipLabels']);
+          const labels_base64 = decodeURIComponent(result['all'][2]);
+          const labels_ = JSON.parse(atob(grid_base64));
+          changeGrid(grid_, labels_);
 
-          //console.log(result['equipLabels']);
-          const luas_base64 = decodeURIComponent(result['luaNames']);
+          const luas_base64 = decodeURIComponent(result['all'][3]);
           const luas_ = JSON.parse(atob(luas_base64));
           LuaSets.adjustLuaSet(luas_);
+
         }
         else if ( forTab.includes("savechar")) {
           mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
