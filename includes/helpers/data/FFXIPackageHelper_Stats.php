@@ -44,8 +44,8 @@ class FFXIPackageHelper_Stats {
     public $modifiers = [];
     public $equipment;
     public $skillCaps = [];
-    public $meritStats = null;
-    public $meritSkills = null;
+    public $meritStats = [];
+    public $meritSkills = [];
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
 
