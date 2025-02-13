@@ -79,11 +79,9 @@ class APIModuleEquipsets extends ApiBase {
 
 
             $stats = $newStats->getStats();
-            $encodedStats = json_encode($stats);
-
             //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
 
-            $statsEncoded = base64_encode($encodedStats);
+            $statsEncoded = base64_encode(json_encode($stats));
             $statsURLSafe = urlencode($statsEncoded);
             $result->addValue($params['action'], "stats", $statsURLSafe );
 
@@ -92,9 +90,12 @@ class APIModuleEquipsets extends ApiBase {
             $result->addValue($params['action'], "grid", $gridURLSafe );
 
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
-            $result->addValue( $params['action'], "luaNames", $luaNamesArray );
 
-            throw new Exception ( "here" );
+            $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
+            $luaNamesURLSafe = urlencode($luaNamesEncoded );
+            $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
+
+            //throw new Exception ( "here" );
             // $result->addValue($params['action'], "stats", $newStats->getStats() );
             // $result->addValue($params['action'], "grid", $updatedGrid );
             
