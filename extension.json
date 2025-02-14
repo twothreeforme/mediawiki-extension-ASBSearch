@@ -137,6 +137,9 @@
         "equipsets_savechar": {
 			"class": "APIModuleEquipsets"
 		},
+        "equipsets_selectchar": {
+			"class": "APIModuleEquipsets"
+		},
         "fishingsearch": {
 			"class": "APIModuleFishingSearch"
 		}

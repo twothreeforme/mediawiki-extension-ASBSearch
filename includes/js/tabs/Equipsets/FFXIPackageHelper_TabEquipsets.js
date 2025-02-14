@@ -182,16 +182,21 @@ module.exports.setLinks = function (){
     //     saveSetClicked();
     // });
 
-    const manageChars = document.getElementById("FFXIPackageHelper_dynamiccontent_manageChars");
-    const modalChar = new ModalCharManagement();
-    manageChars.addEventListener("click", function (e) {
-        modalChar.open();
-    });
+    // const manageChars = document.getElementById("FFXIPackageHelper_dynamiccontent_manageChars");
+    // const modalChar = new ModalCharManagement();
+    // manageChars.addEventListener("click", function (e) {
+    //     modalChar.open();
+    // });
 
     const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
     const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
     addChar.addEventListener("click", function (e) {
         modalCharAdd.open();
+    });
+
+    const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
+    selectChar.addEventListener("change", function (e) {
+        selectCharClicked();
     });
 
     // Load Merit Edits section
@@ -250,7 +255,6 @@ function shareQueryClicked(shareID, params) {
 };
 
 function loadSharedLink(url){
-
     let paramString = url.split('?')[1];
     let params_arr = paramString.split('&');
     var race, mlvl, slvl, mjob, sjob, merits, equipment;
@@ -294,7 +298,7 @@ function loadSharedLink(url){
         merits: merits,
         equipment: equipment,
     }
-    //console.log("loadSharedLink", url, data, decodeURIComponent(data.equipment), atob( decodeURIComponent(data.equipment)));
+
     API.actionAPI(data, data.action, null, this);
 
     mlvlDropdown.value=data.mlvl;
@@ -325,8 +329,13 @@ function loadSharedLink(url){
     tabsButton_equipsets.click();
 }
 
-function manageSetClicked() {
+function selectCharClicked(){
+    const data = {
+        action: "equipsets_selectchar",
+        charname: document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value,
+    }
 
+    API.actionAPI(data, data.action, null, updateStats);
 }
 
 function saveCharacterClicked(charName){

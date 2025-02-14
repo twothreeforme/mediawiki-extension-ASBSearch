@@ -39,10 +39,35 @@ class DBConnection {
             //$status->value = $db;
             $returnDB = $db;
         } catch ( DBConnectionError $e ) {
-            //$status->fatal( 'config-connection-error', $e->getMessage() );
-            print_r('issue');
+            $status->fatal( 'config-connection-error', $e->getMessage() );
+            //print_r('issue');
+            return $status;
         }
-        // return $status;
+        return $returnDB;
+    }
+
+    public function openConnectionSets($database = null) {
+        if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] == 'localhost' ){
+			$this->dbUsername = 'root'; $this->dbPassword = '';
+		}
+        if ( $database == null ) $database = "Equipsets";
+        try {
+            $db = ( new DatabaseFactory() )->create( 'mysql', [
+                'host' => 'localhost',
+                'user' => $this->dbUsername,
+                'password' => $this->dbPassword,
+                // 'user' => 'horizon_wiki',
+                // 'password' => 'KamjycFLfKEyFsogDtqM',
+                'dbname' => $database,
+                'flags' => 0,
+                'tablePrefix' => ''] );
+            //$status->value = $db;
+            $returnDB = $db;
+        } catch ( DBConnectionError $e ) {
+            $status->fatal( 'config-connection-error', $e->getMessage() );
+            //print_r('issue');
+            return $status;
+        }
         return $returnDB;
     }
 
@@ -995,21 +1020,115 @@ class DBConnection {
 		// }
 		// return false;
 	}
+    public function getUserCharactersFromUserID($uid){
+        return $this->getUserCharacters([
+            'userid' => $uid
+        ]);
+    }
 
-    public function getUserCharacters($uid){
-        $dbr = $this->openConnection();
+
+    public function getUserCharacters($char = null, $testForExistingChar = false){
+        $dbr = $this->openConnectionSets();
+        $uid = $char["userid"];
 
         $chars = $dbr->newSelectQueryBuilder()
-        ->select( [ 'charname' ] )
+        ->select( [ 'charname', 'charid', 'race', 'merits' ] )
         ->from( 'user_chars' )
         ->where( [ "user_chars.userid = $uid" ] )
         ->fetchResultSet();
 
         $userCharacters = [];
         foreach($chars as $row){
-            $userCharacters[] = $row->charname;
+            if ( $testForExistingChar == true &&
+                array_key_exists("charname", $char) &&
+                $char["charname"] != null &&
+                $row->charname == $char["charname"] ) {
+                //throw new Exception ( json_encode($row) );
+                return $row->charname;
+            }
+            else $userCharacters[] = [
+                'charname' => $row->charname,
+                'charid' => $row->charid,
+                'race' => $row->race,
+                'merits' => $row->merits
+            ];
         }
         return $userCharacters;
+    }
+
+    public function getSelectedCharacter($char){
+        $dbr = $this->openConnectionSets();
+
+        $uid = $char['userid'];
+        $charname = $char['charname'];
+
+        $query = [
+            "user_chars.userid = '$uid' AND user_chars.charname = '$charname'",
+        ];
+
+        $result = $dbr->newSelectQueryBuilder()
+        ->select( [ 'charname', 'charid', 'race', 'merits' ] )
+        ->from( 'user_chars' )
+        ->where($query)
+        ->fetchResultSet();
+
+        foreach($result as $row){
+            return [
+                'charname' => $row->charname,
+                'charid' => $row->charid,
+                'race' => $row->race,
+                'merits' => $row->merits
+            ];
+        }
+        return [];
+    }
+
+    public function setUserCharacter($char){
+        $dbw = $this->openConnectionSets();
+
+        return $dbw->insert(
+            'user_chars',
+            [
+                'userid' => $char["userid"],
+                'charname' => $char["charname"],
+                'race' => $char["race"],
+                'merits' => $char["merits"],
+            ],
+            __METHOD__
+        );
+    }
+
+    public function getUserSet($uid){
+        // $dbr = $this->openConnection();
+
+        // $chars = $dbr->newSelectQueryBuilder()
+        // ->select( [ 'charname' ] )
+        // ->from( 'user_chars' )
+        // ->where( [ "user_chars.userid = $uid" ] )
+        // ->fetchResultSet();
+
+        // $userCharacters = [];
+        // foreach($chars as $row){
+        //     $userCharacters[] = $row->charname;
+        // }
+        // return $userCharacters;
+    }
+
+
+    public function setExists($dbr, $setid){
+        //$dbr = $this->openConnection();
+
+        // $chars = $dbr->newSelectQueryBuilder()
+        // ->select( [ 'charname' ] )
+        // ->from( 'user_chars' )
+        // ->where( [ "user_chars.userid = $uid" ] )
+        // ->fetchResultSet();
+
+        // $userCharacters = [];
+        // foreach($chars as $row){
+        //     $userCharacters[] = $row->charname;
+        // }
+        // return $userCharacters;
     }
 
 }

@@ -43,8 +43,8 @@ class FFXIPackageHelper_Equipsets  {
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
         $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
-                    <span>Character  " . FFXIPackageHelper_HTMLOptions::userSetsDropDown("FFXIPackageHelper_equipsets_selectUserSet") . "</span>
-                    <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\" disabled>
+                    <span>Character  " . FFXIPackageHelper_HTMLOptions::userCharsDropDown("FFXIPackageHelper_equipsets_selectUserChar") . "</span>
+                    <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\">
                         <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
                             <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
                             <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
@@ -165,9 +165,9 @@ class FFXIPackageHelper_Equipsets  {
         $html = "<div style=\"width:100%;text-align: center; padding: 12px;\">
                     <span>
                         ". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
-                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Save</button>" .
-                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageChars\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Chars</button>" .
-                        "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageSets\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Sets</button>" .
+                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Save</button>" .
+                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageChars\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Chars</button>" .
+                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageSets\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Sets</button>" .
                     "</span>
                 </div>";
         return $html;

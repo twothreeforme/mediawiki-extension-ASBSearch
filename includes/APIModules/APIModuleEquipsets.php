@@ -106,23 +106,39 @@ class APIModuleEquipsets extends ApiBase {
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
             //throw new Exception($params['charname']);
-            $user = RequestContext::getMain()->getUser();
-            $uid = $user->getId();
-            if ( $uid == 0 || $uid == null ){
-                $result->addValue( $params['action'], "savecharERROR", "User must be logged in to complete this task." );
+            $char = $this->createChar($params);
+
+            if ( $char['userid'] == 0 || $char['userid'] == null ){
+                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save character."] );
                 return;
             }
 
-            $db = new DBConnection();
-            $userCharacters = $db->getUserCharacters($uid);
-            if( count($userCharacters) == 0 ){
-                throw new Exception ( "No characters found ");
-            }
             //check user for existing character name
+            $db = new DBConnection();
 
-            //if doesnt exist then save
 
+            $userCharacters = $db->getUserCharacters($char, true);
+            //throw new Exception ( json_encode($userCharacters));
 
+            if( gettype($userCharacters) == "string" ){
+                // character name already exists, should return error
+                //throw new Exception ( json_encode($userCharacters));
+                $result->addValue( $params['action'], "status", ["ERROR", "Character name already exists for user."] );
+                return;
+            }
+            else{
+                //char name is new and should be saved
+                $db->setUserCharacter($char);
+                $userCharacters[] = $char;
+                $result->addValue( $params['action'], "status", ["PASS", $userCharacters] );
+            }
+        }
+        else if ( $params['action'] == "equipsets_selectchar" ) {
+            $db = new DBConnection();
+            $char = $this->createChar($params);
+
+            $selectedChar = $db->getSelectedCharacter($char);
+            $result->addValue( $params['action'], "selected", $selectedChar );
         }
     }
 
@@ -134,6 +150,16 @@ class APIModuleEquipsets extends ApiBase {
             $equipLabelsArray[$i] = $labelHtml;
         }
         return $equipLabelsArray;
+    }
+
+    private function createChar($params){
+        $user = RequestContext::getMain()->getUser();
+        return [
+            'userid' => $user->getId(),
+            'charname' => $params['charname'],
+            'race' => $params['race'] ,
+            'merits' => $params['merits']
+        ];
     }
 }
 

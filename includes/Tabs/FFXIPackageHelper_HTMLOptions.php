@@ -110,9 +110,24 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function userSetsDropDown($classname){
+    public static function userCharsDropDown($classname){
         $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">None</option>";
+
+        $user = RequestContext::getMain()->getUser();
+        $uid = $user->getId();
+        if ( $uid != 0 && $uid != null ){
+            $db = new DBConnection();
+            $userCharacters = $db->getUserCharactersFromUserID($uid);
+
+            if ( count($userCharacters) > 0 ){
+                foreach ($userCharacters as $char) {
+                    $html .= "<option >". $char["charname"] ."</option>";
+                }
+            }
+
+        }
+
         $html .= "</select>";
         return $html;
     }

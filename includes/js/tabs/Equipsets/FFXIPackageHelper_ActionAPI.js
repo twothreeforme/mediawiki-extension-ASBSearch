@@ -32,11 +32,18 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           LuaSets.adjustLuaSet(luas_);
         }
         else if ( forTab.includes("savechar")) {
-          mw.notify( result['savecharERROR'], { autoHide: true,  type: 'error' } );
+          if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
+          else { /*PASS*/
+            updateCharsList(result['status'][1]);
+            mw.notify( "Character Saved", { autoHide: true,  type: 'success' } );
+          }
+        }
+        else if ( forTab.includes("selectchar")) {
+          updateCharacter(result['selected']);
+          sender(); //updateStats()
         }
         else {
           updateEquipsets(result['stats']);
-          //adjustLuaSet(result['luaNames']);
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
@@ -171,5 +178,47 @@ function updateEquipmentList(slotNumber, updatedName){
   let linkID = "FFXIPackageHelper_Equipsets_gridLabel" + slotNumber;
   let labelLink = document.getElementById(linkID);
   labelLink.innerHTML = updatedName;
+}
+
+function updateCharsList(newChars){
+  //console.log(newChars);
+  var charSelectOptions = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
+
+  Array.from(charSelectOptions).forEach((option) => {
+    if ( option.text != "None" ) charSelectOptions.removeChild(option);
+  });
+
+  newChars.map((optionData) => {
+    var opt = document.createElement('option')
+    opt.appendChild(document.createTextNode(optionData["charname"]));
+    //opt.value = optionData["charid"];
+    charSelectOptions.appendChild(opt);
+  });
+
+  const lastOptionIndex = charSelectOptions.options.length - 1;
+  charSelectOptions.selectedIndex = lastOptionIndex;
+}
+
+function updateCharacter(char){
+  document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = char.race;
+
+  const merits_base64 = decodeURIComponent(char.merits);
+  const merits_ = JSON.parse(atob(merits_base64));
+  setMeritsData(merits_);
+}
+
+function setMeritsData(merits_){
+  let meritStats = merits_[0];
+  let meritSkills = merits_[1];
+
+  Object.keys(meritStats).forEach(key => {
+    const _id = "FFXIPackageHelper_equipsets_merits_stats" + key;
+    document.getElementById(_id).value  = meritStats[key];
+  });
+
+  Object.keys(meritSkills).forEach(key => {
+    const _id = "FFXIPackageHelper_equipsets_merits_skill" + key;
+    document.getElementById(_id).value = meritSkills[key];
+  });
 
 }
