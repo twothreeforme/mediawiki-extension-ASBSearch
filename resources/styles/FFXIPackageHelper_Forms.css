@@ -446,12 +446,12 @@ Modal Windows
 .modal-content {
     background-color: white;
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 5px;
-    max-height: 60vh;
+
 }
 
 /*
