@@ -8,7 +8,6 @@ module.exports.setLinks = function (){
 
     const mobName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=mobNameSearch]')[0];
     mobName_enterKeysearchDropRatesSubmit.addEventListener("keypress", (e) =>  {
-        e.preventDefault();
         if (e.key === "Enter") {
         submitDropRatesRequest();
         }
@@ -16,7 +15,6 @@ module.exports.setLinks = function (){
 
     const itemName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=itemNameSearch]')[0];
     itemName_enterKeysearchDropRatesSubmit.addEventListener("keypress", (e) =>  {
-        e.preventDefault();
         if (e.key === "Enter") {
         submitDropRatesRequest();
         }
