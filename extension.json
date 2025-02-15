@@ -100,6 +100,7 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalSetManagement.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharManagement.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharAdd.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharRemove.js",
                 "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
@@ -138,6 +139,9 @@
 			"class": "APIModuleEquipsets"
 		},
         "equipsets_selectchar": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_removechar": {
 			"class": "APIModuleEquipsets"
 		},
         "fishingsearch": {

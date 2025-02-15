@@ -1,9 +1,10 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
-var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
-var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
+//var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
+//var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
 var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
+var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 var raceDropdown = null;
@@ -177,16 +178,18 @@ module.exports.setLinks = function (){
         shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", getStatsData(true));
     });
 
-    // const saveSet = document.getElementById("FFXIPackageHelper_dynamiccontent_saveSet");
-    // saveSet.addEventListener("click", function (e) {
-    //     saveSetClicked();
-    // });
-
-    // const manageChars = document.getElementById("FFXIPackageHelper_dynamiccontent_manageChars");
-    // const modalChar = new ModalCharManagement();
-    // manageChars.addEventListener("click", function (e) {
-    //     modalChar.open();
-    // });
+    /**
+     * Character management
+     */
+    const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
+    selectChar.addEventListener("change", function (e) {
+        const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+        if ( e.target.value != 0 ) {
+            removeButton.style.display = "inline-block";
+            selectCharClicked();
+        }
+        else removeButton.style.display = "none";
+    });
 
     const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
     const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
@@ -194,10 +197,15 @@ module.exports.setLinks = function (){
         modalCharAdd.open();
     });
 
-    const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
-    selectChar.addEventListener("change", function (e) {
-        selectCharClicked();
+    const removeChar = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+    const modalCharRemove = new ModalCharRemoveWindow({ removeCallback: removeCharacter});
+    removeChar.addEventListener("click", function (e) {
+        if ( e.target.value != 0 ) {
+            modalCharRemove.open(selectChar.options[selectChar.selectedIndex].text);
+        }
     });
+
+
 
     // Load Merit Edits section
     MeritEdits.setLinks(updateStats);
@@ -351,3 +359,32 @@ function saveCharacterClicked(charName){
     API.actionAPI(data, data.action, null, this);
 }
 
+function removeCharacter(charname){
+    //console.log("should remove " + charname);
+
+    const data = {
+        action: "equipsets_removechar",
+        charname: charname
+    }
+
+    API.actionAPI(data, data.action, null, this);
+    resetStats();
+}
+
+function resetStats(){
+    document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value = 0;
+    document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
+
+    const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+    removeButton.style.display = "none";
+
+    const _id = "FFXIPackageHelper_equipsets_merits_";
+    const allMerits = document.querySelectorAll("[id*='" + _id + "']");
+    //console.log(allMerits);
+    var meritsArray = [...allMerits];
+    meritsArray.forEach(merit => {
+        merit.value = 0;
+    });
+
+    updateStats();
+}

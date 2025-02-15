@@ -38,6 +38,11 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
             mw.notify( "Character Saved", { autoHide: true,  type: 'success' } );
           }
         }
+        else if ( forTab.includes("removechar")) {
+          //console.log(result);
+          updateCharsList(result['userchars']);
+          mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
+        }
         else if ( forTab.includes("selectchar")) {
           updateCharacter(result['selected']);
           sender(); //updateStats()

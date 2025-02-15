@@ -148,6 +148,15 @@ Custom Buttons
     border-color: #ffffff75;
 }
 
+.FFXIPackageHelper_dynamiccontent_removeCharacter {
+    display: none;
+    padding: 0px;
+    width: 1rem;
+    border-width: 0.5px;
+    border-radius: 4px;
+    border-color: #ffffff75;
+    background-color: #ff000015;
+}
 
 /*
 Leftover from old ASB page

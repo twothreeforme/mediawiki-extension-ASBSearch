@@ -50,6 +50,11 @@ class FFXIPackageHelper_Equipsets  {
                             <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
                         </svg>
                     </button>
+                    <button id=\"FFXIPackageHelper_dynamiccontent_removeCharacter\" class=\"FFXIPackageHelper_dynamiccontent_removeCharacter\">
+                        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                            <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                        </svg>
+                    </button>
 
                     <br>
                     <span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>

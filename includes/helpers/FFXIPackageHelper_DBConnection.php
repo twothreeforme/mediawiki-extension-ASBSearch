@@ -31,8 +31,6 @@ class DBConnection {
                 'host' => 'localhost',
                 'user' => $this->dbUsername,
                 'password' => $this->dbPassword,
-                // 'user' => 'horizon_wiki',
-                // 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => $database,
                 'flags' => 0,
                 'tablePrefix' => ''] );
@@ -56,8 +54,6 @@ class DBConnection {
                 'host' => 'localhost',
                 'user' => $this->dbUsername,
                 'password' => $this->dbPassword,
-                // 'user' => 'horizon_wiki',
-                // 'password' => 'KamjycFLfKEyFsogDtqM',
                 'dbname' => $database,
                 'flags' => 0,
                 'tablePrefix' => ''] );
@@ -1093,6 +1089,19 @@ class DBConnection {
                 'charname' => $char["charname"],
                 'race' => $char["race"],
                 'merits' => $char["merits"],
+            ],
+            __METHOD__
+        );
+    }
+
+    public function removeUserCharacter($char){
+        $dbw = $this->openConnectionSets();
+
+        return $dbw->delete(
+            'user_chars',
+            [
+                'userid' => $char["userid"],
+                'charname' => $char["charname"]
             ],
             __METHOD__
         );

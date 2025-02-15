@@ -102,7 +102,6 @@ class FFXIPackageHelper_HTMLOptions {
         $zoneNamesList = self::zoneNameList(true);
 
         foreach ($zoneNamesList as $key => $value) {
-            //$key = str_replace("dOria", "d'Oria", $key);
             $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
         }
 

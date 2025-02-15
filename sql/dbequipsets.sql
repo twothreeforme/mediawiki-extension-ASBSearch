@@ -1,10 +1,9 @@
 -- Equipsets updates:
--- CREATE DATABASE Equipsets;
--- within Equipsets...
 
-DROP TABLE IF EXISTS `user_sets`;
-DROP TABLE IF EXISTS `user_chars`;
-DROP TABLE IF EXISTS `sets`;
+-- CREATE DATABASE Equipsets;
+-- DROP TABLE IF EXISTS `user_sets`;
+-- DROP TABLE IF EXISTS `user_chars`;
+-- DROP TABLE IF EXISTS `sets`;
 
 CREATE TABLE `user_sets` (
   `userid` int(10) unsigned NOT NULL,
