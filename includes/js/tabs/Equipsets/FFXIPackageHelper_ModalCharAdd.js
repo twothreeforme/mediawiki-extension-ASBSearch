@@ -45,8 +45,6 @@ class ModalCharAddWindow {
             inputElement.placeholder = 'Character Name';
             inputElement.maxLength = 25;
 
-            //contentWrapper.appendChild(br);
-
             const saveButton = document.createElement('button');
             saveButton.id = 'FFXIPackageHelper_dynamiccontent_saveChar';
             saveButton.classList.add("FFXIPackageHelper_dynamiccontent_customButton");
@@ -65,9 +63,6 @@ class ModalCharAddWindow {
 
         contentWrapper.appendChild(descText2);
 
-        // var originalMerits = document.querySelector(".FFXIPackageHelper_dynamiccontent_showMerits");
-        // var clonedMerits = originalMerits.cloneNode(true);
-        // this.modal.appendChild(clonedMerits);
         this.modal.appendChild(contentWrapper);
 
         document.body.appendChild(this.modal);
@@ -100,7 +95,10 @@ class ModalCharAddWindow {
     open() {
         const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharInput");
         inputElement.value = "";
+
         this.modal.classList.add('open');
+        inputElement.focus();
+
     }
   
     close() {

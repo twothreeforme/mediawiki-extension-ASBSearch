@@ -187,17 +187,20 @@ class ModalWindow {
         }
     }
 
-    // searchClicked() {
-    //     console.log("search clicked: " + this.slot);
-    //     this.options.searchCallback(searchEquip(), "equipsets_search", null)
-    // }
-
     open(itemid) {
         let rButton = document.getElementById(`FFXIPackageHelper_equipsets_removeButton${this.slot}`);
         if ( itemid != 0 ) rButton.style.display = "block";
         else  rButton.style.display = "none";
 
+        // Open the Modal
         this.modal.classList.add('open');
+
+        // Auto-focus inputs when modal opens
+        const inputElement = document.getElementById(`FFXIPackageHelper_equipsets_searchInput${this.slot}`);
+        inputElement.focus();
+
+        // Lock background document so it cannot be scrolling while modal is up
+        document.body.style.overflow = 'hidden';
     }
   
     close() {
@@ -208,7 +211,11 @@ class ModalWindow {
 
         document.getElementById("FFXIPackageHelper_equipsets_searchInput" + this.slot).value = "";
 
+        // Close the Modal
         this.modal.classList.remove('open');
+
+        // Adjust doccument back to normal to allow scrolling
+        document.body.style.overflow = '';
     }
 }
 
