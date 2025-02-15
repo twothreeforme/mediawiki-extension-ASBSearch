@@ -49,6 +49,9 @@ class FFXIPackageHelper_Stats {
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
 
+        // Build modifiers
+        $this->setModifierKeys();
+
         // Get skill ranks
         $this->setSkillCaps($mjob, $mlvl, $sjob, $slvl);
 
@@ -791,6 +794,12 @@ class FFXIPackageHelper_Stats {
         }
     }
 
+    function setModifierKeys(){
+        $vars = new FFXIPackageHelper_Variables();
+        foreach ( $vars->modArray as $k => $v) {
+            $this->modifiers[$v] = 0;
+        }
+    }
 }
 
 ?>

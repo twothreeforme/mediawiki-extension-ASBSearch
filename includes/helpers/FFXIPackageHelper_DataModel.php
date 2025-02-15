@@ -229,7 +229,8 @@ class DataModel {
 				);
 			}
 
-			$name = $iDetails->items[ $row->itemId ]["name"];
+			$name = "";
+			if ( $row->itemId != "" && $row->itemId != 0 ) $name = $iDetails->items[ $row->itemId ]["name"];
 
 			$workingRow = array (
 				'id' => $row->itemId,
