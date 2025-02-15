@@ -200,7 +200,10 @@ class ModalWindow {
         inputElement.focus();
 
         // Lock background document so it cannot be scrolling while modal is up
-        document.body.style.overflow = 'hidden';
+        var $body = $(document.body);
+        var oldWidth = $body.innerWidth();
+        $body.css("overflow", "hidden");
+        $body.width(oldWidth);
     }
   
     close() {
@@ -215,7 +218,9 @@ class ModalWindow {
         this.modal.classList.remove('open');
 
         // Adjust doccument back to normal to allow scrolling
-        document.body.style.overflow = '';
+        var $body = $(document.body);
+        $body.css("overflow", "auto");
+        $body.width("auto");
     }
 }
 
