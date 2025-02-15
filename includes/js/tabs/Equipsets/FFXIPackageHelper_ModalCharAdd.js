@@ -98,7 +98,6 @@ class ModalCharAddWindow {
 
         this.modal.classList.add('open');
         inputElement.focus();
-
     }
   
     close() {

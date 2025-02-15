@@ -97,11 +97,11 @@ class ModalWindow {
         this.modal.classList.add('modal');
 
 
-        if (this.options.overlay) {
-            this.overlay = document.createElement('div');
-            this.overlay.classList.add('overlay');
-            this.modal.appendChild(this.overlay);
-        }
+        // if (this.options.overlay) {
+        //     this.overlay = document.createElement('div');
+        //     this.overlay.classList.add('overlay');
+        //     this.modal.appendChild(this.overlay);
+        // }
 
         const contentWrapper = document.createElement('div');
         contentWrapper.id = `FFXIPackageHelper_equipsets_contentWrapper${this.slot}`;
@@ -116,9 +116,9 @@ class ModalWindow {
     }
   
     addEventListeners() {
-        if (this.options.closeOnOverlayClick) {
-            this.overlay.addEventListener('click', () => this.close());
-        }
+        // if (this.options.closeOnOverlayClick) {
+        //     this.overlay.addEventListener('click', () => this.close());
+        // }
   
         const closeButtons = this.modal.querySelectorAll('.close-modal');
             closeButtons.forEach(button => {
@@ -199,11 +199,6 @@ class ModalWindow {
         const inputElement = document.getElementById(`FFXIPackageHelper_equipsets_searchInput${this.slot}`);
         inputElement.focus();
 
-        // Lock background document so it cannot be scrolling while modal is up
-        var $body = $(document.body);
-        var oldWidth = $body.innerWidth();
-        $body.css("overflow", "hidden");
-        $body.width(oldWidth);
     }
   
     close() {
@@ -217,10 +212,6 @@ class ModalWindow {
         // Close the Modal
         this.modal.classList.remove('open');
 
-        // Adjust doccument back to normal to allow scrolling
-        var $body = $(document.body);
-        $body.css("overflow", "auto");
-        $body.width("auto");
     }
 }
 
