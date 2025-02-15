@@ -235,8 +235,10 @@ class FFXIPackageHelper_Stats {
         $rank = $rank - 1;
         if ( $rank < 0 ) $rank = 0;
         $levelTableIndex = $this->getSkillLevelIndex($level, $rank);
-        //throw new Exception ($level, $levelTableIndex, $this->SkillLevelTable[$levelTableIndex][$rank][0], $this->SkillLevelTable[$levelTableIndex][$rank][1] );
-        return floor(( ($level - $levelTableIndex) * $this->SkillLevelTable[$levelTableIndex][$rank][0]) + $this->SkillLevelTable[$levelTableIndex][$rank][1]);
+        $multiplier = $this->SkillLevelTable[$levelTableIndex][$rank][0];
+        $additive = $this->SkillLevelTable[$levelTableIndex][$rank][1];
+
+        return floor(( ($level - $levelTableIndex) * $multiplier) + $additive);
     }
 
     private function setSkillCaps( $mjob, $mlvl, $sjob, $slvl ){
