@@ -141,7 +141,6 @@ class ModalWindow {
         searchButton.addEventListener('click', (e) =>  {
             //this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
             this.searchClicked();
-            inputElement.blur();
         });
 
 
@@ -151,7 +150,7 @@ class ModalWindow {
                 e.preventDefault();
                 //this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
                 this.searchClicked();
-                inputElement.blur();
+                inputField.blur();
             }
         });
     }
