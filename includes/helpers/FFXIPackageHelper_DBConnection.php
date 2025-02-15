@@ -851,7 +851,7 @@ class DBConnection {
                     "item_equipment.level <= $mlvl"
         ];
 
-        if ( $gridSlot != null ) {
+        if ( !is_null($gridSlot)  ) {
             $gridSlot = intval($gridSlot) ;
 
             // main: 1=nothing in offhand, 3= can have offhand
@@ -916,10 +916,10 @@ class DBConnection {
                         $q = "item_equipment.slot = 0x100";
                         break;
                 }
-            if ( $q != null ) array_push ( $query, $q);
+
+                if ( !is_null($q) ) array_push ( $query, $q);
         }
 
-        //throw new Exception( json_encode ($query));
 
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.itemId',
@@ -953,21 +953,21 @@ class DBConnection {
 
         $query = [];
 
-        if ( $bait != null && $bait != "") {
+        if ( !is_null($bait)&& $bait != "") {
             $bait =  strtolower($bait);
             $bait = ParserHelper::replaceSpaces($bait);
             $bait = ParserHelper::replaceApostrophe($bait);
 
             array_push($query, "fishing_bait.name LIKE '%$bait%'");
         }
-        if ( $fish != null && $fish != "") {
+        if ( !is_null($fish) && $fish != "") {
             $fish =  strtolower($fish);
             $fish = ParserHelper::replaceSpaces($fish);
             $fish = ParserHelper::replaceApostrophe($fish);
 
             array_push($query, "fishing_fish.name LIKE '%$fish%'");
         }
-        if ( $zone != null && $zone != "searchallzones") {
+        if ( !is_null($zone) && $zone != "searchallzones") {
             //$zone =  strtolower($zone);
             $zone = ParserHelper::replaceSpaces($zone);
             $zone = ParserHelper::replaceApostrophe($zone); 
@@ -1037,7 +1037,7 @@ class DBConnection {
         foreach($chars as $row){
             if ( $testForExistingChar == true &&
                 array_key_exists("charname", $char) &&
-                $char["charname"] != null &&
+                !is_null($char["charname"]) &&
                 $row->charname == $char["charname"] ) {
                 //throw new Exception ( json_encode($row) );
                 return $row->charname;
