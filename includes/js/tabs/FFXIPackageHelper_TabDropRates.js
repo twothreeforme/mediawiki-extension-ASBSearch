@@ -7,17 +7,17 @@ module.exports.setLinks = function (){
     });
 
     const mobName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=mobNameSearch]')[0];
-    mobName_enterKeysearchDropRatesSubmit.addEventListener("keyup", function(e) {
+    mobName_enterKeysearchDropRatesSubmit.addEventListener("keypress", (e) =>  {
         e.preventDefault();
-        if (e.keyCode === 13) {
+        if (e.key === "Enter") {
         submitDropRatesRequest();
         }
     });
 
     const itemName_enterKeysearchDropRatesSubmit = document.querySelectorAll('input[name=itemNameSearch]')[0];
-    itemName_enterKeysearchDropRatesSubmit.addEventListener("keyup", function(e) {
+    itemName_enterKeysearchDropRatesSubmit.addEventListener("keypress", (e) =>  {
         e.preventDefault();
-        if (e.keyCode === 13) {
+        if (e.key === "Enter") {
         submitDropRatesRequest();
         }
     });

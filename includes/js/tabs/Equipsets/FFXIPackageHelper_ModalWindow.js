@@ -60,6 +60,7 @@ function searchEquip(slot){
 //     };
 //   }
 
+
 class ModalWindow {
     //searchCallback = null;
 
@@ -90,6 +91,10 @@ class ModalWindow {
             ...options
         };
         this.createModal();
+    }
+
+    searchClicked(){
+        return this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
     }
   
     createModal() {
@@ -134,7 +139,18 @@ class ModalWindow {
 
         const searchButton = document.getElementById("FFXIPackageHelper_equipsets_search" + this.slot);
         searchButton.addEventListener('click', (e) =>  {
-            this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
+            //this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
+            this.searchClicked();
+        });
+
+
+        const inputField = document.getElementById(`FFXIPackageHelper_equipsets_searchInput${this.slot}`);
+        inputField.addEventListener("keypress", (e) =>  {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                //this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
+                this.searchClicked();
+            }
         });
     }
   
