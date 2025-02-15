@@ -451,6 +451,7 @@ Modal Windows
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 5px;
+    max-height: 60vh;
 }
 
 /*
