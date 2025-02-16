@@ -51,8 +51,10 @@ class APIModuleEquipsets extends ApiBase {
             $db = new DBConnection();
             $dm = new DataModel();
 
+            $searchString = ParserHelper::replaceApostrophe($params['search']);
+            $searchString = ParserHelper::replaceSpaces($searchString);
 
-            $equipList = $db->getEquipment( $params['search'], $params['mlvl'], $params['slot']);
+            $equipList = $db->getEquipment( $searchString, $params['mlvl'], $params['slot']);
             $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
 
             //throw new Exception(json_encode($finalList));

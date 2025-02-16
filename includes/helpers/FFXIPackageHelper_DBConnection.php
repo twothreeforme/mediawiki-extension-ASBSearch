@@ -854,21 +854,6 @@ class DBConnection {
         if ( !is_null($gridSlot)  ) {
             $gridSlot = intval($gridSlot) ;
 
-            // main: 1=nothing in offhand, 3= can have offhand
-            // sub 2
-            // range 4
-            // ammo 8
-            // head 16
-            // neck 512
-            // ear 6144
-            // body 32
-            // hands 64
-            // rings 24576
-            // back 32768
-            // waist 1024
-            // legs 128
-            // feet 256
-
             $q = null;
                 switch($gridSlot){
                     case 0: // main
