@@ -27,7 +27,7 @@ class APIModuleFishingSearch extends ApiBase {
 
         $finalHtml = $this->queryFishing($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
-        $result->addValue($params['action'], $params['querytype'], $finalHtml);
+        $result->addValue($params['action'], "fishing", $finalHtml);
     }
 
     private function queryFishing($queryData){

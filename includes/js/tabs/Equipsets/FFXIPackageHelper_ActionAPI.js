@@ -11,8 +11,8 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
     const result = d[forTab];
       //console.log(forTab);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result["droprates"]);
-      else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
-      else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
+      else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result["recipes"]);
+      else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result["equipment"]);
       else if ( forTab.includes("equipsets") ){
         //console.log(result);
         if ( forTab.includes("search") )  {
@@ -51,7 +51,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
           updateEquipsets(result['stats']);
         }
       }
-      else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result);
+      else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
 
       if ( currentButton != null){
         const button = document.getElementById(currentButton);

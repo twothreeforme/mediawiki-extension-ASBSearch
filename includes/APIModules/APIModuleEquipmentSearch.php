@@ -29,7 +29,7 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         $finalHtml = $this->queryEquipment($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
-        $result->addValue($params['action'], $params['querytype'], $finalHtml);
+        $result->addValue($params['action'], "equipment", $finalHtml);
     }
 
     private function queryEquipment($queryData){

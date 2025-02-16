@@ -37,7 +37,7 @@ class APIModuleRecipeSearch extends ApiBase {
 
         $finalHtml = $this->queryRecipes($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
-        $result->addValue($params['action'], $params['querytype'], $finalHtml);
+        $result->addValue($params['action'], "recipes", $finalHtml);
     }
 
     private function queryRecipes($queryData){
