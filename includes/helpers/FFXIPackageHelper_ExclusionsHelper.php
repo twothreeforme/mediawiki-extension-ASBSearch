@@ -326,7 +326,12 @@ class ExclusionsHelper {
         'Den of Rancor' => 'Sacrificial Chamber',
         'PsoXja' => 'The Shrouded Maw',
         'Palborough Mines' => 'Waughroon Shrine',
-        'Kindred Spirits' => 'Throne Room'
+        'Kindred Spirits' => 'Throne Room',
+        'Spire of Dem' => 'Spire of Dem',
+        'Spire of Holla' => 'Spire of Holla',
+        'Spire of Mea' => 'Spire of Mea',
+        'Spire of Vahzl' => 'Spire of Vahzl',
+
     );
 
     public static $diggingRelevantZones = array(

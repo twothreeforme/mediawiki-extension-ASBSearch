@@ -28,7 +28,6 @@ class FFXIPackageHelper_QueryController {
 			$dm->parseData($bcnmDropRatesData);
         }
 
-        //throw new Exception( json_encode($temp) );
         
 		$dropRatesArray = $dm->getDataSet();
 

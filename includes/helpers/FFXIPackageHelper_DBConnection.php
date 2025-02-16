@@ -482,6 +482,7 @@ class DBConnection {
 
 		$zoneNameSearch = ParserHelper::replaceSpaces($zoneNameSearch);
 		//if ( $zoneNameSearch != 'searchallzones' )
+
 		if ( !ExclusionsHelper::zoneIsBCNM($zoneNameSearch) && $zoneNameSearch != 'searchallzones' ) return;
 
 		//if ( gettype($itemNameSearch) ==  )
@@ -504,6 +505,7 @@ class DBConnection {
 			//$str = "zone_settings.name => $zoneNameSearch';
 			array_push($query, "zone_settings.name = '$zoneNameSearch'");
 		}
+
 
 		$dbr = $this->openConnection();
 		return $dbr->newSelectQueryBuilder()
