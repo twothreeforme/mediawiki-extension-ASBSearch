@@ -10,7 +10,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
     //console.log(d);
     const result = d[forTab];
       //console.log(forTab);
-      if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result);
+      if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result["droprates"]);
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result);
       else if ( forTab.includes("equipsets") ){
