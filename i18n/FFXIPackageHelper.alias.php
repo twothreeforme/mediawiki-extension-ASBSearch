@@ -13,4 +13,7 @@ $specialPageAliases = [];
  */
 $specialPageAliases['en'] = [
 	'ASBSearch' => [ 'ASBSearch' ],
+	'WeatherForecast' => [ 'WeatherForecast' ],
+	'DiggingWeatherForecast' => [ 'DiggingWeatherForecast' ],
+	'Equipsets' => [ 'Equipsets' ]
 ];

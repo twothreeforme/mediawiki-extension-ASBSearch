@@ -7,7 +7,7 @@
 	"ffxipackagehelper": "FFXIPackageHelper",
 	"ffxipackagehelper-desc": "Series of tools to support FFXI related queries and special pages",
 	"ffxipackagehelper-title": "FFXIPackageHelper",
-	"ffxipackagehelper-summary": "Supports special pages ASBSearch, WeatherForecast, and DiggersWeatherForecast",
+	"ffxipackagehelper-summary": "Supports special pages ASBSearch, WeatherForecast, DiggersWeatherForecast, and Equipsets",
 	"group-ffxipackagehelperrole": "",
 	"group-ffxipackagehelperrole-member": "",
 	"grouppage-ffxipackagehelperrole": "",
@@ -16,6 +16,7 @@
 
 	"asbsearch": "ASBSearch",
 	"weatherforecast": "Weather Forecast",
-	"diggingweatherforecast": "Digging: Weather Forecast"
+	"diggingweatherforecast": "Digging: Weather Forecast",
+	"equipsets": "Equipsets"
 
 }

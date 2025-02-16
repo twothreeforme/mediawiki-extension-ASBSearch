@@ -1,0 +1,100 @@
+<?php
+
+class SpecialEquipsets extends SpecialPage {
+
+    public function __construct( ) {
+        parent::__construct( 'Equipsets' );
+    }
+
+	static function onBeforePageDisplay( $out, $skin ) : void  {
+		//$out->addModules(['FFXIPackageHelper_ASBSearch']);
+		//if ( $out->getTitle() == "Special:Equipsets" )  $out->addModules(['FFXIPackageHelper_TabsController']);
+	}
+
+	function execute( $par ) {
+
+		$this->setHeaders();
+		$request = $this->getRequest();
+		$output = $this->getOutput();
+		$output->setPageTitle( $this->msg( 'equipsets' ) );
+
+		// # Get request data
+
+		/**
+		 *	Drop Rates Query Request Data
+		 */
+		// $levelRangeMIN =  (int)$request->getText( 'levelRangeMIN' );
+		// $levelRangeMAX =  (int)$request->getText( 'levelRangeMAX' );
+		// $zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
+		// $mobNameSearch = $request->getText( 'mobNameSearch' );
+		// $itemNameSearch = $request->getText( 'itemNameSearch' );
+		// $thRatesCheck = (int)$request->getText( 'thRatesCheck' );
+		// $showBCNMdrops = (int)$request->getText( 'showBCNMdrops' );
+		// $excludeNMs = (int)$request->getText( 'excludeNMs' );
+		// $includeFished = (int)$request->getText( 'includeFished' );
+
+		// $queryDataDR = NULL;
+		// if ( 	$mobNameSearch == "" &&
+		// 		$itemNameSearch== "" &&
+		// 		( $zoneNameDropDown == "searchallzones" || $zoneNameDropDown == "") &&
+		// 		( ($levelRangeMIN == 0 && $levelRangeMAX == 0) || ( $levelRangeMIN > $levelRangeMAX )) ) {
+		// 			//do nothing
+		// }
+		// else {
+		// 	if ( $zoneNameDropDown != "searchallzones") $zoneNameDropDown = ucfirst($zoneNameDropDown);
+
+		// 	$queryDataDR = [
+		// 		$this->queryLimit,
+		// 		$mobNameSearch,
+		// 		$itemNameSearch,
+		// 		$zoneNameDropDown,
+		// 		$showBCNMdrops,
+		// 		$excludeNMs,
+		// 		$levelRangeMIN,
+		// 		$levelRangeMAX,
+		// 		$thRatesCheck,
+		// 		$includeFished
+		// 	];
+		// }
+
+		// /**
+		//  *	Equipsets Request Data
+		//  */
+		// $race = (int)$request->getText( 'race' );
+		// $mlvl = (int)$request->getText( 'mlvl' );
+		// $slvl = (int)$request->getText( 'slvl' );
+		// $mjob = (int)$request->getText( 'mjob' );
+		// $sjob = (int)$request->getText( 'sjob' );
+		// $equipment = $request->getText( 'equipment' );
+
+		// $equipsetsData = null;
+		// if ( strlen($equipment) > 0 ){
+		// 	$equipsetsData = [
+		// 		$race,
+		// 		$mlvl,
+		// 		$slvl,
+		// 		$mjob,
+		// 		$sjob,
+		// 		$equipment
+		// 	];
+
+		// }
+
+
+        // $tabs = new FFXIPackageHelper_HTMLTabsHelper();
+        // $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
+        // $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
+		// $tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
+        // $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
+        // $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
+
+        $html = "<div id=\"initialHide\" style=\"display: none;\">" .
+
+
+                "</div>";
+
+		$output->addHTML( $html );
+	}
+
+
+}

@@ -1,8 +1,5 @@
 <?php
-//namespace MediaWiki\Extension\MyExtension;
 
-use Wikimedia\Rdbms\DatabaseFactory;
-//use MediaWikiServices;
 
 class SpecialASBSearch extends SpecialPage {
 
@@ -14,7 +11,7 @@ class SpecialASBSearch extends SpecialPage {
 
 	static function onBeforePageDisplay( $out, $skin ) : void  {
 		//$out->addModules(['FFXIPackageHelper_ASBSearch']);
-		$out->addModules(['FFXIPackageHelper_TabsController']);
+		if ( $out->getTitle() == "Special:ASBSearch" ) $out->addModules(['FFXIPackageHelper_TabsController']);
 	}
 
 	function execute( $par ) {

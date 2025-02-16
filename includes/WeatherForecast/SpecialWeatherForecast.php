@@ -5,10 +5,11 @@ class SpecialWeatherForecast extends SpecialPage {
 
     public function __construct( ) {
         parent::__construct( 'WeatherForecast' );
+
     }
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
-        $out->addModules(['FFXIPackageHelper_WeatherForecast']);
+        if ( $out->getTitle() == "Special:WeatherForecast" )  $out->addModules(['FFXIPackageHelper_WeatherForecast']);
     }
 
     function zoneNameArray($weatherArray){
@@ -21,17 +22,16 @@ class SpecialWeatherForecast extends SpecialPage {
     }
 
     function execute( $par ) {
-
+        $this->setHeaders();
 
         $request = $this->getRequest();
 		$output = $this->getOutput();
 		//$output->addModules(['inputHandler']);
 		$output->setPageTitle( $this->msg( 'weatherforecast' ) );
 
-        $host = $_SERVER['HTTP_HOST'];
+        //$host = $_SERVER['HTTP_HOST'];
         //print_r( $host . "/Special:DiggingWeatherForecast");
         $output->addHTML( "<br><center><button type=\"button\" onclick=\"location.href='/Special:DiggingWeatherForecast'\">Digging - Weather Page</button></center><br><br>"  );
-        $this->setHeaders();
 
 		$zoneNameDropDown = $request->getText( 'zoneNameDropDown' );
 		$weatherTypeDropDown = $request->getText( 'weatherTypeDropDown' );

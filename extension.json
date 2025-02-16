@@ -9,7 +9,11 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
-        "SpecialASBSearch": "includes/ASBSearch/SpecialASBSearch.php",
+        "SpecialASBSearch": "includes/SpecialPages/SpecialASBSearch.php",
+        "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
+        "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
+        "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
+        "SpecialEquipsets": "includes/SpecialPages/SpecialEquipsets.php",
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
@@ -36,17 +40,15 @@
         "DBConnection": "includes/helpers/FFXIPackageHelper_DBConnection.php",
         "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
 
-        "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
-        "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
-        "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
-        "FFXIPackageHelper_Equipsets": "includes/Equipsets/FFXIPackageHelper_Equipsets.php",
+        "FFXIPackageHelper_Equipsets": "includes/helpers/FFXIPackageHelper_Equipsets.php",
 
         "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",
         "WeatherForecast": "SpecialWeatherForecast",
-        "DiggingWeatherForecast": "SpecialDiggingWeatherForecast"
+        "DiggingWeatherForecast": "SpecialDiggingWeatherForecast",
+        "Equipsets": "SpecialEquipsets"
     },
     "MessagesDirs": {
 		"FFXIPackageHelper": [
@@ -54,13 +56,15 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"ASBSearchAlias": "i18n/ASBSearch.alias.php",
-        "WeatherForecastAlias": "i18n/WeatherForecast.alias.php"
+		"ASBSearchAlias": "i18n/FFXIPackageHelper.alias.php",
+		"WeatherForecastAlias": "i18n/FFXIPackageHelper.alias.php",
+        "EquipsetsAlias": "i18n/FFXIPackageHelper.alias.php"
 	},
     "Hooks": {
         "BeforePageDisplay": [
             "SpecialASBSearch::onBeforePageDisplay",
-            "SpecialWeatherForecast::onBeforePageDisplay"
+            "SpecialWeatherForecast::onBeforePageDisplay",
+            "SpecialEquipsets::onBeforePageDisplay"
         ],
         "ParserFirstCallInit": [
             "ZoneForecast::onParserInit"

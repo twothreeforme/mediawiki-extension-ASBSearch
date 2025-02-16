@@ -7,14 +7,13 @@ class SpecialDiggingWeatherForecast extends SpecialPage {
     }
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
-        $out->addModules(['inputHandler']);
+       // if ( $out->getTitle() == "Special:DiggingWeatherForecast" )  $out->addModules(['inputHandler']);
     }
 
     function execute( $par ) {
 
         $request = $this->getRequest();
 		$output = $this->getOutput();
-		//$output->addModules(['inputHandler']);
 		$output->setPageTitle( $this->msg( 'diggingweatherforecast' ) );
         $this->setHeaders();
 
