@@ -48,7 +48,7 @@ class APIModuleDropRateSearch extends ApiBase {
         $finalHtml = FFXIPackageHelper_QueryController::queryDropRates($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
 
-        $result->addValue($params['action'], $params['querytype'], $finalHtml);
+        $result->addValue($params['action'], "droprates", $finalHtml);
         //$result->addValue($params['action'], $params['querytype'], $queryData[8]);
     }
 
