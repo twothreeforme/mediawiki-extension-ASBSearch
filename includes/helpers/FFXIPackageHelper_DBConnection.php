@@ -5,19 +5,6 @@ use MediaWiki\MediaWikiServices;
 
 class DBConnection {
 
-    /*
-    // $queryData = [ $queryLimit, $mobNameSearch, $itemNameSearch, $zoneNameDropDown, $showBCNMdrops, $excludeNMs, $levelRangeMIN, $levelRangeMAX ];
-    $queryLimit = $queryData[0];
-    $mobNameSearch = $queryData[1];
-    $itemNameSearch = $queryData[2];
-    $zoneNameSearch = $queryData[3];
-    $showBCNMdrops = $queryData[4];
-    $excludeNMs = $queryData[5];
-    $levelRangeMIN = $queryData[6];
-    $levelRangeMAX = $queryData[7];
-    $showTH = $queryData[8];
-    */
-
 	private $dbUsername = 'horizon_wiki'; 
 	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
 
@@ -67,6 +54,34 @@ class DBConnection {
         return $returnDB;
     }
 
+    public function getHitCounter($tab) {
+		$dbr = $this->openConnection();
+		$tabHitCounter = $dbr->newSelectQueryBuilder()
+			->select( [ 'hitcount' ] )
+			->from( 'search_counters' )
+			->where( [ "search_counters.page LIKE '%$tab%'" ] )
+            ->fetchResultSet();
+
+        foreach($tabHitCounter as $row){
+            return $row->hitcount;
+        }
+        return null;
+    }
+
+    private function incrementHitCounter($tab) {
+        $dbw = $this->openConnection();
+
+        return $dbw->update(
+            'search_counters',
+            [
+                'hitcount = hitcount + 1'
+            ],
+            [
+                'page' => $tab,
+            ],
+            __METHOD__
+        );
+    }
 
     function getWeatherHex($arr, $vanaDay){
         $hexweatherdata =  $arr[(($vanaDay * 2)  + 1 )] . $arr[($vanaDay * 2) ];
@@ -380,6 +395,10 @@ class DBConnection {
 
 
     public function getDropRates($queryData){
+
+        $this->incrementHitCounter("droprate");
+
+
         $queryLimit = $queryData[0];
         $mobNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];

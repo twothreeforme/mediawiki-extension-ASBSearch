@@ -79,6 +79,16 @@ function onPageLoad(){
   });
   //tabsButton_fishing.click();
 
+  const tabsButton_admin = document.getElementById("FFXIPackageHelper_tabs_admin");
+  if ( tabsButton_admin == null )  {
+    //console.log("fishing tab null");
+    return ;
+  }
+  tabsButton_admin.addEventListener("click", function (e) {
+      showTab(e,tabsButton_admin.id);
+  });
+  //tabsButton_fishing.click();
+
   return 0;
 }
 

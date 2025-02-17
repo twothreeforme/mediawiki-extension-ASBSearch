@@ -91,6 +91,7 @@ class SpecialASBSearch extends SpecialPage {
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
         $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
         $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
+        $tabAdmin = new FFXIPackageHelper_HTMLTabAdmin();
 
         $html = "<div id=\"initialHide\" style=\"display: none;\">" .
                 $tabs->header() . 
@@ -99,6 +100,7 @@ class SpecialASBSearch extends SpecialPage {
 				$tabs->tab3($tabEquipment->searchForm()) .
                 $tabs->tab4($tabEquipsets->showEquipsets()) .
 				$tabs->tab5($tabFishing->searchForm()) .
+				$tabs->tab6($tabAdmin->showAdmin()) .
 
                 "</div>";
 

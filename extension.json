@@ -33,6 +33,7 @@
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
         "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
+        "FFXIPackageHelper_HTMLTabAdmin": "includes/Tabs/FFXIPackageHelper_HTMLTabAdmin.php",
         "FFXIPackageHelper_QueryController": "includes/helpers/FFXIPackageHelper_QueryController.php",
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",

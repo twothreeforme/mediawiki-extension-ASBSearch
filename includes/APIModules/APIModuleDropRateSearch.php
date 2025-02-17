@@ -26,6 +26,7 @@ class APIModuleDropRateSearch extends ApiBase {
 	}
 
     function execute( ) {
+
         $params = $this->extractRequestParams();
         $result = $this->getResult();
 

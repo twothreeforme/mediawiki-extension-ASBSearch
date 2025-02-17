@@ -2,6 +2,23 @@
 -- ASB_Data updates:
 -- usage from within sql folder: mysql -u -p db < dbupdate.sql
 
+-- ************************
+-- DROP TABLE IF EXISTS `search_counters`;
+-- CREATE TABLE `search_counters` (
+--   `page` varchar(25) NOT NULL,
+--   `hitcount` int NOT NULL,
+--   PRIMARY KEY (`page`)
+-- ) DEFAULT CHARSET=utf8mb4 CHECKSUM=1;
+
+-- INSERT INTO `search_counters` (`page`,`hitcount`) VALUES
+-- ("droprate", 0),
+-- ("fishing", 0),
+-- ("recipes", 0),
+-- ("equipment", 0);
+
+-- ************************
+
+
 \! echo zone_weather
 DROP TABLE IF EXISTS `zone_weather`;
 source zone_weather.sql;
