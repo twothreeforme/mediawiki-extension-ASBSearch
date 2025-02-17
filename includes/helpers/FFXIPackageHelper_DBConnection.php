@@ -553,6 +553,9 @@ class DBConnection {
 	}
 
     public function getRecipes($queryData){
+        $this->incrementHitCounter("recipes");
+
+
         // $queryData = [  $params['craft'],
         //                 $params['recipename'],
         //                 $params['ingredient'],
@@ -746,6 +749,8 @@ class DBConnection {
     // }
 
     public function getEquipmentFromDB($queryData){
+        $this->incrementHitCounter("equipment");
+
         $dbr = $this->openConnection();
 
         $equipmentname = $queryData[0];
@@ -789,7 +794,8 @@ class DBConnection {
                     'item_equipment.jobs',
                     'item_equipment.slot',
                     'item_mods.modId AS modid',
-                    'item_mods.value AS modValue'
+                    'item_mods.value AS modValue',
+                    'item_equipment.itemId'
                     ] )
         ->from( 'item_equipment' )
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
@@ -864,6 +870,8 @@ class DBConnection {
     }
 
     public function getEquipment( $name, $mlvl, $gridSlot = null ){
+        $this->incrementHitCounter("equipment");
+
         $dbr = $this->openConnection();
 
         $mlvl = intval($mlvl);
@@ -949,6 +957,9 @@ class DBConnection {
 
 
     public function getFishing( $queryData ){
+        $this->incrementHitCounter("fishing");
+
+
         $bait = $queryData[0];
         $fish = $queryData[1];
         $zone = $queryData[2];
