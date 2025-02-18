@@ -435,10 +435,13 @@ class FFXIPackageHelper_HTMLTableHelper {
 			<th class=\"equipmenttable_slot\">Slot</th>
 			<th class=\"equipmenttable_jobs\">Jobs</th>
 			<th class=\"equipmenttable_level\">Level</th>
-			<th>Mods</th>
+			<th>Description</th>
 			</tr>
 			";
 		//$parse = new ParserHelper($array[1]);
+
+		$var = new FFXIPackageHelper_Variables();
+		$details = new FFXIPackageHelper_ItemDetails();
 
 		$totalRows = 0;		
 		foreach ( $array as $row ) {
@@ -482,34 +485,36 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 */
 			$html .= "<td>";
 
-				if ( $row['hasstatuseffect'] == false ){
-					for ( $i = 0; $i < count($row['mods']); $i ++){
-						$mod = $row['mods'][$i];
-						if ( self::isStatusEffectMod($mod) ) {
-							$html .= self::htmlModifier($mod);
-						}
-					}
-				}
-				else {
-					$var = new FFXIPackageHelper_Variables();
-					$cur_mod = array();
-					$skipEffect = false;
-					for ( $i = 0; $i < count($row['mods']); $i ++){
-						$mod = $row['mods'][$i];
-						if ( $mod['id'] == 431 ) $cur_mod['type'] = $mod['value'];   //ITEM_ADDEFFECT_TYPE
-						else if ( $mod['id'] == 499 ) $cur_mod['subeffect'] = $mod['value'];   //ITEM_SUBEFFECT
-						else if ( $mod['id'] == 501 ) $cur_mod['chance'] = $mod['value'];   //ITEM_ADDEFFECT_CHANCE
-						else if ( $mod['id'] == 951 ) $cur_mod['status'] = $var->effectType[$mod['value']];   //ITEM_ADDEFFECT_STATUS
-						else if ( $mod['id'] == 952 ) $cur_mod['power'] = $mod['value'];   //ITEM_ADDEFFECT_POWER
-						else if ( $mod['id'] == 953 ) $cur_mod['duration'] = $mod['value'];   //ITEM_ADDEFFECT_DURATION
-						else {
-							$html .=self::htmlModifier($mod);
-							//$skipEffect = true;
-						}
-					}
-					if ( $skipEffect == false ) $html .= "<br>{{Additional Effect|". $cur_mod['status'] ."}}</b>";
-				}
-			$html .= "</td>"; 
+				// if ( $row['hasstatuseffect'] == false ){
+				// 	for ( $i = 0; $i < count($row['mods']); $i ++){
+				// 		$mod = $row['mods'][$i];
+				// 		if ( self::isStatusEffectMod($mod) ) {
+				// 			$html .= self::htmlModifier($mod);
+				// 		}
+				// 	}
+				// }
+				// else {
+				// 	$cur_mod = array();
+				// 	$skipEffect = false;
+				// 	for ( $i = 0; $i < count($row['mods']); $i ++){
+				// 		$mod = $row['mods'][$i];
+				// 		if ( $mod['id'] == 431 ) $cur_mod['type'] = $mod['value'];   //ITEM_ADDEFFECT_TYPE
+				// 		else if ( $mod['id'] == 499 ) $cur_mod['subeffect'] = $mod['value'];   //ITEM_SUBEFFECT
+				// 		else if ( $mod['id'] == 501 ) $cur_mod['chance'] = $mod['value'];   //ITEM_ADDEFFECT_CHANCE
+				// 		else if ( $mod['id'] == 951 ) $cur_mod['status'] = $var->effectType[$mod['value']];   //ITEM_ADDEFFECT_STATUS
+				// 		else if ( $mod['id'] == 952 ) $cur_mod['power'] = $mod['value'];   //ITEM_ADDEFFECT_POWER
+				// 		else if ( $mod['id'] == 953 ) $cur_mod['duration'] = $mod['value'];   //ITEM_ADDEFFECT_DURATION
+				// 		else {
+				// 			$html .=self::htmlModifier($mod);
+				// 			//$skipEffect = true;
+				// 		}
+				// 	}
+				// 	if ( $skipEffect == false ) $html .= "<br>{{Additional Effect|". $cur_mod['status'] ."}}</b>";
+				// }
+
+				$desc = $details->items[$row['id']]['descr'];
+				$desc = str_replace("\n", '<br>', $desc);
+				$html .= "<span>$desc</span></td>";
 
 			$html .= "</center></tr>";
 			$totalRows ++;
