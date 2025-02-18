@@ -507,6 +507,8 @@ class ParserHelper {
         $var = new FFXIPackageHelper_Variables();
 
         for ( $j = 1; $j < count($var->jobArray); $j++){
+            //OOE jobs - can change when content gets released
+            if ( $j >= 16 ) continue;
             if ( ParserHelper::checkJob($j, $jobsint) ) $html .= " [[". $var->jobArray[$j] ."]]";
         }
 
