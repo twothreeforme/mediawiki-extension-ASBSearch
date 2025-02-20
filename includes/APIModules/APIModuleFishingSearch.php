@@ -36,6 +36,7 @@ class APIModuleFishingSearch extends ApiBase {
 
         // USE THIS ONE
         $initialQuery = $db->getFishing($queryData);
+        if ( count($initialQuery) > 0 ) $db->incrementHitCounter("fishing");
         $finalQuery = $dm->parseFishing($initialQuery);
 
         //throw new Exception(json_encode($finalQuery));

@@ -28,11 +28,11 @@ class FFXIPackageHelper_QueryController {
 			$dm->parseData($bcnmDropRatesData);
         }
 
-        
 		$dropRatesArray = $dm->getDataSet();
 
 		$html = "";
 		if ( !$dropRatesArray )  return "<i><b> No records (items) found</i></b>";
+		else $db->incrementHitCounter("droprate");
 
 		/************************
 		 * Row counter

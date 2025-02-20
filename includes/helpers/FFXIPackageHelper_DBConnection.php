@@ -396,9 +396,6 @@ class DBConnection {
 
     public function getDropRates($queryData){
 
-        $this->incrementHitCounter("droprate");
-
-
         $queryLimit = $queryData[0];
         $mobNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];
@@ -553,7 +550,6 @@ class DBConnection {
 	}
 
     public function getRecipes($queryData){
-        $this->incrementHitCounter("recipes");
 
 
         // $queryData = [  $params['craft'],
@@ -749,7 +745,7 @@ class DBConnection {
     // }
 
     public function getEquipmentFromDB($queryData){
-        $this->incrementHitCounter("equipment");
+        //$this->incrementHitCounter("equipment");
 
         $dbr = $this->openConnection();
 
@@ -933,7 +929,6 @@ class DBConnection {
                 if ( !is_null($q) ) array_push ( $query, $q);
         }
 
-
         return $dbr->newSelectQueryBuilder()
         ->select( [ 'item_equipment.itemId',
                     'item_equipment.level',
@@ -957,9 +952,6 @@ class DBConnection {
 
 
     public function getFishing( $queryData ){
-        $this->incrementHitCounter("fishing");
-
-
         $bait = $queryData[0];
         $fish = $queryData[1];
         $zone = $queryData[2];

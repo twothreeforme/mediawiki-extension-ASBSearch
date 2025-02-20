@@ -44,12 +44,8 @@ class APIModuleRecipeSearch extends ApiBase {
         $dm = new DataModel();
         $db = new DBConnection();
 
-        // USE THIS ONE
         $initialQuery = $db->getRecipes($queryData);
-
-        //return $initialQuery;
-        //$recipesQuery = $dm->parseRecipes($initialQuery);
-        //$recipesQuery = $this->getRecipes($queryData);
+        if ( count($initialQuery) > 0 ) $db->incrementHitCounter("recipes");
 
         $html = "";
 
@@ -60,17 +56,6 @@ class APIModuleRecipeSearch extends ApiBase {
 		 */
         $html .= FFXIPackageHelper_HTMLTableHelper::table_RecipesQuery($initialQuery);
 
-		//$html .= "<p>" . $recipesQuery . "</p>";
-        // if ( gettype($recipesQuery) == 'string' ){
-        //     $html .= "<p>" . $recipesQuery . "</p>";
-        // }
-        // if ( gettype($recipesQuery) == 'array' ){
-        //     $html .= "<p>" . $row->Crystal . "</p>";
-        // }
-
-
-        //$html .= FFXIPackageHelper_HTMLTableHelper::table_DropRates($dropRatesArray, $showTH);
-		// $html .= '</table></div>';
 		return $html;
 	}
 
