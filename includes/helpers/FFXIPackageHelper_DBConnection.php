@@ -68,7 +68,7 @@ class DBConnection {
         return null;
     }
 
-    private function incrementHitCounter($tab) {
+    public function incrementHitCounter($tab) {
         $dbw = $this->openConnection();
 
         return $dbw->update(
