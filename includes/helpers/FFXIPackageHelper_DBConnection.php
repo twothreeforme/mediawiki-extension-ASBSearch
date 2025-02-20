@@ -870,7 +870,6 @@ class DBConnection {
     }
 
     public function getEquipment( $name, $mlvl, $gridSlot = null ){
-        $this->incrementHitCounter("equipment");
 
         $dbr = $this->openConnection();
 
@@ -953,6 +952,7 @@ class DBConnection {
         ->where( $query )
         ->orderBy( 'showname', 'ASC' ) 
         ->fetchResultSet();
+
     }
 
 

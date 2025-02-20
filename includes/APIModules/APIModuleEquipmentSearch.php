@@ -38,6 +38,7 @@ class APIModuleEquipmentSearch extends ApiBase {
 
         // USE THIS ONEs
         $initialQuery = $db->getEquipmentFromDB($queryData);
+        if ( count($initialQuery) > 0 )  $db->incrementHitCounter("equipment");
 
         $initialQuery = $dm->parseEquipment($initialQuery, $queryData[1]);
 
