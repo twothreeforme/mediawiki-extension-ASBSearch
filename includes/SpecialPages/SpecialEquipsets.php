@@ -180,15 +180,15 @@ class SpecialEquipsets extends SpecialPage {
             <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
                 <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
                 </svg>
             </button>
             <input id=\"FFXIPackageHelper_equipsets_merits_$stat\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"0\" readonly >
             <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
                 <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke-linecap=\"round\"/>
                 </svg>
             </button>
             </div>";

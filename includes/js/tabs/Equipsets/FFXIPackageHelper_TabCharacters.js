@@ -227,9 +227,98 @@ function scrollToTop() {
 }
 
 function changeMeritValues(forInput, val){
-    //console.log(forStat, val);
-    if ( Number(forInput.value) + val < 0 ) forInput.value = 0;
-    else forInput.value = Number(forInput.value) + val;
+    // < 0 - make it 0 and return
+    if ( Number(forInput.value) + val < 0 ) {
+        mw.notify( "Skills must remain > 0.", { autoHide: true,  type: 'error' } );
+        return;
+    }
+
+    //Number(forInput.value) + val;
+
+    // stats in the array are numbered <= 14
+    const statID = "FFXIPackageHelper_equipsets_merits_stats";
+    if ( forInput.id.includes(statID)){
+        const stat = Number(forInput.id.replace(statID, ""));
+        if ( stat <= 14 ) {
+            if ( (Number(forInput.value) + val) > 5 ) {
+                mw.notify( "This stat is capped at 5.", { autoHide: true,  type: 'error' } );
+                return;
+            }
+            else forInput.value = Number(forInput.value) + val;
+        }
+        else forInput.value = Number(forInput.value) + val;
+        return;
+    }
+
+    /**
+     * skill in the array are numbered between 80 and 110
+     *
+     *
+     */
+    const skillID = "FFXIPackageHelper_equipsets_merits_skill";
+    if ( forInput.id.includes(skillID)){
+        if ( val == -1 ) {
+            forInput.value = Number(forInput.value) + val;
+            return;
+        }
+
+        let combatSkills_total, magicSkills_total = 0;
+        const skills = document.querySelectorAll('[id*=' + skillID + ']');
+        const forInputID = Number(forInput.id.replace(skillID, ""));
+
+        for( let s = 0; s < skills.length; s++) {
+            // console.log(s);
+            // console.log(skills[s].id, );
+            const id =  Number(skills[s].id.replace(skillID, ""));
+
+            // Combat Skills
+            // cap at 8 each, 12 total
+            if ( skills[s].value > 0 ) console.log(skills[s].value, forInputID, id, skills[s].id);
+            if ( id >= 80 && id <= 110){
+                if ( id < 107 && Number(skills[s].value) == 8 && forInputID == id ){
+                    mw.notify( "Offensive combat skill capped at 8.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+                else if ( Number(skills[s].value) == 4 && forInputID == id ){
+                    mw.notify( "Defensive combat skill capped at 4.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+
+                if ( combatSkills_total == 12 ) {
+                    mw.notify( "Total combat skills already capped at 12 points.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+
+                combatSkills_total += Number(skills[s].value);
+            }
+            // Magic Skills
+            else {
+                if ( Number(skills[s].value) == 8 && forInputID == id ){
+                    mw.notify( "Magic skill capped at 8.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+
+                if ( magicSkills_total == 8 ) {
+                    mw.notify( "Total magic skills already capped at 8 points.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+
+                magicSkills_total += Number(skills[s].value);
+            }
+        };
+
+        // Start the logic checking for caps
+
+        // if ( combatSkills_total == 12 ) {
+        //     mw.notify( "Skills already capped at 12 total points.", { autoHide: true,  type: 'error' } );
+        //     return;
+        // }
+        // else {
+            forInput.value = Number(forInput.value) + val;
+            //return;
+        //}
+    }
+
 }
 
 

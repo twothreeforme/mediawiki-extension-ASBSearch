@@ -28,9 +28,9 @@ Custom Buttons
     outline: none;
     cursor: pointer;
     padding: 0 16px;
-    background-color: #0070d2;
+    background-color: #3586ff;
     border-radius: 0.25rem;
-    border: 1px solid #0070d2;
+    border: 1px solid #3586ff;
     color: #fff;
     font-size: 13px;
     line-height: 20px;
@@ -124,10 +124,12 @@ Custom Buttons
     padding: 0px;
     width: 18px;
     height: 18px;
-    border-width: 0.5px;
+    border-width: 0;
     border-radius: 50%;
-    border-color: #ffffff75;
-    stroke: #3586ff75;
+    /* border-color: #3586ff75; */
+    stroke: #fff;
+    cursor: pointer;
+    background-color: #3586ff99;
 }
 
 .incrementButton_show {
