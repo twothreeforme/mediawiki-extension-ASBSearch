@@ -179,7 +179,7 @@ function resetCharSelection(){
 
 function scrollToTop() {
     //const top = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits_top");
-    window.scrollIntoView({ behavior: "smooth", block: "start" });
+    //window.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 
