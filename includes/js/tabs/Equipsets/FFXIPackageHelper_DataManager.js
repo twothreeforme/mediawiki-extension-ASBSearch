@@ -159,7 +159,7 @@ function setHeaderCharacterDetails(clearname){
         if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) {
             currentCharacterName.innerText = button.innerHTML;
             namechanged = true;
-            console.log("changed", namechanged, button.innerHTML, currentCharacterName.innerText);
+            //console.log("changed", namechanged, button.innerHTML, currentCharacterName.innerText);
         }
     });
     if (namechanged == false ) currentCharacterName.innerText = "No character selected";
