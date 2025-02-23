@@ -1,6 +1,5 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
-var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 //var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
@@ -13,102 +12,6 @@ var mJobDropdown = null;
 var sJobDropdown = null;
 var mlvlDropdown = null;
 var slvlDropdown = null;
-
-
-// function updateEquipmentGrid(id, slot, sender){
-//     //console.log("clicked: " + id + ", " + slot);
-//     const equipment = getEquipIDs();
-//     equipment[slot] = [ id, 1 ]; // updated equip flagged with 1 to trigger update
-
-//     var all = getStatsData(equipment);
-//     all.action = "equipsets_change";
-
-//     //console.log("updateEquipmentGrid", all);
-//     API.actionAPI(all, "equipsets_change", null, null);
-
-//     // close modal window
-//     if( sender !== null) sender.close();
-// }
-
-// function getEquipID(forSlot){
-//     let slot = document.getElementById("grid" + forSlot);
-//     return slot.dataset.value;
-// }
-
-// function updateStats(data){
-//     if ( data == null ) data = getStatsData();
-//     //console.log("updateStats: ", data);
-//     API.actionAPI(data, "equipsets", null);
-// }
-
-// function getEquipIDs(updateAll){
-//     let equipIDs = [];
-//     let shareEquipIDs = [];
-
-//     for (let v = 0; v <= 15; v++) {
-//         let str = "grid" + v;
-//         let slot = document.getElementById(str);
-//         //console.log(v, slot.dataset.value);
-//         if ( updateAll == true ) {
-//             if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
-//             else shareEquipIDs[v] = [ 0, 0 ];
-//         }
-//         else  {
-//             equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
-//         }
-//     }
-
-//     if ( updateAll == true ) { return shareEquipIDs;
-//     }
-//     else return equipIDs;
-// }
-
-// function getMeritsData(){
-//     let meritStats = {};
-//     let meritSkills = {};
-    
-//     const _id = "FFXIPackageHelper_equipsets_merits_";
-//     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
-//     //console.log(allMerits);
-//     var meritsArray = [...allMerits];
-//     meritsArray.forEach(merit => {
-//         //console.log(merit);
-//         if ( merit.value != 0 ){
-//             if ( merit.id.includes("skill") ) {
-//                 var skillid = merit.id.replace(_id + "skill",'');
-//                 meritSkills[Number(skillid)] = merit.value;
-//             }
-//             else if ( merit.id.includes("stat") ) {
-//                 var statid = merit.id.replace(_id + "stats",'');
-//                 meritStats[Number(statid)] = merit.value;
-//             }
-//         }
-//     });
-    
-//     //console.log(JSON.stringify([meritStats, meritSkills]));
-//     return JSON.stringify([meritStats, meritSkills]);
-// }
-
-// function getStatsData(equipIDString){
-//     if ( equipIDString == null ) equipIDString = Data.getEquipIDs(); //getEquipIDs().join(",");
-//     else if ( equipIDString == true ) {
-//         equipIDString = Data.getEquipIDs(true);
-//     }
-//     equipIDString = equipIDString.join("|");
-
-//     //console.log("getStatsData: ", equipIDString);
-//     //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
-//     return {
-//         action: "equipsets",
-//         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
-//         mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
-//         slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
-//         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
-//         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
-//         merits: encodeURIComponent(btoa(getMeritsData())),
-//         equipment: encodeURIComponent(btoa(equipIDString)),
-//     };
-//   }
 
 module.exports.setLinks = function (){
 
@@ -211,7 +114,7 @@ module.exports.setLinks = function (){
 
 
     // Load Merit Edits section
-    MeritEdits.setLinks(Data.updateStats);
+    // MeritEdits.setLinks(Data.updateStats);
     
     /**
      * DEV ONLY

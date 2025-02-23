@@ -44,8 +44,52 @@ module.exports.setLinks = function (){
     raceDropdown.addEventListener("change", () =>  {
         //console.log(e.target.value);
         Data.updateStats();
-        Data.setHeaderCharacterDetails();
         resetCharSelection();
+        Data.setHeaderCharacterDetails();
+
+    });
+
+    const counterbox = document.querySelectorAll('#FFXIPackageHelper_dynamiccontent_counterbox');
+        for (var c = 0; c < counterbox.length; c++) {
+            //console.log(counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton"));
+            const buttons = counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton");
+            const input = counterbox[c].querySelector(".FFXIPackageHelper_dynamiccontent_incrementInput");
+            buttons[0].addEventListener("click", function (e) {
+                changeMeritValues(input, -1);
+            });
+            buttons[1].addEventListener("click", function (e) {
+                changeMeritValues(input, 1);
+            });
+        }
+
+    // Set all associated layouts for the Edit button and associated events
+    const editMerits = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits");
+    editMerits.addEventListener("click", function (e) {
+        // Adjust Edit button
+        if ( editMerits.innerText == "Edit") {
+            editMerits.innerText = "Apply";
+            editMerits.className = "FFXIPackageHelper_dynamiccontent_customButton";
+        }
+        else {
+            editMerits.innerText = "Edit";
+            editMerits.className = "FFXIPackageHelper_dynamiccontent_shareButton";
+            resetCharSelection();
+            Data.updateStats(null);
+            Data.setHeaderCharacterDetails();
+        }
+
+        // Adjust merit edit buttons for all stats
+        for (var c = 0; c < counterbox.length; c++) {
+
+            let meritschildren = counterbox[c].children;
+            for (var i = 0; i < meritschildren.length; i++) {
+                //console.log(meritschildren[i].tagName);
+                if (meritschildren[i].tagName == "BUTTON" ){
+                    //console.log(meritschildren[i]);
+                    meritschildren[i].classList.toggle('incrementButton_show');
+                }
+            }
+        }
     });
 
      Data.setHeaderCharacterDetails();
@@ -180,6 +224,12 @@ function resetCharSelection(){
 function scrollToTop() {
     //const top = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits_top");
     //window.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function changeMeritValues(forInput, val){
+    //console.log(forStat, val);
+    if ( Number(forInput.value) + val < 0 ) forInput.value = 0;
+    else forInput.value = Number(forInput.value) + val;
 }
 
 
