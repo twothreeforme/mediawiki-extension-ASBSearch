@@ -1,8 +1,12 @@
  /* Style the tab */
  .FFXIPackageHelper_tabs {
     overflow: hidden;
+    overflow-x: auto;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    display:flex;
+    height: 35px;
+    white-space: nowrap;
   }
   
   /* Style the buttons that are used to open the tab content */
@@ -12,7 +16,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    /* padding: 14px 16px; */
     transition: 0.3s;
   }
   
@@ -29,6 +33,7 @@
   /* Style the tab content */
   .tabcontent {
     display: none;
+    overflow: hidden;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;

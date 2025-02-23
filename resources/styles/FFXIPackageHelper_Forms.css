@@ -131,12 +131,22 @@ Custom Buttons
 .incrementButton_show {
     display: inline-block;
 }
+
+
+/*
+*   Merits sections
+*/
+
 .FFXIPackageHelper_dynamiccontent_showMerits_table {
     border-collapse: collapse;
 }
 
 .FFXIPackageHelper_dynamiccontent_showMerits_table tr:nth-child(even) td{
     background-color: #12396c10;
+}
+
+.FFXIPackageHelper_dynamiccontent_showMerits_table td{
+    width: 200px;
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharacter {
@@ -156,6 +166,18 @@ Custom Buttons
     border-radius: 4px;
     border-color: #ffffff75;
     background-color: #ff000015;
+}
+
+.FFXIPackageHelper_dynamiccontent_newChar {
+    display: inline-block;
+    padding: 0px;
+    width: 95%;
+    height: 45px;
+    /* border-width: 0.5px; */
+    border-radius: 2px;
+    border-color: #ffffff75;
+    background-color: #ff000056;
+    margin: 5px auto;
 }
 
 /*
@@ -402,13 +424,13 @@ Equipsets equipment grid (table)
 
 
 .FFXIPackageHelper_dynamiccontent_showMerits{
-    width:180px;
-    height:120px;
-    overflow:auto;
-    padding:0px;
-    font-size:12px;
+    /* width: 2250px; */
+    /* height: 90%; */
+    /* overflow: auto; */
+    padding: 0px;
+    /* font-size: 12px; */
     /* background-color: #1b96ff25; */
-    line-height: 1;
+    /* line-height: 1; */
 }
 
 .FFXIPackageHelper_dynamiccontent_showMerits h4{
@@ -465,3 +487,15 @@ Weather table
 .zone-infobox-weather-table {
     font-size : 13px! important;
 }
+
+/*
+Character Header label at top
+*/
+.FFXIPackageHelper_characterHeader {
+    /* background-color: rgb(255, 178, 178); */
+    width: 100%;
+    height: 22px;
+    font-size : 16px;
+}
+
+

@@ -64,32 +64,32 @@ class SpecialASBSearch extends SpecialPage {
 		/**
 		 *	Equipsets Request Data
 		 */
-		$race = (int)$request->getText( 'race' );
-		$mlvl = (int)$request->getText( 'mlvl' );
-		$slvl = (int)$request->getText( 'slvl' );
-		$mjob = (int)$request->getText( 'mjob' );
-		$sjob = (int)$request->getText( 'sjob' );
-		$equipment = $request->getText( 'equipment' );
+		// $race = (int)$request->getText( 'race' );
+		// $mlvl = (int)$request->getText( 'mlvl' );
+		// $slvl = (int)$request->getText( 'slvl' );
+		// $mjob = (int)$request->getText( 'mjob' );
+		// $sjob = (int)$request->getText( 'sjob' );
+		// $equipment = $request->getText( 'equipment' );
 
-		$equipsetsData = null;
-		if ( strlen($equipment) > 0 ){
-			$equipsetsData = [
-				$race,
-				$mlvl,
-				$slvl,
-				$mjob,
-				$sjob,
-				$equipment
-			];
+		// $equipsetsData = null;
+		// if ( strlen($equipment) > 0 ){
+		// 	$equipsetsData = [
+		// 		$race,
+		// 		$mlvl,
+		// 		$slvl,
+		// 		$mjob,
+		// 		$sjob,
+		// 		$equipment
+		// 	];
 
-		}
+		// }
 
 
         $tabs = new FFXIPackageHelper_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
+        // $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
         $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
         $tabAdmin = new FFXIPackageHelper_HTMLTabAdmin();
 
@@ -98,7 +98,7 @@ class SpecialASBSearch extends SpecialPage {
                 $tabs->tab1($tabDropRates->searchForm()) .
                 $tabs->tab2($tabRecipes->searchForm()) .
 				$tabs->tab3($tabEquipment->searchForm()) .
-                $tabs->tab4($tabEquipsets->showEquipsets()) .
+                // $tabs->tab4($tabEquipsets->showEquipsets()) .
 				$tabs->tab5($tabFishing->searchForm()) .
 				$tabs->tab6($tabAdmin->showAdmin()) .
 

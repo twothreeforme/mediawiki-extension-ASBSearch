@@ -72,16 +72,6 @@
         ]
     },
 	"ResourceModules": {
-		"FFXIPackageHelper_ASBSearch" : {
-			"localBasePath": "",
-            "remoteExtPath": "ASBSearch",
-			"packageFiles": [
-				"includes/js/FFXIPackageHelper_copyURLToClipboard.js"
-			],
-			"styles": [
-				"includes/ASBSearch/FFXIPackageHelper_ASBSearch_Styles.css"
-			]
-		},
         "FFXIPackageHelper_WeatherForecast" : {
 			"localBasePath": "",
 			"remoteExtPath": "ASBSearch",
@@ -98,6 +88,29 @@
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/FFXIPackageHelper_ShowTabs.js",
+                "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
+                "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
+                "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
+                "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js"
+            ],
+            "styles": [
+				"resources/styles/FFXIPackageHelper_Forms.css",
+                "resources/styles/tabs.css",
+                "resources/styles/hint.css"
+			]
+        },
+        "FFXIPackageHelper_Equipsets" : {
+			"localBasePath": "",
+            "remoteExtPath": "ASBSearch",
+			"packageFiles": [
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_Equipsets_TabsController.js",
+                "includes/js/tabs/FFXIPackageHelper_ShowTabs.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionButtons.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_DataManager.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_MeritEdits.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
@@ -106,20 +119,17 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharManagement.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharAdd.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharRemove.js",
-                "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
-                "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
-                "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
-                "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js"
-
-
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
+                "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
-            "styles": [
-				"resources/styles/FFXIPackageHelper_Forms.css",
+			"styles": [
+                "resources/styles/FFXIPackageHelper_Forms.css",
+                "resources/styles/FFXIPackageHelper_Equipsets_Styles.css",
                 "resources/styles/tabs.css",
                 "resources/styles/hint.css"
 			]
-        }
+		}
 	},
     "APIModules": {
 		"dropratesearch": {

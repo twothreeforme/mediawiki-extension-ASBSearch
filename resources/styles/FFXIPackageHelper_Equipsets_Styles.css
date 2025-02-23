@@ -1,0 +1,182 @@
+#asbsearch_dropstable {
+    position: relative;
+    width: 100%;
+}
+
+#asbsearch_dropstable th {
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+#asbsearch_dropstable tr:nth-child(odd) td{
+    background-color: #12396c30;
+}
+
+#asbsearch_dropstable2 tr td{
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0) !important;
+}
+
+
+.asbsearch_LvlSelect td.mw-label {
+    text-align: right;
+}
+
+.zone-infobox-weather-div {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.zone-infobox-weather-table {
+    font-size : 13px! important;
+}
+
+
+
+/*
+Character selection DIVs
+*/
+#FFXIPackageHelper_equipsets_charSelect {
+    /* background-color: #92fcac; */
+    display:inline-block;
+    width:150px;
+    min-width: 100px;
+    height:100%;
+    text-align: center;
+    overflow-y: auto;
+}
+#FFXIPackageHelper_equipsets_charSelectMerits {
+    /* background-color: #d495ff; */
+    display:inline-block;
+    overflow-x: auto;
+    width:100%;
+    height:100%;
+    padding: 0px 5px 0px 35px;
+  }
+
+/*
+Character selection buttons
+*/
+.FFXIPackageHelper_newCharButton {
+    position: relative;
+    display:block;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    cursor: pointer;
+    border: 2px solid #3586ff;
+    /* top: 50%; */
+    /* left: 50%; */
+    border-radius: 50%;
+    margin: 5px auto;
+}
+
+.FFXIPackageHelper_newCharButton:after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 50%;
+  background: #3586ff;
+  top: 50%;
+  left: 50%;
+}
+
+.FFXIPackageHelper_newCharButton:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #3586ff;
+  height: 50%;
+  width: 4px;
+}
+
+.FFXIPackageHelper_newCharButton:hover:before,
+.FFXIPackageHelper_newCharButton:hover:after {
+  background: #fff;
+  transition: 0.2s;
+}
+
+.FFXIPackageHelper_newCharButton:hover {
+  background-color: #3586ff;
+  transition: 0.2s;
+}
+
+.FFXIPackageHelper_refreshStatsButton{
+  position: relative;
+  display:block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #3586ff;
+  fill: #3586ff;
+    /* top: 50%; */
+    /* left: 50%; */
+  border-radius: 50%;
+  margin: 5px auto;
+  padding: 3px 0px;
+}
+
+.FFXIPackageHelper_refreshStatsButton:hover {
+  background: #3586ff;
+  fill: #fff;
+  transition: 0.2s;
+}
+
+.FFXIPackageHelper_deleteCharButton {
+  display: inline-block;
+  /* position: absolute; */
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0 10px;
+  height: 25px;
+  margin: 10px 10px;
+  border-radius: 7px;
+  font-size: 16px;
+  background: #f87171;
+  color: #fff;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+}
+
+.FFXIPackageHelper_deleteCharButton:hover{
+  background-color: #fff;
+  color: #ff3535;
+  box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+}
+
+
+
+.FFXIPackageHelper_charButton {
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 10px;
+    height: 25px;
+    margin: 5px;
+    border-radius: 7px;
+    font-size: 16px;
+    background: #fff;
+    color: #3586ff;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+
+  }
+
+.FFXIPackageHelper_charButton:hover{
+    background-color: rgba(177, 177, 177, 0.9);
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+}
+
+.FFXIPackageHelper_charButtonselected{
+  background-color: #3586ff;
+  color: #fff;
+}

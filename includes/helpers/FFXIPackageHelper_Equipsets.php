@@ -42,23 +42,23 @@ class FFXIPackageHelper_Equipsets  {
 
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">
-                    <span>Character  " . FFXIPackageHelper_HTMLOptions::userCharsDropDown("FFXIPackageHelper_equipsets_selectUserChar") . "</span>
-                    <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\">
-                        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                            <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                            <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                        </svg>
-                    </button>
-                    <button id=\"FFXIPackageHelper_dynamiccontent_removeCharacter\" class=\"FFXIPackageHelper_dynamiccontent_removeCharacter\">
-                        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                            <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                        </svg>
-                    </button>
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">" .
+                    // "<span>Character  " . FFXIPackageHelper_HTMLOptions::userCharsDropDown("FFXIPackageHelper_equipsets_selectUserChar") . "</span>
+                    // <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\">
+                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    //         <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    //     </svg>
+                    // </button>
+                    // <button id=\"FFXIPackageHelper_dynamiccontent_removeCharacter\" class=\"FFXIPackageHelper_dynamiccontent_removeCharacter\">
+                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+                    //     </svg>
+                    // </button>" .
 
-                    <br>
-                    <span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>
-                    <span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
+                    "<br>" .
+                    //"<span>Race  " . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "</span><br>" .
+                    "<span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
                     <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br>
                  </div>";
                 // <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
@@ -179,61 +179,61 @@ class FFXIPackageHelper_Equipsets  {
      }
 
     public function additionalData(){
-        $html =  "<div >
-        <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>
-                    <div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
-                        <table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
-                            <tr><td><h4>Stats</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">HP</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MP</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
-                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
+        $html =  "<div >" .
+        // <b>Merits</b><span style=\"float:right;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button></span><br>" .
+                    // "<div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
+                    //     <table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
+                    //         <tr><td><h4>Stats</h4></td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">HP</span></td><td style=\"\">" . $this->meritIncrement("stats2") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MP</span></td><td style=\"\">" . $this->meritIncrement("stats5") . "</td></tr>
+                    //         <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
 
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">DEX</span></td><td style=\"\">" . $this->meritIncrement("stats9") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">VIT</span></td><td style=\"\">" . $this->meritIncrement("stats10") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">AGI</span></td><td style=\"\">" . $this->meritIncrement("stats11") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">INT</span></td><td style=\"\">" . $this->meritIncrement("stats12") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MND</span></td><td style=\"\">" . $this->meritIncrement("stats13") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">CHR</span></td><td style=\"\">" . $this->meritIncrement("stats14") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">STR</span></td><td style=\"\">" . $this->meritIncrement("stats8") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">DEX</span></td><td style=\"\">" . $this->meritIncrement("stats9") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">VIT</span></td><td style=\"\">" . $this->meritIncrement("stats10") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">AGI</span></td><td style=\"\">" . $this->meritIncrement("stats11") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">INT</span></td><td style=\"\">" . $this->meritIncrement("stats12") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">MND</span></td><td style=\"\">" . $this->meritIncrement("stats13") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">CHR</span></td><td style=\"\">" . $this->meritIncrement("stats14") . "</td></tr>
 
-                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
-                            <tr><td><h4>Combat Skills</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Hand to Hand</span></td><td style=\"\">" . $this->meritIncrement("skill80") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dagger</span></td><td style=\"\">" . $this->meritIncrement("skill81") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Sword</span></td><td style=\"\">" . $this->meritIncrement("skill82") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Sword</span></td><td style=\"\">" . $this->meritIncrement("skill83") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Axe</span></td><td style=\"\">" . $this->meritIncrement("skill84") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Axe</span></td><td style=\"\">" . $this->meritIncrement("skill85") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Scythe</span></td><td style=\"\">" . $this->meritIncrement("skill86") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Polearm</span></td><td style=\"\">" . $this->meritIncrement("skill87") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Katana</span></td><td style=\"\">" . $this->meritIncrement("skill88") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Katana</span></td><td style=\"\">" . $this->meritIncrement("skill89") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Club</span></td><td style=\"\">" . $this->meritIncrement("skill90") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Staff</span></td><td style=\"\">" . $this->meritIncrement("skill91") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Archery</span></td><td style=\"\">" . $this->meritIncrement("skill104") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Marksmanship</span></td><td style=\"\">" . $this->meritIncrement("skill105") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Throwing</span></td><td style=\"\">" . $this->meritIncrement("skill106") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Guard</span></td><td style=\"\">" . $this->meritIncrement("skill107") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Evasion</span></td><td style=\"\">" . $this->meritIncrement("skill108") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Shield</span></td><td style=\"\">" . $this->meritIncrement("skill109") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Parry</span></td><td style=\"\">" . $this->meritIncrement("skill110") . "</td></tr>
+                    //         <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
+                    //         <tr><td><h4>Combat Skills</h4></td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Hand to Hand</span></td><td style=\"\">" . $this->meritIncrement("skill80") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dagger</span></td><td style=\"\">" . $this->meritIncrement("skill81") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Sword</span></td><td style=\"\">" . $this->meritIncrement("skill82") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Sword</span></td><td style=\"\">" . $this->meritIncrement("skill83") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Axe</span></td><td style=\"\">" . $this->meritIncrement("skill84") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Axe</span></td><td style=\"\">" . $this->meritIncrement("skill85") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Scythe</span></td><td style=\"\">" . $this->meritIncrement("skill86") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Polearm</span></td><td style=\"\">" . $this->meritIncrement("skill87") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Katana</span></td><td style=\"\">" . $this->meritIncrement("skill88") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Great Katana</span></td><td style=\"\">" . $this->meritIncrement("skill89") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Club</span></td><td style=\"\">" . $this->meritIncrement("skill90") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Staff</span></td><td style=\"\">" . $this->meritIncrement("skill91") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Archery</span></td><td style=\"\">" . $this->meritIncrement("skill104") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Marksmanship</span></td><td style=\"\">" . $this->meritIncrement("skill105") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Throwing</span></td><td style=\"\">" . $this->meritIncrement("skill106") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Guard</span></td><td style=\"\">" . $this->meritIncrement("skill107") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Evasion</span></td><td style=\"\">" . $this->meritIncrement("skill108") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Shield</span></td><td style=\"\">" . $this->meritIncrement("skill109") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Parry</span></td><td style=\"\">" . $this->meritIncrement("skill110") . "</td></tr>
 
-                            <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
-                            <tr><td><h4>Magic Skills</h4></td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Divine Magic</span></td><td style=\"\">" . $this->meritIncrement("skill111") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Healing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill112") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enhancing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill113") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enfeebling Magic</span></td><td style=\"\">" . $this->meritIncrement("skill114") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Elemental Magic</span></td><td style=\"\">" . $this->meritIncrement("skill115") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dark Magic</span></td><td style=\"\">" . $this->meritIncrement("skill116") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Summoning Magic</span></td><td style=\"\">" . $this->meritIncrement("skill117") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Ninjutsu</span></td><td style=\"\">" . $this->meritIncrement("skill118") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Singing</span></td><td style=\"\">" . $this->meritIncrement("skill119") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">String Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill120") . "</td></tr>
-                            <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill121") . "</td></tr>
-                    </table>
-                    </div>
-                    <b>Equipment List</b><br>
+                    //         <tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>
+                    //         <tr><td><h4>Magic Skills</h4></td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Divine Magic</span></td><td style=\"\">" . $this->meritIncrement("skill111") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Healing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill112") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enhancing Magic</span></td><td style=\"\">" . $this->meritIncrement("skill113") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Enfeebling Magic</span></td><td style=\"\">" . $this->meritIncrement("skill114") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Elemental Magic</span></td><td style=\"\">" . $this->meritIncrement("skill115") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Dark Magic</span></td><td style=\"\">" . $this->meritIncrement("skill116") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Summoning Magic</span></td><td style=\"\">" . $this->meritIncrement("skill117") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Ninjutsu</span></td><td style=\"\">" . $this->meritIncrement("skill118") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Singing</span></td><td style=\"\">" . $this->meritIncrement("skill119") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">String Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill120") . "</td></tr>
+                    //         <tr><td style=\"width:100px;\"><span style=\"vertical-align:middle;\">Wind Instrument</span></td><td style=\"\">" . $this->meritIncrement("skill121") . "</td></tr>
+                    // </table>
+                    // </div>" .
+                    "<b>Equipment List</b><br>
                     <table class=\"FFXIPackageHelper_Equipsets_equipList\">
                         <tr>
                             <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>
@@ -297,24 +297,24 @@ class FFXIPackageHelper_Equipsets  {
             return $html;
     }
 
-    private function meritIncrement($stat){
-        return "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
-            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
-                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+    // private function meritIncrement($stat){
+    //     return "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
+    //         <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+    //             <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                </svg>
-            </button>
-            <input id=\"FFXIPackageHelper_equipsets_merits_$stat\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"0\" readonly >
-            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
-                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+    //                 <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+    //             </svg>
+    //         </button>
+    //         <input id=\"FFXIPackageHelper_equipsets_merits_$stat\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"0\" readonly >
+    //         <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+    //             <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
 
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                </svg>
-            </button>
-            </div>";
-    }
+    //                 <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+    //                 <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
+    //             </svg>
+    //         </button>
+    //         </div>";
+    // }
 
     public function showEquipsets(){
         $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></span>

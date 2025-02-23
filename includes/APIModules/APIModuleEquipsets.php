@@ -132,7 +132,7 @@ class APIModuleEquipsets extends ApiBase {
                 //char name is new and should be saved
                 $db->setUserCharacter($char);
                 $userCharacters[] = $char;
-                $result->addValue( $params['action'], "status", ["PASS", $userCharacters] );
+                $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
             }
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {

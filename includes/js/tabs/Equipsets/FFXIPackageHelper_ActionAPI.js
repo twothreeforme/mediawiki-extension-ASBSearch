@@ -2,8 +2,7 @@
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 
-
-module.exports.actionAPI = function (params, forTab, currentButton, sender) {
+function actionAPI(params, forTab, currentButton, callback) {
   //console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
@@ -16,7 +15,7 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
       else if ( forTab.includes("equipsets") ){
         //console.log(result);
         if ( forTab.includes("search") )  {
-          sender.returnCallback(result['search']);
+          callback.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
           const stats_base64 = decodeURIComponent(result['stats']);
@@ -34,18 +33,22 @@ module.exports.actionAPI = function (params, forTab, currentButton, sender) {
         else if ( forTab.includes("savechar")) {
           if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
           else { /*PASS*/
-            updateCharsList(result['status'][1]);
+            //updateCharsList(result['status'][1], callback);
+            callback(result['status']);
             mw.notify( "Character Saved", { autoHide: true,  type: 'success' } );
           }
         }
         else if ( forTab.includes("removechar")) {
           //console.log(result);
-          updateCharsList(result['userchars']);
+          //updateCharsList(result['userchars'], callback);
+          callback(result['userchars']);
           mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
         }
         else if ( forTab.includes("selectchar")) {
-          updateCharacter(result['selected']);
-          sender(); //updateStats()
+          //console.log(callback);
+          callback.updateCharacter(result['selected']);
+          callback.updateStats();
+          //callback.setHeaderCharacterDetails();
         }
         else {
           updateEquipsets(result['stats']);
@@ -185,45 +188,38 @@ function updateEquipmentList(slotNumber, updatedName){
   labelLink.innerHTML = updatedName;
 }
 
-function updateCharsList(newChars){
-  //console.log(newChars);
-  var charSelectOptions = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
+// function updateCharsList(newChars, callback){
+//   //remove all chars in list
+//   var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
+//   const buttons = charSelectDIV.querySelectorAll('button');
+//   Array.from(buttons).forEach((button) => {
+//     if ( button.classList.contains("FFXIPackageHelper_charButton") ) charSelectDIV.removeChild(button);
+//   });
 
-  Array.from(charSelectOptions).forEach((option) => {
-    if ( option.text != "None" ) charSelectOptions.removeChild(option);
-  });
+//   //console.log(callback);
 
-  newChars.map((optionData) => {
-    var opt = document.createElement('option')
-    opt.appendChild(document.createTextNode(optionData["charname"]));
-    //opt.value = optionData["charid"];
-    charSelectOptions.appendChild(opt);
-  });
+//   if (newChars){
+//     var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
 
-  const lastOptionIndex = charSelectOptions.options.length - 1;
-  charSelectOptions.selectedIndex = lastOptionIndex;
-}
+//     newChars.map((details) => {
+//       var btn = document.createElement('button')
+//       btn.appendChild(document.createTextNode(details["charname"]));
+//       //btn.id = 'FFXIPackageHelper_charButton_' + details["charname"];
+//       btn.id = 'FFXIPackageHelper_charButton';
+//       btn.classList.add("FFXIPackageHelper_charButton");
+//       charSelectDIV.appendChild(btn);
 
-function updateCharacter(char){
-  document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = char.race;
+//       btn.addEventListener("click", function (){
+//         if(callback) callback(details["charname"]);
 
-  const merits_base64 = decodeURIComponent(char.merits);
-  const merits_ = JSON.parse(atob(merits_base64));
-  setMeritsData(merits_);
-}
+//       });
+//     });
+//   }
 
-function setMeritsData(merits_){
-  let meritStats = merits_[0];
-  let meritSkills = merits_[1];
+// }
 
-  Object.keys(meritStats).forEach(key => {
-    const _id = "FFXIPackageHelper_equipsets_merits_stats" + key;
-    document.getElementById(_id).value  = meritStats[key];
-  });
 
-  Object.keys(meritSkills).forEach(key => {
-    const _id = "FFXIPackageHelper_equipsets_merits_skill" + key;
-    document.getElementById(_id).value = meritSkills[key];
-  });
 
-}
+module.exports = { actionAPI }
+
+

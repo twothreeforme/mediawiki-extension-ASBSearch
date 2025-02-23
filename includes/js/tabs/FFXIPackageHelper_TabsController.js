@@ -1,31 +1,32 @@
 var TabDropRates = require("./FFXIPackageHelper_TabDropRates.js");
 var TabRecipes = require("./FFXIPackageHelper_TabRecipes.js");
 var TabEquipment = require("./FFXIPackageHelper_TabEquipment.js");
-var TabEquipsets = require("./Equipsets/FFXIPackageHelper_TabEquipsets.js");
+// var TabEquipsets = require("./Equipsets/FFXIPackageHelper_TabEquipsets.js");
 var TabFishing = require("./FFXIPackageHelper_TabFishing.js");
+var Tabs = require("./FFXIPackageHelper_ShowTabs.js");
 
 
-function showTab(evt, tabName) { //https://www.w3schools.com/howto/howto_js_tabs.asp
-    // Declare all variables
-    var i, tabcontent, tablinks;
+// function showTab(evt, tabName) { //https://www.w3schools.com/howto/howto_js_tabs.asp
+//     // Declare all variables
+//     var i, tabcontent, tablinks;
   
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
+//     // Get all elements with class="tabcontent" and hide them
+//     tabcontent = document.getElementsByClassName("tabcontent");
+//     for (i = 0; i < tabcontent.length; i++) {
+//       tabcontent[i].style.display = "none";
+//     }
   
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+//     // Get all elements with class="tablinks" and remove the class "active"
+//     tablinks = document.getElementsByClassName("tablinks");
+//     for (i = 0; i < tablinks.length; i++) {
+//       tablinks[i].className = tablinks[i].className.replace(" active", "");
+//     }
   
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName.concat("_shown")).style.display = "block";
-    //console.log(tabName.concat("_shown"));
-    evt.currentTarget.className += " active";
-  } 
+//     // Show the current tab, and add an "active" class to the button that opened the tab
+//     document.getElementById(tabName.concat("_shown")).style.display = "block";
+//     //console.log(tabName.concat("_shown"));
+//     evt.currentTarget.className += " active";
+//   }
 
 function onPageLoad(){
 //console.log("onReady")
@@ -36,7 +37,7 @@ function onPageLoad(){
     return ;
   }
   tabsButton_droprates.addEventListener("click", function (e) {
-      showTab(e,tabsButton_droprates.id);
+      Tabs.showTab(e,tabsButton_droprates.id);
     });
   // set the current tab to be "Drop Rates"
   tabsButton_droprates.click();
@@ -47,7 +48,7 @@ function onPageLoad(){
     return ;
   }
   tabsButton_recipes.addEventListener("click", function (e) {
-      showTab(e,tabsButton_recipes.id);
+      Tabs.showTab(e,tabsButton_recipes.id);
   });
 
   const tabsButton_equipment = document.getElementById("FFXIPackageHelper_tabs_equipment");
@@ -56,17 +57,17 @@ function onPageLoad(){
     return ;
   }
   tabsButton_equipment.addEventListener("click", function (e) {
-      showTab(e,tabsButton_equipment.id);
+      Tabs.showTab(e,tabsButton_equipment.id);
   });
 
-  const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
-  if ( tabsButton_equipsets == null )  {
-    //console.log("equipsets null");
-    return ;
-  }
-  tabsButton_equipsets.addEventListener("click", function (e) {
-      showTab(e,tabsButton_equipsets.id);
-  });
+  // const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
+  // if ( tabsButton_equipsets == null )  {
+  //   //console.log("equipsets null");
+  //   return ;
+  // }
+  // tabsButton_equipsets.addEventListener("click", function (e) {
+  //     Tabs.showTab(e,tabsButton_equipsets.id);
+  // });
   //tabsButton_equipsets.click();
 
   const tabsButton_fishing = document.getElementById("FFXIPackageHelper_tabs_fishing");
@@ -75,7 +76,7 @@ function onPageLoad(){
     return ;
   }
   tabsButton_fishing.addEventListener("click", function (e) {
-      showTab(e,tabsButton_fishing.id);
+      Tabs.showTab(e,tabsButton_fishing.id);
   });
   //tabsButton_fishing.click();
 
@@ -85,7 +86,7 @@ function onPageLoad(){
     return ;
   }
   tabsButton_admin.addEventListener("click", function (e) {
-      showTab(e,tabsButton_admin.id);
+      Tabs.showTab(e,tabsButton_admin.id);
   });
   //tabsButton_fishing.click();
 
@@ -107,7 +108,7 @@ mw.hook('wikipage.content').add( function () {
   TabDropRates.setLinks();
   TabRecipes.setLinks();
   TabEquipment.setLinks();
-  TabEquipsets.setLinks();
+  //TabEquipsets.setLinks();
   TabFishing.setLinks();
 
   initiallyLoaded = true;

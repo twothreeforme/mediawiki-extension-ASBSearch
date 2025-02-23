@@ -1,3 +1,6 @@
+var Data = require("./FFXIPackageHelper_DataManager.js");
+
+
 module.exports.setLinks = function (applyMerits){
     
     // good test
@@ -28,6 +31,7 @@ module.exports.setLinks = function (applyMerits){
             editMerits.innerText = "Edit";
             editMerits.className = "FFXIPackageHelper_dynamiccontent_shareButton";
             applyMerits(null);
+            Data.setHeaderCharacterDetails();
         }
 
         // Adjust merit edit buttons for all stats

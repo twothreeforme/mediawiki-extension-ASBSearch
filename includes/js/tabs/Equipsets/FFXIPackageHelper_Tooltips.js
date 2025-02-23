@@ -11,8 +11,6 @@ function handleTooltip(element, itemName){
     //console.log("adding Tooltip")
     parentElement.classList.add('hint--bottom');
     parentElement.setAttribute("aria-label", itemName);
-
-
 }
 
 function removeTooltip(parElement){

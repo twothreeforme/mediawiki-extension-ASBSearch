@@ -109,9 +109,32 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function userCharsDropDown($classname){
-        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-        $html .= "<option value=\"0\">None</option>";
+    // public static function userCharsDropDown($classname){
+    //     $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+    //     $html .= "<option value=\"0\">None</option>";
+
+    //     $user = RequestContext::getMain()->getUser();
+    //     $uid = $user->getId();
+    //     if ( $uid != 0 && $uid != null ){
+    //         $db = new DBConnection();
+    //         $userCharacters = $db->getUserCharactersFromUserID($uid);
+
+    //         if ( count($userCharacters) > 0 ){
+    //             foreach ($userCharacters as $char) {
+    //                 $html .= "<option >". $char["charname"] ."</option>";
+    //             }
+    //         }
+
+    //     }
+
+    //     $html .= "</select>";
+    //     return $html;
+    // }
+
+    public static function charactersButtonsList(){
+        // "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>"
+        // $html = "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>";
+        $html = "";
 
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
@@ -121,13 +144,12 @@ class FFXIPackageHelper_HTMLOptions {
 
             if ( count($userCharacters) > 0 ){
                 foreach ($userCharacters as $char) {
-                    $html .= "<option >". $char["charname"] ."</option>";
+                    //$html .= "<option >". $char["charname"] ."</option>";
+                    $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char["charname"] . "\" class=\"FFXIPackageHelper_charButton\">" . $char["charname"] . "</button>";
                 }
             }
-
         }
 
-        $html .= "</select>";
         return $html;
     }
 

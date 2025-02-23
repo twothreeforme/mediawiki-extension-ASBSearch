@@ -1,11 +1,12 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
+var Data = require("./FFXIPackageHelper_DataManager.js");
 var MeritEdits = require("./FFXIPackageHelper_MeritEdits.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 //var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
-var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
-var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
+
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
+
 
 var raceDropdown = null;
 var mJobDropdown = null;
@@ -13,100 +14,101 @@ var sJobDropdown = null;
 var mlvlDropdown = null;
 var slvlDropdown = null;
 
-function updateEquipmentGrid(id, slot, sender){
-    //console.log("clicked: " + id + ", " + slot);
-    const equipment = getEquipIDs();
-    equipment[slot] = [ id, 1 ]; // updated equip flagged with 1 to trigger update
 
-    var all = getStatsData(equipment);
-    all.action = "equipsets_change";
+// function updateEquipmentGrid(id, slot, sender){
+//     //console.log("clicked: " + id + ", " + slot);
+//     const equipment = getEquipIDs();
+//     equipment[slot] = [ id, 1 ]; // updated equip flagged with 1 to trigger update
 
-    //console.log("updateEquipmentGrid", all);
-    API.actionAPI(all, "equipsets_change", null, null);
+//     var all = getStatsData(equipment);
+//     all.action = "equipsets_change";
 
-    // close modal window
-    if( sender !== null) sender.close();
-}
+//     //console.log("updateEquipmentGrid", all);
+//     API.actionAPI(all, "equipsets_change", null, null);
 
-function getEquipID(forSlot){
-    let slot = document.getElementById("grid" + forSlot);
-    return slot.dataset.value;
-}
+//     // close modal window
+//     if( sender !== null) sender.close();
+// }
 
-function updateStats(data){
-    if ( data == null ) data = getStatsData();
-    //console.log("updateStats: ", data);
-    API.actionAPI(data, "equipsets", null);
-}
+// function getEquipID(forSlot){
+//     let slot = document.getElementById("grid" + forSlot);
+//     return slot.dataset.value;
+// }
 
-function getEquipIDs(updateAll){
-    let equipIDs = [];
-    let shareEquipIDs = [];
+// function updateStats(data){
+//     if ( data == null ) data = getStatsData();
+//     //console.log("updateStats: ", data);
+//     API.actionAPI(data, "equipsets", null);
+// }
 
-    for (let v = 0; v <= 15; v++) {
-        let str = "grid" + v;
-        let slot = document.getElementById(str);
-        //console.log(v, slot.dataset.value);
-        if ( updateAll == true ) {
-            if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
-            else shareEquipIDs[v] = [ 0, 0 ];
-        }
-        else  {
-            equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
-        }
-    }
+// function getEquipIDs(updateAll){
+//     let equipIDs = [];
+//     let shareEquipIDs = [];
 
-    if ( updateAll == true ) { return shareEquipIDs;
-    }
-    else return equipIDs;
-}
+//     for (let v = 0; v <= 15; v++) {
+//         let str = "grid" + v;
+//         let slot = document.getElementById(str);
+//         //console.log(v, slot.dataset.value);
+//         if ( updateAll == true ) {
+//             if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
+//             else shareEquipIDs[v] = [ 0, 0 ];
+//         }
+//         else  {
+//             equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
+//         }
+//     }
 
-function getMeritsData(){
-    let meritStats = {};
-    let meritSkills = {};
+//     if ( updateAll == true ) { return shareEquipIDs;
+//     }
+//     else return equipIDs;
+// }
+
+// function getMeritsData(){
+//     let meritStats = {};
+//     let meritSkills = {};
     
-    const _id = "FFXIPackageHelper_equipsets_merits_";
-    const allMerits = document.querySelectorAll("[id*='" + _id + "']");
-    //console.log(allMerits);
-    var meritsArray = [...allMerits];
-    meritsArray.forEach(merit => {
-        //console.log(merit);
-        if ( merit.value != 0 ){
-            if ( merit.id.includes("skill") ) {
-                var skillid = merit.id.replace(_id + "skill",'');
-                meritSkills[Number(skillid)] = merit.value;
-            }
-            else if ( merit.id.includes("stat") ) {
-                var statid = merit.id.replace(_id + "stats",'');
-                meritStats[Number(statid)] = merit.value;
-            }
-        }
-    });
+//     const _id = "FFXIPackageHelper_equipsets_merits_";
+//     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
+//     //console.log(allMerits);
+//     var meritsArray = [...allMerits];
+//     meritsArray.forEach(merit => {
+//         //console.log(merit);
+//         if ( merit.value != 0 ){
+//             if ( merit.id.includes("skill") ) {
+//                 var skillid = merit.id.replace(_id + "skill",'');
+//                 meritSkills[Number(skillid)] = merit.value;
+//             }
+//             else if ( merit.id.includes("stat") ) {
+//                 var statid = merit.id.replace(_id + "stats",'');
+//                 meritStats[Number(statid)] = merit.value;
+//             }
+//         }
+//     });
     
-    //console.log(JSON.stringify([meritStats, meritSkills]));
-    return JSON.stringify([meritStats, meritSkills]);
-}
+//     //console.log(JSON.stringify([meritStats, meritSkills]));
+//     return JSON.stringify([meritStats, meritSkills]);
+// }
 
-function getStatsData(equipIDString){
-    if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
-    else if ( equipIDString == true ) {
-        equipIDString = getEquipIDs(true);
-    }
-    equipIDString = equipIDString.join("|");
+// function getStatsData(equipIDString){
+//     if ( equipIDString == null ) equipIDString = Data.getEquipIDs(); //getEquipIDs().join(",");
+//     else if ( equipIDString == true ) {
+//         equipIDString = Data.getEquipIDs(true);
+//     }
+//     equipIDString = equipIDString.join("|");
 
-    //console.log("getStatsData: ", equipIDString);
-    //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
-    return {
-        action: "equipsets",
-        race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
-        mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
-        slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
-        mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
-        sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
-        merits: encodeURIComponent(btoa(getMeritsData())),
-        equipment: encodeURIComponent(btoa(equipIDString)),
-    };
-  }
+//     //console.log("getStatsData: ", equipIDString);
+//     //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
+//     return {
+//         action: "equipsets",
+//         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+//         mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
+//         slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
+//         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
+//         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
+//         merits: encodeURIComponent(btoa(getMeritsData())),
+//         equipment: encodeURIComponent(btoa(equipIDString)),
+//     };
+//   }
 
 module.exports.setLinks = function (){
 
@@ -115,13 +117,13 @@ module.exports.setLinks = function (){
      * All equip slots
      */
     for (let v = 0; v <= 15; v++) {
-        const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: updateEquipmentGrid});
+        const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: Data.updateEquipmentGrid});
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
 
         slot.addEventListener("click", function (e) {
-            modal.open(getEquipID(v));
+            modal.open(Data.getEquipID(v));
         });
     }
 
@@ -132,7 +134,7 @@ module.exports.setLinks = function (){
     slvlDropdown.addEventListener("change", (e) =>  {
         //console.log(e.target.value);
         sJobMaxCheckbox.checked = 0;
-        updateStats();
+        Data.updateStats();
     });
 
     mlvlDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectMLevel");
@@ -141,14 +143,15 @@ module.exports.setLinks = function (){
         if ( document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxMaxSub").checked == 1 ){
             slvlDropdown.value = (e.target.value > 1) ? Math.floor(e.target.value / 2) : 1;
         }
-        updateStats();
+        Data.updateStats();
     });
 
     raceDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
-    raceDropdown.addEventListener("change", (e) =>  {
-        //console.log(e.target.value);
-        updateStats();
-    });
+    // raceDropdown.addEventListener("change", (e) =>  {
+    //     //console.log(e.target.value);
+    //     Data.updateStats();
+    //     Data.setHeaderCharacterDetails();
+    // });
 
     /**
      * Main and Sub job elements
@@ -156,13 +159,13 @@ module.exports.setLinks = function (){
     mJobDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectMJob");
     mJobDropdown.addEventListener("change", (e) => {
         //console.log(e.target.value);
-        updateStats();
+        Data.updateStats();
     });
 
     sJobDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectSJob");
     sJobDropdown.addEventListener("change", (e) => {
         //console.log(e.target.value);
-        updateStats();
+        Data.updateStats();
     });
 
     sJobMaxCheckbox = document.getElementById("FFXIPackageHelper_dynamiccontent_checkboxMaxSub");
@@ -170,7 +173,7 @@ module.exports.setLinks = function (){
         if ( e.target.checked == 1 ){
             slvlDropdown.value = (mlvlDropdown.value > 1) ? Math.floor(mlvlDropdown.value / 2) : 1;
         }
-        updateStats();
+        Data.updateStats();
     });
 
     const shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
@@ -181,34 +184,34 @@ module.exports.setLinks = function (){
     /**
      * Character management
      */
-    const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
-    selectChar.addEventListener("change", function (e) {
-        const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-        if ( e.target.value != 0 ) {
-            removeButton.style.display = "inline-block";
-            selectCharClicked();
-        }
-        else removeButton.style.display = "none";
-    });
+    // const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
+    // selectChar.addEventListener("change", function (e) {
+    //     const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+    //     if ( e.target.value != 0 ) {
+    //         removeButton.style.display = "inline-block";
+    //         selectCharClicked();
+    //     }
+    //     else removeButton.style.display = "none";
+    // });
 
-    const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
-    const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
-    addChar.addEventListener("click", function (e) {
-        modalCharAdd.open();
-    });
+    // const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
+    // const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
+    // addChar.addEventListener("click", function (e) {
+    //     modalCharAdd.open();
+    // });
 
-    const removeChar = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-    const modalCharRemove = new ModalCharRemoveWindow({ removeCallback: removeCharacter});
-    removeChar.addEventListener("click", function (e) {
-        if ( e.target.value != 0 ) {
-            modalCharRemove.open(selectChar.options[selectChar.selectedIndex].text);
-        }
-    });
+    // const removeChar = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+    // const modalCharRemove = new ModalCharRemoveWindow({ removeCallback: removeCharacter});
+    // removeChar.addEventListener("click", function (e) {
+    //     if ( e.target.value != 0 ) {
+    //         modalCharRemove.open(selectChar.options[selectChar.selectedIndex].text);
+    //     }
+    // });
 
 
 
     // Load Merit Edits section
-    MeritEdits.setLinks(updateStats);
+    MeritEdits.setLinks(Data.updateStats);
     
     /**
      * DEV ONLY
@@ -227,9 +230,9 @@ module.exports.setLinks = function (){
         loadSharedLink(url);
         //console.log("fired");
     }
-    else updateStats();
+    else Data.updateStats();
 
-    getMeritsData();
+    Data.getMeritsData();
     Tooltip.setupPageTooltips();
 }
 
@@ -315,7 +318,7 @@ function loadSharedLink(url){
     sJobDropdown.value=data.sjob;
     raceDropdown.value=data.race;
 
-    //encodeURIComponent(btoa(getMeritsData())),
+    //encodeURIComponent(btoa(Data.getMeritsData())),
     merits = atob(decodeURIComponent(data.merits));
     const meritObj = JSON.parse(merits);
 
@@ -337,54 +340,54 @@ function loadSharedLink(url){
     tabsButton_equipsets.click();
 }
 
-function selectCharClicked(){
-    const data = {
-        action: "equipsets_selectchar",
-        charname: document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value,
-    }
+// function selectCharClicked(){
+//     const data = {
+//         action: "equipsets_selectchar",
+//         charname: document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value,
+//     }
 
-    API.actionAPI(data, data.action, null, updateStats);
-}
+//     API.actionAPI(data, data.action, null, Data.updateStats);
+// }
 
-function saveCharacterClicked(charName){
-    //console.log(charName);
+// function saveCharacterClicked(charName){
+//     //console.log(charName);
 
-    const data = {
-        action: "equipsets_savechar",
-        race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
-        merits: encodeURIComponent(btoa(getMeritsData())),
-        charname: charName
-    }
+//     const data = {
+//         action: "equipsets_savechar",
+//         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+//         merits: encodeURIComponent(btoa(Data.getMeritsData())),
+//         charname: charName
+//     }
 
-    API.actionAPI(data, data.action, null, this);
-}
+//     API.actionAPI(data, data.action, null, this);
+// }
 
-function removeCharacter(charname){
-    //console.log("should remove " + charname);
+// function removeCharacter(charname){
+//     //console.log("should remove " + charname);
 
-    const data = {
-        action: "equipsets_removechar",
-        charname: charname
-    }
+//     const data = {
+//         action: "equipsets_removechar",
+//         charname: charname
+//     }
 
-    API.actionAPI(data, data.action, null, this);
-    resetStats();
-}
+//     API.actionAPI(data, data.action, null, this);
+//     resetStats();
+// }
 
-function resetStats(){
-    document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value = 0;
-    document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
+// function resetStats(){
+//     document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value = 0;
+//     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
 
-    const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-    removeButton.style.display = "none";
+//     const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
+//     removeButton.style.display = "none";
 
-    const _id = "FFXIPackageHelper_equipsets_merits_";
-    const allMerits = document.querySelectorAll("[id*='" + _id + "']");
-    //console.log(allMerits);
-    var meritsArray = [...allMerits];
-    meritsArray.forEach(merit => {
-        merit.value = 0;
-    });
+//     const _id = "FFXIPackageHelper_equipsets_merits_";
+//     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
+//     //console.log(allMerits);
+//     var meritsArray = [...allMerits];
+//     meritsArray.forEach(merit => {
+//         merit.value = 0;
+//     });
 
-    updateStats();
-}
+//     Data.updateStats();
+// }
