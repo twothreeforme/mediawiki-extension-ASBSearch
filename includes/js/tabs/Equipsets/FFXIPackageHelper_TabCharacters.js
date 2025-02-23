@@ -262,7 +262,7 @@ function changeMeritValues(forInput, val){
             return;
         }
 
-        let combatSkills_total, magicSkills_total = 0;
+        let combatSkills_total = 0, magicSkills_total = 0;
         const skills = document.querySelectorAll('[id*=' + skillID + ']');
         const forInputID = Number(forInput.id.replace(skillID, ""));
 
@@ -283,7 +283,7 @@ function changeMeritValues(forInput, val){
                     mw.notify( "Defensive combat skill capped at 4.", { autoHide: true,  type: 'error' } );
                     return;
                 }
-
+        console.log(combatSkills_total, Number(skills[s].value));
                 if ( combatSkills_total == 12 ) {
                     mw.notify( "Total combat skills already capped at 12 points.", { autoHide: true,  type: 'error' } );
                     return;
