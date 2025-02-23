@@ -122,16 +122,19 @@ Custom Buttons
 .FFXIPackageHelper_dynamiccontent_incrementButton {
     display: none;
     padding: 0px;
-    width: 1rem;
+    width: 18px;
+    height: 18px;
     border-width: 0.5px;
-    border-radius: 4px;
+    border-radius: 50%;
     border-color: #ffffff75;
+    stroke: #3586ff75;
 }
 
 .incrementButton_show {
     display: inline-block;
     line-height: normal;
     font-size: revert;
+
 }
 
 
