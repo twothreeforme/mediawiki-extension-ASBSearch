@@ -312,6 +312,7 @@ Showing Equipsets stats table
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    overflow:hidden;
 }
 
 .FFXIPackageHelper_Equipsets_showset {
