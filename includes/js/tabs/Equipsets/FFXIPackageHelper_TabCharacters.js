@@ -178,8 +178,8 @@ function resetCharSelection(){
 }
 
 function scrollToTop() {
-    const top = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits_top");
-    top.scrollIntoView({ behavior: "smooth", block: "start" });
+    //const top = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits_top");
+    window.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 
