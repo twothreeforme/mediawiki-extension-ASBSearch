@@ -102,9 +102,9 @@ Custom Buttons
     display:flex;
     /* width:100%; */
     max-width: 100px;
-    height:14px;
+    height:16px;
     border: 0px;
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 
 .FFXIPackageHelper_dynamiccontent_incrementInput {
@@ -130,6 +130,8 @@ Custom Buttons
 
 .incrementButton_show {
     display: inline-block;
+    line-height: normal;
+    font-size: revert;
 }
 
 
