@@ -279,7 +279,7 @@ function changeMeritValues(forInput, val){
                     mw.notify( "Offensive combat skill capped at 8.", { autoHide: true,  type: 'error' } );
                     return;
                 }
-                else if ( Number(skills[s].value) == 4 && forInputID == id ){
+                if ( id >= 107 && Number(skills[s].value) == 4 && forInputID == id ){
                     mw.notify( "Defensive combat skill capped at 4.", { autoHide: true,  type: 'error' } );
                     return;
                 }
