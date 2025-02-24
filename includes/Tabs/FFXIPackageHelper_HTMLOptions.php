@@ -145,7 +145,9 @@ class FFXIPackageHelper_HTMLOptions {
             if ( count($userCharacters) > 0 ){
                 foreach ($userCharacters as $char) {
                     //$html .= "<option >". $char["charname"] ."</option>";
-                    $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char["charname"] . "\" class=\"FFXIPackageHelper_charButton\">" . $char["charname"] . "</button>";
+                    $classlist = "FFXIPackageHelper_charButton";
+                    if ( $char["def"] != 0  ) $classlist .= " FFXIPackageHelper_charButton_default";
+                    $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char["charname"] . "\" class=\"" . $classlist . "\">" . $char["charname"] . "</button>";
                 }
             }
         }

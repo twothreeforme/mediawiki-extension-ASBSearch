@@ -1031,13 +1031,12 @@ class DBConnection {
         ]);
     }
 
-
     public function getUserCharacters($char = null, $testForExistingChar = false){
         $dbr = $this->openConnectionSets();
         $uid = $char["userid"];
 
         $chars = $dbr->newSelectQueryBuilder()
-        ->select( [ 'charname', 'charid', 'race', 'merits' ] )
+        ->select( [ 'charname', 'charid', 'race', 'merits', 'def' ] )
         ->from( 'user_chars' )
         ->where( [ "user_chars.userid = $uid" ] )
         ->fetchResultSet();
@@ -1055,11 +1054,27 @@ class DBConnection {
                 'charname' => $row->charname,
                 'charid' => $row->charid,
                 'race' => $row->race,
-                'merits' => $row->merits
+                'merits' => $row->merits,
+                'def' => $row->def
             ];
         }
         return $userCharacters;
     }
+
+    public function removeUserCharDefault($char){
+        $dbw = $this->openConnectionSets();
+
+        return $dbw->update(
+            'user_chars',
+            [
+                'def' => 0
+            ],
+            [
+                'charid' => $char["charid"],
+            ]
+        );
+    }
+
 
     public function getSelectedCharacter($char){
         $dbr = $this->openConnectionSets();
@@ -1072,7 +1087,7 @@ class DBConnection {
         ];
 
         $result = $dbr->newSelectQueryBuilder()
-        ->select( [ 'charname', 'charid', 'race', 'merits' ] )
+        ->select( [ 'charname', 'charid', 'race', 'merits'] )
         ->from( 'user_chars' )
         ->where($query)
         ->fetchResultSet();
@@ -1088,6 +1103,7 @@ class DBConnection {
         return [];
     }
 
+
     public function setUserCharacter($char){
         $dbw = $this->openConnectionSets();
 
@@ -1098,6 +1114,7 @@ class DBConnection {
                 'charname' => $char["charname"],
                 'race' => $char["race"],
                 'merits' => $char["merits"],
+                'def' => $char["def"],
             ],
             __METHOD__
         );

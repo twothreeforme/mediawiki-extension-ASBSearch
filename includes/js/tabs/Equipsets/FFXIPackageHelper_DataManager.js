@@ -108,8 +108,6 @@ function getStatsData(equipIDString){
   }
 
 function resetStats(){
-    //document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value = 0;
-
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
 
     const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
@@ -124,6 +122,7 @@ function resetStats(){
     });
 
     updateStats();
+    setHeaderCharacterDetails();
 }
 
 function setMeritsData(merits_){
@@ -168,6 +167,7 @@ function setHeaderCharacterDetails(clearname){
 
     if ( areMeritsSet() == true ) document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  Merits set";
     else document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  No merits set";
+    // console.log("setHeaderCharacterDetails");
 }
 
 function updateCharacter(char){

@@ -154,7 +154,6 @@ Character selection buttons
 
 
 .FFXIPackageHelper_charButton {
-
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -163,20 +162,89 @@ Character selection buttons
     height: 25px;
     margin: 5px;
     border-radius: 7px;
-    font-size: 16px;
+    font-size: 13px;
     background: #fff;
     color: #3586ff;
-    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
 
   }
 
 .FFXIPackageHelper_charButton:hover{
-    background-color: rgba(177, 177, 177, 0.9);
-    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+    background-color: #3586ff50;
+    box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
 }
 
 .FFXIPackageHelper_charButtonselected{
   background-color: #3586ff;
   color: #fff;
+}
+
+.FFXIPackageHelper_charButton_default {
+  box-shadow: 0 4px 5px 0 #a1cb47;
+}
+.FFXIPackageHelper_charButton_default:hover {
+  box-shadow: 0 6px 10px #a1cb4785;
+}
+
+
+/*
+* Default character toggle on add new char modal
+*/
+.FFXIPackageHelper_dynamiccontent_addCharDefaultLabel {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  margin: 10px;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultLabel .FFXIPackageHelper_dynamiccontent_addCharDefaultInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultSpan {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #a1cb4745;
+  -webkit-transition: .4s;
+  transition: .4s cubic-bezier(0,1,0.5,1);
+  border-radius: 4px;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultSpan:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 15px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s cubic-bezier(0,1,0.5,1);
+  border-radius: 3px;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultInput:checked + .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan {
+  background-color: #a1cb47;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultInput:checked + .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultSpan.FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround {
+  border-radius: 30px;
+}
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultSpan.FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround:before {
+  border-radius: 50%;
 }

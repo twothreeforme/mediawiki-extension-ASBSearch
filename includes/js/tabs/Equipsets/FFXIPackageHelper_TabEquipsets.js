@@ -84,36 +84,7 @@ module.exports.setLinks = function (){
         shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", getStatsData(true));
     });
 
-    /**
-     * Character management
-     */
-    // const selectChar = document.getElementById("FFXIPackageHelper_equipsets_selectUserChar");
-    // selectChar.addEventListener("change", function (e) {
-    //     const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-    //     if ( e.target.value != 0 ) {
-    //         removeButton.style.display = "inline-block";
-    //         selectCharClicked();
-    //     }
-    //     else removeButton.style.display = "none";
-    // });
-
-    // const addChar = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharacter");
-    // const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
-    // addChar.addEventListener("click", function (e) {
-    //     modalCharAdd.open();
-    // });
-
-    // const removeChar = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-    // const modalCharRemove = new ModalCharRemoveWindow({ removeCallback: removeCharacter});
-    // removeChar.addEventListener("click", function (e) {
-    //     if ( e.target.value != 0 ) {
-    //         modalCharRemove.open(selectChar.options[selectChar.selectedIndex].text);
-    //     }
-    // });
-
-
-
-    // Load Merit Edits section
+     // Load Merit Edits section
     // MeritEdits.setLinks(Data.updateStats);
     
     /**

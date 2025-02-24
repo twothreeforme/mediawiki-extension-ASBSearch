@@ -17,18 +17,17 @@ class ModalCharAddWindow {
         //contentWrapper.id = `FFXIPackageHelper_equipsets_contentWrapperUserChars`;
         contentWrapper.classList.add('modal-content');
 
-        const br = document.createElement("br");
         const titleText = document.createElement("h2");
         titleText.textContent = 'Save Character';
         contentWrapper.appendChild(titleText);
-        contentWrapper.appendChild(br);
+        contentWrapper.appendChild(document.createElement("br"));
 
         const descText = document.createElement("span");
-        descText.textContent = 'Saves the current character RACE and MERITS.';
+        descText.textContent = 'Saves the current character RACE and MERITS';
         descText.setAttribute('style', 'font-size: .80em;font-style: italic;whiteSpace:pre-line;');
         contentWrapper.appendChild(descText);
 
-        contentWrapper.appendChild(br);
+        contentWrapper.appendChild(document.createElement("br"));
 
         const inputWrapper = document.createElement('div');
         inputWrapper.setAttribute('style', 'display: inline-flex; gap: 20px;');
@@ -50,19 +49,54 @@ class ModalCharAddWindow {
             saveButton.classList.add("FFXIPackageHelper_dynamiccontent_customButton");
             saveButton.textContent = 'Save';
 
-            inputWrapper.appendChild(inputElement);
-            inputWrapper.appendChild(saveButton);
-            inputWrapper.appendChild(closeButton);
+            inputWrapper.append(inputElement, saveButton, closeButton);
+            // inputWrapper.appendChild(saveButton);
+            // inputWrapper.appendChild(closeButton);
 
         contentWrapper.appendChild(inputWrapper);
-        contentWrapper.appendChild(br);
+        contentWrapper.appendChild(document.createElement("br"));
 
         const descText2 = document.createElement("span");
         descText2.setAttribute('style', 'font-size: .80em;font-style: italic;');
-        descText2.textContent = 'Maximum of 25 characters.Alpha-numeric chars only.';
-
+        descText2.textContent = 'Maximum of 25 characters.Alpha-numeric chars only';
         contentWrapper.appendChild(descText2);
 
+
+        /**
+         * Default toggle
+         */
+        // <label class="switch">
+        //  <input type="checkbox">
+        // <span class="slider round"></span>
+        // </label>
+
+        const defaultToggleLabel = document.createElement("label");
+        // defaultToggleLabel.setAttribute('for', 'FFXIPackageHelper_dynamiccontent_addCharDefault');
+        defaultToggleLabel.classList.add("FFXIPackageHelper_dynamiccontent_addCharDefaultLabel");
+
+            const defaultInput = document.createElement("input");
+            defaultInput.setAttribute('type', 'checkbox');
+            //defaultToggle.id = "FFXIPackageHelper_dynamiccontent_addCharDefault";
+            defaultInput.classList.add("FFXIPackageHelper_dynamiccontent_addCharDefaultInput");
+
+            const defaultSpan = document.createElement("span");
+            defaultSpan.classList.add("FFXIPackageHelper_dynamiccontent_addCharDefaultSpan");
+            defaultSpan.classList.add("FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround");
+        defaultToggleLabel.appendChild(defaultInput);
+        defaultToggleLabel.appendChild(defaultSpan);
+
+
+        const descText3 = document.createElement("span");
+        descText3.setAttribute('style', 'font-size: .80em;font-style: italic;');
+        descText3.textContent = 'Make this the default character';
+
+        contentWrapper.appendChild(document.createElement("br"));
+        contentWrapper.appendChild(defaultToggleLabel);
+        contentWrapper.appendChild(descText3);
+
+        /**
+         * Add everything to modal div
+         */
         this.modal.appendChild(contentWrapper);
 
         document.body.appendChild(this.modal);
@@ -79,7 +113,9 @@ class ModalCharAddWindow {
         const saveButton = document.getElementById("FFXIPackageHelper_dynamiccontent_saveChar");
         saveButton.addEventListener('click', (e) =>  {
             const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharInput");
-            this.options.saveCallback(inputElement.value);
+            const defaultToggle = (document.querySelector('.FFXIPackageHelper_dynamiccontent_addCharDefaultInput').checked == true) ? 1 : 0;
+
+            this.options.saveCallback(inputElement.value, defaultToggle);
             this.close();
         });
 
@@ -95,6 +131,8 @@ class ModalCharAddWindow {
     open() {
         const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_addCharInput");
         inputElement.value = "";
+
+        document.querySelector('.FFXIPackageHelper_dynamiccontent_addCharDefaultInput').checked = false;
 
         this.modal.classList.add('open');
         inputElement.focus();

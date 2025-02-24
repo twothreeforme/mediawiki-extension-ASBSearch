@@ -92,7 +92,14 @@ module.exports.setLinks = function (){
         }
     });
 
-     Data.setHeaderCharacterDetails();
+    selectDefaultCharacterOnLoad();
+}
+
+function selectDefaultCharacterOnLoad(){
+    const defaultCharList = document.getElementsByClassName("FFXIPackageHelper_charButton_default");
+    if ( defaultCharList.length > 0 ) {
+        selectCharClicked(defaultCharList[0].innerHTML);
+    }
 }
 
 function selectCharClicked(charname){
@@ -109,14 +116,14 @@ function selectCharClicked(charname){
     scrollToTop();
 }
 
-function saveCharacterClicked(charName){
-    //console.log(charName);
+function saveCharacterClicked(charName, defaultToggle){
 
     const data = {
         action: "equipsets_savechar",
         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
         merits: encodeURIComponent(btoa(Data.getMeritsData())),
-        charname: charName
+        charname: charName,
+        def: defaultToggle,
     }
 
     API.actionAPI(data, data.action, null, characterSaved);
@@ -131,11 +138,11 @@ function removeCharacter(charname){
         charname: charname
     }
 
-    API.actionAPI(data, data.action, null, resetCharList);
+    API.actionAPI(data, data.action, null, resetCharList );
     Data.resetStats();
     scrollToTop();
-    Data.setHeaderCharacterDetails();
 
+    Data.setHeaderCharacterDetails();
 }
 
 function addCharButtonEvents(charButtons){
@@ -148,9 +155,13 @@ function addCharButtonEvents(charButtons){
                 if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
             });
 
-            button.classList.toggle('FFXIPackageHelper_charButtonselected');
+            toggleSelected(button);
         });
     });
+}
+
+function toggleSelected(button){
+    button.classList.toggle('FFXIPackageHelper_charButtonselected');
 }
 
 function resetCharList(incCharsList){
@@ -166,6 +177,7 @@ function resetCharList(incCharsList){
             btn.id = 'FFXIPackageHelper_charButton_' + details["charname"];
             //btn.id = 'FFXIPackageHelper_charButton';
             btn.classList.add("FFXIPackageHelper_charButton");
+            if ( details["def"] != 0 ) btn.classList.add("FFXIPackageHelper_charButton_default");
             charSelectDIV.appendChild(btn);
 
             btn.addEventListener("click", function (){
@@ -177,6 +189,8 @@ function resetCharList(incCharsList){
     //add event listeners to new items
     const charButtons = document.getElementsByClassName("FFXIPackageHelper_charButton");
     if ( charButtons ) addCharButtonEvents(charButtons);
+
+    Data.setHeaderCharacterDetails();
 }
 
 function characterSaved(results){
@@ -283,7 +297,6 @@ function changeMeritValues(forInput, val){
                     mw.notify( "Defensive combat skill capped at 4.", { autoHide: true,  type: 'error' } );
                     return;
                 }
-        console.log(combatSkills_total, Number(skills[s].value));
                 if ( combatSkills_total == 12 ) {
                     mw.notify( "Total combat skills already capped at 12 points.", { autoHide: true,  type: 'error' } );
                     return;
@@ -307,16 +320,8 @@ function changeMeritValues(forInput, val){
             }
         };
 
-        // Start the logic checking for caps
+        SforInput.value = Number(forInput.value) + val;
 
-        // if ( combatSkills_total == 12 ) {
-        //     mw.notify( "Skills already capped at 12 total points.", { autoHide: true,  type: 'error' } );
-        //     return;
-        // }
-        // else {
-            forInput.value = Number(forInput.value) + val;
-            //return;
-        //}
     }
 
 }

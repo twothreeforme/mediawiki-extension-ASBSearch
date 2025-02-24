@@ -39,7 +39,6 @@ function actionAPI(params, forTab, currentButton, callback) {
           }
         }
         else if ( forTab.includes("removechar")) {
-          //console.log(result);
           //updateCharsList(result['userchars'], callback);
           callback(result['userchars']);
           mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
@@ -49,6 +48,7 @@ function actionAPI(params, forTab, currentButton, callback) {
           callback.updateCharacter(result['selected']);
           callback.updateStats();
           //callback.setHeaderCharacterDetails();
+
         }
         else {
           updateEquipsets(result['stats']);

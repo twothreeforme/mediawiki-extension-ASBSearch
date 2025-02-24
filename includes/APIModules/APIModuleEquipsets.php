@@ -20,6 +20,7 @@ class APIModuleEquipsets extends ApiBase {
             'search' => "",
             'slot' => 0,
             'charname' => null,
+            'def' => 0,
     		];
 	}
 
@@ -107,7 +108,7 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception (json_encode($result));
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
-            //throw new Exception($params['charname']);
+
             $char = $this->createChar($params);
 
             if ( $char['userid'] == 0 || $char['userid'] == null ){
@@ -118,9 +119,7 @@ class APIModuleEquipsets extends ApiBase {
             //check user for existing character name
             $db = new DBConnection();
 
-
             $userCharacters = $db->getUserCharacters($char, true);
-            //throw new Exception ( json_encode($userCharacters));
 
             if( gettype($userCharacters) == "string" ){
                 // character name already exists, should return error
@@ -129,6 +128,18 @@ class APIModuleEquipsets extends ApiBase {
                 return;
             }
             else{
+                if ( $params['def'] == 1 ){
+                    //search for user with default already applied
+                    // throw new Exception ( json_encode($userCharacters));
+                    foreach ( $userCharacters as &$userChar){
+                        if ( $userChar['def'] == 1 ) {
+                            $db->removeUserCharDefault($userChar);
+                            $userChar['def'] = 0;
+                            break;
+                        }
+                    }
+                }
+
                 //char name is new and should be saved
                 $db->setUserCharacter($char);
                 $userCharacters[] = $char;
@@ -167,7 +178,8 @@ class APIModuleEquipsets extends ApiBase {
             'userid' => $user->getId(),
             'charname' => $params['charname'],
             'race' => $params['race'] ,
-            'merits' => $params['merits']
+            'merits' => $params['merits'],
+            'def' => $params['def']
         ];
     }
 }

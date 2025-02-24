@@ -24,6 +24,7 @@ CREATE TABLE `user_chars` (
   `charname` varchar(25) NOT NULL,
   `race` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `merits` varchar(255) NOT NULL DEFAULT 0,
+  `def` tinyint(1) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`charid`)
 ) DEFAULT CHARSET=utf8mb4 CHECKSUM=1;
 
