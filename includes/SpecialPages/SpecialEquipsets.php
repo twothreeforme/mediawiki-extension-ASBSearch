@@ -76,43 +76,19 @@ class SpecialEquipsets extends SpecialPage {
 
 	public function tab2(){
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
-					// "<span>" . FFXIPackageHelper_HTMLOptions::userCharsDropDown("FFXIPackageHelper_equipsets_selectUserChar") . "</span>" .
-					// "<button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\">
-                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //         <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //     </svg>
-                    // </button>
-                    // <button id=\"FFXIPackageHelper_dynamiccontent_removeCharacter\" class=\"FFXIPackageHelper_dynamiccontent_removeCharacter\">
-                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //     </svg>
-                    // </button>" .
-					// "<br>" .
 
 					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
 						"<div id=\"FFXIPackageHelper_equipsets_charSelect\">" .
 
-						//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
-						"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">
-							<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-								<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
-								<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
-                         	</svg>
-							<span id=\"FFXIPackageHelper_newCharButton-text\">New</span>
-						</button>" .
-
-						// https://modus-icons.trimble.com/
-						// "<button id=\"FFXIPackageHelper_refreshStatsButton\" class=\"FFXIPackageHelper_refreshStatsButton\">
-						// 	<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">
-						// 		<path d=\"M20.57 4.03c-.57-.24-1.2-.11-1.63.33l-.59.59a9.52 9.52 0 0 0-7.19-2.41c-4.47.39-8.08 3.9-8.58 8.36-.31 2.75.52 5.4 2.35 7.44a9.52 9.52 0 0 0 7.08 3.17c3.69 0 6.97-2.08 8.56-5.42.24-.51.21-1.1-.09-1.58-.3-.47-.81-.75-1.37-.75-.63 0-1.19.35-1.44.89a6.26 6.26 0 0 1-5.65 3.61c-3.33 0-6.2-2.81-6.25-6.15-.03-1.69.61-3.28 1.8-4.48a6.2 6.2 0 0 1 4.45-1.87c1.48 0 2.9.53 4.03 1.51L14.5 8.82c-.44.44-.56 1.06-.33 1.63.24.57.77.93 1.39.93h4.46c.83 0 1.5-.67 1.5-1.5V5.42c0-.62-.35-1.15-.93-1.39Z\"/>
-						// 	</svg>
-						// </button>" .
-
-
-
-						FFXIPackageHelper_HTMLOptions::charactersButtonsList() .
-
+							//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
+							"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">
+								<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+									<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
+									<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
+								</svg>
+								<span id=\"FFXIPackageHelper_newCharButton-text\">New</span>
+							</button>" .
+							FFXIPackageHelper_HTMLOptions::charactersButtonsList() .
 						"</div>" .
 						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
 
@@ -122,8 +98,8 @@ class SpecialEquipsets extends SpecialPage {
 							"</div>" .
 							"<div id=\"FFXIPackageHelper_dynamiccontent_newCharSection\" style=\"display: none;\" >" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Name</p>" .
-								"<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_charNameInput\" class=\"FFXIPackageHelper_dynamiccontent_charNameInput\" placeholder=\"Character Name\" maxlength=\"25\"><br>" .
-								"</div>" .
+								"<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_charNameInput\" class=\"FFXIPackageHelper_dynamiccontent_charNameInput\" placeholder=\"Character Name\" maxlength=\"25\"></input><br>" .
+							"</div>" .
 							"<div class=\"FFXIPackageHelper_equipsets_selectRace\">" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Default</p>" .
 								"<label class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultLabel\">" .
