@@ -111,6 +111,7 @@ class SpecialEquipsets extends SpecialPage {
 							"<div>" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Merits</p>" .
 								//"<button id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button><br>" .
+							"</div>" .
 							"<div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
 								<table class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">
 									<tr><td><h4>Stats</h4></td></tr>
