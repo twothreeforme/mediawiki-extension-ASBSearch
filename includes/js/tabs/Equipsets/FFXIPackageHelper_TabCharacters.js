@@ -366,8 +366,8 @@ function changeMeritValues(forInput, val){
                     return;
             }
             else {
-                if ( (Number(forInput.value) + val) > 5 ) {
-                    mw.notify( "This stat is capped at 5.", { autoHide: true,  type: 'error' } );
+                if ( (Number(forInput.value) + val) > 8 ) {
+                    mw.notify( "This stat is capped at 8.", { autoHide: true,  type: 'error' } );
                     return;
                 }
                 else forInput.value = Number(forInput.value) + val;
