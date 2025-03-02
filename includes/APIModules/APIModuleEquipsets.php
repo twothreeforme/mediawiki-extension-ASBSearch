@@ -108,7 +108,6 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception (json_encode($result));
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
-
             $char = $this->createChar($params);
 
             if ( $char['userid'] == 0 || $char['userid'] == null ){
@@ -144,7 +143,40 @@ class APIModuleEquipsets extends ApiBase {
                 $db->setUserCharacter($char);
                 $userCharacters[] = $char;
                 $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
+                return;
             }
+        }
+        else if ( $params['action'] == "equipsets_updatechar" ) {
+            //throw new Exception ( json_encode($params) );
+            $db = new DBConnection();
+            $char = $this->createChar($params);
+
+            if ( $char['userid'] == 0 || $char['userid'] == null ){
+                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save character."] );
+                return;
+            }
+
+            $userCharacters = $db->getUserCharacters($char, false);
+
+            if ( $params['def'] == 1 ){
+                //search for user with default already applied
+                // throw new Exception ( json_encode($userCharacters));
+                foreach ( $userCharacters as &$userChar){
+                    if ( $userChar['def'] == 1 ) {
+                        $db->removeUserCharDefault($userChar);
+                        $userChar['def'] = 0;
+                        break;
+                    }
+                }
+            }
+
+            $db->updateUserCharacter($char);
+
+            $userCharacters = $db->getUserCharacters($char, false);
+
+            $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
+            //$result->addValue( $params['action'],  "status", "great");
+            //throw new Exception ( json_encode( [$params['charname'], $userCharacters]));
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {
             $db = new DBConnection();

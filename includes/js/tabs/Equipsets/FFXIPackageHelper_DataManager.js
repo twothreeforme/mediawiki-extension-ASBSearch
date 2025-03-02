@@ -111,8 +111,15 @@ function resetStats(){
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
 
     const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
-    removeButton.style.display = "none";
+    removeButton.style.visibility = "hidden";
 
+    resetMeritsToDefault();
+
+    updateStats();
+    setHeaderCharacterDetails();
+}
+
+function resetMeritsToDefault(){
     const _id = "FFXIPackageHelper_equipsets_merits_";
     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
     //console.log(allMerits);
@@ -120,9 +127,6 @@ function resetStats(){
     meritsArray.forEach(merit => {
         merit.value = 0;
     });
-
-    updateStats();
-    setHeaderCharacterDetails();
 }
 
 function setMeritsData(merits_){
@@ -171,7 +175,11 @@ function setHeaderCharacterDetails(clearname){
 }
 
 function updateCharacter(char){
+    //console.log("updateCharacter:", char);
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = char.race;
+
+    if ( char.def == 0 ) document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;
+    else document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = true;
 
     const merits_base64 = decodeURIComponent(char.merits);
     const merits_ = JSON.parse(atob(merits_base64));
@@ -182,5 +190,5 @@ function updateCharacter(char){
 
 module.exports = {
     updateEquipmentGrid, getEquipID, getEquipIDs, updateStats, getMeritsData, getStatsData, resetStats,
-    setMeritsData, setHeaderCharacterDetails, updateCharacter
+    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault
 }

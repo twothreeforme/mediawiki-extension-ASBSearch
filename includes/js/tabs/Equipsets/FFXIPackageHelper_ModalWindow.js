@@ -29,7 +29,7 @@ function searchButton(slot){
 }
 
 function searchResults(slot){
-    return "<br><br><div class=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><p></p><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
+    return "<br><div class=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><p></p><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
 }
 
 function removeItemButton(slot){
@@ -165,6 +165,7 @@ class ModalWindow {
 
         //remove all list items and start over
         var dl = document.getElementById(idname);
+
         dl.innerHTML = '';
 
         if ( results[0].length == 0 ) {
@@ -176,11 +177,15 @@ class ModalWindow {
         commentNode.innerText = "Click item to add to set...\n";
 
         for ( let i = 0; i < arr.length; i++ ){
-            //console.log(arr[i]["name"]);
+            console.log(i, arr[i]["name"]);
 
             var dt = document.createElement("dt");
             dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
             dt.onmouseout = function() { this.style="background-color:none;"; };
+
+            //prep work to allow cursor manipulation later
+            if ( i == 0 ) dt.setAttribute('tabindex', '0');
+            else dt.setAttribute('tabindex', '-1');
 
             var t = document.createTextNode(arr[i]["name"]);
 
@@ -198,10 +203,12 @@ class ModalWindow {
                 this.options.returnCallback(arr[i]["id"], slot, this);
             });
 
+
             dt.appendChild(img);
             dt.appendChild(t);
             dl.appendChild(dt);
         }
+
     }
 
     open(itemid) {
@@ -231,6 +238,7 @@ class ModalWindow {
 
     }
 }
+
 
 
 module.exports = ModalWindow;

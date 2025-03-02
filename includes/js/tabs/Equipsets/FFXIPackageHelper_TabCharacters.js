@@ -1,35 +1,42 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 
-var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
-var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
+// var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
+// var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
+
+const EDIT_BUTTON = document.getElementById("FFXIPackageHelper_editCharButton");
+const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteCharButton");
+const SAVE_BUTTON = document.getElementById("FFXIPackageHelper_dynamiccontent_saveChar");
+const DEFAULT_SWITCH = document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar");
+const NEWCHAR_BUTTON = document.getElementById("FFXIPackageHelper_newCharButton");
+const RACE_DROPDOWN = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
+
+
+const counterbox = document.querySelectorAll('#FFXIPackageHelper_dynamiccontent_counterbox');
+const hiddenDiv = document.getElementById("FFXIPackageHelper_dynamiccontent_newCharSection");
+hiddenDiv.offsetTop;
+
+let characterComparison = null;
+let currentCharacterName = null;
 
 module.exports.setLinks = function (){
 
-    const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
-    const newCharButton = document.getElementById("FFXIPackageHelper_newCharButton");
-    newCharButton.addEventListener("click", function (e) {
-        modalCharAdd.open();
-    });
-
-
     const charButtons = document.getElementsByClassName("FFXIPackageHelper_charButton");
 
-    const refreshButton = document.getElementById("FFXIPackageHelper_refreshStatsButton");
-    refreshButton.addEventListener("click", function () {
+    // const refreshButton = document.getElementById("FFXIPackageHelper_refreshStatsButton");
+    // refreshButton.addEventListener("click", function () {
 
-        Array.from(charButtons).forEach((button) => {
-            if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) button.classList.toggle('FFXIPackageHelper_charButtonselected');
-          });
+    //     Array.from(charButtons).forEach((button) => {
+    //         if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) button.classList.toggle('FFXIPackageHelper_charButtonselected');
+    //       });
 
-        Data.resetStats();
-        scrollToTop();
-        Data.setHeaderCharacterDetails();
+    //     Data.resetStats();
+    //     scrollToTop();
+    //     Data.setHeaderCharacterDetails();
 
-    });
+    // });
 
-    const removeChar = document.getElementById("FFXIPackageHelper_deleteCharButton");
-    removeChar.addEventListener("click", function () {
+    REMOVE_BUTTON.addEventListener("click", function () {
         let charname = null;
         Array.from(charButtons).forEach((button) => {
             if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) charname = button.innerHTML;
@@ -40,8 +47,7 @@ module.exports.setLinks = function (){
 
     if ( charButtons ) { addCharButtonEvents(charButtons); }
 
-    const raceDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
-    raceDropdown.addEventListener("change", () =>  {
+    RACE_DROPDOWN.addEventListener("change", () =>  {
         //console.log(e.target.value);
         Data.updateStats();
         resetCharSelection();
@@ -49,53 +55,113 @@ module.exports.setLinks = function (){
 
     });
 
-    const counterbox = document.querySelectorAll('#FFXIPackageHelper_dynamiccontent_counterbox');
-        for (var c = 0; c < counterbox.length; c++) {
-            //console.log(counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton"));
-            const buttons = counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton");
-            const input = counterbox[c].querySelector(".FFXIPackageHelper_dynamiccontent_incrementInput");
-            buttons[0].addEventListener("click", function (e) {
-                changeMeritValues(input, -1);
-            });
-            buttons[1].addEventListener("click", function (e) {
-                changeMeritValues(input, 1);
-            });
-        }
+    for (var c = 0; c < counterbox.length; c++) {
+        //console.log(counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton"));
+        const buttons = counterbox[c].querySelectorAll(".FFXIPackageHelper_dynamiccontent_incrementButton");
+        const input = counterbox[c].querySelector(".FFXIPackageHelper_dynamiccontent_incrementInput");
+        buttons[0].addEventListener("click", function (e) {
+            changeMeritValues(input, -1);
+        });
+        buttons[1].addEventListener("click", function (e) {
+            changeMeritValues(input, 1);
+        });
+    }
 
     // Set all associated layouts for the Edit button and associated events
-    const editMerits = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits");
-    editMerits.addEventListener("click", function (e) {
+    EDIT_BUTTON.addEventListener("click", function (e) {
+        EDIT_BUTTON.classList.toggle("FFXIPackageHelper_editCharButtonSelected");
+        //NEWCHAR_BUTTON.classList.toggle('FFXIPackageHelper_newCharButton_Grayed');
+
         // Adjust Edit button
-        if ( editMerits.innerText == "Edit") {
-            editMerits.innerText = "Apply";
-            editMerits.className = "FFXIPackageHelper_dynamiccontent_customButton";
+        if ( EDIT_BUTTON.innerText == "Edit") {
+            EDIT_BUTTON.innerText = "Apply";
+
+            characterComparison = {
+                def: DEFAULT_SWITCH.checked,
+                race: RACE_DROPDOWN.value,
+                merits: Data.getMeritsData()
+            };
+
+            setDisabledState_AllSavedCharButtons(true);
+            hideButton(REMOVE_BUTTON);//hide remove button
+            NEWCHAR_BUTTON.disabled = true;
         }
         else {
-            editMerits.innerText = "Edit";
-            editMerits.className = "FFXIPackageHelper_dynamiccontent_shareButton";
-            resetCharSelection();
-            Data.updateStats(null);
-            Data.setHeaderCharacterDetails();
-        }
+            EDIT_BUTTON.innerText = "Edit";
+            //resetCharSelection();
 
-        // Adjust merit edit buttons for all stats
-        for (var c = 0; c < counterbox.length; c++) {
+            let charChanges = {
+                def: DEFAULT_SWITCH.checked,
+                race: RACE_DROPDOWN.value,
+                merits: Data.getMeritsData()
+            };
 
-            let meritschildren = counterbox[c].children;
-            for (var i = 0; i < meritschildren.length; i++) {
-                //console.log(meritschildren[i].tagName);
-                if (meritschildren[i].tagName == "BUTTON" ){
-                    //console.log(meritschildren[i]);
-                    meritschildren[i].classList.toggle('incrementButton_show');
+            if ( characterComparison.def != charChanges.def ||
+                characterComparison.race != charChanges.race ||
+                characterComparison.merits != charChanges.merits ){
+                    updateSavedCharacter();
                 }
-            }
+            // console.log(characterComparison, charChanges);
+
+            characterComparison = null;
+            charChanges = null;
+            setDisabledState_AllSavedCharButtons(false);
+            showButton(REMOVE_BUTTON);//show remove button
+            NEWCHAR_BUTTON.disabled = false;
         }
+
+        toggleDefaultSwitch();
+        toggleRaceDropDown();
+        toggleMeritEditButtons(counterbox);
     });
+
+    //const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
+    NEWCHAR_BUTTON.addEventListener("click", function () {
+        console.log("NEWCHAR_BUTTON.addEventListener(\"click\",");
+        if ( hiddenDiv.style.display != "none" ) {
+            selectCharClicked(currentCharacterName);
+            currentCharacterName = null;
+        }
+        else  {
+            const selectedChar = document.getElementsByClassName("FFXIPackageHelper_charButton FFXIPackageHelper_charButtonselected")[0].innerHTML;
+            if ( selectedChar ) currentCharacterName = selectedChar;
+        }
+
+        //toggle New button
+        toggleNewButton();
+    });
+
+    const inputElement = document.getElementById("FFXIPackageHelper_dynamiccontent_charNameInput");
+    inputElement.addEventListener('input', function(event) {
+        const value = event.target.value;
+        const sanitizedValue = value.replace(/[^a-zA-Z0-9]/g, '');
+        event.target.value = sanitizedValue;
+        });
+
+    SAVE_BUTTON.addEventListener('click', (e) =>  {
+        saveCharacterClicked();
+        });
 
     selectDefaultCharacterOnLoad();
 }
 
+function toggleMeritEditButtons(counterbox){
+    // Adjust merit edit buttons for all stats
+    for (var c = 0; c < counterbox.length; c++) {
+
+        let meritschildren = counterbox[c].children;
+        for (var i = 0; i < meritschildren.length; i++) {
+            //console.log(meritschildren[i].tagName);
+            if (meritschildren[i].tagName == "BUTTON" ){
+                //console.log(meritschildren[i]);
+                meritschildren[i].classList.toggle('incrementButton_show');
+            }
+        }
+    }
+}
+
 function selectDefaultCharacterOnLoad(){
+    //console.log("selectDefaultCharacterOnLoad");
     const defaultCharList = document.getElementsByClassName("FFXIPackageHelper_charButton_default");
     if ( defaultCharList.length > 0 ) {
         selectCharClicked(defaultCharList[0].innerHTML);
@@ -103,31 +169,63 @@ function selectDefaultCharacterOnLoad(){
 }
 
 function selectCharClicked(charname){
-    //console.log("selectCharClicked");
+    //console.log("selectCharClicked:", charname);
 
     const data = {
         action: "equipsets_selectchar",
         charname: charname,
     }
 
-    show_RemoveCharacterButton();
+    showButton(REMOVE_BUTTON);
+    showButton(EDIT_BUTTON);
+
+    const selectedCharButton = document.getElementById('FFXIPackageHelper_charButton_' + charname);
+    //toggleSelected(selectedCharButton);
+    if ( selectedCharButton ) showCharButtonSelected(selectedCharButton, true);
 
     API.actionAPI(data, data.action, null, Data);
-    scrollToTop();
+    //scrollToTop();
 }
 
-function saveCharacterClicked(charName, defaultToggle){
-
-    const data = {
-        action: "equipsets_savechar",
+function getCharacter(){
+    return {
         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
         merits: encodeURIComponent(btoa(Data.getMeritsData())),
-        charname: charName,
-        def: defaultToggle,
+        charname: document.getElementById("FFXIPackageHelper_dynamiccontent_charNameInput").value,
+        def: (document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked == true) ? 1 : 0,
+    }
+}
+
+function saveCharacterClicked(){
+    const data = getCharacter();
+
+    if ( data.charname.length == 0 ){
+        mw.notify( "Character name must be filled.", { autoHide: true,  type: 'error' } );
+        return;
     }
 
+    data.action = "equipsets_savechar";
     API.actionAPI(data, data.action, null, characterSaved);
-    scrollToTop();
+    //scrollToTop();
+
+    // make New button green again
+    toggleNewButton();
+
+    //hide Save button
+    hideButton(SAVE_BUTTON);
+}
+
+function updateSavedCharacter(){
+    const data = {
+        action: "equipsets_updatechar",
+        race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+        merits: encodeURIComponent(btoa(Data.getMeritsData())),
+        charname: getCharName(),
+        def: (document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked == true) ? 1 : 0,
+    }
+
+    //console.log(getCharName());
+    API.actionAPI(data, data.action, null, characterSaved);
 }
 
 function removeCharacter(charname){
@@ -148,20 +246,18 @@ function removeCharacter(charname){
 function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
         button.addEventListener("click", function () {
-
+        //console.log("addCharButtonEvents")
            selectCharClicked(button.innerHTML);
 
             Array.from(charButtons).forEach((btn) => {
-                if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
+                //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
+                showCharButtonSelected(btn, false);
             });
 
-            toggleSelected(button);
+            //toggleSelected(button);\
+            showCharButtonSelected(button, true);
         });
     });
-}
-
-function toggleSelected(button){
-    button.classList.toggle('FFXIPackageHelper_charButtonselected');
 }
 
 function resetCharList(incCharsList){
@@ -170,6 +266,7 @@ function resetCharList(incCharsList){
 
     //add new list items
     if (incCharsList){
+        //console.log(incCharsList);
         var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
         incCharsList.map((details) => {
             var btn = document.createElement('button')
@@ -180,9 +277,10 @@ function resetCharList(incCharsList){
             if ( details["def"] != 0 ) btn.classList.add("FFXIPackageHelper_charButton_default");
             charSelectDIV.appendChild(btn);
 
-            btn.addEventListener("click", function (){
-                selectCharClicked(details["charname"]);
-            });
+            // btn.addEventListener("click", function (){
+            //     console.log("btn.addEventListener(\"click\"");
+            //     selectCharClicked(details["charname"]);
+            // });
         });
     }
 
@@ -196,13 +294,14 @@ function resetCharList(incCharsList){
 function characterSaved(results){
     const recentCharSaved = results[0];
     const newUserList = results[1];
-
+    // console.log(results);
     resetCharList(newUserList);
 
     const charButton = document.getElementById('FFXIPackageHelper_charButton_' + recentCharSaved);
     charButton.classList.toggle('FFXIPackageHelper_charButtonselected');
 
-    show_RemoveCharacterButton();
+    //toggleButtonVisibility(REMOVE_BUTTON);
+    Data.updateStats();
     scrollToTop();
     Data.setHeaderCharacterDetails();
 }
@@ -211,23 +310,17 @@ function clearCharList(){
     var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
     const buttons = charSelectDIV.querySelectorAll('button');
     Array.from(buttons).forEach((button) => {
-      if ( button.classList.contains("FFXIPackageHelper_charButton") ) charSelectDIV.removeChild(button);
+      if ( button.classList.contains("FFXIPackageHelper_charButton") )  {
+        let new_element = button.cloneNode(true);
+        button.parentNode.replaceChild(new_element, button);
+        charSelectDIV.removeChild(new_element);
+      }
     });
 }
 
-function show_RemoveCharacterButton(){
-    const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
-    removeButton.style.display = "inline-block";
-}
-
-// function remove_RemoveCharacterButton(){
-//     const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
-//     removeButton.style.display = "none";
-// }
 
 function resetCharSelection(){
-    const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
-    removeButton.style.display = "none";
+    // toggleButtonVisibility(REMOVE_BUTTON);
 
     const selectedChars = document.getElementsByClassName("FFXIPackageHelper_charButtonselected");
     Array.from(selectedChars).forEach((btn) => {
@@ -236,8 +329,10 @@ function resetCharSelection(){
 }
 
 function scrollToTop() {
-    //const top = document.getElementById("FFXIPackageHelper_dynamiccontent_changeMerits_top");
-    //window.scrollIntoView({ behavior: "smooth", block: "start" });
+    // const top = document.getElementById("FFXIPackageHelper_characterHeader_name");
+    // top.scrollIntoView({ behavior: "smooth", block: "start" });
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
 }
 
 function changeMeritValues(forInput, val){
@@ -320,10 +415,120 @@ function changeMeritValues(forInput, val){
             }
         };
 
-        SforInput.value = Number(forInput.value) + val;
+        forInput.value = Number(forInput.value) + val;
 
     }
 
+}
+
+function getCharName(){
+    const characterButtons = document.querySelectorAll('button[id*=FFXIPackageHelper_charButton_]');
+    for ( const button of characterButtons){
+    //Array.from(characterButtons).forEach((button) => {
+
+        if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) {
+            //console.log('FFXIPackageHelper_charButtonselected', button.innerHTML);
+            return button.innerHTML;
+        }
+        //});
+    }
+    return null;
+}
+
+// function toggleButtonVisibility(button){
+//     if ( button.style.visibility == "hidden" ) button.style.visibility = "visible";
+//     else  button.style.visibility = "hidden";
+//     console.log(button.style.visibility);
+// }
+
+function toggleSelected(button){
+    //console.log("toggleSelected:", button);
+    button.classList.toggle('FFXIPackageHelper_charButtonselected');
+}
+
+function showCharButtonSelected(button, selected){
+    if ( selected == true ) button.classList.add('FFXIPackageHelper_charButtonselected');
+    else button.classList.remove('FFXIPackageHelper_charButtonselected');
+}
+
+function hideButton(button){ button.style.visibility = "hidden"; }
+function showButton(button) { button.style.visibility = "visible"; }
+
+function toggleDefaultSwitch(){
+    if ( DEFAULT_SWITCH.disabled == true )  DEFAULT_SWITCH.disabled = false;
+    else DEFAULT_SWITCH.disabled = true;
+}
+
+function toggleRaceDropDown(){
+    if ( RACE_DROPDOWN.disabled == true )  RACE_DROPDOWN.disabled = false;
+    else RACE_DROPDOWN.disabled = true;
+}
+
+function toggleNewButton() {
+    NEWCHAR_BUTTON.classList.toggle('FFXIPackageHelper_newCharButton_Grayed');
+    const newchar_buttonText = document.getElementById("FFXIPackageHelper_newCharButton-text");
+    if ( NEWCHAR_BUTTON.classList.contains('FFXIPackageHelper_newCharButton_Grayed')) {
+        newchar_buttonText.innerText = "Cancel";
+    }
+    else newchar_buttonText.innerText = "New";
+
+    //unhide character name block
+    if ( hiddenDiv.style.display != "none" ) {
+        //enable all char buttons
+        setDisabledState_AllSavedCharButtons(false);
+        showButton(REMOVE_BUTTON);//show remove button
+        showButton(EDIT_BUTTON);//show edit button
+        hiddenDiv.style.display = "none";
+
+        hideButton(SAVE_BUTTON);//hide save button
+
+        //console.log(currentCharacterName);
+        // selectCharClicked(currentCharacterName);
+        // currentCharacterName = null;
+    }
+    else  {
+        // const selectedChar = document.getElementsByClassName("FFXIPackageHelper_charButton FFXIPackageHelper_charButtonselected")[0].innerHTML;
+        // if ( selectedChar ) currentCharacterName = selectedChar;
+        //console.log(currentCharacterName);
+        setNewCharDefaults();
+
+        //disable all char buttons
+        setDisabledState_AllSavedCharButtons(true);
+        hideButton(REMOVE_BUTTON);//hide remove button
+        hideButton(EDIT_BUTTON);//hide edit button
+        hiddenDiv.style.display = "block";
+
+        showButton(SAVE_BUTTON);//show save button
+        DEFAULT_SWITCH.checked = false; //set default switch to off
+    }
+
+    toggleDefaultSwitch();//toggle default switch to enabled/disabled
+    toggleRaceDropDown();
+    toggleMeritEditButtons(counterbox);    //unlock editing for all merits
+
+}
+
+function setNewCharDefaults(){
+    document.getElementById("FFXIPackageHelper_dynamiccontent_charNameInput").value = "";
+    Data.resetMeritsToDefault();
+}
+
+function setDisabledState_AllSavedCharButtons(state){
+    const characterDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
+    const characterButtons = characterDIV.querySelectorAll('button[id*=FFXIPackageHelper_charButton_]');
+    //console.log(characterButtons);
+    for ( const button of characterButtons ){
+        button.disabled = state;
+
+        // if ( state == true ) {
+        //     hideButton(REMOVE_BUTTON);//hide remove button
+        //     hideButton(EDIT_BUTTON);//hide edit button
+        // }
+        // else {
+        //     showButton(REMOVE_BUTTON);//show remove button
+        //     showButton(EDIT_BUTTON);//show edit button
+        // }
+    }
 }
 
 

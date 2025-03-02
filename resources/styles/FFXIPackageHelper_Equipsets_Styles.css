@@ -39,72 +39,122 @@
 Character selection DIVs
 */
 #FFXIPackageHelper_equipsets_charSelect {
-    /* background-color: #92fcac; */
+    /* background-color: #92fcac;
     display:inline-block;
     width:150px;
     min-width: 100px;
     height:100%;
     text-align: center;
-    overflow-y: auto;
+    overflow-y: auto; */
+
+    /* background-color: #92fcac; */
+    display: flex;
+    width: 100%;
+    /* min-width: 100px; */
+    height: 45px;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 #FFXIPackageHelper_equipsets_charSelectMerits {
-    /* background-color: #d495ff; */
+    /* background-color: #d495ff;
     display:inline-block;
     overflow-x: auto;
     width:100%;
     height:100%;
-    padding: 0px 5px 0px 35px;
+    padding: 0px 5px 0px 35px; */
+
+    /* background-color: #d495ff; */
+    display: block;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    /* padding: 0px 0px 0px 15px; */
+  }
+
+  #FFXIPackageHelper_equipsets_charTab {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+  }
+
+  .FFXIPackageHelper_equipsets_charSelectOptionsMenu{
+    width: 100%;
+    height: 45px;
+    /* background-color: #95cfff; */
+    /* right: 25px; */
+    display: block;
+    /* text-align: right; */
+    margin: auto;
   }
 
 /*
 Character selection buttons
 */
 .FFXIPackageHelper_newCharButton {
-    position: relative;
-    display:block;
-    width: 35px;
-    height: 35px;
-    background: #fff;
-    cursor: pointer;
-    border: 2px solid #3586ff;
-    /* top: 50%; */
-    /* left: 50%; */
-    border-radius: 50%;
-    margin: 5px auto;
+  display: block;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0 10px;
+  height: 25px;
+  margin: 5px;
+  border-radius: 7px;
+  font-size: 13px;
+  background: #ffffff;
+  color:  #00ad1a95;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
+  transition: background 0.2sease, color 0.2sease, box-shadow 0.2sease;
+
+  /* SVG lines */
+  stroke: #00ad1a95;
+  stroke-width: 2px;
 }
 
-.FFXIPackageHelper_newCharButton:after {
-  content: '';
+.FFXIPackageHelper_newCharButton:hover{
+  background-color: #00ad1a95;
+  color:  #ffffff;
+  stroke: #ffffff;
+  box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
+}
+
+.FFXIPackageHelper_newCharButton:disabled{
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #86868671;
+  color: #fff;
+  stroke: #ffffff;
+}
+
+.FFXIPackageHelper_newCharButton_Grayed{
+  background-color: #868686;
+  color: #fff;
+  stroke: #ffffff;
+}
+
+.FFXIPackageHelper_newCharButton_Grayed:hover{
+  background-color: #494949;
+  box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
+  color: #fff;
+}
+
+.FFXIPackageHelper_saveCharButton{
+  visibility: hidden;
+  display: unset;
   position: absolute;
-  transform: translate(-50%, -50%);
-  height: 4px;
-  width: 50%;
-  background: #3586ff;
-  top: 50%;
-  left: 50%;
+  background: #00ad1a95;
+  color:  #ffffff;
 }
 
-.FFXIPackageHelper_newCharButton:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #3586ff;
-  height: 50%;
-  width: 4px;
+
+.FFXIPackageHelper_charButton_default {
+box-shadow: 5px 5px 5px 5px #00ad1a95;
+}
+.FFXIPackageHelper_charButton_default:hover {
+box-shadow: 0 6px 10px #a1cb4785;
 }
 
-.FFXIPackageHelper_newCharButton:hover:before,
-.FFXIPackageHelper_newCharButton:hover:after {
-  background: #fff;
-  transition: 0.2s;
-}
-
-.FFXIPackageHelper_newCharButton:hover {
-  background-color: #3586ff;
-  transition: 0.2s;
-}
 
 .FFXIPackageHelper_refreshStatsButton{
   position: relative;
@@ -129,20 +179,20 @@ Character selection buttons
 }
 
 .FFXIPackageHelper_deleteCharButton {
-  display: inline-block;
-  /* position: absolute; */
+  visibility: hidden;
+  display: block;
   outline: 0;
   cursor: pointer;
   border: none;
   padding: 0 10px;
   height: 25px;
-  margin: 10px 10px;
+  margin: 20px 0px 0px 0px;
   border-radius: 7px;
-  font-size: 16px;
-  background: #f87171;
-  color: #fff;
-  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
-  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+  font-size: 13px;
+  background: #ff3535;
+  color: #ffffff;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
+  transition: background 0.2sease, color 0.2sease, box-shadow 0.2sease;
 }
 
 .FFXIPackageHelper_deleteCharButton:hover{
@@ -151,7 +201,33 @@ Character selection buttons
   box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
 }
 
+.FFXIPackageHelper_editCharButton{
+  visibility: hidden;
+  /* display: block; */
+  position: absolute;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0 10px;
+  height: 25px;
+  margin: 5px;
+  border-radius: 7px;
+  font-size: 13px;
+  background: #3586ff;
+  color: #ffffff;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
+}
 
+.FFXIPackageHelper_editCharButton:hover{
+  background-color: #fff;
+  color: #3586ff;
+  box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+}
+
+.FFXIPackageHelper_editCharButtonSelected{
+  background-color: #3586ff;
+  color: #fff;
+}
 
 .FFXIPackageHelper_charButton {
     display: inline-block;
@@ -175,6 +251,14 @@ Character selection buttons
     box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
 }
 
+.FFXIPackageHelper_charButton:disabled,
+.FFXIPackageHelper_charButton[disabled]{
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #86868671;
+  color: #fff;
+}
+
 .FFXIPackageHelper_charButtonselected{
   background-color: #3586ff;
   color: #fff;
@@ -186,6 +270,61 @@ Character selection buttons
 .FFXIPackageHelper_charButton_default:hover {
   box-shadow: 0 6px 10px #a1cb4785;
 }
+
+/*
+* Hidden save DIV
+*/
+#FFXIPackageHelper_dynamiccontent_newCharSection{
+  /* display: none; */
+}
+
+.FFXIPackageHelper_dynamiccontent_charNameInput{
+  position: relative;
+  cursor: text;
+  font-size: 18px;
+  padding: 0px 16px;
+  height: 48px;
+  background-color: #fff;
+  border: 1px solid #d6d6e7;
+  border-radius: 3px;
+  color: #000000;
+  box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
+  margin: 0px 0px 0px 10px;
+  transition: all 100ms ease-in-out;
+  background-color: #e8e9f445;
+  :focus {
+      outline-color: #3c4fe0;
+      /* box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%); */
+  }
+}
+
+.FFXIPackageHelper_dynamiccontent_charNameInput::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/*
+*  Race dropdown
+*/
+#FFXIPackageHelper_dynamiccontent_raceLabel{
+  display: inline-block;
+  font-size: larger;
+  font-weight: bold;
+}
+
+/* #FFXIPackageHelper_equipsets_selectRace {
+  display: inline;
+  margin: 3px 15px;
+  height: 32px;
+  border-radius: 3px;
+  font-size: 17px;
+  box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, .5);
+  background-color: #e8e9f4;
+}
+
+#FFXIPackageHelper_equipsets_selectRace option{
+  background-color: #e8e9f4;
+} */
 
 
 /*
@@ -200,7 +339,7 @@ Character selection buttons
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultLabel .FFXIPackageHelper_dynamiccontent_addCharDefaultInput {
-  opacity: 0;
+  /* opacity: 0; */
   width: 0;
   height: 0;
 }
@@ -212,10 +351,10 @@ Character selection buttons
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #a1cb4745;
-  -webkit-transition: .4s;
+  background-color: #3586ff35;
+  /* -webkit-transition: .4s; */
   transition: .4s cubic-bezier(0,1,0.5,1);
-  border-radius: 4px;
+  /* border-radius: 4px; */
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan:before {
@@ -232,7 +371,7 @@ Character selection buttons
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultInput:checked + .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan {
-  background-color: #a1cb47;
+  background-color: #3586ff;
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultInput:checked + .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan:before {
@@ -240,6 +379,12 @@ Character selection buttons
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
+.FFXIPackageHelper_dynamiccontent_addCharDefaultInput:disabled,
+.FFXIPackageHelper_dynamiccontent_addCharDefaultInput[disabled] {
+  cursor: not-allowed;
+  pointer-events: none;
+ }
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan.FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround {
   border-radius: 30px;

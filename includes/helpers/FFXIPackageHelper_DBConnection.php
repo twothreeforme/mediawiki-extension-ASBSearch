@@ -1075,6 +1075,24 @@ class DBConnection {
         );
     }
 
+    public function updateUserCharacter($char){
+        $dbw = $this->openConnectionSets();
+        //throw new Exception ( json_encode($char));
+
+        return $dbw->update(
+            'user_chars',
+            [
+                'race' => $char['race'] ,
+                'merits' => $char['merits'],
+                'def' => $char['def']
+            ],
+            [
+                'userid' => $char['userid'],
+                'charname' => $char['charname']
+            ]
+        );
+    }
+
 
     public function getSelectedCharacter($char){
         $dbr = $this->openConnectionSets();
@@ -1087,7 +1105,7 @@ class DBConnection {
         ];
 
         $result = $dbr->newSelectQueryBuilder()
-        ->select( [ 'charname', 'charid', 'race', 'merits'] )
+        ->select( [ 'charname', 'charid', 'race', 'merits', 'def'] )
         ->from( 'user_chars' )
         ->where($query)
         ->fetchResultSet();
@@ -1097,7 +1115,8 @@ class DBConnection {
                 'charname' => $row->charname,
                 'charid' => $row->charid,
                 'race' => $row->race,
-                'merits' => $row->merits
+                'merits' => $row->merits,
+                'def' => $row->def
             ];
         }
         return [];

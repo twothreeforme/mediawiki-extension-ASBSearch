@@ -35,7 +35,7 @@ class FFXIPackageHelper_HTMLOptions {
     }
 
     public static function raceDropDown($classname){
-        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" disabled>";
         $html .= "<option value=\"0\">Hume</option>";
         $html .= "<option value=\"1\">Elvaan</option>";
         $html .= "<option value=\"2\">Tarutaru</option>";

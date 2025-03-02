@@ -85,7 +85,6 @@ Custom Buttons
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
-
 }
 
 .FFXIPackageHelper_dynamiccontent_shareButton:hover {
@@ -95,8 +94,19 @@ Custom Buttons
 }
 
 .FFXIPackageHelper_dynamiccontent_customDropDown {
-    padding: 0;
+    display: inline;
+    margin: 3px 15px 0px 10px;
+    height: 32px;
+    border-radius: 3px;
+    font-size: 16px;
+    /* box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, .5); */
+    background-color: #e8e9f4;
 }
+
+.FFXIPackageHelper_dynamiccontent_customDropDown option{
+    background-color: #e8e9f4;
+  }
+
 
 .FFXIPackageHelper_dynamiccontent_counterbox {
     display:flex;

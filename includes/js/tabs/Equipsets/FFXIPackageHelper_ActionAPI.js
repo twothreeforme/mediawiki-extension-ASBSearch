@@ -50,6 +50,15 @@ function actionAPI(params, forTab, currentButton, callback) {
           //callback.setHeaderCharacterDetails();
 
         }
+        else if ( forTab.includes("updatechar")) {
+          if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
+          else { /*PASS*/
+            //updateCharsList(result['status'][1], callback);
+            //console.log(result['status']);
+            callback(result['status']);
+            mw.notify( "Character Updated", { autoHide: true,  type: 'success' } );
+          }
+        }
         else {
           updateEquipsets(result['stats']);
         }
