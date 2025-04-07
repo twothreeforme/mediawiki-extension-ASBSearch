@@ -35,7 +35,7 @@ function validFishingQuery(params){
 
 function submitFishingRequest(){
   const params = getFishingQueryParams();
-
+  console.log(params.zonename);
   if( validFishingQuery(params) == false ){
       //document.getElementById("FFXIPackageHelper_tabs_droprates_queryresult").innerHTML = "<i>*Please use the fields above to query a search.</i>";
       mw.notify( 'Please complete the fields to query a search', { autoHide: true,  type: 'error' } );

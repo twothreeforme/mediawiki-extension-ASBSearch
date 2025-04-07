@@ -363,6 +363,9 @@ class DBConnection {
                 $dayCount = 4;
             }
 
+            // discount any zones where weather is not relevant and should be excluded
+            if ( array_key_exists($row->zoneid, ExclusionsHelper::$weatherZones) ) continue;
+
             //Start stripping out weather details
             //Should occur for each relevant zone
             $zoneWeatherArray = ParserHelper::createCompleteWeatherArrayForZone($row->weather, $dayCount);

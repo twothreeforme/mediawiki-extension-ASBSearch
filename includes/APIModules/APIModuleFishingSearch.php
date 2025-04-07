@@ -25,6 +25,8 @@ class APIModuleFishingSearch extends ApiBase {
                         $params['zonename']
                      ];
 
+
+
         $finalHtml = $this->queryFishing($queryData);
         $finalHtml = ParserHelper::wikiParse($finalHtml);
         $result->addValue($params['action'], "fishing", $finalHtml);

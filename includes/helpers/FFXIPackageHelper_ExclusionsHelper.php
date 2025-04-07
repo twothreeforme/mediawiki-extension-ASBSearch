@@ -351,6 +351,25 @@ class ExclusionsHelper {
         // 51 => 'Wajaom_Woodlands',
         // 52 => 'Bhaflau_Thickets'
     );
+
+    public static $weatherZones = array(
+        37 => 'Temenos',
+        38 => 'Apollyon',
+        39 => 'Dynamis-Valkurm',
+        40 => 'Dynamis-Buburimu',
+        41 => 'Dynamis-Qufim',
+        42 => 'Dynamis-Tavnazia',
+        134 => 'Dynamis-Beaucedine',
+        135 => 'Dynamis-Xarcabard',
+        152 => 'Altar_Room',
+        168 => 'Chamber_of_Oracles',
+        185 => 'Dynamis-San_dOria',
+        186 => 'Dynamis-Bastok',
+        187 => 'Dynamis-Windurst',
+        188 => 'Dynamis-Jeuno',
+
+    );
+
 }
 
 ?>

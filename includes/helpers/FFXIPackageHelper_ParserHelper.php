@@ -193,7 +193,6 @@ class ParserHelper {
 		return $zone;
 	}
 
-
     /**************************
      * Drop Rate Parsing
      */
