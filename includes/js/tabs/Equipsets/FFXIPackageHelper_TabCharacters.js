@@ -117,14 +117,14 @@ module.exports.setLinks = function (){
 
     //const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
     NEWCHAR_BUTTON.addEventListener("click", function () {
-        console.log("NEWCHAR_BUTTON.addEventListener(\"click\",");
+        //console.log("NEWCHAR_BUTTON.addEventListener(\"click\",");
         if ( hiddenDiv.style.display != "none" ) {
             selectCharClicked(currentCharacterName);
             currentCharacterName = null;
         }
         else  {
-            const selectedChar = document.getElementsByClassName("FFXIPackageHelper_charButton FFXIPackageHelper_charButtonselected")[0].innerHTML;
-            if ( selectedChar ) currentCharacterName = selectedChar;
+            const selectedChar = document.getElementsByClassName("FFXIPackageHelper_charButton FFXIPackageHelper_charButtonselected");
+            if ( selectedChar.length > 0 ) currentCharacterName = selectedChar[0].innerHTML;
         }
 
         //toggle New button
