@@ -99,6 +99,7 @@ Character selection buttons
   border: none;
   padding: 0 10px;
   height: 25px;
+  min-width: max-content;
   margin: 5px;
   border-radius: 7px;
   font-size: 13px;
