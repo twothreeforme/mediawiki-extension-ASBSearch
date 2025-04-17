@@ -18,7 +18,7 @@ class APIModuleEquipsets extends ApiBase {
             'merits' => "",
             'equipment' => "",
             'search' => "",
-            'slot' => 0,
+            'slot' => null,
             'charname' => null,
             'def' => 0,
     		];

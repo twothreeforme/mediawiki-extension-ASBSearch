@@ -177,7 +177,7 @@ class ModalWindow {
         commentNode.innerText = "Click item to add to set...\n";
 
         for ( let i = 0; i < arr.length; i++ ){
-            console.log(i, arr[i]["name"]);
+            //console.log(i, arr[i]["name"]);
 
             var dt = document.createElement("dt");
             dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };

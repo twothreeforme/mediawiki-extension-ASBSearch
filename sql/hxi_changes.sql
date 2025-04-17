@@ -359,6 +359,15 @@ UPDATE item_basic SET name = "pilferer\'s_belt", sortname = "pilferer\'s_belt", 
 UPDATE item_basic SET name = "wyvern_belt", sortname = "wyvern_belt", changes_tag = 1 WHERE itemid = 15284; -- Change Lance Belt to be Wyvern Belt
 
 
+-- ---------------------------------------------------------------------------
+LOCK TABLE `item_equipment` WRITE;
+ALTER TABLE `item_equipment`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `race`;
+
+INSERT INTO `item_equipment` (`itemId`,`name`,`level`,`ilevel`,`jobs`,`MId`,`shieldSize`,`scriptType`,`slot`,`rslot`, `su_level`, `race`, `changes_tag`) VALUES
+     (50018,'dream_collar',75,0,2473969,0,0,0,512,0,0,255, 1)
+;
+UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 
@@ -369,6 +378,7 @@ ALTER TABLE `item_mods`
 -- INSERT INTO `item_mods` ( `itemId`, `modId`, `value` ) VALUES
 -- ;
 UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
+UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
 LOCK TABLE `mob_spawn_points` WRITE;
@@ -386,8 +396,6 @@ INSERT INTO `mob_spawn_points` (`mobid`,`mobname`,`polutils_name`,`groupid`,`pos
     (20000004,'Stone_Golem','Stone Golem',29,368,0.2,-5.1,0,1)
 
 ;
-
+UNLOCK TABLES;
 -- ---------------------------------------------------------------------------
 -- COMPLETE
-
-UNLOCK TABLES;

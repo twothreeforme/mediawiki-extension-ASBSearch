@@ -75264,7 +75264,11 @@ class FFXIPackageHelper_ItemDetails {
             "flags" => array( "MYSTERY_BOX","MAIL2ACCOUNT","NOAUCTION","CANEQUIP","NOSALE","NODELIVERY","EX","RARE"),
             "jobs" => array( "WAR","MNK","WHM","BLM","RDM","THF","PLD","DRK","BST","BRD","RNG","SAM","NIN","DRG","SMN","BLU","COR","PUP","DNC","SCH","GEO","RUN"),
             "races" => array( "HUME_M","HUME_F","ELVAAN_M","ELVAAN_F","TARU_M","TARU_F","MITHRA","GALKA"),
-        )
+        ),
+
+        //Dream Collar
+        50018 => array( "forward" => 28239 )
+
     );
 }
 
