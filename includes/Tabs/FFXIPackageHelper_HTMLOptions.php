@@ -155,6 +155,58 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
+    public static function setsButtonsList(){
+        $html = "";
+
+        $user = RequestContext::getMain()->getUser();
+        $uid = $user->getId();
+        if ( $uid != 0 && $uid != null ){
+            $db = new DBConnection();
+            $userSets = $db->getUserSetsFromUserID($uid);
+            
+            if ( count($userSets) > 0 ){
+                foreach ($userSets as $set) {
+                    $classlist = "FFXIPackageHelper_setsButton";
+                    // if ( $set["def"] != 0  ) $classlist .= " FFXIPackageHelper_setButton_default";
+                    $html .= "<button id=\"FFXIPackageHelper_setButton_" . $set["setname"] . "\" class=\"" . $classlist . "\">" . $set["setname"] . "</button>";
+                }
+            }
+        }
+
+        return $html;
+    }
+
+    public static function selectableButtonsBar($barClassname){
+        $divName = "";
+        $newButton = "";
+        if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect"){
+            $divName = "FFXIPackageHelper_equipsets_setSelect";
+            $newButton = "FFXIPackageHelper_newSetButton";
+        }
+        else if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ){
+            $divName = "FFXIPackageHelper_equipsets_charSelect";
+            $newButton = "FFXIPackageHelper_newCharButton";
+        }
+
+        $html = "<div id=\"$divName\">" .
+    
+							//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
+							"<button id=\"$newButton\" class=\"$newButton\">
+								<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+									<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
+									<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
+								</svg>
+								<span id=\"$newButton-text\">"; 
+                                if ( $newButton == "FFXIPackageHelper_newSetButton") $html .= "Save this set" ;
+                                else $html .= "New";
+                                $html .= "</span></button>";
+        
+        if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") self::setsButtonsList();
+        else if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) self::charactersButtonsList();
+					
+		$html .= "</div>";
+        return $html;
+    }
 }
 
 ?>

@@ -38,7 +38,7 @@
 /*
 Character selection DIVs
 */
-#FFXIPackageHelper_equipsets_charSelect {
+#FFXIPackageHelper_equipsets_charSelect, #FFXIPackageHelper_equipsets_setSelect {
     /* background-color: #92fcac;
     display:inline-block;
     width:150px;
@@ -92,7 +92,7 @@ Character selection DIVs
 /*
 Character selection buttons
 */
-.FFXIPackageHelper_newCharButton {
+.FFXIPackageHelper_newCharButton, .FFXIPackageHelper_newSetButton {
   display: block;
   outline: 0;
   cursor: pointer;
@@ -113,14 +113,14 @@ Character selection buttons
   stroke-width: 2px;
 }
 
-.FFXIPackageHelper_newCharButton:hover{
+.FFXIPackageHelper_newCharButton:hover, .FFXIPackageHelper_newSetButton:hover{
   background-color: #00ad1a95;
   color:  #ffffff;
   stroke: #ffffff;
   box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
 }
 
-.FFXIPackageHelper_newCharButton:disabled{
+.FFXIPackageHelper_newCharButton:disabled, .FFXIPackageHelper_newSetButton:disabled{
   cursor: not-allowed;
   pointer-events: none;
   background-color: #86868671;
@@ -128,13 +128,13 @@ Character selection buttons
   stroke: #ffffff;
 }
 
-.FFXIPackageHelper_newCharButton_Grayed{
+.FFXIPackageHelper_newCharButton_Grayed, .FFXIPackageHelper_newSetButton_Grayed{
   background-color: #868686;
   color: #fff;
   stroke: #ffffff;
 }
 
-.FFXIPackageHelper_newCharButton_Grayed:hover{
+.FFXIPackageHelper_newCharButton_Grayed:hover, .FFXIPackageHelper_newSetButton_Grayed:hover{
   background-color: #494949;
   box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
   color: #fff;
@@ -149,10 +149,10 @@ Character selection buttons
 }
 
 
-.FFXIPackageHelper_charButton_default {
+.FFXIPackageHelper_charButton_default, .FFXIPackageHelper_setButton_default {
 box-shadow: 5px 5px 5px 5px #00ad1a95;
 }
-.FFXIPackageHelper_charButton_default:hover {
+.FFXIPackageHelper_charButton_default:hover, .FFXIPackageHelper_setButton_default:hover {
 box-shadow: 0 6px 10px #a1cb4785;
 }
 
@@ -230,7 +230,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   color: #fff;
 }
 
-.FFXIPackageHelper_charButton {
+.FFXIPackageHelper_charButton, .FFXIPackageHelper_setButton {
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -260,7 +260,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   color: #fff;
 }
 
-.FFXIPackageHelper_charButtonselected{
+.FFXIPackageHelper_charButtonselected, .FFXIPackageHelper_setButtonselected{
   background-color: #3586ff;
   color: #fff;
 }

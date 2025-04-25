@@ -161,6 +161,9 @@
         "equipsets_updatechar": {
 			"class": "APIModuleEquipsets"
 		},
+        "equipsets_selectset": {
+			"class": "APIModuleEquipsets"
+		},
         "fishingsearch": {
 			"class": "APIModuleFishingSearch"
 		}

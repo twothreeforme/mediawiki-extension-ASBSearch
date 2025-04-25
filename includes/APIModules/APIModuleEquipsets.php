@@ -192,6 +192,14 @@ class APIModuleEquipsets extends ApiBase {
             $userCharacters = $db->getUserCharacters($char);
             $result->addValue( $params['action'], "userchars", $userCharacters);
         }
+        else if ( $params['action'] == "equipsets_selectset" ) {
+            $db = new DBConnection();
+            // $char = $this->createChar($params);
+
+            // $selectedChar = $db->getSelectedCharacter($char);
+            // $result->addValue( $params['action'], "selected", $selectedChar );
+        }
+
     }
 
     private function parseEquipmentLabels($equipmentArray){

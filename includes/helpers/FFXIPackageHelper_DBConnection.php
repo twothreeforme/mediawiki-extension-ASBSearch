@@ -1157,20 +1157,29 @@ class DBConnection {
         );
     }
 
-    public function getUserSet($uid){
-        // $dbr = $this->openConnection();
+    public function getUserSetsFromUserID($uid){
+        $dbr = $this->openConnectionSets();
 
-        // $chars = $dbr->newSelectQueryBuilder()
-        // ->select( [ 'charname' ] )
-        // ->from( 'user_chars' )
-        // ->where( [ "user_chars.userid = $uid" ] )
-        // ->fetchResultSet();
+        $savedSets = $dbr->newSelectQueryBuilder()
+        ->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment', 'setname'] )
+        ->from( 'user_sets' )
+        ->where( [ "user_sets.userid = $uid" ] )
+        ->fetchResultSet();
 
-        // $userCharacters = [];
-        // foreach($chars as $row){
-        //     $userCharacters[] = $row->charname;
-        // }
-        // return $userCharacters;
+        $userSets = [];
+        foreach($savedSets as $row){
+            $userSets[] = [
+                'usersetid' => $row->usersetid,
+                'mlvl' => $row->mlvl,
+                'slvl' => $row->slvl,
+                'mjob' => $row->mjob,
+                'sjob' => $row->sjob,
+                'equipment' => $row->equipment,
+                'setname' => $row->setname
+            ];
+        }
+
+        return $userSets;
     }
 
 

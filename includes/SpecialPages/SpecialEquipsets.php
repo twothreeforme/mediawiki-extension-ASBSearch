@@ -78,18 +78,19 @@ class SpecialEquipsets extends SpecialPage {
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
 
 					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
-						"<div id=\"FFXIPackageHelper_equipsets_charSelect\">" .
-
-							//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
-							"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">
-								<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-									<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
-									<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
-								</svg>
-								<span id=\"FFXIPackageHelper_newCharButton-text\">New</span>
-							</button>" .
-							FFXIPackageHelper_HTMLOptions::charactersButtonsList() .
-						"</div>" .
+						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect") .
+						// "<div id=\"FFXIPackageHelper_equipsets_charSelect\">" .
+						// 	//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
+						// 	"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">
+						// 		<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+						// 			<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
+						// 			<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
+						// 		</svg>
+						// 		<span id=\"FFXIPackageHelper_newCharButton-text\">New</span>
+						// 	</button>" .
+						// 	FFXIPackageHelper_HTMLOptions::charactersButtonsList() .
+						// "</div>" .
+						
 						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
 
 							"<div class=\"FFXIPackageHelper_equipsets_charSelectOptionsMenu\">" .

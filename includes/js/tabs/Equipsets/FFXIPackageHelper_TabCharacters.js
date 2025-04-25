@@ -169,7 +169,7 @@ function selectDefaultCharacterOnLoad(){
 }
 
 function selectCharClicked(charname){
-    //console.log("selectCharClicked:", charname);
+    if ( charname == null ) return;
 
     const data = {
         action: "equipsets_selectchar",

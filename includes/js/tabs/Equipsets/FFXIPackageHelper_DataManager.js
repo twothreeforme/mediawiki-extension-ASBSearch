@@ -165,13 +165,18 @@ function setHeaderCharacterDetails(clearname){
             //console.log("changed", namechanged, button.innerHTML, currentCharacterName.innerText);
         }
     });
-    if (namechanged == false ) currentCharacterName.innerText = "No character selected";
+    if (namechanged == false ) {
+        currentCharacterName.innerText = "No character selected";
+        return;
+    }
 
-    const race = document.getElementById("FFXIPackageHelper_equipsets_selectRace").selectedOptions[0].innerHTML;
-
-    if ( areMeritsSet() == true ) document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  Merits set";
-    else document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  No merits set";
-    // console.log("setHeaderCharacterDetails");
+    const selectRace = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
+    if (selectRace) {
+        const race = selectRace.selectedOptions[0].innerHTML;
+        if ( areMeritsSet() == true ) document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  Merits set";
+        else document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  No merits set";
+        // console.log("setHeaderCharacterDetails");
+    }
 }
 
 function updateCharacter(char){
@@ -181,11 +186,14 @@ function updateCharacter(char){
     if ( char.def == 0 ) document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;
     else document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = true;
 
-    const merits_base64 = decodeURIComponent(char.merits);
-    const merits_ = JSON.parse(atob(merits_base64));
-    //console.log(merits_);
-    setMeritsData(merits_);
-    setHeaderCharacterDetails();
+    if ( char.length > 0 ) {
+        const merits_base64 = decodeURIComponent(char.merits);
+        const merits_ = JSON.parse(atob(merits_base64));
+        //console.log(merits_);
+        setMeritsData(merits_);
+        setHeaderCharacterDetails();
+    }
+    
 }
 
 module.exports = {

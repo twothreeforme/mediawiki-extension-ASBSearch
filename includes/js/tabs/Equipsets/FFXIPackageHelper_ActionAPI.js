@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 
 function actionAPI(params, forTab, currentButton, callback) {
-  //console.log(params);
+  console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
     //console.log(d);
@@ -196,36 +196,6 @@ function updateEquipmentList(slotNumber, updatedName){
   let labelLink = document.getElementById(linkID);
   labelLink.innerHTML = updatedName;
 }
-
-// function updateCharsList(newChars, callback){
-//   //remove all chars in list
-//   var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
-//   const buttons = charSelectDIV.querySelectorAll('button');
-//   Array.from(buttons).forEach((button) => {
-//     if ( button.classList.contains("FFXIPackageHelper_charButton") ) charSelectDIV.removeChild(button);
-//   });
-
-//   //console.log(callback);
-
-//   if (newChars){
-//     var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
-
-//     newChars.map((details) => {
-//       var btn = document.createElement('button')
-//       btn.appendChild(document.createTextNode(details["charname"]));
-//       //btn.id = 'FFXIPackageHelper_charButton_' + details["charname"];
-//       btn.id = 'FFXIPackageHelper_charButton';
-//       btn.classList.add("FFXIPackageHelper_charButton");
-//       charSelectDIV.appendChild(btn);
-
-//       btn.addEventListener("click", function (){
-//         if(callback) callback(details["charname"]);
-
-//       });
-//     });
-//   }
-
-// }
 
 
 

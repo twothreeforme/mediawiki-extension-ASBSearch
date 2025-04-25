@@ -6,6 +6,9 @@ var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
+const NEWSET_BUTTON = document.getElementById("FFXIPackageHelper_newSetButton");
+const hiddenDiv = document.getElementById("FFXIPackageHelper_dynamiccontent_newSetSection");
+hiddenDiv.offsetTop;
 
 var raceDropdown = null;
 var mJobDropdown = null;
@@ -14,6 +17,23 @@ var mlvlDropdown = null;
 var slvlDropdown = null;
 
 module.exports.setLinks = function (){
+
+    const setButtons = document.getElementsByClassName("FFXIPackageHelper_setButton");
+    if ( setButtons ) { addSetButtonEvents(setButtons); }
+
+    NEWSET_BUTTON.addEventListener("click", function () {
+        if ( hiddenDiv.style.display != "none" ) {
+            // selectSetClicked(currentCharacterName);
+            // currentCharacterName = null;
+        }
+        else  {
+            // const selectedChar = document.getElementsByClassName("FFXIPackageHelper_charButton FFXIPackageHelper_charButtonselected");
+            // if ( selectedChar.length > 0 ) currentCharacterName = selectedChar[0].innerHTML;
+        }
+
+        //toggle New button
+        toggleNewButton();
+    });
 
     /**
      * Modal Windows
@@ -108,6 +128,36 @@ module.exports.setLinks = function (){
 
     Data.getMeritsData();
     Tooltip.setupPageTooltips();
+}
+
+function addSetButtonEvents(setButtons){
+    Array.from(setButtons).forEach((button) => {
+        button.addEventListener("click", function () {
+            selectSetClicked(button.innerHTML);
+            Array.from(setButtons).forEach((btn) => {
+                showSetButtonSelected(btn, false);
+            });
+            showSetButtonSelected(button, true);
+        });
+    });
+}
+
+function selectSetClicked(setname){
+    if ( setname == null ) return;
+
+    const data = {
+        action: "equipsets_selectset",
+        setname: setname,
+    }
+
+    showButton(REMOVE_BUTTON);
+    showButton(EDIT_BUTTON);
+
+    const selectedSetButton = document.getElementById('FFXIPackageHelper_charButton_' + setname);
+    if ( selectedSetButton ) showCharButtonSelected(selectedSetButton, true);
+
+    API.actionAPI(data, data.action, null, Data);
+    //scrollToTop();
 }
 
 function shareQueryClicked(shareID, params) {
@@ -214,54 +264,25 @@ function loadSharedLink(url){
     tabsButton_equipsets.click();
 }
 
-// function selectCharClicked(){
-//     const data = {
-//         action: "equipsets_selectchar",
-//         charname: document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value,
-//     }
+function showSetButtonSelected(button, selected){
+    if ( selected == true ) button.classList.add('FFXIPackageHelper_setButtonselected');
+    else button.classList.remove('FFXIPackageHelper_setButtonselected');
+}
 
-//     API.actionAPI(data, data.action, null, Data.updateStats);
-// }
+function toggleNewButton() {
+    NEWSET_BUTTON.classList.toggle('FFXIPackageHelper_newSetButton_Grayed');
+    const newset_buttonText = document.getElementById("FFXIPackageHelper_newSetButton-text");
+    if ( NEWSET_BUTTON.classList.contains('FFXIPackageHelper_newSetButton_Grayed')) {
+        newset_buttonText.innerText = "Cancel";
+    }
+    else newset_buttonText.innerText = "Add Set";
 
-// function saveCharacterClicked(charName){
-//     //console.log(charName);
+    if ( hiddenDiv.style.display != "none" ) {
+        hiddenDiv.style.display = "none";
 
-//     const data = {
-//         action: "equipsets_savechar",
-//         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
-//         merits: encodeURIComponent(btoa(Data.getMeritsData())),
-//         charname: charName
-//     }
+    }
+    else  {
+        hiddenDiv.style.display = "block";
 
-//     API.actionAPI(data, data.action, null, this);
-// }
-
-// function removeCharacter(charname){
-//     //console.log("should remove " + charname);
-
-//     const data = {
-//         action: "equipsets_removechar",
-//         charname: charname
-//     }
-
-//     API.actionAPI(data, data.action, null, this);
-//     resetStats();
-// }
-
-// function resetStats(){
-//     document.getElementById("FFXIPackageHelper_equipsets_selectUserChar").value = 0;
-//     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
-
-//     const removeButton = document.getElementById("FFXIPackageHelper_dynamiccontent_removeCharacter");
-//     removeButton.style.display = "none";
-
-//     const _id = "FFXIPackageHelper_equipsets_merits_";
-//     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
-//     //console.log(allMerits);
-//     var meritsArray = [...allMerits];
-//     meritsArray.forEach(merit => {
-//         merit.value = 0;
-//     });
-
-//     Data.updateStats();
-// }
+    }
+}
