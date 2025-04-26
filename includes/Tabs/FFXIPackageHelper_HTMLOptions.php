@@ -7,7 +7,7 @@ class FFXIPackageHelper_HTMLOptions {
 
       public static function jobDropDown($classname){
         $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-        $html .= "<option value=\"0\">Any</option>";
+        //$html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Warrior</option>";
         $html .= "<option value=\"2\">Monk</option>";
         $html .= "<option value=\"3\">White Mage</option>";
@@ -23,13 +23,13 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "<option value=\"13\">Ninja</option>";
         $html .= "<option value=\"14\">Dragoon</option>";
         $html .= "<option value=\"15\">Summoner</option>";
-        $html .= "<option value=\"16\">Blue Mage</option>";
-        $html .= "<option value=\"17\">Scholar</option>";
-        $html .= "<option value=\"18\">Puppetmaster</option>";
-        $html .= "<option value=\"19\">Dancer</option>";
-        $html .= "<option value=\"20\">Scholar</option>";
-        $html .= "<option value=\"21\">Geomancer</option>";
-        $html .= "<option value=\"22\">Rune Fencer</option>";
+        // $html .= "<option value=\"16\">Blue Mage</option>";
+        // $html .= "<option value=\"17\">Scholar</option>";
+        // $html .= "<option value=\"18\">Puppetmaster</option>";
+        // $html .= "<option value=\"19\">Dancer</option>";
+        // $html .= "<option value=\"20\">Scholar</option>";
+        // $html .= "<option value=\"21\">Geomancer</option>";
+        // $html .= "<option value=\"22\">Rune Fencer</option>";
         $html .= "</select>";
         return $html;
     }
@@ -108,28 +108,6 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</select>";
         return $html;
     }
-
-    // public static function userCharsDropDown($classname){
-    //     $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-    //     $html .= "<option value=\"0\">None</option>";
-
-    //     $user = RequestContext::getMain()->getUser();
-    //     $uid = $user->getId();
-    //     if ( $uid != 0 && $uid != null ){
-    //         $db = new DBConnection();
-    //         $userCharacters = $db->getUserCharactersFromUserID($uid);
-
-    //         if ( count($userCharacters) > 0 ){
-    //             foreach ($userCharacters as $char) {
-    //                 $html .= "<option >". $char["charname"] ."</option>";
-    //             }
-    //         }
-
-    //     }
-
-    //     $html .= "</select>";
-    //     return $html;
-    // }
 
     public static function charactersButtonsList(){
         // "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>"

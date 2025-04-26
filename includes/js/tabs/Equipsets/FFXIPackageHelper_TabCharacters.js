@@ -1,5 +1,6 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
+var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
 
 // var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
 // var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
@@ -83,7 +84,7 @@ module.exports.setLinks = function (){
             };
 
             setDisabledState_AllSavedCharButtons(true);
-            hideButton(REMOVE_BUTTON);//hide remove button
+            ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
             NEWCHAR_BUTTON.disabled = true;
         }
         else {
@@ -106,7 +107,7 @@ module.exports.setLinks = function (){
             characterComparison = null;
             charChanges = null;
             setDisabledState_AllSavedCharButtons(false);
-            showButton(REMOVE_BUTTON);//show remove button
+            ActionButtons.showButton(REMOVE_BUTTON);//show remove button
             NEWCHAR_BUTTON.disabled = false;
         }
 
@@ -176,8 +177,8 @@ function selectCharClicked(charname){
         charname: charname,
     }
 
-    showButton(REMOVE_BUTTON);
-    showButton(EDIT_BUTTON);
+    ActionButtons.showButton(REMOVE_BUTTON);
+    ActionButtons.showButton(EDIT_BUTTON);
 
     const selectedCharButton = document.getElementById('FFXIPackageHelper_charButton_' + charname);
     //toggleSelected(selectedCharButton);
@@ -212,7 +213,7 @@ function saveCharacterClicked(){
     toggleNewButton();
 
     //hide Save button
-    hideButton(SAVE_BUTTON);
+    ActionButtons.hideButton(SAVE_BUTTON);
 }
 
 function updateSavedCharacter(){
@@ -503,8 +504,8 @@ function showCharButtonSelected(button, selected){
     else button.classList.remove('FFXIPackageHelper_charButtonselected');
 }
 
-function hideButton(button){ button.style.visibility = "hidden"; }
-function showButton(button) { button.style.visibility = "visible"; }
+// function ActionButtons.hideButton(button){ button.style.visibility = "hidden"; }
+// function ActionButtons.showButton(button) { button.style.visibility = "visible"; }
 
 function toggleDefaultSwitch(){
     if ( DEFAULT_SWITCH.disabled == true )  DEFAULT_SWITCH.disabled = false;
@@ -528,11 +529,11 @@ function toggleNewButton() {
     if ( hiddenDiv.style.display != "none" ) {
         //enable all char buttons
         setDisabledState_AllSavedCharButtons(false);
-        showButton(REMOVE_BUTTON);//show remove button
-        showButton(EDIT_BUTTON);//show edit button
+        ActionButtons.showButton(REMOVE_BUTTON);//show remove button
+        ActionButtons.showButton(EDIT_BUTTON);//show edit button
         hiddenDiv.style.display = "none";
 
-        hideButton(SAVE_BUTTON);//hide save button
+        ActionButtons.hideButton(SAVE_BUTTON);//hide save button
 
         //console.log(currentCharacterName);
         // selectCharClicked(currentCharacterName);
@@ -546,11 +547,11 @@ function toggleNewButton() {
 
         //disable all char buttons
         setDisabledState_AllSavedCharButtons(true);
-        hideButton(REMOVE_BUTTON);//hide remove button
-        hideButton(EDIT_BUTTON);//hide edit button
+        ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
+        ActionButtons.hideButton(EDIT_BUTTON);//hide edit button
         hiddenDiv.style.display = "block";
 
-        showButton(SAVE_BUTTON);//show save button
+        ActionButtons.showButton(SAVE_BUTTON);//show save button
         DEFAULT_SWITCH.checked = false; //set default switch to off
     }
 
@@ -573,12 +574,12 @@ function setDisabledState_AllSavedCharButtons(state){
         button.disabled = state;
 
         // if ( state == true ) {
-        //     hideButton(REMOVE_BUTTON);//hide remove button
-        //     hideButton(EDIT_BUTTON);//hide edit button
+        //     ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
+        //     ActionButtons.hideButton(EDIT_BUTTON);//hide edit button
         // }
         // else {
-        //     showButton(REMOVE_BUTTON);//show remove button
-        //     showButton(EDIT_BUTTON);//show edit button
+        //     ActionButtons.showButton(REMOVE_BUTTON);//show remove button
+        //     ActionButtons.showButton(EDIT_BUTTON);//show edit button
         // }
     }
 }

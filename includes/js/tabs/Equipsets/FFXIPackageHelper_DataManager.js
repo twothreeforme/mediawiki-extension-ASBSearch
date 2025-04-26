@@ -105,7 +105,24 @@ function getStatsData(equipIDString){
         merits: encodeURIComponent(btoa(getMeritsData())),
         equipment: encodeURIComponent(btoa(equipIDString)),
     };
-  }
+}
+
+function getSetData(){
+    equipIDString = getEquipIDs(); //getEquipIDs().join(",");
+    equipIDString = equipIDString.join("|");
+
+    //console.log("getStatsData: ", equipIDString);
+    //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
+    return {
+        action: "equipsets",
+        mlvl:document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value,
+        slvl:document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value,
+        mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
+        sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
+        equipment: encodeURIComponent(btoa(equipIDString)),
+        setname:document.getElementById("FFXIPackageHelper_dynamiccontent_setNameInput").value, 
+    };
+}
 
 function resetStats(){
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
@@ -198,5 +215,5 @@ function updateCharacter(char){
 
 module.exports = {
     updateEquipmentGrid, getEquipID, getEquipIDs, updateStats, getMeritsData, getStatsData, resetStats,
-    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault
+    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault, getSetData
 }

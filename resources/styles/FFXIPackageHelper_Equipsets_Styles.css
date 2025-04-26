@@ -140,7 +140,7 @@ Character selection buttons
   color: #fff;
 }
 
-.FFXIPackageHelper_saveCharButton{
+.FFXIPackageHelper_saveCharButton, .FFXIPackageHelper_saveSetButton{
   visibility: hidden;
   display: unset;
   position: absolute;
@@ -179,7 +179,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   transition: 0.2s;
 }
 
-.FFXIPackageHelper_deleteCharButton {
+.FFXIPackageHelper_deleteCharButton, .FFXIPackageHelper_deleteSetButton {
   visibility: hidden;
   display: block;
   outline: 0;
@@ -196,7 +196,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   transition: background 0.2sease, color 0.2sease, box-shadow 0.2sease;
 }
 
-.FFXIPackageHelper_deleteCharButton:hover{
+.FFXIPackageHelper_deleteCharButton:hover, .FFXIPackageHelper_deleteSetButton:hover{
   background-color: #fff;
   color: #ff3535;
   box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
@@ -279,7 +279,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   /* display: none; */
 }
 
-.FFXIPackageHelper_dynamiccontent_charNameInput{
+.FFXIPackageHelper_dynamiccontent_charNameInput, .FFXIPackageHelper_dynamiccontent_setNameInput{
   position: relative;
   cursor: text;
   font-size: 18px;
@@ -299,7 +299,7 @@ box-shadow: 0 6px 10px #a1cb4785;
   }
 }
 
-.FFXIPackageHelper_dynamiccontent_charNameInput::placeholder {
+.FFXIPackageHelper_dynamiccontent_charNameInput::placeholder, .FFXIPackageHelper_dynamiccontent_setNameInput::placeholder {
   font-style: italic;
   opacity: 0.5;
 }

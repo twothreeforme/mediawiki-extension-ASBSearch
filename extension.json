@@ -164,6 +164,12 @@
         "equipsets_selectset": {
 			"class": "APIModuleEquipsets"
 		},
+        "equipsets_saveset": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_removeset": {
+			"class": "APIModuleEquipsets"
+		},
         "fishingsearch": {
 			"class": "APIModuleFishingSearch"
 		}

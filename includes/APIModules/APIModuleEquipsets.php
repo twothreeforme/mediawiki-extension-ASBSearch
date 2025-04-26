@@ -192,7 +192,7 @@ class APIModuleEquipsets extends ApiBase {
             $userCharacters = $db->getUserCharacters($char);
             $result->addValue( $params['action'], "userchars", $userCharacters);
         }
-        else if ( $params['action'] == "equipsets_selectset" ) {
+        else if ( $params['action'] == "equipsets_saveset" ) {
             $db = new DBConnection();
             // $char = $this->createChar($params);
 

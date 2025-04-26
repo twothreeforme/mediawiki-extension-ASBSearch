@@ -300,14 +300,14 @@ class FFXIPackageHelper_Equipsets  {
     public function showEquipsets(){
         $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i></span>" . 
                     FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_setSelect") .
-                    "<div class=\"FFXIPackageHelper_equipsets_setSelectOptionsMenu\">" .
-                        "<button id=\"FFXIPackageHelper_editSetButton\" class=\"FFXIPackageHelper_editCharButton\">Edit</button>" .
-                        "<button id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_newSetButton FFXIPackageHelper_saveSetButton\">Save</button>" .
-                    "</div>" .
                     "<div id=\"FFXIPackageHelper_dynamiccontent_newSetSection\" style=\"display: none;\" >" .
                         "<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Set Name</p>" .
                         "<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_setNameInput\" class=\"FFXIPackageHelper_dynamiccontent_setNameInput\" placeholder=\"Set Name\" maxlength=\"25\"></input><br>" .
                     "</div>" .  
+                    "<div class=\"FFXIPackageHelper_equipsets_charSelectOptionsMenu\">" .
+                        // "<button id=\"FFXIPackageHelper_editSetButton\" class=\"FFXIPackageHelper_editCharButton\">Edit</button>" .
+                        "<button id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_newSetButton FFXIPackageHelper_saveSetButton\">Save</button>" .
+                    "</div>" .
                     "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
                     "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
@@ -320,7 +320,9 @@ class FFXIPackageHelper_Equipsets  {
                         </tr>
                         <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                    $this->additionalData() . $this->showLuaSets() .
+                    $this->additionalData() . 
+                    "<button id=\"FFXIPackageHelper_deleteSetButton\" class=\"FFXIPackageHelper_deleteSetButton\">Remove this set</button>" .
+                    $this->showLuaSets() .
                 "</div>";
 
         return $html;
