@@ -2,7 +2,6 @@ var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
-var Contextual = require("../../../../resources/contextual/contextual.js");
 
 //var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
@@ -148,6 +147,27 @@ module.exports.setLinks = function (){
      // Load Merit Edits section
     // MeritEdits.setLinks(Data.updateStats);
     
+    const menuIcon = document.getElementById("FFXIPackageHelper_menuIcon");
+    menuIcon.addEventListener("click", function (e) {
+        adjustMenuIconButtonCSS(this);
+    });
+
+    const setsListRemoves = document.getElementsByClassName("FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove");
+    if ( setsListRemoves.length > 0 ){
+        for (r = 0; r < setsListRemoves.length; r++) {
+            setsListRemoves[r].addEventListener("click", function (e) {
+                //console.log(e.target.dataset.value);
+                const rowDetails = e.target.parentNode.querySelector("td");
+                const userSetID = rowDetails.dataset.value;
+                const setName = rowDetails.innerText;
+
+                console.log(userSetID, setName);
+
+            });
+        }
+    }
+
+
     /**
      * DEV ONLY
      */
@@ -507,3 +527,9 @@ function setDisabledState_AllSavedSetButtons(state){
         // }
     }
 }
+
+function adjustMenuIconButtonCSS(i) {
+    i.classList.toggle("FFXIPackageHelper_menuIcon_change");
+    const availableSets = document.getElementById("FFXIPackageHelper_Equipsets_setManagement");
+    availableSets.classList.toggle("FFXIPackageHelper_Equipsets_setManagement_expanded");    
+  }

@@ -237,10 +237,18 @@ class FFXIPackageHelper_HTMLOptions {
 
     public static function setsList(){
 
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_setManagement\">";
+        $html = "<div id=\"FFXIPackageHelper_Equipsets_setManagement\" class=\"FFXIPackageHelper_Equipsets_setManagement\">";
         //$html .= FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_setSelect");
-        $html .= "<h3>Available sets</h3>";
-
+        
+        $html .="<div style=\"width: 100%; flex-wrap: nowrap; display: flex;flex-direction: row;justify-content: space-between;\">";
+        $html .="<h3 style=\"display:inline-block;\">Available Sets</h3>";
+        $html .="<div id=\"FFXIPackageHelper_menuIcon\" class=\"FFXIPackageHelper_menuIcon\">" .
+                    "<div class=\"FFXIPackageHelper_menuIcon_bar1\"></div>" .
+                    "<div class=\"FFXIPackageHelper_menuIcon_bar2\"></div>" .
+                    "<div class=\"FFXIPackageHelper_menuIcon_bar3\"></div>" .
+                "</div>";
+        $html .="</div>";
+        
         $html .= "<div id=\"FFXIPackageHelper_Equipsets_setManagement_setsList\" class=\"FFXIPackageHelper_Equipsets_setManagement_setsList\">";
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
@@ -250,24 +258,7 @@ class FFXIPackageHelper_HTMLOptions {
             //throw new Exception ( json_encode($userSets));
             if ( count($userSets) > 0 ){
 
-                foreach ($userSets as $jobtype => $val ) {
-
-                    $html .= "<h3>$jobtype</h3><ul >";
-
-                    foreach ( $val as $set ){
-                        $html .= "<li data-value=\"" . $set["usersetid"] . "\">" . "
-                            <div style=\"display: inline-block;\">" .
-                                // "<button class=\"FFXIPackageHelper_dynamiccontent_testButton\">
-                                //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                                //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
-                                //     </svg>
-                                // </button>" .
-                            $set["setname"] .
-                            "</div>
-                        </li>";
-                    }
-                    $html .= "</ul>";
-                }
+                $html .= self::setsListTable($userSets);
             }
 
         }
@@ -275,6 +266,48 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "<button id=\"FFXIPackageHelper_deleteSetButton\" class=\"FFXIPackageHelper_deleteSetButton\">Remove set</button>";
 
         $html .= "</div>";
+        return $html;
+    }
+
+    public static function setsListTable($userSets){
+        $html = "";
+            // foreach ($userSets as $jobtype => $val ) {
+
+            //     $html .= "<h3>$jobtype</h3><ul >";
+
+            //     foreach ( $val as $set ){
+            //         $html .= "<li data-value=\"" . $set["usersetid"] . "\">" . "
+            //             <div style=\"display: inline-block;\">" .
+            //                 // "<button class=\"FFXIPackageHelper_dynamiccontent_testButton\">
+            //                 //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+            //                 //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+            //                 //     </svg>
+            //                 // </button>" .
+            //             $set["setname"] .
+            //             "</div>
+            //         </li>";
+            //     }
+            //     $html .= "</ul>";
+            // }
+
+
+            $html = "<table class=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\">";   
+            foreach ($userSets as $jobtype => $val ) {
+
+                    $html .="<tr>
+                                <th colspan=\"2\">$jobtype</th>
+                            </tr>";
+
+                    foreach ( $val as $set ){
+                        $html .="<tr>";
+                        $html .= "<td data-value=\"" . $set["usersetid"] . "\">" . $set["setname"] ."</td>";
+                        $html .= "<td class =\"FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove\" data-value=\"" . $set["usersetid"] . "\" style=\"color:red;text-align:end;width: 1%;white-space: nowrap;\" >Remove</td>";
+                        $html .="<tr>";
+                    }
+                
+                }
+            $html .= "</table>";
+
         return $html;
     }
 }

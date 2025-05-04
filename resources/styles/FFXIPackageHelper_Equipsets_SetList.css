@@ -1,0 +1,73 @@
+.FFXIPackageHelper_menuIcon {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .FFXIPackageHelper_menuIcon_bar1, .FFXIPackageHelper_menuIcon_bar2, .FFXIPackageHelper_menuIcon_bar3 {
+    width: 25px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  .FFXIPackageHelper_menuIcon_change .FFXIPackageHelper_menuIcon_bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+  
+  .FFXIPackageHelper_menuIcon_change .FFXIPackageHelper_menuIcon_bar2 {opacity: 0;}
+  
+  .FFXIPackageHelper_menuIcon_change .FFXIPackageHelper_menuIcon_bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+
+.FFXIPackageHelper_Equipsets_setManagement {
+  width: 40%;
+  font-size:14px;
+  line-height:14px;
+  border-collapse: collapse;
+  background: #eaf5ff7d;
+  padding: 8px 8px 8px 8px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  transition: width 3s;
+}
+.FFXIPackageHelper_Equipsets_setManagement h2{
+  margin-top: 0em;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement ul{
+  list-style: none;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement_setsList {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 80%;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement_setsList li:hover{
+  background-color:#00c4ff45;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement_expanded {
+  width: 90%;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement_setsListTable {
+  width: 220px;
+  overflow-x: hidden;
+}
+
+
+.FFXIPackageHelper_Equipsets_setManagement_setsListTable td {
+  padding-left: 20px;
+}
+
+.FFXIPackageHelper_Equipsets_setManagement_setsListTable th {
+  text-align: left;
+}
+/* .FFXIPackageHelper_Equipsets_setManagement_setsListTable tr:hover {background-color: #cdf7f7;} */
+/* .FFXIPackageHelper_Equipsets_setManagement_setsListTable th {
+  border-bottom: 1px solid #000000;
+} */

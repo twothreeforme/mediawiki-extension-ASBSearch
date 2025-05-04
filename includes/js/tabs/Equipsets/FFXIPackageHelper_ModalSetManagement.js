@@ -1,6 +1,5 @@
 
-let _default = `<p>User Available Sets...</p>`;
-let _default2 = `<br><br><button style="float: left;" class="close-modal FFXIPackageHelper_dynamiccontent_customButton customButton_cancel">Cancel</button>`;
+let _default = `<br><br><button style="float: left;" class="close-modal FFXIPackageHelper_dynamiccontent_customButton customButton_cancel">Cancel</button>`;
 
 
 // function searchInput(slot){
@@ -19,7 +18,7 @@ class ModalSetsWindow {
     //searchCallback = null;
 
     constructor(options = {}) {
-        this.content = `<h2>Set Management</h2>` + _default + _default2;
+        this.content = `<h2>Permanently remove this set?</h2>` + _default ;
 
         this.options = {
             overlay: true,

@@ -448,32 +448,7 @@ Equipsets equipment grid (table)
 }
 
 
-.FFXIPackageHelper_Equipsets_setManagement{
-    width: 35%;
-    font-size:14px;
-    line-height:14px;
-    border-collapse: collapse;
-    background: #eaf5ff7d;
-    padding: 8px 8px 8px 8px;
-    border-radius: 10px;
-    border: 1px solid #000000;
-}
-.FFXIPackageHelper_Equipsets_setManagement h2{
-    margin-top: 0em;
-}
 
-.FFXIPackageHelper_Equipsets_setManagement ul{
-    list-style: none;
-}
-
-.FFXIPackageHelper_Equipsets_setManagement_setsList {
-    overflow: auto;
-    height: 80%;
-}
-
-.FFXIPackageHelper_Equipsets_setManagement_setsList li:hover{
-    background-color:#00c4ff45;
-}
 
 .FFXIPackageHelper_dynamiccontent_showMerits{
     /* width: 2250px; */

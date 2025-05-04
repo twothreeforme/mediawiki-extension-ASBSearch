@@ -120,16 +120,14 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharRemove.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
-                "includes/js/FFXIPackageHelper_copyURLToClipboard.js",
-                "resources/contextual/contextual.js"
+                "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
 			"styles": [
                 "resources/styles/FFXIPackageHelper_Forms.css",
                 "resources/styles/FFXIPackageHelper_Equipsets_Styles.css",
+                "resources/styles/FFXIPackageHelper_Equipsets_SetList.css",
                 "resources/styles/tabs.css",
-                "resources/styles/hint.css",
-                "resources/contextual/contextual.css",
-                "resources/contextual/contextual.theme.css"
+                "resources/styles/hint.css"
 			]
 		}
 	},
