@@ -23,6 +23,7 @@ let currentCharacterName = null;
 module.exports.setLinks = function (){
 
     const charButtons = document.getElementsByClassName("FFXIPackageHelper_charButton");
+    if ( charButtons ) { addCharButtonEvents(charButtons); }
 
     // const refreshButton = document.getElementById("FFXIPackageHelper_refreshStatsButton");
     // refreshButton.addEventListener("click", function () {
@@ -46,7 +47,6 @@ module.exports.setLinks = function (){
         if ( charname ) removeCharacter(charname);
     });
 
-    if ( charButtons ) { addCharButtonEvents(charButtons); }
 
     RACE_DROPDOWN.addEventListener("change", () =>  {
         //console.log(e.target.value);

@@ -1161,27 +1161,105 @@ class DBConnection {
         $dbr = $this->openConnectionSets();
 
         $savedSets = $dbr->newSelectQueryBuilder()
-        ->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment', 'setname'] )
+        //->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment', 'setname'] )
+        ->select( [ 'usersetid', 'setname', 'mjob'] )
         ->from( 'user_sets' )
         ->where( [ "user_sets.userid = $uid" ] )
+        ->orderBy( 'mjob', 'ASC' )
+        ->fetchResultSet();
+
+        $vars = new FFXIPackageHelper_Variables();
+
+        $userSets = [];
+        foreach($savedSets as $row){
+            $jobname = $vars->jobArray[$row->mjob];
+            $userSets[$jobname][] = [
+                'usersetid' => $row->usersetid,
+                // 'mlvl' => $row->mlvl,
+                // 'slvl' => $row->slvl,
+                //'mjob' => $row->mjob,
+                // 'sjob' => $row->sjob,
+                // 'equipment' => $row->equipment,
+                'setname' => $row->setname
+            ];
+        }
+        //throw new Exception ( json_encode($userSets)  );
+        return $userSets;
+    }
+
+    public function getUserSetsForJob($uid, $mjob){
+        $dbr = $this->openConnectionSets();
+
+        $query = [
+            "user_sets.mjob = '$mjob' AND user_sets.userid = '$uid'"
+        ];
+
+        $savedSets = $dbr->newSelectQueryBuilder()
+        //->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment', 'setname'] )
+        ->select( [ 'usersetid', 'setname' ] )
+        ->from( 'user_sets' )
+        ->where( $query )
+        //->orderBy( 'mjob', 'ASC' )
         ->fetchResultSet();
 
         $userSets = [];
         foreach($savedSets as $row){
             $userSets[] = [
                 'usersetid' => $row->usersetid,
+                // 'mlvl' => $row->mlvl,
+                // 'slvl' => $row->slvl,
+                //'mjob' => $row->mjob,
+                // 'sjob' => $row->sjob,
+                // 'equipment' => $row->equipment,
+                'setname' => $row->setname
+            ];
+        }
+        //throw new Exception ( json_encode($userSets)  );
+        return $userSets;
+    }
+
+    public function saveSet($newSet){
+        $dbw = $this->openConnectionSets();
+
+        return $dbw->insert(
+            'user_sets',
+            [
+                'userid' => $newSet['userid'],
+                'setname' => $newSet['setname'],
+                'mlvl' => $newSet['mlvl'],
+                'slvl' => $newSet['slvl'],
+                'mjob' => $newSet['mjob'],
+                'sjob' => $newSet['sjob'],
+                'equipment' => $newSet['equipment']
+            ],
+            __METHOD__
+        );
+    }
+
+    public function fetchSet($usersetid){
+        $dbr = $this->openConnectionSets();
+
+        $fetchedSet = $dbr->newSelectQueryBuilder()
+        ->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment'] )
+        ->from( 'user_sets' )
+        ->where( [ "user_sets.usersetid = $usersetid" ] )
+        ->fetchResultSet();
+
+        //$set = [];
+        foreach($fetchedSet as $row){
+            return [
+                'usersetid' => $row->usersetid,
                 'mlvl' => $row->mlvl,
                 'slvl' => $row->slvl,
                 'mjob' => $row->mjob,
                 'sjob' => $row->sjob,
-                'equipment' => $row->equipment,
-                'setname' => $row->setname
+                'equipment' => $row->equipment
+                //'setname' => $row->setname
             ];
         }
 
-        return $userSets;
+        return [];
     }
-
 
     public function setExists($dbr, $setid){
         //$dbr = $this->openConnection();

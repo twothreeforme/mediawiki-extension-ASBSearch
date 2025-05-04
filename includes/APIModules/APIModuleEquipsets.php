@@ -21,6 +21,8 @@ class APIModuleEquipsets extends ApiBase {
             'slot' => null,
             'charname' => null,
             'def' => 0,
+            'setname' => "",
+            'usersetid' => 0,
     		];
 	}
 
@@ -31,7 +33,7 @@ class APIModuleEquipsets extends ApiBase {
 
         $decoded = urldecode($params['equipment']);
         $equipmentString = base64_decode($decoded);
-        //if ( !str_contains($equipmentString, "13280") )  throw new Exception($equipmentString); //Snipers Ring debug
+        //if ( str_contains($equipmentString, "11335") )  throw new Exception($equipmentString); //Snipers Ring debug
 
         $decoded = urldecode($params['merits']);
         $meritsString = base64_decode($decoded);
@@ -64,11 +66,15 @@ class APIModuleEquipsets extends ApiBase {
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
         }
         else if ( $params['action'] == "equipsets_change" ) {
-
+            //throw new Exception ( json_encode($equipmentString));
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
+            //throw new Exception ( json_encode($equipmentModel));
+
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
             
+            //throw new Exception ( json_encode($newEquipmentArray));
+
             // if( $newEquipmentArray[8]["id"] == 0 ) {
             //     throw new Exception ( json_encode($newEquipmentArray) . "\n:::\n" . json_encode($equipmentModel));
             // }
@@ -111,7 +117,7 @@ class APIModuleEquipsets extends ApiBase {
             $char = $this->createChar($params);
 
             if ( $char['userid'] == 0 || $char['userid'] == null ){
-                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save character."] );
+                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
                 return;
             }
 
@@ -152,7 +158,7 @@ class APIModuleEquipsets extends ApiBase {
             $char = $this->createChar($params);
 
             if ( $char['userid'] == 0 || $char['userid'] == null ){
-                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save character."] );
+                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
                 return;
             }
 
@@ -183,21 +189,83 @@ class APIModuleEquipsets extends ApiBase {
             $char = $this->createChar($params);
 
             $selectedChar = $db->getSelectedCharacter($char);
-            $result->addValue( $params['action'], "selected", $selectedChar );
+            $result->addValue( $params['action'], "selectchar", $selectedChar );
         }
         else if ( $params['action'] == "equipsets_removechar" ) {
             $db = new DBConnection();
             $char = $this->createChar($params);
-            $removeChar = $db->removeUserCharacter($char);
+            $db->removeUserCharacter($char);
             $userCharacters = $db->getUserCharacters($char);
             $result->addValue( $params['action'], "userchars", $userCharacters);
         }
         else if ( $params['action'] == "equipsets_saveset" ) {
-            $db = new DBConnection();
-            // $char = $this->createChar($params);
+            $newSet = $this->createSet($params);
+            if ( $newSet['userid'] == 0 || $newSet['userid'] == null ){
+                $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
+                return;
+            }
 
-            // $selectedChar = $db->getSelectedCharacter($char);
-            // $result->addValue( $params['action'], "selected", $selectedChar );
+            $db = new DBConnection();
+            $db->saveSet($newSet);
+            //$setList = $db->getUserSetsFromUserID($newSet['userid']);
+            $setList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
+            $result->addValue( $params['action'], "saveset", [$newSet['setname'], $setList] );
+        }
+        else if ( $params['action'] == "equipsets_selectset" ) {
+            $db = new DBConnection();
+
+            $fetchedSet = $db->fetchSet($params['usersetid']);
+            //throw new Exception ( json_encode( $fetchedSet));
+
+            $decodedEquip = urldecode($fetchedSet['equipment']);
+            $equipmentString = base64_decode($decodedEquip);
+
+            $decodedMerits = urldecode($fetchedSet['merits']);
+            $meritsString = base64_decode($decodedMerits);
+
+            $tabEquipsets = new FFXIPackageHelper_Equipsets();
+
+            $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
+            $newEquipmentArray = $equipmentModel->getEquipmentArray();
+            $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
+            $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList, true)[0];
+            $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
+
+            $newStats = new FFXIPackageHelper_Stats( $fetchedSet['race'], $fetchedSet['mlvl'], $fetchedSet['slvl'], $fetchedSet['mjob'], $fetchedSet['sjob'], $meritsString, $newEquipmentArray );
+
+            $stats = $newStats->getStats();
+            $statsEncoded = base64_encode(json_encode($stats));
+            $statsURLSafe = urlencode($statsEncoded);
+
+            $gridEncoded = base64_encode(json_encode($updatedGrid));
+            $gridURLSafe = urlencode($gridEncoded);
+
+            $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
+            $luaNamesURLSafe = urlencode($luaNamesEncoded );
+
+            $result->addValue( $params['action'], "selectset", $fetchedSet );
+            $result->addValue($params['action'], "stats", $statsURLSafe );
+            $result->addValue($params['action'], "grid", $gridURLSafe );
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
+            $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
+
+        }
+        else if ( $params['action'] == "equipsets_getsets" ) {
+            $newSet = $this->createSet($params);
+
+            // if ( $newSet['userid'] == 0 || $newSet['userid'] == null ){
+            //     $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
+            //     return;
+            // }
+
+            $db = new DBConnection();
+            //throw new Exception ( json_encode( $params));
+            if ( $newSet['mjob'] != 0 ) $setList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
+            else {
+                $setList = $db->getUserSetsFromUserID($newSet['userid']);
+            }
+            $result->addValue( $params['action'], "getsets", $setList );
+
         }
 
     }
@@ -220,6 +288,19 @@ class APIModuleEquipsets extends ApiBase {
             'race' => $params['race'] ,
             'merits' => $params['merits'],
             'def' => $params['def']
+        ];
+    }
+
+    private function createSet($params){
+        $user = RequestContext::getMain()->getUser();
+        return [
+            'userid' => $user->getId(),
+            'setname' => $params['setname'],
+            'mlvl' => $params['mlvl'],
+            'slvl' => $params['slvl'],
+            'mjob' => $params['mjob'],
+            'sjob' => $params['sjob'],
+            'equipment' => $params['equipment']
         ];
     }
 }

@@ -120,13 +120,16 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharRemove.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
-                "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
+                "includes/js/FFXIPackageHelper_copyURLToClipboard.js",
+                "resources/contextual/contextual.js"
 			],
 			"styles": [
                 "resources/styles/FFXIPackageHelper_Forms.css",
                 "resources/styles/FFXIPackageHelper_Equipsets_Styles.css",
                 "resources/styles/tabs.css",
-                "resources/styles/hint.css"
+                "resources/styles/hint.css",
+                "resources/contextual/contextual.css",
+                "resources/contextual/contextual.theme.css"
 			]
 		}
 	},
@@ -168,6 +171,9 @@
 			"class": "APIModuleEquipsets"
 		},
         "equipsets_removeset": {
+			"class": "APIModuleEquipsets"
+		},
+        "equipsets_getsets": {
 			"class": "APIModuleEquipsets"
 		},
         "fishingsearch": {

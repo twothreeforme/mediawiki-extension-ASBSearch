@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 
 function actionAPI(params, forTab, currentButton, callback) {
-  console.log(params);
+  //console.log(params);
   var api = new mw.Api();
   api.get( params ).done( function ( d ) {
     //console.log(d);
@@ -45,7 +45,7 @@ function actionAPI(params, forTab, currentButton, callback) {
         }
         else if ( forTab.includes("selectchar")) {
           //console.log(callback);
-          callback.updateCharacter(result['selected']);
+          callback.updateCharacter(result['selectchar']);
           callback.updateStats();
           //callback.setHeaderCharacterDetails();
 
@@ -58,6 +58,40 @@ function actionAPI(params, forTab, currentButton, callback) {
             callback(result['status']);
             mw.notify( "Character Updated", { autoHide: true,  type: 'success' } );
           }
+        }
+        else if ( forTab.includes("saveset")) {
+          // console.log(result);
+          if /*ERROR*/( "status" in result && result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
+          else {
+            callback(result['saveset']);
+            mw.notify( "Set Saved", { autoHide: true,  type: 'success' } );
+          }
+        }
+        else if ( forTab.includes("getsets")) {
+          //console.log(result);
+          callback(result['getsets']);
+        }
+        else if ( forTab.includes("selectset")) {
+          //console.log(result);
+
+          const stats_base64 = decodeURIComponent(result['stats']);
+          const stats_ = JSON.parse(atob(stats_base64));
+          updateEquipsets(stats_);
+
+          const grid_base64 = decodeURIComponent(result['grid']);
+          const grid_ = JSON.parse(atob(grid_base64));
+          changeGrid(grid_, result['equipLabels']);
+
+          const luas_base64 = decodeURIComponent(result['luaNames']);
+          const luas_ = JSON.parse(atob(luas_base64));
+          LuaSets.adjustLuaSet(luas_);
+
+          document.getElementById('FFXIPackageHelper_equipsets_selectMJob').selectedIndex = result['selectset']['mjob'];
+          document.getElementById('FFXIPackageHelper_equipsets_selectSJob').selectedIndex = result['selectset']['sjob'];
+          document.getElementById('FFXIPackageHelper_equipsets_selectMLevel').selectedIndex = result['selectset']['mlvl'];
+          document.getElementById('FFXIPackageHelper_equipsets_selectSLevel').selectedIndex = result['selectset']['slvl'];
+
+          //callback.loadSet(result['selectset']);
         }
         else {
           updateEquipsets(result['stats']);
@@ -135,11 +169,11 @@ function changeGrid(incomingGridData, equipLabels){
       break;
     }
   }
-  //mw.hook( 'wikipage.content' ).fire($('.FFXIPackageHelper_Equipsets_equipList'));
+
 }
 
 function updateEquipsets(updatedStats){
-  //console.log(updatedStats);
+  //console.log("updateEquipsets:", updatedStats);
 
   //let tempTooltip = `<span class="myTooltip" data-options="background:#fff;animation:fade;">Hello</span>`;
   const _id = "FFXIPackageHelper_Equipsets_stat";

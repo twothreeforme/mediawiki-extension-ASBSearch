@@ -19,6 +19,7 @@ function getEquipID(forSlot){
     let slot = document.getElementById("grid" + forSlot);
     return slot.dataset.value;
 }
+
 function getEquipIDs(updateAll){
     let equipIDs = [];
     let shareEquipIDs = [];
@@ -28,8 +29,9 @@ function getEquipIDs(updateAll){
         let slot = document.getElementById(str);
         //console.log(v, slot.dataset.value);
         if ( updateAll == true ) {
-            if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
-            else shareEquipIDs[v] = [ 0, 0 ];
+            // if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
+            // else shareEquipIDs[v] = [ 0, 0 ];
+            shareEquipIDs[v] = [ slot.dataset.value, 1 ];
         }
         else  {
             equipIDs[v] = [ slot.dataset.value, 0 ]; // 0 is default flag id
@@ -44,6 +46,8 @@ function getEquipIDs(updateAll){
 function updateStats(data){
     if ( data == null ) data = getStatsData();
     //console.log("updateStats: ", data);
+    if ( data.mjob == 0 || data.sjob == 0 ) return;
+
     API.actionAPI(data, "equipsets", null);
 }
 
@@ -108,7 +112,7 @@ function getStatsData(equipIDString){
 }
 
 function getSetData(){
-    equipIDString = getEquipIDs(); //getEquipIDs().join(",");
+    equipIDString = getEquipIDs(true); //getEquipIDs().join(",");
     equipIDString = equipIDString.join("|");
 
     //console.log("getStatsData: ", equipIDString);
@@ -164,7 +168,6 @@ function setMeritsData(merits_){
         if ( meritSkills.hasOwnProperty(id) == true ) skill.value = meritSkills[id];
         else  skill.value = 0;
     });
-
 }
 
 
@@ -210,10 +213,26 @@ function updateCharacter(char){
         setMeritsData(merits_);
         setHeaderCharacterDetails();
     }
-    
+}
+
+function loadSet(fromFetechedResult){
+
+    // const data = {
+    //     action: "equipsets_change",
+    //     race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+    //     mlvl:fromFetechedResult.mlvl,
+    //     slvl:fromFetechedResult.slvl,
+    //     mjob:fromFetechedResult.mjob,
+    //     sjob:fromFetechedResult.sjob,
+    //     merits: encodeURIComponent(btoa(getMeritsData())),
+    //     equipment: fromFetechedResult.equipment,
+    // };
+    // API.actionAPI(data, "equipsets_change", null, null);
+
+    updateStats();
 }
 
 module.exports = {
     updateEquipmentGrid, getEquipID, getEquipIDs, updateStats, getMeritsData, getStatsData, resetStats,
-    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault, getSetData
+    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault, getSetData, loadSet
 }

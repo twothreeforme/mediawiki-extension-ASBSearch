@@ -7,7 +7,7 @@ class FFXIPackageHelper_HTMLOptions {
 
       public static function jobDropDown($classname){
         $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-        //$html .= "<option value=\"0\">Any</option>";
+        $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Warrior</option>";
         $html .= "<option value=\"2\">Monk</option>";
         $html .= "<option value=\"3\">White Mage</option>";
@@ -43,6 +43,42 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "<option value=\"4\">Galka</option>";
         $html .= "</select>";
         return $html;
+    }
+
+    public static function setsDropDown($classname){
+        $user = RequestContext::getMain()->getUser();
+        $uid = $user->getId();
+        $db = new DBConnection();
+        $userSets = $db->getUserSetsFromUserID($uid);
+
+        $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" ";
+
+        if ( count($userSets) > 0 ){
+            $html .= ">";
+            //$vars = new FFXIPackageHelper_Variables();
+
+            $currentJobType = 0;
+            foreach ($userSets as $jobtype => $val ) {
+                if ( $currentJobType != $jobtype ){
+                    $currentJobType = $jobtype;
+                    $html .= " <optgroup label=\"" . $jobtype . "\">";
+                }
+                foreach ( $val as $set ){
+                    $html .= "<option value=\"" . $set["usersetid"] . "\">" . $set["setname"] . "</option>";
+                    // $html .= "<option value=\"1\">Elvaan</option>";
+                    //$html .= "<button id=\"FFXIPackageHelper_setButton_" . $set["setname"] . "\" class=\"" . $classname . "\">" . $set["setname"] . "</button>";
+                }
+            }
+
+        }
+        else {
+            $html .= "disabled>";
+            $html .= "<option value=\"0\">None</option>";
+        }
+
+        $html .= "</select>";
+        return $html;
+
     }
 
     public static function levelRange($classname){
@@ -141,12 +177,13 @@ class FFXIPackageHelper_HTMLOptions {
         if ( $uid != 0 && $uid != null ){
             $db = new DBConnection();
             $userSets = $db->getUserSetsFromUserID($uid);
-            
+            //throw new Exception ( json_encode($userSets));
             if ( count($userSets) > 0 ){
                 foreach ($userSets as $set) {
-                    $classlist = "FFXIPackageHelper_setsButton";
+                    // throw new Exception ( json_encode($set));
+                    $classlist = "FFXIPackageHelper_setButton";
                     // if ( $set["def"] != 0  ) $classlist .= " FFXIPackageHelper_setButton_default";
-                    $html .= "<button id=\"FFXIPackageHelper_setButton_" . $set["setname"] . "\" class=\"" . $classlist . "\">" . $set["setname"] . "</button>";
+                    $html .= "<button id=\"FFXIPackageHelper_setButton_" . $set["usersetid"] . "\" class=\"" . $classlist . "\">" . $set["setname"] . "</button>";
                 }
             }
         }
@@ -167,22 +204,77 @@ class FFXIPackageHelper_HTMLOptions {
         }
 
         $html = "<div id=\"$divName\">" .
-    
-							//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
-							"<button id=\"$newButton\" class=\"$newButton\">
-								<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-									<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
-									<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
-								</svg>
-								<span id=\"$newButton-text\">"; 
-                                if ( $newButton == "FFXIPackageHelper_newSetButton") $html .= "Save this set" ;
-                                else $html .= "New";
-                                $html .= "</span></button>";
+            "<button id=\"$newButton\" class=\"$newButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
+                </svg>
+                <span id=\"$newButton-text\">";
+        if ( $newButton == "FFXIPackageHelper_newSetButton") $html .= "Save this set" ;
+        else $html .= "New";
+        $html .= "</span></button>";
         
-        if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") self::setsButtonsList();
-        else if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) self::charactersButtonsList();
+
+        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList();
+        //else if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") $html .= self::setsButtonsList();
 					
 		$html .= "</div>";
+        return $html;
+    }
+
+    public static function saveButton($classname){
+        $html = "<button id=\"$classname\" class=\"$classname\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
+                </svg>
+                <span id=\"$classname-text\">";
+        if ( $classname == "FFXIPackageHelper_newSetButton") $html .= "Save this set" ;
+        else $html .= "New";
+        $html .= "</span></button>";
+        return $html;
+    }
+
+    public static function setsList(){
+
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_setManagement\">";
+        //$html .= FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_setSelect");
+        $html .= "<h3>Available sets</h3>";
+
+        $html .= "<div id=\"FFXIPackageHelper_Equipsets_setManagement_setsList\" class=\"FFXIPackageHelper_Equipsets_setManagement_setsList\">";
+        $user = RequestContext::getMain()->getUser();
+        $uid = $user->getId();
+        if ( $uid != 0 && $uid != null ){
+            $db = new DBConnection();
+            $userSets = $db->getUserSetsFromUserID($uid);
+            //throw new Exception ( json_encode($userSets));
+            if ( count($userSets) > 0 ){
+
+                foreach ($userSets as $jobtype => $val ) {
+
+                    $html .= "<h3>$jobtype</h3><ul >";
+
+                    foreach ( $val as $set ){
+                        $html .= "<li data-value=\"" . $set["usersetid"] . "\">" . "
+                            <div style=\"display: inline-block;\">" .
+                                // "<button class=\"FFXIPackageHelper_dynamiccontent_testButton\">
+                                //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                                //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                                //     </svg>
+                                // </button>" .
+                            $set["setname"] .
+                            "</div>
+                        </li>";
+                    }
+                    $html .= "</ul>";
+                }
+            }
+
+        }
+        $html .= "</div>";
+        $html .= "<button id=\"FFXIPackageHelper_deleteSetButton\" class=\"FFXIPackageHelper_deleteSetButton\">Remove set</button>";
+
+        $html .= "</div>";
         return $html;
     }
 }

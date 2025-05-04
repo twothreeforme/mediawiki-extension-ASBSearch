@@ -2,6 +2,7 @@ var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
+var Contextual = require("../../../../resources/contextual/contextual.js");
 
 //var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
@@ -11,6 +12,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 const NEWSET_BUTTON = document.getElementById("FFXIPackageHelper_newSetButton");
 const SAVE_BUTTON = document.getElementById("FFXIPackageHelper_dynamiccontent_saveSet");
 const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteSetButton");
+//const //SELECTSET_DROPDOWN = document.getElementById("FFXIPackageHelper_equipsets_selectSet");
 
 const hiddenDiv = document.getElementById("FFXIPackageHelper_dynamiccontent_newSetSection");
 hiddenDiv.offsetTop;
@@ -25,17 +27,22 @@ let currentSetName = null;
 
 module.exports.setLinks = function (){
 
-    const setButtons = document.getElementsByClassName("FFXIPackageHelper_setButton");
-    if ( setButtons ) { addSetButtonEvents(setButtons); }
+    // const setButtons = document.getElementsByClassName("FFXIPackageHelper_setButton");
+    // if ( setButtons ) { addSetButtonEvents(setButtons); }
 
     NEWSET_BUTTON.addEventListener("click", function () {
-        if ( hiddenDiv.style.display != "none" ) {
-            if ( currentSetName != null ) selectSetClicked(currentSetName);
+        if ( mJobDropdown.value == 0  || sJobDropdown.value == 0){
+            mw.notify( "Main job and Sub job must be selected to save a set.", { autoHide: true,  type: 'error' } );
+            return;
         }
-        else  {
-            const selectedSet = document.getElementsByClassName("FFXIPackageHelper_setButton FFXIPackageHelper_setButtonselected");
-            if ( selectedSet.length > 0 ) currentSetName = selectedSet[0].innerHTML;
-        }
+
+        // if ( hiddenDiv.style.display != "none" ) {
+        //     if ( currentSetName != null ) selectSetClicked(currentSetName);
+        // }
+        // else  {
+        //     const selectedSet = document.getElementsByClassName("FFXIPackageHelper_setButton FFXIPackageHelper_setButtonselected");
+        //     if ( selectedSet.length > 0 ) currentSetName = selectedSet[0].innerHTML;
+        // }
 
         //toggle New button
         toggleNewButton();
@@ -44,6 +51,29 @@ module.exports.setLinks = function (){
     SAVE_BUTTON.addEventListener('click', (e) =>  {
         saveSetClicked();
     });
+
+    // //SELECTSET_DROPDOWN.addEventListener('change', (e) =>  {
+    //     const selectedSet = //SELECTSET_DROPDOWN.options[//SELECTSET_DROPDOWN.selectedIndex];
+    //     //console.log('selected:', selectedSet.value);
+    //     fetchSet(selectedSet.value);
+    // });
+
+    /**
+     * Set up available sets list events
+     */
+
+    let setListItems = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsList").querySelectorAll("li");
+    if ( setListItems.length > 0 ){
+        // setListItems.forEach(node => {
+        //     node.addEventListener('click', () => {
+        //         selectSetClicked(node.dataset.value)
+        //     });
+        //     //console.log(node.dataset.value);
+        // });
+        addSetButtonEvents(setListItems);
+    }
+    //.getElementsByTagName('li');
+
 
     /**
      * Modal Windows
@@ -93,6 +123,7 @@ module.exports.setLinks = function (){
     mJobDropdown.addEventListener("change", (e) => {
         //console.log(e.target.value);
         Data.updateStats();
+        resetSetList();
     });
 
     sJobDropdown = document.getElementById("FFXIPackageHelper_equipsets_selectSJob");
@@ -122,8 +153,8 @@ module.exports.setLinks = function (){
      */
     mlvlDropdown.value=75;
     slvlDropdown.value=37;
-    mJobDropdown.value=1;
-    sJobDropdown.value=2;
+    //mJobDropdown.value=1;
+    //sJobDropdown.value=2;
     // raceDropdown.value=3;
 
     /**
@@ -140,31 +171,28 @@ module.exports.setLinks = function (){
     Tooltip.setupPageTooltips();
 }
 
-function addSetButtonEvents(setButtons){
-    Array.from(setButtons).forEach((button) => {
-        button.addEventListener("click", function () {
-            selectSetClicked(button.innerHTML);
-            Array.from(setButtons).forEach((btn) => {
-                showSetButtonSelected(btn, false);
-            });
-            showSetButtonSelected(button, true);
+function addSetButtonEvents(setListItems){
+    setListItems.forEach(node => {
+        node.addEventListener('click', () => {
+            selectSetClicked(node.dataset.value)
         });
+        //console.log(node.dataset.value);
     });
 }
 
-function selectSetClicked(setname){
-    if ( setname == null ) return;
+function selectSetClicked(usersetid){
+    if ( usersetid == null ) return;
 
     const data = {
         action: "equipsets_selectset",
-        setname: setname,
+        usersetid: usersetid,
     }
 
     ActionButtons.showButton(REMOVE_BUTTON);
-    ActionButtons.showButton(EDIT_BUTTON);
+    // ActionButtons.showButton(EDIT_BUTTON);
 
-    const selectedSetButton = document.getElementById('FFXIPackageHelper_setButton_' + setname);
-    if ( selectedSetButton ) showSetButtonSelected(selectedSetButton, true);
+    // const selectedSetButton = document.getElementById('FFXIPackageHelper_setButton_' + setname);
+    // if ( selectedSetButton ) showSetButtonSelected(selectedSetButton, true);
 
     API.actionAPI(data, data.action, null, Data);
     //scrollToTop();
@@ -173,21 +201,147 @@ function selectSetClicked(setname){
 
 function saveSetClicked(){
     const data = Data.getSetData();
-    console.log(data);
+    //console.log(data);
     if ( data.setname.length == 0 ){
         mw.notify( "Set name must be filled.", { autoHide: true,  type: 'error' } );
         return;
     }
 
     data.action = "equipsets_saveset";
-    API.actionAPI(data, data.action, null, characterSaved);
+    API.actionAPI(data, data.action, null, setSaved);
     // //scrollToTop();
 
     // // make New button green again
-    // toggleNewButton();
+    toggleNewButton();
 
     // //hide Save button
     // ActionButtons.hideButton(SAVE_BUTTON);
+}
+
+function setSaved(results){
+    //results[0] = set name that was saved
+    //results[1] = the new set list
+
+    //const recentSave = results[0];
+
+    //const newSetList = results;
+    //resetSetList(newSetList);
+
+    // const setButton = document.getElementById('FFXIPackageHelper_setButton_' + recentSave);
+    // setButton.classList.toggle('FFXIPackageHelper_setButtonselected');
+
+    //toggleButtonVisibility(REMOVE_BUTTON);
+    //Data.updateStats();
+    //scrollToTop();
+    //Data.setHeaderCharacterDetails();
+    resetSetList(results);
+}
+
+function resetSetList(results){
+
+    clearSetList();
+    if (results){
+        currentSetName = results[0];
+        buildSetslist(results[1]);
+        ////SELECTSET_DROPDOWN.value = currentSetName;
+    }
+    else {
+        const data = {
+            action: "equipsets_getsets",
+            mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
+            };
+
+        API.actionAPI(data, data.action, null, buildSetslist);
+    }
+}
+
+function buildSetslist(results){
+    //console.log(results);
+
+    if (results.length <= 0 ){
+        //SELECTSET_DROPDOWN.disabled = true;
+
+        const optgroupElement = document.createElement("optgroup");
+        optgroupElement.label = "None";
+        //SELECTSET_DROPDOWN.appendChild(optgroupElement);
+        // const firstOption = document.createElement('option');
+        // firstOption.value = 0;
+        // firstOption.text = "None";
+        // //SELECTSET_DROPDOWN.appendChild(firstOption);
+
+        //SELECTSET_DROPDOWN.selectedIndex = 0;
+        return;
+    }
+
+    //console.log(results instanceof Array);
+
+    if ( results instanceof Array ){
+        //SELECTSET_DROPDOWN.disabled = false;
+
+        results.forEach((r)=> {
+            const optionElement = document.createElement('option');
+            optionElement.value = r.usersetid;
+            optionElement.text = r.setname;
+            //SELECTSET_DROPDOWN.appendChild(optionElement);
+        });
+    }
+    else {
+        //SELECTSET_DROPDOWN.disabled = false;
+        for (const obj of Object.entries(results)) {
+            //console.log(`${key}: ${value}`);
+
+            const optgroupElement = document.createElement("optgroup");
+            optgroupElement.label = obj[0];
+
+            Object.values(obj[1]).forEach(value => {
+                //console.log(value.setname);
+                const option = document.createElement("option");
+                option.value = value.usersetid;
+                option.text = value.setname;
+                optgroupElement.appendChild(option);
+            });
+
+            //SELECTSET_DROPDOWN.appendChild(optgroupElement);
+
+          }
+    }
+
+
+
+}
+
+function clearSetList(){
+    /*
+    var setSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_setSelect");
+    const buttons = setSelectDIV.querySelectorAll('button');
+    Array.from(buttons).forEach((button) => {
+      if ( button.classList.contains("FFXIPackageHelper_setButton") )  {
+        let new_element = button.cloneNode(true);
+        button.parentNode.replaceChild(new_element, button);
+        setSelectDIV.removeChild(new_element);
+      }
+    });
+    */
+
+    // var i, L = SELECTSET_DROPDOWN.options.length - 1;
+    // for(i = L; i >= 0; i--) {
+    //     //SELECTSET_DROPDOWN.remove(i);
+    // }
+
+    // while (SELECTSET_DROPDOWN.querySelector('optgroup')) {
+    //     //SELECTSET_DROPDOWN.removeChild(//SELECTSET_DROPDOWN.querySelector('optgroup'));
+    // }
+
+   ////SELECTSET_DROPDOWN.children().remove();
+
+}
+
+function fetchSet(usersetid){
+    const data = {
+        action:"equipsets_selectset",
+        usersetid:usersetid
+    };
+    API.actionAPI(data, data.action, null, Data);
 }
 
 function shareQueryClicked(shareID, params) {
@@ -300,6 +454,7 @@ function showSetButtonSelected(button, selected){
 }
 
 function toggleNewButton() {
+
     NEWSET_BUTTON.classList.toggle('FFXIPackageHelper_newSetButton_Grayed');
     const newset_buttonText = document.getElementById("FFXIPackageHelper_newSetButton-text");
     if ( NEWSET_BUTTON.classList.contains('FFXIPackageHelper_newSetButton_Grayed')) {
@@ -311,17 +466,27 @@ function toggleNewButton() {
         hiddenDiv.style.display = "none";
         //ActionButtons.showButton(REMOVE_BUTTON);//show remove button
         
-        setDisabledState_AllSavedSetButtons(false);
-        ActionButtons.hideButton(SAVE_BUTTON);//show save button
+        ////SELECTSET_DROPDOWN.disabled = false;
+        mJobDropdown.disabled = false;
+        sJobDropdown.disabled = false;
+        mlvlDropdown.disabled = false;
+        slvlDropdown.disabled = false;
 
+        //setDisabledState_AllSavedSetButtons(false);
+        ActionButtons.hideButton(SAVE_BUTTON);//show save button
     }
     else  {
-        setDisabledState_AllSavedSetButtons(true);
+        //setDisabledState_AllSavedSetButtons(true);
         //ActionButtons.hideButton(REMOVE_BUTTON);//show remove button
 
-        hiddenDiv.style.display = "block";
-        ActionButtons.showButton(SAVE_BUTTON);//show save button
+        ////SELECTSET_DROPDOWN.disabled = true;
+        mJobDropdown.disabled = true;
+        sJobDropdown.disabled = true;
+        mlvlDropdown.disabled = true;
+        slvlDropdown.disabled = true;
 
+        hiddenDiv.style.display = "inline-block";
+        ActionButtons.showButton(SAVE_BUTTON);//show save button
     }
 }
 

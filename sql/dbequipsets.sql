@@ -1,5 +1,5 @@
 -- Equipsets updates:
--- usage from within sql folder: mysql -u -p db < dbupdate.sql
+-- usage from within sql folder: mysql -u -p db < dbequipsets.sql
 
 -- CREATE DATABASE Equipsets;
 -- DROP TABLE IF EXISTS `user_sets`;
@@ -39,7 +39,7 @@ CREATE TABLE `user_chars` (
 
 
 
-ALTER TABLE user_sets
-add `equipment` varchar(255) NOT NULL DEFAULT 0
-add `setname` varchar(25) NOT NULL;
+-- ALTER TABLE user_sets
+-- add `equipment` varchar(255) NOT NULL DEFAULT 0
+-- add `setname` varchar(25) NOT NULL;
 
