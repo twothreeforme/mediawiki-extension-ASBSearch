@@ -50,7 +50,7 @@ function actionAPI(params, forTab, currentButton, callback) {
           mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
         }
         else if ( forTab.includes("selectchar")) {
-          //console.log(callback);
+          //console.log(result);
           callback.updateCharacter(result['selectchar']);
           callback.updateStats();
           //callback.setHeaderCharacterDetails();

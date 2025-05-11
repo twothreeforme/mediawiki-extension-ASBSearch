@@ -171,7 +171,8 @@ function setMeritsData(merits_){
 }
 
 
-function setHeaderCharacterDetails(clearname){
+function setHeaderCharacterDetails(){
+    console.log("setHeaderCharacterDetails");
     const charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
     const buttons = charSelectDIV.querySelectorAll('button');
     let currentCharacterName = document.getElementById("FFXIPackageHelper_characterHeader_name");
@@ -200,16 +201,16 @@ function setHeaderCharacterDetails(clearname){
 }
 
 function updateCharacter(char){
-    //console.log("updateCharacter:", char);
+    console.log("updateCharacter:", char);
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = char.race;
 
     if ( char.def == 0 ) document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;
     else document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = true;
 
-    if ( char.length > 0 ) {
+    if ( char.charname.length > 0 ) {
         const merits_base64 = decodeURIComponent(char.merits);
         const merits_ = JSON.parse(atob(merits_base64));
-        //console.log(merits_);
+
         setMeritsData(merits_);
         setHeaderCharacterDetails();
     }
