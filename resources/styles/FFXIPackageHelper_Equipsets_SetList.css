@@ -36,6 +36,13 @@
   margin-top: 0em;
 }
 
+.FFXIPackageHelper_Equipsets_setManagement h3{
+  display: inline-block;
+  margin-top: 0em;
+  padding: 0px;
+  font-size: 1.3em;
+}
+
 .FFXIPackageHelper_Equipsets_setManagement ul{
   list-style: none;
 }
