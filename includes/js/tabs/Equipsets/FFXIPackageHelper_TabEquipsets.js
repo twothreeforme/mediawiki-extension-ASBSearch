@@ -151,7 +151,7 @@ module.exports.setLinks = function (){
 
     const shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
     shareEquipset.addEventListener("click", function (e) {
-        shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
+        //shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
     });
 
      // Load Merit Edits section
