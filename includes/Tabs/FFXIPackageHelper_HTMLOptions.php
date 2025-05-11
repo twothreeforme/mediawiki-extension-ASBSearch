@@ -263,7 +263,7 @@ class FFXIPackageHelper_HTMLOptions {
 
         }
         $html .= "</div>";
-        $html .= "<button id=\"FFXIPackageHelper_deleteSetButton\" class=\"FFXIPackageHelper_deleteSetButton\">Remove set</button>";
+        //$html .= "<button id=\"FFXIPackageHelper_deleteSetButton\" class=\"FFXIPackageHelper_deleteSetButton\">Remove set</button>";
 
         $html .= "</div>";
         return $html;

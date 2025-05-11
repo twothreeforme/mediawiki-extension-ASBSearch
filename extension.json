@@ -126,6 +126,7 @@
                 "resources/styles/FFXIPackageHelper_Forms.css",
                 "resources/styles/FFXIPackageHelper_Equipsets_Styles.css",
                 "resources/styles/FFXIPackageHelper_Equipsets_SetList.css",
+                "resources/styles/FFXIPackageHelper_MWOverrides.css",
                 "resources/styles/tabs.css",
                 "resources/styles/hint.css"
 			]
