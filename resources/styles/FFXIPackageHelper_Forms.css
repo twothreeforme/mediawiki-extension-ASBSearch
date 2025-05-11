@@ -437,6 +437,13 @@ Equipsets equipment grid (table)
     margin-top: 0em;
 }
 
+.FFXIPackageHelper_Equipsets_equipList h3{
+    display: inline-block;
+    margin: 0em;
+    padding: 0px;
+    font-size: 1.3em;
+}
+
 .FFXIPackageHelper_Equipsets_equipList table{
     font-size:14px;
     line-height:14px;
