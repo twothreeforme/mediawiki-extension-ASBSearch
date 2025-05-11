@@ -114,7 +114,7 @@ Character selection buttons
   stroke: #00ad1a95; */
   stroke-width: 2px;
 
-    background-color: #00ad1a95;
+  background-color: #00ad1a95;
   color:  #ffffff;
   stroke: #ffffff;
 
@@ -154,6 +154,7 @@ Character selection buttons
   background-color: #494949;
   box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
   color: #fff;
+  stroke: #ffffff;
 }
 
 .FFXIPackageHelper_saveCharButton, .FFXIPackageHelper_saveSetButton{
@@ -430,4 +431,28 @@ box-shadow: 0 6px 10px #a1cb4785;
 
 .FFXIPackageHelper_dynamiccontent_addCharDefaultSpan.FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround:before {
   border-radius: 50%;
+}
+
+#FFXIPackageHelper_tabs_equipsets_shown_loading {
+  /* visibility: hidden; */
+  visibility: visible;
+
+  width: 150px;
+  height: 25px;
+  background: grey;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+}
+
+#FFXIPackageHelper_tabs_equipsets_shown_loading p {
+  font-weight: bold;
+  justify-self: center;
+  position: relative;
 }

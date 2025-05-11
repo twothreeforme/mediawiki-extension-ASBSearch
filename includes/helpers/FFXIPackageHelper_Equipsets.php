@@ -181,7 +181,7 @@ class FFXIPackageHelper_Equipsets  {
     public function additionalData(){
         $html =  "<div class=\"FFXIPackageHelper_Equipsets_additionalData\">" .
                     "<div class=\"FFXIPackageHelper_Equipsets_equipList\">
-                        <h3>Equipment List</h3><br>
+                        <h3 style=\"display:block;margin-top:0em;padding:0px;\">Equipment List</h3><br>
                         <table>
                             <tr>
                                 <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>

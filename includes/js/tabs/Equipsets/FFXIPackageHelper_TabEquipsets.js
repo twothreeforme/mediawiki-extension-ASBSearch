@@ -3,14 +3,14 @@ var Data = require("./FFXIPackageHelper_DataManager.js");
 var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
 
-//var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
+var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
 
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 
 const NEWSET_BUTTON = document.getElementById("FFXIPackageHelper_newSetButton");
 const SAVE_BUTTON = document.getElementById("FFXIPackageHelper_dynamiccontent_saveSet");
-const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteSetButton");
+// const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteSetButton");
 //const //SELECTSET_DROPDOWN = document.getElementById("FFXIPackageHelper_equipsets_selectSet");
 
 const hiddenDiv = document.getElementById("FFXIPackageHelper_dynamiccontent_newSetSection");
@@ -23,6 +23,7 @@ var mlvlDropdown = null;
 var slvlDropdown = null;
 
 let currentSetName = null;
+let setsModal = null;
 
 module.exports.setLinks = function (){
 
@@ -35,13 +36,8 @@ module.exports.setLinks = function (){
             return;
         }
 
-        // if ( hiddenDiv.style.display != "none" ) {
-        //     if ( currentSetName != null ) selectSetClicked(currentSetName);
-        // }
-        // else  {
-        //     const selectedSet = document.getElementsByClassName("FFXIPackageHelper_setButton FFXIPackageHelper_setButtonselected");
-        //     if ( selectedSet.length > 0 ) currentSetName = selectedSet[0].innerHTML;
-        // }
+        let inputElement = document.getElementById('FFXIPackageHelper_dynamiccontent_setNameInput');
+        inputElement.value = '';
 
         //toggle New button
         toggleNewButton();
@@ -61,25 +57,39 @@ module.exports.setLinks = function (){
      * Set up available sets list events
      */
 
-    let setListItems = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsList").querySelectorAll("li");
-    if ( setListItems.length > 0 ){
-        // setListItems.forEach(node => {
-        //     node.addEventListener('click', () => {
-        //         selectSetClicked(node.dataset.value)
-        //     });
-        //     //console.log(node.dataset.value);
-        // });
-        addSetButtonEvents(setListItems);
-    }
-    //.getElementsByTagName('li');
+    // const setListItems = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsListTable").querySelectorAll("td");
+    // if ( setListItems.length > 0 ){
+    //     // setListItems.forEach(node => {
+    //     //     node.addEventListener('click', () => {
+    //     //         selectSetClicked(node.dataset.value)
+    //     //     });
+    //     //     //console.log(node.dataset.value);
+    //     // });
+    //     //console.log(setListItems);
+    //     addSetButtonEvents(setListItems);
+    //     setsModal = new ModalSetManagement({ removeCallback: API.actionAPI, returnCallback: setRemoved });
+    // }
+    addEventListersToSetsTable();
 
+    // const setsListRemoves = document.getElementsByClassName("FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove");
+    // if ( setsListRemoves.length > 0 ){
+    //     for (r = 0; r < setsListRemoves.length; r++) {
+    //         setsListRemoves[r].addEventListener("click", function (e) {
+    //             //console.log(e.target.dataset.value);
+    //             const rowDetails = e.target.parentNode.querySelector("td");
+    //             const userSetID = rowDetails.dataset.value;
+    //             const setName = rowDetails.innerText;
+    //             //console.log(userSetID, setName);
+    //         });
+    //     }
+    // }
 
     /**
      * Modal Windows
      * All equip slots
      */
     for (let v = 0; v <= 15; v++) {
-        const modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: Data.updateEquipmentGrid});
+        let modal = new ModalWindow(v, { searchCallback: API.actionAPI, returnCallback: Data.updateEquipmentGrid});
 
         let str = "grid" + v;
         let slot = document.getElementById(str);
@@ -152,20 +162,7 @@ module.exports.setLinks = function (){
         adjustMenuIconButtonCSS(this);
     });
 
-    const setsListRemoves = document.getElementsByClassName("FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove");
-    if ( setsListRemoves.length > 0 ){
-        for (r = 0; r < setsListRemoves.length; r++) {
-            setsListRemoves[r].addEventListener("click", function (e) {
-                //console.log(e.target.dataset.value);
-                const rowDetails = e.target.parentNode.querySelector("td");
-                const userSetID = rowDetails.dataset.value;
-                const setName = rowDetails.innerText;
 
-                console.log(userSetID, setName);
-
-            });
-        }
-    }
 
 
     /**
@@ -193,8 +190,17 @@ module.exports.setLinks = function (){
 
 function addSetButtonEvents(setListItems){
     setListItems.forEach(node => {
+        //console.log(node.classList);
         node.addEventListener('click', () => {
-            selectSetClicked(node.dataset.value)
+            if ( node.classList.length < 1 )  selectSetClicked(node.dataset.value);
+            else if (node.classList.contains("FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove") ) {
+                let setInRow = node.parentNode.querySelectorAll('td');
+                if ( setInRow.length > 0 ){
+                    //console.log(setInRow[0].dataset.value,setInRow[0].innerText );
+                    removeSetClicked(setInRow[0].dataset.value, setInRow[0].innerText);
+                }
+                else console.log("no data for set in row");
+            }
         });
         //console.log(node.dataset.value);
     });
@@ -208,7 +214,7 @@ function selectSetClicked(usersetid){
         usersetid: usersetid,
     }
 
-    ActionButtons.showButton(REMOVE_BUTTON);
+    //ActionButtons.showButton(REMOVE_BUTTON);
     // ActionButtons.showButton(EDIT_BUTTON);
 
     // const selectedSetButton = document.getElementById('FFXIPackageHelper_setButton_' + setname);
@@ -216,6 +222,10 @@ function selectSetClicked(usersetid){
 
     API.actionAPI(data, data.action, null, Data);
     //scrollToTop();
+}
+
+function removeSetClicked(setID, setName){
+    setsModal.open(setID, setName);
 }
 
 
@@ -257,12 +267,18 @@ function setSaved(results){
     resetSetList(results);
 }
 
+function setRemoved(results){
+    resetSetList(results);
+}
+
+
 function resetSetList(results){
 
     clearSetList();
     if (results){
-        currentSetName = results[0];
-        buildSetslist(results[1]);
+        //console.log(results);
+        // currentSetName = results[0];
+        buildSetslist(results);
         ////SELECTSET_DROPDOWN.value = currentSetName;
     }
     else {
@@ -277,57 +293,16 @@ function resetSetList(results){
 
 function buildSetslist(results){
     //console.log(results);
+    if ( Array.isArray(results) ) {
 
-    if (results.length <= 0 ){
-        //SELECTSET_DROPDOWN.disabled = true;
-
-        const optgroupElement = document.createElement("optgroup");
-        optgroupElement.label = "None";
-        //SELECTSET_DROPDOWN.appendChild(optgroupElement);
-        // const firstOption = document.createElement('option');
-        // firstOption.value = 0;
-        // firstOption.text = "None";
-        // //SELECTSET_DROPDOWN.appendChild(firstOption);
-
-        //SELECTSET_DROPDOWN.selectedIndex = 0;
-        return;
-    }
-
-    //console.log(results instanceof Array);
-
-    if ( results instanceof Array ){
-        //SELECTSET_DROPDOWN.disabled = false;
-
-        results.forEach((r)=> {
-            const optionElement = document.createElement('option');
-            optionElement.value = r.usersetid;
-            optionElement.text = r.setname;
-            //SELECTSET_DROPDOWN.appendChild(optionElement);
-        });
     }
     else {
-        //SELECTSET_DROPDOWN.disabled = false;
-        for (const obj of Object.entries(results)) {
-            //console.log(`${key}: ${value}`);
-
-            const optgroupElement = document.createElement("optgroup");
-            optgroupElement.label = obj[0];
-
-            Object.values(obj[1]).forEach(value => {
-                //console.log(value.setname);
-                const option = document.createElement("option");
-                option.value = value.usersetid;
-                option.text = value.setname;
-                optgroupElement.appendChild(option);
-            });
-
-            //SELECTSET_DROPDOWN.appendChild(optgroupElement);
-
-          }
+        const tableDiv = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsList");
+        const tableElement = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsListTable");
+        if ( tableElement ) tableElement.remove();
+        tableDiv.innerHTML = results;
     }
-
-
-
+    addEventListersToSetsTable();
 }
 
 function clearSetList(){
@@ -533,3 +508,22 @@ function adjustMenuIconButtonCSS(i) {
     const availableSets = document.getElementById("FFXIPackageHelper_Equipsets_setManagement");
     availableSets.classList.toggle("FFXIPackageHelper_Equipsets_setManagement_expanded");    
   }
+
+function addEventListersToSetsTable(){
+    const setListTable = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsListTable");
+    if ( setListTable ) {
+        const setListItems = setListTable.querySelectorAll("td");
+
+        if ( setListItems.length > 0 ){
+            // setListItems.forEach(node => {
+            //     node.addEventListener('click', () => {
+            //         selectSetClicked(node.dataset.value)
+            //     });
+            //     //console.log(node.dataset.value);
+            // });
+            //console.log(setListItems);
+            addSetButtonEvents(setListItems);
+            setsModal = new ModalSetManagement({ removeCallback: API.actionAPI, returnCallback: setRemoved });
+        }
+    }
+}

@@ -241,7 +241,7 @@ class FFXIPackageHelper_HTMLOptions {
         //$html .= FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_setSelect");
         
         $html .="<div style=\"width: 100%; flex-wrap: nowrap; display: flex;flex-direction: row;justify-content: space-between;\">";
-        $html .="<h3 style=\"display:inline-block;\">Available Sets</h3>";
+        $html .="<h3 style=\"display:inline-block;margin-top:0em;padding:0px;\">Available Sets</h3>";
         $html .="<div id=\"FFXIPackageHelper_menuIcon\" class=\"FFXIPackageHelper_menuIcon\">" .
                     "<div class=\"FFXIPackageHelper_menuIcon_bar1\"></div>" .
                     "<div class=\"FFXIPackageHelper_menuIcon_bar2\"></div>" .
@@ -291,21 +291,23 @@ class FFXIPackageHelper_HTMLOptions {
             // }
 
 
-            $html = "<table class=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\">";   
-            foreach ($userSets as $jobtype => $val ) {
-
+            $html = "<table id=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\" class=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\">";
+            if ( count($userSets) > 0 ){
+                foreach ($userSets as $jobtype => $val ) {
                     $html .="<tr>
                                 <th colspan=\"2\">$jobtype</th>
                             </tr>";
 
                     foreach ( $val as $set ){
                         $html .="<tr>";
+                        if (  gettype($set) == "string") throw new Exception ( json_encode($val));
                         $html .= "<td data-value=\"" . $set["usersetid"] . "\">" . $set["setname"] ."</td>";
                         $html .= "<td class =\"FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove\" data-value=\"" . $set["usersetid"] . "\" style=\"color:red;text-align:end;width: 1%;white-space: nowrap;\" >Remove</td>";
                         $html .="<tr>";
                     }
-                
+
                 }
+            }
             $html .= "</table>";
 
         return $html;

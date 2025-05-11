@@ -41,9 +41,19 @@
 
   .tabcontent {
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
+    transition: 0.5s;
   }
-  
-  /* Go from zero to full opacity */
+
+  .tabcontent-loading {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+    opacity: 50%;
+    transition: 0.5s;
+  }
+
   @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}

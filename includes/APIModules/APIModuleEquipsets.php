@@ -207,9 +207,11 @@ class APIModuleEquipsets extends ApiBase {
 
             $db = new DBConnection();
             $db->saveSet($newSet);
-            //$setList = $db->getUserSetsFromUserID($newSet['userid']);
             $setList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
-            $result->addValue( $params['action'], "saveset", [$newSet['setname'], $setList] );
+
+            //$result->addValue( $params['action'], "saveset", [$newSet['setname'], $setList] );
+            $result->addValue( $params['action'], "getsets", $this->getHTMLSetsListTable($db, $newSet['userid']) );
+
         }
         else if ( $params['action'] == "equipsets_selectset" ) {
             $db = new DBConnection();
@@ -260,15 +262,54 @@ class APIModuleEquipsets extends ApiBase {
 
             $db = new DBConnection();
             //throw new Exception ( json_encode( $params));
-            if ( $newSet['mjob'] != 0 ) $setList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
-            else {
-                $setList = $db->getUserSetsFromUserID($newSet['userid']);
+            if ( $newSet['mjob'] != 0 ) {
+                $newSetList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
             }
+            else {
+                $newSetList = $db->getUserSetsFromUserID($newSet['userid']);
+            }
+            $setList = FFXIPackageHelper_HTMLOptions::setsListTable($newSetList);
             $result->addValue( $params['action'], "getsets", $setList );
 
         }
+        else if ( $params['action'] == "equipsets_removeset" ) {
+            $newSet = $this->createSet($params);
+            //throw new Exception ( json_encode( $newSet));
+            $db = new DBConnection();
+            $setList = $db->getUserSetsFromUserID($newSet['userid']);
+
+            foreach($setList as $jobSets){
+                foreach($jobSets as $jobSet){
+                    if ( $jobSet["usersetid"] ==  $newSet['usersetid']){
+                        //trigger removing
+                        $db->removeSet($newSet['userid'], $newSet['usersetid']);
+
+                        //$sendSetList = $this->getHTMLSetsListTable($db, $newSet['userid']);
+
+                        // $userSets = $db->getUserSetsFromUserID($newSet['userid']);
+                        // $sendSetList = FFXIPackageHelper_HTMLOptions::setsListTable($userSets);
+
+                        $result->addValue( $params['action'], "getsets", $this->getHTMLSetsListTable($db, $newSet['userid']) );
+                        $result->addValue( $params['action'], "status", ["Set removed from users set list."] );
+                        return;
+                    }
+                }
+            }
+
+            $result->addValue( $params['action'], "status", ["ERROR", "This user cannot remove this set."] );
+        }
 
     }
+
+    private function getHTMLSetsListTable($db, $uid){
+        $userSets = $db->getUserSetsFromUserID($uid);
+        if ( count($userSets) > 0 ){
+            return FFXIPackageHelper_HTMLOptions::setsListTable($userSets);
+        }
+        else return "";
+    }
+
+
 
     private function parseEquipmentLabels($equipmentArray){
         $equipLabelsArray = [ ];
@@ -300,7 +341,8 @@ class APIModuleEquipsets extends ApiBase {
             'slvl' => $params['slvl'],
             'mjob' => $params['mjob'],
             'sjob' => $params['sjob'],
-            'equipment' => $params['equipment']
+            'equipment' => $params['equipment'],
+            'usersetid' => $params['usersetid']
         ];
     }
 }

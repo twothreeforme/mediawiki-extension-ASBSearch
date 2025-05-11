@@ -1,36 +1,25 @@
 
-let _default = `<br><br><button style="float: left;" class="close-modal FFXIPackageHelper_dynamiccontent_customButton customButton_cancel">Cancel</button>`;
-
-
-// function searchInput(slot){
-//     return  "<input id=\"FFXIPackageHelper_equipsets_searchInput" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_textinput\" size=\"20\">";
-// }
-
-// function searchButton(slot){
-//     return "<button id=\"FFXIPackageHelper_equipsets_search" + slot + "\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button>";
-// }
-
-// function searchResults(slot){
-//     return "<br><br><div class=\"FFXIPackageHelper_equipsets_searchResults_div\" style=\"max-height: 350px;overflow-y: auto;\"><p></p><dl id=\"FFXIPackageHelper_equipsets_searchResults" + slot + "\" ></dl></div>";
-// }
-
-class ModalSetsWindow {
+class ModalSetManagement {
     //searchCallback = null;
 
     constructor(options = {}) {
-        this.content = `<h2>Permanently remove this set?</h2>` + _default ;
 
         this.options = {
             overlay: true,
-            closeOnOverlayClick: false,
+            //closeOnOverlayClick: false,
+            setID: null,
+            setName: null,
+            removeCallback: null,
+            returnCallback: null,
             ...options
         };
-        this.createModal();
+
+        //console.log(this.options);
     }
   
     createModal() {
         this.modal = document.createElement('div');
-        this.modal.classList.add('modal');
+        this.modal.classList.add('modal','modal-remove');
 
         if (this.options.overlay) {
             this.overlay = document.createElement('div');
@@ -38,98 +27,99 @@ class ModalSetsWindow {
             this.modal.appendChild(this.overlay);
         }
 
+        this.content = `<h3>Permanently remove this set?</h3>`;
+        this.content += `<h3>` + this.options.setName + `</h3><i>This action cannot be undone</i><br><br>`;
+
         const contentWrapper = document.createElement('div');
         contentWrapper.id = `FFXIPackageHelper_equipsets_contentWrapperUserSets`;
         contentWrapper.classList.add('modal-content');
         contentWrapper.innerHTML = this.content;
         //contentWrapper.appendChild(removeItemButton(this.slot));
+
+            const closeButton = document.createElement('button');
+            closeButton.id = 'FFXIPackageHelper_dynamiccontent_closeCharsRemove';
+            closeButton.classList.add("close-modal", "FFXIPackageHelper_dynamiccontent_customButton", "customButton_cancel");
+            closeButton.textContent = 'Cancel';
+
+            const removeButton = document.createElement('button');
+            //removeButton.id = 'FFXIPackageHelper_dynamiccontent_removeChar';
+            removeButton.classList.add("FFXIPackageHelper_dynamiccontent_customButton", "customButton_removeItem");
+            removeButton.textContent = 'Remove Set';
+
+            contentWrapper.appendChild(removeButton);
+            contentWrapper.appendChild(closeButton);
+
         this.modal.appendChild(contentWrapper);
 
         document.body.appendChild(this.modal);
+
+        //Show Remove button
+        // const removeButton = this.modal.querySelector('#FFXIPackageHelper_deleteSetButton');
+        // removeButton.style.visibility = "visible";
+        // console.log(removeButton);
 
         this.addEventListeners();
     }
   
     addEventListeners() {
-        if (this.options.closeOnOverlayClick) {
-            this.overlay.addEventListener('click', () => this.close());
-        }
-  
-        const closeButtons = this.modal.querySelectorAll('.close-modal');
+        // if (this.options.closeOnOverlayClick) {
+        //     this.overlay.addEventListener('click', () => this.close());
+        // }
+
+        const closeButtons = this.getCloseButtons();
             closeButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                if ( button.id == `FFXIPackageHelper_equipsets_removeButton${this.slot}` ){
-                    //console.log(button);
-                    this.options.returnCallback(0, this.slot, this);
-                }
+                // if ( button.id == `FFXIPackageHelper_equipsets_removeButton${this.slot}` ){
+                //     //console.log(button);
+                //     this.options.returnCallback(0, this.slot, this);
+                // }
 
-                //this.close();
+                this.close();
             });
         });
 
-        // const searchButton = document.getElementById("FFXIPackageHelper_equipsets_search" + this.slot);
-        // searchButton.addEventListener('click', (e) =>  {
-        //     this.options.searchCallback(searchEquip(this.slot), "equipsets_search", null, this);
-        // });
+        const removeButtons = this.getRemoveButton();
+            removeButtons.forEach(button => {
+                button.addEventListener('click', (e) =>  {
+                const data = {
+                    action: "equipsets_removeset",
+                    usersetid: this.options.setID,
+                }
+
+                this.options.removeCallback(data, data.action, null, this.options.returnCallback);
+                this.close();
+            });
+        });
     }
   
-    // returnCallback(results){
+    destroy(){
+        const oldModals = this.modal.querySelectorAll('.modal-content');
+        oldModals.forEach(modal => {
+            const deadModal = modal.cloneNode(true);
+            modal.parentNode.replaceChild(deadModal, modal);
+            //console.log(modal);
+        });
+    }
 
-    //     const slot = Number(results[1]);
-    //     const arr = results[0];
-    //     const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
+    open(setID, setName) {
+        this.options.setID = setID;
+        this.options.setName = setName;
 
-    //     let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
-
-    //     //remove all list items and start over
-    //     var dl = document.getElementById(idname);
-    //     dl.innerHTML = '';
-
-    //     if ( results[0].length == 0 ) {
-    //         commentNode.innerText = "No results found";
-    //         return;
-    //     }
-
-
-    //     commentNode.innerText = "Click item to add to set...\n";
-
-    //     for ( let i = 0; i < arr.length; i++ ){
-    //         //console.log(arr[i]["name"]);
-
-    //         var dt = document.createElement("dt");
-    //         dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
-    //         dt.onmouseout = function() { this.style="background-color:none;"; };
-
-    //         var t = document.createTextNode(arr[i]["name"]);
-
-    //         var iconurl = mw.config.get( 'wgScript' ) + "/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
-
-    //         var img = document.createElement("img");
-    //         img.src=iconurl;
-    //         img.width=20;
-    //         img.height=20;
-
-    //         dt.addEventListener('click', () => {
-    //             // need item id
-    //             //console.log("clicked: " + arr[i]["id"]);
-    //             document.getElementById(idname).innerHTML = "";
-    //             this.options.returnCallback(arr[i]["id"], slot, this);
-    //         });
-
-    //         dt.appendChild(img);
-    //         dt.appendChild(t);
-    //         dl.appendChild(dt);
-    //     }
-    // }
-
-    open() {
+        this.createModal();
         this.modal.classList.add('open');
     }
   
     close() {
         this.modal.classList.remove('open');
+        this.destroy();
+
+        const removeModal = document.querySelectorAll('.modal-remove');
+        removeModal.forEach(modal => { modal.remove(); });
     }
+
+    getCloseButtons(){ return this.modal.querySelectorAll('.close-modal'); }
+    getRemoveButton(){ return this.modal.querySelectorAll('.customButton_removeItem'); }
 }
 
 
-module.exports = ModalSetsWindow;
+module.exports = ModalSetManagement;

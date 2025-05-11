@@ -1202,9 +1202,12 @@ class DBConnection {
         //->orderBy( 'mjob', 'ASC' )
         ->fetchResultSet();
 
+        $vars = new FFXIPackageHelper_Variables();
+        $jobname = $vars->jobArray[$mjob];
+
         $userSets = [];
         foreach($savedSets as $row){
-            $userSets[] = [
+            $userSets[$jobname][] = [
                 'usersetid' => $row->usersetid,
                 // 'mlvl' => $row->mlvl,
                 // 'slvl' => $row->slvl,
@@ -1231,6 +1234,19 @@ class DBConnection {
                 'mjob' => $newSet['mjob'],
                 'sjob' => $newSet['sjob'],
                 'equipment' => $newSet['equipment']
+            ],
+            __METHOD__
+        );
+    }
+
+    public function removeSet($uid, $usersetid){
+        $dbw = $this->openConnectionSets();
+
+        return $dbw->delete(
+            'user_sets',
+            [
+                'userid' => $uid,
+                'usersetid' => $usersetid
             ],
             __METHOD__
         );

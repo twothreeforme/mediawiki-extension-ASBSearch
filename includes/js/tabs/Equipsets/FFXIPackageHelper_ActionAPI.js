@@ -5,8 +5,14 @@ var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 function actionAPI(params, forTab, currentButton, callback) {
   //console.log(params);
   var api = new mw.Api();
+
+  let mainDiv = document.getElementById("FFXIPackageHelper_tabs_equipsets_shown");
+  mainDiv.classList.toggle('tabcontent-loading');
+
   api.get( params ).done( function ( d ) {
-    //console.log(d);
+
+    mainDiv.classList.toggle('tabcontent-loading');
+
     const result = d[forTab];
       //console.log(forTab);
       if ( forTab == "dropratesearch" ) updateDropRatesFromQuery(result["droprates"]);
@@ -63,8 +69,9 @@ function actionAPI(params, forTab, currentButton, callback) {
           // console.log(result);
           if /*ERROR*/( "status" in result && result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
           else {
-            callback(result['saveset']);
             mw.notify( "Set Saved", { autoHide: true,  type: 'success' } );
+
+            callback(result['getsets']);
           }
         }
         else if ( forTab.includes("getsets")) {
@@ -92,6 +99,17 @@ function actionAPI(params, forTab, currentButton, callback) {
           document.getElementById('FFXIPackageHelper_equipsets_selectSLevel').selectedIndex = result['selectset']['slvl'];
 
           //callback.loadSet(result['selectset']);
+        }
+        else if ( forTab.includes("removeset")) {
+          if ( "status" in result )
+            {
+              if ( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
+              else mw.notify( result['status'][0], { autoHide: true,  type: 'success' } );
+            }
+            if ( "getsets" in result ) {
+              //console.log(result['getsets']);
+              callback(result['getsets']);
+            }
         }
         else {
           updateEquipsets(result['stats']);
