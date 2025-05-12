@@ -100,14 +100,15 @@ module.exports.setLinks = function (){
             if ( characterComparison.def != charChanges.def ||
                 characterComparison.race != charChanges.race ||
                 characterComparison.merits != charChanges.merits ){
-                    updateSavedCharacter();
+                    if ( manualModeSelected() == true ) Data.updateStats();
+                    else updateSavedCharacter();
                 }
             // console.log(characterComparison, charChanges);
 
             characterComparison = null;
             charChanges = null;
             setDisabledState_AllSavedCharButtons(false);
-            ActionButtons.showButton(REMOVE_BUTTON);//show remove button
+            if ( manualModeSelected() == false ) ActionButtons.showButton(REMOVE_BUTTON);//show remove button
             NEWCHAR_BUTTON.disabled = false;
         }
 
@@ -163,29 +164,37 @@ function toggleMeritEditButtons(counterbox){
 
 function selectDefaultCharacterOnLoad(){
     //console.log("selectDefaultCharacterOnLoad");
-    const defaultCharList = document.getElementsByClassName("FFXIPackageHelper_charButton_default");
+    let defaultCharList = document.getElementsByClassName("FFXIPackageHelper_charButton_default");
     if ( defaultCharList.length > 0 ) {
         selectCharClicked(defaultCharList[0].innerHTML);
     }
+    else { //select manual mode, NONE for character
+        let manual = document.getElementById("FFXIPackageHelper_charButtonNone");
+        selectCharClicked(manual, true);
+    }
 }
 
-function selectCharClicked(charname){
-    if ( charname == null ) return;
 
-    const data = {
-        action: "equipsets_selectchar",
-        charname: charname,
+function selectCharClicked(character, isManual){
+    //if ( typeof(charname) != "string" ) return;
+    if ( character == null ) return;
+
+    let data = { action: "equipsets_selectchar" };
+    if ( isManual == true ){
+        let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
+        showCharButtonSelected(manualMode, true);
+        ActionButtons.hideButton(REMOVE_BUTTON);
+        console.log('hidden');
     }
-
-    ActionButtons.showButton(REMOVE_BUTTON);
+    else {
+        data.charname = character;
+        ActionButtons.showButton(REMOVE_BUTTON);
+        let selectedCharButton = document.getElementById('FFXIPackageHelper_charButton_' + character);
+        if ( selectedCharButton ) showCharButtonSelected(selectedCharButton, true);
+    }
     ActionButtons.showButton(EDIT_BUTTON);
 
-    const selectedCharButton = document.getElementById('FFXIPackageHelper_charButton_' + charname);
-    //toggleSelected(selectedCharButton);
-    if ( selectedCharButton ) showCharButtonSelected(selectedCharButton, true);
-
     API.actionAPI(data, data.action, null, Data);
-    //scrollToTop();
 }
 
 function getCharacter(){
@@ -248,7 +257,8 @@ function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
         button.addEventListener("click", function () {
         //console.log("addCharButtonEvents")
-           selectCharClicked(button.innerHTML);
+        if ( manualModeSelected(button) == true ) selectCharClicked(button.innerHTML, true);
+        else selectCharClicked(button.innerHTML); 
 
             Array.from(charButtons).forEach((btn) => {
                 //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
@@ -292,7 +302,7 @@ function resetCharList(incCharsList){
     Data.setHeaderCharacterDetails();
 }
 
-function characterSaved(results){
+function characterSaved(results, resetBypass){
     const recentCharSaved = results[0];
     const newUserList = results[1];
     // console.log(results);
@@ -322,11 +332,16 @@ function clearCharList(){
 
 function resetCharSelection(){
     // toggleButtonVisibility(REMOVE_BUTTON);
+    if ( manualModeSelected() == true ) return;
 
     const selectedChars = document.getElementsByClassName("FFXIPackageHelper_charButtonselected");
     Array.from(selectedChars).forEach((btn) => {
         btn.classList.toggle('FFXIPackageHelper_charButtonselected');
     });
+
+    let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
+    manualMode.classList.toggle('FFXIPackageHelper_charButtonselected');
+    ActionButtons.hideButton(REMOVE_BUTTON);
 }
 
 function scrollToTop() {
@@ -475,6 +490,7 @@ function changeMeritValues(forInput, val){
 }
 
 function getCharName(){
+    //if ( manualModeSelected() ) return null;
     const characterButtons = document.querySelectorAll('button[id*=FFXIPackageHelper_charButton_]');
     for ( const button of characterButtons){
     //Array.from(characterButtons).forEach((button) => {
@@ -485,14 +501,10 @@ function getCharName(){
         }
         //});
     }
+
     return null;
 }
 
-// function toggleButtonVisibility(button){
-//     if ( button.style.visibility == "hidden" ) button.style.visibility = "visible";
-//     else  button.style.visibility = "hidden";
-//     console.log(button.style.visibility);
-// }
 
 function toggleSelected(button){
     //console.log("toggleSelected:", button);
@@ -529,7 +541,8 @@ function toggleNewButton() {
     if ( hiddenDiv.style.display != "none" ) {
         //enable all char buttons
         setDisabledState_AllSavedCharButtons(false);
-        ActionButtons.showButton(REMOVE_BUTTON);//show remove button
+        if ( manualModeSelected() == true ) ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
+        
         ActionButtons.showButton(EDIT_BUTTON);//show edit button
         hiddenDiv.style.display = "none";
 
@@ -572,18 +585,20 @@ function setDisabledState_AllSavedCharButtons(state){
     //console.log(characterButtons);
     for ( const button of characterButtons ){
         button.disabled = state;
-
-        // if ( state == true ) {
-        //     ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
-        //     ActionButtons.hideButton(EDIT_BUTTON);//hide edit button
-        // }
-        // else {
-        //     ActionButtons.showButton(REMOVE_BUTTON);//show remove button
-        //     ActionButtons.showButton(EDIT_BUTTON);//show edit button
-        // }
     }
 }
 
+function manualModeSelected(clickedButton){
+    if ( clickedButton ) {
+        if ( clickedButton.id == "FFXIPackageHelper_charButtonNone" ) return true;
+        else return false;
+    }
+
+    let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
+    //console.log(manualMode.classList);
+    if ( manualMode.classList.contains("FFXIPackageHelper_charButtonselected") ) return true;
+    else return false;
+}
 
 
 

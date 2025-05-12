@@ -148,10 +148,10 @@ function resetStats(){
 }
 
 function resetMeritsToDefault(){
-    const _id = "FFXIPackageHelper_equipsets_merits_";
-    const allMerits = document.querySelectorAll("[id*='" + _id + "']");
+    let _id = "FFXIPackageHelper_equipsets_merits_";
+    let allMerits = document.querySelectorAll("[id*='" + _id + "']");
     //console.log(allMerits);
-    var meritsArray = [...allMerits];
+    let meritsArray = [...allMerits];
     meritsArray.forEach(merit => {
         merit.value = 0;
     });
@@ -180,27 +180,30 @@ function setMeritsData(merits_){
 
 function setHeaderCharacterDetails(){
     //console.log("setHeaderCharacterDetails");
-    const charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
-    const buttons = charSelectDIV.querySelectorAll('button');
+    let charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
+    let buttons = charSelectDIV.querySelectorAll('button');
     let currentCharacterName = document.getElementById("FFXIPackageHelper_characterHeader_name");
 
-    let namechanged = false;
+    //let namechanged = false;
+    let selectRace = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
+    let race = selectRace.selectedOptions[0].innerHTML;
+
     Array.from(buttons).forEach((button) => {
 
         if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) {
-            currentCharacterName.innerText = button.innerHTML;
-            namechanged = true;
+            if ( button.id == "FFXIPackageHelper_charButtonNone" ) currentCharacterName.innerText = "No character selected";
+            else currentCharacterName.innerText = button.innerHTML;
+            //namechanged = true;
             //console.log("changed", namechanged, button.innerHTML, currentCharacterName.innerText);
         }
     });
-    if (namechanged == false ) {
-        currentCharacterName.innerText = "No character selected";
-        return;
-    }
 
-    const selectRace = document.getElementById("FFXIPackageHelper_equipsets_selectRace");
+    // if (namechanged == false ) {
+    //     currentCharacterName.innerText = "No character selected  -  " + race;
+    //     return;
+    // }
+
     if (selectRace) {
-        const race = selectRace.selectedOptions[0].innerHTML;
         if ( areMeritsSet() == true ) document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  Merits set";
         else document.getElementById("FFXIPackageHelper_characterHeader_details").innerText = "  -  " + race + "  -  No merits set";
         // console.log("setHeaderCharacterDetails");
@@ -209,6 +212,15 @@ function setHeaderCharacterDetails(){
 
 function updateCharacter(char){
     //console.log("updateCharacter:", char);
+    
+    if ( char.charname == null ) {
+        document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
+        document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;
+        setHeaderCharacterDetails();
+        return;
+    }
+
+
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = char.race;
 
     if ( char.def == 0 ) document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;

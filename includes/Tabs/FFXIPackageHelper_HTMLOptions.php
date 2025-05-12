@@ -150,6 +150,9 @@ class FFXIPackageHelper_HTMLOptions {
         // $html = "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>";
         $html = "";
 
+        $classlist = "FFXIPackageHelper_charButton";
+        $html .= "<button id=\"FFXIPackageHelper_charButtonNone\" class=\"" . $classlist . "\">None</button>";
+
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
         if ( $uid != 0 && $uid != null ){
@@ -159,7 +162,7 @@ class FFXIPackageHelper_HTMLOptions {
             if ( count($userCharacters) > 0 ){
                 foreach ($userCharacters as $char) {
                     //$html .= "<option >". $char["charname"] ."</option>";
-                    $classlist = "FFXIPackageHelper_charButton";
+                    
                     if ( $char["def"] != 0  ) $classlist .= " FFXIPackageHelper_charButton_default";
                     $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char["charname"] . "\" class=\"" . $classlist . "\">" . $char["charname"] . "</button>";
                 }

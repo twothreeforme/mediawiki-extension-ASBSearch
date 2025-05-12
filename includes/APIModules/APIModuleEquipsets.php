@@ -188,9 +188,22 @@ class APIModuleEquipsets extends ApiBase {
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {
             $db = new DBConnection();
-            $char = $this->createChar($params);
 
-            $selectedChar = $db->getSelectedCharacter($char);
+            $char = $this->createChar($params);
+            
+            if ( is_null($char['charname']) ){
+                $selectedChar = [
+                    'charname' => null,
+                    'charid' => null,
+                    'race' => 0,
+                    'merits' => null,
+                    'def' => 0
+                ];
+            }
+            else {
+                $selectedChar = $db->getSelectedCharacter($char);
+            }
+            
             $result->addValue( $params['action'], "selectchar", $selectedChar );
         }
         else if ( $params['action'] == "equipsets_removechar" ) {

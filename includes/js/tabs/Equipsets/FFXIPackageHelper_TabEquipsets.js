@@ -22,7 +22,7 @@ var sJobDropdown = null;
 var mlvlDropdown = null;
 var slvlDropdown = null;
 
-let currentSetName = null;
+// let currentSetName = null;
 let setsModal = null;
 
 module.exports.setLinks = function (){

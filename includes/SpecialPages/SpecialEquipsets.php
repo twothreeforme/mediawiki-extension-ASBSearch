@@ -29,6 +29,7 @@ class SpecialEquipsets extends SpecialPage {
 		$mjob = (int)$request->getText( 'mjob' );
 		$sjob = (int)$request->getText( 'sjob' );
 		$equipment = $request->getText( 'equipment' );
+		//$shared = $request->getText( 'shared' );
 
 		$equipsetsData = null;
 		if ( strlen($equipment) > 0 ){
