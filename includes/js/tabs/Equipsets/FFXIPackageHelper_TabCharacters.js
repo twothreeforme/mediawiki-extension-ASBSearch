@@ -184,7 +184,7 @@ function selectCharClicked(character, isManual){
         let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
         showCharButtonSelected(manualMode, true);
         ActionButtons.hideButton(REMOVE_BUTTON);
-        console.log('hidden');
+        //console.log('hidden');
     }
     else {
         data.charname = character;
