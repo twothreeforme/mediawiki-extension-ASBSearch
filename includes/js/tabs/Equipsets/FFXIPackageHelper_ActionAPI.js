@@ -199,25 +199,27 @@ function updateEquipsets(updatedStats){
   stat = document.getElementById(_id + "MP"); stat.innerHTML = updatedStats[1];
 
   stat = document.getElementById(_id + "STR"); stat.innerHTML = updatedStats[2];
-  adjustStatColor(_id + "STRMod", updatedStats[3]);
+  formatStatMod(_id + "STRMod", updatedStats[3]);
+  
+  //formatStatMod(_id + "STRMod", updatedStats[3]);
 
   stat = document.getElementById(_id + "DEX"); stat.innerHTML = updatedStats[4];
-  adjustStatColor(_id + "DEXMod", updatedStats[5]);
+  formatStatMod(_id + "DEXMod", updatedStats[5]);
 
   stat = document.getElementById(_id + "VIT"); stat.innerHTML = updatedStats[6];
-  adjustStatColor(_id + "VITMod", updatedStats[7]);
+  formatStatMod(_id + "VITMod", updatedStats[7]);
 
   stat = document.getElementById(_id + "AGI"); stat.innerHTML = updatedStats[8];
-  adjustStatColor(_id + "AGIMod", updatedStats[9]);
+  formatStatMod(_id + "AGIMod", updatedStats[9]);
 
   stat = document.getElementById(_id + "INT"); stat.innerHTML = updatedStats[10];
-  adjustStatColor(_id + "INTMod", updatedStats[11]);
+  formatStatMod(_id + "INTMod", updatedStats[11]);
 
   stat = document.getElementById(_id + "MND"); stat.innerHTML = updatedStats[12];
-  adjustStatColor(_id + "MNDMod", updatedStats[13]);
+  formatStatMod(_id + "MNDMod", updatedStats[13]);
 
   stat = document.getElementById(_id + "CHR"); stat.innerHTML = updatedStats[14];
-  adjustStatColor(_id + "CHRMod", updatedStats[15]);
+  formatStatMod(_id + "CHRMod", updatedStats[15]);
 
   stat = document.getElementById(_id + "DEF"); stat.innerHTML = updatedStats[16];
   stat = document.getElementById(_id + "ATT"); stat.innerHTML = updatedStats[17];
@@ -230,18 +232,21 @@ function updateEquipsets(updatedStats){
   stat = document.getElementById(_id + "EVA"); stat.innerHTML = updatedStats[27];
 }
 
-function adjustStatColor(classname, modValue){
-  let stat = document.getElementById(classname);
-
-  if ( Number(modValue) > 0 ) {
-    stat.style.color = "green";
-    stat.innerHTML = "&nbsp;&nbsp;+" + modValue;
-  }
-  else if ( Number(modValue) > 0) {
-    stat.style.color = "red";
-    stat.innerHTML = "&nbsp;&nbsp;-" + modValue;
+function formatStatMod(classname, modValue){
+  let statElement = document.getElementById(classname);
+  if ( modValue == 0 ){ statElement.innerHTML = ""; }
+  else {
+    if ( Number(modValue) > 0 ) {
+      statElement.style.color = "green";
+      statElement.innerHTML = "&nbsp;&nbsp;+" + modValue;
+    }
+    else if ( Number(modValue) < 0) {
+      statElement.style.color = "red";
+      statElement.innerHTML = "&nbsp;&nbsp;-" + modValue;
+    }
   }
 }
+
 
 function updateEquipmentList(slotNumber, updatedName){
   let linkID = "FFXIPackageHelper_Equipsets_gridLabel" + slotNumber;
