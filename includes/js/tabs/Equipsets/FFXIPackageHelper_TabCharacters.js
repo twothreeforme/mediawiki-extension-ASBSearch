@@ -592,6 +592,9 @@ function setDisabledState_AllSavedCharButtons(state){
     for ( const button of characterButtons ){
         button.disabled = state;
     }
+
+    let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
+    manualMode.disabled = state;
 }
 
 function manualModeSelected(clickedButton){
