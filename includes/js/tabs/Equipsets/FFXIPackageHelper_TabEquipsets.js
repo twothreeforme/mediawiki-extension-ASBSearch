@@ -209,10 +209,9 @@ function addSetButtonEvents(setListItems){
 function selectSetClicked(usersetid){
     if ( usersetid == null ) return;
 
-    const data = {
-        action: "equipsets_selectset",
-        usersetid: usersetid,
-    }
+    const data = Data.getCharData();
+    data.action = "equipsets_selectset",
+    data.usersetid = usersetid;
 
     //ActionButtons.showButton(REMOVE_BUTTON);
     // ActionButtons.showButton(EDIT_BUTTON);
@@ -331,13 +330,13 @@ function clearSetList(){
 
 }
 
-function fetchSet(usersetid){
-    const data = {
-        action:"equipsets_selectset",
-        usersetid:usersetid
-    };
-    API.actionAPI(data, data.action, null, Data);
-}
+// function fetchSet(usersetid){
+//     const data = {
+//         action:"equipsets_selectset",
+//         usersetid:usersetid
+//     };
+//     API.actionAPI(data, data.action, null, Data);
+// }
 
 function shareQueryClicked(shareID, params) {
     var GETparams = "";

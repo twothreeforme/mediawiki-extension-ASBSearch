@@ -90,6 +90,13 @@ function areMeritsSet(){
     return false;
 }
 
+function getCharData(){
+    return {
+        race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
+        merits: encodeURIComponent(btoa(getMeritsData())),
+    };
+}
+
 function getStatsData(equipIDString){
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     else if ( equipIDString == true ) {
@@ -235,5 +242,6 @@ function loadSet(fromFetechedResult){
 
 module.exports = {
     updateEquipmentGrid, getEquipID, getEquipIDs, updateStats, getMeritsData, getStatsData, resetStats,
-    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault, getSetData, loadSet
+    setMeritsData, setHeaderCharacterDetails, updateCharacter, resetMeritsToDefault, getSetData, loadSet,
+    getCharData
 }

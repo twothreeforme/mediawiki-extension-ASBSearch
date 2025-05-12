@@ -44,8 +44,10 @@ class APIModuleEquipsets extends ApiBase {
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
 
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
+            $stats =  $newStats->getStats();
+            //if ( $params['mjob'] == 6 ) throw new Exception ( json_encode($params) );
 
-            $result->addValue( $params['action'], "stats", $newStats->getStats() );
+            $result->addValue( $params['action'], "stats", $stats );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
             //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], "stats", $newStats->getStats()]) );
@@ -216,9 +218,8 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "equipsets_selectset" ) {
             $db = new DBConnection();
 
-            $fetchedSet = $db->fetchSet($params['usersetid']);
-            //throw new Exception ( json_encode( $fetchedSet));
-
+            $fetchedSet = $db->fetchSet($params);
+            
             $decodedEquip = urldecode($fetchedSet['equipment']);
             $equipmentString = base64_decode($decodedEquip);
 
@@ -228,14 +229,16 @@ class APIModuleEquipsets extends ApiBase {
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
-            $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList, true)[0];
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
+            $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $fetchedSet['race'], $fetchedSet['mlvl'], $fetchedSet['slvl'], $fetchedSet['mjob'], $fetchedSet['sjob'], $meritsString, $newEquipmentArray );
-
+            
             $stats = $newStats->getStats();
+            // if ( $fetchedSet['mjob'] == 6 ) throw new Exception ( json_encode($fetchedSet) );
+
             $statsEncoded = base64_encode(json_encode($stats));
             $statsURLSafe = urlencode($statsEncoded);
 
@@ -337,6 +340,7 @@ class APIModuleEquipsets extends ApiBase {
         return [
             'userid' => $user->getId(),
             'setname' => $params['setname'],
+            'race' => $params['race'],
             'mlvl' => $params['mlvl'],
             'slvl' => $params['slvl'],
             'mjob' => $params['mjob'],

@@ -1252,8 +1252,10 @@ class DBConnection {
         );
     }
 
-    public function fetchSet($usersetid){
+    public function fetchSet($params){
         $dbr = $this->openConnectionSets();
+
+        $usersetid = $params['usersetid'];
 
         $fetchedSet = $dbr->newSelectQueryBuilder()
         ->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment'] )
@@ -1264,11 +1266,13 @@ class DBConnection {
         //$set = [];
         foreach($fetchedSet as $row){
             return [
-                'usersetid' => $row->usersetid,
-                'mlvl' => $row->mlvl,
-                'slvl' => $row->slvl,
-                'mjob' => $row->mjob,
-                'sjob' => $row->sjob,
+                'usersetid' => intval($row->usersetid),
+                'race' => $params['race'],
+                'mlvl' => intval($row->mlvl),
+                'slvl' => intval($row->slvl),
+                'mjob' => intval($row->mjob),
+                'sjob' => intval($row->sjob),
+                'merits' => $params['merits'],
                 'equipment' => $row->equipment
                 //'setname' => $row->setname
             ];
