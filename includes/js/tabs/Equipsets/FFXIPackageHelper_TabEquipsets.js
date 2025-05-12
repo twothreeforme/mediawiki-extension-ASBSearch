@@ -177,12 +177,12 @@ module.exports.setLinks = function (){
     /**
      * On page load
      */
-    const url = window.location.href;
-    if ( url.includes("action=equipsets_share")) {
-        loadSharedLink(url);
-        //console.log("fired");
-    }
-    else Data.updateStats();
+    // const url = window.location.href;
+    // if ( url.includes("action=equipsets_share")) {
+    //     loadSharedLink(url);
+    //     //console.log("fired");
+    // }
+    // else Data.updateStats();
 
     Data.getMeritsData();
     Tooltip.setupPageTooltips();

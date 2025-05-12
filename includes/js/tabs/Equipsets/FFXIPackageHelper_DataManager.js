@@ -44,6 +44,7 @@ function getEquipIDs(updateAll){
 }
 
 function updateStats(data){
+    //console.log("updateStats");
     if ( data == null ) data = getStatsData();
     //console.log("updateStats: ", data);
     if ( data.mjob == 0 || data.sjob == 0 ) return;
@@ -135,7 +136,7 @@ function getSetData(){
     };
 }
 
-function resetStats(){
+function resetStats(preventAPIUpdate){
     document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
 
     const removeButton = document.getElementById("FFXIPackageHelper_deleteCharButton");
@@ -143,7 +144,7 @@ function resetStats(){
 
     resetMeritsToDefault();
 
-    updateStats();
+    if ( preventAPIUpdate != true ) updateStats();
     setHeaderCharacterDetails();
 }
 

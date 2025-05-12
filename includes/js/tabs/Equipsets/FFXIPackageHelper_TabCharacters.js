@@ -185,6 +185,7 @@ function selectCharClicked(character, isManual){
         showCharButtonSelected(manualMode, true);
         ActionButtons.hideButton(REMOVE_BUTTON);
         //console.log('hidden');
+        Data.resetStats(true);
     }
     else {
         data.charname = character;
@@ -256,18 +257,23 @@ function removeCharacter(charname){
 function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
         button.addEventListener("click", function () {
-        //console.log("addCharButtonEvents")
-        if ( manualModeSelected(button) == true ) selectCharClicked(button.innerHTML, true);
-        else selectCharClicked(button.innerHTML); 
+            //console.log("addCharButtonEvents")
+            if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) return;
 
-            Array.from(charButtons).forEach((btn) => {
-                //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
-                showCharButtonSelected(btn, false);
+            if ( manualModeSelected(button) == true ) {
+                
+                selectCharClicked(button.innerHTML, true);
+            }
+            else selectCharClicked(button.innerHTML); 
+
+                Array.from(charButtons).forEach((btn) => {
+                    //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
+                    showCharButtonSelected(btn, false);
+                });
+
+                //toggleSelected(button);\
+                showCharButtonSelected(button, true);
             });
-
-            //toggleSelected(button);\
-            showCharButtonSelected(button, true);
-        });
     });
 }
 
