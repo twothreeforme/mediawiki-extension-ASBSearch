@@ -269,7 +269,7 @@ class FFXIPackageHelper_Equipsets  {
     public function showEquipsets(){
         $html = "<span><b>THIS IS STILL UNDER CONSTRUCTION. ALL SAVED CHARS & SETS MAY BE DELETED AS WE CONTINUE DEVELOPMENT OF THIS TOOL.</b><br>" .
                     "<i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i>" .
-                    "<br><i><b>Usage:</b> Share button disabled for now as this is being restructured. Known issue with stat boosts from gear remaining on the 'Statistics' section after the gear as been removed.</i></span>" .
+                    "<br><i><b>Usage:</b> Share button disabled for now as this is being restructured. </i></span>" .
                     "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
                     "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
