@@ -11,7 +11,7 @@ function actionAPI(params, forTab, currentButton, callback) {
 
   api.get( params ).done( function ( d ) {
 
-    mainDiv.classList.toggle('tabcontent-loading');
+    if ( mainDiv) mainDiv.classList.toggle('tabcontent-loading');
 
     const result = d[forTab];
       //console.log(forTab);
