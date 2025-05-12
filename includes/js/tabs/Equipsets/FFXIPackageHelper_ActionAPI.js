@@ -7,7 +7,7 @@ function actionAPI(params, forTab, currentButton, callback) {
   var api = new mw.Api();
 
   let mainDiv = document.getElementById("FFXIPackageHelper_tabs_equipsets_shown");
-  mainDiv.classList.toggle('tabcontent-loading');
+  if ( mainDiv) mainDiv.classList.toggle('tabcontent-loading');
 
   api.get( params ).done( function ( d ) {
 
