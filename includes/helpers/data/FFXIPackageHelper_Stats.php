@@ -683,49 +683,7 @@ class FFXIPackageHelper_Stats {
 
         $ATT +=  $this->getSkillCap( intval($this->equipment[0][4]) ) + $this->getWeaponSkillMerits();
 
-        // switch Skilltype for mainhand, apply modifier for weapon that is weilded in mainhand only
-        // switch( intval($this->equipment[0][4] ) ){
-        //     case 1:
-        //         $ATT += ( $this->modifiers["H2H"] ) ? $this->modifiers["H2H"] : 0;
-        //         break;
-        //     case 2:
-        //         $ATT += ( $this->modifiers["DAGGER"] ) ? $this->modifiers["DAGGER"] : 0;
-        //         break;
-        //     case 3:
-        //         $ATT += ( $this->modifiers["SWORD"] ) ? $this->modifiers["SWORD"] : 0;
-        //         break;
-        //     case 4:
-        //         $ATT += ( $this->modifiers["GSWORD"] ) ? $this->modifiers["GSWORD"] : 0;
-        //         break;
-        //     case 5:
-        //         $ATT += ( $this->modifiers["AXE"] ) ? $this->modifiers["AXE"] : 0;
-        //         break;
-        //     case 6:
-        //         $ATT += ( $this->modifiers["GAXE"] ) ? $this->modifiers["GAXE"] : 0;
-        //         break;
-        //     case 7:
-        //         $ATT += ( $this->modifiers["SCYTHE"] ) ? $this->modifiers["SCYTHE"] : 0;
-        //         break;
-        //     case 8:
-        //         $ATT += ( $this->modifiers["POLEARM"] ) ? $this->modifiers["POLEARM"] : 0;
-        //         break;
-        //     case 9:
-        //         $ATT += ( $this->modifiers["KATANA"] ) ? $this->modifiers["KATANA"] : 0;
-        //         break;
-        //     case 10:
-        //         $ATT += ( $this->modifiers["GKATANA"] ) ? $this->modifiers["GKATANA"] : 0;
-        //         break;
-        //     case 11:
-        //         $ATT += ( $this->modifiers["CLUB"] ) ? $this->modifiers["CLUB"] : 0;
-        //         break;
-        //     case 12:
-        //         $ATT += ( $this->modifiers["STAFF"] ) ? $this->modifiers["STAFF"] : 0;
-        //         break;
-        //     default:
-        //         break;
-        // }
-
-        // Smite applies when using 2H or H2H weapons
+         // Smite applies when using 2H or H2H weapons
         if ( ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) || FFXIPackageHelper_Equipment::isH2H($this->equipment[0])) && isset($this->modifiers["SMITE"]) ) {
             $ATTP += $this->modifiers["SMITE"] / 256; // Divide smite value by 256
         }
@@ -738,9 +696,12 @@ class FFXIPackageHelper_Stats {
         $ACC = $this->getSkillCap( intval($this->equipment[0][4]) ) + $this->getWeaponSkillMerits();
 
         $ACC = ($ACC > 200) ? floor(($ACC - 200) * 0.9) + 200 : $ACC;
-
-        if ( FFXIPackageHelper_Equipment::is2Handed($this->equipment[0]) ) {
+        // throw new Exception ( json_encode($this->equipment[0]) );
+        if ( FFXIPackageHelper_Equipment::is2Handed( $this->equipment[0] ) ) {
             $ACC += ($this->DEX * 0.70); //Horizon change
+            //if ( $this->equipment[0]['skilltype'] == 7 ){
+                
+            //}
         }
         else if ( FFXIPackageHelper_Equipment::isH2H($this->equipment[0]) ){
             $ACC += $this->DEX * 0.65; //Horizon change

@@ -76,13 +76,22 @@ class FFXIPackageHelper_Equipment {
     }
 
     public static function is2Handed($weapon){
-        if( isset($weapon['skilltype']) && (
-            $weapon['skilltype'] == 4 || // G. Sword
-            $weapon['skilltype'] == 6 || // G. Axe
-            $weapon['skilltype'] == 7 || // Scythe
-            $weapon['skilltype'] == 8 || // Polearm
-            $weapon['skilltype'] == 10 || // G. Katana
-            $weapon['skilltype'] == 12 ) // Staff
+        // if( isset($weapon['skilltype']) && (
+        //     $weapon['skilltype'] == 4 || // G. Sword
+        //     $weapon['skilltype'] == 6 || // G. Axe
+        //     $weapon['skilltype'] == 7 || // Scythe
+        //     $weapon['skilltype'] == 8 || // Polearm
+        //     $weapon['skilltype'] == 10 || // G. Katana
+        //     $weapon['skilltype'] == 12 ) // Staff
+        //     )return true;
+
+        if( isset($weapon[4]) && (
+            $weapon[4] == 4 || // G. Sword
+            $weapon[4] == 6 || // G. Axe
+            $weapon[4] == 7 || // Scythe
+            $weapon[4] == 8 || // Polearm
+            $weapon[4] == 10 || // G. Katana
+            $weapon[4] == 12 ) // Staff
             )return true;
 
             return false;

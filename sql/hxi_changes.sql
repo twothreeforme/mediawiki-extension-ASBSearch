@@ -378,6 +378,7 @@ ALTER TABLE `item_mods`
 -- INSERT INTO `item_mods` ( `itemId`, `modId`, `value` ) VALUES
 -- ;
 UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
+UPDATE `item_mods` SET `changes_tag` = 1, `value` = 8 WHERE `itemId` = 12429 AND `modId` = 25;   -- Adaman Celata - change ACC+5 to ACC+8 
 UNLOCK TABLES;
 
 -- ---------------------------------------------------------------------------
