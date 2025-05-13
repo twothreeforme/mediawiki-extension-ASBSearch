@@ -37,9 +37,11 @@ source mob_spawn_points.sql;
 \! echo synth_recipes
 DROP TABLE IF EXISTS `synth_recipes`;
 source synth_recipes.sql;
+\! echo synth_recipes done
+
 \! echo synth_recipes_era
 source synth_recipes_era.sql;
-\! echo synth_recipes done
+\! echo synth_recipes_era done
 
 
 \! echo mob_droplist

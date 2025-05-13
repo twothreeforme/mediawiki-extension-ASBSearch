@@ -38,7 +38,9 @@ class FFXIPackageHelper_Equipment {
                 ];
                 
                 //if ( $model != null )  throw new Exception ( json_encode($model));
-                if ( $incItemID == 0 ) $this->equipment[$i] = [0,0,0,array(),0,""];
+                if ( $incItemID == 0 ) {
+                    $this->equipment[$i] = [0,0,0,array(),0,""];
+                }
                 else {
                     $this->equipment[$i] = [
                         intval($model["id"]),
@@ -48,6 +50,15 @@ class FFXIPackageHelper_Equipment {
                         intval($model["skilltype"]),
                         $name
                     ];
+
+                    // $this->equipment[$i] = [
+                    //     "id" => intval($model["id"]),
+                    //     "slot" => intval($model["slot"]),
+                    //     "rslot" => intval($model["rslot"]),
+                    //     "mods" => $model["mods"],
+                    //     "skilltype" => intval($model["skilltype"]),
+                    //     "name" => $name
+                    // ];
                 }
         }
 
@@ -71,7 +82,9 @@ class FFXIPackageHelper_Equipment {
     }
 
     public static function isH2H($weapon){
-        if( isset($weapon['skilltype']) && $weapon['skilltype'] == 1 ) return true;
+        //if( isset($weapon['skilltype']) && $weapon['skilltype'] == 1 ) return true;
+        if( isset($weapon[4]) && $weapon[4] == 1 ) return true;
+
         return false;
     }
 

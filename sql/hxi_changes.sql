@@ -375,11 +375,19 @@ LOCK TABLE `item_mods` WRITE;
 ALTER TABLE `item_mods`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `value`;
 
--- INSERT INTO `item_mods` ( `itemId`, `modId`, `value` ) VALUES
--- ;
-UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
-UPDATE `item_mods` SET `changes_tag` = 1, `value` = 8 WHERE `itemId` = 12429 AND `modId` = 25;   -- Adaman Celata - change ACC+5 to ACC+8 
+-- UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
+-- UPDATE `item_mods` SET `changes_tag` = 1, `value` = 8 WHERE `itemId` = 12429 AND `modId` = 25;   -- Adaman Celata - change ACC+5 to ACC+8 
+-- -- start here
+-- INSERT INTO `item_mods` VALUES (14741,83,5);  -- Abyssal Earring - GSWORD: 5
+-- INSERT INTO `item_mods` VALUES (14742,83,5);  -- Beastly Earring - POLEARM: 5
+-- INSERT INTO `item_mods` VALUES (15514,87,7); -- POLEARM: 7
 UNLOCK TABLES;
+
+\! echo hxi_changes_itemMods
+source hxi_changes_itemMods.sql;
+\! echo hxi_changes_itemMods done
+
+
 
 -- ---------------------------------------------------------------------------
 LOCK TABLE `mob_spawn_points` WRITE;

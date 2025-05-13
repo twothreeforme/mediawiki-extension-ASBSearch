@@ -696,12 +696,9 @@ class FFXIPackageHelper_Stats {
         $ACC = $this->getSkillCap( intval($this->equipment[0][4]) ) + $this->getWeaponSkillMerits();
 
         $ACC = ($ACC > 200) ? floor(($ACC - 200) * 0.9) + 200 : $ACC;
-        // throw new Exception ( json_encode($this->equipment[0]) );
+
         if ( FFXIPackageHelper_Equipment::is2Handed( $this->equipment[0] ) ) {
             $ACC += ($this->DEX * 0.70); //Horizon change
-            //if ( $this->equipment[0]['skilltype'] == 7 ){
-                
-            //}
         }
         else if ( FFXIPackageHelper_Equipment::isH2H($this->equipment[0]) ){
             $ACC += $this->DEX * 0.65; //Horizon change
