@@ -28,38 +28,21 @@ class FFXIPackageHelper_Equipsets  {
     // private $mjob;
     // private $sjob;
     // private $equipment;
+    // private $merits;
+
+    private $sharedLink;
 
     public function __construct($query = null) {
-        // if ( gettype($query) == 'array'){
-        //     $this->race = $query[0];
-        //     $this->mlvl = $query[1];
-        //     $this->slvl = $query[2];
-        //     $this->mjob = $query[3];
-        //     $this->sjob = $query[4];
-        //     $this->equipment = $query[5];
-        // }
+        $this->sharedLink = $query; //nothing should be null inside this array, defaults set in APIModuleEquipsets
     }
 
      public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
         $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">" .
-                    // "<span>Character  " . FFXIPackageHelper_HTMLOptions::userCharsDropDown("FFXIPackageHelper_equipsets_selectUserChar") . "</span>
-                    // <button id=\"FFXIPackageHelper_dynamiccontent_addCharacter\" class=\"FFXIPackageHelper_dynamiccontent_addCharacter\">
-                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //         <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //     </svg>
-                    // </button>
-                    // <button id=\"FFXIPackageHelper_dynamiccontent_removeCharacter\" class=\"FFXIPackageHelper_dynamiccontent_removeCharacter\">
-                    //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-                    //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke=\"#303030\" stroke-linecap=\"round\"/>
-                    //     </svg>
-                    // </button>" .
-
                     "<br>" .
                     //"<span>Saved Sets  " . FFXIPackageHelper_HTMLOptions::setsDropDown("FFXIPackageHelper_equipsets_selectSet") . "</span><br>" .
-                    "<span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob") . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel") . "</span><br>
-                    <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob") . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel") . $maxedSub ."</span><br>
+                    "<span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob", $this->sharedLink['mjob']) . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel", $this->sharedLink['mlvl']) . "</span><br>
+                    <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob", $this->sharedLink['sjob']) . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel", $this->sharedLink['slvl']) . $maxedSub ."</span><br>
                  </div>";
                 // <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
         return $html;

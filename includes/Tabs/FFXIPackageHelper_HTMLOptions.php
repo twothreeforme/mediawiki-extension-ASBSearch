@@ -5,7 +5,7 @@ class FFXIPackageHelper_HTMLOptions {
     public function __construct() {
       }
 
-      public static function jobDropDown($classname){
+      public static function jobDropDown($classname, $sharedJob = null){
         $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $html .= "<option value=\"0\">Any</option>";
         $html .= "<option value=\"1\">Warrior</option>";
@@ -30,18 +30,31 @@ class FFXIPackageHelper_HTMLOptions {
         // $html .= "<option value=\"20\">Scholar</option>";
         // $html .= "<option value=\"21\">Geomancer</option>";
         // $html .= "<option value=\"22\">Rune Fencer</option>";
+
+        // Select the job option from the shared link
+        if ( $sharedJob != 0 ){
+            $html = str_replace("value=\"$sharedJob\"", "value=\"$sharedJob\" selected=\"selected\"", $html);
+        }
+        
         $html .= "</select>";
         return $html;
     }
 
-    public static function raceDropDown($classname){
+    public static function raceDropDown($classname, $sharedRace = null){
         $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" disabled>";
-        $html .= "<option value=\"0\">Hume</option>";
+        $html .= "<option value=\"0\" selected=\"selected\">Hume</option>";
         $html .= "<option value=\"1\">Elvaan</option>";
         $html .= "<option value=\"2\">Tarutaru</option>";
         $html .= "<option value=\"3\">Mithra</option>";
         $html .= "<option value=\"4\">Galka</option>";
         $html .= "</select>";
+
+        // Select the race option from the shared link
+        if ( $sharedRace != 0 ){
+            $html = str_replace("value=\"$sharedRace\"", "value=\"$sharedRace\" selected=\"selected\"", $html);
+        }
+        
+        //throw new Exception ($html);
         return $html;
     }
 
@@ -81,7 +94,7 @@ class FFXIPackageHelper_HTMLOptions {
 
     }
 
-    public static function levelRange($classname){
+    public static function levelRange($classname, $sharedLvl = null){
         $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 75; $i++) {
@@ -89,10 +102,17 @@ class FFXIPackageHelper_HTMLOptions {
             else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
         }
         $html .= "</select>";
+
+        // Select the lvl range option from the shared link
+        if ( $sharedLvl != 0 ){
+            $html = str_replace("value=\"$sharedLvl\"", "value=\"$sharedLvl\" selected=\"selected\"", $html);
+        }
+        
+
         return $html;
     }
 
-    public static function subLevelRange($classname){
+    public static function subLevelRange($classname, $sharedLvl = null){
         $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
 
         for ($i = 0; $i <= 37; $i++) {
@@ -100,6 +120,12 @@ class FFXIPackageHelper_HTMLOptions {
             else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
         }
         $html .= "</select>";
+
+        // Select the lvl range option from the shared link
+        if ( $sharedLvl != 0 ){
+            $html = str_replace("value=\"$sharedLvl\"", "value=\"$sharedLvl\" selected=\"selected\"", $html);
+        }        
+
         return $html;
     }
 
@@ -274,26 +300,6 @@ class FFXIPackageHelper_HTMLOptions {
 
     public static function setsListTable($userSets){
         $html = "";
-            // foreach ($userSets as $jobtype => $val ) {
-
-            //     $html .= "<h3>$jobtype</h3><ul >";
-
-            //     foreach ( $val as $set ){
-            //         $html .= "<li data-value=\"" . $set["usersetid"] . "\">" . "
-            //             <div style=\"display: inline-block;\">" .
-            //                 // "<button class=\"FFXIPackageHelper_dynamiccontent_testButton\">
-            //                 //     <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-            //                 //         <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
-            //                 //     </svg>
-            //                 // </button>" .
-            //             $set["setname"] .
-            //             "</div>
-            //         </li>";
-            //     }
-            //     $html .= "</ul>";
-            // }
-
-
             $html = "<table id=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\" class=\"FFXIPackageHelper_Equipsets_setManagement_setsListTable\">";
             if ( count($userSets) > 0 ){
                 foreach ($userSets as $jobtype => $val ) {

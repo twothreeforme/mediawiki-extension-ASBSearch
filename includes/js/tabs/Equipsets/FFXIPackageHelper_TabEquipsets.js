@@ -168,8 +168,8 @@ module.exports.setLinks = function (){
     /**
      * DEV ONLY
      */
-    mlvlDropdown.value=75;
-    slvlDropdown.value=37;
+    // mlvlDropdown.value=75;
+    // slvlDropdown.value=37;
     //mJobDropdown.value=1;
     //sJobDropdown.value=2;
     // raceDropdown.value=3;

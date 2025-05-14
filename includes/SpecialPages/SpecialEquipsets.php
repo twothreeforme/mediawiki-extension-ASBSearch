@@ -13,6 +13,8 @@ class SpecialEquipsets extends SpecialPage {
 		}
 	}
 
+	private $requestData;
+
 	function execute( $par ) {
 		$this->setHeaders();
 		$output = $this->getOutput();
@@ -23,35 +25,24 @@ class SpecialEquipsets extends SpecialPage {
 		/**
 		 *	Equipsets Request Data
 		 */
-		$race = (int)$request->getText( 'race' );
-		$mlvl = (int)$request->getText( 'mlvl' );
-		$slvl = (int)$request->getText( 'slvl' );
-		$mjob = (int)$request->getText( 'mjob' );
-		$sjob = (int)$request->getText( 'sjob' );
-		$equipment = $request->getText( 'equipment' );
-		//$shared = $request->getText( 'shared' );
+		$requestData['race'] = (int)$request->getText( 'race' );
+		$requestData['mlvl'] = (int)$request->getText( 'mlvl' );
+		$requestData['slvl'] = (int)$request->getText( 'slvl' );
+		$requestData['mjob'] = (int)$request->getText( 'mjob' );
+		$requestData['sjob'] = (int)$request->getText( 'sjob' );
+		$requestData['equipment'] = $request->getText( 'equipment' );
+		$requestData['merits'] = $request->getText( 'merits' );
 
-		$equipsetsData = null;
-		if ( strlen($equipment) > 0 ){
-			$equipsetsData = [
-				$race,
-				$mlvl,
-				$slvl,
-				$mjob,
-				$sjob,
-				$equipment
-			];
-		}
-
+		wfDebugLog( 'Equipsets', get_called_class() . ":" . json_encode($requestData) );
 
         //$tabs = new FFXIPackageHelper_HTMLEquipsets_TabsHelper();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
+        $tabEquipsets = new FFXIPackageHelper_Equipsets($requestData);
 
         $html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
 			"<div id=\"initialHide\" style=\"display: none;\">" .
 				$this->header() .
-				$this->tab1($tabEquipsets->showEquipsets()) .
-				$this->tab2() .
+				$this->tab1( $tabEquipsets->showEquipsets() ) .
+				$this->tab2($requestData) .
             "</div>";
 
 		$output->addHTML( $html );
@@ -76,22 +67,12 @@ class SpecialEquipsets extends SpecialPage {
         return $html;
     }
 
-	public function tab2(){
+	public function tab2($requestData = null){
+		
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
 
 					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
 						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect") .
-						// "<div id=\"FFXIPackageHelper_equipsets_charSelect\">" .
-						// 	//"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">New</button>" .
-						// 	"<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\">
-						// 		<svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-						// 			<line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\"  stroke-linecap=\"round\"/>
-						// 			<line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\"  stroke-linecap=\"round\"/>
-						// 		</svg>
-						// 		<span id=\"FFXIPackageHelper_newCharButton-text\">New</span>
-						// 	</button>" .
-						// 	FFXIPackageHelper_HTMLOptions::charactersButtonsList() .
-						// "</div>" .
 						
 						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
 
@@ -109,7 +90,7 @@ class SpecialEquipsets extends SpecialPage {
 									"<input type=\"checkbox\" id=\"FFXIPackageHelper_dynamiccontent_defaultChar\" class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultInput\" disabled></input>" .
 									"<span class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultSpan FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround\"></span>" .
 								"</label>" .
-								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace") . "<br>" .
+								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace", $requestData['race']) . "<br>" .
 							"</div>" .
 							"<div>" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Merits</p>" .

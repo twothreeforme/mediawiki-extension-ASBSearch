@@ -27,7 +27,6 @@ class APIModuleEquipsets extends ApiBase {
 	}
 
     function execute( ) {
-
         $params = $this->extractRequestParams();
         $result = $this->getResult();
 
@@ -38,6 +37,9 @@ class APIModuleEquipsets extends ApiBase {
         $decoded = urldecode($params['merits']);
         $meritsString = base64_decode($decoded);
         //throw new Exception($meritsString);
+
+        wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] );
+
 
         if ( $params['action'] == "equipsets" ) {
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
