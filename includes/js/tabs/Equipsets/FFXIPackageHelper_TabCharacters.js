@@ -144,7 +144,7 @@ module.exports.setLinks = function (){
         saveCharacterClicked();
         });
 
-    selectDefaultCharacterOnLoad();
+    //selectDefaultCharacterOnLoad();
 }
 
 function toggleMeritEditButtons(counterbox){

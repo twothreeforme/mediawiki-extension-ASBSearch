@@ -13,12 +13,7 @@ class SpecialEquipsets extends SpecialPage {
 		}
 	}
 
-	private $requestData =[
-		'race' => null,
-		'mlvl' => null
-
-	];
-    private $defaultCharacter;
+	private $requestData =[];
 
 	function execute( $par ) {
 		$this->setHeaders();
@@ -27,47 +22,45 @@ class SpecialEquipsets extends SpecialPage {
 		$request = $this->getRequest();
 
 		/**
-		 * 	Load default character if logged in
-		 */
-        $this->defaultCharacter = $this->loadDefaultCharacter();
-		if ( $this->defaultCharacter != null ){
-			$this->requestData['race'] = $this->defaultCharacter['race'];
-			$this->requestData['merits'] = $this->defaultCharacter['merits'];
-		}
-
-		/**
 		 *	Equipsets Request Data
 		 */
-		if ( (int)$request->getText( 'race' ) != null ) $this->requestData['race'] = (int)$request->getText( 'race' );
-		if ( $request->getText( 'merits' ) != null ) $this->requestData['merits'] = $request->getText( 'merits' );
+		$requestCharacter = new FFXIPH_Character( $request->getText( 'race' ),
+													$request->getText( 'mlvl' ),
+													$request->getText( 'slvl' ),
+													$request->getText( 'mjob' ),
+													$request->getText( 'sjob' ),
+													$request->getText( 'merits' ),
+													$request->getText( 'equipment' ) );
 
-		$this->requestData['mlvl'] = (int)$request->getText( 'mlvl' );
-		$this->requestData['slvl'] = (int)$request->getText( 'slvl' );
-		$this->requestData['mjob'] = (int)$request->getText( 'mjob' );
-		$this->requestData['sjob'] = (int)$request->getText( 'sjob' );
-		$this->requestData['equipment'] = $request->getText( 'equipment' );
-		//$this->requestData['merits'] = $request->getText( 'merits' );
-
-
-        //$tabs = new FFXIPackageHelper_HTMLEquipsets_TabsHelper();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets($this->requestData);
+		/**
+		 * 	Determine which character to load on startup
+		 *  Either the request data (from shared link) or default char saved in DB
+		 */											
+		if ( !$requestCharacter->isDefault() ) {
+			$currentCharacter = $requestCharacter;
+		}
+		else {
+			// Check for user logged in
+			$user = RequestContext::getMain()->getUser();
+			$uid = $user->getId();
+			if ( $uid != 0 ) { // User is logged in
+				$db = new DBConnection();
+				$currentCharacter = $db->getDefaultCharacter( $uid );
+			}
+			else $currentCharacter = new FFXIPH_Character();
+		}
+		//wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
+		$tabEquipsets = new FFXIPackageHelper_Equipsets($currentCharacter->toArray());
 
         $html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
 			"<div id=\"initialHide\" style=\"display: none;\">" .
 				$this->header() .
-				$this->tab1( $tabEquipsets->showEquipsets() ) .
-				$this->tab2($this->requestData) .
+				$this->tabEquipsets( $tabEquipsets->showEquipsets() ) .
+				$this->tabCharacter( $currentCharacter->race ) .
             "</div>";
 
 		$output->addHTML( $html );
 	}
-
-	public function loadDefaultCharacter(){
-        $user = RequestContext::getMain()->getUser();
-        $uid = $user->getId();
-        $db = new DBConnection();
-        return $db->getDefaultCharacter($uid);
-    }
 
 	public function header(){
         return "<div class=\"FFXIPackageHelper_tabs\">" .
@@ -76,7 +69,7 @@ class SpecialEquipsets extends SpecialPage {
         		"</div>";
       }
 
-    public function tab1($content){
+    public function tabEquipsets($content){
         if ( !isset($content) ) $content = "<p>no content yet</p>";
 
         //remove when setting up for use on HXI
@@ -88,7 +81,7 @@ class SpecialEquipsets extends SpecialPage {
         return $html;
     }
 
-	public function tab2($requestData = null){
+	public function tabCharacter($requestRace = null){
 		
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
 
@@ -111,7 +104,7 @@ class SpecialEquipsets extends SpecialPage {
 									"<input type=\"checkbox\" id=\"FFXIPackageHelper_dynamiccontent_defaultChar\" class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultInput\" disabled></input>" .
 									"<span class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultSpan FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround\"></span>" .
 								"</label>" .
-								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace", $requestData['race']) . "<br>" .
+								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace", $requestRace) . "<br>" .
 							"</div>" .
 							"<div>" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Merits</p>" .

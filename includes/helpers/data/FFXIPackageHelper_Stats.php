@@ -48,15 +48,7 @@ class FFXIPackageHelper_Stats {
     public $meritSkills = [];
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
-            // 'race' => 0,
-            // 'mlvl' => 0,
-            // 'slvl' => 0,
-            // 'mjob' => 0,
-            // 'sjob' => 0,
-            // 'merits' => "",
-            // 'equipment' => "",
         if ($race == null) $race = 0;
-        if ($merits == null) $merits = "";
 
         // Build modifiers
         $this->setModifierKeys();
@@ -306,6 +298,8 @@ class FFXIPackageHelper_Stats {
     }
 
     private function setMerits($meritsALL){
+        if ( is_null($meritsALL) ) return;
+
         $temp = json_decode($meritsALL, false);
         $this->meritStats = $temp[0];
         foreach( $this->meritStats as $key => $value ){
@@ -359,8 +353,6 @@ class FFXIPackageHelper_Stats {
                  //all skills are 2x merit value
             else $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
         }
-
-        //throw new Exception ( json_encode($this->meritSkills) );
     }
 
     private function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions

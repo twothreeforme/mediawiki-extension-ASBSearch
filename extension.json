@@ -15,6 +15,7 @@
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
         "SpecialEquipsets": "includes/SpecialPages/SpecialEquipsets.php",
 
+        "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
         "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
