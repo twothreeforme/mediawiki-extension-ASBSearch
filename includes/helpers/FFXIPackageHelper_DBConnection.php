@@ -1127,6 +1127,31 @@ class DBConnection {
         return [];
     }
 
+    public function getDefaultCharacter($uid){
+        $dbr = $this->openConnectionSets();
+
+        $query = [ "user_chars.userid = '$uid' AND user_chars.def = 1"];
+
+        $result = $dbr->newSelectQueryBuilder()
+        ->select( [ 'charname', 'charid', 'race', 'merits', 'def'] )
+        ->from( 'user_chars' )
+        ->where($query)
+        ->fetchResultSet();
+
+        if( count($result) == 0 ) return null;
+
+        foreach($result as $row){
+            return [
+                'charname' => $row->charname,
+                'charid' => $row->charid,
+                'race' => $row->race,
+                'merits' => $row->merits,
+                'def' => $row->def
+            ];
+        }
+        return [];
+    }
+
 
     public function setUserCharacter($char){
         $dbw = $this->openConnectionSets();

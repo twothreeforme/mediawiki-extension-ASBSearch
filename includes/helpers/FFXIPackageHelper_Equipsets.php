@@ -22,28 +22,20 @@ use MediaWiki\MediaWikiServices;
 
 class FFXIPackageHelper_Equipsets  {
 
-    // private $race;
-    // private $mlvl;
-    // private $slvl;
-    // private $mjob;
-    // private $sjob;
-    // private $equipment;
-    // private $merits;
-
     private $sharedLink;
 
     public function __construct($query = null) {
         $this->sharedLink = $query; //nothing should be null inside this array, defaults set in APIModuleEquipsets
     }
 
-     public function querySection(){
+    public function querySection(){
         $maxedSub = "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxMaxSub\" type=\"checkbox\" checked=\"checked\"><i>(max)</i></input></label>";
         $html = "<div class=\"FFXIPackageHelper_Equipsets_selectOptions\">" .
                     "<br>" .
                     //"<span>Saved Sets  " . FFXIPackageHelper_HTMLOptions::setsDropDown("FFXIPackageHelper_equipsets_selectSet") . "</span><br>" .
                     "<span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob", $this->sharedLink['mjob']) . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel", $this->sharedLink['mlvl']) . "</span><br>
                     <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob", $this->sharedLink['sjob']) . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel", $this->sharedLink['slvl']) . $maxedSub ."</span><br>
-                 </div>";
+                    </div>";
                 // <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
         return $html;
     }
@@ -74,7 +66,6 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function equipmentGrid($slot = null){
-
         $griditems = self::updateGridItems($slot)[0];
 
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
@@ -159,7 +150,7 @@ class FFXIPackageHelper_Equipsets  {
                     "</span>
                 </div>";
         return $html;
-     }
+    }
 
     public function additionalData(){
         $html =  "<div class=\"FFXIPackageHelper_Equipsets_additionalData\">" .

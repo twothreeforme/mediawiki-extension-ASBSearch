@@ -10,7 +10,7 @@ class APIModuleEquipsets extends ApiBase {
     protected function getAllowedParams() {
         return [
             'action' => null,
-			'race' => 0,
+			'race' => null,
             'mlvl' => 0,
             'slvl' => 0,
             'mjob' => 0,

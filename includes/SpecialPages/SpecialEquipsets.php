@@ -13,7 +13,12 @@ class SpecialEquipsets extends SpecialPage {
 		}
 	}
 
-	private $requestData;
+	private $requestData =[
+		'race' => null,
+		'mlvl' => null
+
+	];
+    private $defaultCharacter;
 
 	function execute( $par ) {
 		$this->setHeaders();
@@ -21,32 +26,48 @@ class SpecialEquipsets extends SpecialPage {
 		$output->setPageTitle( $this->msg( 'equipsets' ) );
 		$request = $this->getRequest();
 
+		/**
+		 * 	Load default character if logged in
+		 */
+        $this->defaultCharacter = $this->loadDefaultCharacter();
+		if ( $this->defaultCharacter != null ){
+			$this->requestData['race'] = $this->defaultCharacter['race'];
+			$this->requestData['merits'] = $this->defaultCharacter['merits'];
+		}
 
 		/**
 		 *	Equipsets Request Data
 		 */
-		$requestData['race'] = (int)$request->getText( 'race' );
-		$requestData['mlvl'] = (int)$request->getText( 'mlvl' );
-		$requestData['slvl'] = (int)$request->getText( 'slvl' );
-		$requestData['mjob'] = (int)$request->getText( 'mjob' );
-		$requestData['sjob'] = (int)$request->getText( 'sjob' );
-		$requestData['equipment'] = $request->getText( 'equipment' );
-		$requestData['merits'] = $request->getText( 'merits' );
+		if ( (int)$request->getText( 'race' ) != null ) $this->requestData['race'] = (int)$request->getText( 'race' );
+		if ( $request->getText( 'merits' ) != null ) $this->requestData['merits'] = $request->getText( 'merits' );
 
-		wfDebugLog( 'Equipsets', get_called_class() . ":" . json_encode($requestData) );
+		$this->requestData['mlvl'] = (int)$request->getText( 'mlvl' );
+		$this->requestData['slvl'] = (int)$request->getText( 'slvl' );
+		$this->requestData['mjob'] = (int)$request->getText( 'mjob' );
+		$this->requestData['sjob'] = (int)$request->getText( 'sjob' );
+		$this->requestData['equipment'] = $request->getText( 'equipment' );
+		//$this->requestData['merits'] = $request->getText( 'merits' );
+
 
         //$tabs = new FFXIPackageHelper_HTMLEquipsets_TabsHelper();
-        $tabEquipsets = new FFXIPackageHelper_Equipsets($requestData);
+        $tabEquipsets = new FFXIPackageHelper_Equipsets($this->requestData);
 
         $html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
 			"<div id=\"initialHide\" style=\"display: none;\">" .
 				$this->header() .
 				$this->tab1( $tabEquipsets->showEquipsets() ) .
-				$this->tab2($requestData) .
+				$this->tab2($this->requestData) .
             "</div>";
 
 		$output->addHTML( $html );
 	}
+
+	public function loadDefaultCharacter(){
+        $user = RequestContext::getMain()->getUser();
+        $uid = $user->getId();
+        $db = new DBConnection();
+        return $db->getDefaultCharacter($uid);
+    }
 
 	public function header(){
         return "<div class=\"FFXIPackageHelper_tabs\">" .

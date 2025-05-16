@@ -48,6 +48,15 @@ class FFXIPackageHelper_Stats {
     public $meritSkills = [];
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
+            // 'race' => 0,
+            // 'mlvl' => 0,
+            // 'slvl' => 0,
+            // 'mjob' => 0,
+            // 'sjob' => 0,
+            // 'merits' => "",
+            // 'equipment' => "",
+        if ($race == null) $race = 0;
+        if ($merits == null) $merits = "";
 
         // Build modifiers
         $this->setModifierKeys();
