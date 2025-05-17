@@ -15,4 +15,8 @@ INSERT INTO `item_mods` VALUES (14741,83,5,1); -- GSWORD: 5
 INSERT INTO `item_mods` VALUES (14742,83,5,1); -- POLEARM: 5
 INSERT INTO `item_mods` VALUES (14742,991,10,1);  -- PET_ACC_EVA: 10
 
+-- Chaos sollerets +1
+INSERT INTO `item_mods` VALUES (15359,25,3,1);   -- ACC: 3
+
+
 UNLOCK TABLES;

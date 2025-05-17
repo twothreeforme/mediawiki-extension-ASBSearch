@@ -296,7 +296,8 @@ UPDATE mob_droplist SET groupRate = 1000, itemRate = 576 WHERE dropId = 6026 AND
 UPDATE mob_droplist SET groupRate = 1000, itemRate = 593 WHERE dropId = 6026 AND groupRate = 593 AND groupId = 8 AND itemRate = 1000; -- Cashmere Thread
 UPDATE mob_droplist SET groupRate = 1000, itemRate = 746 WHERE dropId = 6026 AND groupRate = 746 AND groupId = 9 AND itemRate = 1000; -- Wyrm Horn
 
-
+UPDATE mob_droplist SET dropType = 0, changes_tag = 1 WHERE dropId = 3255 AND itemId = 1661; -- Misareaux Garlic - ASB/LSB incorrect
+UPDATE mob_droplist SET dropType = 0, changes_tag = 1 WHERE dropId = 3256 AND itemId = 1661; -- Misareaux Garlic - ASB/LSB incorrect
 
 UNLOCK TABLES;
 

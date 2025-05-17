@@ -426,16 +426,16 @@ function loadSharedLink(url){
 
     // Set merit stats in table
     Object.keys(meritObj[0]).forEach(key => {
-            let _id = "FFXIPackageHelper_equipsets_merits_stats"
-            const e = document.getElementById(_id + key);
-            e.value = meritObj[0][key];
-      });
+        let _id = "FFXIPackageHelper_equipsets_merits_stats"
+        const e = document.getElementById(_id + key);
+        e.value = meritObj[0][key];
+    });
 
     // Set merit skills in table
     Object.keys(meritObj[1]).forEach(key => {
-            let _id = "FFXIPackageHelper_equipsets_merits_skill"
-            const e = document.getElementById(_id + key);
-            e.value = meritObj[1][key];
+        let _id = "FFXIPackageHelper_equipsets_merits_skill"
+        const e = document.getElementById(_id + key);
+        e.value = meritObj[1][key];
     });
 
     const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
