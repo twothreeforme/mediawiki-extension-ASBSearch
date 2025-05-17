@@ -105,19 +105,6 @@ class FFXIPackageHelper_Equipsets  {
         $resCircles = ParserHelper::wikiParse($resCircles);
 
         $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;line-height: 14px;\" >";
-            // <tr>
-            //     <td style=\"width:100px;\">". $this->resCircle("Fire") ."<p id=\"FFXIPackageHelper_Equipsets_statFire\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Wind") ."<p id=\"FFXIPackageHelper_Equipsets_statWind\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Ice") ."<p id=\"FFXIPackageHelper_Equipsets_statIce\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Light") ."<p id=\"FFXIPackageHelper_Equipsets_statLight\"></p></td>
-            // </tr>
-            // <tr>
-            //     <td style=\"width:100px;\">". $this->resCircle("Water") ."<p id=\"FFXIPackageHelper_Equipsets_statWater\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Earth") ."<p id=\"FFXIPackageHelper_Equipsets_statEarth\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Lightning") ."<p id=\"FFXIPackageHelper_Equipsets_statLightning\"></p></td>
-            //     <td style=\"width:100px;\">". $this->resCircle("Dark") ."<p id=\"FFXIPackageHelper_Equipsets_statDark\"></p></td>
-            // </tr>
-
         $td = "<td class=\"FFXIPackageHelper_Equipsets_statRes\" >";
         for ( $r = 0; $r <= 7; $r++){
             if ( $r == 0 ) $html .= "<tr>";
@@ -130,23 +117,8 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function userSetsData(){
-        // $html = "<div class=\"FFXIPackageHelper_Equipsets_setManagement\">
-        //             <b>Sets Management</b><br>
-        //             <span style=\"float:left;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
-        //             <span style=\"float:left;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Save Set</button></span><br><br>
-        //             <span style=\"float:left;\">Available Sets</span><br>
-        //             <table style=\"width:100%;height:150px;line-height: 14px;\">
-        //             </table>
-        //             <span style=\"float:left;\"><button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Manage Sets</button></span><br><br>
-
-        //         </div>";
-
         $html = "<div style=\"width:100%;text-align: center; padding: 12px;\">
-                    <span>
-                        ". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
-                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Save</button>" .
-                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageChars\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Chars</button>" .
-                        // "<button type=\"button\" id=\"FFXIPackageHelper_dynamiccontent_manageSets\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" disabled>Manage Sets</button>" .
+                    <span>". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
                     "</span>
                 </div>";
         return $html;
@@ -215,23 +187,17 @@ class FFXIPackageHelper_Equipsets  {
                             //"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Set Name</p>" .
                             "<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_setNameInput\" class=\"FFXIPackageHelper_dynamiccontent_setNameInput\" placeholder=\"Set Name\" maxlength=\"25\"></input><br>" .
                         "</div>" .
-
-
-// "<div class=\"FFXIPackageHelper_equipsets_charSelectOptionsMenu\">" .
-//                         // "<button id=\"FFXIPackageHelper_editSetButton\" class=\"FFXIPackageHelper_editCharButton\">Edit</button>" .
-//                         "<button id=\"FFXIPackageHelper_dynamiccontent_saveSet\" class=\"FFXIPackageHelper_newSetButton FFXIPackageHelper_saveSetButton\">Save</button>" .
-//                     "</div>" .
-                        "</div>" .
+                    "</div>" .
                     FFXIPackageHelper_HTMLOptions::setsList() .
                 "</div>";
         return $html;
     }
 
-    public function setManagementDiv(){
-        $html =  "<div>" .
-                "</div>";
-        return $html;
-    }
+    // public function setManagementDiv(){
+    //     $html =  "<div>" .
+    //             "</div>";
+    //     return $html;
+    // }
 
     public function showLuaSets(){
             $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >

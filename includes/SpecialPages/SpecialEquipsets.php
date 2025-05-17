@@ -45,11 +45,14 @@ class SpecialEquipsets extends SpecialPage {
 			$uid = $user->getId();
 			if ( $uid != 0 ) { // User is logged in
 				$db = new DBConnection();
-				$currentCharacter = $db->getDefaultCharacter( $uid );
+				$defCharacter = $db->getDefaultCharacter( $uid );
+				if ( is_null($defCharacter) ) $currentCharacter = new FFXIPH_Character();
+				else $currentCharacter = $defCharacter;
 			}
 			else $currentCharacter = new FFXIPH_Character();
 		}
-		//wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
+
+		wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
 		$tabEquipsets = new FFXIPackageHelper_Equipsets($currentCharacter->toArray());
 
         $html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .

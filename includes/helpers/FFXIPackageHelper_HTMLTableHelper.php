@@ -556,6 +556,10 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 		return $html;
 	}
+
+	public static function characterSelectedHeader(){
+
+	}
 }
 
 ?>

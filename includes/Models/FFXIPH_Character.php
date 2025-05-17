@@ -120,6 +120,7 @@ class FFXIPH_Character  {
              'mjob'  => $this->mjob, 
              'sjob'  => $this->sjob, 
              //'merits'  => $this->merits,
+             'merits' => [ $this->meritStats, $this->meritSkills],
              'equipment'  => $this->equipment,
 
              'def'  => $this->def, 
