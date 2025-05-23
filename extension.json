@@ -47,7 +47,8 @@
 
         "FFXIPackageHelper_Equipsets": "includes/helpers/FFXIPackageHelper_Equipsets.php",
 
-        "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php"
+        "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
+        "FFXIPackageHelper_ShowMobDropTable": "includes/Page Directs/FFXIPackageHelper_ShowMobDropTable.php"
 	},
     "SpecialPages": {
         "ASBSearch": "SpecialASBSearch",
@@ -72,7 +73,8 @@
             "SpecialEquipsets::onBeforePageDisplay"
         ],
         "ParserFirstCallInit": [
-            "ZoneForecast::onParserInit"
+            "ZoneForecast::onParserInit",
+            "FFXIPackageHelper_ShowMobDropTable::onParserInit"
         ]
     },
 	"ResourceModules": {

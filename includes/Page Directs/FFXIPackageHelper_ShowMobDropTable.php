@@ -1,33 +1,49 @@
 <?php
 
 
-class FFXIPackageHelper_ShowDropTable  {
+class FFXIPackageHelper_ShowMobDropTable  {
     public function __construct() {
     }
     
     static function onParserInit( Parser $parser ) {
-        $parser->setHook('ShowDropTable','FFXIPackageHelper_ShowDropTable::generateDropsTable' );
+        $parser->setHook('ShowMobDropTable','FFXIPackageHelper_ShowMobDropTable::generateDropsTable' );
         return true;
 	}
 
     static function _tableHeaders(){
 		$html = "";
 		$html .= "
-		<div class=\"zone-infobox-weather-div\" >
-		<table class=\"zone-infobox-weather-table\">
-			<tr><th>VanaDays from Today</th>
-			<th>Normal (50%)</th>
-			<th>Common (35%)</th>
-			<th>Rare (15%)</th>
-			";
+		<div id=\"FFXIPH_ShowMobDropTable\" >
+            <p>Test data goes here</p>
+			</div>";
 		return $html;
 	}
 
     public static function generateDropsTable( $input, array $params, Parser $parser, PPFrame $frame ) {
-    //     $db = new DBConnection();
-    //     $zoneList = $db->getZoneList();
+        $html = "";
 
-    //     $zoneid = 0;
+        if(!isset($params['class'])){
+            $classname = "horizon-table general-table sortable";
+        }
+        else $classname = $params['class'];
+        
+        if(!isset($params['mob'])){
+            $pagetitle = $parser->getTitle();
+        }
+        else $pagetitle = $params['mob'];
+        $html .= $pagetitle;
+
+        $db = new DBConnection();
+        $mobDropsRAW = $db->getMobDropRates($pagetitle);
+
+        $dm = new DataModel();
+        $dm->parseData($mobDropsRAW);
+        $mobDropsModel = $dm->getDataSet();
+
+        //wfDebugLog( 'ShowMobDrops', get_called_class() . ":" . json_encode( $mobDropsModel) );
+
+        $html .= FFXIPackageHelper_HTMLTableHelper::table_MobDropRates($mobDropsModel, $classname);
+
     //     if(isset($params['zone'])) {
     //         $pagename = (string)$parser->recursiveTagParse($params['zone'], $frame );
     //         //$html = $parser->recursiveTagParse( $html, $frame );
@@ -67,33 +83,16 @@ class FFXIPackageHelper_ShowDropTable  {
     //             break;
     //         }
     //     }
-        
-    //     //var_dump($zoneid);
-        
-    //     if ( $zoneid == 0 ){
-    //         return "<div>Error: Forecast for ' $pagename ' not found. Please report to Wiki devs on Discord. </div>";
-    //     }
-
-    //     $zoneWeather = $db->getZoneWeather($zoneid, 1) ;
     
-    //     $html = ZoneForecast::_tableHeaders();
-
-    //     //$html = $html . "<p>Vana Days from now... Normal (50%)... Common (35%)... Rare (15%)... </p>";
-
-    //     foreach ($zoneWeather as $daysFromCurrent => $weatherArray) {
-
-    //         $daysFromCurrent = $daysFromCurrent == 0 ? "Today" : $daysFromCurrent ;
-    //         $daysFromCurrent = $daysFromCurrent == 1 ? "Tomorrow" : $daysFromCurrent ;
-    //         //$html = $html . "<p>" . $daysFromCurrent . " ... " . "  Normal:" . $weatherArray["normal"] . "  Common:" . $weatherArray["common"] . "  Rare:" . $weatherArray["rare"] . "</p>";
-    //         $html .= "<tr><td><center>$daysFromCurrent</center></td><td><center>" .$weatherArray["normal"] ."</center></td><td><center>" . $weatherArray["common"] . "</center></td><td><center>" . $weatherArray["rare"] . "</center></td></tr>";
-    //     }
+         //$html = self::_tableHeaders();
 
     //     $html .= "</table></div>";
 
     //     $html = $parser->recursiveTagParse( $html, $frame );
+        $html = $parser->recursiveTagParse( $html, $frame );
 
     //     //$html = $parserOutput->getText();
-        $html = "Test data goes here";
+        
         return 	$html;
     }
 }

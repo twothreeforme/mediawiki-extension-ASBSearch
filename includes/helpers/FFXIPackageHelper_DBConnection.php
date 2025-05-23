@@ -494,6 +494,51 @@ class DBConnection {
 			->fetchResultSet(); 
 	}
 
+    public function getMobDropRates($mobname){
+        $mobNameSearch = ParserHelper::replaceSpaces($mobname);
+       
+        $query = [ 
+                    "mob_droplist.dropid != 0 ",
+                    //"mob_droplist.dropType != 4",  // removing DESPOIL - as its OOE
+                    "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
+                    "mob_groups.name LIKE '%$mobNameSearch%'",
+                ];
+
+        $dbr = $this->openConnection();
+		return $dbr->newSelectQueryBuilder()
+			->select( [ //'mob_droplist.name', 
+						'mob_droplist.itemRate',
+						'mob_droplist.dropType',
+						'mob_droplist.groupId',
+						'mob_droplist.groupRate',
+						'zone_settings.name AS zoneName',
+						'mob_groups.name AS mobName',
+						'mob_groups.minLevel AS mobMinLevel',
+						'mob_groups.maxLevel AS mobMaxLevel',
+						'item_basic.name AS itemName', 
+						//'item_basic.sortname AS itemSortName',
+						'mob_groups.changes_tag AS mobChanges',
+						'item_basic.changes_tag AS itemChanges',
+						'mob_droplist.changes_tag AS dropChanges',
+						'mob_pools.mobType',
+                        'mob_pools.aggro',
+                        'mob_pools.true_detection',
+                        // 'mob_family_system.superFamily',
+                        // 'mob_family_system.ecosystem',
+                        'mob_family_system.detects',
+						] )
+			->from( 'mob_droplist' )
+			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
+			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
+			->orderBy( 'groupId', 'ASC' )
+			->where( $query	)
+			//->limit( $queryLimit )
+			->fetchResultSet(); 
+    }
+
     public function getBCNMCrateRates($queryData){
         $bcnmNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];
