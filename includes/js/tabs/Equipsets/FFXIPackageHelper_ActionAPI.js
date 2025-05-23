@@ -19,7 +19,7 @@ function actionAPI(params, forTab, currentButton, callback) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result["recipes"]);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result["equipment"]);
       else if ( forTab.includes("equipsets") ){
-        console.log(result);
+        //console.log(result);
         if ( forTab.includes("search") )  {
           callback.returnCallback(result['search']);
         }
@@ -40,18 +40,21 @@ function actionAPI(params, forTab, currentButton, callback) {
           if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
           else { /*PASS*/
             //updateCharsList(result['status'][1], callback);
-            callback(result['status']);
+            //callback(result['status']);
+            callback(result['charSelectButtonsBar']);
             mw.notify( "Character Saved", { autoHide: true,  type: 'success' } );
           }
         }
         else if ( forTab.includes("removechar")) {
           //updateCharsList(result['userchars'], callback);
-          callback(result['userchars']);
+          //console.log(result['charSelectButtonsBar']);
+          callback(result['charSelectButtonsBar']);
           mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
         }
         else if ( forTab.includes("selectchar")) {
           //console.log(result);
           callback.updateCharacter(result['selectchar']);
+          //callback(result['charSelectButtonsBar']);
           callback.updateStats();
           //callback.setHeaderCharacterDetails();
 
@@ -61,7 +64,8 @@ function actionAPI(params, forTab, currentButton, callback) {
           else { /*PASS*/
             //updateCharsList(result['status'][1], callback);
             //console.log(result['status']);
-            callback(result['status']);
+            //callback(result['status']);
+            callback(result['charSelectButtonsBar']);
             mw.notify( "Character Updated", { autoHide: true,  type: 'success' } );
           }
         }

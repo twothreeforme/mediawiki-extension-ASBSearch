@@ -158,9 +158,9 @@ class APIModuleEquipsets extends ApiBase {
                 $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
 
 
+                $charSelectBar = $this->getCharSelectButtonsBar($userCharacters, $params['charname']);
+                $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
 
-                // $charSelectBar = self::getCharSelectButtonsBar( ,$params['charname']);
-                // $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
                 return;
             }
         }
@@ -198,7 +198,7 @@ class APIModuleEquipsets extends ApiBase {
 
             $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
 
-            $charSelectBar = self::getCharSelectButtonsBar($userCharacters ,$params['charname']);
+            $charSelectBar = $this->getCharSelectButtonsBar($userCharacters, $params['charname']);
             $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
 //wfDebugLog( 'Equipsets', "***");
 
@@ -228,6 +228,9 @@ class APIModuleEquipsets extends ApiBase {
             $db->removeUserCharacter($char);
             $userCharacters = $db->getUserCharacters($char);
             $result->addValue( $params['action'], "userchars", $userCharacters);
+
+
+            $result->addValue( $params['action'], "charSelectButtonsBar", $this->getCharSelectButtonsBar($userCharacters, false));
         }
         else if ( $params['action'] == "equipsets_saveset" ) {
             $newSet = $this->createSet($params);
@@ -398,7 +401,7 @@ class APIModuleEquipsets extends ApiBase {
     }
 
     // div id=FFXIPackageHelper_equipsets_charSelect
-    private function getCharSelectButtonsBar($userchars, $selectChar){
+    private function getCharSelectButtonsBar($userchars, $selectChar = null){
         return FFXIPackageHelper_HTMLOptions::charactersButtonsList($userchars, $selectChar );
     }
 

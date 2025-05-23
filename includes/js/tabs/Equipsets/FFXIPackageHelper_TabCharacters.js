@@ -250,12 +250,12 @@ function removeCharacter(charname){
         charname: charname
     }
 
-    API.actionAPI(data, data.action, null, resetCharList );
-    Data.resetStats();
-    scrollToTop();
+    API.actionAPI(data, data.action, null, characterRemoved);
+    
 
-    Data.setHeaderCharacterDetails();
 }
+
+
 
 function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
@@ -285,8 +285,8 @@ function resetCharList(incCharsList){
     clearCharList();
 
     //add new list items
-    if (incCharsList){
-        //console.log(incCharsList);
+    if ( incCharsList && typeof(incCharsList) == 'array' ){
+        console.log("resetCharList:", incCharsList);
         var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
         incCharsList.map((details) => {
             var btn = document.createElement('button')
@@ -303,29 +303,36 @@ function resetCharList(incCharsList){
             // });
         });
     }
+    else if (typeof(incCharsList) == 'string' ) {
+        let charSelectButtonsBar = document.getElementById("FFXIPackageHelper_equipsets_charactersButtonsList");
+        charSelectButtonsBar.innerHTML = incCharsList;
+    }
+
 
     //add event listeners to new items
     const charButtons = document.getElementsByClassName("FFXIPackageHelper_charButton");
     if ( charButtons ) addCharButtonEvents(charButtons);
 
-    selectCharClicked("", true);
+    //selectCharClicked("", true);
 
-    Data.setHeaderCharacterDetails();
+    //Data.setHeaderCharacterDetails();
 }
 
 function characterSaved(results, resetBypass){
-    console.log("characterSaved", results);
-    const recentCharSaved = results[0];
-    const newUserList = results[1];
+    //console.log("characterSaved", results);
+    resetCharList(results);
     
-    resetCharList(newUserList);
-
-    const charButton = document.getElementById('FFXIPackageHelper_charButton_' + recentCharSaved);
-    charButton.classList.toggle('FFXIPackageHelper_charButtonselected');
-
-    //toggleButtonVisibility(REMOVE_BUTTON);
     Data.updateStats();
-    scrollToTop();
+    //scrollToTop();
+    Data.setHeaderCharacterDetails();
+}
+
+function characterRemoved(results){
+    //console.log("characterRemoved", results);
+    resetCharList(results);
+
+    Data.resetStats();
+    //scrollToTop();
     Data.setHeaderCharacterDetails();
 }
 

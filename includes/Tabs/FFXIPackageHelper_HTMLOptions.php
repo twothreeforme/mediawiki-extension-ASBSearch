@@ -171,38 +171,49 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function charactersButtonsList($userCharacters, $selectChar = null){
+    /**
+     * 
+     *      True = shoud select default character from array
+     *      False = should select NONE character
+     *      (string) = should select character with name (string)
+     */
+    public static function charactersButtonsList($userCharacters, $selectDefaultCharacter = null){
+
         // "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>"
         // $html = "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>";
         $html = "";
 
-        $classlist = "FFXIPackageHelper_charButton";
-        if ( is_null($userCharacters) || ( !is_null($userCharacters) && count($userCharacters) == 0 ) || $selectChar == null ){
-            $classlist .= " FFXIPackageHelper_charButtonselected";
-        }
-        $html .= "<button id=\"FFXIPackageHelper_charButtonNone\" class=\"" . $classlist . "\">None</button>";
+        //wfDebugLog( 'Equipsets', get_called_class() . ":charactersButtonsList:" . json_encode($selectDefaultCharacter) . ":gettype " .  gettype($selectDefaultCharacter) );
+        //wfDebugLog( 'Equipsets', get_called_class() . ":charactersButtonsList:" . $html );
 
-        $classlist = "FFXIPackageHelper_charButton";
         if ( !is_null($userCharacters) && count($userCharacters) > 0 ){
             /* array of FFIXPH_Character objects */
             foreach ($userCharacters as $char) {
-//wfDebugLog( 'Equipsets', get_called_class() . ":charactersButtonsList:" . json_encode($selectChar) );
+                $classlist = "FFXIPackageHelper_charButton";    
                 if ( $char->def != 0 ) {
                     $classlist .= " FFXIPackageHelper_charButton_default";
                     
-                    if ( $selectChar == null )  {
-                        $html = str_replace("FFXIPackageHelper_charButtonselected", "", $html);
+                    if ( $selectDefaultCharacter === true )  {
+                        //$html = str_replace("FFXIPackageHelper_charButtonselectDefaultCharactered", "", $html);
                         $classlist .= " FFXIPackageHelper_charButtonselected";
                     }
                 }
-                if ( $selectChar == $char->charname ){
-                        $html = str_replace("FFXIPackageHelper_charButtonselected", "", $html);
-                        $classlist .= " FFXIPackageHelper_charButtonselected";
+
+                if ( gettype($selectDefaultCharacter) == 'string' && $char->charname == $selectDefaultCharacter && !str_contains($classlist, "FFXIPackageHelper_charButtonselected") ) {
+                    $classlist .= " FFXIPackageHelper_charButtonselected";
                 }
 
                 $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char->charname . "\" class=\"" . $classlist . "\">" . $char->charname . "</button>";
             }
         }
+        
+        $classlist = "FFXIPackageHelper_charButton";
+        if ( $selectDefaultCharacter === false ){
+            $classlist .= " FFXIPackageHelper_charButtonselected";
+            //wfDebugLog( 'Equipsets', get_called_class() . ":charactersButtonsList:" . json_encode($selectDefaultCharacter) );
+        }
+        $html = "<button id=\"FFXIPackageHelper_charButtonNone\" class=\"" . $classlist . "\">None</button>" . $html;
+        //$html .= "<button id=\"FFXIPackageHelper_charButtonNone\" class=\"FFXIPackageHelper_charButton\">None</button>";
 
         return $html;
     }
@@ -254,7 +265,7 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</span></button>";
         
         $html .= "<div id=\"FFXIPackageHelper_equipsets_charactersButtonsList\">";
-        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList($userCharacters);
+        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList($userCharacters, true);
         //else if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") $html .= self::setsButtonsList();
 					
 		$html .= "</div></div>";

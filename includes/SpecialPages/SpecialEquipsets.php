@@ -99,6 +99,7 @@ class SpecialEquipsets extends SpecialPage {
 	public function tabCharacter(FFXIPH_Character $c){
 
 		$race = $c->race;
+		$defaultSwitch = $c->def;
 		$stats = $c->meritStats;
 		$skill = $c->meritSkills;
 
@@ -120,7 +121,9 @@ class SpecialEquipsets extends SpecialPage {
 							"<div class=\"FFXIPackageHelper_equipsets_selectRace\">" .
 								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Default</p>" .
 								"<label class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultLabel\">" .
-									"<input type=\"checkbox\" id=\"FFXIPackageHelper_dynamiccontent_defaultChar\" class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultInput\" disabled></input>" .
+									"<input type=\"checkbox\" id=\"FFXIPackageHelper_dynamiccontent_defaultChar\" class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultInput\" disabled";
+								if ( $defaultSwitch == 1 ) $content .= " checked";
+								$content .= "></input>" .
 									"<span class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultSpan FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround\"></span>" .
 								"</label>" .
 								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace", $race) . "<br>" .
