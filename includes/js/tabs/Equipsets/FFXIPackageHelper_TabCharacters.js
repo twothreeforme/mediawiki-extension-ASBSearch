@@ -97,7 +97,7 @@ module.exports.setLinks = function (){
                 merits: Data.getMeritsData()
             };
 
-            console.log(characterComparison, charChanges);
+            //console.log(characterComparison, charChanges);
             
             if ( characterComparison.def != charChanges.def ||
                 characterComparison.race != charChanges.race ||
@@ -229,7 +229,7 @@ function saveCharacterClicked(){
 }
 
 function updateSavedCharacter(){
-    console.log("updateSavedCharacter");
+    //console.log("updateSavedCharacter");
     const data = {
         action: "equipsets_updatechar",
         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -260,7 +260,7 @@ function removeCharacter(charname){
 function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
         button.addEventListener("click", function () {
-            console.log("addCharButtonEvents")
+            //console.log("addCharButtonEvents")
             //if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) return;
 
             if ( manualModeSelected(button) == true ) {
@@ -628,7 +628,7 @@ function manualModeSelected(clickedButton){
     }
 
     let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
-    console.log("manualModeSelected", manualMode.classList);
+    //console.log("manualModeSelected", manualMode.classList);
     if ( manualMode.classList.contains("FFXIPackageHelper_charButtonselected") ) return true;
     else return false;
 }
