@@ -295,6 +295,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			if ( array_key_exists('mobMaxLevel', $row) ) $maxL = ($row['mobMaxLevel'] == 0 ) ? "-" : $row['mobMaxLevel'] ;
 			if ( array_key_exists('type', $row['dropData']) ) $dType = $row['dropData']['type'];
 			else $dType = 1; 	// All bcnm drops are part of a group
+			if ( $dType == 2) { continue; }
 			if ( array_key_exists('mobChanges', $row) ) $mobChanges = $row['mobChanges'];
 			else $mobChanges = 0;
 
@@ -324,25 +325,25 @@ class FFXIPackageHelper_HTMLTableHelper {
 			 * Handle drop details / grouping / type
 			 */
 			//print_r($dType);
-			$dropDetails = "-";
-			if ( $row['dropData']['groupId'] != "0" ) {
-				$gR = $row['dropData']['groupRate'];
-				if ( $gR > 1000 ) $gR = 1000;
-				$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;
-			}
-			else {
-				switch ($dType) {
-						case 2:
-							$dropDetails = "Steal";
-							break;
-						case 4;
-							$dropDetails = 'Despoil';
-							break;
-						default:
-							break;
-					}
-			}
-			$html .= "<td><center>$dropDetails</center></td>";
+			// $dropDetails = "-";
+			// if ( $row['dropData']['groupId'] != "0" ) {
+			// 	$gR = $row['dropData']['groupRate'];
+			// 	if ( $gR > 1000 ) $gR = 1000;
+			// 	$dropDetails = "Group " . $row['dropData']['groupId'] . " - " . ($row['dropData']['groupRate'] / 10) . "%" ;
+			// }
+			// else {
+			// 	switch ($dType) {
+			// 			case 2:
+			// 				$dropDetails = "Steal";
+			// 				break;
+			// 			case 4;
+			// 				$dropDetails = 'Despoil';
+			// 				break;
+			// 			default:
+			// 				break;
+			// 		}
+			// }
+			// $html .= "<td><center>$dropDetails</center></td>";
 			/*******************************************************/
 
 
@@ -427,7 +428,6 @@ class FFXIPackageHelper_HTMLTableHelper {
 			//}
 			$html .= "</tr>";	
 		}
-		
 		
 
 		$html .= "</table>";
