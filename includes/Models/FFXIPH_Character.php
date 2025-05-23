@@ -15,14 +15,7 @@ class FFXIPH_Character  {
         104 => 0, 105 => 0, 106 => 0, 107 => 0, 108 => 0, 109 => 0, 110 => 0,
         111 => 0, 112 => 0, 113 => 0, 114 => 0, 115 => 0, 116 => 0, 117 => 0, 118 => 0, 119 => 0, 120 => 0, 121 => 0
     );
-    // = array (
-    //         // stats
-    //         {2 : 0, 5 : 0, 8 : 0, 9 : 0, 10 : 0, 11 : 0, 12 : 0, 13 : 0, 14 : 0},
-    //         // skills
-    //         {80 => 0, 81 => 0, 82 => 0, 83 => 0, 84 => 0, 85 => 0, 86 => 0, 87 => 0, 88 => 0, 89 => 0, 90 => 0, 91 => 0,
-    //          104 => 0, 105 => 0, 106 => 0, 107 => 0, 108 => 0, 109 => 0, 110 => 0,
-    //          111 => 0, 112 => 0, 113 => 0, 114 => 0, 115 => 0, 116 => 0, 117 => 0, 118 => 0, 119 => 0, 120 => 0, 121 => 0},
-    //         );
+
     public string $equipment;
 
     public int $def;
@@ -30,6 +23,8 @@ class FFXIPH_Character  {
     public string $charid; 
 
     public bool $isDefault = true;
+    public string $raceString = "";
+    public int $userid = 0;
 
      /**
      * Character Model
@@ -60,24 +55,26 @@ class FFXIPH_Character  {
         $this->charname = (string)$charname;
         $this->charid = (int)$charid;
 
-
-        //$meritsURLSafe = "W3t9LHsiODYiOiI4In1d";
-        if ( $meritsURLSafe != "" ) {
-            $meritsdecoded = urldecode($meritsURLSafe);
-            $meritsString = base64_decode($meritsdecoded);
-            $meritsJSON = json_decode( $meritsString, true);
-            $this->setMerits($meritsJSON);
+        // /*test*/ $meritsURLSafe = "W3t9LHsiODYiOiI4In1d";
+        if ( $meritsURLSafe != "" && !is_null($meritsURLSafe) ) {
+            $this->setMerits($meritsURLSafe);
         }
-
-
 
         if ( $this->equipment != "" ) {
             $equipmentdecoded = urldecode($this->equipment);
             $this->equipment = base64_decode($equipmentdecoded);
         }
 
+        $racemodel = new FFXIPH_Races();
+        $this->raceString = $racemodel->toString[$this->race];
+
+        $this->userid = RequestContext::getMain()->getUser()->getId();
     }
 
+    /**
+     * Bool identifying if the character is a blank model
+     * @return bool true: blank model/ false: user character
+     */
     public function isDefault(){
         if ( $this->race == 0 &&
             $this->mlvl == 0 && 
@@ -94,9 +91,16 @@ class FFXIPH_Character  {
      * and fills in the remaining with 0
      * $this->merits must be an array of 2x objects [(object)stats, (object)skill]
      * each object { merit : value }
-     * @param object $meritsString // json_decode of merit string
+     * @param string $meritsURLSafe // encoded merit string
      */
-    private function setMerits($meritsJSON){
+    public function setMerits($meritsString){
+        if ( is_null($meritsString) | $meritsString == "" ) return;
+
+        $meritsdecoded = urldecode($meritsString);
+        $meritsString = base64_decode($meritsdecoded);
+        $meritsJSON = json_decode( $meritsString, false);
+        wfDebugLog( 'Equipsets', get_called_class() . ":setMerits:" . "(" . gettype($meritsString) . ")" . json_encode($meritsString) );
+
         // stats
         foreach ($meritsJSON[0] as $key => $value) {
             //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
@@ -107,9 +111,28 @@ class FFXIPH_Character  {
            //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
            $this->meritSkills[$key] = (int)$value;
         }
-
         //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . json_encode($this->meritSkills) );
+    }
 
+
+    public function getMeritsURLSafe(){
+        $stats = [];
+        // stats
+        foreach ($this->meritStats as $key => $value) {
+            //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+            if ( $value != 0 ) $stats[$key] = (int)$value;
+        }
+
+        $skills = [];
+        // skill
+        foreach ($this->meritSkills as $key => $value) {
+           //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+           if ( $value != 0 ) $skills[$key] = (int)$value;
+        }
+
+        $meritsString = json_encode( [$stats, $skills] );
+        $meritsString = base64_encode($meritsString);
+        return urlencode($meritsString);
     }
 
     public function toArray(){
@@ -129,7 +152,17 @@ class FFXIPH_Character  {
         ];
     }
 
-
+    public function hasMeritsSet(){
+        // stats
+        foreach ($this->meritStats as $value) {
+            if ($value != 0) return true;
+        }
+        // skill
+        foreach ($this->meritSkills as $value) {
+            if ($value != 0) return true;
+        }
+        return false;
+    }
 
 }
 

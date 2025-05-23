@@ -19,7 +19,7 @@ function actionAPI(params, forTab, currentButton, callback) {
       else if ( forTab == "recipesearch" ) updateRecipesFromQuery(result["recipes"]);
       else if ( forTab == "equipmentsearch" ) updateEquipmentFromQuery(result["equipment"]);
       else if ( forTab.includes("equipsets") ){
-        //console.log(result);
+        console.log(result);
         if ( forTab.includes("search") )  {
           callback.returnCallback(result['search']);
         }

@@ -1030,15 +1030,21 @@ class DBConnection {
 		// }
 		// return false;
 	}
+
     public function getUserCharactersFromUserID($uid){
-        return $this->getUserCharacters([
-            'userid' => $uid
-        ]);
+        $char = new FFXIPH_Character();
+        return $this->getUserCharacters($char);
     }
 
+    /**
+     * Returns an array of FFXIPH_Character objects
+     * @return FFXIPH_Character[]
+     */
     public function getUserCharacters($char = null, $testForExistingChar = false){
         $dbr = $this->openConnectionSets();
-        $uid = $char["userid"];
+
+        if ( $char == null ) $uid = RequestContext::getMain()->getUser()->getId();
+        else $uid = $char->userid;
 
         $chars = $dbr->newSelectQueryBuilder()
         ->select( [ 'charname', 'charid', 'race', 'merits', 'def' ] )
@@ -1049,19 +1055,21 @@ class DBConnection {
         $userCharacters = [];
         foreach($chars as $row){
             if ( $testForExistingChar == true &&
-                array_key_exists("charname", $char) &&
-                !is_null($char["charname"]) &&
-                $row->charname == $char["charname"] ) {
+                //array_key_exists("charname", $char) &&
+                !is_null($char->charname) &&
+                $row->charname == $char->charname ) {
                 //throw new Exception ( json_encode($row) );
                 return $row->charname;
             }
-            else $userCharacters[] = [
-                'charname' => $row->charname,
-                'charid' => $row->charid,
-                'race' => $row->race,
-                'merits' => $row->merits,
-                'def' => $row->def
-            ];
+            else {
+                $newChar = new FFXIPH_Character();
+                    $newChar->charname = $row->charname;
+                    $newChar->charid = $row->charid;
+                    $newChar->race = $row->race;
+                    $newChar->setMerits($row->merits);
+                    $newChar->def = $row->def;
+                $userCharacters[] = $newChar;
+            }
         }
         return $userCharacters;
     }
@@ -1075,7 +1083,7 @@ class DBConnection {
                 'def' => 0
             ],
             [
-                'charid' => $char["charid"],
+                'charid' => $char->charid,
             ]
         );
     }
@@ -1087,13 +1095,13 @@ class DBConnection {
         return $dbw->update(
             'user_chars',
             [
-                'race' => $char['race'] ,
-                'merits' => $char['merits'],
-                'def' => $char['def']
+                'race' => $char->race ,
+                'merits' => $char->getMeritsURLSafe(),
+                'def' => $char->def
             ],
             [
-                'userid' => $char['userid'],
-                'charname' => $char['charname']
+                'userid' => $char->userid,
+                'charname' => $char->charname
             ]
         );
     }
@@ -1101,9 +1109,10 @@ class DBConnection {
 
     public function getSelectedCharacter($char){
         $dbr = $this->openConnectionSets();
+        //wfDebugLog( 'Equipsets', get_called_class() . ":getSelectedCharacter:" . json_encode($char) );
 
-        $uid = $char['userid'];
-        $charname = $char['charname'];
+        $uid = $char->userid;
+        $charname = $char->charname;
 
         $query = [
             "user_chars.userid = '$uid' AND user_chars.charname = '$charname'",
@@ -1163,11 +1172,11 @@ class DBConnection {
         return $dbw->insert(
             'user_chars',
             [
-                'userid' => $char["userid"],
-                'charname' => $char["charname"],
-                'race' => $char["race"],
-                'merits' => $char["merits"],
-                'def' => $char["def"],
+                'userid' => $char->userid,
+                'charname' => $char->charname,
+                'race' => $char->race,
+                'merits' => $char->getMeritsURLSafe(),
+                'def' => $char->def,
             ],
             __METHOD__
         );
@@ -1179,8 +1188,8 @@ class DBConnection {
         return $dbw->delete(
             'user_chars',
             [
-                'userid' => $char["userid"],
-                'charname' => $char["charname"]
+                'userid' => $char->userid,
+                'charname' => $char->charname
             ],
             __METHOD__
         );

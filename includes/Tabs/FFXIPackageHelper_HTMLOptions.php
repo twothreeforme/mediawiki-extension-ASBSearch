@@ -171,30 +171,28 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function charactersButtonsList($selectDefault = null){
+    public static function charactersButtonsList($userCharacters, $selectDefault = null){
         // "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>"
         // $html = "<button id=\"FFXIPackageHelper_newCharButton\" class=\"FFXIPackageHelper_newCharButton\"></button>";
         $html = "";
 
         $classlist = "FFXIPackageHelper_charButton";
+        if ( is_null($userCharacters) || ( !is_null($userCharacters) && count($userCharacters) == 0 ) ){
+            $classlist .= " FFXIPackageHelper_charButtonselected";
+        }
         $html .= "<button id=\"FFXIPackageHelper_charButtonNone\" class=\"" . $classlist . "\">None</button>";
 
-        $user = RequestContext::getMain()->getUser();
-        $uid = $user->getId();
-        if ( $uid != 0 && $uid != null ){
-            $db = new DBConnection();
-            $userCharacters = $db->getUserCharactersFromUserID($uid);
 
-            if ( count($userCharacters) > 0 ){
-                foreach ($userCharacters as $char) {
-                    //$html .= "<option >". $char["charname"] ."</option>";
-                    
-                    if ( $char["def"] != 0  ) {
-                        $classlist .= " FFXIPackageHelper_charButton_default";
-                        if ( $selectDefault == true )  $classlist .= " FFXIPackageHelper_charButtonselected";
+        if ( !is_null($userCharacters) && count($userCharacters) > 0 ){
+            /* array of FFIXPH_Character objects */
+            foreach ($userCharacters as $char) {
+                if ( $char->def != 0  ) {
+                    $classlist .= " FFXIPackageHelper_charButton_default";
+                    if ( $selectDefault == true )  {
+                        $classlist .= " FFXIPackageHelper_charButtonselected";
                     }
-                    $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char["charname"] . "\" class=\"" . $classlist . "\">" . $char["charname"] . "</button>";
                 }
+                $html .= "<button id=\"FFXIPackageHelper_charButton_" . $char->charname . "\" class=\"" . $classlist . "\">" . $char->charname . "</button>";
             }
         }
 
@@ -223,7 +221,7 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function selectableButtonsBar($barClassname){
+    public static function selectableButtonsBar($barClassname, $userCharacters){
         $divName = "";
         $newButton = "";
         if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect"){
@@ -247,7 +245,7 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</span></button>";
         
 
-        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList(true);
+        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList($userCharacters, true);
         //else if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") $html .= self::setsButtonsList();
 					
 		$html .= "</div>";
@@ -324,6 +322,7 @@ class FFXIPackageHelper_HTMLOptions {
 
         return $html;
     }
+
 }
 
 ?>

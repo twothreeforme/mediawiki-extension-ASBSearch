@@ -159,6 +159,15 @@ function resetMeritsToDefault(){
 }
 
 function setMeritsData(merits_){
+    if ( merits_ == "" ) {
+        resetMeritsToDefault();
+        return;
+    }
+    else {
+        let merits_base64 = decodeURIComponent(merits_);
+        merits_ = JSON.parse(atob(merits_base64));
+    }
+
 
     let meritStats = merits_[0];
     let meritSkills = merits_[1];
@@ -228,10 +237,11 @@ function updateCharacter(char){
     else document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = true;
 
     if ( char.charname.length > 0 ) {
-        const merits_base64 = decodeURIComponent(char.merits);
-        const merits_ = JSON.parse(atob(merits_base64));
+        // const merits_base64 = decodeURIComponent(char.merits);
+        // const merits_ = JSON.parse(atob(merits_base64));
+        // setMeritsData(merits_);
 
-        setMeritsData(merits_);
+        setMeritsData(char.merits);
         setHeaderCharacterDetails();
     }
 }

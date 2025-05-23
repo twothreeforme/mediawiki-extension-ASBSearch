@@ -38,7 +38,7 @@ class APIModuleEquipsets extends ApiBase {
         $meritsString = base64_decode($decoded);
         //throw new Exception($meritsString);
 
-        wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] );
+        //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $params) );
 
 
         if ( $params['action'] == "equipsets" ) {
@@ -120,7 +120,9 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "equipsets_savechar" ) {
             $char = $this->createChar($params);
 
-            if ( $char['userid'] == 0 || $char['userid'] == null ){
+            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $char) );
+
+            if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
                 return;
             }
@@ -137,48 +139,58 @@ class APIModuleEquipsets extends ApiBase {
                 return;
             }
             else{
+                // trying to save edits to a char, and the default flag is set
                 if ( $params['def'] == 1 ){
-                    //search for user with default already applied
-                    // throw new Exception ( json_encode($userCharacters));
-                    foreach ( $userCharacters as &$userChar){
-                        if ( $userChar['def'] == 1 ) {
-                            $db->removeUserCharDefault($userChar);
-                            $userChar['def'] = 0;
-                            break;
+                        // search for user with default already applied
+                        // throw new Exception ( json_encode($userCharacters));
+                        foreach ( $userCharacters as &$userChar){
+                            if ( $userChar->def == 1 ) {
+                                $db->removeUserCharDefault($userChar);
+                                $userChar->def = 0;
+                                break;
+                            }
                         }
-                    }
                 }
 
                 //char name is new and should be saved
                 $db->setUserCharacter($char);
                 $userCharacters[] = $char;
                 $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
+
+
+
+                // $charSelectBar = self::getCharSelectButtonsBar();
+                // $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
                 return;
             }
         }
         else if ( $params['action'] == "equipsets_updatechar" ) {
+wfDebugLog( 'Equipsets', "***");
             //throw new Exception ( json_encode($params) );
             $db = new DBConnection();
-            $char = $this->createChar($params);
+            $char = $this->createChar($params, $params['merits']);
 
-            if ( $char['userid'] == 0 || $char['userid'] == null ){
+wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
+
+            if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
                 return;
             }
 
             $userCharacters = $db->getUserCharacters($char, false);
 
-            if ( $params['def'] == 1 ){
-                //search for user with default already applied
+            // trying to save edits to a char, and the default flag is set
+           if ( $params['def'] == 1 ){
+                // search for user with default already applied
                 // throw new Exception ( json_encode($userCharacters));
                 foreach ( $userCharacters as &$userChar){
-                    if ( $userChar['def'] == 1 ) {
+                    if ( $userChar->def == 1 ) {
                         $db->removeUserCharDefault($userChar);
-                        $userChar['def'] = 0;
+                         $userChar->def = 0;
                         break;
                     }
                 }
-            }
+           }
 
             $db->updateUserCharacter($char);
 
@@ -187,13 +199,15 @@ class APIModuleEquipsets extends ApiBase {
             $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
             //$result->addValue( $params['action'],  "status", "great");
             //throw new Exception ( json_encode( [$params['charname'], $userCharacters]));
+wfDebugLog( 'Equipsets', "***");
+
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {
             $db = new DBConnection();
 
             $char = $this->createChar($params);
             
-            if ( is_null($char['charname']) ){
+            if ( is_null($char->charname) ){
                 $selectedChar = [
                     'charname' => null,
                     'charid' => null,
@@ -205,7 +219,6 @@ class APIModuleEquipsets extends ApiBase {
             else {
                 $selectedChar = $db->getSelectedCharacter($char);
             }
-            
             $result->addValue( $params['action'], "selectchar", $selectedChar );
         }
         else if ( $params['action'] == "equipsets_removechar" ) {
@@ -339,15 +352,21 @@ class APIModuleEquipsets extends ApiBase {
         return $equipLabelsArray;
     }
 
-    private function createChar($params){
-        $user = RequestContext::getMain()->getUser();
-        return [
-            'userid' => $user->getId(),
-            'charname' => $params['charname'],
-            'race' => $params['race'] ,
-            'merits' => $params['merits'],
-            'def' => $params['def']
-        ];
+    // private function createChar($params){
+    //     $user = RequestContext::getMain()->getUser();
+    //     return [
+    //         'userid' => $user->getId(),
+    //         'charname' => $params['charname'],
+    //         'race' => $params['race'],
+    //         'merits' => $params['merits'],
+    //         'def' => $params['def']
+    //     ];
+    // }
+
+    private function createChar($params, $meritsString = null, $equipmentString = null){
+        //$user = RequestContext::getMain()->getUser();
+        return new FFXIPH_Character($params['race'], null, null, null, null,
+                            $meritsString, null, $params['def'], $params['charname'], null);
     }
 
     private function createSet($params){
@@ -363,6 +382,36 @@ class APIModuleEquipsets extends ApiBase {
             'equipment' => $params['equipment'],
             'usersetid' => $params['usersetid']
         ];
+    }
+
+
+    // div class="FFXIPackageHelper_characterHeader"
+    private function getCharacterHeader(){
+        //$user = RequestContext::getMain()->getUser();
+        $uid = self::getUserID();
+        if ( $uid != 0 ) { // User is logged in
+            $db = new DBConnection();
+            $userChars = $db->getUserCharactersFromUserID($uid);
+        }
+        return FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $userChars );
+    }
+
+    // div id=FFXIPackageHelper_equipsets_charSelect
+    private function getCharSelectButtonsBar($userchars){
+        return FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $userchars);
+    }
+
+    private function getUserID(){
+        return RequestContext::getMain()->getUser()->getId();
+    }
+
+    private function getUserCharacters(){
+        $uid = self::getUserID();
+        if ( $uid != 0 ) { // User is logged in
+            $db = new DBConnection();
+            return $db->getUserCharactersFromUserID($uid);
+        }
+        return null;
     }
 }
 

@@ -557,8 +557,27 @@ class FFXIPackageHelper_HTMLTableHelper {
 		return $html;
 	}
 
-	public static function characterSelectedHeader(){
+	public static function characterSelectedHeader(FFXIPH_Character $character){
 
+		/*backup*/ //$html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_$charname\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>";
+
+		$html = "<div class=\"FFXIPackageHelper_characterHeader\">";
+
+		// Character Name
+		$html .= "<i><b id=\"FFXIPackageHelper_characterHeader_name\">" ;
+		if ( $character->charname != null ) $html .= $character->charname;
+		else $html .= "No character selected";
+		$html .= "</b></i>";
+
+		// Character Details
+		$html .= "<i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\">";
+		// Race
+		$html .=  " - " . $character->raceString .  " - ";
+		if (  $character->hasMeritsSet() == false ) $html .= "No merits set";
+		else $html .= "Merits set";
+
+		$html .= "</i></div>";
+		return $html;
 	}
 }
 

@@ -13,7 +13,7 @@ class SpecialEquipsets extends SpecialPage {
 		}
 	}
 
-	private $requestData =[];
+	private $userChars;
 
 	function execute( $par ) {
 		$this->setHeaders();
@@ -45,17 +45,29 @@ class SpecialEquipsets extends SpecialPage {
 			$uid = $user->getId();
 			if ( $uid != 0 ) { // User is logged in
 				$db = new DBConnection();
-				$defCharacter = $db->getDefaultCharacter( $uid );
-				if ( is_null($defCharacter) ) $currentCharacter = new FFXIPH_Character();
-				else $currentCharacter = $defCharacter;
+				$this->userChars = $db->getUserCharactersFromUserID($uid);
+
+				// Create blank model
+				$currentCharacter = new FFXIPH_Character();
+				foreach( $this->userChars as $char ){
+					/* If one of the chars in the users char array
+					has the character->def property set then a default
+					character exists, and use that instead*/
+					if ( $char->def > 0 ) $currentCharacter = $char;
+				}
+
+				//$defCharacter = $db->getDefaultCharacter( $uid );
+				//if ( is_null($defCharacter) ) $currentCharacter = new FFXIPH_Character();
+				//else $currentCharacter = $defCharacter;
 			}
 			else $currentCharacter = new FFXIPH_Character();
 		}
 
-		wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
+		//wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
 		$tabEquipsets = new FFXIPackageHelper_Equipsets($currentCharacter->toArray());
 
-        $html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
+        //$html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
+		$html = FFXIPackageHelper_HTMLTableHelper::characterSelectedHeader($currentCharacter) .
 			"<div id=\"initialHide\" style=\"display: none;\">" .
 				$this->header() .
 				$this->tabEquipsets( $tabEquipsets->showEquipsets() ) .
@@ -85,6 +97,7 @@ class SpecialEquipsets extends SpecialPage {
     }
 
 	public function tabCharacter(FFXIPH_Character $c){
+
 		$race = $c->race;
 		$stats = $c->meritStats;
 		$skill = $c->meritSkills;
@@ -92,7 +105,7 @@ class SpecialEquipsets extends SpecialPage {
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
 
 					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
-						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect") .
+						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $this->userChars) .
 						
 						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
 

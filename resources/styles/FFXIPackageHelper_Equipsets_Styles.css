@@ -226,7 +226,7 @@ box-shadow: 0 6px 10px #a1cb4785;
 .FFXIPackageHelper_editCharButton, .FFXIPackageHelper_editSetsButton{
   visibility: hidden;
   /* display: block; */
-  position: absolute;
+  /* position: absolute; */
   outline: 0;
   cursor: pointer;
   border: none;
@@ -238,6 +238,10 @@ box-shadow: 0 6px 10px #a1cb4785;
   background: #3586ff;
   color: #ffffff;
   box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
+}
+
+.FFXIPackageHelper_editCharButton{
+  visibility: visible;
 }
 
 .FFXIPackageHelper_editSetsButton{
@@ -281,7 +285,9 @@ box-shadow: 0 6px 10px #a1cb4785;
 }
 
 .FFXIPackageHelper_charButton:disabled,
-.FFXIPackageHelper_charButton[disabled]{
+.FFXIPackageHelper_charButton[disabled],
+.FFXIPackageHelper_editCharButton:disabled,
+.FFXIPackageHelper_editCharButton[disabled]{
   cursor: not-allowed;
   pointer-events: none;
   background-color: #86868671;

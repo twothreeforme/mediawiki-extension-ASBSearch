@@ -16,6 +16,8 @@
         "SpecialEquipsets": "includes/SpecialPages/SpecialEquipsets.php",
 
         "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
+        "FFXIPH_Races": "includes/Models/FFXIPH_Races.php",
+
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
         "APIModuleEquipmentSearch" : "includes/APIModules/APIModuleEquipmentSearch.php",
@@ -40,6 +42,7 @@
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
         "DataModel": "includes/helpers/FFXIPackageHelper_DataModel.php",
         "DBConnection": "includes/helpers/FFXIPackageHelper_DBConnection.php",
+
         "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
 
         "FFXIPackageHelper_Equipsets": "includes/helpers/FFXIPackageHelper_Equipsets.php",
