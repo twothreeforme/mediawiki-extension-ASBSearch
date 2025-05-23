@@ -51,7 +51,7 @@ module.exports.setLinks = function (){
     RACE_DROPDOWN.addEventListener("change", () =>  {
         //console.log(e.target.value);
         Data.updateStats();
-        resetCharSelection();
+        //resetCharSelection();
         Data.setHeaderCharacterDetails();
 
     });
@@ -75,20 +75,20 @@ module.exports.setLinks = function (){
 
         // Adjust Edit button
         if ( EDIT_BUTTON.innerText == "Edit") {
-            EDIT_BUTTON.innerText = "Apply";
-
+            
             characterComparison = {
                 def: DEFAULT_SWITCH.checked,
                 race: RACE_DROPDOWN.value,
                 merits: Data.getMeritsData()
             };
 
+            EDIT_BUTTON.innerText = "Apply";
             setDisabledState_AllCharacterButtons(true);
             ActionButtons.hideButton(REMOVE_BUTTON);//hide remove button
             NEWCHAR_BUTTON.disabled = true;
         }
         else {
-            EDIT_BUTTON.innerText = "Edit";
+            
             //resetCharSelection();
 
             let charChanges = {
@@ -97,6 +97,8 @@ module.exports.setLinks = function (){
                 merits: Data.getMeritsData()
             };
 
+            console.log(characterComparison, charChanges);
+            
             if ( characterComparison.def != charChanges.def ||
                 characterComparison.race != charChanges.race ||
                 characterComparison.merits != charChanges.merits ){
@@ -104,7 +106,7 @@ module.exports.setLinks = function (){
                     else updateSavedCharacter();
                 }
             // console.log(characterComparison, charChanges);
-
+            EDIT_BUTTON.innerText = "Edit";
             characterComparison = null;
             charChanges = null;
             setDisabledState_AllCharacterButtons(false);
@@ -176,7 +178,7 @@ function selectDefaultCharacterOnLoad(){
 
 
 function selectCharClicked(character, isManual){
-    //if ( typeof(charname) != "string" ) return;
+    //console.log("selectCharClicked:", character)
     if ( character == null ) return;
 
     let data = { action: "equipsets_selectchar" };
@@ -227,6 +229,7 @@ function saveCharacterClicked(){
 }
 
 function updateSavedCharacter(){
+    console.log("updateSavedCharacter");
     const data = {
         action: "equipsets_updatechar",
         race: document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -257,8 +260,8 @@ function removeCharacter(charname){
 function addCharButtonEvents(charButtons){
     Array.from(charButtons).forEach((button) => {
         button.addEventListener("click", function () {
-            //console.log("addCharButtonEvents")
-            if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) return;
+            console.log("addCharButtonEvents")
+            //if ( button.classList.contains('FFXIPackageHelper_charButtonselected') ) return;
 
             if ( manualModeSelected(button) == true ) {
                 
@@ -266,13 +269,13 @@ function addCharButtonEvents(charButtons){
             }
             else selectCharClicked(button.innerHTML); 
 
-                Array.from(charButtons).forEach((btn) => {
-                    //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
-                    showCharButtonSelected(btn, false);
-                });
+            Array.from(charButtons).forEach((btn) => {
+                //if ( btn.classList.contains('FFXIPackageHelper_charButtonselected') ) btn.classList.toggle('FFXIPackageHelper_charButtonselected');
+                showCharButtonSelected(btn, false);
+            });
 
-                //toggleSelected(button);\
-                showCharButtonSelected(button, true);
+            //toggleSelected(button);\
+            showCharButtonSelected(button, true);
             });
     });
 }
@@ -311,9 +314,10 @@ function resetCharList(incCharsList){
 }
 
 function characterSaved(results, resetBypass){
+    console.log("characterSaved", results);
     const recentCharSaved = results[0];
     const newUserList = results[1];
-    // console.log(results);
+    
     resetCharList(newUserList);
 
     const charButton = document.getElementById('FFXIPackageHelper_charButton_' + recentCharSaved);
@@ -326,12 +330,18 @@ function characterSaved(results, resetBypass){
 }
 
 function clearCharList(){
-    var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
+    // var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charSelect");
+    var charSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_charactersButtonsList");
+
+    
     const buttons = charSelectDIV.querySelectorAll('button');
     Array.from(buttons).forEach((button) => {
       if ( button.classList.contains("FFXIPackageHelper_charButton") && button.id != "FFXIPackageHelper_charButtonNone" )  {
         let new_element = button.cloneNode(true);
         button.parentNode.replaceChild(new_element, button);
+        
+        //console.log("clearCharList:", charSelectDIV, new_element);
+
         charSelectDIV.removeChild(new_element);
       }
     });
@@ -611,7 +621,7 @@ function manualModeSelected(clickedButton){
     }
 
     let manualMode = document.getElementById("FFXIPackageHelper_charButtonNone");
-    //console.log(manualMode.classList);
+    console.log("manualModeSelected", manualMode.classList);
     if ( manualMode.classList.contains("FFXIPackageHelper_charButtonselected") ) return true;
     else return false;
 }

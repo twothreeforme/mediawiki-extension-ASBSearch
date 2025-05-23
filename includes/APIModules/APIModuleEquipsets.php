@@ -159,18 +159,18 @@ class APIModuleEquipsets extends ApiBase {
 
 
 
-                // $charSelectBar = self::getCharSelectButtonsBar();
+                // $charSelectBar = self::getCharSelectButtonsBar( ,$params['charname']);
                 // $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
                 return;
             }
         }
         else if ( $params['action'] == "equipsets_updatechar" ) {
-wfDebugLog( 'Equipsets', "***");
+//wfDebugLog( 'Equipsets', "***");
             //throw new Exception ( json_encode($params) );
             $db = new DBConnection();
             $char = $this->createChar($params, $params['merits']);
 
-wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
+///wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
 
             if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
@@ -197,9 +197,10 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
             $userCharacters = $db->getUserCharacters($char, false);
 
             $result->addValue( $params['action'], "status", [$params['charname'], $userCharacters] );
-            //$result->addValue( $params['action'],  "status", "great");
-            //throw new Exception ( json_encode( [$params['charname'], $userCharacters]));
-wfDebugLog( 'Equipsets', "***");
+
+            $charSelectBar = self::getCharSelectButtonsBar($userCharacters ,$params['charname']);
+            $result->addValue( $params['action'], "charSelectButtonsBar", $charSelectBar );
+//wfDebugLog( 'Equipsets', "***");
 
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {
@@ -393,12 +394,12 @@ wfDebugLog( 'Equipsets', "***");
             $db = new DBConnection();
             $userChars = $db->getUserCharactersFromUserID($uid);
         }
-        return FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $userChars );
+        return FFXIPackageHelper_HTMLOptions::charactersButtonsList($userChars );
     }
 
     // div id=FFXIPackageHelper_equipsets_charSelect
-    private function getCharSelectButtonsBar($userchars){
-        return FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $userchars);
+    private function getCharSelectButtonsBar($userchars, $selectChar){
+        return FFXIPackageHelper_HTMLOptions::charactersButtonsList($userchars, $selectChar );
     }
 
     private function getUserID(){
