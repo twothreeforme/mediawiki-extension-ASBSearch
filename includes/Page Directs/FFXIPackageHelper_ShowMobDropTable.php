@@ -31,7 +31,7 @@ class FFXIPackageHelper_ShowMobDropTable  {
             $pagetitle = $parser->getTitle();
         }
         else $pagetitle = $params['mob'];
-        $html .= $pagetitle;
+        //$html .= $pagetitle;
 
         $db = new DBConnection();
         $mobDropsRAW = $db->getMobDropRates($pagetitle);
