@@ -37,7 +37,7 @@ class FFXIPackageHelper_ShowMobDropTable  {
         $mobDropsRAW = $db->getMobDropRates($pagetitle);
 
         $dm = new DataModel();
-        $dm->parseData($mobDropsRAW);
+        $dm->parseMobDropData($mobDropsRAW);
         $mobDropsModel = $dm->getDataSet();
 
         //wfDebugLog( 'ShowMobDrops', get_called_class() . ":" . json_encode( $mobDropsModel) );
