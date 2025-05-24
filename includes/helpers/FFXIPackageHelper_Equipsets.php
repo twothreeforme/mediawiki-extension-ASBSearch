@@ -36,7 +36,6 @@ class FFXIPackageHelper_Equipsets  {
                     "<span>Main " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectMJob", $this->sharedLink['mjob']) . FFXIPackageHelper_HTMLOptions::levelRange("FFXIPackageHelper_equipsets_selectMLevel", $this->sharedLink['mlvl']) . "</span><br>
                     <span>Sub " . FFXIPackageHelper_HTMLOptions::jobDropDown("FFXIPackageHelper_equipsets_selectSJob", $this->sharedLink['sjob']) . FFXIPackageHelper_HTMLOptions::subLevelRange("FFXIPackageHelper_equipsets_selectSLevel", $this->sharedLink['slvl']) . $maxedSub ."</span><br>
                     </div>";
-                // <span style=\"float:right;\">". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") . "</span><br><br>
         return $html;
     }
 
@@ -118,7 +117,9 @@ class FFXIPackageHelper_Equipsets  {
 
     public function userSetsData(){
         $html = "<div style=\"width:100%;text-align: center; padding: 12px;\">
-                    <span>". $this->showShareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
+                    <span>". 
+                    FFXIPackageHelper_HTMLTableHelper::shareButton("FFXIPackageHelper_dynamiccontent_shareEquipset") .
+                    FFXIPackageHelper_HTMLTableHelper::shareDiscordButton("FFXIPackageHelper_dynamiccontent_shareDiscordEquipset") .
                     "</span>
                 </div>";
         return $html;

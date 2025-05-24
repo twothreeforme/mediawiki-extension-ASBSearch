@@ -173,6 +173,15 @@ class ParserHelper {
 		return self::brackets($zone);
 	}
 
+    public static function zone_forList($zone){
+		$zone = ParserHelper::replaceUnderscores($zone);
+        $zone = str_replace("[S]", "(S)", $zone);
+
+		$zone = str_replace("-", " - ", $zone);
+        $zone = str_replace(" Of ", " of ", $zone);
+		return $zone;
+	}
+
     public static function zoneERA_forList($zone){
 		$zone = ParserHelper::replaceUnderscores($zone);
         $zone = str_replace("[S]", "(S)", $zone);

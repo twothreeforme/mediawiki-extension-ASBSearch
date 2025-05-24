@@ -12,6 +12,7 @@
         "SpecialASBSearch": "includes/SpecialPages/SpecialASBSearch.php",
         "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
+        "SpecialDiggingWeatherForecast_Retail": "includes/WeatherForecast/SpecialDiggingWeatherForecast_Retail.php",
         "ZoneForecast": "includes/WeatherForecast/FFXIPackageHelper_ZoneForecast.php",
         "SpecialEquipsets": "includes/SpecialPages/SpecialEquipsets.php",
 
@@ -54,6 +55,7 @@
         "ASBSearch": "SpecialASBSearch",
         "WeatherForecast": "SpecialWeatherForecast",
         "DiggingWeatherForecast": "SpecialDiggingWeatherForecast",
+        "DiggingWeatherForecast_Retail": "SpecialDiggingWeatherForecast_Retail",
         "Equipsets": "SpecialEquipsets"
     },
     "MessagesDirs": {

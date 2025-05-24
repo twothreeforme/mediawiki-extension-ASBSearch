@@ -71,26 +71,58 @@ Custom Buttons
 }
 
 
-.FFXIPackageHelper_dynamiccontent_shareButton {
+.FFXIPackageHelper_dynamiccontent_shareButton,
+.FFXIPackageHelper_dynamiccontent_shareDiscordButton {
     display: inline-block;
     outline: none;
     cursor: pointer;
-    padding: 0 16px;
+    padding: 0 0 0 0;
     background-color: #fafbfc;
-    border-radius: 0.25rem;
+    border-radius: 7px;
     border: 1px solid #1b1f2326;
     color: #24292e;
-    font-size: 13px;
+    /* font-size: 13px; */
     line-height: 20px;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
+    height: 30px;
+    width: 55px;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
 }
 
-.FFXIPackageHelper_dynamiccontent_shareButton:hover {
+.FFXIPackageHelper_dynamiccontent_shareButton{
+    width: 40px;
+    margin-right: 15px;
+}
+
+.FFXIPackageHelper_dynamiccontent_shareDiscordButton{
+    background-color: #7289da;
+    color: #ffffff;
+    /* vertical-align: -50%; */
+    
+}
+
+.FFXIPackageHelper_dynamiccontent_shareButton svg{
+  width: 20px;
+  height: 25px;
+}
+
+.FFXIPackageHelper_dynamiccontent_shareDiscordButton svg {
+  width: 25px;
+  height: 25px;
+  /* padding: 2px 0 0 0; */
+}
+
+.FFXIPackageHelper_dynamiccontent_shareButton:hover,
+.FFXIPackageHelper_dynamiccontent_shareDiscordButton:hover {
     background-color: #f3f4f6;
     border-color: #1b1f2326;
     transition-duration: 0.1s;
+}
+
+.FFXIPackageHelper_dynamiccontent_shareDiscordButton:hover{
+    background-color: #7289da62;
 }
 
 .FFXIPackageHelper_dynamiccontent_customDropDown {

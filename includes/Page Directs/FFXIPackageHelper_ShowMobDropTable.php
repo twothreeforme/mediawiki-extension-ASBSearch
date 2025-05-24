@@ -31,7 +31,6 @@ class FFXIPackageHelper_ShowMobDropTable  {
             $pagetitle = $parser->getTitle();
         }
         else $pagetitle = $params['mob'];
-        //$html .= $pagetitle;
 
         $db = new DBConnection();
         $mobDropsRAW = $db->getMobDropRates($pagetitle);
@@ -44,54 +43,10 @@ class FFXIPackageHelper_ShowMobDropTable  {
 
         $html .= FFXIPackageHelper_HTMLTableHelper::table_MobDropRates($mobDropsModel, $classname);
 
-    //     if(isset($params['zone'])) {
-    //         $pagename = (string)$parser->recursiveTagParse($params['zone'], $frame );
-    //         //$html = $parser->recursiveTagParse( $html, $frame );
-    //         //print_r("if: " . gettype($pagename));
-        
-    //     }
-    //     else {
-    //         $pagename = $parser->getTitle()->__toString();
-    //         //print_r("else: " . gettype($pagename));
-
-    //     }
-    //     // $pagename = $pagename->getText() ;
-
-        
-    //     //$name = ParserHelper::zoneName($row['name']);
-    //     //print_r($pagename);
-    //    // print_r(str_replace("\'", "", $pagename));
-    //     $pagename = ParserHelper::replaceApostrophe($pagename);
-    //     $pagename = ParserHelper::zoneERA_forQuery($pagename);
-    //     //var_dump($pagename);
-        
-    //     foreach ( $zoneList as $zone){
-    //         if ( $zone->name == $pagename) {
-    //             $zoneid = $zone->zoneid;
-    //             break;
-    //         }
-    //         else if ( $zone->zoneid == 4 && $pagename == 'Bibiki_Bay-Purgonorgo_Isle' ){
-    //             $zoneid = $zone->zoneid;
-    //             break;
-    //         }
-    //         else if ( $zone->zoneid == 29 && $pagename == 'Riverne-Site_#B01' ){
-    //             $zoneid = $zone->zoneid;
-    //             break;
-    //         }
-    //         else if ( $zone->zoneid == 30 && $pagename == 'Riverne-Site_#A01' ){
-    //             $zoneid = $zone->zoneid;
-    //             break;
-    //         }
-    //     }
-    
-         //$html = self::_tableHeaders();
-
-    //     $html .= "</table></div>";
-
-    //     $html = $parser->recursiveTagParse( $html, $frame );
+   
         $html = $parser->recursiveTagParse( $html, $frame );
 
-    //     //$html = $parserOutput->getText();
+        //$html = $parserOutput->getText();
         
         return 	$html;
     }

@@ -149,10 +149,16 @@ module.exports.setLinks = function (){
         Data.updateStats();
     });
 
-    const shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
+    let shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
     shareEquipset.addEventListener("click", function (e) {
         //shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
     });
+
+    let shareDiscordEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDiscordEquipset");
+    shareDiscordEquipset.addEventListener("click", function (e) {
+        //shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
+    });
+    
 
      // Load Merit Edits section
     // MeritEdits.setLinks(Data.updateStats);

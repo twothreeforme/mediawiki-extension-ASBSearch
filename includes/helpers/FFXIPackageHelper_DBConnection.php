@@ -343,7 +343,7 @@ class DBConnection {
 			->fetchResultSet();
     }
 
-    public function getWeather($forDiggersPage){
+    public function getWeather($forDiggersPage, $forRetail = false){
         $forDiggersPage ? $forDiggersPage : false;
 
         $dbr = new DBConnection();
@@ -352,7 +352,8 @@ class DBConnection {
         $result = [ ];
         foreach( $allZonesWeather as $row ){
             //Filter zones for those in Era
-            $temp = ParserHelper::zoneERA_forList($row->name);
+            if ( $forRetail == true ) $temp = ParserHelper::zone_forList($row->name);
+            else $temp = ParserHelper::zoneERA_forList($row->name);
 			if ( !isset($temp) || ExclusionsHelper::zoneIsTown($temp)) { continue; }
 
             $dayCount = 30;

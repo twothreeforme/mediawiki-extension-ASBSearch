@@ -348,8 +348,8 @@ class ExclusionsHelper {
         121 => 'The_Sanctuary_of_ZiTah',
         117 => 'Tahrongi_Canyon',
         118 => 'Buburimu_Peninsula',
-        // 51 => 'Wajaom_Woodlands',
-        // 52 => 'Bhaflau_Thickets'
+        51 => 'Wajaom_Woodlands',
+        52 => 'Bhaflau_Thickets'
     );
 
     public static $weatherZones = array(
