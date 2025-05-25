@@ -156,7 +156,7 @@ module.exports.setLinks = function (){
 
     let shareDiscordEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDiscordEquipset");
     shareDiscordEquipset.addEventListener("click", function (e) {
-        //shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
+        shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareDiscordEquipset", Data.getStatsData(true));
     });
     
 
@@ -311,58 +311,33 @@ function buildSetslist(results){
 }
 
 function clearSetList(){
-    /*
-    var setSelectDIV = document.getElementById("FFXIPackageHelper_equipsets_setSelect");
-    const buttons = setSelectDIV.querySelectorAll('button');
-    Array.from(buttons).forEach((button) => {
-      if ( button.classList.contains("FFXIPackageHelper_setButton") )  {
-        let new_element = button.cloneNode(true);
-        button.parentNode.replaceChild(new_element, button);
-        setSelectDIV.removeChild(new_element);
-      }
-    });
-    */
-
-    // var i, L = SELECTSET_DROPDOWN.options.length - 1;
-    // for(i = L; i >= 0; i--) {
-    //     //SELECTSET_DROPDOWN.remove(i);
-    // }
-
-    // while (SELECTSET_DROPDOWN.querySelector('optgroup')) {
-    //     //SELECTSET_DROPDOWN.removeChild(//SELECTSET_DROPDOWN.querySelector('optgroup'));
-    // }
-
-   ////SELECTSET_DROPDOWN.children().remove();
 
 }
 
-// function fetchSet(usersetid){
-//     const data = {
-//         action:"equipsets_selectset",
-//         usersetid:usersetid
-//     };
-//     API.actionAPI(data, data.action, null, Data);
-// }
 
 function shareQueryClicked(shareID, params) {
-    var GETparams = "";
-    if ( shareID == "FFXIPackageHelper_dynamiccontent_shareEquipset" ){
-        GETparams = "&race=" + params['race'] +
-                    "&mlvl=" + params['mlvl'] +
-                    "&slvl=" + params['slvl'] +
-                    "&mjob=" + params['mjob'] +
-                    "&sjob=" + params['sjob'] +
-                    "&merits=" + params['merits'] +
-                    "&equipment=" + params['equipment'];
-    }
-    else {
-        mw.notify( 'Your query is not complete. Please complete and try again.', { autoHide: true,  type: 'error' } );
-        return;
-    }
+    let GETparams = "";
+    GETparams = "&race=" + params['race'] +
+            "&mlvl=" + params['mlvl'] +
+            "&slvl=" + params['slvl'] +
+            "&mjob=" + params['mjob'] +
+            "&sjob=" + params['sjob'] +
+            "&merits=" + params['merits'] +
+            "&equipment=" + params['equipment'];
+
     //const encodedParams = encodeURIComponent(GETparams);
-    var url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
+    let url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
     //console.log(url);
-    //return;
+
+    if ( shareID == "FFXIPackageHelper_dynamiccontent_shareDiscordEquipset" ){
+        let mjob = document.getElementById("FFXIPackageHelper_equipsets_selectMJob");
+
+        mjob = mjob.options[mjob.selectedIndex].text;
+        let sjob = document.getElementById("FFXIPackageHelper_equipsets_selectSJob");
+        sjob = sjob.options[sjob.selectedIndex].text;
+        url = `[ ${mjob}/${sjob} - Wiki Equipset](` + url + `)`;
+        console.log(url);
+    }
 
     navigator.clipboard.writeText(url).then(function() {
         //console.log('copyURLToClipboard(): Copied!');

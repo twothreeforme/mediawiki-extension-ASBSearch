@@ -23,9 +23,19 @@ use MediaWiki\MediaWikiServices;
 class FFXIPackageHelper_Equipsets  {
 
     private $sharedLink;
+    private $sharedEquipmentModel;
 
-    public function __construct($query = null) {
-        $this->sharedLink = $query; //nothing should be null inside this array, defaults set in APIModuleEquipsets
+    public function __construct(FFXIPH_Character $query = null) {
+        if ( !is_null($query) && $query->isDefault() == false){
+            $this->sharedLink = $query->toArray();
+        }
+        else {
+            $temp = new FFXIPH_Character(); 
+            $this->sharedLink = $temp->toArray();
+        }
+
+        $this->sharedEquipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
+        
     }
 
     public function querySection(){
@@ -40,33 +50,49 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function statsSection(){
+
+        $stats = null;
+        if ( $this->sharedLink['isDefault'] == false ) {
+            // $equipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
+            //$equipmentArray = $equipmentModel->getEquipmentArray();
+
+            $newStats = new FFXIPackageHelper_Stats( $this->sharedLink['race'], 
+                                                    $this->sharedLink['mlvl'],
+                                                    $this->sharedLink['slvl'], 
+                                                    $this->sharedLink['mjob'], 
+                                                    $this->sharedLink['sjob'], 
+                                                    $this->sharedLink['merits'], 
+                                                    $this->sharedEquipmentModel->getEquipmentArray() );
+            $stats =  $newStats->getStats();
+        }
+
         $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats\">
                     <p><center><b>Statistics</b></center></p>
                     <table class=\"FFXIPackageHelper_Equipsets_showstats_basestats\">
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                        <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">0</span></td></tr>
-                        <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">0</span></td></tr>
+                        <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">" . ($stats ? $stats[0] : 0) . "</span></td></tr>
+                        <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">" . ($stats ? $stats[1] : 0) . "</span></td></tr>
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                        <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\"></span></td></tr>
-                        <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\"></span></td></tr>
-                        <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\"></span></td></tr>
-                        <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statAGIMod\"></span></td></tr>
-                        <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statINTMod\"></span></td></tr>
-                        <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statMNDMod\"></span></td></tr>
-                        <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">0</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statCHRMod\"></span></td></tr>
+                        <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">" . ($stats ? $stats[2] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\">" . ( ($stats && $stats[3] != 0) ? $stats[3] : "") . "</span></td></tr>
+                        <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">" . ($stats ? $stats[4] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\">" . (($stats && $stats[5] != 0) ? $stats[5] : "") . "</span></td></tr>
+                        <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">" . ($stats ? $stats[6] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\">" . (($stats && $stats[7] != 0) ? $stats[7] : "") . "</span></td></tr>
+                        <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">" . ($stats ? $stats[8] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statAGIMod\">" . (($stats && $stats[9] != 0) ? $stats[9] : "") . "</span></td></tr>
+                        <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">" . ($stats ? $stats[10] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statINTMod\">" . (($stats && $stats[11] != 0) ? $stats[11] : "") . "</span></td></tr>
+                        <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">" . ($stats ? $stats[12] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statMNDMod\">" . (($stats && $stats[13] != 0) ? $stats[13] : "") . "</span></td></tr>
+                        <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">" . ($stats ? $stats[14] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statCHRMod\">" . (($stats && $stats[15] != 0) ? $stats[15] : "") . "</span></td></tr>
                         <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                        <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">0</span></td></tr>
-                        <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">0</span></td></tr>
-                        <tr><td>ACC&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statACC\">0</span></td></tr>
-                        <tr><td>EVA&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statEVA\">0</span></td></tr>
+                        <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">" . ($stats ? $stats[16] : 0) . "</span></td></tr>
+                        <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">" . ($stats ? $stats[17] : 0) . "</span></td></tr>
+                        <tr><td>ACC&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statACC\">" . ($stats ? $stats[26] : 0) . "</span></td></tr>
+                        <tr><td>EVA&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statEVA\">" . ($stats ? $stats[27] : 0) . "</span></td></tr>
                     </table>
                 </div>";
         return $html;
     }
 
-    public function equipmentGrid($slot = null){
-        $griditems = self::updateGridItems($slot)[0];
-
+    public function equipmentGrid($updatedGridItems = null){
+        //$griditems = self::updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList())[0];
+        //throw new Exception ( json_encode($griditems) );
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
         $imageURL = $f->getCanonicalUrl();
         $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\">";
@@ -77,8 +103,7 @@ class FFXIPackageHelper_Equipsets  {
             if ( $s == 0 ) $html .= "<tr>";
             else if ( $s == 4 || $s == 8 || $s == 12 ) $html .= "</tr><tr>";
 
-           $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid" . $s . "\" data-value=\"" . $griditems[$s][1][0]  . "\">". $griditems[$s][1][1] . "</div></td>";
-           // $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid0\" data-value=\"0\">". ParserHelper::wikiParse("[[File:". $slot[$s] . "|64px|link=]]") ."</div></td>";
+           $html .= $td . "<div class=\"equipsetsGridImage\" id=\"grid" . $s . "\" data-value=\"" . $updatedGridItems[$s][1][0]  . "\">". $updatedGridItems[$s][1][1] . "</div></td>";
         }
         // $html .= "</tr></table>";
         $html .= "</tr>";
@@ -125,58 +150,62 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function additionalData(){
+    /**
+     * @param $luaNamesArray array of strings | names of items
+     */
+    public function additionalData($luaNamesArray){
+
         $html =  "<div class=\"FFXIPackageHelper_Equipsets_additionalData\">" .
                     "<div class=\"FFXIPackageHelper_Equipsets_equipList\">
                         <h3 style=\"display:block;margin-top:0em;padding:0px;\">Equipment List</h3><br>
                         <table>
                             <tr>
-                                <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\"> - </td>
+                                <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\">" . (( !is_null($luaNamesArray) && $luaNamesArray[0] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[0] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\"> - </td>
+                                <td>Sub</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel1\">" . (( !is_null($luaNamesArray) && $luaNamesArray[1] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[1] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\"> - </td>
+                                <td>Range</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel2\">" . (( !is_null($luaNamesArray) && $luaNamesArray[2] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[2] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\"> - </td>
+                                <td>Ammo</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel3\">" . (( !is_null($luaNamesArray) && $luaNamesArray[3] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[3] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\"> - </td>
+                                <td>Head</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel4\">" . (( !is_null($luaNamesArray) && $luaNamesArray[4] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[4] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\"> - </td>
+                                <td>Neck</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel5\">" . (( !is_null($luaNamesArray) && $luaNamesArray[5] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[5] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\"> - </td>
+                                <td>Ear1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel6\">" . (( !is_null($luaNamesArray) && $luaNamesArray[6] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[6] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\"> - </td>
+                                <td>Ear2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel7\">" . (( !is_null($luaNamesArray) && $luaNamesArray[7] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[7] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\"> - </td>
+                                <td>Body</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel8\">" . (( !is_null($luaNamesArray) && $luaNamesArray[8] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[8] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\"> - </td>
+                                <td>Hands</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel9\">" . (( !is_null($luaNamesArray) && $luaNamesArray[9] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[9] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\"> - </td>
+                                <td>Ring1</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel10\">" . (( !is_null($luaNamesArray) && $luaNamesArray[10] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[10] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\"> - </td>
+                                <td>Ring2</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel11\">" . (( !is_null($luaNamesArray) && $luaNamesArray[11] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[11] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\"> - </td>
+                                <td>Back</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel12\">" . (( !is_null($luaNamesArray) && $luaNamesArray[12] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[12] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\"> - </td>
+                                <td>Waist</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel13\">" . (( !is_null($luaNamesArray) && $luaNamesArray[13] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[13] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\"> - </td>
+                                <td>Legs</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel14\">" . (( !is_null($luaNamesArray) && $luaNamesArray[14] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[14] . "]]") ) : "- ") . "</td>
                             </tr>
                             <tr>
-                                <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\"> - </td>
+                                <td>Feet</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel15\">" . (( !is_null($luaNamesArray) && $luaNamesArray[15] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[15] . "]]") ) : "- ") . "</td>
                             </tr>
                         </table><br>" .
                         FFXIPackageHelper_HTMLOptions::saveButton("FFXIPackageHelper_newSetButton") .
@@ -200,14 +229,21 @@ class FFXIPackageHelper_Equipsets  {
     //     return $html;
     // }
 
-    public function showLuaSets(){
-            $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >
-                        <span id=\"FFXIPackageHelper_Equipsets_showLuaSets\"></span>
-                        </div>";
-            return $html;
+    public function showLuaSets($sets){
+        $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >
+                    <span id=\"FFXIPackageHelper_Equipsets_showLuaSets\">";
+        $setsHTML = new FFXIPackageHelper_LuaSetsHelper();
+        $html .= $setsHTML->__getSetsHTML($sets);    
+                    
+        $html .=  "</span></div>";
+        return $html;
     }
 
     public function showEquipsets(){
+        $updatedEquipmentData = $this->updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList());
+        // $updatedGridItems = $updatedEquipmentData[0];
+        // $updatedLuaNames = $updatedEquipmentData[1];
+
         $html = "<span><b>THIS IS STILL UNDER CONSTRUCTION. ALL SAVED CHARS & SETS MAY BE DELETED AS WE CONTINUE DEVELOPMENT OF THIS TOOL.</b><br>" .
                     "<i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i>" .
                     "<br><i><b>Usage:</b> Share button disabled for now as this is being restructured. </i></span>" .
@@ -219,14 +255,12 @@ class FFXIPackageHelper_Equipsets  {
                         </tr>
                         <tr>
                             <td rowspan=\"2\">" . $this->statsSection() . "</td>
-                            <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid() . "</table></td>
+                            <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $updatedEquipmentData[0] ) . "</table></td>
                         </tr>
                         <tr><td>" . $this->resistances() ."</td></tr>
                     </table>" .
-                    $this->additionalData() . 
-
-
-                    $this->showLuaSets() .
+                    $this->additionalData( $updatedEquipmentData[1] ) . 
+                    $this->showLuaSets($updatedEquipmentData[1]) .
                 "</div>";
 
         return $html;

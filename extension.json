@@ -47,6 +47,7 @@
         "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
 
         "FFXIPackageHelper_Equipsets": "includes/helpers/FFXIPackageHelper_Equipsets.php",
+        "FFXIPackageHelper_LuaSetsHelper": "includes/helpers/data/FFXIPackageHelper_LuaSetsHelper.php",
 
         "VanaTime": "includes/helpers/FFXIPackageHelper_VanaTime.php",
         "FFXIPackageHelper_ShowMobDropTable": "includes/Page Directs/FFXIPackageHelper_ShowMobDropTable.php"

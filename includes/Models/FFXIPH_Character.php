@@ -80,9 +80,10 @@ class FFXIPH_Character  {
             $this->mlvl == 0 && 
             $this->slvl == 0 && 
             $this->mjob == 0 &&
-            $this->sjob == 0 && 
-            //$this->merits == [] &&
-            $this->equipment == "" ) return true; 
+            $this->sjob == 0  
+            // && $this->merits == [] &&
+            //$this->equipment == "" 
+            ) return true; 
         else return false;
     }
 
@@ -116,23 +117,29 @@ class FFXIPH_Character  {
 
 
     public function getMeritsURLSafe(){
-        $stats = [];
-        // stats
-        foreach ($this->meritStats as $key => $value) {
-            //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
-            if ( $value != 0 ) $stats[$key] = (int)$value;
-        }
+        // $stats = [];
+        // // stats
+        // foreach ($this->meritStats as $key => $value) {
+        //     //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+        //     if ( $value != 0 ) $stats[$key] = (int)$value;
+        // }
 
-        $skills = [];
-        // skill
-        foreach ($this->meritSkills as $key => $value) {
-           //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
-           if ( $value != 0 ) $skills[$key] = (int)$value;
-        }
+        // $skills = [];
+        // // skill
+        // foreach ($this->meritSkills as $key => $value) {
+        //    //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+        //    if ( $value != 0 ) $skills[$key] = (int)$value;
+        // }
 
-        $meritsString = json_encode( [$stats, $skills] );
+        // $meritsString = json_encode( [$stats, $skills] );
+
+        $meritsString = json_encode( $self::getMerits() );
         $meritsString = base64_encode($meritsString);
         return urlencode($meritsString);
+    }
+
+    public function getMerits(){
+        return [$this->meritStats, $this->meritSkills];
     }
 
     public function toArray(){
@@ -148,7 +155,8 @@ class FFXIPH_Character  {
 
              'def'  => $this->def, 
              'charname'  => $this->charname, 
-             'charid'  => $this->charid
+             'charid'  => $this->charid,
+             'isDefault' => $this->isDefault()
         ];
     }
 

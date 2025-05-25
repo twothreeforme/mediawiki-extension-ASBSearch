@@ -89,7 +89,6 @@ class SpecialASBSearch extends SpecialPage {
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
-        // $tabEquipsets = new FFXIPackageHelper_Equipsets($equipsetsData);
         $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
         $tabAdmin = new FFXIPackageHelper_HTMLTabAdmin();
 

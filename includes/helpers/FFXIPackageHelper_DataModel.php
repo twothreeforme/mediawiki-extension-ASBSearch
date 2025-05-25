@@ -311,9 +311,10 @@ class DataModel {
 			 * We can skip some of these effects...
 			 */
 
-			 $_mod = null;
+			$_mod = null;
+			$statusEffect = false;
 			if  ( $row->modid && $row->modValue){
-				$statusEffect = false;
+				
 				if ( $row->modid == 499 || 		//-- Animation ID of Spikes and Additional Effects
 					$row->modid == 501 || 		//-- Chance of an items Additional Effect or Spikes
 					$row->modid == 950 ||		//-- Element of the Additional Effect or Spikes, for resist purposes
@@ -344,7 +345,7 @@ class DataModel {
 				'jobs' => $row->jobs,
 				'slot' => $row->slot,
 				'rslot' => $row->rslot,
-				'hasstatuseffect' => $statusEffect,
+				'hasstatuseffect' => $statusEffect ? $statusEffect : false,
 				'mods' => ($_mod == null) ? array() : array ( $_mod )
 			);
 

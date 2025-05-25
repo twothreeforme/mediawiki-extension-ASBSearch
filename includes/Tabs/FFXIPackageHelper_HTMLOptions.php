@@ -208,7 +208,7 @@ class FFXIPackageHelper_HTMLOptions {
         }
         
         $classlist = "FFXIPackageHelper_charButton";
-        if ( $selectDefaultCharacter === false ){
+        if ( $selectDefaultCharacter === false ||  is_null($userCharacters) ){
             $classlist .= " FFXIPackageHelper_charButtonselected";
             //wfDebugLog( 'Equipsets', get_called_class() . ":charactersButtonsList:" . json_encode($selectDefaultCharacter) );
         }

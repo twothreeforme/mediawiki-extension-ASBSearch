@@ -262,8 +262,9 @@ class APIModuleEquipsets extends ApiBase {
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
-            $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList, true)[0];
-            $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
+            $updatedGridItems = $tabEquipsets->updateGridItems($incomingEquipmentList, true);
+            $updatedGrid = $updatedGridItems[0];
+            $luaNamesArray = $updatedGridItems[1];
 
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $fetchedSet['race'], $fetchedSet['mlvl'], $fetchedSet['slvl'], $fetchedSet['mjob'], $fetchedSet['sjob'], $meritsString, $newEquipmentArray );

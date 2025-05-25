@@ -299,8 +299,9 @@ class FFXIPackageHelper_Stats {
 
     private function setMerits($meritsALL){
         if ( is_null($meritsALL) ) return;
-
-        $temp = json_decode($meritsALL, false);
+        
+        if ( gettype($meritsALL) == 'string' ) $temp = json_decode($meritsALL, false);
+        else $temp = $meritsALL;
         $this->meritStats = $temp[0];
         foreach( $this->meritStats as $key => $value ){
 
