@@ -22,7 +22,7 @@ class FFXIPH_Character  {
     public string $charname;
     public string $charid; 
 
-    public bool $isDefault = true;
+    //public bool $isDefault = true;
     public string $raceString = "";
     public int $userid = 0;
 
@@ -42,7 +42,7 @@ class FFXIPH_Character  {
      */
     public function __construct( $race = 0, $mlvl = 0, $slvl = 0, $mjob = 0, $sjob = 0, $meritsURLSafe = "", $equipment = "",
                                 $def = 0, $charname = "", $charid = 0 ) {
-        //wfDebugLog( 'Equipsets', json_encode($charDetails) );
+        
         $this->race = (int)$race;
         $this->mlvl = (int)$mlvl;
         $this->slvl = (int)$slvl;
@@ -84,7 +84,25 @@ class FFXIPH_Character  {
             // && $this->merits == [] &&
             //$this->equipment == "" 
             ) return true; 
-        else return false;
+        else {
+            //throw new Exception ( json_encode( [$this->race,$this->mlvl,$this->slvl,$this->mjob,$this->sjob  ] ));
+            return false;
+        }
+    }
+
+    public function canGenerateStats(){
+        if ( $this->race == 0 ||
+            $this->mlvl == 0 || 
+            $this->slvl == 0 || 
+            $this->mjob == 0 ||
+            $this->sjob == 0  
+            // && $this->merits == [] &&
+            //$this->equipment == "" 
+            ) return false; 
+        else {
+            //throw new Exception ( json_encode( [$this->race,$this->mlvl,$this->slvl,$this->mjob,$this->sjob  ] ));
+            return true;
+        }
     }
 
     /**
@@ -156,7 +174,8 @@ class FFXIPH_Character  {
              'def'  => $this->def, 
              'charname'  => $this->charname, 
              'charid'  => $this->charid,
-             'isDefault' => $this->isDefault()
+             'isDefault' => self::isDefault(),
+             'canGenerateStats' => self::canGenerateStats()
         ];
     }
 

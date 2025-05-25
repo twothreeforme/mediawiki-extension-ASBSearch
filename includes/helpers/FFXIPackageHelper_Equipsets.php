@@ -52,7 +52,8 @@ class FFXIPackageHelper_Equipsets  {
     public function statsSection(){
 
         $stats = null;
-        if ( $this->sharedLink['isDefault'] == false ) {
+        if ( $this->sharedLink['canGenerateStats'] ) {
+            //throw new Exception (  json_encode($this->sharedLink) ) ;
             // $equipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
             //$equipmentArray = $equipmentModel->getEquipmentArray();
 
