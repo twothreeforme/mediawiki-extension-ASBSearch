@@ -264,6 +264,8 @@ class FFXIPackageHelper_Equipsets  {
                                                     $this->sharedEquipmentModel->getEquipmentArray() );
             $stats =  $newStats->getStats();
         }
+        //wfDebugLog( 'Equipsets', get_called_class() . ":showEquipsets:" . json_encode($stats) );
+        //wfDebugLog( 'Equipsets', get_called_class() . ":showEquipsets:" . $this->sharedLink['canGenerateStats'] );
 
         $updatedEquipmentData = $this->updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList());
         // $updatedGridItems = $updatedEquipmentData[0];

@@ -286,7 +286,7 @@ function shareQueryClicked(shareID, params) {
             "&equipment=" + params['equipment'];
 
     //const encodedParams = encodeURIComponent(GETparams);
-    let url = window.location.href.split('?')[0] + "?action=equipsets_share" + GETparams;
+    let url = window.location.href.split('?')[0] + GETparams;
     //console.log(url);
 
     if ( shareID == "FFXIPackageHelper_dynamiccontent_shareDiscordEquipset" ){
@@ -296,7 +296,7 @@ function shareQueryClicked(shareID, params) {
         let sjob = document.getElementById("FFXIPackageHelper_equipsets_selectSJob");
         sjob = sjob.options[sjob.selectedIndex].text;
         url = `[ ${mjob}/${sjob} - Wiki Equipset](` + url + `)`;
-        console.log(url);
+        //console.log(url);
     }
 
     navigator.clipboard.writeText(url).then(function() {

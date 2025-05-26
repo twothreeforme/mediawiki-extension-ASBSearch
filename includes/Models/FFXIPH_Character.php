@@ -91,7 +91,8 @@ class FFXIPH_Character  {
     }
 
     public function canGenerateStats(){
-        if ( $this->race == 0 ||
+        if ( 
+            //$this->race == 0 ||
             $this->mlvl == 0 || 
             $this->slvl == 0 || 
             $this->mjob == 0 ||

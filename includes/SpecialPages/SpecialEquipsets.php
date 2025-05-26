@@ -60,7 +60,7 @@ class SpecialEquipsets extends SpecialPage {
 				}
 		}
 
-		//wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
+		//wfDebugLog( 'Equipsets', get_called_class() . ":execute:" . json_encode($currentCharacter ) );
 		$tabEquipsets = new FFXIPackageHelper_Equipsets($currentCharacter);
 
         //$html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
