@@ -266,7 +266,7 @@ class FFXIPackageHelper_Equipsets  {
         // $updatedGridItems = $updatedEquipmentData[0];
         // $updatedLuaNames = $updatedEquipmentData[1];
 
-        $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i>" .
+        $html = "<span><i><b>Disclosure:</b>  Please reach out with any questions/comments via Discord.</i>" .
                     "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
                     "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
