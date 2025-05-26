@@ -81,7 +81,7 @@ class FFXIPackageHelper_Equipsets  {
             $style = " style=\"color:green;\">&nbsp;&nbsp;+";
         }
         else if ( $stat < 0 ) {
-            $style = " style=\"color:red;\">&nbsp;&nbsp;-";
+            $style = " style=\"color:red;\">&nbsp;&nbsp;";
         }
         else $style = ">";
 
