@@ -241,7 +241,7 @@ class FFXIPackageHelper_HTMLOptions {
         return $html;
     }
 
-    public static function selectableButtonsBar($barClassname, $userCharacters){
+    public static function selectableButtonsBar($barClassname, $userCharacters, $selectDefaultCharacter = null){
         $divName = "";
         $newButton = "";
         if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect"){
@@ -265,7 +265,7 @@ class FFXIPackageHelper_HTMLOptions {
         $html .= "</span></button>";
         
         $html .= "<div id=\"FFXIPackageHelper_equipsets_charactersButtonsList\">";
-        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList($userCharacters, true);
+        if ( $barClassname == "FFXIPackageHelper_equipsets_charSelect" ) $html .= self::charactersButtonsList($userCharacters, $selectDefaultCharacter);
         //else if ( $barClassname == "FFXIPackageHelper_equipsets_setSelect") $html .= self::setsButtonsList();
 					
 		$html .= "</div></div>";

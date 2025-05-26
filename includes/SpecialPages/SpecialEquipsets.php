@@ -14,6 +14,7 @@ class SpecialEquipsets extends SpecialPage {
 	}
 
 	private $userChars;
+	private $shouldLoadDefaultCharacter = true;
 
 	function execute( $par ) {
 		$this->setHeaders();
@@ -32,21 +33,23 @@ class SpecialEquipsets extends SpecialPage {
 													$request->getText( 'merits' ),
 													$request->getText( 'equipment' ) );
 
+		// Check for user logged in
+		$user = RequestContext::getMain()->getUser();
+		$uid = $user->getId();
+		if ( $uid != 0 ) { // User is logged in
+			$db = new DBConnection();
+			$this->userChars = $db->getUserCharactersFromUserID($uid);
+		}
+
 		/**
 		 * 	Determine which character to load on startup
 		 *  Either the request data (from shared link) or default char saved in DB
 		 */											
 		if ( !$requestCharacter->isDefault() ) {
 			$currentCharacter = $requestCharacter;
+			$this->shouldLoadDefaultCharacter = false;
 		}
 		else {
-			// Check for user logged in
-			$user = RequestContext::getMain()->getUser();
-			$uid = $user->getId();
-			if ( $uid != 0 ) { // User is logged in
-				$db = new DBConnection();
-				$this->userChars = $db->getUserCharactersFromUserID($uid);
-
 				// Create blank model
 				$currentCharacter = new FFXIPH_Character();
 				foreach( $this->userChars as $char ){
@@ -55,12 +58,6 @@ class SpecialEquipsets extends SpecialPage {
 					character exists, and use that instead*/
 					if ( $char->def > 0 ) $currentCharacter = $char;
 				}
-
-				//$defCharacter = $db->getDefaultCharacter( $uid );
-				//if ( is_null($defCharacter) ) $currentCharacter = new FFXIPH_Character();
-				//else $currentCharacter = $defCharacter;
-			}
-			else $currentCharacter = new FFXIPH_Character();
 		}
 
 		//wfDebugLog( 'Equipsets', json_encode($currentCharacter ) );
@@ -106,7 +103,7 @@ class SpecialEquipsets extends SpecialPage {
 		$content = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
 
 					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
-						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $this->userChars) .
+						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $this->userChars, $this->shouldLoadDefaultCharacter) .
 						
 						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
 
