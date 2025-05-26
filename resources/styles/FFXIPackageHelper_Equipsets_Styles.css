@@ -165,10 +165,10 @@ Character selection buttons
 
 
 .FFXIPackageHelper_charButton_default, .FFXIPackageHelper_setButton_default {
-box-shadow: 5px 5px 5px 5px #00ad1a95;
+  box-shadow: 5px 5px 5px 5px #00ad1a95;
 }
 .FFXIPackageHelper_charButton_default:hover, .FFXIPackageHelper_setButton_default:hover {
-box-shadow: 0 6px 10px #a1cb4785;
+  box-shadow: 0 6px 10px #a1cb4785;
 }
 
 

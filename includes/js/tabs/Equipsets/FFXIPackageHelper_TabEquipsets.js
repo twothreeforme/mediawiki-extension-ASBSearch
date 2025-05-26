@@ -151,7 +151,7 @@ module.exports.setLinks = function (){
 
     let shareEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareEquipset");
     shareEquipset.addEventListener("click", function (e) {
-        //shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
+        shareQueryClicked("FFXIPackageHelper_dynamiccontent_shareEquipset", Data.getStatsData(true));
     });
 
     let shareDiscordEquipset = document.getElementById("FFXIPackageHelper_dynamiccontent_shareDiscordEquipset");
@@ -169,8 +169,6 @@ module.exports.setLinks = function (){
     });
 
 
-
-
     /**
      * DEV ONLY
      */
@@ -180,15 +178,6 @@ module.exports.setLinks = function (){
     //sJobDropdown.value=2;
     // raceDropdown.value=3;
 
-    /**
-     * On page load
-     */
-    // const url = window.location.href;
-    // if ( url.includes("action=equipsets_share")) {
-    //     loadSharedLink(url);
-    //     //console.log("fired");
-    // }
-    // else Data.updateStats();
 
     Data.getMeritsData();
     Tooltip.setupPageTooltips();
@@ -219,14 +208,7 @@ function selectSetClicked(usersetid){
     data.action = "equipsets_selectset",
     data.usersetid = usersetid;
 
-    //ActionButtons.showButton(REMOVE_BUTTON);
-    // ActionButtons.showButton(EDIT_BUTTON);
-
-    // const selectedSetButton = document.getElementById('FFXIPackageHelper_setButton_' + setname);
-    // if ( selectedSetButton ) showSetButtonSelected(selectedSetButton, true);
-
     API.actionAPI(data, data.action, null, Data);
-    //scrollToTop();
 }
 
 function removeSetClicked(setID, setName){
@@ -244,31 +226,11 @@ function saveSetClicked(){
 
     data.action = "equipsets_saveset";
     API.actionAPI(data, data.action, null, setSaved);
-    // //scrollToTop();
 
-    // // make New button green again
     toggleNewButton();
-
-    // //hide Save button
-    // ActionButtons.hideButton(SAVE_BUTTON);
 }
 
 function setSaved(results){
-    //results[0] = set name that was saved
-    //results[1] = the new set list
-
-    //const recentSave = results[0];
-
-    //const newSetList = results;
-    //resetSetList(newSetList);
-
-    // const setButton = document.getElementById('FFXIPackageHelper_setButton_' + recentSave);
-    // setButton.classList.toggle('FFXIPackageHelper_setButtonselected');
-
-    //toggleButtonVisibility(REMOVE_BUTTON);
-    //Data.updateStats();
-    //scrollToTop();
-    //Data.setHeaderCharacterDetails();
     resetSetList(results);
 }
 
@@ -282,9 +244,7 @@ function resetSetList(results){
     clearSetList();
     if (results){
         //console.log(results);
-        // currentSetName = results[0];
         buildSetslist(results);
-        ////SELECTSET_DROPDOWN.value = currentSetName;
     }
     else {
         const data = {
@@ -348,80 +308,7 @@ function shareQueryClicked(shareID, params) {
     });
 };
 
-function loadSharedLink(url){
-    let paramString = url.split('?')[1];
-    let params_arr = paramString.split('&');
-    var race, mlvl, slvl, mjob, sjob, merits, equipment;
 
-    for(let i = 0; i < params_arr.length; i++) {
-        let pair = params_arr[i].split('=');
-        // console.log("Key is:" + pair[0]);
-        // console.log("Value is:" + pair[1]);
-        switch(pair[0]){
-            case "race":
-                race = pair[1];
-                break;
-            case "mlvl":
-                mlvl = pair[1];
-                break;
-            case "slvl":
-                slvl = pair[1];
-                break;
-            case "mjob":
-                mjob = pair[1];
-                break;
-            case "sjob":
-                sjob = pair[1];
-                break;
-            case "equipment":
-                equipment = pair[1];
-                break;
-            case "merits":
-                merits = pair[1];
-                break;
-        }
-    }
-
-    const data = {
-        action: "equipsets_change",
-        race:race,
-        mlvl:mlvl,
-        slvl:slvl,
-        mjob:mjob,
-        sjob:sjob,
-        merits: merits,
-        equipment: equipment,
-    }
-
-    API.actionAPI(data, data.action, null, this);
-
-    mlvlDropdown.value=data.mlvl;
-    slvlDropdown.value=data.slvl;
-    mJobDropdown.value=data.mjob;
-    sJobDropdown.value=data.sjob;
-    raceDropdown.value=data.race;
-
-    //encodeURIComponent(btoa(Data.getMeritsData())),
-    merits = atob(decodeURIComponent(data.merits));
-    const meritObj = JSON.parse(merits);
-
-    // Set merit stats in table
-    Object.keys(meritObj[0]).forEach(key => {
-        let _id = "FFXIPackageHelper_equipsets_merits_stats"
-        const e = document.getElementById(_id + key);
-        e.value = meritObj[0][key];
-    });
-
-    // Set merit skills in table
-    Object.keys(meritObj[1]).forEach(key => {
-        let _id = "FFXIPackageHelper_equipsets_merits_skill"
-        const e = document.getElementById(_id + key);
-        e.value = meritObj[1][key];
-    });
-
-    const tabsButton_equipsets = document.getElementById("FFXIPackageHelper_tabs_equipsets");
-    tabsButton_equipsets.click();
-}
 
 function showSetButtonSelected(button, selected){
     if ( selected == true ) button.classList.add('FFXIPackageHelper_setButtonselected');
@@ -471,15 +358,6 @@ function setDisabledState_AllSavedSetButtons(state){
     //console.log(setButtons);
     for ( const button of setButtons ){
         button.disabled = state;
-
-        // if ( state == true ) {
-        //     hideButton(REMOVE_BUTTON);//hide remove button
-        //     hideButton(EDIT_BUTTON);//hide edit button
-        // }
-        // else {
-        //     ActionButtons.showButton(REMOVE_BUTTON);//show remove button
-        //     ActionButtons.showButton(EDIT_BUTTON);//show edit button
-        // }
     }
 }
 

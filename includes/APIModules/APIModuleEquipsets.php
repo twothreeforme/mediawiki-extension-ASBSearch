@@ -77,19 +77,12 @@ class APIModuleEquipsets extends ApiBase {
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
             
-            //throw new Exception ( json_encode($newEquipmentArray));
-
-            // if( $newEquipmentArray[8]["id"] == 0 ) {
-            //     throw new Exception ( json_encode($newEquipmentArray) . "\n:::\n" . json_encode($equipmentModel));
-            // }
-
             // send updated HTML back as result
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
 
             $tabEquipsets = new FFXIPackageHelper_Equipsets();
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList)[0];
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
-
 
             $stats = $newStats->getStats();
             //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
@@ -104,7 +97,7 @@ class APIModuleEquipsets extends ApiBase {
 
             // $labelsEncoded = base64_encode(json_encode($this->parseEquipmentLabels($newEquipmentArray)));
             // $labelsURLSafe = urlencode($labelsEncoded);
-            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels( $newEquipmentArray) );
 
             $luaNamesEncoded = base64_encode(json_encode($luaNamesArray));
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
@@ -284,7 +277,7 @@ class APIModuleEquipsets extends ApiBase {
             $result->addValue( $params['action'], "selectset", $fetchedSet );
             $result->addValue($params['action'], "stats", $statsURLSafe );
             $result->addValue($params['action'], "grid", $gridURLSafe );
-            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
+            $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels( $newEquipmentArray) );
             $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );
 
         }

@@ -49,22 +49,7 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function statsSection(){
-        $stats = null;
-        if ( $this->sharedLink['canGenerateStats'] ) {
-            //throw new Exception (  json_encode($this->sharedLink) ) ;
-            // $equipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
-            //$equipmentArray = $equipmentModel->getEquipmentArray();
-
-            $newStats = new FFXIPackageHelper_Stats( $this->sharedLink['race'], 
-                                                    $this->sharedLink['mlvl'],
-                                                    $this->sharedLink['slvl'], 
-                                                    $this->sharedLink['mjob'], 
-                                                    $this->sharedLink['sjob'], 
-                                                    $this->sharedLink['merits'], 
-                                                    $this->sharedEquipmentModel->getEquipmentArray() );
-            $stats =  $newStats->getStats();
-        }
+    public function statsSection( $stats = null){
 
         $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats\">
                     <p><center><b>Statistics</b></center></p>
@@ -105,15 +90,20 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function equipmentGrid($updatedGridItems = null){
-        //$griditems = self::updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList())[0];
-        //throw new Exception ( json_encode($griditems) );
+        //throw new Exception ( json_encode($updatedGridItems));
         $f = MediaWikiServices::getInstance()->getRepoGroup()->findFile('Blank.jpg');
         $imageURL = $f->getCanonicalUrl();
-        $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\">";
 
         $html = "";
 
         for ( $s = 0; $s <= 15; $s++){
+
+            $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\""; 
+            if ( $updatedGridItems[$s][2] ){
+                $td .= " class=\"hint--bottom\" aria-label=\"" . $updatedGridItems[$s][2] . "\"";
+            }
+            $td .= ">";
+
             if ( $s == 0 ) $html .= "<tr>";
             else if ( $s == 4 || $s == 8 || $s == 12 ) $html .= "</tr><tr>";
 
@@ -125,7 +115,7 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function resistances(){
+    public function resistances( $stats = null){
         $resCircles = array();
         $resCircles[] = "Trans_Fire.gif";
         $resCircles[] = "Trans_Wind.gif";
@@ -144,10 +134,12 @@ class FFXIPackageHelper_Equipsets  {
 
         $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;line-height: 14px;\" >";
         $td = "<td class=\"FFXIPackageHelper_Equipsets_statRes\" >";
+        //throw new Exception ( json_encode($updatedGridItems));
         for ( $r = 0; $r <= 7; $r++){
             if ( $r == 0 ) $html .= "<tr>";
             else if ( $r == 4 ) $html .= "</tr><tr>";
-            $html .= $td . $resCircles[$r] . "<span id=\"FFXIPackageHelper_Equipsets_statRes" . $r . "\"  >0</span>";
+            $s = $r + 18;
+            $html .= $td . $resCircles[$r] . "<span id=\"FFXIPackageHelper_Equipsets_statRes" . $r . "\"  >". ($stats ? $stats[$s] : 0) . "</span>";
         }
 
         $html .= "</tr></table></div>";
@@ -254,13 +246,27 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function showEquipsets(){
+        
+        if ( $this->sharedLink['canGenerateStats'] ) {
+            //throw new Exception (  json_encode($this->sharedLink) ) ;
+            // $equipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
+            //$equipmentArray = $equipmentModel->getEquipmentArray();
+
+            $newStats = new FFXIPackageHelper_Stats( $this->sharedLink['race'], 
+                                                    $this->sharedLink['mlvl'],
+                                                    $this->sharedLink['slvl'], 
+                                                    $this->sharedLink['mjob'], 
+                                                    $this->sharedLink['sjob'], 
+                                                    $this->sharedLink['merits'], 
+                                                    $this->sharedEquipmentModel->getEquipmentArray() );
+            $stats =  $newStats->getStats();
+        }
+
         $updatedEquipmentData = $this->updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList());
         // $updatedGridItems = $updatedEquipmentData[0];
         // $updatedLuaNames = $updatedEquipmentData[1];
 
-        $html = "<span><b>THIS IS STILL UNDER CONSTRUCTION. ALL SAVED CHARS & SETS MAY BE DELETED AS WE CONTINUE DEVELOPMENT OF THIS TOOL.</b><br>" .
-                    "<i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i>" .
-                    "<br><i><b>Usage:</b> Share button disabled for now as this is being restructured. </i></span>" .
+        $html = "<span><i><b>Disclosure:</b>  This is for experimentation only. If you have any questions/comments please reach out via Discord.</i>" .
                     "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
                     "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
@@ -268,13 +274,13 @@ class FFXIPackageHelper_Equipsets  {
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
                         <tr>
-                            <td rowspan=\"2\">" . $this->statsSection() . "</td>
+                            <td rowspan=\"2\">" . $this->statsSection( $stats ) . "</td>
                             <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $updatedEquipmentData[0] ) . "</table></td>
                         </tr>
-                        <tr><td>" . $this->resistances() ."</td></tr>
+                        <tr><td>" . $this->resistances( $stats ) ."</td></tr>
                     </table>" .
                     $this->additionalData( $updatedEquipmentData[1] ) . 
-                    $this->showLuaSets($updatedEquipmentData[1]) .
+                    $this->showLuaSets( $updatedEquipmentData[1] ) .
                 "</div>";
 
         return $html;
