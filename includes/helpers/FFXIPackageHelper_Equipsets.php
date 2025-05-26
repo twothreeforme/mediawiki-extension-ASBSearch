@@ -101,10 +101,8 @@ class FFXIPackageHelper_Equipsets  {
             $td = "<td style=\"background-image:url(" . $imageURL . ");background-repeat:no-repeat;background-size:64px 64px;\""; 
             if ( $updatedGridItems[$s][2] ){
                 $td .= " class=\"hint--bottom\" aria-label=\"";
-                //$tooltip = str_replace("\"", "\\\"", $updatedGridItems[$s][2]);
-               // $td .= $tooltip;
-                $td .= $updatedGridItems[$s][2];
-
+                $tooltip = str_replace("\"", "&quot;", $updatedGridItems[$s][2]);
+                $td .= $tooltip;
                 $td .= "\"";
             }
             $td .= ">";
