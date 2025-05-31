@@ -286,7 +286,10 @@ function shareQueryClicked(shareID, params) {
             "&equipment=" + params['equipment'];
 
     //const encodedParams = encodeURIComponent(GETparams);
-    let url = window.location.href.split('?')[0] + GETparams;
+    let wgServer = mw.config.get( 'wgServer' );
+    let wgScriptPath = mw.config.get( 'wgScriptPath' );
+    let url = wgServer +  wgScriptPath + "/index.php?title=Special:Equipsets" + GETparams;
+
     //console.log(url);
 
     if ( shareID == "FFXIPackageHelper_dynamiccontent_shareDiscordEquipset" ){
