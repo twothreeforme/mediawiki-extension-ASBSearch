@@ -377,6 +377,7 @@ Showing Equipsets stats table
     width: 150px;
     height: 100%;
     border-collapse: collapse;
+    text-align: right;
 }
 
 .FFXIPackageHelper_Equipsets_showstats > p {
@@ -411,11 +412,15 @@ Showing Equipsets stats table
     border-collapse: collapse;
 }
 
+
+
 .FFXIPackageHelper_Equipsets_showstatstable {
     /* background-color:rgba(252, 155, 155, 0.473); */
-    font-size:14px;
-    line-height:14px;
+    font-size:13px;
+    line-height:12px;
     border-collapse: collapse;
+    margin-right: 0 !important;
+	margin-left: auto !important;
 }
 
 /* .FFXIPackageHelper_Equipsets_showstatstable tr{
