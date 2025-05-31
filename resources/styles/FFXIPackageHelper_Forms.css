@@ -370,6 +370,7 @@ Showing Equipsets stats table
     height: 1px;
     /* display:flex; */
     border-collapse: collapse;
+    z-index: 1000;
 }
 
 .FFXIPackageHelper_Equipsets_showstats {
