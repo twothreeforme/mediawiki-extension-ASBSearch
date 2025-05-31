@@ -39,7 +39,11 @@ class FFXIPackageHelper_Stats {
     //Advanced Stats
     public $ACC = 0;
     public $EVA = 0;
-
+    public $haste = array(
+        'gear' => 0,
+        'magic' => 0,
+        'JA' => 0
+    );
 
     public $modifiers = [];
     public $equipment;
@@ -573,10 +577,11 @@ class FFXIPackageHelper_Stats {
 
             //advanced stats
             $this->ACC,       //26
-            $this->EVA       //27
+            $this->EVA,       //27
+            $this->haste       //28
         ];
 
-
+        wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $this->haste) );
         return $stats;
     }
 
@@ -612,6 +617,9 @@ class FFXIPackageHelper_Stats {
         $this->ACC += $this->getACC();
         $this->EVA += $this->getEVA();
 
+        $this->haste["gear"] += $this->modifiers["HASTE_GEAR"];
+        $this->haste["magic"] += $this->modifiers["HASTE_MAGIC"];
+
     }
 
     private function applyToModifiers($mods){
@@ -622,10 +630,10 @@ class FFXIPackageHelper_Stats {
             $mod = $vars->modArray[$m];
             if ( !isset($this->modifiers[$mod]) ) $this->modifiers[$mod] = intval($v);
             else $this->modifiers[$mod] += intval($v);
-
-            //if ( $mod == "VIT" )  throw new Exception($this->modifiers[$mod]);
+            if ( $m == 384 ) wfDebugLog( 'Equipsets', get_called_class() . ":applyToModifiers:" . $m . ":" . $v );
         }
         // throw new Exception(implode(',', array_keys($this->modifiers)) );
+
     }
 
     private function getTraits( $mlvl, $slvl, $mjob, $sjob ){
@@ -656,13 +664,9 @@ class FFXIPackageHelper_Stats {
                 foreach( $this->equipment[$i][3] as $mod ){
                     //throw new Exception($mod) ;
                     $this->applyToModifiers([$mod["id"] => $mod["value"]] );
-
                 }
-
-                //throw new Exception(gettype($this->equipment[$i][0])) ;
             }
         }
-        // throw new Exception(json_encode($this->equipment));
     }
 
     function getDEF(){

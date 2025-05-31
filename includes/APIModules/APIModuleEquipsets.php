@@ -49,10 +49,12 @@ class APIModuleEquipsets extends ApiBase {
             $stats =  $newStats->getStats();
             //if ( $params['mjob'] == 6 ) throw new Exception ( json_encode($params) );
 
-            $result->addValue( $params['action'], "stats", $stats );
+            $char = $this->createChar($params, $meritsString, $newEquipmentArray );
+            $equipsets = new FFXIPackageHelper_Equipsets($char);
+
+            $result->addValue( $params['action'], "stats", $equipsets->statsSection($stats) );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels($newEquipmentArray) );
 
-            //if ( $params['sjob'] == 4 || $params['sjob'] == 3 ) throw new Exception ( json_encode([$params['action'], "stats", $newStats->getStats()]) );
         }
         else if ( $params['action'] == "equipsets_search" ) {
             $db = new DBConnection();
@@ -70,6 +72,7 @@ class APIModuleEquipsets extends ApiBase {
             //$result->addValue($params['action'], $params['querytype'], $params['search'] );
         }
         else if ( $params['action'] == "equipsets_change" ) {
+            $char = $this->createChar($params, $meritsString, $newEquipmentArray);
             //throw new Exception ( json_encode($equipmentString));
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             //throw new Exception ( json_encode($equipmentModel));
@@ -80,7 +83,8 @@ class APIModuleEquipsets extends ApiBase {
             // send updated HTML back as result
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();
 
-            $tabEquipsets = new FFXIPackageHelper_Equipsets();
+
+            $tabEquipsets = new FFXIPackageHelper_Equipsets($char);
             $updatedGrid = $tabEquipsets->updateGridItems($incomingEquipmentList)[0];
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
@@ -89,7 +93,9 @@ class APIModuleEquipsets extends ApiBase {
 
             $statsEncoded = base64_encode(json_encode($stats));
             $statsURLSafe = urlencode($statsEncoded);
-            $result->addValue($params['action'], "stats", $statsURLSafe );
+            //$result->addValue($params['action'], "stats", $statsURLSafe );
+            $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
+
 
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
@@ -113,7 +119,7 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "equipsets_savechar" ) {
             $char = $this->createChar($params);
 
-            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $char) );
+           //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $char) );
 
             if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
@@ -251,7 +257,8 @@ class APIModuleEquipsets extends ApiBase {
             $decodedMerits = urldecode($fetchedSet['merits']);
             $meritsString = base64_decode($decodedMerits);
 
-            $tabEquipsets = new FFXIPackageHelper_Equipsets();
+            $char = $this->createChar($params, $meritsString, $newEquipmentArray);
+            $tabEquipsets = new FFXIPackageHelper_Equipsets($char);
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             $incomingEquipmentList = $equipmentModel->getIncomingEquipmentList();

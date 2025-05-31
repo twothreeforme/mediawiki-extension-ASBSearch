@@ -52,11 +52,13 @@ class SpecialEquipsets extends SpecialPage {
 		else {
 				// Create blank model
 				$currentCharacter = new FFXIPH_Character();
-				foreach( $this->userChars as $char ){
-					/* If one of the chars in the users char array
-					has the character->def property set then a default
-					character exists, and use that instead*/
-					if ( $char->def > 0 ) $currentCharacter = $char;
+				if ( $this->userChars){
+					foreach( $this->userChars as $char ){
+						/* If one of the chars in the users char array
+						has the character->def property set then a default
+						character exists, and use that instead*/
+						if ( $char->def > 0 ) $currentCharacter = $char;
+					}
 				}
 		}
 

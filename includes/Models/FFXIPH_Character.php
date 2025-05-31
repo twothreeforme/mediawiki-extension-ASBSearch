@@ -119,7 +119,7 @@ class FFXIPH_Character  {
         $meritsdecoded = urldecode($meritsString);
         $meritsString = base64_decode($meritsdecoded);
         $meritsJSON = json_decode( $meritsString, false);
-        wfDebugLog( 'Equipsets', get_called_class() . ":setMerits:" . "(" . gettype($meritsString) . ")" . json_encode($meritsString) );
+        //wfDebugLog( 'Equipsets', get_called_class() . ":setMerits:" . "(" . gettype($meritsString) . ")" . json_encode($meritsString) );
 
         // stats
         foreach ($meritsJSON[0] as $key => $value) {

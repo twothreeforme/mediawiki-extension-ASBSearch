@@ -24,9 +24,10 @@ function actionAPI(params, forTab, currentButton, callback) {
           callback.returnCallback(result['search']);
         }
         else if ( forTab.includes("change")) {
-          const stats_base64 = decodeURIComponent(result['stats']);
-          const stats_ = JSON.parse(atob(stats_base64));
-          updateEquipsets(stats_);
+          // const stats_base64 = decodeURIComponent(result['stats']);
+          // const stats_ = JSON.parse(atob(stats_base64));
+          // updateEquipsets(stats_);
+          updateStats(result['stats']);
 
           const grid_base64 = decodeURIComponent(result['grid']);
           const grid_ = JSON.parse(atob(grid_base64));
@@ -116,7 +117,8 @@ function actionAPI(params, forTab, currentButton, callback) {
             }
         }
         else {
-          updateEquipsets(result['stats']);
+          //updateEquipsets(result['stats']);
+          updateStats(result['stats']);
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
@@ -194,6 +196,8 @@ function changeGrid(incomingGridData, equipLabels){
 
 }
 
+
+
 function updateEquipsets(updatedStats){
   //console.log("updateEquipsets:", updatedStats);
 
@@ -258,7 +262,10 @@ function updateEquipmentList(slotNumber, updatedName){
   labelLink.innerHTML = updatedName;
 }
 
-
+function updateStats(incomingStats){
+  let showstats = document.getElementById("FFXIPackageHelper_Equipsets_showstatstable");
+  showstats.innerHTML = incomingStats;
+}
 
 module.exports = { actionAPI }
 
