@@ -91,8 +91,8 @@ class APIModuleEquipsets extends ApiBase {
             $stats = $newStats->getStats();
             //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
 
-            $statsEncoded = base64_encode(json_encode($stats));
-            $statsURLSafe = urlencode($statsEncoded);
+            // $statsEncoded = base64_encode(json_encode($stats));
+            // $statsURLSafe = urlencode($statsEncoded);
             //$result->addValue($params['action'], "stats", $statsURLSafe );
             $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
 
@@ -282,7 +282,10 @@ class APIModuleEquipsets extends ApiBase {
             $luaNamesURLSafe = urlencode($luaNamesEncoded );
 
             $result->addValue( $params['action'], "selectset", $fetchedSet );
-            $result->addValue($params['action'], "stats", $statsURLSafe );
+            // $result->addValue($params['action'], "stats", $statsURLSafe );
+
+            $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
+
             $result->addValue($params['action'], "grid", $gridURLSafe );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels( $newEquipmentArray) );
             $result->addValue( $params['action'], "luaNames", $luaNamesURLSafe );

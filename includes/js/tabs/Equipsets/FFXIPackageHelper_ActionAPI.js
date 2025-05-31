@@ -86,9 +86,10 @@ function actionAPI(params, forTab, currentButton, callback) {
         else if ( forTab.includes("selectset")) {
           //console.log(result);
 
-          const stats_base64 = decodeURIComponent(result['stats']);
-          const stats_ = JSON.parse(atob(stats_base64));
-          updateEquipsets(stats_);
+          // const stats_base64 = decodeURIComponent(result['stats']);
+          // const stats_ = JSON.parse(atob(stats_base64));
+          // updateEquipsets(stats_);
+          updateStats(result['stats']);
 
           const grid_base64 = decodeURIComponent(result['grid']);
           const grid_ = JSON.parse(atob(grid_base64));
