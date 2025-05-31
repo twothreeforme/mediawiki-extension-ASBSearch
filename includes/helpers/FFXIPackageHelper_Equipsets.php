@@ -50,7 +50,7 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function statsSection( $stats = null): string{
-        
+
         $html = "   <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
                     <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">" . ($stats ? $stats[0] : 0) . "</span></td></tr>
                     <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">" . ($stats ? $stats[1] : 0) . "</span></td></tr>
