@@ -26,7 +26,7 @@ var slvlDropdown = null;
 let setsModal = null;
 
 module.exports.setLinks = function (){
-
+    cleanAllTables();
     // const setButtons = document.getElementsByClassName("FFXIPackageHelper_setButton");
     // if ( setButtons ) { addSetButtonEvents(setButtons); }
 
@@ -387,4 +387,14 @@ function addEventListersToSetsTable(){
             setsModal = new ModalSetManagement({ removeCallback: API.actionAPI, returnCallback: setRemoved });
         }
     }
+}
+
+function cleanAllTables(){
+    let allDivsWithTables = document.getElementsByClassName("content-table-wrapper overflowed scroll-right");
+    if ( allDivsWithTables.length > 0 ){
+        for ( const div of allDivsWithTables ){
+            div.classList.toggle("overflowed");
+        }
+    }
+    //console.log(allDivsWithTables) ;
 }
