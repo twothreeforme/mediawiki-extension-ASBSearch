@@ -394,6 +394,7 @@ function cleanAllTables(){
     if ( allDivsWithTables.length > 0 ){
         for ( const div of allDivsWithTables ){
             div.classList.toggle("overflowed");
+            div.classList.toggle("scroll-right");
         }
     }
     //console.log(allDivsWithTables) ;
