@@ -630,7 +630,7 @@ class FFXIPackageHelper_Stats {
             $mod = $vars->modArray[$m];
             if ( !isset($this->modifiers[$mod]) ) $this->modifiers[$mod] = intval($v);
             else $this->modifiers[$mod] += intval($v);
-            if ( $m == 384 ) wfDebugLog( 'Equipsets', get_called_class() . ":applyToModifiers:" . $m . ":" . $v );
+            //if ( $m == 384 ) wfDebugLog( 'Equipsets', get_called_class() . ":applyToModifiers:" . $m . ":" . $v );
         }
         // throw new Exception(implode(',', array_keys($this->modifiers)) );
 

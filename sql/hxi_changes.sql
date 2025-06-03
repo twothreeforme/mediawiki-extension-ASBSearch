@@ -346,7 +346,9 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     -- Worm's Turn, Royal Jelly, and Tails of Woe
     (50019,0,'buffalo_helm','buffalo_helm',1,63552,0,1,0,1), -- Buffalo Helm
 
-    (50020,0,'ancient_adamantoise_egg','ancient_adamantoise_egg',1,63552,0,1,0,1) -- Ancient Adamantoise Egg
+    -- Random new items
+    (50020,0,'ancient_adamantoise_egg','ancient_adamantoise_egg',1,63552,0,1,0,1), -- Ancient Adamantoise Egg
+    (50021,0,'nanaas_lucky_charm','nanaas_lucky_charm',1,63552,0,1,0,1) -- Nanaa's Lucky Charm
 ;
 
 -- Gondo-shizunori removed from horizon - name changed to Perforator. If we use ASB data to support equipment and item searches, then we will need a larger adjustment to this
@@ -366,7 +368,8 @@ ALTER TABLE `item_equipment`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `race`;
 
 INSERT INTO `item_equipment` (`itemId`,`name`,`level`,`ilevel`,`jobs`,`MId`,`shieldSize`,`scriptType`,`slot`,`rslot`, `su_level`, `race`, `changes_tag`) VALUES
-     (50018,'dream_collar',75,0,2473969,0,0,0,512,0,0,255, 1)
+     (50018,'dream_collar',75,0,2473969,0,0,0,512,0,0,255, 1),
+     (50021,'nanaas_lucky_charm',70,0,32,0,0,0,512,0,0,255, 1)
 ;
 UNLOCK TABLES;
 
@@ -375,20 +378,18 @@ UNLOCK TABLES;
 LOCK TABLE `item_mods` WRITE;
 ALTER TABLE `item_mods`
     ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `value`;
+-- All listed in `hxi_changes_itemMods.sql`
+UNLOCK TABLES;
 
--- UPDATE `item_mods` SET `changes_tag` = 1, `modId` = 11 WHERE `itemId` = 12421 AND `modId` = 14 AND `value` = 10;   -- Koenig Schaller - change CHR+10 to AGI+10.... (12421,14,10)
--- UPDATE `item_mods` SET `changes_tag` = 1, `value` = 8 WHERE `itemId` = 12429 AND `modId` = 25;   -- Adaman Celata - change ACC+5 to ACC+8 
--- -- start here
--- INSERT INTO `item_mods` VALUES (14741,83,5);  -- Abyssal Earring - GSWORD: 5
--- INSERT INTO `item_mods` VALUES (14742,83,5);  -- Beastly Earring - POLEARM: 5
--- INSERT INTO `item_mods` VALUES (15514,87,7); -- POLEARM: 7
+LOCK TABLE `item_weapon` WRITE;
+ALTER TABLE `item_weapon`
+    ADD COLUMN IF NOT EXISTS `changes_tag` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `unlock_points`;
+-- All listed in `hxi_changes_itemMods.sql`
 UNLOCK TABLES;
 
 \! echo hxi_changes_itemMods
 source hxi_changes_itemMods.sql;
 \! echo hxi_changes_itemMods done
-
-
 
 -- ---------------------------------------------------------------------------
 LOCK TABLE `mob_spawn_points` WRITE;

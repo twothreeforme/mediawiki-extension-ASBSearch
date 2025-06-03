@@ -75266,8 +75266,12 @@ class FFXIPackageHelper_ItemDetails {
             "races" => array( "HUME_M","HUME_F","ELVAAN_M","ELVAAN_F","TARU_M","TARU_F","MITHRA","GALKA"),
         ),
 
-        //Dream Collar
-        50018 => array( "forward" => 28239 )
+
+        50018 => array( "forward" => 28239 ), //Dream Collar
+        50019 => array( "forward" => 23123 ), //Buffalo Helm
+        50020 => array( "forward" => 18301 ), //Ancient Adamantoise Egg
+        50021 => array( "forward" => 23040 )  //Nanaa's Charm
+
 
     );
 }

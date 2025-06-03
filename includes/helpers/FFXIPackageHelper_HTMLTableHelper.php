@@ -279,7 +279,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_MobDropRates($dropRatesArray, $classname){
 		$html = FFXIPackageHelper_HTMLTableHelper::tableHeader_MobDropRates($classname, null);
         
-		wfDebugLog( 'ShowMobDrops', get_called_class() . ":"  . json_encode( $dropRatesArray) );
+		//wfDebugLog( 'ShowMobDrops', get_called_class() . ":"  . json_encode( $dropRatesArray) );
 
 		foreach ( $dropRatesArray as $row ) {
 			/**************
