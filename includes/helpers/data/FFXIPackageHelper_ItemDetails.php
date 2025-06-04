@@ -75267,12 +75267,17 @@ class FFXIPackageHelper_ItemDetails {
         ),
 
 
-        50018 => array( "forward" => 28239 ), //Dream Collar
-        50019 => array( "forward" => 23123 ), //Buffalo Helm
-        50020 => array( "forward" => 18301 ), //Ancient Adamantoise Egg
-        50021 => array( "forward" => 23040 )  //Nanaa's Charm
+        // 50018 => array( "forward" => 28239 ), //Dream Collar
+        // 50019 => array( "forward" => 23123 ), //Buffalo Helm
+        // 50020 => array( "forward" => 18301 ), //Ancient Adamantoise Egg
+        // 50021 => array( "forward" => 23040 )  //Nanaa's Charm
+    );
 
-
+    public $replacement = array(
+        50018 => 28239, //Dream Collar
+        50019 => 23123, //Buffalo Helm
+        50020 => 18301, //Ancient Adamantoise Egg
+        50021 => 23040  //Nanaa's Charm
     );
 }
 

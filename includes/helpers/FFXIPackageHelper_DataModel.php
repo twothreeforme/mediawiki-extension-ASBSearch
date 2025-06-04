@@ -331,14 +331,16 @@ class DataModel {
 			//First, address HXI custom gear
 			//this should be the last calls to $row->itemId
 			$itemID_includingHXICustoms = $row->itemId;
-			if ( $row->itemId >= 50000 ) $itemID_includingHXICustoms = $iDetails->items[$row->itemId]["forward"];
+			//if ( $row->itemId >= 50000 ) $itemID_includingHXICustoms = $iDetails->items[$row->itemId]["forward"];
+			if ( $row->itemId >= 50000 ) $itemID_includingHXICustoms = $iDetails->replacement[$row->itemId];
 
 			$name = "";
 			if ( $itemID_includingHXICustoms != "" && $itemID_includingHXICustoms != 0 ) $name = $iDetails->items[ $itemID_includingHXICustoms ]["name"];
 
 			$workingRow = array (
-				'id' => $itemID_includingHXICustoms,
-				//'name' => ParserHelper::itemName($row->showname),
+				'id' => $row->itemId,
+				'DATid' => $itemID_includingHXICustoms,
+				//'id' => $row->itemId,
 				'name' => $name,
 				'level' => $row->level,
 				'skilltype' => (property_exists($row, 'skilltype' ) ) ? $row->skilltype : 0,

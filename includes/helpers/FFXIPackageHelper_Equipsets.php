@@ -328,64 +328,65 @@ class FFXIPackageHelper_Equipsets  {
             }
         }
 
-        $slot[0][1] =  ( intval($slot[0][0] )  != 0 ) ? "itemid_" . intval($slot[0][0] ). ".png" : "Main.jpg";
-        $slot[1][1] =  ( intval($slot[1][0] )  != 0 ) ? "itemid_" . intval($slot[1][0] ). ".png" : "Sub.jpg";
-        $slot[2][1] =  ( intval($slot[2][0] )  != 0 ) ? "itemid_" . intval($slot[2][0] ). ".png" : "Range.jpg";
-        $slot[3][1] =  ( intval($slot[3][0] )  != 0 ) ? "itemid_" . intval($slot[3][0] ). ".png" : "Ammo.jpg";
-        $slot[4][1] =  ( intval($slot[4][0] )  != 0 ) ? "itemid_" . intval($slot[4][0] ). ".png" : "Head.jpg";
-        $slot[5][1] =  ( intval($slot[5][0] )  != 0 ) ? "itemid_" . intval($slot[5][0] ). ".png" : "Neck.jpg";
-        $slot[6][1] =  ( intval($slot[6][0] )  != 0 ) ? "itemid_" . intval($slot[6][0] ). ".png" : "Ear1.jpg";
-        $slot[7][1] =  ( intval($slot[7][0] )  != 0 ) ? "itemid_" . intval($slot[7][0] ). ".png" : "Ear2.jpg";
-        $slot[8][1] =  ( intval($slot[8][0] )  != 0 ) ? "itemid_" . intval($slot[8][0] ). ".png" : "Body.jpg";
-        $slot[9][1] =  ( intval($slot[9][0] )  != 0 ) ? "itemid_" . intval($slot[9][0] ). ".png" : "Hands.jpg";
-        $slot[10][1] = ( intval($slot[10][0])  != 0 ) ? "itemid_" . intval($slot[10][0]) . ".png" : "Ring1.jpg";
-        $slot[11][1] = ( intval($slot[11][0])  != 0 ) ? "itemid_" . intval($slot[11][0]) . ".png" : "Ring2.jpg";
-        $slot[12][1] = ( intval($slot[12][0])  != 0 ) ? "itemid_" . intval($slot[12][0]) . ".png" : "Back.jpg";
-        $slot[13][1] = ( intval($slot[13][0])  != 0 ) ? "itemid_" . intval($slot[13][0]) . ".png" : "Waist.jpg";
-        $slot[14][1] = ( intval($slot[14][0])  != 0 ) ? "itemid_" . intval($slot[14][0]) . ".png" : "Legs.jpg";
-        $slot[15][1] = ( intval($slot[15][0])  != 0 ) ? "itemid_" . intval($slot[15][0]) . ".png" : "Feet.jpg";
-
         $wParser = ParserHelper::wikiParseOptions();
         $title = $wParser[0];
         $parser = $wParser[1];
         $parserOptions = $wParser[2];
 
         $iDetails = new FFXIPackageHelper_ItemDetails();
-        $tooltip = "";
 
         $updatedGrid = array();
         $luaNames = array();
         for ( $s = 0; $s <= 15; $s++){
-
+            $tooltip = "";
             $id = intval($slot[$s][0]);
+            if ( $id > 50000 && array_key_exists($id , $iDetails->replacement) ) $id = $iDetails->replacement[ $id ];
+
+            $slot[$s][1] = ( $id != 0 ) ? "itemid_" . $id . ".png" : self::getDefaultImageName($s);
+
+//wfDebugLog( 'Equipsets', get_called_class() . ":updateGridItems:" . $id );
+
             if ( $id != 0 )  $luaNames[] = ucwords($iDetails->items[ $id ]["name"]);
             else $luaNames[] = 0;
 
-
             if ( $slot[$s][2] == 1 || $force == true ){
                 $slot[$s][1] = "[[File:". $slot[$s][1] . "|64px|link=]]";
-                //<span class="hint--bottom" aria-label="Thank you!">hover me.</span>
                 $parserOutput = $parser->parse( $slot[$s][1], $title, $parserOptions );
                 $slot[$s][1] = $parserOutput->getText();
 
-
-                if ( $slot[$s][0] != 0 ){
-                    //$id = intval($slot[$s][0]);
+                if ( $id != 0 ){
                     $tooltip = $this->generateTooltip($iDetails->items[ $id ]);
-
                 }
-                else $tooltip = "";
 
                 $updatedGrid[] = [$s, $slot[$s], $tooltip];
-                //if ( $slot[$s][3] != null ) throw new Exception( $s . ":" . $id . ", of type: " . gettype($id) );
             }
         }
-        //if ( $slot[5][0] == 15515) throw new Exception ( json_encode($updatedGrid));
         return [$updatedGrid, $luaNames];
     }
 
     private function showShareButton($id){
         return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
+    }
+
+    private function getDefaultImageName($s){
+        switch($s){
+            case 0: return "Main.jpg";
+            case 1: return "Sub.jpg";
+            case 2: return "Range.jpg";
+            case 3: return "Ammo.jpg";
+            case 4: return "Head.jpg";
+            case 5: return "Neck.jpg";
+            case 6: return "Ear1.jpg";
+            case 7: return "Ear2.jpg";
+            case 8: return "Body.jpg";
+            case 9: return "Hands.jpg";
+            case 10: return "Ring1.jpg";
+            case 11: return "Ring2.jpg";
+            case 12: return "Back.jpg";
+            case 13: return "Waist.jpg";
+            case 14: return "Legs.jpg";
+            case 15: return "Feet.jpg";
+        }
     }
 }
 

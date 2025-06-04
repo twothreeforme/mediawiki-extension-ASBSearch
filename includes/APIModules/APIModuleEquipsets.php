@@ -89,12 +89,11 @@ class APIModuleEquipsets extends ApiBase {
             $luaNamesArray = $tabEquipsets->updateGridItems($incomingEquipmentList)[1];
 
             $stats = $newStats->getStats();
-            //if ( !str_contains($equipmentString, "13529") ) throw new Exception ( "here" ); //Alacrity Ring
-
+//wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( [$stats, $newEquipmentArray]  ) );
             // $statsEncoded = base64_encode(json_encode($stats));
             // $statsURLSafe = urlencode($statsEncoded);
             //$result->addValue($params['action'], "stats", $statsURLSafe );
-            $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
+            $result->addValue( $params['action'], "stats", $tabEquipsets->statsSection($stats) );
 
 
             $gridEncoded = base64_encode(json_encode($updatedGrid));

@@ -387,10 +387,6 @@ ALTER TABLE `item_weapon`
 -- All listed in `hxi_changes_itemMods.sql`
 UNLOCK TABLES;
 
-\! echo hxi_changes_itemMods
-source hxi_changes_itemMods.sql;
-\! echo hxi_changes_itemMods done
-
 -- ---------------------------------------------------------------------------
 LOCK TABLE `mob_spawn_points` WRITE;
 ALTER TABLE `mob_spawn_points`
@@ -409,4 +405,13 @@ INSERT INTO `mob_spawn_points` (`mobid`,`mobname`,`polutils_name`,`groupid`,`pos
 ;
 UNLOCK TABLES;
 -- ---------------------------------------------------------------------------
+
+\! echo hxi_changes_customItems
+source hxi_changes_customItems.sql;
+\! echo hxi_changes_customItems done
+
+\! echo hxi_changes_itemMods
+source hxi_changes_itemMods.sql;
+\! echo hxi_changes_itemMods done
+
 -- COMPLETE

@@ -157,14 +157,14 @@ class ModalWindow {
   
     returnCallback(results){
 
-        const slot = Number(results[1]);
-        const arr = results[0];
-        const idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
+        let slot = Number(results[1]);
+        let arr = results[0];
+        let idname = "FFXIPackageHelper_equipsets_searchResults" + slot;
 
         let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
 
         //remove all list items and start over
-        var dl = document.getElementById(idname);
+        let dl = document.getElementById(idname);
 
         dl.innerHTML = '';
 
@@ -179,7 +179,7 @@ class ModalWindow {
         for ( let i = 0; i < arr.length; i++ ){
             //console.log(i, arr[i]["name"]);
 
-            var dt = document.createElement("dt");
+            let dt = document.createElement("dt");
             dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
             dt.onmouseout = function() { this.style="background-color:none;"; };
 
@@ -187,11 +187,14 @@ class ModalWindow {
             if ( i == 0 ) dt.setAttribute('tabindex', '0');
             else dt.setAttribute('tabindex', '-1');
 
-            var t = document.createTextNode(arr[i]["name"]);
+            let t = document.createTextNode(arr[i]["name"]);
 
-            var iconurl = mw.config.get( 'wgScript' ) + "/Special:Filepath/itemid_" + arr[i]["id"] + ".png";
+            let id = arr[i]["id"];
+            if (id > 50000)  id = arr[i]["DATid"];
 
-            var img = document.createElement("img");
+            let iconurl = mw.config.get( 'wgScript' ) + "/Special:Filepath/itemid_" + id + ".png";
+
+            let img = document.createElement("img");
             img.src=iconurl;
             img.width=20;
             img.height=20;

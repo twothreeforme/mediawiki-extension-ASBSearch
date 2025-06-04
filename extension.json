@@ -18,6 +18,7 @@
 
         "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
         "FFXIPH_Races": "includes/Models/FFXIPH_Races.php",
+        "FFXIPH_Item": "includes/Models/FFXIPH_Item.php",
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",

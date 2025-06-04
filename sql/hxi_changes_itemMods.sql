@@ -92,6 +92,7 @@ INSERT INTO `item_mods` VALUES (15230,12,5,1); -- INT+5
 INSERT INTO `item_mods` VALUES (15230,298,1,1); -- STEAL: 1
 
 -- Nanaa's Lucky Charm
+-- Replaced
 INSERT INTO `item_mods` VALUES (50021,25,3,1);   -- ACC: 3
 INSERT INTO `item_mods` VALUES (50021,303,1,1); -- TREASURE_HUNTER: 1
 
