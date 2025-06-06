@@ -114,7 +114,7 @@ class APIModuleEquipsets extends ApiBase {
             //throw new Exception (json_encode($result));
         }
         else if ( $params['action'] == "equipsets_savechar" ) {
-            $char = $this->createChar($params);
+            $char = $this->createChar($params, $params['merits']);
 
            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $char) );
 
@@ -166,7 +166,7 @@ class APIModuleEquipsets extends ApiBase {
             $db = new DBConnection();
             $char = $this->createChar($params, $params['merits']);
 
-///wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
+wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
 
             if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
@@ -368,10 +368,10 @@ class APIModuleEquipsets extends ApiBase {
     //     ];
     // }
 
-    private function createChar($params, $meritsString = null, $equipmentString = null){
+    private function createChar($params, $meritsURLSafe = null, $equipmentString = null){
         //$user = RequestContext::getMain()->getUser();
         return new FFXIPH_Character($params['race'], null, null, null, null,
-                            $meritsString, null, $params['def'], $params['charname'], null);
+                            $meritsURLSafe, null, $params['def'], $params['charname'], null);
     }
 
     private function createSet($params){

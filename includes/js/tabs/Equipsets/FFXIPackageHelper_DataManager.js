@@ -161,6 +161,8 @@ function resetMeritsToDefault(){
 }
 
 function setMeritsData(merits_){
+    console.log(merits_);
+
     if ( merits_ == "" ) {
         resetMeritsToDefault();
         return;

@@ -3,7 +3,7 @@ var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
 var LuaSets = require("./FFXIPackageHelper_LuaSets.js");
 
 function actionAPI(params, forTab, currentButton, callback) {
-  //console.log(params);
+  console.log(params);
   var api = new mw.Api();
 
   let mainDiv = document.getElementById("FFXIPackageHelper_tabs_equipsets_shown");
@@ -53,7 +53,7 @@ function actionAPI(params, forTab, currentButton, callback) {
           mw.notify( "Character Removed", { autoHide: true,  type: 'success' } );
         }
         else if ( forTab.includes("selectchar")) {
-          //console.log(result);
+          console.log(result);
           callback.updateCharacter(result['selectchar']);
           //callback(result['charSelectButtonsBar']);
           callback.updateStats();

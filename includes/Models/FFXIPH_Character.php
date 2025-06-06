@@ -117,42 +117,51 @@ class FFXIPH_Character  {
         if ( is_null($meritsString) | $meritsString == "" ) return;
 
         $meritsdecoded = urldecode($meritsString);
-        $meritsString = base64_decode($meritsdecoded);
-        $meritsJSON = json_decode( $meritsString, false);
-        //wfDebugLog( 'Equipsets', get_called_class() . ":setMerits:" . "(" . gettype($meritsString) . ")" . json_encode($meritsString) );
+        $meritsbase64decoded = base64_decode($meritsdecoded);
+        $meritsJSON = json_decode( $meritsbase64decoded, false);
+
+        // wfDebugLog( 'Equipsets', get_called_class() . ":setMerits:" . "(" . gettype($meritsbase64decoded) . ")" . json_encode($meritsbase64decoded) );
+
+        if ( is_null($meritsJSON) ) return;
 
         // stats
-        foreach ($meritsJSON[0] as $key => $value) {
+        if ( $meritsJSON[0] ){
+            foreach ($meritsJSON[0] as $key => $value) {
             //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
             $this->meritStats[$key] = (int)$value;
+            }
         }
+
         // skill
-        foreach ($meritsJSON[1] as $key => $value) {
-           //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
-           $this->meritSkills[$key] = (int)$value;
+        if ( $meritsJSON[1] ){
+            foreach ($meritsJSON[1] as $key => $value) {
+                //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+                $this->meritSkills[$key] = (int)$value;
+            }
         }
         //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . json_encode($this->meritSkills) );
     }
 
 
     public function getMeritsURLSafe(){
-        // $stats = [];
-        // // stats
-        // foreach ($this->meritStats as $key => $value) {
-        //     //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
-        //     if ( $value != 0 ) $stats[$key] = (int)$value;
-        // }
+        $stats = [];
+        // stats
+        foreach ($this->meritStats as $key => $value) {
+           // wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+            if ( $value != 0 ) $stats[$key] = (int)$value;
+        }
 
-        // $skills = [];
-        // // skill
-        // foreach ($this->meritSkills as $key => $value) {
-        //    //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
-        //    if ( $value != 0 ) $skills[$key] = (int)$value;
-        // }
+        $skills = [];
+        // skill
+        foreach ($this->meritSkills as $key => $value) {
+           //wfDebugLog( 'Equipsets', "FFXIPH_Character:setMerits " . $key . ":" . $value );
+           if ( $value != 0 ) $skills[$key] = (int)$value;
+        }
 
-        // $meritsString = json_encode( [$stats, $skills] );
+        $meritsString = json_encode( [$stats, $skills] );
 
-        $meritsString = json_encode( self::getMerits() );
+        wfDebugLog( 'Equipsets', "FFXIPH_Character:getMeritsURLSafe " . $meritsString );
+        //$meritsString = json_encode( self::getMerits() );
         $meritsString = base64_encode($meritsString);
         return urlencode($meritsString);
     }
