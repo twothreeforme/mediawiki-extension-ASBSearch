@@ -93,7 +93,7 @@ function areMeritsSet(){
 
 function getCharData(){
     let gmd = getMeritsData();
-    console.log("getCharData:", btoa(gmd), encodeURIComponent(btoa(gmd)));
+    //console.log("getCharData:", btoa(gmd), encodeURIComponent(btoa(gmd)));
     return {
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
         merits: encodeURIComponent(btoa(getMeritsData())),
@@ -161,7 +161,7 @@ function resetMeritsToDefault(){
 }
 
 function setMeritsData(merits_){
-    console.log(merits_);
+    //console.log(merits_);
 
     if ( merits_ == "" ) {
         resetMeritsToDefault();

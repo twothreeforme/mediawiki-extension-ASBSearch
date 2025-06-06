@@ -160,7 +160,7 @@ class FFXIPH_Character  {
 
         $meritsString = json_encode( [$stats, $skills] );
 
-        wfDebugLog( 'Equipsets', "FFXIPH_Character:getMeritsURLSafe " . $meritsString );
+        //wfDebugLog( 'Equipsets', "FFXIPH_Character:getMeritsURLSafe " . $meritsString );
         //$meritsString = json_encode( self::getMerits() );
         $meritsString = base64_encode($meritsString);
         return urlencode($meritsString);

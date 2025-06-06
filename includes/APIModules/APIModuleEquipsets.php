@@ -254,7 +254,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
             $decodedMerits = urldecode($fetchedSet['merits']);
             $meritsString = base64_decode($decodedMerits);
 
-            $char = $this->createChar($params, $meritsString, $newEquipmentArray);
+            $char = $this->createChar($params, $params['merits'], $newEquipmentArray);
             $tabEquipsets = new FFXIPackageHelper_Equipsets($char);
 
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
