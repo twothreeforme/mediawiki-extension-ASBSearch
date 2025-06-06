@@ -152,7 +152,7 @@ class FFXIPH_Character  {
 
         // $meritsString = json_encode( [$stats, $skills] );
 
-        $meritsString = json_encode( $self::getMerits() );
+        $meritsString = json_encode( self::getMerits() );
         $meritsString = base64_encode($meritsString);
         return urlencode($meritsString);
     }
