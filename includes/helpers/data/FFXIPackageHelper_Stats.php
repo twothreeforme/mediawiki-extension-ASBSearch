@@ -581,7 +581,7 @@ class FFXIPackageHelper_Stats {
             $this->haste       //28
         ];
 
-        wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $this->haste) );
+        //wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $this->haste) );
         return $stats;
     }
 

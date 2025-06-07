@@ -164,54 +164,6 @@ class ModalWindow {
 
         let commentNode = document.querySelectorAll(".FFXIPackageHelper_equipsets_searchResults_div")[this.slot].getElementsByTagName('p')[0];
 
-        // //remove all list items and start over
-        // let dl = document.getElementById(idname);
-
-        // dl.innerHTML = '';
-
-        // if ( results[0].length == 0 ) {
-        //     commentNode.innerText = "No results found";
-        //     return;
-        // }
-
-        // commentNode.innerText = "Click item to add to set...\n";
-
-        // for ( let i = 0; i < arr.length; i++ ){
-        //     //console.log(i, arr[i]["name"]);
-
-        //     let dt = document.createElement("dt");
-        //     dt.onmouseover = function() { this.style="background-color:#00c4ff45;"; };
-        //     dt.onmouseout = function() { this.style="background-color:none;"; };
-
-        //     //prep work to allow cursor manipulation later
-        //     if ( i == 0 ) dt.setAttribute('tabindex', '0');
-        //     else dt.setAttribute('tabindex', '-1');
-
-        //     let t = document.createTextNode(arr[i]["name"]);
-
-        //     let id = arr[i]["id"];
-        //     if (id > 50000)  id = arr[i]["DATid"];
-
-        //     let iconurl = mw.config.get( 'wgScript' ) + "/Special:Filepath/itemid_" + id + ".png";
-        //     //console.log(iconurl);
-        //     let img = document.createElement("img");
-        //     img.src=iconurl;
-        //     img.width=20;
-        //     img.height=20;
-
-        //     dt.addEventListener('click', () => {
-        //         // need item id
-        //         //console.log("clicked: " + arr[i]["id"]);
-        //         document.getElementById(idname).innerHTML = "";
-        //         this.options.returnCallback(arr[i]["id"], slot, this);
-        //     });
-
-
-        //     dt.appendChild(img);
-        //     dt.appendChild(t);
-        //     dl.appendChild(dt);
-        // }
-
         if ( html == "" || html.length == 0 ) {
             commentNode.innerText = "No results found";
             return;
@@ -234,8 +186,6 @@ class ModalWindow {
                 this.options.returnCallback(id, slot, this); // callback: updateEquipmentGrid
             });
         }
-
-
 
     }
 
