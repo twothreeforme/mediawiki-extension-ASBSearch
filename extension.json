@@ -18,7 +18,7 @@
 
         "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
         "FFXIPH_Races": "includes/Models/FFXIPH_Races.php",
-        "FFXIPH_Item": "includes/Models/FFXIPH_Item.php",
+        "FFXIPH_ItemDescription": "includes/Models/FFXIPH_ItemDescription.php",
 
         "APIModuleDropRateSearch" : "includes/APIModules/APIModuleDropRateSearch.php",
         "APIModuleRecipeSearch" : "includes/APIModules/APIModuleRecipeSearch.php",
@@ -40,6 +40,7 @@
         "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
         "FFXIPackageHelper_HTMLTabAdmin": "includes/Tabs/FFXIPackageHelper_HTMLTabAdmin.php",
         "FFXIPackageHelper_QueryController": "includes/helpers/FFXIPackageHelper_QueryController.php",
+
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
         "DataModel": "includes/helpers/FFXIPackageHelper_DataModel.php",

@@ -86,6 +86,47 @@ class FFXIPackageHelper_QueryController {
 		return $html;
 	}
 
+	/**
+	 * Supports Equipsets modal window equipment search
+	 * @param queryData params from APIModuleEquipsets
+	 * @return string html list with query results
+	 * should fit into <dl> with id="FFXIPackageHelper_equipsets_searchResults"
+	 */
+	public static function queryEquipsetsSearchItems($queryData){
+		$db = new DBConnection();
+		$dm = new DataModel();
+
+		$searchString = ParserHelper::replaceApostrophe($queryData['search']);
+		$searchString = ParserHelper::replaceSpaces($searchString);
+
+		$equipList = $db->getEquipment( $searchString, $queryData['mlvl'], $queryData['slot']); // get data from DB
+		$finalList = $dm->parseEquipment( $equipList, $queryData['mjob'] ); // build associative array with data so its easier to build list
+
+		$html = "";
+
+		if ( count($finalList) == 0 ) return $html;
+
+		//global $wgServer;
+    	global $wgScript;
+
+		for ($l = 0; $l < count($finalList); $l++) {
+			if ( $l == 0 ) $tabindex = 0;
+			else $tabindex = -1;
+
+			if ( $finalList[$l]['id'] >= 50000 ) $id = $finalList[$l]['DATid'];
+			else $id = $finalList[$l]['id'];
+
+			$html .= "<dt tabindex=\"" . $tabindex . "\" style=\"\" data-id=\"" . $id . "\"> ";
+
+			$imgURL = $wgScript . "/Special:Filepath/itemid_" . $id . ".png";
+			$html .= "<img src=\"" . $imgURL . "\" width=\"20\" height=\"20\">";
+			$html .= "" . $finalList[$l]['name'] . "";
+			$html .= "</dt>";
+		}
+
+		return $html;
+	}
+
 }
 
 ?>

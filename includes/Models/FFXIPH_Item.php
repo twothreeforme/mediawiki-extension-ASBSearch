@@ -1,6 +1,6 @@
 <?php
 
-class FFXIPH_Item {
+class FFXIPH_ItemDescription {
 
     private string $descr;
     private string $name;
