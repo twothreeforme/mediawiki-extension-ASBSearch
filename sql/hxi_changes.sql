@@ -406,12 +406,9 @@ INSERT INTO `mob_spawn_points` (`mobid`,`mobname`,`polutils_name`,`groupid`,`pos
 UNLOCK TABLES;
 -- ---------------------------------------------------------------------------
 
-\! echo hxi_changes_customItems
-source hxi_changes_customItems.sql;
-\! echo hxi_changes_customItems done
 
-\! echo hxi_changes_itemMods
-source hxi_changes_itemMods.sql;
-\! echo hxi_changes_itemMods done
+\! echo ... hxi_changes_itemMods
+source hxi_changes_items.sql;
+\! echo ... hxi_changes_itemMods done
 
 -- COMPLETE

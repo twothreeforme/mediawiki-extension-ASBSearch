@@ -318,6 +318,7 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function updateGridItems($slot, $force = false){
+        
         if ($slot == null){
             for ( $s = 0; $s <= 15; $s++){
                 $slot[$s] = [
@@ -334,6 +335,7 @@ class FFXIPackageHelper_Equipsets  {
         $parserOptions = $wParser[2];
 
         $iDetails = new FFXIPackageHelper_ItemDetails();
+
 
         $updatedGrid = array();
         $luaNames = array();
