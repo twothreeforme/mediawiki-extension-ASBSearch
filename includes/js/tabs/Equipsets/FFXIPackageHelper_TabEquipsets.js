@@ -1,9 +1,9 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
-var ModalWindow = require("./FFXIPackageHelper_ModalWindow.js");
+var ModalWindow = require("./Modals/FFXIPackageHelper_ModalWindow.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
 
-var ModalSetManagement = require("./FFXIPackageHelper_ModalSetManagement.js");
+var ModalSetManagement = require("./Modals/FFXIPackageHelper_ModalSetManagement.js");
 //var ModalCharManagement = require("./FFXIPackageHelper_ModalCharManagement.js");
 
 var Tooltip = require("./FFXIPackageHelper_Tooltips.js");
@@ -27,8 +27,6 @@ let setsModal = null;
 
 module.exports.setLinks = function (){
     cleanAllTables();
-    // const setButtons = document.getElementsByClassName("FFXIPackageHelper_setButton");
-    // if ( setButtons ) { addSetButtonEvents(setButtons); }
 
     NEWSET_BUTTON.addEventListener("click", function () {
         if ( mJobDropdown.value == 0  || sJobDropdown.value == 0){
@@ -47,42 +45,7 @@ module.exports.setLinks = function (){
         saveSetClicked();
     });
 
-    // //SELECTSET_DROPDOWN.addEventListener('change', (e) =>  {
-    //     const selectedSet = //SELECTSET_DROPDOWN.options[//SELECTSET_DROPDOWN.selectedIndex];
-    //     //console.log('selected:', selectedSet.value);
-    //     fetchSet(selectedSet.value);
-    // });
-
-    /**
-     * Set up available sets list events
-     */
-
-    // const setListItems = document.getElementById("FFXIPackageHelper_Equipsets_setManagement_setsListTable").querySelectorAll("td");
-    // if ( setListItems.length > 0 ){
-    //     // setListItems.forEach(node => {
-    //     //     node.addEventListener('click', () => {
-    //     //         selectSetClicked(node.dataset.value)
-    //     //     });
-    //     //     //console.log(node.dataset.value);
-    //     // });
-    //     //console.log(setListItems);
-    //     addSetButtonEvents(setListItems);
-    //     setsModal = new ModalSetManagement({ removeCallback: API.actionAPI, returnCallback: setRemoved });
-    // }
     addEventListersToSetsTable();
-
-    // const setsListRemoves = document.getElementsByClassName("FFXIPackageHelper_Equipsets_setManagement_setsListTable_Remove");
-    // if ( setsListRemoves.length > 0 ){
-    //     for (r = 0; r < setsListRemoves.length; r++) {
-    //         setsListRemoves[r].addEventListener("click", function (e) {
-    //             //console.log(e.target.dataset.value);
-    //             const rowDetails = e.target.parentNode.querySelector("td");
-    //             const userSetID = rowDetails.dataset.value;
-    //             const setName = rowDetails.innerText;
-    //             //console.log(userSetID, setName);
-    //         });
-    //     }
-    // }
 
     /**
      * Modal Windows
@@ -376,13 +339,6 @@ function addEventListersToSetsTable(){
         const setListItems = setListTable.querySelectorAll("td");
 
         if ( setListItems.length > 0 ){
-            // setListItems.forEach(node => {
-            //     node.addEventListener('click', () => {
-            //         selectSetClicked(node.dataset.value)
-            //     });
-            //     //console.log(node.dataset.value);
-            // });
-            //console.log(setListItems);
             addSetButtonEvents(setListItems);
             setsModal = new ModalSetManagement({ removeCallback: API.actionAPI, returnCallback: setRemoved });
         }

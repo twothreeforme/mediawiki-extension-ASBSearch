@@ -124,13 +124,16 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_DataManager.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalWindow.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalSetManagement.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharManagement.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharAdd.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_ModalCharRemove.js",
+
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalWindow.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalSetManagement.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharManagement.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharAdd.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharRemove.js",
+
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
+
                 "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
 			"styles": [

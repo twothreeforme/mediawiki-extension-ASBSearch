@@ -2,8 +2,8 @@ var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
 
-// var ModalCharAddWindow = require("./FFXIPackageHelper_ModalCharAdd.js");
-// var ModalCharRemoveWindow = require("./FFXIPackageHelper_ModalCharRemove.js");
+// var ModalCharAddWindow = require("./Modals/FFXIPackageHelper_ModalCharAdd.js");
+// var ModalCharRemoveWindow = require("./Modals/FFXIPackageHelper_ModalCharRemove.js");
 
 const EDIT_BUTTON = document.getElementById("FFXIPackageHelper_editCharButton");
 const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteCharButton");

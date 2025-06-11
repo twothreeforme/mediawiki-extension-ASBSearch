@@ -35,7 +35,7 @@ function searchResults(slot){
 function removeItemButton(slot){
     const newElement = document.createElement("button");
     newElement.id = `FFXIPackageHelper_equipsets_removeButton${slot}`;
-    newElement.innerText = "Remove Item";
+    newElement.innerText = "Remove";
     newElement.classList.add('close-modal'); // FFXIPackageHelper_dynamiccontent_customButton customButton_removeItem
     newElement.classList.add('FFXIPackageHelper_dynamiccontent_customButton');
     newElement.classList.add('customButton_removeItem');

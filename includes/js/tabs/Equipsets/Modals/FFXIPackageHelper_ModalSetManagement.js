@@ -44,7 +44,7 @@ class ModalSetManagement {
             const removeButton = document.createElement('button');
             //removeButton.id = 'FFXIPackageHelper_dynamiccontent_removeChar';
             removeButton.classList.add("FFXIPackageHelper_dynamiccontent_customButton", "customButton_removeItem");
-            removeButton.textContent = 'Remove Set';
+            removeButton.textContent = 'Remove';
 
             contentWrapper.appendChild(removeButton);
             contentWrapper.appendChild(closeButton);
