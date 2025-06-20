@@ -29,6 +29,8 @@ class ParserHelper {
 		$mobName = self::replaceUnderscores($mobName);
 		$mobName = ucwords($mobName);
         $mobName = str_replace(" Of ", " of ", $mobName);
+        
+        if ( $mobName == "Treasure Chest" ) $mobName = "Treasure Chest(Monster)";
 
 		// print_r($mobName ."-". $mobType ."...");
         $mobName = self::brackets($mobName);
@@ -169,7 +171,7 @@ class ParserHelper {
 		$zone = str_replace("-", " - ", $zone);
         $zone = str_replace(" Of ", " of ", $zone);
         $zone = str_replace("dOria", "d'Oria", $zone);
-
+       
 		return self::brackets($zone);
 	}
 
@@ -190,6 +192,7 @@ class ParserHelper {
 
 		$zone = str_replace("-", " - ", $zone);
         $zone = str_replace(" Of ", " of ", $zone);
+        
 		return $zone;
 	}
 
