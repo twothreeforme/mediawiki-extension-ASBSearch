@@ -12,11 +12,11 @@ class DatabaseQuery {
         $this->database = new DatabaseConnection();
     }
 
-    private function openConnection() { return $this->database->openConnection("ASB_Data"); }
-    private function openConnectionSets() { return $this->database->openConnection("Equipsets"); }
+    private function openASBSearchConnection() { return $this->database->openConnection("ASB_Data"); }
+    private function openEquipsetsConnection() { return $this->database->openConnection("Equipsets"); }
 
     public function getHitCounter($tab) {
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
 		$tabHitCounter = $dbr->newSelectQueryBuilder()
 			->select( [ 'hitcount' ] )
 			->from( 'search_counters' )
@@ -30,7 +30,7 @@ class DatabaseQuery {
     }
 
     public function incrementHitCounter($tab) {
-        $dbw = $this->openConnection();
+        $dbw = $this->openASBSearchConnection();
 
         return $dbw->update(
             'search_counters',
@@ -93,7 +93,7 @@ class DatabaseQuery {
 
 
     function getZoneList() {
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
 		$zoneList = $dbr->newSelectQueryBuilder()
 			->select( [ 'zoneid, name' ] )
 			->from( 'zone_settings' )
@@ -109,7 +109,7 @@ class DatabaseQuery {
     }
 
     function getZoneListFishing() {
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
 		$zoneList = $dbr->newSelectQueryBuilder()
 			->select( [ 'fishing_zone.zoneid, fishing_zone.name' ] )
 			->from( 'fishing_zone' )
@@ -121,7 +121,7 @@ class DatabaseQuery {
 
 
     function getZoneWeather($zone, $numberOfDays ) {
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
         $query = "zone_weather.zone = $zone";
 		$weather = $dbr->newSelectQueryBuilder()
 			->select( [ '*' ] )
@@ -282,7 +282,7 @@ class DatabaseQuery {
 
     
     public function getZoneForecastFromDB($zone){
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
         $query = "zone_weather.zone = $zone";
 		return $dbr->newSelectQueryBuilder()
 			->select( [ '*' ] )
@@ -292,7 +292,7 @@ class DatabaseQuery {
     }
 
     public function getForecastFromDB() {
-        $dbr =  $this->openConnection();
+        $dbr =  $this->openASBSearchConnection();
         // $query = "zone_weather.zone = $zone";
 		return $dbr->newSelectQueryBuilder()
 			->select( [ 'name', 'zoneid', 'weather' ] )
@@ -419,7 +419,7 @@ class DatabaseQuery {
 
 
 
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
@@ -464,7 +464,7 @@ class DatabaseQuery {
                     "mob_groups.name LIKE '%$mobNameSearch%'",
                 ];
 
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
@@ -531,7 +531,7 @@ class DatabaseQuery {
 		}
 
 
-		$dbr = $this->openConnection();
+		$dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'hxi_bcnm_crate_list.itemRate',
@@ -596,7 +596,7 @@ class DatabaseQuery {
         // $html .= "<option value=\"veteran\">Veteran</option>";
 
 
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
 
         $items = $dbr->newSelectQueryBuilder()
             ->select( [ 'item_basic.name, item_basic.itemid' ] )
@@ -755,7 +755,7 @@ class DatabaseQuery {
     public function getEquipmentFromDB($queryData){
         //$this->incrementHitCounter("equipment");
 
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
 
         $equipmentname = $queryData[0];
         // $job = $queryData[1];
@@ -810,7 +810,7 @@ class DatabaseQuery {
     }
 
     public function getTraits( $mlvl, $slvl, $mjob, $sjob){
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
         $query = [
             "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
             "( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
@@ -828,7 +828,7 @@ class DatabaseQuery {
     }
 
     public function getItem( $itemid ){
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
         $query = [ "item_basic.itemId = '$itemid'" ];
 
         return $dbr->newSelectQueryBuilder()
@@ -852,7 +852,7 @@ class DatabaseQuery {
     }
 
     public function getSkillRanks( $mjob, $sjob ){
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
         $vars = new FFXIPackageHelper_Variables();
 
         // $mjobLabel =  "skill_ranks." . strtolower($vars->jobArray[$mjob]);
@@ -875,7 +875,7 @@ class DatabaseQuery {
 
     public function getEquipment( $name, $mlvl, $gridSlot = null ){
 
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
 
         $mlvl = intval($mlvl);
 
@@ -967,7 +967,7 @@ class DatabaseQuery {
         $zone = $queryData[2];
 
         
-        $dbr = $this->openConnection();
+        $dbr = $this->openASBSearchConnection();
         //$vars = new FFXIPackageHelper_Variables();
 
         $query = [];
@@ -1046,7 +1046,7 @@ class DatabaseQuery {
      * @return FFXIPH_Character[]
      */
     public function getUserCharacters($char = null, $testForExistingChar = false){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
 
         if ( $char == null ) $uid = RequestContext::getMain()->getUser()->getId();
         else $uid = $char->userid;
@@ -1080,7 +1080,7 @@ class DatabaseQuery {
     }
 
     public function removeUserCharDefault($char){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
 
         return $dbw->update(
             'user_chars',
@@ -1094,7 +1094,7 @@ class DatabaseQuery {
     }
 
     public function updateUserCharacter($char){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
         //throw new Exception ( json_encode($char));
 
         return $dbw->update(
@@ -1113,7 +1113,7 @@ class DatabaseQuery {
 
 
     public function getSelectedCharacter($char){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
         //wfDebugLog( 'Equipsets', get_called_class() . ":getSelectedCharacter:" . json_encode($char) );
 
         $uid = $char->userid;
@@ -1142,7 +1142,7 @@ class DatabaseQuery {
     }
 
     public function getDefaultCharacter($uid){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
 
         $query = [ "user_chars.userid = '$uid' AND user_chars.def = 1"];
 
@@ -1172,7 +1172,7 @@ class DatabaseQuery {
 
 
     public function setUserCharacter($char){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
 
         return $dbw->insert(
             'user_chars',
@@ -1188,7 +1188,7 @@ class DatabaseQuery {
     }
 
     public function removeUserCharacter($char){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
 
         return $dbw->delete(
             'user_chars',
@@ -1201,7 +1201,7 @@ class DatabaseQuery {
     }
 
     public function getUserSetsFromUserID($uid){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
 
         $savedSets = $dbr->newSelectQueryBuilder()
         //->select( [ 'usersetid', 'mlvl', 'slvl', 'mjob', 'sjob', 'equipment', 'setname'] )
@@ -1231,7 +1231,7 @@ class DatabaseQuery {
     }
 
     public function getUserSetsForJob($uid, $mjob){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
 
         $query = [
             "user_sets.mjob = '$mjob' AND user_sets.userid = '$uid'"
@@ -1265,7 +1265,7 @@ class DatabaseQuery {
     }
 
     public function saveSet($newSet){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
 
         return $dbw->insert(
             'user_sets',
@@ -1283,7 +1283,7 @@ class DatabaseQuery {
     }
 
     public function removeSet($uid, $usersetid){
-        $dbw = $this->openConnectionSets();
+        $dbw = $this->openEquipsetsConnection();
 
         return $dbw->delete(
             'user_sets',
@@ -1296,7 +1296,7 @@ class DatabaseQuery {
     }
 
     public function fetchSet($params){
-        $dbr = $this->openConnectionSets();
+        $dbr = $this->openEquipsetsConnection();
 
         $usersetid = $params['usersetid'];
 
@@ -1325,7 +1325,7 @@ class DatabaseQuery {
     }
 
     public function setExists($dbr, $setid){
-        //$dbr = $this->openConnection();
+        //$dbr = $this->openASBSearchConnection();
 
         // $chars = $dbr->newSelectQueryBuilder()
         // ->select( [ 'charname' ] )
