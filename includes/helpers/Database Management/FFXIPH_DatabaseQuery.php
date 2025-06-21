@@ -12,15 +12,8 @@ class DatabaseQuery {
         $this->database = new DatabaseConnection();
     }
 
-    private function openConnection($database = null) {
-        if ( $database == null ) $database = "ASB_Data";
-        return $this->database->openConnection($database);
-    }
-
-    private function openConnectionSets($database = null) {
-        if ( $database == null ) $database = "Equipsets";
-        return $this->database->openConnection($database);
-    }
+    private function openConnection() { return $this->database->openConnection("ASB_Data"); }
+    private function openConnectionSets() { return $this->database->openConnection("Equipsets"); }
 
     public function getHitCounter($tab) {
 		$dbr = $this->openConnection();
