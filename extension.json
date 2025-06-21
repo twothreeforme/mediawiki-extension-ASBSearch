@@ -44,7 +44,8 @@
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
         "DataModel": "includes/helpers/FFXIPackageHelper_DataModel.php",
-        "DBConnection": "includes/helpers/FFXIPackageHelper_DBConnection.php",
+        "DatabaseConnection": "includes/helpers/Database Management/FFXIPH_DatabaseConnection.php",
+        "DatabaseQuery": "includes/helpers/Database Management/FFXIPH_DatabaseQuery.php",
 
         "WeatherForecast_ElementMaps": "includes/helpers/FFXIPackageHelper_WeatherForecast_ElementMaps.php",
 

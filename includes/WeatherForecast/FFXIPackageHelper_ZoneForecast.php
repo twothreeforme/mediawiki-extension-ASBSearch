@@ -24,7 +24,7 @@ class ZoneForecast  {
 	}
 
     public static function generateZoneSpecificTable( $input, array $params, Parser $parser, PPFrame $frame ) {
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $zoneList = $db->getZoneList();
 
         $zoneid = 0;

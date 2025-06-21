@@ -20,7 +20,7 @@ class FFXIPackageHelper_HTMLTabAdmin {
 
         if ( count($allowed) == 0 ) return $html . "This page is restricted to administrators and senior-editors.</div>";
 
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $drhits = $db->getHitCounter("droprate");
         $eqhits = $db->getHitCounter("equipment");
         $fihits = $db->getHitCounter("fishing");

@@ -61,7 +61,7 @@ class FFXIPackageHelper_HTMLOptions {
     public static function setsDropDown($classname){
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $userSets = $db->getUserSetsFromUserID($uid);
 
         $html = "<select id=\"". $classname ."\" defaultValue=\"0\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\" ";
@@ -130,7 +130,7 @@ class FFXIPackageHelper_HTMLOptions {
     }
 
     private static function zoneNamelist($fishing = null){
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         if ( $fishing == true ) $zonelist = $db->getZoneListFishing();
         else $zonelist = $db->getZoneList();
 
@@ -225,7 +225,7 @@ class FFXIPackageHelper_HTMLOptions {
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
         if ( $uid != 0 && $uid != null ){
-            $db = new DBConnection();
+            $db = new DatabaseQuery();
             $userSets = $db->getUserSetsFromUserID($uid);
             //throw new Exception ( json_encode($userSets));
             if ( count($userSets) > 0 ){
@@ -303,7 +303,7 @@ class FFXIPackageHelper_HTMLOptions {
         $user = RequestContext::getMain()->getUser();
         $uid = $user->getId();
         if ( $uid != 0 && $uid != null ){
-            $db = new DBConnection();
+            $db = new DatabaseQuery();
             $userSets = $db->getUserSetsFromUserID($uid);
             //throw new Exception ( json_encode($userSets));
             if ( count($userSets) > 0 ){

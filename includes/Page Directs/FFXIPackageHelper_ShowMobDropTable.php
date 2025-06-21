@@ -32,7 +32,7 @@ class FFXIPackageHelper_ShowMobDropTable  {
         }
         else $pagetitle = $params['mob'];
 
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $mobDropsRAW = $db->getMobDropRates($pagetitle);
 
         $dm = new DataModel();

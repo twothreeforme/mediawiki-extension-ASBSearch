@@ -55,7 +55,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
     }
 
     private function zoneNamelist(){
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $zonelist = $db->getZoneList();
 
         foreach ($zonelist as $row) {

@@ -20,7 +20,7 @@ class SpecialDiggingWeatherForecast extends SpecialPage {
         $time = new VanaTime();
         $html = FFXIPackageHelper_HTMLTableHelper::tableHeader_Forecast();
 
-        $db = new DBConnection();
+        $db = new DatabaseQuery();
         $weatherArray = $db->getWeather(true);
 
         //print_r(count($weatherArray));

@@ -299,16 +299,6 @@ class ParserHelper {
         if (!$weather ) return NULL;
         if ( !$numberOfDays ) $numberOfDays = 16;
 
-        // $dbr = $this->openConnection();
-        // $query = "zone_weather.zone = $zone";
-		// $weather = $dbr->newSelectQueryBuilder()
-		// 	->select( [ '*' ] )
-		// 	->from( 'zone_weather' )
-		// 	->where( $query )
-		// 	->fetchResultSet();
-
-
-
         $bin = unpack("H*",$weather);
         $arr = str_split($bin[1], 2);
         //print_r(array_keys($arr));

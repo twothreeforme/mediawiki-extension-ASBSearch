@@ -1,51 +1,25 @@
 <?php
 
-use Wikimedia\Rdbms\DatabaseFactory;
-use MediaWiki\MediaWikiServices;
+//use Wikimedia\Rdbms\DatabaseFactory;
+//use MediaWiki\MediaWikiServices;
 
-class DBConnection {
+//class DBConnection {
+class DatabaseQuery {
 
-	private $dbUsername;  
-	private $dbPassword; 
-
+    private $database; 
+    
     public function __construct() {
-        global $wgDBuser;
-        global $wgDBpassword;
-
-        $this->dbUsername = $wgDBuser;
-        $this->dbPassword = $wgDBpassword;
+        $this->database = new DatabaseConnection();
     }
 
-    private function getDatabaseFactory(string $database): DatabaseFactory{
-        return ( new DatabaseFactory() )->create( 'mysql', [
-                'host' => 'localhost',
-                'user' => $this->dbUsername,
-                'password' => $this->dbPassword,
-                'dbname' => $database,
-                'flags' => 0,
-                'tablePrefix' => ''] );
-    }
-
-    public function openConnection($database = null) {
+    private function openConnection($database = null) {
         if ( $database == null ) $database = "ASB_Data";
-        try {
-            $returnDB = $this->getDatabaseFactory($database);            
-        } catch ( DBConnectionError $e ) {
-            $status->fatal( 'config-connection-error', $e->getMessage() );
-            return $status;
-        }
-        return $returnDB;
+        return $this->database->openConnection($database);
     }
 
-    public function openConnectionSets($database = null) {
+    private function openConnectionSets($database = null) {
         if ( $database == null ) $database = "Equipsets";
-        try {
-            $returnDB = $this->getDatabaseFactory($database);            
-        } catch ( DBConnectionError $e ) {
-            $status->fatal( 'config-connection-error', $e->getMessage() );
-            return $status;
-        }
-        return $returnDB;
+        return $this->database->openConnection($database);
     }
 
     public function getHitCounter($tab) {
@@ -123,9 +97,7 @@ class DBConnection {
             return $split;
     }
 
-    function getVanaDate(){
-        return intval(((floor(microtime(true) ) - 1009810800) / 3456)) % 2160 ;
-    }
+
 
     function getZoneList() {
 		$dbr = $this->openConnection();
@@ -168,7 +140,7 @@ class DBConnection {
             $bin = unpack("H*",$row->weather);        
             $arr = str_split($bin[1], 2);
                         
-            $m_vanaDate = $this->getVanaDate();
+            $m_vanaDate = intval(((floor(microtime(true) ) - 1009810800) / 3456)) % 2160 ;
 
             /*                                                                        *
             *              0        00000       00000        00000                   *
@@ -340,7 +312,7 @@ class DBConnection {
     public function getWeather($forDiggersPage, $forRetail = false){
         $forDiggersPage ? $forDiggersPage : false;
 
-        $dbr = new DBConnection();
+        $dbr = new DatabaseQuery();
         $allZonesWeather = $dbr->getForecastFromDB();
 
         $result = [ ];
