@@ -5,8 +5,16 @@ use MediaWiki\MediaWikiServices;
 
 class DBConnection {
 
-	private $dbUsername = 'horizon_wiki'; 
-	private $dbPassword = 'KamjycFLfKEyFsogDtqM';
+	private $dbUsername;  
+	private $dbPassword; 
+
+    public function __construct() {
+        global $wgDBuser;
+        global $wgDBpassword;
+
+        $this->dbUsername = $wgDBuser;
+        $this->dbPassword = $wgDBpassword;
+    }
 
     public function openConnection($database = null) {
         if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] == 'localhost' ){
