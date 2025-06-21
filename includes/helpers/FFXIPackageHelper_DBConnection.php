@@ -16,47 +16,33 @@ class DBConnection {
         $this->dbPassword = $wgDBpassword;
     }
 
-    public function openConnection($database = null) {
-        if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] == 'localhost' ){
-			$this->dbUsername = 'root'; $this->dbPassword = '';
-		}
-        if ( $database == null ) $database = "ASB_Data";
-        try {
-            $db = ( new DatabaseFactory() )->create( 'mysql', [
+    private function getDatabaseFactory(string $database): DatabaseFactory{
+        return ( new DatabaseFactory() )->create( 'mysql', [
                 'host' => 'localhost',
                 'user' => $this->dbUsername,
                 'password' => $this->dbPassword,
                 'dbname' => $database,
                 'flags' => 0,
                 'tablePrefix' => ''] );
-            //$status->value = $db;
-            $returnDB = $db;
+    }
+
+    public function openConnection($database = null) {
+        if ( $database == null ) $database = "ASB_Data";
+        try {
+            $returnDB = $this->getDatabaseFactory($database);            
         } catch ( DBConnectionError $e ) {
             $status->fatal( 'config-connection-error', $e->getMessage() );
-            //print_r('issue');
             return $status;
         }
         return $returnDB;
     }
 
     public function openConnectionSets($database = null) {
-        if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] == 'localhost' ){
-			$this->dbUsername = 'root'; $this->dbPassword = '';
-		}
         if ( $database == null ) $database = "Equipsets";
         try {
-            $db = ( new DatabaseFactory() )->create( 'mysql', [
-                'host' => 'localhost',
-                'user' => $this->dbUsername,
-                'password' => $this->dbPassword,
-                'dbname' => $database,
-                'flags' => 0,
-                'tablePrefix' => ''] );
-            //$status->value = $db;
-            $returnDB = $db;
+            $returnDB = $this->getDatabaseFactory($database);            
         } catch ( DBConnectionError $e ) {
             $status->fatal( 'config-connection-error', $e->getMessage() );
-            //print_r('issue');
             return $status;
         }
         return $returnDB;
