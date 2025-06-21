@@ -57,7 +57,7 @@ class APIModuleEquipsets extends ApiBase {
 
         }
         else if ( $params['action'] == "equipsets_search" ) {
-            // $db = new DatabaseQuery();
+            // $db = new DatabaseQueryWrapper();
             // $dm = new DataModel();
 
             // $searchString = ParserHelper::replaceApostrophe($params['search']);
@@ -127,7 +127,7 @@ class APIModuleEquipsets extends ApiBase {
             }
 
             //check user for existing character name
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
 
             $userCharacters = $db->getUserCharacters($char, true);
 
@@ -166,7 +166,7 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "equipsets_updatechar" ) {
 //wfDebugLog( 'Equipsets', "***");
             //throw new Exception ( json_encode($params) );
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             $char = $this->createChar($params, $params['merits']);
 
 wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
@@ -203,7 +203,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
 
         }
         else if ( $params['action'] == "equipsets_selectchar" ) {
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
 
             $char = $this->createChar($params);
             
@@ -222,7 +222,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
             $result->addValue( $params['action'], "selectchar", $selectedChar );
         }
         else if ( $params['action'] == "equipsets_removechar" ) {
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             $char = $this->createChar($params);
             $db->removeUserCharacter($char);
             $userCharacters = $db->getUserCharacters($char);
@@ -238,7 +238,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
                 return;
             }
 
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             $db->saveSet($newSet);
             $setList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
 
@@ -247,7 +247,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
 
         }
         else if ( $params['action'] == "equipsets_selectset" ) {
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
 
             $fetchedSet = $db->fetchSet($params);
             
@@ -299,7 +299,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
             //     return;
             // }
 
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             //throw new Exception ( json_encode( $params));
             if ( $newSet['mjob'] != 0 ) {
                 $newSetList = $db->getUserSetsForJob($newSet['userid'], $newSet['mjob']);
@@ -314,7 +314,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
         else if ( $params['action'] == "equipsets_removeset" ) {
             $newSet = $this->createSet($params);
             //throw new Exception ( json_encode( $newSet));
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             $setList = $db->getUserSetsFromUserID($newSet['userid']);
 
             foreach($setList as $jobSets){
@@ -398,7 +398,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
         //$user = RequestContext::getMain()->getUser();
         $uid = self::getUserID();
         if ( $uid != 0 ) { // User is logged in
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             $userChars = $db->getUserCharactersFromUserID($uid);
         }
         return FFXIPackageHelper_HTMLOptions::charactersButtonsList($userChars );
@@ -416,7 +416,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
     private function getUserCharacters(){
         $uid = self::getUserID();
         if ( $uid != 0 ) { // User is logged in
-            $db = new DatabaseQuery();
+            $db = new DatabaseQueryWrapper();
             return $db->getUserCharactersFromUserID($uid);
         }
         return null;

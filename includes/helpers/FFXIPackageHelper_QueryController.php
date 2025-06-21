@@ -13,7 +13,7 @@ class FFXIPackageHelper_QueryController {
         $showBCNMdrops = intval($queryData[4]);
 
         $dm = new DataModel();
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
 
         $mobDropRatesData = $db->getDropRates($queryData);
 
@@ -70,7 +70,7 @@ class FFXIPackageHelper_QueryController {
 
     public static function queryRecipes($queryData){
         $dm = new DataModel();
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
 
         // USE THIS ONE
         $initialQuery = $db->getRecipes($queryData);
@@ -93,7 +93,7 @@ class FFXIPackageHelper_QueryController {
 	 * should fit into <dl> with id="FFXIPackageHelper_equipsets_searchResults"
 	 */
 	public static function queryEquipsetsSearchItems($queryData){
-		$db = new DatabaseQuery();
+		$db = new DatabaseQueryWrapper();
 		$dm = new DataModel();
 
 		$searchString = ParserHelper::replaceApostrophe($queryData['search']);

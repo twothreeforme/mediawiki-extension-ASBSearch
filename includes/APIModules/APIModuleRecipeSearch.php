@@ -42,7 +42,7 @@ class APIModuleRecipeSearch extends ApiBase {
 
     private function queryRecipes($queryData){
         $dm = new DataModel();
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
 
         $initialQuery = $db->getRecipes($queryData);
         if ( count($initialQuery) > 0 ) $db->incrementHitCounter("recipes");

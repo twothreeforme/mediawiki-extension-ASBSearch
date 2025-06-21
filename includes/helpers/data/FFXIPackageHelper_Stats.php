@@ -250,7 +250,7 @@ class FFXIPackageHelper_Stats {
     }
 
     private function setSkillCaps( $mjob, $mlvl, $sjob, $slvl ){
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
         $results = $db->getSkillRanks($mjob, $sjob);
 
         foreach( $results as $row ){ // [skillid], [mjob], [sjob]
@@ -637,7 +637,7 @@ class FFXIPackageHelper_Stats {
     }
 
     private function getTraits( $mlvl, $slvl, $mjob, $sjob ){
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
        // $vars = new FFXIPackageHelper_Variables();
 
         $results = $db->getTraits( $mlvl, $slvl, $mjob, $sjob );
@@ -655,7 +655,7 @@ class FFXIPackageHelper_Stats {
     }
 
     function applyEquipment( ){
-       // $db = new DatabaseQuery();
+       // $db = new DatabaseQueryWrapper();
         //$vars = new FFXIPackageHelper_Variables();
 
         for ( $i = 0; $i <= 15; $i++ ){

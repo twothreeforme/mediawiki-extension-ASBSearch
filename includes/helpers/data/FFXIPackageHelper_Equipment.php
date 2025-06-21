@@ -67,7 +67,7 @@ class FFXIPackageHelper_Equipment {
 
     private function queryItem($item){
         $dm = new DataModel();
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
 
         $results = $db->getItem($item);
         return $dm->parseEquipment($results)[0];

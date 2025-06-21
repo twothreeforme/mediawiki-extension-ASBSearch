@@ -37,7 +37,7 @@ class SpecialEquipsets extends SpecialPage {
 		$user = RequestContext::getMain()->getUser();
 		$uid = $user->getId();
 		if ( $uid != 0 ) { // User is logged in
-			$db = new DatabaseQuery();
+			$db = new DatabaseQueryWrapper();
 			$this->userChars = $db->getUserCharactersFromUserID($uid);
 		}
 

@@ -4,7 +4,7 @@
 //use MediaWiki\MediaWikiServices;
 
 //class DBConnection {
-class DatabaseQuery {
+class DatabaseQueryWrapper {
 
     private $database; 
     
@@ -305,7 +305,7 @@ class DatabaseQuery {
     public function getWeather($forDiggersPage, $forRetail = false){
         $forDiggersPage ? $forDiggersPage : false;
 
-        $dbr = new DatabaseQuery();
+        $dbr = new DatabaseQueryWrapper();
         $allZonesWeather = $dbr->getForecastFromDB();
 
         $result = [ ];

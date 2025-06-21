@@ -37,7 +37,7 @@ class SpecialWeatherForecast extends SpecialPage {
 		$weatherTypeDropDown = $request->getText( 'weatherTypeDropDown' );
 
         //$zoneNamesList
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
         $weatherArray = $db->getWeather(null);
         $zoneNamesList = $this->zoneNameArray($weatherArray);
 

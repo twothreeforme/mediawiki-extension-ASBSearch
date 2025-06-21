@@ -34,7 +34,7 @@ class APIModuleFishingSearch extends ApiBase {
 
     private function queryFishing($queryData){
         $dm = new DataModel();
-        $db = new DatabaseQuery();
+        $db = new DatabaseQueryWrapper();
 
         // USE THIS ONE
         $initialQuery = $db->getFishing($queryData);
