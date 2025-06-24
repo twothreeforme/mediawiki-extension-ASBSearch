@@ -34,7 +34,8 @@ UPDATE `item_weapon` SET `changes_tag` = 1, `dmg` = 24 WHERE `itemId` = 18264;
 -- Blessed Hammer
 UPDATE `item_weapon` SET `changes_tag` = 1, `dmg` = 31 WHERE `itemId` = 17422;
 INSERT INTO `item_mods` VALUES (17422,71,3,1);  -- MPHEAL: 3
--- Can be equipped at Lv. 40 instead of Lv. 41
+UPDATE `item_equipment` SET `changes_tag` = 1, `level` = 40 WHERE `itemId` = 17422 AND `level` = 41;  -- Lvl:41 to Lvl:40
+
 
 -- Healers Duckbills
 UPDATE `item_mods` SET `changes_tag` = 1, `value` = 3, `modId` = 12  WHERE `itemId` = 14091 AND `modId` = 11;  -- AGI+3 to DEX+2
@@ -52,7 +53,7 @@ INSERT INTO `item_mods` VALUES (18324,369,1,1);     -- REFRESH: 1
 
 -- Casting Wand
 INSERT INTO `item_mods` VALUES (17423,12,5,1); -- INT+5
--- Can be equipped at Lv. 40 instead of Lv. 41
+UPDATE `item_equipment` SET `changes_tag` = 1, `level` = 40 WHERE `itemId` = 17423 AND `level` = 41;  -- Lvl:41 to Lvl:40
 
 -- Wizards Sabots
 UPDATE `item_mods` SET `changes_tag` = 1, `value` = 20  WHERE `itemId` = 14092 AND `modId` = 5 AND `value` = 10;  -- MP+10 to MP+20
@@ -224,4 +225,9 @@ UPDATE `item_mods` SET `changes_tag` = 1, `value` = 20  WHERE `itemId` = 14103 A
 -- Evokers Doublet
 INSERT INTO `item_mods` VALUES (12650,357,-1,1); -- BP_DELAY: -1
 
+-- Thiefs Knife
+DELETE FROM `item_mods` WHERE itemid = 16480 AND `modId` = 303; -- Remove TREASURE_HUNTER: 1
+-- INSERT INTO `item_mods` VALUES (16480,506,???,1); -- EXTRA_DMG_CHANCE: ???
+INSERT INTO `item_mods` VALUES (16480,507,200,1); -- OCC_DO_EXTRA_DMG: 2X
+UPDATE `item_weapon` SET `changes_tag` = 1, `dmg` = 18 WHERE `itemId` = 16480;
 
