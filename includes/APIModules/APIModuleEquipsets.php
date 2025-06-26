@@ -57,17 +57,6 @@ class APIModuleEquipsets extends ApiBase {
 
         }
         else if ( $params['action'] == "equipsets_search" ) {
-            // $db = new DatabaseQueryWrapper();
-            // $dm = new DataModel();
-
-            // $searchString = ParserHelper::replaceApostrophe($params['search']);
-            // $searchString = ParserHelper::replaceSpaces($searchString);
-
-            // $equipList = $db->getEquipment( $searchString, $params['mlvl'], $params['slot']);
-            // $finalList = $dm->parseEquipment( $equipList, $params['mjob'] );
-
-            // $result->addValue($params['action'], "search", [$finalList, $params['slot']]);
-
             $resultsHTML = FFXIPackageHelper_QueryController::queryEquipsetsSearchItems($params);
             //throw new Exception ( $resultsHTML  );
             $result->addValue($params['action'], "search", [$resultsHTML, $params['slot']]);

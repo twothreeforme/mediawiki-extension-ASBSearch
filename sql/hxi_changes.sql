@@ -75,6 +75,9 @@ INSERT INTO `hxi_bcnm_crate_list` (`bcnmId`,`groupId`,`groupRate`,`itemId`,`item
     (1,7,1000,50019,0,0,1) -- ADD Buffalo Helm (??? %)
 ;
 
+-- HENM: Ruinous Roc -- Jugner Forest
+-- INSERT INTO `hxi_bcnm_crate_list` VALUES (1000,1,1000,50000,0,0,1); --  Rucke's rung
+
 UPDATE hxi_bcnm_crate_list SET changes_tag=1, itemId='18852' WHERE itemId='17440' AND bcnmId='79'; -- Replace Kraken Club(17440) with Octave Club(18852)
 UPDATE hxi_bcnm_crate_list SET changes_tag=1, itemRate='500', groupId='11' WHERE itemId='1527' AND bcnmId='11'; -- Update BEHEMOTH_TONGUE drop rate to 50%... needed new Group to do so
 UPDATE hxi_bcnm_crate_list SET changes_tag=1, itemRate='500', groupId='11' WHERE itemId='1526' AND bcnmId='107'; -- Update WYRM_BEARD drop rate to 50%... needed new Group to do so
@@ -134,7 +137,6 @@ INSERT INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`name`,`respawntime`,`spaw
 
     -- Grand_Palace_of_HuXzoi (Zone: 34)
     (20000,4661,34,'Ixaern_Mnk',0,0,20004,0,0,80,80,0,0)
-
 ;
 
 UPDATE `mob_groups` SET `changes_tag`=1, `dropid`=644 WHERE `poolid`=6778 AND `zoneid`=113; -- Devil Manta Fished - added drops list from Kuftal Tunnel to match Cape Terrigan
@@ -190,7 +192,7 @@ INSERT INTO `mob_droplist` (`dropId`, `dropType`, `groupId`, `groupRate`, `itemI
 
     -- Ruinous_Rocs (Tier 1 HENM)
     (20000,0,0,0,15736,100,1), -- Trotter Boots
-    (20000,0,0,0,50000,100,1), -- Rucke's Ring (Horizon Exclusive)
+    (20000,0,0,0,50000,100,1), -- Rucke's rung (Horizon Exclusive)
     (20000,0,0,0,50001,100,1), -- Vaulter's Ring (Horizon Exclusive)
     (20000,0,0,0,50002,100,1), -- Luftpause Mark (Horizon Exclusive)
     (20000,0,0,0,658,150,1), -- Damascus Ingot
@@ -315,7 +317,7 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (0,0,'nothing','nothing',1,0,0,1,0,0), -- Nothing
 
     -- Ruinous_Rocs (Tier 1 HENM)
-    (50000,0,'ruckes_ring','ruckes_ring',1,63552,0,1,0,1), -- Rucke's Ring
+    (50000,0,'ruckes_rung','ruckes_rung',1,63552,0,1,0,1), -- Rucke's Rung
     (50001,0,'vaulters_ring','vaulters_ring',1,63552,0,1,0,1), -- Vaulter's Ring
     (50002,0,'luftpause_mark','luftpause_mark',1,63552,0,1,0,1), -- Luftpause Mark
 
@@ -332,11 +334,11 @@ INSERT INTO `item_basic` (`itemid`,`subid`,`name`,`sortname`,`stackSize`,`flags`
     (50010,0,'duality_loop','duality_loop',1,63552,0,1,0,1), -- Duality Loop
 
     -- Shepard's Armor Set
-    (50011,0,'shepard\`s_bonnet','shepards_bonnet',1,63552,0,1,0,1), -- Shepard's Bonnet -- BCNM 20 Shooting Fish - 9
-    (50012,0,'shepard\`s_boots','shepards_boots',1,63552,0,1,0,1), -- Shepard's Boots -- BCNM 30 Toadall Recall - 36
-    (50013,0,'shepard\`s_hose','shepards_hose',1,63552,0,1,0,1), -- Shepard's Hose -- BCNM 30 Creeping Doom - 104
-    (50014,0,'shepard\`s_bracers','shepards_bracers',1,63552,0,1,0,1), -- Shepard's Bracers -- BCNM 40 Factory Rejects - 525
-    (50015,0,'shepard\`s_doublet','shepards_doublet',1,63552,0,1,0,1), -- Shepard's Doublet -- BCNM 40 Undying Promise - 524
+    (50011,0,'shepherd\`s_bonnet','shepherds_bonnet',1,63552,0,1,0,1), -- shepherd's Bonnet -- BCNM 20 Shooting Fish - 9
+    (50012,0,'shepherd\`s_boots','shepherds_boots',1,63552,0,1,0,1), -- shepherd's Boots -- BCNM 30 Toadall Recall - 36
+    (50013,0,'shepherd\`s_hose','shepherds_hose',1,63552,0,1,0,1), -- shepherd's Hose -- BCNM 30 Creeping Doom - 104
+    (50014,0,'shepherd\`s_bracers','shepherds_bracers',1,63552,0,1,0,1), -- shepherd's Bracers -- BCNM 40 Factory Rejects - 525
+    (50015,0,'shepherd\`s_doublet','shepherds_doublet',1,63552,0,1,0,1), -- shepherd's Doublet -- BCNM 40 Undying Promise - 524
 
     -- Dynamis-Tavnazia - Diabolos drops
     (50016,0,'sack_of_dream_sand','sack_of_dream_sand',1,63552,0,1,0,1), -- Sack of Dreeam Sand

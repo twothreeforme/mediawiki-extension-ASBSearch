@@ -363,7 +363,7 @@ class DatabaseQueryWrapper {
         $mobNameSearch = $queryData[1];
         $itemNameSearch = $queryData[2];
         $zoneNameSearch = $queryData[3];
-        $showBCNMdrops = intval($queryData[4]);
+        //$showBCNMdrops = intval($queryData[4]);
         $excludeNMs = intval($queryData[5]);
         $levelRangeMIN = intval($queryData[6]);
         $levelRangeMAX = intval($queryData[7]);
@@ -488,7 +488,7 @@ class DatabaseQueryWrapper {
                         'mob_family_system.detects',
 						] )
 			->from( 'mob_droplist' )
-			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropid' )
+			->join( 'mob_groups', null, 'mob_groups.dropid=mob_droplist.dropId' )
 			->join( 'item_basic', null, 'item_basic.itemid=mob_droplist.itemId')
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
 			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')

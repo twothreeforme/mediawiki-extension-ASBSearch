@@ -231,3 +231,10 @@ DELETE FROM `item_mods` WHERE itemid = 16480 AND `modId` = 303; -- Remove TREASU
 INSERT INTO `item_mods` VALUES (16480,507,200,1); -- OCC_DO_EXTRA_DMG: 2X
 UPDATE `item_weapon` SET `changes_tag` = 1, `dmg` = 18 WHERE `itemId` = 16480;
 
+-- Rucke's Rung
+INSERT INTO `item_equipment` VALUES (50000,'ruckes_rung',75,0,4,0,0,0,1,0,0,255,1);
+INSERT INTO `item_weapon` VALUES (50000,'ruckes_rung',12,0,0,0,0,3,1,366,29,0,1);
+INSERT INTO `item_mods` VALUES (50000,519,-10,1);  -- CURE_CAST_TIME: -10
+
+-- need mod for Enhances potency of Regen
+

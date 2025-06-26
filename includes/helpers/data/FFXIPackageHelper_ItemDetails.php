@@ -75264,16 +75264,28 @@ class FFXIPackageHelper_ItemDetails {
             "flags" => array( "MYSTERY_BOX","MAIL2ACCOUNT","NOAUCTION","CANEQUIP","NOSALE","NODELIVERY","EX","RARE"),
             "jobs" => array( "WAR","MNK","WHM","BLM","RDM","THF","PLD","DRK","BST","BRD","RNG","SAM","NIN","DRG","SMN","BLU","COR","PUP","DNC","SCH","GEO","RUN"),
             "races" => array( "HUME_M","HUME_F","ELVAAN_M","ELVAAN_F","TARU_M","TARU_F","MITHRA","GALKA"),
-        ),
-
-
-        // 50018 => array( "forward" => 28239 ), //Dream Collar
-        // 50019 => array( "forward" => 23123 ), //Buffalo Helm
-        // 50020 => array( "forward" => 18301 ), //Ancient Adamantoise Egg
-        // 50021 => array( "forward" => 23040 )  //Nanaa's Charm
+        )
     );
 
     public $replacement = array(
+        50000 => 18642, //Rucke's Rung
+        50001 => 27269, //Vaulters Ring
+        50002 => 26930, //Luftpause Mark
+        50003 => 27008, //Horuss Helm
+        50004 => 27009, //Dilation Ring
+        50005 => 18656, //Carapace Bullet
+        50006 => 26833, //Opuntia Hoop
+        50007 => 26832, //Overlords ring
+        50008 => 26656, //Sprinter's belt
+        50009 => 27360, //Deflecting Band
+        50010 => 27184, //Duality loop
+        50011 => 23045, //Shepherd's Bonnet
+        50012 => 23313, //Shepherd's boot
+        50013 => 23246, //Shepherd's hose
+        50014 => 23179, //Shepherd's bracers
+        50015 => 23112, //Shepherd's doublet
+        50016 => 21388, //Sack of dream sand
+        50017 => 28260, //Dream Ribbon
         50018 => 28239, //Dream Collar
         50019 => 23123, //Buffalo Helm
         50020 => 18301, //Ancient Adamantoise Egg

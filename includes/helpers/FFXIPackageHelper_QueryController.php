@@ -100,6 +100,7 @@ class FFXIPackageHelper_QueryController {
 		$searchString = ParserHelper::replaceSpaces($searchString);
 
 		$equipList = $db->getEquipment( $searchString, $queryData['mlvl'], $queryData['slot']); // get data from DB
+
 		$finalList = $dm->parseEquipment( $equipList, $queryData['mjob'] ); // build associative array with data so its easier to build list
 
 		$html = "";
