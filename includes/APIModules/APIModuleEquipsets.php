@@ -275,6 +275,7 @@ class APIModuleEquipsets extends ApiBase {
             // $result->addValue($params['action'], "stats", $statsURLSafe );
 
             $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
+            $result->addValue( $params['action'], "resistances", $tabEquipsets->resistances($stats) );
 
             $result->addValue($params['action'], "grid", $gridURLSafe );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels( $newEquipmentArray) );

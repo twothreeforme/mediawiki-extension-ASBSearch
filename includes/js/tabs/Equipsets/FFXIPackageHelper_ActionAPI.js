@@ -91,6 +91,7 @@ function actionAPI(params, forTab, currentButton, callback) {
           // const stats_ = JSON.parse(atob(stats_base64));
           // updateEquipsets(stats_);
           updateStats(result['stats']);
+          updateResistances(result['resistances']);
 
           const grid_base64 = decodeURIComponent(result['grid']);
           const grid_ = JSON.parse(atob(grid_base64));
