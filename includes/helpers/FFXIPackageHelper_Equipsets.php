@@ -142,7 +142,7 @@ class FFXIPackageHelper_Equipsets  {
 
         $resCircles = ParserHelper::wikiParse($resCircles);
 
-        $html = "<div class=\"FFXIPackageHelper_Equipsets_showstats_res\"><table style=\"width:100%;line-height: 14px;\" >";
+        $html = "<table style=\"width:100%;line-height: 14px;\" >";
         $td = "<td class=\"FFXIPackageHelper_Equipsets_statRes\" >";
         //throw new Exception ( json_encode($updatedGridItems));
         for ( $r = 0; $r <= 7; $r++){
@@ -152,7 +152,7 @@ class FFXIPackageHelper_Equipsets  {
             $html .= $td . $resCircles[$r] . "<span id=\"FFXIPackageHelper_Equipsets_statRes" . $r . "\"  >". ($stats ? $stats[$s] : 0) . "</span>";
         }
 
-        $html .= "</tr></table></div>";
+        $html .= "</tr></table>";
         return $html;
     }
 
@@ -289,7 +289,7 @@ class FFXIPackageHelper_Equipsets  {
                             <td rowspan=\"2\"><div class=\"FFXIPackageHelper_Equipsets_showstats\"><p><center><b>Statistics</b></center></p><table id=\"FFXIPackageHelper_Equipsets_showstatstable\" class=\"FFXIPackageHelper_Equipsets_showstatstable\">" . $this->statsSection( $stats ) . "</table></div></td>
                             <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $updatedEquipmentData[0] ) . "</table></td>
                         </tr>
-                        <tr><td>" . $this->resistances( $stats ) ."</td></tr>
+                        <tr><td><div id=\"FFXIPackageHelper_Equipsets_showstats_res\">" . $this->resistances( $stats ) ."</div></td></tr>
                     </table>" .
                     $this->additionalData( $updatedEquipmentData[1] ) . 
                     $this->showLuaSets( $updatedEquipmentData[1] ) .

@@ -62,12 +62,13 @@ class APIModuleEquipsets extends ApiBase {
             $result->addValue($params['action'], "search", [$resultsHTML, $params['slot']]);
         }
         else if ( $params['action'] == "equipsets_change" ) {
-            $char = $this->createChar($params, $meritsString, $newEquipmentArray);
             //throw new Exception ( json_encode($equipmentString));
             $equipmentModel = new FFXIPackageHelper_Equipment( $equipmentString );
             //throw new Exception ( json_encode($equipmentModel));
 
             $newEquipmentArray = $equipmentModel->getEquipmentArray();
+            $char = $this->createChar($params, $meritsString, $newEquipmentArray);
+
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
             
             // send updated HTML back as result
@@ -84,7 +85,7 @@ class APIModuleEquipsets extends ApiBase {
             // $statsURLSafe = urlencode($statsEncoded);
             //$result->addValue($params['action'], "stats", $statsURLSafe );
             $result->addValue( $params['action'], "stats", $tabEquipsets->statsSection($stats) );
-
+            $result->addValue( $params['action'], "resistances", $tabEquipsets->resistances($stats) );
 
             $gridEncoded = base64_encode(json_encode($updatedGrid));
             $gridURLSafe = urlencode($gridEncoded);
@@ -158,7 +159,7 @@ class APIModuleEquipsets extends ApiBase {
             $db = new DatabaseQueryWrapper();
             $char = $this->createChar($params, $params['merits']);
 
-wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
+//wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $params['merits'] );
 
             if ( $char->userid == 0 || $char->userid == null ){
                 $result->addValue( $params['action'], "status", ["ERROR", "User must be logged in to save anything."] );
@@ -274,6 +275,7 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
             // $result->addValue($params['action'], "stats", $statsURLSafe );
 
             $result->addValue($params['action'], "stats", $tabEquipsets->statsSection($stats) );
+            $result->addValue( $params['action'], "resistances", $tabEquipsets->resistances($stats) );
 
             $result->addValue($params['action'], "grid", $gridURLSafe );
             $result->addValue( $params['action'], "equipLabels", $this->parseEquipmentLabels( $newEquipmentArray) );
@@ -349,16 +351,6 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
         return $equipLabelsArray;
     }
 
-    // private function createChar($params){
-    //     $user = RequestContext::getMain()->getUser();
-    //     return [
-    //         'userid' => $user->getId(),
-    //         'charname' => $params['charname'],
-    //         'race' => $params['race'],
-    //         'merits' => $params['merits'],
-    //         'def' => $params['def']
-    //     ];
-    // }
 
     private function createChar($params, $meritsURLSafe = null, $equipmentString = null){
         //$user = RequestContext::getMain()->getUser();
@@ -382,7 +374,6 @@ wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $p
     }
 
 
-    // div class="FFXIPackageHelper_characterHeader"
     private function getCharacterHeader(){
         //$user = RequestContext::getMain()->getUser();
         $uid = self::getUserID();

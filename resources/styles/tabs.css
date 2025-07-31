@@ -4,7 +4,7 @@
     overflow-x: auto;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    display:flex;
+    display: flex;
     height: 35px;
     white-space: nowrap;
   }
