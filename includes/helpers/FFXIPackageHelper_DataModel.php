@@ -55,7 +55,7 @@ class DataModel {
 			$r_mobMaxLevel = ( property_exists($row, 'mobMaxLevel' ) ) ? $row->mobMaxLevel : 0; 
 			
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0;
-			if ( $row->dropType == "2" ) continue;
+			//if ( $row->dropType == "2" ) continue;
 
 			$r_mobChanges = ( property_exists($row, 'mobChanges' ) ) ? $row->mobChanges : 0;
 			$r_aggro = ( property_exists($row, 'aggro' ) ) ? $row->aggro : -1;
