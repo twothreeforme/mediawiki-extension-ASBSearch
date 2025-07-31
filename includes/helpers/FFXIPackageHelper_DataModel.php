@@ -57,6 +57,9 @@ class DataModel {
 			$r_dropType = ( property_exists($row, 'dropType' ) ) ? $row->dropType : 0;
 			//if ( $row->dropType == "2" ) continue;
 
+			$r_dropID = ( property_exists($row, 'dropid' ) ) ? $row->dropid : 0;
+			if ( $r_dropID == 3226 ) continue; // Most Garrison mobs share the same dropid
+
 			$r_mobChanges = ( property_exists($row, 'mobChanges' ) ) ? $row->mobChanges : 0;
 			$r_aggro = ( property_exists($row, 'aggro' ) ) ? $row->aggro : -1;
 			$r_trueDetection = ( property_exists($row, 'true_detection' ) ) ? $row->true_detection : -1;

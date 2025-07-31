@@ -430,6 +430,7 @@ class DatabaseQueryWrapper {
 						'mob_groups.name AS mobName',
 						'mob_groups.minLevel AS mobMinLevel',
 						'mob_groups.maxLevel AS mobMaxLevel',
+                        'mob_groups.dropid',
 						'item_basic.name AS itemName', 
 						//'item_basic.sortname AS itemSortName',
 						'mob_groups.changes_tag AS mobChanges',
