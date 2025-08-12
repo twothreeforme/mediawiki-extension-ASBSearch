@@ -22,7 +22,7 @@
   }
 
 .FFXIPackageHelper_Equipsets_setManagement {
-  width: 40%;
+  width: 150px;
   font-size:14px;
   line-height:14px;
   border-collapse: collapse;
@@ -58,11 +58,11 @@
 }
 
 .FFXIPackageHelper_Equipsets_setManagement_expanded {
-  width: 90%;
+  width: 225px;
 }
 
 .FFXIPackageHelper_Equipsets_setManagement_setsListTable {
-  width: 220px;
+  width: 220px !important;
   overflow-x: hidden;
 }
 

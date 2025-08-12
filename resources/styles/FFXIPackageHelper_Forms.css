@@ -361,12 +361,12 @@ Showing Equipsets stats table
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 
 .FFXIPackageHelper_Equipsets_showset {
     /* background-color: #87878725; */
-    width: 380px;
+    width: 325px;
     height: 1px;
     /* display:flex; */
     border-collapse: collapse;
@@ -375,10 +375,14 @@ Showing Equipsets stats table
 
 .FFXIPackageHelper_Equipsets_showstats {
     /* background-color: #1eff00; */
-    width: 150px;
-    height: 100%;
+    /* width:50%; */
+    /* height: 100%; */
     border-collapse: collapse;
-    text-align: right;
+    /* text-align: right; */
+    
+    display: inline-block;
+    /* flex-wrap: wrap; */
+    justify-content: center;
 }
 
 .FFXIPackageHelper_Equipsets_showstats > p {
@@ -417,11 +421,12 @@ Showing Equipsets stats table
 
 .FFXIPackageHelper_Equipsets_showstatstable {
     /* background-color:rgba(252, 155, 155, 0.473); */
-    font-size:13px;
-    line-height:12px;
+    font-size:16px;
+    line-height:15px;
     border-collapse: collapse;
-    margin-right: 0 !important;
-	margin-left: auto !important;
+    /* margin-right: 0 ;
+	margin-left: auto ; */
+    /* width: 50% !important; */
 }
 
 /* .FFXIPackageHelper_Equipsets_showstatstable tr{
@@ -433,7 +438,7 @@ Showing Equipsets stats table
     margin: 0px;
     padding: 0px;
     border-spacing: 0px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .FFXIPackageHelper_Equipsets_statRes div.mw-parser-output p {
@@ -462,13 +467,15 @@ Equipsets equipment grid (table)
 }
 
 .FFXIPackageHelper_Equipsets_additionalData {
-    width: 380px;
-    display: flex;
+    /* width: 50%; */
+    display: block;
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
 }
 
 .FFXIPackageHelper_Equipsets_equipList {
-    width: 60%;
-    padding: 10px 0px 10px 10px;
+    width: 50%;
+    /* padding: 10px 0px 10px 10px; */
 }
 
 .FFXIPackageHelper_Equipsets_equipList h2{
@@ -483,8 +490,8 @@ Equipsets equipment grid (table)
 }
 
 .FFXIPackageHelper_Equipsets_equipList table{
-    font-size:14px;
-    line-height:14px;
+    font-size:16px;
+    line-height:15px;
     border-collapse: collapse;
 
 }

@@ -51,30 +51,34 @@ class FFXIPackageHelper_Equipsets  {
 
     public function statsSection( $stats = null): string{
 
-        $html = "   <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                    <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">" . ($stats ? $stats[0] : 0) . "</span></td></tr>
-                    <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">" . ($stats ? $stats[1] : 0) . "</span></td></tr>
-                    <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                    <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">" . ($stats ? $stats[2] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\"" . ($stats ? self::styleStatMod($stats[3]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">" . ($stats ? $stats[4] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\"" . ($stats ? self::styleStatMod($stats[5]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">" . ($stats ? $stats[6] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\"" . ($stats ? self::styleStatMod($stats[7]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">" . ($stats ? $stats[8] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statAGIMod\"" . ($stats ? self::styleStatMod($stats[9]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">" . ($stats ? $stats[10] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statINTMod\"" . ($stats ? self::styleStatMod($stats[11]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">" . ($stats ? $stats[12] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statMNDMod\"" . ($stats ? self::styleStatMod($stats[13]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">" . ($stats ? $stats[14] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statCHRMod\"" . ($stats ? self::styleStatMod($stats[15]) : 0) . "&emsp;</span></td></tr>
-                    <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
-                    <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">" . ($stats ? $stats[16] : 0) . "</span></td></tr>
-                    <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">" . ($stats ? $stats[17] : 0) . "</span></td></tr>
-                    <tr><td>ACC&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statACC\">" . ($stats ? $stats[26] : 0) . "</span></td></tr>
-                    <tr><td>EVA&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statEVA\">" . ($stats ? $stats[27] : 0) . "</span></td></tr>
-                    <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>" .
-                    //"<tr><td>Haste</td></tr>
-                    "<tr><td>Gear Haste&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHasteGear\">" . ($stats ? self::styleHaste($stats[28]["gear"]) : 0) . "</span></td><td>%</td></tr>";
-                    // <tr><td>Magic&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHasteMagic\">" . ($stats ? $stats[28]["magic"] : 0) . "</span></td></tr>
-                    // <tr><td>JA&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHasteJA\">" . ($stats ? $stats[28]["JA"] : 0) . "</span></td></tr>";
+        $html = "
+             
+                <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
+                <tr><td>HP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHP\">" . ($stats ? $stats[0] : 0) . "</span></td></tr>
+                <tr><td>MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMP\">" . ($stats ? $stats[1] : 0) . "</span></td></tr>
+                <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
+                <tr><td>STR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statSTR\">" . ($stats ? $stats[2] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statSTRMod\"" . ($stats ? self::styleStatMod($stats[3]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>DEX&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEX\">" . ($stats ? $stats[4] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statDEXMod\"" . ($stats ? self::styleStatMod($stats[5]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>VIT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statVIT\">" . ($stats ? $stats[6] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statVITMod\"" . ($stats ? self::styleStatMod($stats[7]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>AGI&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statAGI\">" . ($stats ? $stats[8] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statAGIMod\"" . ($stats ? self::styleStatMod($stats[9]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>INT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statINT\">" . ($stats ? $stats[10] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statINTMod\"" . ($stats ? self::styleStatMod($stats[11]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>MND&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMND\">" . ($stats ? $stats[12] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statMNDMod\"" . ($stats ? self::styleStatMod($stats[13]) : 0) . "&emsp;</span></td></tr>
+                <tr><td>CHR&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statCHR\">" . ($stats ? $stats[14] : 0) . "</span></td><td><span id=\"FFXIPackageHelper_Equipsets_statCHRMod\"" . ($stats ? self::styleStatMod($stats[15]) : 0) . "&emsp;</span></td></tr>
+                <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>
+                <tr><td>DEF&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statDEF\">" . ($stats ? $stats[16] : 0) . "</span></td></tr>
+                <tr><td>ATT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statATT\">" . ($stats ? $stats[17] : 0) . "</span></td></tr>
+                <tr><td>ACC&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statACC\">" . ($stats ? $stats[26] : 0) . "</span></td></tr>
+                <tr><td>EVA&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statEVA\">" . ($stats ? $stats[27] : 0) . "</span></td></tr>
+                <tr><td colspan=\"2\" style=\"height:10px;\"></td></tr>" .
 
-        //wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $stats) );
+                "<tr><td>Gear Haste&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statHasteGear\">" . ($stats ? self::styleHaste($stats[28]["gear"]) : 0) . "</span></td><td>%</td></tr>" .
+                "<tr><td>Fast Cast&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statFastCast\">" . ($stats ? $stats[29] : 0) . "</span></td><td>%</td></tr>" .
+                "<tr><td>PDT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statPDT\">" . ($stats ? $stats[30] : 0) . "</span></td><td>%</td></tr>" .
+                "<tr><td>MDT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMDT\">" . ($stats ? $stats[31] : 0) . "</span></td><td>%</td></tr>" .
+                "<tr><td>Conserve MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statConserveMP\">" . ($stats ? $stats[32] : 0) . "</span></td></tr>" .
 
+            "</table>";
+            
         return $html;
     }
 
@@ -171,9 +175,9 @@ class FFXIPackageHelper_Equipsets  {
      */
     public function additionalData($luaNamesArray){
 
-        $html =  "<div class=\"FFXIPackageHelper_Equipsets_additionalData\">" .
+        $html =  "" .
                     "<div class=\"FFXIPackageHelper_Equipsets_equipList\">
-                        <h3 style=\"display:block;margin-top:0em;padding:0px;\">Equipment List</h3><br>
+                        <h2 style=\"display:block;margin-top:0em;padding:0px;\">Equipment List</h2>
                         <table>
                             <tr>
                                 <td>Main</td><td id=\"FFXIPackageHelper_Equipsets_gridLabel0\">" . (( !is_null($luaNamesArray) && $luaNamesArray[0] != 0 ) ? ( ParserHelper::wikiParse("[[" . $luaNamesArray[0] . "]]") ) : "- ") . "</td>
@@ -234,8 +238,7 @@ class FFXIPackageHelper_Equipsets  {
                             "<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_setNameInput\" class=\"FFXIPackageHelper_dynamiccontent_setNameInput\" placeholder=\"Set Name\" maxlength=\"25\"></input><br>" .
                         "</div>" .
                     "</div>" .
-                    FFXIPackageHelper_HTMLOptions::setsList() .
-                "</div>";
+                "";
         return $html;
     }
 
@@ -286,14 +289,21 @@ class FFXIPackageHelper_Equipsets  {
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
                         <tr>
-                            <td rowspan=\"2\"><div class=\"FFXIPackageHelper_Equipsets_showstats\"><p><center><b>Statistics</b></center></p><table id=\"FFXIPackageHelper_Equipsets_showstatstable\" class=\"FFXIPackageHelper_Equipsets_showstatstable\">" . $this->statsSection( $stats ) . "</table></div></td>
                             <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $updatedEquipmentData[0] ) . "</table></td>
                         </tr>
                         <tr><td><div id=\"FFXIPackageHelper_Equipsets_showstats_res\">" . $this->resistances( $stats ) ."</div></td></tr>
-                    </table>" .
+                    </table>" .   
+                "</div>" .
+                "<div class=\"FFXIPackageHelper_Equipsets_additionalData\">
+                    <div class=\"FFXIPackageHelper_Equipsets_showstats\">
+                        <h2 style=\"display:block;margin-top:0em;padding:0px;\">Statistics</h2>" .
+                        "<table id=\"FFXIPackageHelper_Equipsets_showstatstable\" class=\"FFXIPackageHelper_Equipsets_showstatstable\">" .
+                            $this->statsSection( $stats ) .
+                        "</table></div><br><br>" .
                     $this->additionalData( $updatedEquipmentData[1] ) . 
-                    $this->showLuaSets( $updatedEquipmentData[1] ) .
-                "</div>";
+                "</div></div>" .
+                FFXIPackageHelper_HTMLOptions::setsList() . 
+                $this->showLuaSets( $updatedEquipmentData[1] ) ;
 
         return $html;
     }

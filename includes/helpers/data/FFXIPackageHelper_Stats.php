@@ -45,6 +45,11 @@ class FFXIPackageHelper_Stats {
         'JA' => 0
     );
 
+    public $fastcast = 0;
+    public $PDT = 0;
+    public $MDT = 0;
+    public $conserve_mp = 0;
+
     public $modifiers = [];
     public $equipment;
     public $skillCaps = [];
@@ -578,7 +583,12 @@ class FFXIPackageHelper_Stats {
             //advanced stats
             $this->ACC,       //26
             $this->EVA,       //27
-            $this->haste       //28
+            $this->haste,       //28
+
+            $this->fastcast,      //29
+            $this->PDT,        //30
+            $this->MDT,         //31
+            $this->conserve_mp //32
         ];
 
         //wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $this->haste) );
@@ -619,6 +629,11 @@ class FFXIPackageHelper_Stats {
 
         $this->haste["gear"] += $this->modifiers["HASTE_GEAR"];
         $this->haste["magic"] += $this->modifiers["HASTE_MAGIC"];
+
+        $this->fastcast += $this->modifiers["FASTCAST"];
+        $this->PDT += ( $this->modifiers["DMGPHYS"] / 100);
+        $this->MDT += ( $this->modifiers["DMGMAGIC"] / 100);
+        $this->conserve_mp += $this->modifiers["CONSERVE_MP"];
 
     }
 
