@@ -282,7 +282,7 @@ class FFXIPackageHelper_Equipsets  {
         // $updatedLuaNames = $updatedEquipmentData[1];
 
         $html = "<span><i><b>Disclosure:</b>  Please reach out with any questions/comments via Discord.</i>" .
-                    "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
+                "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
                     "<br><table class=\"FFXIPackageHelper_Equipsets_showset\">
                         <tr>
@@ -301,7 +301,7 @@ class FFXIPackageHelper_Equipsets  {
                             $this->statsSection( $stats ) .
                         "</table></div><br><br>" .
                     $this->additionalData( $updatedEquipmentData[1] ) . 
-                "</div></div>" .
+                "</div>" .
                 FFXIPackageHelper_HTMLOptions::setsList() . 
                 $this->showLuaSets( $updatedEquipmentData[1] ) ;
 
