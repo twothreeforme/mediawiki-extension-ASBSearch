@@ -49,12 +49,17 @@ class FFXIPackageHelper_Stats {
     public $PDT = 0;
     public $MDT = 0;
     public $conserve_mp = 0;
+    public $enmity = 0;
+    public $crithitrate = 0;
+    public $enemycritrate = 0;
+
 
     public $modifiers = [];
     public $equipment;
     public $skillCaps = [];
     public $meritStats = [];
     public $meritSkills = [];
+    public $merits = [];
 
     public function __construct($race, $mlvl, $slvl, $mjob, $sjob, $merits, $e) {
         if ($race == null) $race = 0;
@@ -88,7 +93,7 @@ class FFXIPackageHelper_Stats {
         $this->modifiers["DEF"] += $mlvl + $this->clamp($mlvl - 50, 0, 10);
 
         // Apply modifiers from equipment
-        $this->setStatsWithMods($mlvl);
+        $this->setStatsWithMods();
 
         // Calc additional stats after all modifiers and equipment have been applied
         // $this->DEF = $this->getDEF();
@@ -311,58 +316,83 @@ class FFXIPackageHelper_Stats {
         
         if ( gettype($meritsALL) == 'string' ) $temp = json_decode($meritsALL, false);
         else $temp = $meritsALL;
-        $this->meritStats = $temp[0];
-        foreach( $this->meritStats as $key => $value ){
-
-            switch( intval($key) ){
-                case 2:// (2) HP multiplied 10x the merit value
-                    $this->HP += ($value * 10);
-                    break;
-                case 5:// (5) MP are multiplied 10x the merit value
-                    $this->MP += ($value * 10);
-                    break;
-                case 8:
-                    $this->baseSTR += $value;
-                    break;
-                case 9:
-                    $this->baseDEX += $value;
-                    break;
-                case 10:
-                    $this->baseVIT += $value;
-                    break;
-                case 11:
-                    $this->baseAGI += $value;
-                    break;
-                case 12:
-                    $this->baseINT += $value;
-                    break;
-                case 13:
-                    $this->baseMND += $value;
-                    break;
-                case 14:
-                    $this->baseCHR += $value;
-                    break;
-            }
-
-            // if ( intval($key) == 2 || intval($key) == 5 ) $this->applyToModifiers( [intval($key) => (intval($value) * 10)] );
-            
-            // //all other stats are 1x merit value
-            // else $this->applyToModifiers( [intval($key) => intval($value)] );
-        }
-
-        $this->meritSkills = $temp[1];
-        foreach( $this->meritSkills as $key => $value ){
-
-            // Check weapons skills
-            if ( intval($key) <= 12 ){
-                // Only skills for mainhand weapons added as modifiers to stats
-                if ( intval($key) == $this->equipment[0][4] ){
-                    $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+        //$this->meritStats = $temp[0];
+        //foreach( $this->meritStats as $key => $value ){
+        foreach( $temp as $key => $value ){
+            if (intval($key) <= 14 ){
+                switch( intval($key) ){
+                    case 2:// (2) HP multiplied 10x the merit value
+                        $this->HP += ($value * 10);
+                        break;
+                    case 5:// (5) MP are multiplied 10x the merit value
+                        $this->MP += ($value * 10);
+                        break;
+                    case 8:
+                        $this->baseSTR += $value;
+                        break;
+                    case 9:
+                        $this->baseDEX += $value;
+                        break;
+                    case 10:
+                        $this->baseVIT += $value;
+                        break;
+                    case 11:
+                        $this->baseAGI += $value;
+                        break;
+                    case 12:
+                        $this->baseINT += $value;
+                        break;
+                    case 13:
+                        $this->baseMND += $value;
+                        break;
+                    case 14:
+                        $this->baseCHR += $value;
+                        break;
                 }
             }
-                 //all skills are 2x merit value
-            else $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+            else {
+                $combatskills = [ 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 104, 105, 106, 107, 108, 109, 110];
+                $magicskills = [ 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121];
+                $otherskills = [ 27, 999, 165, 166, 168 ];
+
+                if ( in_array(intval($key), $combatskills) || in_array(intval($key), $magicskills)  ){
+                    $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+                }
+                else if ( in_array(intval($key), $otherskills) ){
+                    switch( intval($key) ){
+                        case 27:
+                        case 165:
+                            $this->applyToModifiers( [intval($key) => intval($value)] );
+                            break;
+                        case 999:
+                            $this->applyToModifiers( [27 => (intval($value) * (-1)) ] );
+                            break;
+                        case 166:
+                            $this->applyToModifiers( [intval($key) => (intval($value) * (-1)) ] );
+                            break;
+                        case 168:
+                            $this->applyToModifiers( [intval($key) => (intval($value) * (-2)) ] );
+                            break;
+                    }
+                }
+            }
         }
+
+       // $this->meritSkills = $temp[1];
+       // foreach( $this->meritSkills as $key => $value ){
+        
+       
+        // foreach( $temp as $key => $value ){
+        //     // Check weapons skills
+        //     if ( intval($key) <= 12 ){
+        //         // Only skills for mainhand weapons added as modifiers to stats
+        //         if ( intval($key) == $this->equipment[0][4] ){
+        //             $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+        //         }
+        //     }
+        //          //all skills are 2x merit value
+        //     else $this->applyToModifiers( [intval($key) => (intval($value) * 2)] );
+        // }
     }
 
     private function setBaseStats( $race, $mlvl, $slvl, $mjob, $sjob){ // ASB/LSB functions
@@ -588,10 +618,11 @@ class FFXIPackageHelper_Stats {
             $this->fastcast,      //29
             $this->PDT,        //30
             $this->MDT,         //31
-            $this->conserve_mp //32
+            $this->conserve_mp, //32
+            $this->enmity //33
         ];
 
-        //wfDebugLog( 'Equipsets', get_called_class() . ":statsSection:" . json_encode( $this->haste) );
+        
         return $stats;
     }
 
@@ -634,7 +665,12 @@ class FFXIPackageHelper_Stats {
         $this->PDT += ( $this->modifiers["DMGPHYS"] / 100);
         $this->MDT += ( $this->modifiers["DMGMAGIC"] / 100);
         $this->conserve_mp += $this->modifiers["CONSERVE_MP"];
-
+        
+        $this->enmity += $this->modifiers["ENMITY"];
+        $this->crithitrate += $this->modifiers["CRITHITRATE"];
+        $this->enemycritrate += $this->modifiers["ENEMYCRITRATE"];
+        
+        
     }
 
     private function applyToModifiers($mods){

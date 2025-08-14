@@ -1131,13 +1131,15 @@ class DatabaseQueryWrapper {
         ->fetchResultSet();
 
         foreach($result as $row){
-            return [
-                'charname' => $row->charname,
-                'charid' => $row->charid,
-                'race' => $row->race,
-                'merits' => $row->merits,
-                'def' => $row->def
-            ];
+            return new FFXIPH_Character($row->race, null, null, null, null,
+                            $row->merits, null, $row->def, $row->charname, $row->charid);
+            // return [
+            //     'charname' => $row->charname,
+            //     'charid' => $row->charid,
+            //     'race' => $row->race,
+            //     'merits' => $row->merits,
+            //     'def' => $row->def
+            // ];
         }
         return [];
     }

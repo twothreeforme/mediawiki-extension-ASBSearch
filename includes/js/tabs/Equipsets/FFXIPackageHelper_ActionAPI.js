@@ -59,7 +59,8 @@ function actionAPI(params, forTab, currentButton, callback) {
           //callback(result['charSelectButtonsBar']);
           callback.updateStats();
           //callback.setHeaderCharacterDetails();
-
+          //updateMerits(result['merits']);
+          //updateCharactersTab(result['showcharacters']);
         }
         else if ( forTab.includes("updatechar")) {
           if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
@@ -273,6 +274,16 @@ function updateStats(incomingStats){
 function updateResistances(incomingStats){
   let showstats_res = document.getElementById("FFXIPackageHelper_Equipsets_showstats_res");
   showstats_res.innerHTML = incomingStats;
+}
+
+function updateMerits(incomingMerits){
+  let meritsTable = document.getElementById("FFXIPackageHelper_dynamiccontent_showMerits_table");
+  meritsTable.innerHTML = incomingMerits;
+}
+
+function updateCharactersTab(incomingCharactersTab){
+  let charsTab = document.getElementById("FFXIPackageHelper_tabs_characters_shown");
+  charsTab.innerHTML = incomingCharactersTab;
 }
 
 module.exports = { actionAPI }

@@ -454,18 +454,24 @@ function changeMeritValues(forInput, val){
 
         const skills = document.querySelectorAll('[id*=' + skillID + ']');
         const forInputID = Number(forInput.id.replace(skillID, ""));
+        
+        let combatskills = [ 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 104, 105, 106, 107, 108, 109, 110];
+        let magicskills = [ 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121];
+        let otherskills = [ 27, 999, 165, 166, 168 ];
+
+
         let combatSkills_total = 0;
         let defenseSkills_total = 0;
         let magicSkills_total = 0;
+        let otherSkills_total = 0;
 
         /**
          * Combat Skills
          */
-        if ( forInputID <= 110 ) {
-
+        if ( combatskills.includes(forInputID) ) {
             for( let s = 0; s < skills.length; s++) {
                 const id =  Number(skills[s].id.replace(skillID, ""));
-                if ( id > 110 ) continue;
+                if ( !combatskills.includes(id) ) continue;
                 if ( id < 107 && Number(skills[s].value) == 8 && forInputID == id ){
                     mw.notify( "Offensive combat skill capped at 8.", { autoHide: true,  type: 'error' } );
                     return;
@@ -490,11 +496,14 @@ function changeMeritValues(forInput, val){
                 return;
             }
         }
-        else {
+         /**
+         * Magic Skills
+         */
+        else if ( magicskills.includes(forInputID) ) {
 
             for( let s = 0; s < skills.length; s++) {
                 const id =  Number(skills[s].id.replace(skillID, ""));
-                if ( id <= 110 ) continue;
+                if ( !magicskills.includes(id) ) continue;
 
                 if ( Number(skills[s].value) == 8 && forInputID == id ){
                     mw.notify( "Magic skill capped at 8.", { autoHide: true,  type: 'error' } );
@@ -507,6 +516,27 @@ function changeMeritValues(forInput, val){
                 mw.notify( "Total magic skills already capped at 8 points.", { autoHide: true,  type: 'error' } );
                 return;
             }
+        }
+         /**
+         * Other Skills
+         */
+        else if ( otherskills.includes(forInputID) ){
+            for( let s = 0; s < skills.length; s++) {
+                const id =  Number(skills[s].id.replace(skillID, ""));
+                if ( !otherskills.includes(id) ) continue;
+
+                if ( Number(skills[s].value) == 4 && forInputID == id ){
+                    mw.notify( "Each Other skill capped at 4.", { autoHide: true,  type: 'error' } );
+                    return;
+                }
+                otherSkills_total += Number(skills[s].value);
+            }
+
+            if ( otherSkills_total == 8 ) {
+                mw.notify( "Total other skills already capped at 8 points.", { autoHide: true,  type: 'error' } );
+                return;
+            }
+
         }
 
         forInput.value = Number(forInput.value) + val;

@@ -76,6 +76,7 @@ class FFXIPackageHelper_Equipsets  {
                 "<tr><td>PDT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statPDT\">" . ($stats ? $stats[30] : 0) . "</span></td><td>%</td></tr>" .
                 "<tr><td>MDT&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statMDT\">" . ($stats ? $stats[31] : 0) . "</span></td><td>%</td></tr>" .
                 "<tr><td>Conserve MP&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statConserveMP\">" . ($stats ? $stats[32] : 0) . "</span></td></tr>" .
+                "<tr><td>Enmity&emsp;</td><td><span id=\"FFXIPackageHelper_Equipsets_statEnmity\">" . ($stats ? $stats[33] : 0) . "</span></td></tr>" .
 
             "</table>";
             
@@ -376,6 +377,100 @@ class FFXIPackageHelper_Equipsets  {
         return [$updatedGrid, $luaNames];
     }
 
+
+    public function showMerits(FFXIPH_Character $c){
+        $html = "<div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
+                    <table id=\"FFXIPackageHelper_dynamiccontent_showMerits_table\" class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">" . 
+                        $this->showMeritsTable($c) .
+                    "</table>" . 
+                "</div>";
+        return $html;
+    }
+
+    public function showMeritsTable(FFXIPH_Character $c){
+		$html = "";
+		$html = "<tr><td><h4>Stats</h4></td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">HP (+10 per)</span></td><td style=\"\">" . $this->meritIncrement(2, $c->getMerit(2) ) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">MP (+10 per)</span></td><td style=\"\">" . $this->meritIncrement(5, $c->getMerit(5) ) . "</td></tr>
+									<tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr><tr></tr> 
+									<tr><td><span style=\"vertical-align:middle;\">STR (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(8, $c->getMerit(8) ) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">DEX (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(9, $c->getMerit(9)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">VIT (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(10, $c->getMerit(10)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">AGI (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(11, $c->getMerit(11)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">INT (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(12, $c->getMerit(12)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">MND (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(13, $c->getMerit(13)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">CHR (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(14, $c->getMerit(14)) . "</td></tr>" .
+
+									"<tr></tr><tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>" .
+									"<tr><td><h4>Combat Skills</h4></td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Hand to Hand (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(80, $c->getMerit(80)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Dagger (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(81, $c->getMerit(81)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Sword (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(82, $c->getMerit(82)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Great Sword (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(83, $c->getMerit(83)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Axe (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(84, $c->getMerit(84)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Great Axe (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(85, $c->getMerit(85)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Scythe (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(86, $c->getMerit(86)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Polearm (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(87, $c->getMerit(87)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Katana (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(88, $c->getMerit(88)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Great Katana (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(89, $c->getMerit(89)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Club (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(90, $c->getMerit(90)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Staff (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(91, $c->getMerit(91)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Archery (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(104, $c->getMerit(104)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Marksmanship (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(105, $c->getMerit(105)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Throwing (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(106, $c->getMerit(106)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Guard (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(107, $c->getMerit(107)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Evasion (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(108, $c->getMerit(108)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Shield (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(109, $c->getMerit(109)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Parry (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(110, $c->getMerit(110)) . "</td></tr>" .
+
+									"<tr></tr><tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>" .
+									"<tr><td><h4>Magic Skills</h4></td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Divine Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(111, $c->getMerit(111)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Healing Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(112, $c->getMerit(112)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Enhancing Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(113, $c->getMerit(113)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Enfeebling Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(114, $c->getMerit(114)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Elemental Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(115, $c->getMerit(115)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Dark Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(116, $c->getMerit(116)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Summoning Magic (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(117, $c->getMerit(117)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Ninjutsu (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(118, $c->getMerit(118)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Singing (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(119, $c->getMerit(119)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">String Instrument (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(120, $c->getMerit(120)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Wind Instrument (+2 per)</span></td><td style=\"\">" . $this->meritIncrement(121, $c->getMerit(121)) . "</td></tr>" .
+								
+									"<tr></tr><tr><td style=\"height:10px; background-color: #12396c00 !important;\"></td></tr>" .
+									"<tr><td><h4>Other Skills</h4></td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Enmity Increase (+1 per)</span></td><td style=\"\">" . $this->meritIncrement(27, $c->getMerit(27)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Enmity Decrease (-1 per)</span></td><td style=\"\">" . $this->meritIncrement(999, $c->getMerit(999)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Crit Hit Rate (+1% per)</span></td><td style=\"\">" . $this->meritIncrement(165, $c->getMerit(165)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Enemy Crit Hit Rate (-1% per)</span></td><td style=\"\">" . $this->meritIncrement(166, $c->getMerit(166)) . "</td></tr>
+									<tr><td><span style=\"vertical-align:middle;\">Spell Interruption Rate (-2% per)</span></td><td style=\"\">" . $this->meritIncrement(168, $c->getMerit(168)) . "</td></tr>
+                                    ";
+		return $html;
+	}
+
+	private function meritIncrement($merit, $value = 0){
+		if ( $merit <= 14 ) $type = "stats";
+		else $type = "skill";
+
+        $html = "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
+            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                </svg>
+            </button><input id=\"FFXIPackageHelper_equipsets_merits_$type$merit\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"$value\" readonly >
+            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke-linecap=\"round\"/>
+                </svg>
+            </button>
+            </div>";
+
+			return $html;
+    }
+
     private function showShareButton($id){
         return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
     }
@@ -399,6 +494,48 @@ class FFXIPackageHelper_Equipsets  {
             case 14: return "Legs.jpg";
             case 15: return "Feet.jpg";
         }
+    }
+
+    public function showCharacters($userChars, $shouldLoadDefaultCharacter, FFXIPH_Character $c){
+        $html = "<span><i><b>Disclosure:</b>  Users must be logged in to save a character. Saving a character stores the RACE and MERITS set below. The character will be de-selected if any changes are made. Refresh button resets stats to default.</i></span>" .
+
+					"<div id=\"FFXIPackageHelper_equipsets_charTab\" >" .
+						FFXIPackageHelper_HTMLOptions::selectableButtonsBar("FFXIPackageHelper_equipsets_charSelect", $userChars, $shouldLoadDefaultCharacter) .
+						
+						"<div id=\"FFXIPackageHelper_equipsets_charSelectMerits\">" .
+
+							"<div class=\"FFXIPackageHelper_equipsets_charSelectOptionsMenu\">" .
+								"<button id=\"FFXIPackageHelper_editCharButton\" class=\"FFXIPackageHelper_editCharButton\">Edit</button>" .
+								"<button id=\"FFXIPackageHelper_dynamiccontent_saveChar\" class=\"FFXIPackageHelper_newCharButton FFXIPackageHelper_saveCharButton\">Save</button>" .
+							"</div>" .
+							"<div id=\"FFXIPackageHelper_dynamiccontent_newCharSection\" style=\"display: none;\" >" .
+								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Name</p>" .
+								"<input type=\"text\" id=\"FFXIPackageHelper_dynamiccontent_charNameInput\" class=\"FFXIPackageHelper_dynamiccontent_charNameInput\" placeholder=\"Character Name\" maxlength=\"25\"></input><br>" .
+							"</div>" .
+							"<div class=\"FFXIPackageHelper_equipsets_selectRace\">" .
+								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Default</p>" .
+								"<label class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultLabel\">" .
+									"<input type=\"checkbox\" id=\"FFXIPackageHelper_dynamiccontent_defaultChar\" class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultInput\" disabled";
+								if ( $c->def == 1 ) $html .= " checked";
+								$html .= "></input>" .
+									"<span class=\"FFXIPackageHelper_dynamiccontent_addCharDefaultSpan FFXIPackageHelper_dynamiccontent_addCharDefaultSpanround\"></span>" .
+								"</label>" .
+								"<br><p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Race</p>" . FFXIPackageHelper_HTMLOptions::raceDropDown("FFXIPackageHelper_equipsets_selectRace", $c->race) . "<br>" .
+							"</div>" .
+							"<div>" .
+								"<p id=\"FFXIPackageHelper_dynamiccontent_raceLabel\">Merits</p>" .
+								//"<button id=\"FFXIPackageHelper_dynamiccontent_changeMerits\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\">Edit</button><br>" .
+							"</div>" .
+							"<div class=\"FFXIPackageHelper_dynamiccontent_showMerits\" >
+								<table id=\"FFXIPackageHelper_dynamiccontent_showMerits_table\" class=\"FFXIPackageHelper_dynamiccontent_showMerits_table\">" . 
+									$this->showMeritsTable($c) .
+								"</table>" . 
+							"</div>" .
+							"<button id=\"FFXIPackageHelper_deleteCharButton\" class=\"FFXIPackageHelper_deleteCharButton\">Remove this character</button>" .
+
+						"</div>" .
+					"</div>";
+        return $html;
     }
 }
 

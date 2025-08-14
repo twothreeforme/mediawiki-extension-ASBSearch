@@ -1631,7 +1631,8 @@ class FFXIPackageHelper_Variables {
         904 => "THUNDER_EEM_MOD",
         905 => "WATER_EEM_MOD",
         906 => "LIGHT_EEM_MOD",
-        907 => "DARK_EEM_MOD"
+        907 => "DARK_EEM_MOD",
+        999 => "ENMITY_DECREASE" // custom for this extension to account for the merits section
     );
 }
 

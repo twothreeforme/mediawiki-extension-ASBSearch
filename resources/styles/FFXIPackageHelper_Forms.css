@@ -195,7 +195,7 @@ Custom Buttons
 }
 
 .FFXIPackageHelper_dynamiccontent_showMerits_table td{
-    width: 200px;
+    /* width: 200px; */
 }
 
 .FFXIPackageHelper_dynamiccontent_addCharacter {

@@ -53,8 +53,9 @@ function updateStats(data){
 }
 
 function getMeritsData(){
-    let meritStats = {};
-    let meritSkills = {};
+    // let meritStats = {};
+    // let meritSkills = {};
+    let merits = {};
 
     const _id = "FFXIPackageHelper_equipsets_merits_";
     const allMerits = document.querySelectorAll("[id*='" + _id + "']");
@@ -65,17 +66,18 @@ function getMeritsData(){
         if ( merit.value != 0 ){
             if ( merit.id.includes("skill") ) {
                 var skillid = merit.id.replace(_id + "skill",'');
-                meritSkills[Number(skillid)] = merit.value;
+                merits[Number(skillid)] = merit.value;
             }
             else if ( merit.id.includes("stat") ) {
                 var statid = merit.id.replace(_id + "stats",'');
-                meritStats[Number(statid)] = merit.value;
+                merits[Number(statid)] = merit.value;
             }
         }
     });
 
-    //console.log(JSON.stringify([meritStats, meritSkills]));
-    return JSON.stringify([meritStats, meritSkills]);
+    //console.log(JSON.stringify(merits));
+    //return JSON.stringify([meritStats, meritSkills]);
+    return JSON.stringify(merits);
 }
 
 function areMeritsSet(){
@@ -92,7 +94,7 @@ function areMeritsSet(){
 }
 
 function getCharData(){
-    let gmd = getMeritsData();
+    //let gmd = getMeritsData();
     //console.log("getCharData:", btoa(gmd), encodeURIComponent(btoa(gmd)));
     return {
         race:document.getElementById("FFXIPackageHelper_equipsets_selectRace").value,
@@ -167,28 +169,26 @@ function setMeritsData(merits_){
         resetMeritsToDefault();
         return;
     }
-    else {
-        let merits_base64 = decodeURIComponent(merits_);
+
+    let merits_base64 = decodeURIComponent(merits_);
+    if ( isBase64(merits_base64) ) {
         merits_ = JSON.parse(atob(merits_base64));
     }
-
-
-    let meritStats = merits_[0];
-    let meritSkills = merits_[1];
-
+    
     const stats = document.querySelectorAll('[id*="FFXIPackageHelper_equipsets_merits_stats"]');
     stats.forEach(stat => {
         const id =  Number(stat.id.replace("FFXIPackageHelper_equipsets_merits_stats", ""));
-        if ( meritStats.hasOwnProperty(id) == true ) stat.value = meritStats[id];
+        if ( merits_.hasOwnProperty(id) == true ) stat.value = merits_[id];
         else  stat.value = 0;
     });
 
     const skills = document.querySelectorAll('[id*="FFXIPackageHelper_equipsets_merits_skill"]');
     skills.forEach(skill => {
         const id =  Number(skill.id.replace("FFXIPackageHelper_equipsets_merits_skill", ""));
-        if ( meritSkills.hasOwnProperty(id) == true ) skill.value = meritSkills[id];
+        if ( merits_.hasOwnProperty(id) == true ) skill.value = merits_[id];
         else  skill.value = 0;
     });
+
 }
 
 
@@ -227,7 +227,7 @@ function setHeaderCharacterDetails(){
 function updateCharacter(char){
     //console.log("updateCharacter:", char);
     
-    if ( char.charname == null ) {
+    if ( char.charname == null || char.charname == "" ) {
         document.getElementById("FFXIPackageHelper_equipsets_selectRace").value = 0;
         document.getElementById("FFXIPackageHelper_dynamiccontent_defaultChar").checked = false;
         setHeaderCharacterDetails();
@@ -265,6 +265,32 @@ function loadSet(fromFetechedResult){
     // API.actionAPI(data, "equipsets_change", null, null);
 
     updateStats();
+}
+
+// https://stackoverflow.com/a/78499205
+function isBase64(str) {
+    // Base64 strings are usually a multiple of 4 in length
+    if (str.length % 4 !== 0) {
+        return false;
+    }
+
+    // Check for base64 character set
+    if (!/^[A-Za-z0-9+/]+={0,2}$/.test(str)) {
+        return false;
+    }
+
+    // Attempt to decode and check if the result is a valid string
+    try {
+        const decoded = atob(str);
+        // Check if the decoded string contains only printable characters
+        if (/^[\x20-\x7E]*$/.test(decoded)) {
+            return true;
+    }
+    } catch (e) {
+        return false;
+    }
+
+    return false;
 }
 
 module.exports = {

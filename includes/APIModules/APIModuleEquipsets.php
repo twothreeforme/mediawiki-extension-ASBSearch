@@ -197,19 +197,29 @@ class APIModuleEquipsets extends ApiBase {
 
             $char = $this->createChar($params);
             
-            if ( is_null($char->charname) ){
-                $selectedChar = [
-                    'charname' => null,
-                    'charid' => null,
-                    'race' => 0,
-                    'merits' => null,
-                    'def' => 0
-                ];
+            if ( is_null($params['charname']) || $params['charname'] == ""  ){
+                $selectedChar = $this->createChar($params);
+                // [
+                //     'charname' => null,
+                //     'charid' => null,
+                //     'race' => 0,
+                //     'merits' => null,
+                //     'def' => 0
+                // ];
             }
             else {
                 $selectedChar = $db->getSelectedCharacter($char);
             }
-            $result->addValue( $params['action'], "selectchar", $selectedChar );
+            
+            $userCharacters = $db->getUserCharacters($selectedChar, false);
+
+            $tabEquipsets = new FFXIPackageHelper_Equipsets($char);
+
+            $result->addValue( $params['action'], "selectchar", $selectedChar->toURLsafeArray() );
+
+            $result->addValue( $params['action'], "showcharacters", $tabEquipsets->showCharacters( $userCharacters, false, $selectedChar) );
+            //$result->addValue( $params['action'], "merits", $tabEquipsets->showMeritsTable($selectedChar) );
+
         }
         else if ( $params['action'] == "equipsets_removechar" ) {
             $db = new DatabaseQueryWrapper();
