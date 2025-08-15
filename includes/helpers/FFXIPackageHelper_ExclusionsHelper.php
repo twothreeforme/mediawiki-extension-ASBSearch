@@ -33,6 +33,8 @@ class ExclusionsHelper {
     }
 
     public static function itemIsOOE($i): bool{
+        $i = ParserHelper::replaceUnderscores($i);
+
         foreach( ExclusionsHelper::$items as $item) {
             if ( strtolower($item) == strtolower($i)) 
                 return true;
