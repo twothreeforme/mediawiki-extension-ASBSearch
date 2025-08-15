@@ -49,6 +49,8 @@ class DataModel {
 
 			if ( !$zn || ExclusionsHelper::zoneIsTown($zn) ) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
+			if ( ExclusionsHelper::itemIsOOE($row->itemName) ) { continue; }
+
 			/*******************************************************/
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
@@ -157,9 +159,8 @@ class DataModel {
     }
 
 	function parseMobDropData($param){
-        //print_r($this->dataset);
+       
         if ( !$param ) return NULL;
-
 
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
@@ -181,6 +182,8 @@ class DataModel {
 
 			if ( !$zn || ExclusionsHelper::zoneIsTown($zn) ) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
+			if ( ExclusionsHelper::itemIsOOE($row->itemName) ) { continue; }
+
 			/*******************************************************/
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 

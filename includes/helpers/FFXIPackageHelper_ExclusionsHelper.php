@@ -36,6 +36,9 @@ class ExclusionsHelper {
         foreach( ExclusionsHelper::$items as $item) {
             if ( ucwords($item) == ucwords($i)) return true;
         }
+        foreach( ExclusionsHelper::$itemSets as $item) {
+            if (  str_contains(ucwords($i), ucwords($item) ) ) return true;
+        } 
         return false;
     }
 
@@ -303,9 +306,20 @@ class ExclusionsHelper {
          'Succubus Grip',
          'Tenax Strap',
 
-         // Other OOE Items
-         'Trump Crown'
+        // Other OOE Items
+         'Trump Crown',
 
+        // Dynamis items
+        'Vial of Cagebeast Blood', 'Vial of Sea Monk Venom', 'Perforated Wing', 'Undying Moiety',
+        'Shadescale Femur', 'Shadescale Skull', 'Shadescale Talon', 'Shadescale Heart',
+        'Forgotten Step', 'Forgotten Touch', 'Forgotten Journey', 'Forgotten Thought', 'Forgotten Hope',
+        'Heralds Juju', 'Undying Juju', 'Revelatory Juju', 'Creepers Juju',
+        'Redolent Root', 'Clump of Absorbent Moss', 'Odorless Fungus'
+    ];
+
+    public static $itemSets = [
+        'Mirage', 'Pantin', 'Commodore', 'Argute', 'Etoile',
+        'Fiendish', 'Bijou'
     ];
 
     public static $mobs = array(
