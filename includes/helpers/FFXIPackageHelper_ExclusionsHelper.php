@@ -32,12 +32,14 @@ class ExclusionsHelper {
         return false;
     }
 
-    public static function itemIsOOE($i){
+    public static function itemIsOOE($i): bool{
         foreach( ExclusionsHelper::$items as $item) {
-            if ( ucwords($item) == ucwords($i)) return true;
+            if ( strtolower($item) == strtolower($i)) 
+                return true;
         }
         foreach( ExclusionsHelper::$itemSets as $item) {
-            if (  str_contains(ucwords($i), ucwords($item) ) ) return true;
+            if (  str_contains(strtolower($i), strtolower($item) ) ) 
+                return true;
         } 
         return false;
     }

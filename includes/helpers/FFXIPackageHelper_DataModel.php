@@ -4,20 +4,7 @@
 class DataModel {
     private $dataset = array();  // array of rows
 
-	// public $zoneName;
-    // public $mobName;
-    // public $mobMinLevel;
-    // public $mobMaxLevel;
-    // public $dropGroup = array();
-    // public $dropGroupRate;
-    // public $dropType;
-    // public $item = array();
-    // public $itemName;
-    // public $itemRate;
-
     public function __construct() {
-      //$this->dataset = $param;
-      //self::parseData($param);
     }
 
 	function getDataSet(){
@@ -25,32 +12,22 @@ class DataModel {
 	}
 
     function parseData($param){
-        //print_r($this->dataset);
-        if ( !$param ) return NULL;
-
+		if ( !$param ) return NULL;
 
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
 			
-			//self::showKeys($row);  //Debugging
-
 			/*******************************************************
 			 * Removing OOE 
 			 */
 			// First check zone names
-			
-			//$zn = str_replace("[S]", "(S)", $zn );
-			// $skipRow = false;
-			// foreach( ExclusionsHelper::$zones as $v) { 
-			// 	//print_r($zn);
-			// 	if ( $zn == $v ) { $skipRow = true; break; } }
-			// if ( $skipRow == true ) continue;
 			$zn = ParserHelper::zoneERA_forList($row->zoneName);
 
 			if ( !$zn || ExclusionsHelper::zoneIsTown($zn) ) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
-			if ( ExclusionsHelper::itemIsOOE($row->itemName) ) { continue; }
+			if ( ExclusionsHelper::itemIsOOE($row->itemName) && intval($row->groupId) == 0) { continue; }
 
+			//wfDebugLog( 'ASBSearch', get_called_class() . ": " . ExclusionsHelper::itemIsOOE($row->itemName) . " : " . $row->groupId );
 			/*******************************************************/
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
@@ -158,6 +135,10 @@ class DataModel {
 		return $this->dataset;
     }
 
+	/**
+	 * used for mob tables on a wiki page
+	 * not associated with ASBSearch
+	 */
 	function parseMobDropData($param){
        
         if ( !$param ) return NULL;
@@ -182,7 +163,7 @@ class DataModel {
 
 			if ( !$zn || ExclusionsHelper::zoneIsTown($zn) ) { continue; }
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
-			if ( ExclusionsHelper::itemIsOOE($row->itemName) ) { continue; }
+			if ( ExclusionsHelper::itemIsOOE($row->itemName) && $row->groupId == 0 ) { continue; }
 
 			/*******************************************************/
 			//print_r(gettype($row));
