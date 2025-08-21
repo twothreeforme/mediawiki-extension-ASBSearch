@@ -63,6 +63,15 @@ DROP TABLE IF EXISTS `mob_pools`;
 source mob_pools.sql;
 \! echo mob_pools done
 
+\! echo mob_resistances
+DROP TABLE IF EXISTS `mob_resistances`;
+source mob_resistances.sql;
+\! echo mob_resistances done
+
+\! echo mob_family_system
+DROP TABLE IF EXISTS `mob_family_system`;
+source mob_family_system.sql;
+\! echo mob_family_system done
 
 \! echo hxi_bcnm_crate_list
 DROP TABLE IF EXISTS `hxi_bcnm_crate_list`;
@@ -93,11 +102,6 @@ source item_equipment.sql;
 DROP TABLE IF EXISTS `item_mods`;
 source item_mods.sql;
 \! echo item_mods done
-
-\! echo mob_family_system
-DROP TABLE IF EXISTS `mob_family_system`;
-source mob_family_system.sql;
-\! echo mob_family_system done
 
 \! echo traits
 DROP TABLE IF EXISTS `traits`;
