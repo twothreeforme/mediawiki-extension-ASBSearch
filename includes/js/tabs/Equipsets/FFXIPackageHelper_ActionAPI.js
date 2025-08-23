@@ -126,6 +126,9 @@ function actionAPI(params, forTab, currentButton, callback) {
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
+      else if ( forTab.includes("combatsim_mobsearch")){
+        updateMobAndZoneTable(result['moblisttable']);
+      }
 
       if ( currentButton != null){
         const button = document.getElementById(currentButton);
@@ -284,6 +287,13 @@ function updateMerits(incomingMerits){
 function updateCharactersTab(incomingCharactersTab){
   let charsTab = document.getElementById("FFXIPackageHelper_tabs_characters_shown");
   charsTab.innerHTML = incomingCharactersTab;
+}
+
+function updateMobAndZoneTable(incomingMobAndZoneTable){
+  let combatSimTab = document.getElementById("FFXIPackageHelper_tabs_combatsim_queryresult");
+  combatSimTab.innerHTML = incomingMobAndZoneTable;
+  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_combatsim_queryresult'));
+
 }
 
 module.exports = { actionAPI }

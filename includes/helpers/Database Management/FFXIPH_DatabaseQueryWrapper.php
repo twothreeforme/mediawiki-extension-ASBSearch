@@ -7,10 +7,24 @@
 class DatabaseQueryWrapper {
 
     private $database; 
-    
+
     public function __construct() {
         $this->database = new DatabaseConnection();
     }
+
+    private function exclude_MOBGROUPS_OOE(Array $query){
+        $query[] = "mob_groups.name NOT LIKE '%_G'";
+        foreach( ExclusionsHelper::$mobs as $mob) {
+            $query[] = "mob_groups.name NOT LIKE '" . $mob . "'";
+        }
+        return $query;
+    }
+
+    private function exclude_MOBGROUPS_Fished(Array $query){
+        $query[] = "mob_groups.name NOT LIKE '%fished%'";
+        return $query;
+    }
+
 
     private function openASBSearchConnection() { return $this->database->openConnection("ASB_Data"); }
     private function openEquipsetsConnection() { return $this->database->openConnection("Equipsets"); }
@@ -387,9 +401,10 @@ class DatabaseQueryWrapper {
 
         if ( $mobNameSearch !=  '' ) {
             array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
+            $query = $this->exclude_MOBGROUPS_OOE($query);
 		}
 
-        if ( $includeFished == 0 ){ array_push($query, "mob_groups.name NOT LIKE '%fished%'"); }
+        if ( $includeFished == 0 ){ $query = $this->exclude_MOBGROUPS_fished($query); }
 
 
         if ( $itemNameSearch !=  '' ) {
@@ -455,7 +470,63 @@ class DatabaseQueryWrapper {
 			->fetchResultSet(); 
 	}
 
-    public function getMobDropRates($mobname){
+    public function getMobAndZone($mobname = null, $zonename = null){
+        if ( $mobname == null && $zonename == null ) return;
+
+        $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
+        //array_push($query, $this->exclude_MOBGROUP_GARRISON);
+
+        $query = $this->exclude_MOBGROUPS_OOE($query);
+
+        if ( !is_null($mobname) )  {
+            $mobNameSearch = ParserHelper::replaceSpaces($mobname);
+            array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
+
+        }
+        if ( !is_null($zonename) )  {  
+            $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
+            if ( $zoneNameSearch !=  'searchallzones' ) {
+                array_push($query, "zone_settings.name = '$zoneNameSearch'");
+            }
+		}
+        
+        $dbr = $this->openASBSearchConnection();
+        $results = $dbr->newSelectQueryBuilder()
+			->select( [ 
+						'mob_groups.groupId',
+                        'mob_groups.name',
+                        'mob_groups.zoneid',
+                        'zone_settings.name AS zonename',
+                        'mob_pools.mobType',
+                        'mob_pools.aggro',
+                        'mob_pools.true_detection',
+                        'mob_groups.minLevel AS mobMinLevel',
+						'mob_groups.maxLevel AS mobMaxLevel',
+                        'mob_groups.changes_tag AS mobChanges',
+                        'mob_family_system.detects',
+						] )
+			->from( 'mob_groups' )
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
+            ->orderBy( 'zoneid', 'ASC' )
+			->where( $query	)
+			->fetchResultSet(); 
+
+        // $returnArray = [];
+        // foreach( $results as $result ){
+        //     $returnArray[] = [ $result->zoneid, $result->zonename, $result->name, $result->groupId];
+        // }
+        // return $returnArray;
+        return $results;
+    }
+
+    /**
+     * Used mainly for the 'Page Directs' calls. Not used with ASBSearch. Default exclusions not applied in this search.
+     * @param string $mobname *required
+     * @return fetchResultSet array of rows for SQL results
+     */
+    public function getMobDropRates(string $mobname){
         $mobNameSearch = ParserHelper::replaceSpaces($mobname);
        
         $query = [ 
@@ -464,6 +535,8 @@ class DatabaseQueryWrapper {
                     "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')",
                     "mob_groups.name LIKE '%$mobNameSearch%'",
                 ];
+
+        //$query = $this->exclude_MOBGROUPS_OOE($query);
 
         $dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()

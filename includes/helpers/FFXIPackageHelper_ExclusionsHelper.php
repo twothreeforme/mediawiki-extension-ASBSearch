@@ -327,7 +327,39 @@ class ExclusionsHelper {
     ];
 
     public static $mobs = array(
-        'Pixie'
+
+        // Voidwalker
+        'Meanderer', 'Meditator', 'Hungerer', 'Ateuvhi', 'Vuzdei', 'Mighrah',
+        'Capricornus', 'Yacumama', 'Lamprey Lord', 'Shoggoth', 'Jyeshtha', 'Farruca Fly', 'Skuld', 'Urd', 'Erebus', 'Feuerunke', 'Chesma', 'Tammuz',
+        'Krabkatoa', 'Blobdingnag', 'Orcus', 'Verthandi', 'Lord Ruthven', 'Dawon',
+        'Yilbegan', 'Provenance Watcher', 'Slime','She-Slime', 'Metal_Slime', 'Quagmire_Pugil', 'Sunderclaw','Void_Hare', 'Prickly_Sheep', 'Ig-Alima',
+
+        //Garrison
+        'Orcish_Cursemaker', 'Orcish_Serjeant', 'Orcish_Fighter', 'Orcish_Chasseur', 'Orcish_Fighterchief', 'Orcish_Fighter_G','Orcish_Serjeant_G','Orcish_Cursemaker_G','Orcish_Colonel',
+        'Goblin_Swordmaker', 'Goblin_Leecher_G', 'Goblin_Gaoler', 'Goblin_Gambler_G', 'Goblin_Swindler',
+
+
+        // Voidwatch 
+        'Abununnu', 'Aello', 'Agathos', 'Akupara', 'Akvan', 'Belphoebe', 'Bhishani', 'Bismarck', 'Botulus_Rex', 'Brekekekex', 'Celaeno', 
+        'Cath_Palug', 'Cherufe', 'Cottus', 'Dimgruzub', 'Fjalar', 'Gasha', 'Gaunab', 'Giltine', 'Goji', 'Gugalanna', 'Gwynn_Ap_Nudd', 'Hahava', 
+        'Holy_Moly', 'Ildebrann', 'Ig-Alima', 'Isarukitsck', 'Kaggen', 'Kalasutrax', 'Kholomodumo', 'Krabimanjaro', 'Laidly_Laurence', 'Lancing_Lamorak', 
+        'Lorbulcrud', 'Lord_Asag', 'Malleator_Maurok', 'Melancholic_Moira', 'Mellonia', 'Mimic_King', 'Modron', 'Morta', 'Murk-Veined_Baneberry', 
+        'Neith', 'Nympha_Eunomia', 'Ocythoe', 'Ogbunabali', 'Pancimanci', 'Pil', 'Qilin', 'Roly-Poly', 'Rw_Nw_Prt_M_Hrw', 'Sabotender_Campeador', 'Sallow_Seymour', 'Sarimanok', 'Smierc', 'Stachysaurus', 
+        'Tangaroa', 'Taweret', 'Tsui-Goab', 'Uptala', 'Ushumgal', 'Vanasaarvik', 'Virvatuli', 'Voidwrought', 'Yalungur', 'Yatagarasu',
+        
+        // Unity
+        'Bounding_Belinda', 'Hugemaw_Harold', 'Prickly_Pitriv', 'Ironhorn_Baldurno', 'Sleepy_Mabel', 'Serpopard_Ninlil', 'Abyssdiver', 
+        'Immanibugard', 'Intuila', 'Jester_Malatrix', 'Orcfeltrap', 'Sybaritic_Samantha', 'Valkurm_Imperator', 'Cactrot_Veloz', 'Emperor_Arthro', 
+        'Garbage_Gel', 'Joyous_Green', 'Keeper_of_Heiligtum', 'Tiyanak', 'Voso', 'Warblade_Beak', 'Woodland_Mender', 'Arke', 'Ayapec', 
+        'Azure-toothed_Clawberry', 'Bakunawa', 'Beist', 'Centurio_XX-I', 'Coca', 'Douma_Weapon', 'King_Uropygid', 'Kubool_Jas_Mhuufya', 
+        'Largantua', 'Lumber_Jill', 'Mephitas', 'Muut', 'Specter_Worm', 'Strix', 'Vermillion_Fishfly', 'Azrael', 'Borealis_Shadow', 
+        'Camahueto', 'Carousing_Celine', 'Grand_Grenade', 'Vedrfolnir', 'Vidmapire', 'Volatile_Cluster', 'Glazemane', 'Wyvernhunter_Bambrox', 'Hidhaegg',
+        
+        // Ukn
+        'Otherworldly_Rimester', 'Blue_Bascinet', 'Pixie', 'Gougetooth_Ganzaga', 'Wayward_Worm', 'Tatenashi_Armor', 'Hizamaru_Armor', 'Ubuginu_Armor', 'Hachiryu_Armor', 'Omodaka_Armor', 
+        'Bull_[Herd1]', 'Cow_[Herd1]', 'Calf_[Herd1]', 'Bull_[Herd2]', 'Cow_[Herd2]', 'Calf_[Herd2]', 'Bull_[Herd3]', 'Cow_[Herd3]', 'Calf_[Herd3]',
+        'Pyracmon', 'Wraith_Bat', 'Spriggan_Sifter',  'Spriggan_Crier', 'Spriggan_Graverobber', 'Astral_Box',
+
     );
 
     public static $bcnmZones = array(

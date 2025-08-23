@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 
 class FFXIPackageHelper_HTMLTabAdmin {
     public function __construct() {
@@ -9,16 +8,8 @@ class FFXIPackageHelper_HTMLTabAdmin {
     public function showAdmin(){
         $html = "<div id=\"FFXIPackageHelper_tabs_admin_display\">";
 
-        $adminArray = [ "bureaucrat","interface-admin","sysop","senior-editor"];
-
-        $user = RequestContext::getMain()->getUser();
-        $userGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserGroups( $user );
-
-        //throw new Exception ( json_encode( $userGroups ) );
-
-        $allowed = array_intersect($adminArray, $userGroups);
-
-        if ( count($allowed) == 0 ) return $html . "This page is restricted to administrators and senior-editors.</div>";
+        $apiHelper = new FFXIPH_APIHelper();
+        if ( $apiHelper->userIsAuth() == true ) return $html . "This page is restricted to administrators and senior-editors.</div>";
 
         $db = new DatabaseQueryWrapper();
         $drhits = $db->getHitCounter("droprate");

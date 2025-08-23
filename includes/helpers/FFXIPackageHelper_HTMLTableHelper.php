@@ -51,7 +51,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$html = "<br>
 		<div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.<br><b>**</b> are nuanced drop rates. Please refer to that specific page for more details on how drop rates are calculated.
 		<strike>Item Name</strike><sup>(OOE)</sup> are Out of Era items, and are left in the table because it is still unknown how removing these has effected Group drop rates (mainly from BCNMs).
-		<br><br> <b>Mob Detection (true-sight/hearing are not added yet):</b> <b>S</b> Detects by Sight, <b>H</b> Detects by Sound, <b>HP</b> Detects Low HP, <b>M</b> Detects Magic, <b>Sc</b> Follows by Scent, <b>T(S)</b> True-sight, <b>T(H)</b> True-hearing, <b>JA</b> Detects job abilities, <b>WS</b> Detects weaponskills
+		<br><br>
 		</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
 		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
@@ -793,6 +793,38 @@ class FFXIPackageHelper_HTMLTableHelper {
 		else $html .= "Merits set";
 
 		$html .= "</i></div>";
+		return $html;
+	}
+
+	public static function table_MobAndZoneList($moblist){
+		$html = "<br><div ><i></i></div>
+			<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
+			<table id=\"combatsim_mobandzonelist\" class=\"horizon-table general-table sortable\">
+				<tr>
+					<th>Zone</th>
+					<th>Mob Name</th>
+					<th>Lvl Min</th>
+					<th>Lvl Max</th>
+				</tr>
+				";
+
+		foreach($moblist as $mob){
+			$html .= "<tr>";
+			$id = $mob['groupId'];
+			$zone = $mob['zoneid'];
+			$buttonid = "combatsim_" . $id . "_" . $zone;
+			//$html .= "<td><button type=\"button\" id=\"$buttonid\" class=\"tablinks\">Compare</button></td>";
+			$html .= "<td><center>" . $mob['zonename'] . "</center></td>";
+			
+			$mn = $mob['name'] ;
+
+			$html .= "<td><center>" . $mn . "</center></td>";
+			$html .= "<td style=\"width: 0;min-width: fit-content;\"><center>" . $mob['mobMinLevel'] . "</center></td><td style=\"width: 0;min-width: fit-content;\"><center>" . $mob['mobMaxLevel'] . "</center></td>";
+
+			$html .= "</tr>";
+		}
+		
+		$html .= "</table></div>";
 		return $html;
 	}
 }

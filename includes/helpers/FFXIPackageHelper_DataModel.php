@@ -398,6 +398,39 @@ class DataModel {
 
 		return $this->dataset;
 	}
+
+	function parseMobZoneList($param){
+		if ( !$param ) return NULL;
+		
+		
+		foreach ( $param as $row ) {
+			// 'mob_groups.groupId',
+			// 'mob_groups.name',
+			// 'mob_groups.zoneid',
+			// 'zone_settings.name AS zonename',
+			// 'mob_pools.mobType',
+			// 'mob_pools.aggro',
+			// 'mob_pools.true_detection',
+			// 'mob_groups.minLevel AS mobMinLevel',
+			// 'mob_groups.maxLevel AS mobMaxLevel',
+			// 'mob_groups.changes_tag AS mobChanges',
+			$iteration = array();
+			$iteration['groupId'] = $row->groupId;
+			$iteration['name'] = $row->name;
+			$iteration['zonename'] = $row->zonename;
+			$iteration['zoneid'] = $row->zoneid;
+			$iteration['mobType'] = $row->mobType;
+			$iteration['aggro'] = $row->aggro;
+			$iteration['true_detection'] = $row->true_detection;
+			$iteration['mobMinLevel'] = $row->mobMinLevel;
+			$iteration['mobMaxLevel'] = $row->mobMaxLevel;
+			$iteration['mobChanges'] = $row->mobChanges;
+			$iteration['detects'] = $row->detects;
+
+			array_push($this->dataset, $iteration);
+		}
+
+	}
 }
 
 ?>

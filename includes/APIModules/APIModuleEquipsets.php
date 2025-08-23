@@ -23,6 +23,12 @@ class APIModuleEquipsets extends ApiBase {
             'def' => 0,
             'setname' => "",
             'usersetid' => 0,
+
+            // Combatsim search
+            'mobname' => null,
+            'zonename' => null,
+            'selectedmob' => null,
+            'selectedzone' => null
     		];
 	}
 
@@ -337,6 +343,20 @@ class APIModuleEquipsets extends ApiBase {
             }
 
             $result->addValue( $params['action'], "status", ["ERROR", "This user cannot remove this set."] );
+        }
+        else if ( $params['action'] == "combatsim_mobsearch" ) {
+            // throw new Exception( $params['mobname'] );
+            $db = new DatabaseQueryWrapper();
+            $dm = new DataModel();
+
+            $mobandzone = $db->getMobAndZone($params['mobname'], $params['zonename']);
+            $dm->parseMobZoneList($mobandzone);
+
+            // throw new Exception( json_encode( $dm->getDataSet() ) );
+            $final = FFXIPackageHelper_HTMLTableHelper::table_MobAndZoneList( $dm->getDataSet() );
+            $finalHtml = ParserHelper::wikiParse($final);
+            $result->addValue( $params['action'], "moblisttable", $finalHtml );
+
         }
 
     }

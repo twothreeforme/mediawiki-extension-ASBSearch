@@ -17,6 +17,7 @@
         "SpecialEquipsets": "includes/SpecialPages/SpecialEquipsets.php",
 
         "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
+        "FFXIPH_Mob": "includes/Models/FFXIPH_Mob.php",
         "FFXIPH_Races": "includes/Models/FFXIPH_Races.php",
         "FFXIPH_ItemDescription": "includes/Models/FFXIPH_ItemDescription.php",
 
@@ -40,6 +41,7 @@
         "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
         "FFXIPackageHelper_HTMLTabAdmin": "includes/Tabs/FFXIPackageHelper_HTMLTabAdmin.php",
         "FFXIPackageHelper_QueryController": "includes/helpers/FFXIPackageHelper_QueryController.php",
+        "FFXIPH_APIHelper": "includes/helpers/FFXIPH_APIHelper.php",
 
         "ExclusionsHelper": "includes/helpers/FFXIPackageHelper_ExclusionsHelper.php",
         "ParserHelper": "includes/helpers/FFXIPackageHelper_ParserHelper.php",
@@ -134,6 +136,7 @@
 
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCombatSim.js",
 
                 "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
@@ -192,6 +195,9 @@
 		},
         "fishingsearch": {
 			"class": "APIModuleFishingSearch"
+		},
+        "combatsim_mobsearch": {
+			"class": "APIModuleEquipsets"
 		}
 	},
     "manifest_version": 2,

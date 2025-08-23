@@ -43,7 +43,7 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             <td>Item Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"itemNameSearch\" value=\"$this->itemName\" size=\"25\"></td>
                         </tr>
                         <tr>
-                            <td>Zone<br>" . $this->zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
+                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchDropRatesSubmit\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Search</button></td>
                             </tr>
                         </tbody></table>
                         </td>
@@ -69,19 +69,19 @@ class FFXIPackageHelper_HTMLTabDropRates {
 		return $result ;
     }
 
-    private function zonesDropDown(){
-        // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-        $zoneNamesList = $this->zoneNameList();
-        foreach ($zoneNamesList as $key => $value) {
-           // print_r($key . $value);
-            if ( $this->zoneName != "" && $this->zoneName == $key ) $html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
-            else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
-        }
+    // private function zonesDropDown(){
+    //     // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select>
+    //     $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+    //     $zoneNamesList = $this->zoneNameList();
+    //     foreach ($zoneNamesList as $key => $value) {
+    //        // print_r($key . $value);
+    //         if ( $this->zoneName != "" && $this->zoneName == $key ) $html .= "<option value=\"" . $value . "\" selected=\"selected\">" . $key . "</option>";
+    //         else $html .= "<option value=\"" . $value . "\">" . $key . "</option>";
+    //     }
 
-        $html .= "</select>";
-        return $html;
-    }
+    //     $html .= "</select>";
+    //     return $html;
+    // }
 
     private function selectionOptions(){
         $html = "";

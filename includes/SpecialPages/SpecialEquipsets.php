@@ -65,13 +65,18 @@ class SpecialEquipsets extends SpecialPage {
 
 		//wfDebugLog( 'Equipsets', get_called_class() . ":execute:" . json_encode($this->currentCharacter ) );
 		$tabEquipsets = new FFXIPackageHelper_Equipsets($this->currentCharacter);
+		
+		
+		$apiHelper = new FFXIPH_APIHelper();
+        if ( $apiHelper->userIsAuth() == false ) $combatsimContent = "This page is restricted to administrators and senior-editors while under continued construction.</div>";
+		else $combatsimContent = $tabEquipsets->searchForm();
 
-        //$html = "<div class=\"FFXIPackageHelper_characterHeader\"><i><b id=\"FFXIPackageHelper_characterHeader_name\">No character selected</b></i><i id=\"FFXIPackageHelper_characterHeader_details\" style=\"font-color:light-grey;\"></i></div>" .
 		$html = FFXIPackageHelper_HTMLTableHelper::characterSelectedHeader($this->currentCharacter) .
 			"<div id=\"initialHide\" style=\"display: none;\">" .
 				$this->header() .
 				$this->tabEquipsets( $tabEquipsets->showEquipsets() ) .
 				$this->tabCharacter( $tabEquipsets->showCharacters($this->userChars, $this->shouldLoadDefaultCharacter, $this->currentCharacter) ) .
+				$this->tabCombatSim( $combatsimContent ) .
             "</div>";
 
 		$output->addHTML( $html );
@@ -81,6 +86,7 @@ class SpecialEquipsets extends SpecialPage {
         return "<div class=\"FFXIPackageHelper_tabs\">" .
 					"<button id=\"FFXIPackageHelper_tabs_equipsets\" class=\"tablinks\">Gear Sets</button>" .
 					"<button id=\"FFXIPackageHelper_tabs_characters\" class=\"tablinks\">Characters</button>" .
+					"<button id=\"FFXIPackageHelper_tabs_combatsim\" class=\"tablinks\">Combat Sim</button>" .
         		"</div>";
       }
 
@@ -108,6 +114,18 @@ class SpecialEquipsets extends SpecialPage {
 		$html = "<div id=\"FFXIPackageHelper_tabs_characters_shown\" class=\"tabcontent\">" .
 				$content .
 				"</div>";
+
+        return $html;
+    }
+
+	public function tabCombatSim($content){
+        if ( !isset($content) ) $content = "<p>no content yet</p>";
+
+        //remove when setting up for use on HXI
+        //if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] != 'localhost' ) $content = "<p><b>This site is still under construction. Coming soon !</b></p>";
+		
+        $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_shown\" class=\"tabcontent\">
+		" . $content . "</div>";
 
         return $html;
     }

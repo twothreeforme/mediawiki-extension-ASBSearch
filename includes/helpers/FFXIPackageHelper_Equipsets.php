@@ -243,12 +243,6 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    // public function setManagementDiv(){
-    //     $html =  "<div>" .
-    //             "</div>";
-    //     return $html;
-    // }
-
     public function showLuaSets($sets){
         $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >
                     <span id=\"FFXIPackageHelper_Equipsets_showLuaSets\">";
@@ -471,9 +465,9 @@ class FFXIPackageHelper_Equipsets  {
 			return $html;
     }
 
-    private function showShareButton($id){
-        return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
-    }
+    // private function showShareButton($id){
+    //     return FFXIPackageHelper_HTMLTableHelper::shareButton($id);
+    // }
 
     private function getDefaultImageName($s){
         switch($s){
@@ -535,6 +529,29 @@ class FFXIPackageHelper_Equipsets  {
 
 						"</div>" .
 					"</div>";
+        return $html;
+    }
+
+    public function searchForm(){
+        $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_searchForm\">" .
+                    "<table><tbody>
+                    <tr><td>
+                        <table><tbody>
+                        <tr>" . 
+                            //<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
+                            "<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>" .
+                        "</tr>
+                        <tr>
+                            <td><b>AND / OR</b></td>
+                        </tr>
+                        <tr>
+                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchForMobAndZone\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Find Mob</button></td>
+                        </tr>
+                        </tbody></table>
+                        </td>
+                    </tr></tbody></table>
+                    <div id=\"FFXIPackageHelper_tabs_combatsim_queryresult\"></div>
+                </div>";
         return $html;
     }
 }
