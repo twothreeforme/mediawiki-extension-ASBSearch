@@ -4,7 +4,7 @@ class ModalCombatSimMobSelect {
     content = {
         divID: "FFXIPackageHelper_equipsets_combatSimMobSelect",
         closeButtonID: "FFXIPackageHelper_dynamiccontent_closeCombatSimMobSelect"
-    }
+    };
 
     constructor(options = {}) {
         
