@@ -534,7 +534,8 @@ class FFXIPackageHelper_Equipsets  {
 
     public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_searchForm\">" .
-                    "<table><tbody>
+                "<span><i><b>If you see this then you are an admin or senior-editor. This page is only visible to those user groups while the page is under construction. </b></i></span>" .
+                "<table><tbody>
                     <tr><td>
                         <table><tbody>
                         <tr>" . 
