@@ -2,8 +2,6 @@ var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 var ActionButtons = require("./FFXIPackageHelper_ActionButtons.js");
 
-// var ModalCharAddWindow = require("./Modals/FFXIPackageHelper_ModalCharAdd.js");
-// var ModalCharRemoveWindow = require("./Modals/FFXIPackageHelper_ModalCharRemove.js");
 
 const EDIT_BUTTON = document.getElementById("FFXIPackageHelper_editCharButton");
 const REMOVE_BUTTON = document.getElementById("FFXIPackageHelper_deleteCharButton");
@@ -119,7 +117,6 @@ module.exports.setLinks = function (){
         toggleMeritEditButtons(counterbox);
     });
 
-    //const modalCharAdd = new ModalCharAddWindow({ saveCallback: saveCharacterClicked});
     NEWCHAR_BUTTON.addEventListener("click", function () {
         //console.log("NEWCHAR_BUTTON.addEventListener(\"click\",");
         if ( hiddenDiv.style.display != "none" ) {

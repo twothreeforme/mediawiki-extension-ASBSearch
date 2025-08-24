@@ -133,6 +133,7 @@
                 "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharManagement.js",
                 "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharAdd.js",
                 "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCharRemove.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCombatSimMobSelect.js",
 
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
@@ -197,6 +198,9 @@
 			"class": "APIModuleFishingSearch"
 		},
         "combatsim_mobsearch": {
+			"class": "APIModuleEquipsets"
+		},
+        "combatsim_selectedmob": {
 			"class": "APIModuleEquipsets"
 		}
 	},

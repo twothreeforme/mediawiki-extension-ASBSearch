@@ -796,23 +796,25 @@ class FFXIPackageHelper_HTMLTableHelper {
 		return $html;
 	}
 
-	public static function table_MobAndZoneList($moblist){
+	public static function table_MobAndZoneList(Array $moblist){
+		if ( count($moblist) <= 0 ) return;
+
 		$html = "<br><div ><i></i></div>
 			<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
-			<table id=\"combatsim_mobandzonelist\" class=\"horizon-table general-table sortable\">
+			<table id=\"FFXIPH_equipsets_combatsim_mobandzonelist\" class=\"horizon-table general-table sortable\">
 				<tr>
 					<th>Zone</th>
 					<th>Mob Name</th>
 					<th>Lvl Min</th>
 					<th>Lvl Max</th>
-				</tr>
+				</tr> 
 				";
 
 		foreach($moblist as $mob){
 			$html .= "<tr>";
-			$id = $mob['groupId'];
-			$zone = $mob['zoneid'];
-			$buttonid = "combatsim_" . $id . "_" . $zone;
+			// $id = $mob['groupId'];
+			// $zone = $mob['zoneid'];
+			//$buttonid = "combatsim_" . $id . "_" . $zone;
 			//$html .= "<td><button type=\"button\" id=\"$buttonid\" class=\"tablinks\">Compare</button></td>";
 			$html .= "<td><center>" . $mob['zonename'] . "</center></td>";
 			

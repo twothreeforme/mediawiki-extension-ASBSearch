@@ -354,9 +354,16 @@ class APIModuleEquipsets extends ApiBase {
 
             // throw new Exception( json_encode( $dm->getDataSet() ) );
             $final = FFXIPackageHelper_HTMLTableHelper::table_MobAndZoneList( $dm->getDataSet() );
-            $finalHtml = ParserHelper::wikiParse($final);
-            $result->addValue( $params['action'], "moblisttable", $finalHtml );
-
+            if ( strlen($final) > 0 ){
+                $finalHtml = ParserHelper::wikiParse($final);
+                $result->addValue( $params['action'], "moblisttable", $finalHtml );
+            }
+            else {
+                $result->addValue( $params['action'], "noresults", "<i><b> No records (mobs) found</i></b>" );
+            }
+        }
+        else if ( $params['action'] == "combatsim_selectedmob" ) {
+            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $params) );
         }
 
     }

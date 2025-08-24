@@ -332,7 +332,7 @@ class ExclusionsHelper {
         'Meanderer', 'Meditator', 'Hungerer', 'Ateuvhi', 'Vuzdei', 'Mighrah',
         'Capricornus', 'Yacumama', 'Lamprey Lord', 'Shoggoth', 'Jyeshtha', 'Farruca Fly', 'Skuld', 'Urd', 'Erebus', 'Feuerunke', 'Chesma', 'Tammuz',
         'Krabkatoa', 'Blobdingnag', 'Orcus', 'Verthandi', 'Lord Ruthven', 'Dawon',
-        'Yilbegan', 'Provenance Watcher', 'Slime','She-Slime', 'Metal_Slime', 'Quagmire_Pugil', 'Sunderclaw','Void_Hare', 'Prickly_Sheep', 'Ig-Alima',
+        'Yilbegan', 'Provenance_Watcher', 'Slime','She-Slime', 'Metal_Slime', 'Quagmire_Pugil', 'Sunderclaw','Void_Hare', 'Prickly_Sheep', 'Ig-Alima',
 
         //Garrison
         'Orcish_Cursemaker', 'Orcish_Serjeant', 'Orcish_Fighter', 'Orcish_Chasseur', 'Orcish_Fighterchief', 'Orcish_Fighter_G','Orcish_Serjeant_G','Orcish_Cursemaker_G','Orcish_Colonel',
@@ -368,7 +368,7 @@ class ExclusionsHelper {
         'Uleguerand Range' => 'Bearclaw Pinnacle',
         'Attohwa Chasm'   => 'Boneyard Gully',
         'Quicksand Caves' => 'Chamber of Oracles',
-        'Ghelsba_Outpost' => 'Ghelsba Outpost',
+        // 'Ghelsba_Outpost' => 'Ghelsba Outpost',
         'Yughott Grotto' => 'Horlais Peak',
         'Newton Movalpolos' => 'Mine Shaft 2716',
         'Riverne - Site A01' => 'Monarch Linn',

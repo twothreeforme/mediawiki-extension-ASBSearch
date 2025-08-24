@@ -127,7 +127,7 @@ function actionAPI(params, forTab, currentButton, callback) {
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
       else if ( forTab.includes("combatsim_mobsearch")){
-        updateMobAndZoneTable(result['moblisttable']);
+        callback(result);
       }
 
       if ( currentButton != null){
@@ -289,12 +289,11 @@ function updateCharactersTab(incomingCharactersTab){
   charsTab.innerHTML = incomingCharactersTab;
 }
 
-function updateMobAndZoneTable(incomingMobAndZoneTable){
-  let combatSimTab = document.getElementById("FFXIPackageHelper_tabs_combatsim_queryresult");
-  combatSimTab.innerHTML = incomingMobAndZoneTable;
-  mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_combatsim_queryresult'));
-
-}
+// function updateMobAndZoneTable(incomingMobAndZoneTable){
+//   let combatSimTab = document.getElementById("FFXIPackageHelper_tabs_combatsim_queryresult");
+//   combatSimTab.innerHTML = incomingMobAndZoneTable;
+//   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_combatsim_queryresult'));
+// }
 
 module.exports = { actionAPI }
 
