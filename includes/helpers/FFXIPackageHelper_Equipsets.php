@@ -446,21 +446,11 @@ class FFXIPackageHelper_Equipsets  {
 		if ( $merit <= 14 ) $type = "stats";
 		else $type = "skill";
 
-        $html = "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">
-            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
-                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
-                </svg>
-            </button><input id=\"FFXIPackageHelper_equipsets_merits_$type$merit\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"$value\" readonly >
-            <button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
-                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
-
-                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
-                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke-linecap=\"round\"/>
-                </svg>
-            </button>
-            </div>";
+        $html = "<div id=\"FFXIPackageHelper_dynamiccontent_counterbox\" class=\"FFXIPackageHelper_dynamiccontent_counterbox\">" . 
+            FFXIPackageHelper_HTMLTableHelper::incrementMinus() .
+            "<input id=\"FFXIPackageHelper_equipsets_merits_$type$merit\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"$value\" readonly >" . 
+            FFXIPackageHelper_HTMLTableHelper::incrementPlus() .
+            "</div>";
 
 			return $html;
     }

@@ -16,7 +16,7 @@ class DataModel {
 
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
-			
+			wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($row) );
 			/*******************************************************
 			 * Removing OOE 
 			 */

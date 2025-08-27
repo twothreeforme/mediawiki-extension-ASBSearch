@@ -27,8 +27,7 @@ class APIModuleEquipsets extends ApiBase {
             // Combatsim search
             'mobname' => null,
             'zonename' => null,
-            'selectedmob' => null,
-            'selectedzone' => null
+            'moblvl' => null
     		];
 	}
 
@@ -363,7 +362,11 @@ class APIModuleEquipsets extends ApiBase {
             }
         }
         else if ( $params['action'] == "combatsim_selectedmob" ) {
-            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $params) );
+            
+            $db = new DatabaseQueryWrapper();
+            $mob = $db->getMob($params['mobname'], $params['zonename']);
+            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $mob->getName() . ":" . $mob->getHP() . ":" . $mob->getMP() );
+            
         }
 
     }

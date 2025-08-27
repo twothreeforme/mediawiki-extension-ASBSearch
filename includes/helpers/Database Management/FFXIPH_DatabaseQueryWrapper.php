@@ -13,9 +13,11 @@ class DatabaseQueryWrapper {
     }
 
     private function exclude_MOBGROUPS_OOE(Array $query){
-        $query[] = "mob_groups.name NOT LIKE '%_G'";
+        //$query[] = "mob_groups.name NOT LIKE '%_G'";
+        array_push($query, "mob_groups.name NOT LIKE '%[_]G'");
         foreach( ExclusionsHelper::$mobs as $mob) {
-            $query[] = "mob_groups.name NOT LIKE '" . $mob . "'";
+            //$query[] = "mob_groups.name NOT LIKE '" . $mob . "'";
+            array_push($query, "mob_groups.name NOT LIKE '" . $mob . "'"); 
         }
         return $query;
     }
@@ -399,9 +401,12 @@ class DatabaseQueryWrapper {
 			//"mob_groups.content_tag IS NULL ",
 		];
 
+        $query = $this->exclude_MOBGROUPS_OOE($query);
+
         if ( $mobNameSearch !=  '' ) {
             array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
-            $query = $this->exclude_MOBGROUPS_OOE($query);
+            //wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($query) );
+            
 		}
 
         if ( $includeFished == 0 ){ $query = $this->exclude_MOBGROUPS_fished($query); }
@@ -470,56 +475,6 @@ class DatabaseQueryWrapper {
 			->fetchResultSet(); 
 	}
 
-    public function getMobAndZone($mobname = null, $zonename = null){
-        if ( $mobname == null && $zonename == null ) return;
-
-        $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
-        //array_push($query, $this->exclude_MOBGROUP_GARRISON);
-
-        $query = $this->exclude_MOBGROUPS_OOE($query);
-
-        if ( !is_null($mobname) )  {
-            $mobNameSearch = ParserHelper::replaceSpaces($mobname);
-            array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
-
-        }
-        if ( !is_null($zonename) )  {  
-            $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
-            if ( $zoneNameSearch !=  'searchallzones' ) {
-                array_push($query, "zone_settings.name = '$zoneNameSearch'");
-            }
-		}
-        
-        $dbr = $this->openASBSearchConnection();
-        $results = $dbr->newSelectQueryBuilder()
-			->select( [ 
-						'mob_groups.groupId',
-                        'mob_groups.name',
-                        'mob_groups.zoneid',
-                        'zone_settings.name AS zonename',
-                        'mob_pools.mobType',
-                        'mob_pools.aggro',
-                        'mob_pools.true_detection',
-                        'mob_groups.minLevel AS mobMinLevel',
-						'mob_groups.maxLevel AS mobMaxLevel',
-                        'mob_groups.changes_tag AS mobChanges',
-                        'mob_family_system.detects',
-						] )
-			->from( 'mob_groups' )
-			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
-			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
-            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
-            ->orderBy( 'zoneid', 'ASC' )
-			->where( $query	)
-			->fetchResultSet(); 
-
-        // $returnArray = [];
-        // foreach( $results as $result ){
-        //     $returnArray[] = [ $result->zoneid, $result->zonename, $result->name, $result->groupId];
-        // }
-        // return $returnArray;
-        return $results;
-    }
 
     /**
      * Used mainly for the 'Page Directs' calls. Not used with ASBSearch. Default exclusions not applied in this search.
@@ -631,8 +586,142 @@ class DatabaseQueryWrapper {
 			->fetchResultSet(); 
 	}
 
-    public function getRecipes($queryData){
+    public function getMobAndZone($mobname = null, $zonename = null){
+        if ( $mobname == null && $zonename == null ) return;
 
+        $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
+        //array_push($query, $this->exclude_MOBGROUP_GARRISON);
+
+        $query = $this->exclude_MOBGROUPS_OOE($query);
+
+        if ( !is_null($mobname) )  {
+            $mobNameSearch = ParserHelper::replaceSpaces($mobname);
+            array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
+
+        }
+        if ( !is_null($zonename) )  {  
+            $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
+            if ( $zoneNameSearch !=  'searchallzones' ) {
+                array_push($query, "zone_settings.name = '$zoneNameSearch'");
+            }
+		}
+        
+        $dbr = $this->openASBSearchConnection();
+        $results = $dbr->newSelectQueryBuilder()
+			->select( [ 
+						'mob_groups.groupId',
+                        'mob_groups.name',
+                        'mob_groups.zoneid',
+                        'zone_settings.name AS zonename',
+                        'mob_pools.mobType',
+                        'mob_pools.aggro',
+                        'mob_pools.true_detection',
+                        'mob_groups.minLevel AS mobMinLevel',
+						'mob_groups.maxLevel AS mobMaxLevel',
+                        'mob_groups.changes_tag AS mobChanges',
+                        'mob_family_system.detects',
+						] )
+			->from( 'mob_groups' )
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
+            ->orderBy( 'zoneid', 'ASC' )
+			->where( $query	)
+			->fetchResultSet(); 
+
+        // $returnArray = [];
+        // foreach( $results as $result ){
+        //     $returnArray[] = [ $result->zoneid, $result->zonename, $result->name, $result->groupId];
+        // }
+        // return $returnArray;
+        return $results;
+    }
+
+    public function getMob($mobname, $zonename){
+        if ( $mobname == null || $zonename == null ) return;
+
+        $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
+
+        $query = $this->exclude_MOBGROUPS_OOE($query);
+
+        $mobNameSearch = ParserHelper::replaceSpaces($mobname);
+        array_push($query, "mob_groups.name = '$mobNameSearch'");
+
+        $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
+        array_push($query, "zone_settings.name = '$zoneNameSearch'");
+        
+	
+        $dbr = $this->openASBSearchConnection();
+        $results = $dbr->newSelectQueryBuilder()
+			->select( [ 
+						'mob_groups.groupid',
+                        'mob_groups.name',
+                        'mob_groups.HP AS HPmodifier',
+                        'mob_groups.MP AS MPmodifier',
+                        'mob_groups.minLevel',
+                        'mob_groups.maxLevel',
+                        'zone_settings.name AS zonename',
+                        'mob_family_system.STR',
+                        'mob_family_system.DEX',
+                        'mob_family_system.VIT',
+                        'mob_family_system.AGI',
+                        'mob_family_system.INT',
+                        'mob_family_system.MND',
+                        'mob_family_system.CHR',
+                        'mob_family_system.ATT',
+                        'mob_family_system.DEF',
+                        'mob_family_system.ACC',
+                        'mob_family_system.EVA', 
+                        'mob_family_system.familyID',
+                        'mob_family_system.HP AS HPscale',
+                        'mob_family_system.MP AS MPscale',
+                        'mob_pools.mJob',
+                        'mob_pools.sJob',
+                        'mob_pools.cmbSkill',
+                        'mob_pools.cmbDelay',
+                        'mob_pools.cmbDmgMult',
+                        'mob_pools.mobType'
+						] )
+			->from( 'mob_groups' )
+			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
+			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
+            ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
+            //->orderBy( 'zoneid', 'ASC' )
+			->where( $query	)
+			->fetchResultSet(); 
+
+        $mob = new FFXIPH_Mob();
+        foreach( $results as $result ){
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $result ) );
+            $mob->setStatsFromSQL($result);
+            // $mob->setName( $result->name );
+            // $mob->setHP( $result->HPmodifier );
+            // $mob->setMP( $result->MPmodifier );
+            // $mob->setMinlvl( $result->minLevel );
+            // $mob->setMaxlvl( $result->maxLevel );
+            // $mob->setSTR( $result->STR );
+            // $mob->setDEX( $result->DEX );
+            // $mob->setVIT( $result->VIT );
+            // $mob->setAGI( $result->AGI );
+            // $mob->setINT( $result->INT );
+            // $mob->setMND( $result->MND );
+            // $mob->setCHR( $result->CHR );
+            // $mob->setATT( $result->ATT );
+            // $mob->setDEF( $result->DEF );
+            // $mob->setACC( $result->ACC );
+            // $mob->setEVA( $result->EVA );
+            // $mob->setMjob( $result->mJob );
+            // $mob->setSjob( $result->sJob );
+            // $mob->setCmbSkill( $result->cmbSkill );
+            // $mob->setCmbDelay( $result->cmbDelay );
+            // $mob->setCmbDmgMult( $result->cmbDmgMult );
+            return $mob;
+        }
+
+        return ;
+    }
+
+    public function getRecipes($queryData){
 
         // $queryData = [  $params['craft'],
         //                 $params['recipename'],
@@ -657,19 +746,6 @@ class DatabaseQueryWrapper {
         $recipename = ParserHelper::replaceApostrophe($recipename);
 		$ingredient = ParserHelper::replaceApostrophe($ingredient);
 
-        // $html .= "<option value=\"any\">Any</option>";
-        // $html .= "<option value=\"amatuer\">Amatuer</option>";
-        // $html .= "<option value=\"recruit\">Recruit</option>";
-        // $html .= "<option value=\"initiate\">Initiate</option>";
-        // $html .= "<option value=\"novice\">Novice</option>";
-        // $html .= "<option value=\"apprentice\">Apprentice</option>";
-        // $html .= "<option value=\"journeyman\">Journeyman</option>";
-        // $html .= "<option value=\"craftsman\">Craftsman</option>";
-        // $html .= "<option value=\"artisan\">Artisan</option>";
-        // $html .= "<option value=\"adept\">Adept</option>";
-        // $html .= "<option value=\"veteran\">Veteran</option>";
-
-
         $dbr = $this->openASBSearchConnection();
 
         $items = $dbr->newSelectQueryBuilder()
@@ -684,15 +760,8 @@ class DatabaseQueryWrapper {
         $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
 
         if ( isset($recipename) && $recipename != "" ){
-            // $_ingr = $dbr->newSelectQueryBuilder()
-            // ->select( [ 'item_basic.name, item_basic.itemid' ] )
-            // ->from( 'item_basic' )
-            // ->where( "item_basic.name LIKE '%$ingredient%'"	)
-            // ->fetchResultSet();
             $recipeIDs = $this->getItemIDsFromDB($dbr, $recipename );
-            // foreach ( $_ingr as $row ) {
-            //     array_push( $ingr , strval($row->itemid));
-            // }
+
             $q = $dbr->makeList( [ 'synth_recipes.Result' => $recipeIDs ,
                                     'synth_recipes.ResultHQ1' => $recipeIDs ,
                                     'synth_recipes.ResultHQ2' => $recipeIDs ,
@@ -702,15 +771,6 @@ class DatabaseQueryWrapper {
         }
 
         if ( isset($ingredient) && $ingredient != "" ) {
-            // $_ingr = $dbr->newSelectQueryBuilder()
-            // ->select( [ 'item_basic.name, item_basic.itemid' ] )
-            // ->from( 'item_basic' )
-            // ->where( "item_basic.name LIKE '%$ingredient%'"	)
-            // ->fetchResultSet();
-
-            // foreach ( $_ingr as $row ) {
-            //     array_push( $ingr , strval($row->itemid));
-            // }
             $ingr = [];
             $ingr = $this->getItemIDsFromDB($dbr, $ingredient );
 
@@ -927,12 +987,9 @@ class DatabaseQueryWrapper {
 
     public function getSkillRanks( $mjob, $sjob ){
         $dbr = $this->openASBSearchConnection();
-        $vars = new FFXIPackageHelper_Variables();
 
-        // $mjobLabel =  "skill_ranks." . strtolower($vars->jobArray[$mjob]);
-        // $sjobLabel =  "skill_ranks." . strtolower($vars->jobArray[$sjob]);
-        $mjobLabel =  strtolower($vars->jobArray[$mjob]);
-        $sjobLabel =  strtolower($vars->jobArray[$sjob]);
+        $mjobLabel =  strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$mjob]);
+        $sjobLabel =  strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$sjob]);
 
         $query = [ "$mjobLabel > 0 OR $sjobLabel > 0" ];
 
@@ -1287,11 +1344,9 @@ class DatabaseQueryWrapper {
         ->orderBy( 'mjob', 'ASC' )
         ->fetchResultSet();
 
-        $vars = new FFXIPackageHelper_Variables();
-
         $userSets = [];
         foreach($savedSets as $row){
-            $jobname = $vars->jobArray[$row->mjob];
+            $jobname = FFXIPackageHelper_Variables::$jobArrayByID[$row->mjob];
             $userSets[$jobname][] = [
                 'usersetid' => $row->usersetid,
                 // 'mlvl' => $row->mlvl,
@@ -1321,8 +1376,7 @@ class DatabaseQueryWrapper {
         //->orderBy( 'mjob', 'ASC' )
         ->fetchResultSet();
 
-        $vars = new FFXIPackageHelper_Variables();
-        $jobname = $vars->jobArray[$mjob];
+        $jobname = FFXIPackageHelper_Variables::$jobArrayByID[$mjob];
 
         $userSets = [];
         foreach($savedSets as $row){

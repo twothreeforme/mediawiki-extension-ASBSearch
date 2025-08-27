@@ -5,6 +5,15 @@ class FFXIPackageHelper_Variables {
     public function __construct() {
     }
 
+    public static $mobType = array(
+        "NORMAL" => 0x00,
+        "NOTORIOUS" => 0x02, 
+        "FISHED" => 0x04, 
+        "CALLED" => 0x08, 
+        "BATTLEFIELD" => 0x10, 
+        "EVENT" => 0x20, 
+    );
+
     public $detectsBy = array(
         0x000 => "NONE",
         0x001 => "SIGHT",
@@ -84,7 +93,7 @@ class FFXIPackageHelper_Variables {
 
     );
 
-    public $jobArray = array(
+    public static $jobArrayByID = array(
         0 => "NONE",
         1 => "WAR",
         2 => "MNK",
@@ -101,13 +110,39 @@ class FFXIPackageHelper_Variables {
         13 => "NIN",
         14 => "DRG",
         15 => "SMN",
-        16 => "BLU",
-        17 => "COR",
-        18 => "PUP",
-        19 => "DNC",
-        20 => "SCH",
-        21 => "GEO",
-        22 => "RUN"
+        // 16 => "BLU",
+        // 17 => "COR",
+        // 18 => "PUP",
+        // 19 => "DNC",
+        // 20 => "SCH",
+        // 21 => "GEO",
+        // 22 => "RUN"
+    );
+
+    public static $jobArrayByName = array(
+        "NONE"=> 0  ,
+        "WAR" => 1  ,
+        "MNK" => 2  ,
+        "WHM" => 3  ,
+        "BLM" => 4  ,
+        "RDM" => 5  ,
+        "THF" => 6  ,
+        "PLD" => 7  ,
+        "DRK" => 8  ,
+        "BST" => 9  ,
+        "BRD" => 10 ,
+        "RNG" => 11 ,
+        "SAM" => 12 ,
+        "NIN" => 13 ,
+        "DRG" => 14 ,
+        "SMN" => 15 ,
+        // "BLU" => 16 ,
+        // "COR" => 17 ,
+        // "PUP" => 18 ,
+        // "DNC" => 19 ,
+        // "SCH" => 20 ,
+        // "GEO" => 21 ,
+        // "RUN" => 22
     );
 
     public $effectStatus = array(
@@ -1635,5 +1670,6 @@ class FFXIPackageHelper_Variables {
         999 => "ENMITY_DECREASE" // custom for this extension to account for the merits section
     );
 }
+
 
 ?>

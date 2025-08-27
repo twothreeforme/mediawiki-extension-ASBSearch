@@ -44,17 +44,7 @@ class ParserHelper {
 		//else $mobName = " [[$mobName]]<sup>($minLvl-$maxLvl)</sup> ";
 		
 		if ( $fished == true ) return " " . $mobName . " (fished) ";
-		else if ( 0x02 & $mobType ) return "[NM] " . $mobName;
-		
-        // MOBTYPE_NORMAL      = 0x00,
-        // MOBTYPE_0X01        = 0x01, // available for use
-        // MOBTYPE_NOTORIOUS   = 0x02,
-        // MOBTYPE_FISHED      = 0x04,
-        // MOBTYPE_CALLED      = 0x08,
-        // MOBTYPE_BATTLEFIELD = 0x10,
-        // MOBTYPE_EVENT       = 0x20
-
-        //if (intval($bcnmChanges) == 1) $mobName = " {{changes}}" . $mobName;
+		else if ( FFXIPackageHelper_Variables::$mobType["NOTORIOUS"] & $mobType ) return "[NM] " . $mobName;
 
 		return $mobName;
 	}
@@ -63,11 +53,11 @@ class ParserHelper {
         $size = "14px";
         $detectsString = "<br>";
         if ( $aggro == 0 ) {
-            if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
+            if ( FFXIPackageHelper_Variables::$mobType["NOTORIOUS"] & $mobType ) $detectsString .= "[[File:Detect_PassiveHQ.png|" . $size . "|" . $size. "|Passive HQ]] ";
             else $detectsString .= "[[File:Detect_PassiveNQ.png|" . $size . "|" . $size. "|Passive NQ]] ";
         }
         else if ( $aggro == 1 ) {
-            if ( 0x02 & $mobType ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
+            if ( FFXIPackageHelper_Variables::$mobType["NOTORIOUS"] & $mobType ) $detectsString .= "[[File:Detect_AggroHQ.png|" . $size . "|" . $size. "|Aggressive HQ]] ";
             else $detectsString .= "[[File:Detect_AggroNQ.png|" . $size . "|" . $size. "|Aggressive NQ]] ";
         }
 
@@ -505,12 +495,11 @@ class ParserHelper {
         $html = "";
         if ( $jobsint == 4194303 ) return " All Jobs ";
         //if ( ParserHelper::checkJob(0, $jobsint) ) $html .= "None";
-        $var = new FFXIPackageHelper_Variables();
 
-        for ( $j = 1; $j < count($var->jobArray); $j++){
+        for ( $j = 1; $j < count(FFXIPackageHelper_Variables::$jobArrayByID); $j++){
             //OOE jobs - can change when content gets released
             if ( $j >= 16 ) continue;
-            if ( ParserHelper::checkJob($j, $jobsint) ) $html .= " [[". $var->jobArray[$j] ."]]";
+            if ( ParserHelper::checkJob($j, $jobsint) ) $html .= " [[". FFXIPackageHelper_Variables::$jobArrayByID[$j] ."]]";
         }
 
         if ( $html == "" ) $html = "None";

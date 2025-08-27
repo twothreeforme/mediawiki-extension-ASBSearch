@@ -16,7 +16,7 @@ class FFXIPackageHelper_QueryController {
         $db = new DatabaseQueryWrapper();
 
         $mobDropRatesData = $db->getDropRates($queryData);
-
+		
         $dm->parseData($mobDropRatesData);
 
 		//$temp = array();

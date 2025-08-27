@@ -70,12 +70,13 @@ function updateMobAndZoneTable(incomingMobAndZoneTable){
   mw.hook( 'wikipage.content' ).fire($('#FFXIPackageHelper_tabs_combatsim_queryresult'));
 }
 
-function selectMob(zone, mob){
+function selectMob(zone, mob, moblvl){
     
     let params = Data.getStatsData();
     params.action = "combatsim_selectedmob";
     params.mobname = mob;
     params.zonename = zone;
+    params.moblvl = moblvl;
     //console.log(params);
     API.actionAPI(params, "combatsim_selectedmob" );
 }

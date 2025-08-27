@@ -19,6 +19,24 @@ class FFXIPackageHelper_HTMLTableHelper {
 			</button>";
 	}
 
+	public static function incrementMinus(){
+		return "<button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                </svg>
+            </button>";
+	}
+
+	public static function incrementPlus(){
+		return "<button class=\"FFXIPackageHelper_dynamiccontent_incrementButton\">
+                <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
+
+                    <line x1=\"0\" y1=\"5\" x2=\"10\" y2=\"5\" stroke-linecap=\"round\"/>
+                    <line x1=\"5\" y1=\"0\" x2=\"5\" y2=\"10\" stroke-linecap=\"round\"/>
+                </svg>
+            </button>";
+	}
+
     public static function tableHeader_Forecast(){
 		$html = "";
 		/************************
@@ -798,10 +816,10 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 	public static function table_MobAndZoneList(Array $moblist){
 		if ( count($moblist) <= 0 ) return;
-
+		/* class=\"horizon-table general-table sortable\" */
 		$html = "<br><div ><i></i></div>
 			<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
-			<table id=\"FFXIPH_equipsets_combatsim_mobandzonelist\" class=\"horizon-table general-table sortable\">
+			<table id=\"FFXIPH_equipsets_combatsim_mobandzonelist\" class=\"sortable\">
 				<tr>
 					<th>Zone</th>
 					<th>Mob Name</th>
@@ -827,6 +845,15 @@ class FFXIPackageHelper_HTMLTableHelper {
 		}
 		
 		$html .= "</table></div>";
+
+		// $html .= "<div id=\"FFXIPackageHelper_dynamiccontent_moblevelincrement\" style=\"height: 35px; overflow: auto; display: inline-block; width: 100%; visibility: hidden;\">";
+		// $html .=	"<div class=\"FFXIPackageHelper_dynamiccontent_counterbox\">" . 
+		// 		FFXIPackageHelper_HTMLTableHelper::incrementMinus() .
+		// 		"<input id=\"FFXIPackageHelper_equipsets_moblevelincrement\" class=\"FFXIPackageHelper_dynamiccontent_incrementInput\" type=\"text\" value=\"0\" readonly >" . 
+		// 		FFXIPackageHelper_HTMLTableHelper::incrementPlus() .
+		// 		"</div>";
+		// $html .= "</div>";
+		
 		return $html;
 	}
 }

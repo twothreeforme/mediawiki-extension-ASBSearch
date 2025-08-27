@@ -7,7 +7,6 @@ class ModalCombatSimMobSelect {
     };
 
     constructor(options = {}) {
-        
         this.options = {
             overlay: true,
             selectMobCallback: null,
@@ -49,8 +48,11 @@ class ModalCombatSimMobSelect {
             listItems[i].onmouseout = function() { this.style="background-color:none;"; };
 
             listItems[i].addEventListener('click', () => {
+                // let mobLvlIncrementDIV = document.getElementById("FFXIPackageHelper_dynamiccontent_moblevelincrement"); 
+                // mobLvlIncrementDIV.style.visibility = 'visible';
+
                 let cells = listItems[i].getElementsByTagName('td');
-                this.options.selectMobCallback(cells[0].innerText, cells[1].innerText); 
+                this.options.selectMobCallback(cells[0].innerText, cells[1].innerText, cells[3].innerText); 
                 this.close();
             });
         }
