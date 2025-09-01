@@ -27,7 +27,7 @@ class APIModuleEquipsets extends ApiBase {
             // Combatsim search
             'mobname' => null,
             'zonename' => null,
-            'moblvl' => null
+            'moblevel' => null
     		];
 	}
 
@@ -348,7 +348,7 @@ class APIModuleEquipsets extends ApiBase {
             $db = new DatabaseQueryWrapper();
             $dm = new DataModel();
 
-            $mobandzone = $db->getMobAndZone($params['mobname'], $params['zonename']);
+            $mobandzone = $db->getMobAndZone($params['mobname'], $params['zonename'], $params['moblevel']);
             $dm->parseMobZoneList($mobandzone);
 
             // throw new Exception( json_encode( $dm->getDataSet() ) );
@@ -364,9 +364,14 @@ class APIModuleEquipsets extends ApiBase {
         else if ( $params['action'] == "combatsim_selectedmob" ) {
             
             $db = new DatabaseQueryWrapper();
-            $mob = $db->getMob($params['mobname'], $params['zonename']);
-            wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $mob->getName() . ":" . $mob->getHP() . ":" . $mob->getMP() );
-            
+            $dm = new DataModel();
+
+            $fromSQL = $db->getMobStats($params['mobname'], $params['zonename'], $params['moblevel']);
+            $mobsArray = $dm->buildMobStatsArray($fromSQL, $params['moblevel']);
+            $finalHtml = FFXIPackageHelper_HTMLTableHelper::table_mobDetails($mobsArray);
+
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  . json_encode($mobs) );
+            $result->addValue( $params['action'], "mobstatstable", $finalHtml );
         }
 
     }

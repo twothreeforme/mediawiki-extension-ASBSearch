@@ -48,13 +48,13 @@ class FFXIPackageHelper_HTMLTabFishingSearch {
         return "";
     }
 
-    private function selectLvlDropDown(){
-        return "";
-    }
+    // private function selectLvlDropDown(){
+    //     return "";
+    // }
 
-    private function selectionOptions(){
-        return "";
-    }
+    // private function selectionOptions(){
+    //     return "";
+    // }
 }
 
 ?>

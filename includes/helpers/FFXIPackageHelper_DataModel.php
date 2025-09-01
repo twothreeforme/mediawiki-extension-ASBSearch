@@ -16,7 +16,7 @@ class DataModel {
 
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
-			wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($row) );
+			//wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($row) );
 			/*******************************************************
 			 * Removing OOE 
 			 */
@@ -430,6 +430,48 @@ class DataModel {
 			array_push($this->dataset, $iteration);
 		}
 
+	}
+
+	function buildMobStatsArray( $SQLresultsMob, $setLevel = 0 ){
+		if ( !$SQLresultsMob ) return NULL;
+		
+		$rangeMin = $SQLresultsMob->minLevel;
+		$rangeMax = $SQLresultsMob->maxLevel;
+
+		$setLevel = $setLevel != 0 ? intval($setLevel) : 0;
+		if ( $setLevel > 0 ){
+			$rangeMin = $setLevel;
+			$rangeMax = $rangeMin;
+		}
+
+		$mobs = [];
+		for ( $m = $rangeMin; $m <= $rangeMax; $m++ ){
+			$resultMob = new FFXIPH_Mob();
+
+			$stats = FFXIPH_MobUtils::calcStatsFromSQL( $SQLresultsMob, $m  );
+			$resultMob->setZone(	$SQLresultsMob->zonename );
+			$resultMob->setName( 	$SQLresultsMob->name );
+			$resultMob->setHP( 		$stats["HP"] );
+			$resultMob->setMP( 		$stats["MP"] );
+			//$resultMob->setMinlvl( 	$mob->minLevel );
+			$resultMob->setMaxlvl( 	$m );
+			$resultMob->setSTR(		$stats["STR"] );
+			$resultMob->setDEX(		$stats["DEX"] );
+			$resultMob->setVIT(		$stats["VIT"] );
+			$resultMob->setAGI(		$stats["AGI"] );
+			$resultMob->setINT(		$stats["INT"] );
+			$resultMob->setMND(		$stats["MND"] );
+			$resultMob->setCHR(		$stats["CHR"] );
+			// $resultMob->setATT(		$stats["ATT"] );
+			// $resultMob->setDEF(		$stats["DEF"] );
+			// $resultMob->setACC(		$stats["ACC"] );
+			// $resultMob->setEVA(		$stats["EVA"] );
+			$resultMob->setMjob( 	$SQLresultsMob->mJob );
+			$resultMob->setSjob( 	$SQLresultsMob->sJob );
+			$mobs[] = $resultMob;
+		}
+
+		return $mobs;
 	}
 }
 

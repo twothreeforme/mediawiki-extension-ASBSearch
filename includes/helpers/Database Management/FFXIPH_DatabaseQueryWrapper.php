@@ -27,6 +27,14 @@ class DatabaseQueryWrapper {
         return $query;
     }
 
+    private function exclude_ZONES_OOE(Array $query){
+        foreach( ExclusionsHelper::$zones as $zone) {
+            $zone = ParserHelper::replaceSpaces($zone);
+            array_push($query, "zone_settings.name NOT LIKE '" . $zone . "'"); 
+        }
+        return $query;
+    }
+
 
     private function openASBSearchConnection() { return $this->database->openConnection("ASB_Data"); }
     private function openEquipsetsConnection() { return $this->database->openConnection("Equipsets"); }
@@ -586,26 +594,29 @@ class DatabaseQueryWrapper {
 			->fetchResultSet(); 
 	}
 
-    public function getMobAndZone($mobname = null, $zonename = null){
+    public function getMobAndZone($mobname = null, $zonename = null, $moblevel = null){
         if ( $mobname == null && $zonename == null ) return;
 
         $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
         //array_push($query, $this->exclude_MOBGROUP_GARRISON);
 
         $query = $this->exclude_MOBGROUPS_OOE($query);
+        $query = $this->exclude_ZONES_OOE($query);
 
         if ( !is_null($mobname) )  {
             $mobNameSearch = ParserHelper::replaceSpaces($mobname);
             array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
-
         }
-        if ( !is_null($zonename) )  {  
+        if ( !is_null($zonename) && $zonename != 'searchallzones')  {  
             $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
-            if ( $zoneNameSearch !=  'searchallzones' ) {
-                array_push($query, "zone_settings.name = '$zoneNameSearch'");
-            }
+            array_push($query, "zone_settings.name = '$zoneNameSearch'");
 		}
+        if ( !is_null($moblevel) && intval($moblevel) > 0 ){
+            array_push($query, "(mob_groups.minLevel <= '$moblevel') AND (mob_groups.maxLevel >= '$moblevel')");
+        }
         
+        //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $zonename .":". $mobname . ":" . $moblevel . ":" . gettype($moblevel)  );
+
         $dbr = $this->openASBSearchConnection();
         $results = $dbr->newSelectQueryBuilder()
 			->select( [ 
@@ -637,8 +648,11 @@ class DatabaseQueryWrapper {
         return $results;
     }
 
-    public function getMob($mobname, $zonename){
+    public function getMobStats($mobname, $zonename, $moblevel){
         if ( $mobname == null || $zonename == null ) return;
+
+        if ( !is_null($moblevel) ) $moblevel = intval($moblevel);
+        else $moblevel = 0;
 
         $query = [  "( mob_groups.content_tag = 'COP' OR mob_groups.content_tag IS NULL OR mob_groups.content_tag = 'NEODYNA')" ];
 
@@ -650,6 +664,9 @@ class DatabaseQueryWrapper {
         $zoneNameSearch = ParserHelper::replaceSpaces($zonename);
         array_push($query, "zone_settings.name = '$zoneNameSearch'");
         
+        if ( $moblevel > 0 ){
+            array_push($query, "(mob_groups.minLevel <= '$moblevel') AND (mob_groups.maxLevel >= '$moblevel')");
+        }
 	
         $dbr = $this->openASBSearchConnection();
         $results = $dbr->newSelectQueryBuilder()
@@ -673,8 +690,8 @@ class DatabaseQueryWrapper {
                         'mob_family_system.ACC',
                         'mob_family_system.EVA', 
                         'mob_family_system.familyID',
-                        'mob_family_system.HP AS HPscale',
-                        'mob_family_system.MP AS MPscale',
+                        '(mob_family_system.HP / 100) AS HPscale',
+                        '(mob_family_system.MP / 100) AS MPscale',
                         'mob_pools.mJob',
                         'mob_pools.sJob',
                         'mob_pools.cmbSkill',
@@ -690,32 +707,32 @@ class DatabaseQueryWrapper {
 			->where( $query	)
 			->fetchResultSet(); 
 
-        $mob = new FFXIPH_Mob();
+        // $mob = new FFXIPH_Mob();
         foreach( $results as $result ){
-            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $result ) );
-            $mob->setStatsFromSQL($result);
-            // $mob->setName( $result->name );
-            // $mob->setHP( $result->HPmodifier );
-            // $mob->setMP( $result->MPmodifier );
-            // $mob->setMinlvl( $result->minLevel );
-            // $mob->setMaxlvl( $result->maxLevel );
-            // $mob->setSTR( $result->STR );
-            // $mob->setDEX( $result->DEX );
-            // $mob->setVIT( $result->VIT );
-            // $mob->setAGI( $result->AGI );
-            // $mob->setINT( $result->INT );
-            // $mob->setMND( $result->MND );
-            // $mob->setCHR( $result->CHR );
-            // $mob->setATT( $result->ATT );
-            // $mob->setDEF( $result->DEF );
-            // $mob->setACC( $result->ACC );
-            // $mob->setEVA( $result->EVA );
-            // $mob->setMjob( $result->mJob );
-            // $mob->setSjob( $result->sJob );
-            // $mob->setCmbSkill( $result->cmbSkill );
-            // $mob->setCmbDelay( $result->cmbDelay );
-            // $mob->setCmbDmgMult( $result->cmbDmgMult );
-            return $mob;
+        //     //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $result ) );
+        //     $mob->calcStatsFromSQL($result);
+        //     // $mob->setName( $result->name );
+        //     // $mob->setHP( $result->HPmodifier );
+        //     // $mob->setMP( $result->MPmodifier );
+        //     // $mob->setMinlvl( $result->minLevel );
+        //     // $mob->setMaxlvl( $result->maxLevel );
+        //     // $mob->setSTR( $result->STR );
+        //     // $mob->setDEX( $result->DEX );
+        //     // $mob->setVIT( $result->VIT );
+        //     // $mob->setAGI( $result->AGI );
+        //     // $mob->setINT( $result->INT );
+        //     // $mob->setMND( $result->MND );
+        //     // $mob->setCHR( $result->CHR );
+        //     // $mob->setATT( $result->ATT );
+        //     // $mob->setDEF( $result->DEF );
+        //     // $mob->setACC( $result->ACC );
+        //     // $mob->setEVA( $result->EVA );
+        //     // $mob->setMjob( $result->mJob );
+        //     // $mob->setSjob( $result->sJob );
+        //     // $mob->setCmbSkill( $result->cmbSkill );
+        //     // $mob->setCmbDelay( $result->cmbDelay );
+        //     // $mob->setCmbDmgMult( $result->cmbDmgMult );
+            return $result;
         }
 
         return ;

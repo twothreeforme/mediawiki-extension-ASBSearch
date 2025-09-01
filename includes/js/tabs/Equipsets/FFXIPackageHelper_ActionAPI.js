@@ -129,6 +129,9 @@ function actionAPI(params, forTab, currentButton, callback) {
       else if ( forTab.includes("combatsim_mobsearch")){
         callback(result);
       }
+      else if ( forTab.includes("combatsim_selectedmob")){
+        callback(result);
+      } 
 
       if ( currentButton != null){
         const button = document.getElementById(currentButton);

@@ -530,7 +530,9 @@ class FFXIPackageHelper_Equipsets  {
                         <table><tbody>
                         <tr>" . 
                             //<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
-                            "<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\"></td>" .
+                            "<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\">" . 
+                                "<br>Level: " . FFXIPackageHelper_HTMLTableHelper::selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMob", 95) . 
+                            "</td>" .
                         "</tr>
                         <tr>
                             <td><b>AND / OR</b></td>

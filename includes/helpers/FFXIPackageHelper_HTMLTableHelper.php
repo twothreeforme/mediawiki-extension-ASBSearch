@@ -2,6 +2,18 @@
 
 class FFXIPackageHelper_HTMLTableHelper {
 
+	public static function selectLvlDropDown($classname, $lvlMax){
+        // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> FFXIPackageHelper_dynamiccontent_selectMinCraftLvl
+        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+
+        for ($i = 0; $i <= $lvlMax; $i++) {
+            if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
+            else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
+        }
+        $html .= "</select>";
+        return $html;
+    }
+
 	public static function shareButton($buttonID){
 		return "<button type=\"button\" id=\"$buttonID\" class=\"FFXIPackageHelper_dynamiccontent_shareButton\" >
 			<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" fill=\"currentColor\" viewBox=\"0 0 16 16\">
@@ -817,8 +829,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_MobAndZoneList(Array $moblist){
 		if ( count($moblist) <= 0 ) return;
 		/* class=\"horizon-table general-table sortable\" */
-		$html = "<br><div ><i></i></div>
-			<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
+		$html = "<br><div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
 			<table id=\"FFXIPH_equipsets_combatsim_mobandzonelist\" class=\"sortable\">
 				<tr>
 					<th>Zone</th>
@@ -854,6 +865,54 @@ class FFXIPackageHelper_HTMLTableHelper {
 		// 		"</div>";
 		// $html .= "</div>";
 		
+		return $html;
+	}
+
+
+	public static function table_mobDetails(Array $moblist){
+		$tdstyleopen = "<td style=\"width: 0;min-width: fit-content;\"><center>";
+		$tdstyleclose = "</center></td>";
+
+		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
+			<table id=\"FFXIPH_equipsets_combatsim_mobdetails\" class=\"sortable\">
+				<tr>
+					<th>Zone</th>
+					<th>Mob Name</th>
+					<th>Lvl</th>
+					<th>HP</th>
+					<th>MP</th>
+					<th>STR</th>
+					<th>DEX</th>
+					<th>VIT</th>
+					<th>AGI</th>
+					<th>INT</th>
+					<th>MND</th>
+					<th>CHR</th>
+				</tr> 
+				";
+		
+		foreach($moblist as $mob){
+			$html .= "<tr>";
+				$html .= "<td><center>" . $mob->getZone() . "</center></td>";
+				
+				$mn = $mob->getName() ;
+				$html .= "<td><center>" . $mn . "</center></td>";
+				
+				$html .= $tdstyleopen . $mob->getMaxlvl() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getHP() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getMP() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getSTR() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getDEX() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getVIT() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getAGI() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getINT() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getMND() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getCHR() . $tdstyleclose;
+			$html .= "</tr>";
+		}
+		
+		$html .= "</table></div>";
+
 		return $html;
 	}
 }

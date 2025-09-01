@@ -47,7 +47,11 @@ class FFXIPackageHelper_HTMLTabDropRates {
                             </tr>
                         </tbody></table>
                         </td>
-                        <td style=\"vertical-align:top;\">".$this->showShareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery")."<br><br>Level: Min->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN") ." Max->". $this->selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX") ."<br><br>" . $this->selectionOptions() . "</td>
+                        <td style=\"vertical-align:top;\">".$this->showShareButton("FFXIPackageHelper_dynamiccontent_shareDropRateQuery") . 
+                            "<br><br>Level: Min->". FFXIPackageHelper_HTMLTableHelper::selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMIN", 85) .
+                            " Max->". FFXIPackageHelper_HTMLTableHelper::selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMAX", 85) .
+                            "<br><br>" . $this->selectionOptions() . 
+                        "</td>
                     </tr></tbody></table>
                     <div id=\"FFXIPackageHelper_tabs_droprates_queryresult\">". $this->postQueryResults() ."</div>
                 </div>";
@@ -105,18 +109,6 @@ class FFXIPackageHelper_HTMLTabDropRates {
         $html .= "<label class=\"FFXIPackageHelper_dynamiccontent_checkContainer\"><input id=\"FFXIPackageHelper_dynamiccontent_checkboxIncludeFished\" type=\"checkbox\"";
         if ( $this->includeFished == 1 ) $html .= "checked=\"checked\"";
         $html .= "> Include 'Fished'</input></label><br>";
-        return $html;
-    }
-
-    private function selectLvlDropDown($classname){
-        // <select id=\"FFXIPackageHelper_dynamiccontent_selectLvlMIN\"></select> FFXIPackageHelper_dynamiccontent_selectMinCraftLvl
-        $html = "<select id=\"". $classname ."\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
-
-        for ($i = 0; $i <= 85; $i++) {
-            if ( $i == 0 ) $html .= "<option value=\"" . $i . "\">None</option>";
-            else $html .= "<option value=\"" . $i . "\">" . $i . "</option>";
-        }
-        $html .= "</select>";
         return $html;
     }
 

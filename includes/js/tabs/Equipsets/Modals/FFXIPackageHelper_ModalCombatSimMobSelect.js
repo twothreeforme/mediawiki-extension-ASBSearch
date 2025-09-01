@@ -39,7 +39,7 @@ class ModalCombatSimMobSelect {
         closeButton.addEventListener('click', (e) => {
                 this.close();
             });
-
+        
 
         let resultsListDIV = document.getElementById("FFXIPH_equipsets_combatsim_mobandzonelist");
         let listItems = resultsListDIV.getElementsByTagName('tr');
@@ -52,12 +52,25 @@ class ModalCombatSimMobSelect {
                 // mobLvlIncrementDIV.style.visibility = 'visible';
 
                 let cells = listItems[i].getElementsByTagName('td');
-                this.options.selectMobCallback(cells[0].innerText, cells[1].innerText, cells[3].innerText); 
+
+                let lvl = document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMob").value;
+                
+                this.options.selectMobCallback( cells[0].innerText, 
+                                                cells[1].innerText, 
+                                                lvl); 
                 this.close();
             });
         }
     }
   
+    destroy(){
+        const oldModals = this.modal.querySelectorAll('.modal-content');
+        oldModals.forEach(modal => {
+            const deadModal = modal.cloneNode(true);
+            modal.parentNode.replaceChild(deadModal, modal);
+            //console.log(modal);
+        });
+    }
 
     open(moblist) {
         this.createModal(moblist);
@@ -66,6 +79,10 @@ class ModalCombatSimMobSelect {
   
     close() {
         this.modal.classList.remove('open');
+        this.destroy();
+
+        const removeModal = document.querySelectorAll('#FFXIPackageHelper_equipsets_combatSimMobSelect');
+        removeModal.forEach(modal => { modal.remove(); });
     }
 }
 
