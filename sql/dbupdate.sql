@@ -63,6 +63,11 @@ DROP TABLE IF EXISTS `mob_pools`;
 source mob_pools.sql;
 \! echo mob_pools done
 
+\! echo mob_pool_mods
+DROP TABLE IF EXISTS `mob_pool_mods`;
+source mob_pool_mods.sql;
+\! echo mob_pool_mods done
+
 \! echo mob_resistances
 DROP TABLE IF EXISTS `mob_resistances`;
 source mob_resistances.sql;
@@ -72,6 +77,11 @@ source mob_resistances.sql;
 DROP TABLE IF EXISTS `mob_family_system`;
 source mob_family_system.sql;
 \! echo mob_family_system done
+
+\! echo mob_family_mods
+DROP TABLE IF EXISTS `mob_family_mods`;
+source mob_family_mods.sql;
+\! echo mob_family_mods done
 
 \! echo hxi_bcnm_crate_list
 DROP TABLE IF EXISTS `hxi_bcnm_crate_list`;
@@ -112,6 +122,11 @@ source traits.sql;
 DROP TABLE IF EXISTS `skill_ranks`;
 source skill_ranks.sql;
 \! echo skill_ranks done
+
+\! echo skill_caps
+DROP TABLE IF EXISTS `skill_caps`;
+source skill_caps.sql;
+\! echo skill_caps done
 
 \! echo fishing_zone
 DROP TABLE IF EXISTS `fishing_zone`;

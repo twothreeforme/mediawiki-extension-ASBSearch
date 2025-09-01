@@ -93,7 +93,7 @@ class FFXIPackageHelper_Stats {
         $this->setMerits($merits);
 
         // Apply modifiers to the base stats
-        $this->modifiers["DEF"] += $mlvl + $this->clamp($mlvl - 50, 0, 10);
+        $this->modifiers["DEF"] += $mlvl + FFXIPH_MathHelper::clamp($mlvl - 50, 0, 10);
 
         // Apply modifiers from equipment
         $this->setStatsWithMods();
@@ -279,17 +279,17 @@ class FFXIPackageHelper_Stats {
          * HP Calculation
          */
         // HP Calculation from Main Job
-        $mainLevelOver30     = $this->clamp($mlvl - 30, 0, 30); // Calculation of the condition + 1HP each LVL after level 30
+        $mainLevelOver30     = FFXIPH_MathHelper::clamp($mlvl - 30, 0, 30); // Calculation of the condition + 1HP each LVL after level 30
         $mainLevelUpTo60     = ($mlvl < 60 ? $mlvl - 1 : 59);  // The first time spent up to level 60 (is also used for MP)
-        $mainLevelOver60To75 = $this->clamp($mlvl - 60, 0, 15); // The second calculation mode after level 60
+        $mainLevelOver60To75 = FFXIPH_MathHelper::clamp($mlvl - 60, 0, 15); // The second calculation mode after level 60
 
         // Calculation of the bonus amount of HP
         $mainLevelOver10           = ($mlvl < 10 ? 0 : $mlvl - 10);  // + 2hp at each level after 10
-        $mainLevelOver50andUnder60 = $this->clamp($mlvl - 50, 0, 10);  // + 2hp at each level between 50 to 60 level
+        $mainLevelOver50andUnder60 = FFXIPH_MathHelper::clamp($mlvl - 50, 0, 10);  // + 2hp at each level between 50 to 60 level
         $mainLevelOver60           = ($mlvl < 60 ? 0 : $mlvl - 60);
 
         // HP calculation of an additional profession
-        $subLevelOver10 = $this->clamp($slvl - 10, 0, 20); // + 1HP for each level after 10 (/ 2)
+        $subLevelOver10 = FFXIPH_MathHelper::clamp($slvl - 10, 0, 20); // + 1HP for each level after 10 (/ 2)
         $subLevelOver30 = ($slvl < 30 ? 0 : $slvl - 30);  // + 1HP for each level after 30
 
          // Calculation of race
@@ -399,7 +399,7 @@ class FFXIPackageHelper_Stats {
             }
 
             // Rank A Race + Rank A Job = 71 stat -> Clamp max base stat of 70
-            $totalStat = $this->clamp(($raceStat + $jobStat), 0, 70);
+            $totalStat = FFXIPH_MathHelper::clamp(($raceStat + $jobStat), 0, 70);
 
             // get each merit bonus stat, str,dex,vit and so on...
             //MeritBonus = PChar->PMeritPoints->GetMeritValue(statMerit[StatIndex - 2], PChar);

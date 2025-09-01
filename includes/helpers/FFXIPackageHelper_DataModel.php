@@ -449,12 +449,19 @@ class DataModel {
 			$resultMob = new FFXIPH_Mob();
 
 			$stats = FFXIPH_MobUtils::calcStatsFromSQL( $SQLresultsMob, $m  );
+			//Set properties that dont have any associated calcs
 			$resultMob->setZone(	$SQLresultsMob->zonename );
 			$resultMob->setName( 	$SQLresultsMob->name );
+			$resultMob->setMjob( 	$SQLresultsMob->mJob );
+			$resultMob->setSjob( 	$SQLresultsMob->sJob );
+			$resultMob->setMaxlvl( 	$m );
+
+			//Set properties that have associated calcs
 			$resultMob->setHP( 		$stats["HP"] );
 			$resultMob->setMP( 		$stats["MP"] );
-			//$resultMob->setMinlvl( 	$mob->minLevel );
-			$resultMob->setMaxlvl( 	$m );
+			
+			//MUST set these before DEF/EVA/ATT/MEVA/ACC
+			//because those stats depend on these being set
 			$resultMob->setSTR(		$stats["STR"] );
 			$resultMob->setDEX(		$stats["DEX"] );
 			$resultMob->setVIT(		$stats["VIT"] );
@@ -462,12 +469,12 @@ class DataModel {
 			$resultMob->setINT(		$stats["INT"] );
 			$resultMob->setMND(		$stats["MND"] );
 			$resultMob->setCHR(		$stats["CHR"] );
+
 			// $resultMob->setATT(		$stats["ATT"] );
-			// $resultMob->setDEF(		$stats["DEF"] );
+			$resultMob->setDEF(		$stats["DEF"] );
 			// $resultMob->setACC(		$stats["ACC"] );
-			// $resultMob->setEVA(		$stats["EVA"] );
-			$resultMob->setMjob( 	$SQLresultsMob->mJob );
-			$resultMob->setSjob( 	$SQLresultsMob->sJob );
+			$resultMob->setEVA(		$stats["EVA"] );
+	
 			$mobs[] = $resultMob;
 		}
 

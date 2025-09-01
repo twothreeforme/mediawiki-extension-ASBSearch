@@ -524,7 +524,8 @@ class FFXIPackageHelper_Equipsets  {
 
     public function searchForm(){
         $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_searchForm\">" .
-                "<span><i><b>If you see this then you are an admin or senior-editor. This page is only visible to those user groups while the page is under construction. </b></i></span>" .
+                "<span><i><b>This page is only visible to senior-editor users while the page is under construction. </b>
+                <br>DEF and EVA do NOT include mob family or mob pool characteristics yet (ie: Antlion family mobs have +20% DEF, but thats not shown yet in the chart below).</i></span>" .
                 "<table><tbody>
                     <tr><td>
                         <table><tbody>

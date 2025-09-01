@@ -113,8 +113,19 @@ class FFXIPH_Mob  {
     public function setINT($INT){  $this->INT = $INT; }
     public function setMND($MND){  $this->MND = $MND; }
     public function setCHR($CHR){  $this->CHR = $CHR; }
-    public function setEVA($EVA){  $this->EVA = $EVA; }
-    public function setDEF($DEF){  $this->DEF = $DEF; }
+
+
+    public function setEVA($baseEVA){  
+        // Enemy evasion = f(Lv, main job evasion skill rank) + [AGI/2] + job characteristics
+        $EVA = $baseEVA + ($this->getAGI() / 2);
+        $this->EVA = $EVA; 
+    }
+    public function setDEF($baseDEF){
+        // Enemy defense = [baseDEF + 8 + [VIT/2] + job characteristics] x racial characteristics
+
+        $DEF = ($baseDEF + 8 + ($this->getVIT() / 2) );
+        $this->DEF = $DEF; 
+    }
     public function setATT($ATT){  $this->ATT = $ATT; }
     public function setACC($ACC){  $this->ACC = $ACC; }
 

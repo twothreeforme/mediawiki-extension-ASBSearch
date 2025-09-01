@@ -29,6 +29,7 @@
         "APIModuleFishingSearch" : "includes/APIModules/APIModuleFishingSearch.php",
 
         "FFXIPH_SkillGrades": "includes/helpers/data/FFXIPH_SkillGrades.php",
+        "FFXIPH_MathHelper": "includes/helpers/data/FFXIPH_MathHelper.php",
         "FFXIPackageHelper_Stats": "includes/helpers/data/FFXIPackageHelper_Stats.php",
         "FFXIPackageHelper_Effects": "includes/helpers/FFXIPackageHelper_Effects.php",
         "FFXIPackageHelper_Equipment": "includes/helpers/data/FFXIPackageHelper_Equipment.php",

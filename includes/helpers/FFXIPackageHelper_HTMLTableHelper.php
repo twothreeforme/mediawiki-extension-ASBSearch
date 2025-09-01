@@ -888,6 +888,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 					<th>INT</th>
 					<th>MND</th>
 					<th>CHR</th>
+					<th>DEF</th>
+					<th>EVA</th>
 				</tr> 
 				";
 		
@@ -908,6 +910,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$html .= $tdstyleopen . $mob->getINT() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getMND() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getCHR() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getDEF() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getEVA() . $tdstyleclose;
 			$html .= "</tr>";
 		}
 		

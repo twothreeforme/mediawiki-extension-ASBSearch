@@ -27,7 +27,7 @@ class FFXIPackageHelper_Variables {
         0x100 => "SCENT"
     );
 
-    public $skill = array(
+    public static $skill = array(
         //-- Combat Skills
         0 => "NONE" ,
         1 => "HAND_TO_HAND" ,

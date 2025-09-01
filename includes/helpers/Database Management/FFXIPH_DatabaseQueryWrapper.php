@@ -14,7 +14,7 @@ class DatabaseQueryWrapper {
 
     private function exclude_MOBGROUPS_OOE(Array $query){
         //$query[] = "mob_groups.name NOT LIKE '%_G'";
-        array_push($query, "mob_groups.name NOT LIKE '%[_]G'");
+        array_push($query, "mob_groups.name NOT LIKE '%!_G' ESCAPE '!'");
         foreach( ExclusionsHelper::$mobs as $mob) {
             //$query[] = "mob_groups.name NOT LIKE '" . $mob . "'";
             array_push($query, "mob_groups.name NOT LIKE '" . $mob . "'"); 
@@ -499,7 +499,7 @@ class DatabaseQueryWrapper {
                     "mob_groups.name LIKE '%$mobNameSearch%'",
                 ];
 
-        //$query = $this->exclude_MOBGROUPS_OOE($query);
+        $query = $this->exclude_MOBGROUPS_OOE($query);
 
         $dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
@@ -1019,6 +1019,44 @@ class DatabaseQueryWrapper {
         ->from( 'skill_ranks' )
         ->where( $query	)
         ->fetchResultSet();
+    }
+
+    public function getSkillRank( $skill, $mjob ){
+        $dbr = $this->openASBSearchConnection();
+
+        $mjobLabel = strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$mjob]);
+
+        $query = [ "skill_ranks.skillid = '$skill'" ];        
+
+        $results = $dbr->newSelectQueryBuilder()
+        ->select( [ $mjobLabel ] )
+        ->from( 'skill_ranks' )
+        ->where( $query	)
+        ->fetchResultSet();
+
+        foreach ($results as $row ){
+            return $row->$mjobLabel;
+        }
+        return;
+    }    
+
+    public function getSkillCap( $mLvl, $rank ){
+        $dbr = $this->openASBSearchConnection();
+
+        $rank = "r" . $rank;
+
+        $query = [ "skill_caps.level = '$mLvl'" ];
+
+        $results = $dbr->newSelectQueryBuilder()
+        ->select( [ $rank ] )
+        ->from( 'skill_caps' )
+        ->where( $query	)
+        ->fetchResultSet();
+
+        foreach ($results as $row ){
+            return $row->$rank;
+        }
+        return;
     }
 
     public function getEquipment( $name, $mlvl, $gridSlot = null ){
