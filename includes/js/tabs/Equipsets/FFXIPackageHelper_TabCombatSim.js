@@ -53,7 +53,7 @@ function submitMobSearchRequest(){
 }
 
 function mobSearchRequestCallback(result){
-    //console.log(result)
+    console.log(result)
     if ( result['moblisttable'] ){
         document.getElementById("FFXIPackageHelper_tabs_combatsim_queryresult").innerHTML = "";
         //updateMobAndZoneTable(result['moblisttable']);
