@@ -873,12 +873,17 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$tdstyleopen = "<td style=\"width: 0;min-width: fit-content;\"><center>";
 		$tdstyleclose = "</center></td>";
 
-		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">
-			<table id=\"FFXIPH_equipsets_combatsim_mobdetails\" class=\"sortable\">
-				<tr>
-					<th>Zone</th>
-					<th>Mob Name</th>
-					<th>Lvl</th>
+		$zone = $moblist[0]->getZone();
+		$name = $moblist[0]->getName();
+
+		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">" .
+			"<b>Zone:</b>  " . $zone . "<br>" .
+			"<b>Mob:</b>  " . $name ."<br>" .
+			"<table id=\"FFXIPH_equipsets_combatsim_mobdetails\" class=\"sortable\">
+				<tr>" .
+					// "<th>Zone</th>" .
+					// "<th>Mob Name</th>" .
+					"<th>Lvl</th>
 					<th>HP</th>
 					<th>MP</th>
 					<th>STR</th>
@@ -890,15 +895,17 @@ class FFXIPackageHelper_HTMLTableHelper {
 					<th>CHR</th>
 					<th>DEF</th>
 					<th>EVA</th>
+					<th>ATT</th>
+					<th>ACC</th>
 				</tr> 
 				";
 		
 		foreach($moblist as $mob){
 			$html .= "<tr>";
-				$html .= "<td><center>" . $mob->getZone() . "</center></td>";
+				// $html .= "<td><center>" . $mob->getZone() . "</center></td>";
 				
-				$mn = $mob->getName() ;
-				$html .= "<td><center>" . $mn . "</center></td>";
+				// $mn = $mob->getName() ;
+				// $html .= "<td><center>" . $mn . "</center></td>";
 				
 				$html .= $tdstyleopen . $mob->getMaxlvl() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getHP() . $tdstyleclose;
@@ -910,8 +917,12 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$html .= $tdstyleopen . $mob->getINT() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getMND() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getCHR() . $tdstyleclose;
+
 				$html .= $tdstyleopen . $mob->getDEF() . $tdstyleclose;
 				$html .= $tdstyleopen . $mob->getEVA() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getATT() . $tdstyleclose;
+				$html .= $tdstyleopen . $mob->getACC() . $tdstyleclose;
+
 			$html .= "</tr>";
 		}
 		

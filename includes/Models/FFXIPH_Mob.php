@@ -61,6 +61,7 @@ class FFXIPH_Mob  {
 
     }
 
+
     public function getZone(){ return $this->zone ?? ""; }
     public function getName(){ return $this->name ?? ""; }
     public function getHP(){ return $this->HP ?? 0; }
@@ -89,6 +90,29 @@ class FFXIPH_Mob  {
     public function getATT(){ return $this->ATT ?? 0; }
     public function getACC(){ return $this->ACC ?? 0; }
 
+    public function getSlash_sdt(){ return $this->slash_sdt ?? 0; }
+    public function getPierce_sdt(){ return $this->pierce_sdt ?? 0; }
+    public function getH2H_sdt(){ return $this->h2h_sdt ?? 0; }
+    //public function getimpact_sdt(){ return $this->impact_sdt ?? 0; }
+
+    public function getMagical_sdt(){ return $this->magical_sdt ?? 0; }
+    public function getFire_sdt(){ return $this->fire_sdt ?? 0; }
+    public function getIce_sdt(){ return $this->ice_sdt ?? 0; }
+    public function getWind_sdt(){ return $this->wind_sdt ?? 0; }
+    public function getEarth_sdt(){ return $this->earth_sdt ?? 0; }
+    public function getLightning_sdt(){ return $this->lightning_sdt ?? 0; }
+    public function getWater_sdt(){ return $this->water_sdt ?? 0; }
+    public function getLight_sdt(){ return $this->light_sdt ?? 0; }
+    public function getDark_sdt(){ return $this->dark_sdt ?? 0; }
+    
+    public function getFire_res_rank(){ return $this->fire_res_rank ?? 0; }
+    public function getIce_res_rank(){ return $this->ice_res_rank ?? 0; }
+    public function getWind_res_rank(){ return $this->wind_res_rank ?? 0; }
+    public function getEarth_res_rank(){ return $this->earth_res_rank ?? 0; }
+    public function getLightning_res_rank(){ return $this->lightning_res_rank ?? 0; }
+    public function getWater_res_rank(){ return $this->water_res_rank ?? 0; }
+    public function getLight_res_rank(){ return $this->light_res_rank ?? 0; }
+    public function getDark_res_rank(){ return $this->dark_res_rank ?? 0; }
 
     public function setZone($zone){ $this->zone = $zone; }
     public function setName($name){ $this->name = $name; }
@@ -114,6 +138,29 @@ class FFXIPH_Mob  {
     public function setMND($MND){  $this->MND = $MND; }
     public function setCHR($CHR){  $this->CHR = $CHR; }
 
+    public function setSlash_sdt($slash_sdt){                   return $this->slash_sdt             = $slash_sdt; }
+    public function setPierce_sdt($pierce_sdt){                 return $this->pierce_sdt            = $pierce_sdt; }
+    public function setH2H_sdt($h2h_sdt){                       return $this->h2h_sdt               = $h2h_sdt; }
+    //public function setimpact_sdt($impact_sdt){               return $this->impact_sdt            = $impact_sdt; }
+
+    public function setMagical_sdt($magical_sdt){               return $this->magical_sdt           = $magical_sdt; }
+    public function setFire_sdt($fire_sdt){                     return $this->fire_sdt              = $fire_sdt; }
+    public function setIce_sdt($ice_sdt){                       return $this->ice_sdt               = $ice_sdt; }
+    public function setWind_sdt($wind_sdt){                     return $this->wind_sdt              = $wind_sdt; }
+    public function setEarth_sdt($earth_sdt){                   return $this->earth_sdt             = $earth_sdt; }
+    public function setLightning_sdt($lightning_sdt){           return $this->lightning_sdt         = $lightning_sdt; }
+    public function setWater_sdt($water_sdt){                   return $this->water_sdt             = $water_sdt; }
+    public function setLight_sdt($light_sdt){                   return $this->light_sdt             = $light_sdt; }
+    public function setDark_sdt($dark_sdt){                     return $this->dark_sdt              = $dark_sdt; }
+
+    public function setFire_res_rank($fire_res_rank){           return $this->fire_res_rank         = $fire_res_rank; }
+    public function setIce_res_rank($ice_res_rank){             return $this->ice_res_rank          = $ice_res_rank; }
+    public function setWind_res_rank($wind_res_rank){           return $this->wind_res_rank         = $wind_res_rank; }
+    public function setEarth_res_rank($earth_res_rank){         return $this->earth_res_rank        = $earth_res_rank; }
+    public function setLightning_res_rank($lightning_res_rank){ return $this->lightning_res_rank    = $lightning_res_rank; }
+    public function setWater_res_rank($water_res_rank){         return $this->water_res_rank        = $water_res_rank; }
+    public function setLight_res_rank($light_res_rank){         return $this->light_res_rank        = $light_res_rank; }
+    public function setDark_res_rank($dark_res_rank){           return $this->dark_res_rank         = $dark_res_rank; }
 
     public function setEVA($baseEVA){  
         // Enemy evasion = f(Lv, main job evasion skill rank) + [AGI/2] + job characteristics
@@ -129,260 +176,6 @@ class FFXIPH_Mob  {
     public function setATT($ATT){  $this->ATT = $ATT; }
     public function setACC($ACC){  $this->ACC = $ACC; }
 
-    // public function calcStatsFromSQL($SQLmob){
-    //    //$isNM     = $SQLmob->mobType & FFXIPackageHelper_Variables::$mobType["NOTORIOUS"];
-    //     $this->setName($SQLmob->name);
-    //     $this->setZone($SQLmob->zonename);
-    //     $this->setMinlvl( $SQLmob->minLevel );
-    //     //$this->setMaxlvl( $SQLmob->maxLevel );
-    //     //$mLvl     = $SQLmob->maxLevel;
-        
-    //     $this->setMaxlvl( 36 );
-    //     $mLvl     = 36;
-
-    //     $sLvl     = $mLvl; //$SQLmob->maxLevel;
-    //     $mJob     = $SQLmob->mJob;
-    //     $sJob     = $SQLmob->sJob;
-    //     $familyID = $SQLmob->familyID;
-
-    //     //$zoneType = PMob->loc.zone->GetTypeMask();
-
-    //     $mJobGrade = 0; // main jobs grade
-    //     $sJobGrade = 0; // subjobs grade
-
-    //     if ($SQLmob->HPmodifier == 0){
-    //         $mobHP = 1; // Set mob HP
-
-    //         $baseMobHP = 0; // Define base mobs hp
-    //         $sjHP      = 0; // Define base subjob hp
-
-    //         $mJobGrade = FFXIPH_SkillGrades::$JobGrades[$mJob][0]; // main jobs grade
-    //         $sJobGrade = FFXIPH_SkillGrades::$JobGrades[$sJob][0]; // subjobs grade
-
-    //         $base     = 0; // Column for base hp
-    //         $jobScale = 1; // Column for job scaling
-    //         $scaleX   = 2; // Column for modifier scale
-
-    //         $BaseHP     = FFXIPH_SkillGrades::$MobHPScale[$mJobGrade][$base];     // Main job base HP
-    //         $JobScale   = FFXIPH_SkillGrades::$MobHPScale[$mJobGrade][$jobScale]; // Main job scaling
-    //         $ScaleXHP   = FFXIPH_SkillGrades::$MobHPScale[$mJobGrade][$scaleX];   // Main job modifier scale
-    //         $sjJobScale = FFXIPH_SkillGrades::$MobHPScale[$sJobGrade][$jobScale]; // Sub job scaling
-    //         $sjScaleXHP = FFXIPH_SkillGrades::$MobHPScale[$sJobGrade][$scaleX];   // Sub job modifier scale
-
-    //         $RIgrade = min($mLvl, 5); // RI Grade
-    //         $RIbase  = 1;                        // Column for RI base
-
-    //         $RI = FFXIPH_SkillGrades::$MobRBI[$RIgrade][$RIbase]; // Random Increment addition per grade vs. base
-
-    //         $mLvlIf    = ($mLvl > 5 ? 1 : 0);
-    //         $mLvlIf30  = ($mLvl > 30 ? 1 : 0);
-    //         $raceScale = 6;
-    //         $mLvlScale = 0;
-
-    //         if ($mLvl > 0)
-    //         {
-    //             $baseMobHP = $BaseHP + (min($mLvl, 5) - 1) * ($JobScale + $raceScale - 1) + $RI + $mLvlIf * (min($mLvl, 30) - 5) * (2 * ($JobScale + $raceScale) + min($mLvl, 30) - 6) / 2 + $mLvlIf30 * (($mLvl - 30) * (63 + $ScaleXHP) + ($mLvl - 31) * ($JobScale + $raceScale));
-    //         }
-
-    //         // 50+ = 1 hp sjstats
-    //         if ($mLvl > 49)
-    //         {
-    //             $mLvlScale = floor($mLvl);
-    //         }
-    //         // 40-49 = 3/4 hp sjstats
-    //         else if ($mLvl > 39)
-    //         {
-    //             $mLvlScale = floor($mLvl * 0.75);
-    //         }
-    //         // 31-39 = 1/2 hp sjstats
-    //         else if ($mLvl > 30)
-    //         {
-    //             $mLvlScale = floor($mLvl * 0.50);
-    //         }
-    //         // 25-30 = 1/4 hp sjstats
-    //         else if ($mLvl > 24)
-    //         {
-    //             $mLvlScale = floor($mLvl * 0.25);
-    //         }
-    //         // 1-24 = no hp sjstats
-    //         else
-    //         {
-    //             $mLvlScale = 0;
-    //         }
-
-    //         $sjHP = ceil(($sjJobScale * (max(($mLvlScale - 1), 0)) + (0.5 + 0.5 * $sjScaleXHP) * (max($mLvlScale - 10, 0)) + max($mLvlScale - 30, 0) + max($mLvlScale - 50, 0) + max($mLvlScale - 70, 0)) / 2);
-
-    //         // Orcs 5% more hp
-    //         if (($familyID == 189) || ($familyID == 190) || ($familyID == 334) || ($familyID == 407))
-    //         {
-    //             $mobHP = ($baseMobHP + $sjHP) * 1.05;
-    //         }
-    //         // Quadavs 5% less hp
-    //         else if (($familyID == 200) || ($familyID == 201) || ($familyID == 202) || ($familyID == 337) || ($familyID == 397) || ($familyID == 408))
-    //         {
-    //             $mobHP = ($baseMobHP + $sjHP) * .95;
-    //         }
-    //         // Manticore family has 50% more HP
-    //         else if ($familyID == 179)
-    //         {
-    //             $mobHP = ($baseMobHP + $sjHP) * 1.5;
-    //         }
-    //         else
-    //         {
-    //             $mobHP = $baseMobHP + $sjHP;
-    //         }
-
-    //         // if (PMob->PMaster != nullptr)
-    //         // {
-    //         //     $mobHP *= 0.30f; // Retail captures have all pets at 30% of the mobs family of the same level
-    //         // }
-
-    //         $this->HP = $mobHP;
-    //     }
-    //     else{
-    //         $this->HP = $SQLmob->HPmodifier;
-    //     }
-
-    //     $hasMp = false;
-
-    //     switch ($mJob)
-    //     {
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["PLD"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["WHM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["BLM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["RDM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["DRK"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["BLU"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["SCH"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["SMN"]:
-    //             $hasMp = true;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-    //     switch ($sJob)
-    //     {
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["PLD"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["WHM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["BLM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["RDM"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["DRK"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["BLU"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["SCH"]:
-    //         case FFXIPackageHelper_Variables::$jobArrayByName["SMN"]:
-    //             $hasMp = true;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-    //     // if (PMob->getMobMod(MOBMOD_MP_BASE))
-    //     // {
-    //     //     hasMp = true;
-    //     // }
-
-    //     if ($hasMp)
-    //     {
-    //         $scale = $SQLmob->MPscale;
-
-    //         if ($SQLmob->MPmodifier == 0)
-    //         {
-    //             $this->MP = (18.2 * pow($mLvl, 1.1075) * $scale) + 10;
-    //         }
-    //         else
-    //         {
-    //             $this->MP = $SQLmob->MPmodifier;
-    //         }
-
-    //     }
-
-    //     // ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob, SLOT_MAIN));
-    //     // ((CItemWeapon*)PMob->m_Weapons[SLOT_RANGED])->setDamage(GetWeaponDamage(PMob, SLOT_RANGED));
-
-    //     // // reduce weapon delay of MNK
-    //     // if (PMob->GetMJob() == JOB_MNK)
-    //     // {
-    //     //     ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->resetDelay();
-    //     // }
-
-    //     // // Deprecate MOBMOD_DUAL_WIELD later, replace if check with value from DB
-    //     // if (PMob->getMobMod(MOBMOD_DUAL_WIELD))
-    //     // {
-    //     //     PMob->m_dualWield = true;
-    //     //     // if mob is going to dualWield then need to have sub slot
-    //     //     // assume it is the same damage as the main slot
-    //     //     static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_SUB])->setDamage(GetWeaponDamage(PMob, SLOT_MAIN));
-    //     // }
-
-    //     $fSTR = FFXIPH_SkillGrades::baseToRank($this->getSTR(), $mLvl);
-    //     $fDEX = FFXIPH_SkillGrades::baseToRank($this->getDEX(), $mLvl);
-    //     $fVIT = FFXIPH_SkillGrades::baseToRank($this->getVIT(), $mLvl);
-    //     $fAGI = FFXIPH_SkillGrades::baseToRank($this->getAGI(), $mLvl);
-    //     $fINT = FFXIPH_SkillGrades::baseToRank($this->getINT(), $mLvl);
-    //     $fMND = FFXIPH_SkillGrades::baseToRank($this->getMND(), $mLvl);
-    //     $fCHR = FFXIPH_SkillGrades::baseToRank($this->getCHR(), $mLvl);
-
-    //     $mSTR = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][2], $mLvl );
-    //     $mDEX = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][3], $mLvl );
-    //     $mVIT = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][4], $mLvl );
-    //     $mAGI = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][5], $mLvl );
-    //     $mINT = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][6], $mLvl );
-    //     $mMND = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][7], $mLvl );
-    //     $mCHR = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$mJob][8], $mLvl );
-
-    //     $sSTR = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][2], $sLvl );
-    //     $sDEX = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][3], $sLvl );
-    //     $sVIT = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][4], $sLvl );
-    //     $sAGI = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][5], $sLvl );
-    //     $sINT = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][6], $sLvl );
-    //     $sMND = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][7], $sLvl );
-    //     $sCHR = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][8], $sLvl );
-
-
-    //     // As per conversation with Jimmayus, all mobs at any level get bonus stats from subjobs.
-    //     // From lvl 45 onwards, 1/2. Before lvl 30, 1/4. In between, the value gets progresively higher, from 1/4 at 30 to 1/2 at 44.
-    //     // Im leaving that range at 1/3, for now.
-    //     if ($mLvl >= 45)
-    //     {
-    //         $sSTR /= 2;
-    //         $sDEX /= 2;
-    //         $sAGI /= 2;
-    //         $sINT /= 2;
-    //         $sMND /= 2;
-    //         $sCHR /= 2;
-    //         $sVIT /= 2;
-    //     }
-    //     else if ($mLvl > 30)
-    //     {
-    //         $sSTR /= 3;
-    //         $sDEX /= 3;
-    //         $sAGI /= 3;
-    //         $sINT /= 3;
-    //         $sMND /= 3;
-    //         $sCHR /= 3;
-    //         $sVIT /= 3;
-    //     }
-    //     else
-    //     {
-    //         $sSTR /= 4;
-    //         $sDEX /= 4;
-    //         $sAGI /= 4;
-    //         $sINT /= 4;
-    //         $sMND /= 4;
-    //         $sCHR /= 4;
-    //         $sVIT /= 4;
-    //     }
-
-    //     // [stat] = floor[family Stat] + floor[main job Stat] + floor[sub job Stat]
-    //     $this->setSTR($fSTR + $mSTR + $sSTR);
-    //     $this->setDEX($fDEX + $mDEX + $sDEX);
-    //     $this->setVIT($fVIT + $mVIT + $sVIT);
-    //     $this->setAGI($fAGI + $mAGI + $sAGI);
-    //     $this->setINT($fINT + $mINT + $sINT);
-    //     $this->setMND($fMND + $mMND + $sMND);
-    //     $this->setCHR($fCHR + $mCHR + $sCHR);
-    // }
 
 }
 

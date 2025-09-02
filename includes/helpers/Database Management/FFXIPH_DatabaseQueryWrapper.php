@@ -688,7 +688,28 @@ class DatabaseQueryWrapper {
                         'mob_family_system.ATT',
                         'mob_family_system.DEF',
                         'mob_family_system.ACC',
-                        'mob_family_system.EVA', 
+                        'mob_family_system.EVA',
+                        'mob_resistances.slash_sdt', 
+                        'mob_resistances.pierce_sdt', 
+                        'mob_resistances.h2h_sdt', 
+                        // 'mob_resistances.impact_sdt',
+                        'mob_resistances.magical_sdt',
+                        'mob_resistances.fire_sdt', 
+                        'mob_resistances.ice_sdt', 
+                        'mob_resistances.wind_sdt', 
+                        'mob_resistances.earth_sdt', 
+                        'mob_resistances.lightning_sdt', 
+                        'mob_resistances.water_sdt', 
+                        'mob_resistances.light_sdt', 
+                        'mob_resistances.dark_sdt',
+                        'mob_resistances.fire_res_rank',
+                        'mob_resistances.ice_res_rank',
+                        'mob_resistances.wind_res_rank',
+                        'mob_resistances.earth_res_rank', 
+                        'mob_resistances.lightning_res_rank', 
+                        'mob_resistances.water_res_rank', 
+                        'mob_resistances.light_res_rank', 
+                        'mob_resistances.dark_res_rank', 
                         'mob_family_system.familyID',
                         '(mob_family_system.HP / 100) AS HPscale',
                         '(mob_family_system.MP / 100) AS MPscale',
@@ -703,6 +724,7 @@ class DatabaseQueryWrapper {
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
 			->join( 'mob_pools', null, 'mob_pools.poolid=mob_groups.poolid')
             ->join( 'mob_family_system', null, 'mob_family_system.familyID=mob_pools.familyid')
+            ->join( 'mob_resistances', null, 'mob_pools.resist_id=mob_resistances.resist_id' )
             //->orderBy( 'zoneid', 'ASC' )
 			->where( $query	)
 			->fetchResultSet(); 
@@ -710,7 +732,7 @@ class DatabaseQueryWrapper {
         // $mob = new FFXIPH_Mob();
         foreach( $results as $result ){
         //     //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $result ) );
-        //     $mob->calcStatsFromSQL($result);
+        //     $mob->mobArrayFromSQL($result);
         //     // $mob->setName( $result->name );
         //     // $mob->setHP( $result->HPmodifier );
         //     // $mob->setMP( $result->MPmodifier );
@@ -736,6 +758,30 @@ class DatabaseQueryWrapper {
         }
 
         return ;
+    }
+
+    public function getMobPoolMods($poolid){
+        $dbr = $this->openASBSearchConnection();
+        return $dbr->newSelectQueryBuilder()
+			->select( [ 
+                        'mob_pool_mods.modid',
+                        'mob_pool_mods.value'
+						] )
+			->from( 'mob_pool_mods' )
+			->where( "mob_pool_mods.poolid = '$poolid'"	)
+			->fetchResultSet(); 
+    }
+
+    public function getMobFamilyMods($familyid){
+        $dbr = $this->openASBSearchConnection();
+        return $dbr->newSelectQueryBuilder()
+			->select( [ 
+                        'mob_family_mods.modid',
+                        'mob_family_mods.value'
+						] )
+			->from( 'mob_family_mods' )
+			->where( "mob_family_mods.familyid = '$familyid'"	)
+			->fetchResultSet(); 
     }
 
     public function getRecipes($queryData){

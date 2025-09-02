@@ -9,7 +9,7 @@ class FFXIPH_MobUtils  {
     /**
      * 
      */
-    public static function calcStatsFromSQL($SQLmob, $useLvl = 0){
+    public static function mobArrayFromSQL($SQLmob, $useLvl = 0){
         //$isNM     = $SQLmob->mobType & FFXIPackageHelper_Variables::$mobType["NOTORIOUS"];
         // $this->setName($SQLmob->name);
         // $this->setZone($SQLmob->zonename);
@@ -261,8 +261,6 @@ class FFXIPH_MobUtils  {
         }
 
 
-
-
         // [stat] = floor[family Stat] + floor[main job Stat] + floor[sub job Stat]
         return [
             "HP" => $maxHP,
@@ -277,43 +275,39 @@ class FFXIPH_MobUtils  {
             "CHR" => ($fCHR + $mCHR + $sCHR),
             "DEF" => self::getBaseDefEva( $mLvl, $SQLmob->DEF ),
             "EVA" => self::getBaseDefEva( $mLvl, $SQLmob->EVA ),
-            "MEVA" => self::getMagicEvasion( $mLvl, $SQLmob->DEF)
+            "MEVA" => self::getMagicEvasion( $mLvl, $SQLmob->DEF ),
+            "ATT" => self::getBaseSkill( $mLvl, $SQLmob->ATT ),
+            "ACC" => self::getBaseSkill( $mLvl, $SQLmob->ACC ),
         ];
-        // $this->setSTR($fSTR + $mSTR + $sSTR);
-        // $this->setDEX($fDEX + $mDEX + $sDEX);
-        // $this->setVIT($fVIT + $mVIT + $sVIT);
-        // $this->setAGI($fAGI + $mAGI + $sAGI);
-        // $this->setINT($fINT + $mINT + $sINT);
-        // $this->setMND($fMND + $mMND + $sMND);
-        // $this->setCHR($fCHR + $mCHR + $sCHR);
+
     }
 
-    private static function jobSkillRankToBaseEvaRank($job){
-        $evasionSkillRank = self::getSkillRank( 29 /*SKILL_EVASION*/, $job);
+    // private static function jobSkillRankToBaseEvaRank($job){
+    //     $evasionSkillRank = self::getSkillRank( 29 /*SKILL_EVASION*/, $job);
 
-        switch ($evasionSkillRank)
-        {
-            case 1:
-            case 2:
-                return 1; // A, A+; A- doesnt exist anymore
-            case 3:
-            case 4:
-            case 5:
-                return 2; // B+, B, B-
-            case 6:
-            case 7:
-            case 8:
-                return 3; // C+, C, C-
-            case 9:
-                return 4; // D
-            case 10:
-                return 5; // E
-            default:
-                return 3;
-        }
+    //     switch ($evasionSkillRank)
+    //     {
+    //         case 1:
+    //         case 2:
+    //             return 1; // A, A+; A- doesnt exist anymore
+    //         case 3:
+    //         case 4:
+    //         case 5:
+    //             return 2; // B+, B, B-
+    //         case 6:
+    //         case 7:
+    //         case 8:
+    //             return 3; // C+, C, C-
+    //         case 9:
+    //             return 4; // D
+    //         case 10:
+    //             return 5; // E
+    //         default:
+    //             return 3;
+    //     }
 
-        return 3; // Give them C rank as a fallback.
-    }
+    //     return 3; // Give them C rank as a fallback.
+    // }
 
     /************************************************************************
      *                                                                       *

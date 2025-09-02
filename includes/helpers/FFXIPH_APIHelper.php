@@ -13,7 +13,7 @@ class FFXIPH_APIHelper {
         $user = RequestContext::getMain()->getUser();
         $userGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserGroups( $user );
 
-        if ( $user->user_id == 2220 ) return true; 
+        if ( $user && $user->getId() == 2220 ) return true; 
 
         if ( count( array_intersect($this->adminArray, $userGroups) ) == 0 ) return false;
         else return true;
