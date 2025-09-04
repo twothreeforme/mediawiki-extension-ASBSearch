@@ -3,6 +3,7 @@ var TabRecipes = require("./FFXIPackageHelper_TabRecipes.js");
 var TabEquipment = require("./FFXIPackageHelper_TabEquipment.js");
 // var TabEquipsets = require("./Equipsets/FFXIPackageHelper_TabEquipsets.js");
 var TabFishing = require("./FFXIPackageHelper_TabFishing.js");
+var TabCombatSim = require("./FFXIPackageHelper_TabMobSearch.js");
 var Tabs = require("./FFXIPackageHelper_ShowTabs.js");
 
 
@@ -80,6 +81,16 @@ function onPageLoad(){
   });
   //tabsButton_fishing.click();
 
+  const tabsButton_mobsearch = document.getElementById("FFXIPackageHelper_tabs_mobsearch");
+  if ( tabsButton_mobsearch == null )  {
+    //console.log("mobsearch tab null");
+    return ;
+  }
+  tabsButton_mobsearch.addEventListener("click", function (e) {
+      Tabs.showTab(e,tabsButton_mobsearch.id);
+  });
+  //tabsButton_mobsearch.click();
+
   const tabsButton_admin = document.getElementById("FFXIPackageHelper_tabs_admin");
   if ( tabsButton_admin == null )  {
     //console.log("fishing tab null");
@@ -110,11 +121,12 @@ mw.hook('wikipage.content').add( function () {
   TabEquipment.setLinks();
   //TabEquipsets.setLinks();
   TabFishing.setLinks();
+  TabCombatSim.setLinks();
 
   initiallyLoaded = true;
   console.log("Tab Controller: initiallyLoaded");
 
-  });
+});
 
 // $( document ).ready( function () {
 

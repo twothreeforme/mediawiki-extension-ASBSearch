@@ -1,7 +1,7 @@
-var API = require("./FFXIPackageHelper_ActionAPI.js");
-var Data = require("./FFXIPackageHelper_DataManager.js");
+var API = require("./Equipsets/FFXIPackageHelper_ActionAPI.js");
+var Data = require("./Equipsets/FFXIPackageHelper_DataManager.js");
 
-var ModalCombatSimMobSelect = require("./Modals/FFXIPackageHelper_ModalCombatSimMobSelect.js");
+var ModalCombatSimMobSelect = require("./Equipsets/Modals/FFXIPackageHelper_ModalCombatSimMobSelect.js");
 
 
 let modalMobSelect = null;
@@ -30,7 +30,7 @@ function validMobSearchQuery(params){
 function getQueryParams(){
     return {
       action: "combatsim_mobsearch",
-      mobname: document.querySelectorAll('input[name=mobNameSearch]')[0].value,
+      mobname: document.getElementById("FFXIPackageHelper_dynamiccontent_combatsim_mobsearch").value, 
       zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value,
       moblevel: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMob").value,
     };
@@ -79,6 +79,7 @@ function updateMobAndZoneTable(incomingMobAndZoneTable){
 function selectMob(zone, mob, moblevel){
     modalMobSelect = null;
     let params = Data.getStatsData();
+
     params.action = "combatsim_selectedmob";
     params.mobname = mob;
     params.zonename = zone;

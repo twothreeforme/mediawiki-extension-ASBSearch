@@ -718,7 +718,8 @@ class DatabaseQueryWrapper {
                         'mob_pools.cmbSkill',
                         'mob_pools.cmbDelay',
                         'mob_pools.cmbDmgMult',
-                        'mob_pools.mobType'
+                        'mob_pools.mobType',
+                        'mob_pools.poolid'
 						] )
 			->from( 'mob_groups' )
 			->join( 'zone_settings', null, 'zone_settings.zoneid=mob_groups.zoneid')
@@ -729,31 +730,8 @@ class DatabaseQueryWrapper {
 			->where( $query	)
 			->fetchResultSet(); 
 
-        // $mob = new FFXIPH_Mob();
         foreach( $results as $result ){
         //     //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . json_encode( $result ) );
-        //     $mob->mobArrayFromSQL($result);
-        //     // $mob->setName( $result->name );
-        //     // $mob->setHP( $result->HPmodifier );
-        //     // $mob->setMP( $result->MPmodifier );
-        //     // $mob->setMinlvl( $result->minLevel );
-        //     // $mob->setMaxlvl( $result->maxLevel );
-        //     // $mob->setSTR( $result->STR );
-        //     // $mob->setDEX( $result->DEX );
-        //     // $mob->setVIT( $result->VIT );
-        //     // $mob->setAGI( $result->AGI );
-        //     // $mob->setINT( $result->INT );
-        //     // $mob->setMND( $result->MND );
-        //     // $mob->setCHR( $result->CHR );
-        //     // $mob->setATT( $result->ATT );
-        //     // $mob->setDEF( $result->DEF );
-        //     // $mob->setACC( $result->ACC );
-        //     // $mob->setEVA( $result->EVA );
-        //     // $mob->setMjob( $result->mJob );
-        //     // $mob->setSjob( $result->sJob );
-        //     // $mob->setCmbSkill( $result->cmbSkill );
-        //     // $mob->setCmbDelay( $result->cmbDelay );
-        //     // $mob->setCmbDmgMult( $result->cmbDmgMult );
             return $result;
         }
 

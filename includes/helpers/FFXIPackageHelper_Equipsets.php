@@ -522,32 +522,32 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function searchForm(){
-        $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_searchForm\">" .
-                "<span><i><b>This page is only visible to senior-editor users while the page is under construction. </b>
-                <br>Stats do NOT include mob family or mob pool characteristics yet (ie: Antlion family mobs have +20% DEF, but thats not shown yet in the chart below).</i></span>" .
-                "<table><tbody>
-                    <tr><td>
-                        <table><tbody>
-                        <tr>" . 
-                            //<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
-                            "<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\">" . 
-                                "<br>Level: " . FFXIPackageHelper_HTMLTableHelper::selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMob", 95) . 
-                            "</td>" .
-                        "</tr>
-                        <tr>
-                            <td><b>AND / OR</b></td>
-                        </tr>
-                        <tr>
-                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchForMobAndZone\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Find Mob</button></td>
-                        </tr>
-                        </tbody></table>
-                        </td>
-                    </tr></tbody></table>
-                    <div id=\"FFXIPackageHelper_tabs_combatsim_queryresult\"></div>
-                </div>";
-        return $html;
-    }
+    // public function searchForm(){
+    //     $html = "<div id=\"FFXIPackageHelper_tabs_combatsim_searchForm\">" .
+    //             "<span><i><b>This page is only visible to senior-editor users while the page is under construction. </b>
+    //             <br>Stats do NOT include mob family or mob pool characteristics yet (ie: Antlion family mobs have +20% DEF, but thats not shown yet in the chart below).</i></span>" .
+    //             "<table><tbody>
+    //                 <tr><td>
+    //                     <table><tbody>
+    //                     <tr>" . 
+    //                         //<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" value=\"$this->mobName\" size=\"25\"></td>
+    //                         "<td>Mob Name<br><input class=\"FFXIPackageHelper_dynamiccontent_textinput\" name=\"mobNameSearch\" size=\"25\">" . 
+    //                             "<br>Level: " . FFXIPackageHelper_HTMLTableHelper::selectLvlDropDown("FFXIPackageHelper_dynamiccontent_selectLvlMob", 95) . 
+    //                         "</td>" .
+    //                     "</tr>
+    //                     <tr>
+    //                         <td><b>AND / OR</b></td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchForMobAndZone\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Find Mob</button></td>
+    //                     </tr>
+    //                     </tbody></table>
+    //                     </td>
+    //                 </tr></tbody></table>
+    //                 <div id=\"FFXIPackageHelper_tabs_combatsim_queryresult\"></div>
+    //             </div>";
+    //     return $html;
+    // }
 }
 
 ?>

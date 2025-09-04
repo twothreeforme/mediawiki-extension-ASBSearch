@@ -445,60 +445,66 @@ class DataModel {
 		}
 
 		$mobs = [];
-		for ( $m = $rangeMin; $m <= $rangeMax; $m++ ){
-			$resultMob = new FFXIPH_Mob();
-
-			$mobFromSQL = FFXIPH_MobUtils::mobArrayFromSQL( $SQLresultsMob, $m  );
-			//Set properties that dont have any associated calcs
-			$resultMob->setZone(	$SQLresultsMob->zonename );
-			$resultMob->setName( 	$SQLresultsMob->name );
-			$resultMob->setMjob( 	$SQLresultsMob->mJob );
-			$resultMob->setSjob( 	$SQLresultsMob->sJob );
-			$resultMob->setMaxlvl( 	$m );
-
-			//Set properties that have associated calcs
-			$resultMob->setHP( 		$mobFromSQL["HP"] );
-			$resultMob->setMP( 		$mobFromSQL["MP"] );
+		for ( $lvl = $rangeMin; $lvl <= $rangeMax; $lvl++ ){
+			//$mobFromSQL = FFXIPH_MobUtils::mobArrayFromSQL( $SQLresultsMob, $lvl );
 			
-			//MUST set these before DEF/EVA/ATT/MEVA/ACC
-			//because those stats depend on these being set
-			$resultMob->setSTR(		$mobFromSQL["STR"] );
-			$resultMob->setDEX(		$mobFromSQL["DEX"] );
-			$resultMob->setVIT(		$mobFromSQL["VIT"] );
-			$resultMob->setAGI(		$mobFromSQL["AGI"] );
-			$resultMob->setINT(		$mobFromSQL["INT"] );
-			$resultMob->setMND(		$mobFromSQL["MND"] );
-			$resultMob->setCHR(		$mobFromSQL["CHR"] );
+				$resultMob = new FFXIPH_Mob();
+				$resultMob->importSQL( $SQLresultsMob, $SQLresultsPoolMods, $SQLresultsFamilyMods, $lvl );
 
-			$resultMob->setDEF(		$mobFromSQL["DEF"] );
-			$resultMob->setEVA(		$mobFromSQL["EVA"] );
-			$resultMob->setATT(		$mobFromSQL["ATT"] );
-			$resultMob->setACC(		$mobFromSQL["ACC"] );
+				// //Set properties that dont have any associated calcs
+				// $resultMob->setZone(	$SQLresultsMob->zonename );
+				// $resultMob->setName( 	$SQLresultsMob->name );
+				// $resultMob->setMjob( 	$SQLresultsMob->mJob );
+				// $resultMob->setSjob( 	$SQLresultsMob->sJob );
+				// $resultMob->setMaxlvl( 	$lvl );
 
-	
-			$resultMob->setSlash_sdt( $SQLresultsMob->slash_sdt );         
-			$resultMob->setPierce_sdt( $SQLresultsMob->pierce_sdt );        
-			$resultMob->setH2H_sdt(  $SQLresultsMob->h2h_sdt );           
-			//$resultMob->setimpact_sdt( $SQLresultsMob->impact_sdt );
+				// //Modifiers set in the beginning of Mob creation
+				// $resultMob->setModifiers( $SQLresultsPoolMods );
+				// $resultMob->setModifiers( $SQLresultsFamilyMods );
 
-			$resultMob->setMagical_sdt( $SQLresultsMob->magical_sdt );       
-			$resultMob->setFire_sdt( $SQLresultsMob->fire_sdt );          
-			$resultMob->setIce_sdt(  $SQLresultsMob->ice_sdt );           
-			$resultMob->setWind_sdt( $SQLresultsMob->wind_sdt );          
-			$resultMob->setEarth_sdt( $SQLresultsMob->earth_sdt );         
-			$resultMob->setLightning_sdt( $SQLresultsMob->lightning_sdt  );    
-			$resultMob->setWater_sdt( $SQLresultsMob->water_sdt );         
-			$resultMob->setLight_sdt( $SQLresultsMob->light_sdt );        
-			$resultMob->setDark_sdt( $SQLresultsMob->dark_sdt );
+				// //Set properties that have associated calcs
+				// $resultMob->setHP( 		FFXIPH_MobUtils::calcHP($SQLresultsMob, $lvl ) );
+				// $resultMob->setMP( 		FFXIPH_MobUtils::calcMP($SQLresultsMob, $lvl ) );
+				
+				// //MUST set these before DEF/EVA/ATT/MEVA/ACC
+				// //because those stats depend on these being set
+				// $resultMob->setSTR(		$mobFromSQL["STR"] );
+				// $resultMob->setDEX(		$mobFromSQL["DEX"] );
+				// $resultMob->setVIT(		$mobFromSQL["VIT"] );
+				// $resultMob->setAGI(		$mobFromSQL["AGI"] );
+				// $resultMob->setINT(		$mobFromSQL["INT"] );
+				// $resultMob->setMND(		$mobFromSQL["MND"] );
+				// $resultMob->setCHR(		$mobFromSQL["CHR"] );
 
-			$resultMob->setFire_res_rank( $SQLresultsMob->fire_res_rank );     
-			$resultMob->setIce_res_rank( $SQLresultsMob->ice_res_rank );      
-			$resultMob->setWind_res_rank( $SQLresultsMob->wind_res_rank );     
-			$resultMob->setEarth_res_rank( $SQLresultsMob->earth_res_rank );    
-			$resultMob->setLightning_res_rank( $SQLresultsMob->lightning_res_rank );
-			$resultMob->setWater_res_rank( $SQLresultsMob->water_res_rank );    
-			$resultMob->setLight_res_rank( $SQLresultsMob->light_res_rank );    
-			$resultMob->setDark_res_rank( $SQLresultsMob->dark_res_rank );     
+				// $resultMob->setDEF(		$mobFromSQL["DEF"] );
+				// $resultMob->setEVA(		$mobFromSQL["EVA"] );
+				// $resultMob->setATT(		$mobFromSQL["ATT"] );
+				// $resultMob->setACC(		$mobFromSQL["ACC"] );
+
+		
+				// $resultMob->setSlash_sdt( $SQLresultsMob->slash_sdt );         
+				// $resultMob->setPierce_sdt( $SQLresultsMob->pierce_sdt );        
+				// $resultMob->setH2H_sdt(  $SQLresultsMob->h2h_sdt );           
+				// //$resultMob->setimpact_sdt( $SQLresultsMob->impact_sdt );
+
+				// $resultMob->setMagical_sdt( $SQLresultsMob->magical_sdt );       
+				// $resultMob->setFire_sdt( $SQLresultsMob->fire_sdt );          
+				// $resultMob->setIce_sdt(  $SQLresultsMob->ice_sdt );           
+				// $resultMob->setWind_sdt( $SQLresultsMob->wind_sdt );          
+				// $resultMob->setEarth_sdt( $SQLresultsMob->earth_sdt );         
+				// $resultMob->setLightning_sdt( $SQLresultsMob->lightning_sdt  );    
+				// $resultMob->setWater_sdt( $SQLresultsMob->water_sdt );         
+				// $resultMob->setLight_sdt( $SQLresultsMob->light_sdt );        
+				// $resultMob->setDark_sdt( $SQLresultsMob->dark_sdt );
+
+				// $resultMob->setFire_res_rank( $SQLresultsMob->fire_res_rank );     
+				// $resultMob->setIce_res_rank( $SQLresultsMob->ice_res_rank );      
+				// $resultMob->setWind_res_rank( $SQLresultsMob->wind_res_rank );     
+				// $resultMob->setEarth_res_rank( $SQLresultsMob->earth_res_rank );    
+				// $resultMob->setLightning_res_rank( $SQLresultsMob->lightning_res_rank );
+				// $resultMob->setWater_res_rank( $SQLresultsMob->water_res_rank );    
+				// $resultMob->setLight_res_rank( $SQLresultsMob->light_res_rank );    
+				// $resultMob->setDark_res_rank( $SQLresultsMob->dark_res_rank );     
 
 			$mobs[] = $resultMob;
 		}

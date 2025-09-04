@@ -1,7 +1,6 @@
 var TabEquipsets = require("./FFXIPackageHelper_TabEquipsets.js");
 var TabCharacters = require("./FFXIPackageHelper_TabCharacters.js");
-var TabCombatSim = require("./FFXIPackageHelper_TabCombatSim.js");
-
+var TabCombatSim = require("../FFXIPackageHelper_TabMobSearch.js");
 var Tabs = require("../FFXIPackageHelper_ShowTabs.js");
 
 function onPageLoad(){

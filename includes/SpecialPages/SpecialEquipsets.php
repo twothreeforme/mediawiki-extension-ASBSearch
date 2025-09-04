@@ -66,10 +66,10 @@ class SpecialEquipsets extends SpecialPage {
 		//wfDebugLog( 'Equipsets', get_called_class() . ":execute:" . json_encode($this->currentCharacter ) );
 		$tabEquipsets = new FFXIPackageHelper_Equipsets($this->currentCharacter);
 		
-		
+		$tabMobs = new FFXIPH_HTMLTabMobSearch();
 		$apiHelper = new FFXIPH_APIHelper();
         if ( $apiHelper->userIsAuth() == false ) $combatsimContent = "This page is restricted to administrators and senior-editors while under continued construction.</div>";
-		else $combatsimContent = $tabEquipsets->searchForm();
+		else $combatsimContent = $tabMobs->searchForm();
 
 		$html = FFXIPackageHelper_HTMLTableHelper::characterSelectedHeader($this->currentCharacter) .
 			"<div id=\"initialHide\" style=\"display: none;\">" .

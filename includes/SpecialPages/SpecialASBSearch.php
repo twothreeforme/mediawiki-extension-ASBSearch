@@ -85,22 +85,23 @@ class SpecialASBSearch extends SpecialPage {
 		// }
 
 
-        $tabs = new FFXIPackageHelper_HTMLTabsHelper();
+        $tabs = new FFXIPH_ASBSearch_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();
         $tabFishing = new FFXIPackageHelper_HTMLTabFishingSearch();
         $tabAdmin = new FFXIPackageHelper_HTMLTabAdmin();
+		$tabMobs = new FFXIPH_HTMLTabMobSearch();
 
         $html = "<div id=\"initialHide\" style=\"display: none;\">" .
-                $tabs->header() . 
-                $tabs->tab1($tabDropRates->searchForm()) .
-                $tabs->tab2($tabRecipes->searchForm()) .
-				$tabs->tab3($tabEquipment->searchForm()) .
-                // $tabs->tab4($tabEquipsets->showEquipsets()) .
-				$tabs->tab5($tabFishing->searchForm()) .
-				$tabs->tab6($tabAdmin->showAdmin()) .
-
+					$tabs->header() . 
+					$tabs->tab1($tabDropRates->searchForm()) .
+					$tabs->tab2($tabRecipes->searchForm()) .
+					$tabs->tab3($tabEquipment->searchForm()) .
+					// $tabs->tab4($tabEquipsets->showEquipsets()) .
+					$tabs->tab5($tabFishing->searchForm()) .
+					$tabs->tab6($tabMobs->searchForm()) .
+					$tabs->tab7($tabAdmin->showAdmin()) .
                 "</div>";
 
 		$output->addHTML( $html );

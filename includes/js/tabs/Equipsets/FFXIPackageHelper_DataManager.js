@@ -28,6 +28,8 @@ function getEquipIDs(updateAll){
         let str = "grid" + v;
         let slot = document.getElementById(str);
         //console.log(v, slot.dataset.value);
+        if ( !slot || !slot.hasAttribute('dataset') ) return null;
+
         if ( updateAll == true ) {
             // if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
             // else shareEquipIDs[v] = [ 0, 0 ];
@@ -102,11 +104,22 @@ function getCharData(){
     };
 }
 
+/**
+ * 
+ * @param {object} equipIDString 
+ * @returns {object} object - with params when getEquipIDs() exists
+ * @returns {object} empty - when getEquipIDs() is null
+ */
 function getStatsData(equipIDString){
     if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
     else if ( equipIDString == true ) {
         equipIDString = getEquipIDs(true);
     }
+    
+    // no equipment IDs means function called from a different tab and no equipment data
+    // need to be sent via API, therefore return an empty object
+    if ( !equipIDString ) return {};
+    
     equipIDString = equipIDString.join("|");
 
     //console.log("getStatsData: ", equipIDString);

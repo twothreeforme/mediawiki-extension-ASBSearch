@@ -38,7 +38,9 @@
         "FFXIPackageHelper_HTMLTableHelper": "includes/helpers/FFXIPackageHelper_HTMLTableHelper.php",
         "FFXIPackageHelper_HTMLTabFishingSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabFishingSearch.php",
         "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
-        "FFXIPackageHelper_HTMLTabsHelper": "includes/Tabs/FFXIPackageHelper_HTMLTabsHelper.php",
+        "FFXIPH_HTMLTabMobSearch": "includes/Tabs/FFXIPH_HTMLTabMobSearch.php",
+
+        "FFXIPH_ASBSearch_HTMLTabsHelper": "includes/Tabs/FFXIPH_ASBSearch_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
         "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
@@ -105,13 +107,16 @@
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_DataManager.js",
                 "includes/js/tabs/FFXIPackageHelper_ShowTabs.js",
                 "includes/js/tabs/FFXIPackageHelper_TabFishing.js",
                 "includes/js/tabs/FFXIPackageHelper_TabRecipes.js",
                 "includes/js/tabs/FFXIPackageHelper_TabEquipment.js",
                 "includes/js/tabs/FFXIPackageHelper_TabDropRates.js",
+                "includes/js/tabs/FFXIPackageHelper_TabMobSearch.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Tooltips.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js"
+                "includes/js/tabs/Equipsets/FFXIPackageHelper_LuaSets.js",
+                "includes/js/tabs/Equipsets/Modals/FFXIPackageHelper_ModalCombatSimMobSelect.js"
             ],
             "styles": [
 				"resources/styles/FFXIPackageHelper_Forms.css",
@@ -140,7 +145,7 @@
 
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
-                "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCombatSim.js",
+                "includes/js/tabs/FFXIPackageHelper_TabMobSearch.js",
 
                 "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],
