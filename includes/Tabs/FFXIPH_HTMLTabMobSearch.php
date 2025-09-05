@@ -21,7 +21,7 @@ class FFXIPH_HTMLTabMobSearch {
                             <td><b>AND / OR</b></td>
                         </tr>
                         <tr>
-                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown() . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchForMobAndZone\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Find Mob</button></td>
+                            <td>Zone<br>" . FFXIPackageHelper_HTMLOptions::zonesDropDown("FFXIPackageHelper_dynamiccontent_selectMobZoneName") . "<br><br><button id=\"FFXIPackageHelper_dynamiccontent_searchForMobAndZone\" class=\"FFXIPackageHelper_dynamiccontent_customButton\">Find Mob</button></td>
                         </tr>
                         </tbody></table>
                         </td>

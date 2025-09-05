@@ -147,8 +147,9 @@ class FFXIPackageHelper_HTMLOptions {
 		return $result ;
     }
 
-    public static function zonesDropDown(){
-        $html = "<select id=\"FFXIPackageHelper_dynamiccontent_selectZoneName\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
+    public static function zonesDropDown($id = null){
+        if ( $id == null ) $id = "FFXIPackageHelper_dynamiccontent_selectZoneName";
+        $html = "<select id=\"$id\" class=\"FFXIPackageHelper_dynamiccontent_customDropDown\">";
         $zoneNamesList = self::zoneNameList();
 
         foreach ($zoneNamesList as $key => $value) {

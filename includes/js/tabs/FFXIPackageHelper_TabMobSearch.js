@@ -8,7 +8,7 @@ let modalMobSelect = null;
 
 module.exports.setLinks = function (){
 
-    let mobName_enterKeySubmit = document.querySelectorAll('input[name=mobNameSearch]')[0];
+    let mobName_enterKeySubmit = document.getElementById("FFXIPackageHelper_dynamiccontent_combatsim_mobsearch");
     if ( mobName_enterKeySubmit ) mobName_enterKeySubmit.addEventListener("keypress", (e) =>  {
         if (e.key === "Enter") {
             submitMobSearchRequest();
@@ -31,7 +31,7 @@ function getQueryParams(){
     return {
       action: "combatsim_mobsearch",
       mobname: document.getElementById("FFXIPackageHelper_dynamiccontent_combatsim_mobsearch").value, 
-      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectZoneName").value,
+      zonename: document.getElementById("FFXIPackageHelper_dynamiccontent_selectMobZoneName").value,
       moblevel: document.getElementById("FFXIPackageHelper_dynamiccontent_selectLvlMob").value,
     };
 }
