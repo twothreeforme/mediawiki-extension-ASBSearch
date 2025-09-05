@@ -355,6 +355,7 @@ class APIModuleEquipsets extends ApiBase {
             $final = FFXIPackageHelper_HTMLTableHelper::table_MobAndZoneList( $dm->getDataSet() );
             if ( strlen($final) > 0 ){
                 $finalHtml = ParserHelper::wikiParse($final);
+                $db->incrementHitCounter("mobsearch");
                 $result->addValue( $params['action'], "moblisttable", $finalHtml );
             }
             else {

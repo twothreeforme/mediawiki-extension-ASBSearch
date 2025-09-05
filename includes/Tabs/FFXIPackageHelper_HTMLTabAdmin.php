@@ -16,10 +16,11 @@ class FFXIPackageHelper_HTMLTabAdmin {
         $eqhits = $db->getHitCounter("equipment");
         $fihits = $db->getHitCounter("fishing");
         $rehits = $db->getHitCounter("recipes");
+        $mobsearchhits = $db->getHitCounter("mobsearch");
 
          $html = "<div id=\"FFXIPackageHelper_tabs_admin_display\">" .
                     "<h3>ASBSearch Clicks:</h3>
-                    <pre>Drop Rates: $drhits\nEquipment: $eqhits\nRecipes: $rehits\nFishing: $fihits</pre>" .
+                    <pre>Drop Rates: $drhits\nEquipment: $eqhits\nRecipes: $rehits\nFishing: $fihits\nMob Search: $mobsearchhits</pre>" .
                 "</div>";
          return $html;
     }
