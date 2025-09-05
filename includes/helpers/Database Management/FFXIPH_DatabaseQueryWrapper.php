@@ -445,8 +445,6 @@ class DatabaseQueryWrapper {
 		}
         else array_push($query, "mob_droplist.dropType <= 1"); // all other drops = 0
 
-
-
 		$dbr = $this->openASBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
