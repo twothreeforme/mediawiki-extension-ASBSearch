@@ -9,7 +9,7 @@ class FFXIPackageHelper_HTMLTabAdmin {
         $html = "<div id=\"FFXIPackageHelper_tabs_admin_display\">";
 
         $apiHelper = new FFXIPH_APIHelper();
-        if ( $apiHelper->userIsAuth() == true ) return $html . "This page is restricted to administrators and senior-editors.</div>";
+        if ( $apiHelper->userIsAuth() == false ) return $html . "This page is restricted to administrators and senior-editors.</div>";
 
         $db = new DatabaseQueryWrapper();
         $drhits = $db->getHitCounter("droprate");
