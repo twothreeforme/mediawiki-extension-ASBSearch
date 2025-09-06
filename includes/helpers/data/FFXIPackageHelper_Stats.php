@@ -74,7 +74,8 @@ class FFXIPackageHelper_Stats {
         $this->setSkillCaps($mjob, $mlvl, $sjob, $slvl);
 
         // Pull traits from SQL
-        $traits = $this->getTraits( $mlvl, $slvl, $mjob, $sjob );
+        // $traits = $this->getTraits( $mlvl, $slvl, $mjob, $sjob );
+        $traits = FFXIPH_StatsUtilities::getTraits( $mlvl, $slvl, $mjob, $sjob );
         $this->applyToModifiers($traits);
 
         // Pull equipment from SQL
@@ -557,23 +558,23 @@ class FFXIPackageHelper_Stats {
 
     }
 
-    private function getTraits( $mlvl, $slvl, $mjob, $sjob ){
-        $db = new DatabaseQueryWrapper();
-       // $vars = new FFXIPackageHelper_Variables();
+    // private function getTraits( $mlvl, $slvl, $mjob, $sjob ){
+    //     $db = new DatabaseQueryWrapper();
+    //    // $vars = new FFXIPackageHelper_Variables();
 
-        $results = $db->getTraits( $mlvl, $slvl, $mjob, $sjob );
+    //     $results = $db->getTraits( $mlvl, $slvl, $mjob, $sjob );
 
-        // organize all traits pulled from DB
-        // highest traits.value takes precedence
-        $traits = [];
-        foreach ( $results as $row ) {
-           // $mod = $vars->modArray[$row->modifier];
-            if ( !isset($traits[$row->modifier]) ) $traits[$row->modifier] = $row->value;
-            else if ( $traits[$row->modifier] < $row->value ) $traits[$row->modifier] = $row->value;
-        }
+    //     // organize all traits pulled from DB
+    //     // highest traits.value takes precedence
+    //     $traits = [];
+    //     foreach ( $results as $row ) {
+    //        // $mod = $vars->modArray[$row->modid];
+    //         if ( !isset($traits[$row->modid]) ) $traits[$row->modid] = $row->value;
+    //         else if ( $traits[$row->modid] < $row->value ) $traits[$row->modid] = $row->value;
+    //     }
 
-        return $traits;
-    }
+    //     return $traits;
+    // }
 
     function applyEquipment( ){
        // $db = new DatabaseQueryWrapper();

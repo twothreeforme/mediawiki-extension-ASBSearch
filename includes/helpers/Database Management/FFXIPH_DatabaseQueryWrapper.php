@@ -736,12 +736,31 @@ class DatabaseQueryWrapper {
         return ;
     }
 
+    public function getTraits( $mlvl, $slvl, $mjob, $sjob){
+        $dbr = $this->openASBSearchConnection();
+        $query = [
+            "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
+            "( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
+        ];
+
+        return $dbr->newSelectQueryBuilder()
+        ->select( [ 'traits.modifier AS modid',
+                    'traits.value',
+                    'traits.traitid'
+                    ] )
+        ->from( 'traits' )
+        ->orderBy( 'modifier' )
+        ->where( $query	)
+        ->fetchResultSet();
+    }
+    
     public function getMobPoolMods($poolid){
         $dbr = $this->openASBSearchConnection();
         return $dbr->newSelectQueryBuilder()
 			->select( [ 
                         'mob_pool_mods.modid',
-                        'mob_pool_mods.value'
+                        'mob_pool_mods.value',
+                        'mob_pool_mods.is_mob_mod'
 						] )
 			->from( 'mob_pool_mods' )
 			->where( "mob_pool_mods.poolid = '$poolid'"	)
@@ -753,7 +772,8 @@ class DatabaseQueryWrapper {
         return $dbr->newSelectQueryBuilder()
 			->select( [ 
                         'mob_family_mods.modid',
-                        'mob_family_mods.value'
+                        'mob_family_mods.value',
+                        'mob_family_mods.is_mob_mod'
 						] )
 			->from( 'mob_family_mods' )
 			->where( "mob_family_mods.familyid = '$familyid'"	)
@@ -978,24 +998,6 @@ class DatabaseQueryWrapper {
         ->leftjoin( 'item_mods', null, 'item_mods.itemId=item_equipment.itemId' )
         ->leftjoin( 'item_basic', null, 'item_basic.itemid=item_equipment.itemId' )
         ->orderBy( 'level', 'DESC' )
-        ->where( $query	)
-        ->fetchResultSet();
-    }
-
-    public function getTraits( $mlvl, $slvl, $mjob, $sjob){
-        $dbr = $this->openASBSearchConnection();
-        $query = [
-            "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
-            "( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
-        ];
-
-        return $dbr->newSelectQueryBuilder()
-        ->select( [ 'traits.modifier',
-                    'traits.value',
-                    'traits.traitid'
-                    ] )
-        ->from( 'traits' )
-        ->orderBy( 'modifier' )
         ->where( $query	)
         ->fetchResultSet();
     }

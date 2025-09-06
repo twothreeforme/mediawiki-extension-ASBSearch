@@ -371,6 +371,7 @@ class APIModuleEquipsets extends ApiBase {
             
             $mobPoolMods = $db->getMobPoolMods($mobFromSQL->poolid);
             $mobFamilyMods = $db->getMobFamilyMods($mobFromSQL->familyID);
+           // $mobTraits =  $db->getTraits($mobFromSQL->);
 
             $mobsArray = $dm->buildMobStatsArray($mobFromSQL, $mobPoolMods, $mobFamilyMods, $params['moblevel']);
             $finalHtml = FFXIPackageHelper_HTMLTableHelper::table_mobDetails($mobsArray);

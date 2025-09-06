@@ -1669,6 +1669,96 @@ class FFXIPackageHelper_Variables {
         907 => "DARK_EEM_MOD",
         999 => "ENMITY_DECREASE" // custom for this extension to account for the merits section
     );
+
+    public static $mobModArray = [
+        0 =>  "MOBMOD_NONE",                  
+        1 =>  "MOBMOD_GIL_MIN",                            // minimum gil drop -- spawn mod only
+        2 =>  "MOBMOD_GIL_MAX",                            // maximum gil drop -- spawn mod only
+        3 =>  "MOBMOD_MP_BASE",                            // Give mob mp. Used for mobs that are not mages, wyverns, avatars
+        4 =>  "MOBMOD_SIGHT_RANGE",                        // sight range
+        5 =>  "MOBMOD_SOUND_RANGE",                        // sound range
+        6 =>  "MOBMOD_BUFF_CHANCE",                        // % chance to buff (combat only)
+        7 =>  "MOBMOD_GA_CHANCE",                          // % chance to use -ga spell
+        8 =>  "MOBMOD_HEAL_CHANCE",                        // % chance to use heal
+        9 =>  "MOBMOD_HP_HEAL_CHANCE",                     // can cast cures below this HP %
+        10 => "MOBMOD_SUBLINK",                            // sub link group
+        11 => "MOBMOD_LINK_RADIUS",                        // link radius
+        12 => "MOBMOD_DRAW_IN",                            // 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
+        13 => "MOBMOD_SEVERE_SPELL_CHANCE",                // % chance to use a severe spell like death or impact
+        14 => "MOBMOD_SKILL_LIST",                         // uses given mob skill list
+        15 => "MOBMOD_MUG_GIL",                            // amount gil carried for mugging
+        16 => "MOBMOD_DETECTION",                          // Overrides mob family's detection method. In order to set to override to none an unused bit must be set such as DETECT_NONE1.
+        17 => "MOBMOD_NO_DESPAWN",                         // do not despawn when too far from spawn. Gob Diggers have this.
+        18 => "MOBMOD_VAR",                                // temp var for whatever. Gets cleared on spawn
+        19 => "MOBMOD_CAN_SHIELD_BLOCK",                   // toggle shield use for mobs without physical shields (trusts)
+        20 => "MOBMOD_TP_USE_CHANCE",                      // % chance to use tp
+        21 => "MOBMOD_PET_SPELL_LIST",                     // set pet spell list
+        22 => "MOBMOD_NA_CHANCE",                          // % chance to cast -na
+        23 => "MOBMOD_IMMUNITY" ,                          // immune to set status effects. This only works from the db, not scripts
+        24 => "MOBMOD_GRADUAL_RAGE" ,                      // (!) TODO: NOT YET IMPLEMENTED -- gradually rages
+        25 => "MOBMOD_BUILD_RESIST"  ,                     // (!) TODO: NOT YET IMPLEMENTED -- builds resistance to given effects
+        26 => "MOBMOD_SUPERLINK" ,                         // super link group. Only use this in mob_spawn_mods / scripts!
+        27 => "MOBMOD_SPELL_LIST" ,                        // set spell list
+        28 => "MOBMOD_EXP_BONUS" ,                         // bonus exp (bonus / 100) negative values reduce exp.
+        29 => "MOBMOD_ASSIST",                             // mobs will assist me
+        30 => "MOBMOD_SPECIAL_SKILL",                      // give special skill
+        31 => "MOBMOD_ROAM_DISTANCE" ,                     // distance allowed to roam from spawn
+        32 => "MOBMOD_DONT_ROAM_HOME"  ,                   // Allow mobs to roam any distance from spawn. Useful for mobs with scripted roaming behavior.
+        33 => "MOBMOD_SPECIAL_COOL" ,                      // cool down for special
+        34 => "MOBMOD_MAGIC_COOL"  ,                       // cool down for magic
+        35 => "MOBMOD_STANDBACK_COOL" ,                   // cool down time for standing back (casting spell while not in attack range)
+        36 => "MOBMOD_ROAM_COOL" ,                      // cool down time in seconds after roaming
+        37 => "MOBMOD_ALWAYS_AGGRO",                       // aggro regardless of level. Spheroids
+        38 => "MOBMOD_NO_DROPS" ,                          // If set monster cannot drop any items, not even seals.
+        39 => "MOBMOD_SHARE_POS",                          // share a pos with another mob (eald'narche exoplates)
+        40 => "MOBMOD_TELEPORT_CD",                        // cooldown for teleport abilities (tarutaru AA, angra mainyu, eald'narche)
+        41 => "MOBMOD_TELEPORT_START",                     // mobskill ID to begin teleport
+        42 => "MOBMOD_TELEPORT_END",                       // mobskill ID to end teleport
+        43 => "MOBMOD_TELEPORT_TYPE",                      // teleport type - 1: on cooldown, 2 - to close distance
+        44 => "MOBMOD_DUAL_WIELD",                         // enables a mob to use their offhand in attacks
+        45 => "MOBMOD_ADD_EFFECT",                         // enables additional effect script to process on mobs attacks
+        46 => "MOBMOD_AUTO_SPIKES",                        // enables additional effect script to process when mob is attacked
+        47 => "MOBMOD_SPAWN_LEASH",                        // forces a mob to not move farther from its spawn than its leash distance
+        48 => "MOBMOD_SHARE_TARGET" ,                      // mob always targets same target as ID in this var
+        49 => "MOBMOD_CHECK_AS_NM",                        // If set , mob will check as a NM
+        50 => "MOBMOD_ROAM_RESET_FACING" ,                 // Resume facing the default spawn rotation after roaming home.
+        51 => "MOBMOD_ROAM_TURNS",                        // Maximum amount of turns during a roam
+        52 => "MOBMOD_ROAM_RATE" ,                         // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+        53 => 'MOBMOD_BEHAVIOR',                           // Add behaviors to mob
+        54 => "MOBMOD_GIL_BONUS",                          // Allow mob to drop gil. Multiplier to gil dropped by mob (bonus / 100) * total
+        55 => "MOBMOD_IDLE_DESPAWN" ,                      // Time (in seconds) to despawn after being idle
+        56 => "MOBMOD_HP_STANDBACK",                       // mob will always standback with hp % higher to value
+        57 => "MOBMOD_MAGIC_DELAY",                        // Amount of seconds mob waits before casting first spell
+        58 => "MOBMOD_SPECIAL_DELAY" ,                     // Amount of seconds mob waits before using first special
+        59 => "MOBMOD_WEAPON_BONUS" ,                      // Add a flat modifer mob weapon damage ( damage + bonus )
+        60 => "MOBMOD_SPAWN_ANIMATIONSUB",                 // reset animationsub to this on spawn
+        61 => "MOBMOD_HP_SCALE",                           // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
+        62 => "MOBMOD_NO_STANDBACK",                       // Mob will never standback
+        63 => "MOBMOD_ATTACK_SKILL_LIST" ,                 // skill list to use in place of regular attacks
+        64 => "MOBMOD_CHARMABLE" ,                         // mob is charmable
+        65 => "MOBMOD_NO_MOVE",                            // Mob will not be able to move
+        66 => "MOBMOD_MULTI_HIT",                          // Mob will have as many swings as defined.
+        67 => "MOBMOD_NO_AGGRO",                           // If set, mob cannot aggro until unset.
+        68 => "MOBMOD_ALLI_HATE" ,                         // Range around target to add alliance member to enmity list.
+        69 => "MOBMOD_NO_LINK",                            // If set, mob cannot link until unset.
+        70 => "MOBMOD_NO_REST",                            // Mob cannot regain hp (e.g. re-burrowing antlions during ENM).
+        71 => "MOBMOD_LEADER" ,                            // Used for mobs that follow a defined "leader", such as Ul'xzomit mobs.
+        72 => "MOBMOD_MAGIC_RANGE",                        // magic aggro range
+        73 => "MOBMOD_TARGET_DISTANCE_OFFSET",             // Adjusts how close a mob will move to it's target. 12 = 1.2 yalm. Positive values to go closer, negative farther.
+        74 => "MOBMOD_ONE_WAY_LINKING",                    // Will link with other mobs in its party (typically the same mob family) while roaming, but will not let others link with it once engaged
+        75 => "MOBMOD_CAN_PARRY",                          // Check if a mob is allowed to have parry rank (Rank Value 1-5)
+
+        // ASB Mod Start
+        100  =>  "MOBMOD_DRAW_IN_INCLUDE_PARTY",          // this will cause the mob's draw-in to also affect all party and alliance members
+        101  =>  "MOBMOD_DRAW_IN_FRONT",                  // Mob will draw in slightly in front of them instead of the center of their hitbox
+        102  =>  "MOBMOD_DRAW_IN_CUSTOM_RANGE",           // override the default range of MeleeRange*2 of when players start to get drawn-in
+        103  =>  "MOBMOD_DRAW_IN_MAXIMUM_REACH" ,         // players further than this range (yalms) will be unaffected by the draw-in. default (0) is whole zone
+        104  =>  "MOBMOD_DRAW_IN_IGNORE_STATIONARY",      // stationary mobs draw-in the moment they cannot attack you anymore (out of range). put this mobmod on stationary mobs that have draw-in but use ranged attacks instead of melee attacks so that they will ignore this behavior (i.e. KSNM99 Wyrm or ToAU Mission Alexander)
+        105  =>  "MOBMOD_ATTRACT_FAMILY_NM" ,             // NMs within the same family will link onto this mob (used on Sabotenders for Cactrot Rapido)
+        106  =>  "MOBMOD_LEDGE_AGGRO" ,                   // Used to increase vertical aggro range
+        107  =>  "MOBMOD_DISENGAGE_NO_PATH" ,             // Used to force a disengage when there is no vertical path to the target rather than despawn.
+        108  =>  "MOBMOD_NO_CRYSTAL_SEAL_DROPS",          // Prevents a mob from dropping crystals or seals (to prevent pushing treasure out of pool for some mobs)
+    ];
 }
 
 

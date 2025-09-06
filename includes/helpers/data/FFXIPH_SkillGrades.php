@@ -183,19 +183,19 @@ class FFXIPH_SkillGrades {
         switch ($rank)
         {
             case 1:
-                return (5 + (($lvl - 1) * 50) / 100); // A
+                return floor(5 + (($lvl - 1) * 50) / 100); // A
             case 2:
-                return (4 + (($lvl - 1) * 45) / 100); // B
+                return floor(4 + (($lvl - 1) * 45) / 100); // B
             case 3:
-                return (4 + (($lvl - 1) * 40) / 100); // C
+                return floor(4 + (($lvl - 1) * 40) / 100); // C
             case 4:
-                return (3 + (($lvl - 1) * 35) / 100); // D
+                return floor(3 + (($lvl - 1) * 35) / 100); // D
             case 5:
-                return (3 + (($lvl - 1) * 30) / 100); // E
+                return floor(3 + (($lvl - 1) * 30) / 100); // E
             case 6:
-                return (2 + (($lvl - 1) * 25) / 100); // F
+                return floor(2 + (($lvl - 1) * 25) / 100); // F
             case 7:
-                return (2 + (($lvl - 1) * 20) / 100); // G
+                return floor(2 + (($lvl - 1) * 20) / 100); // G
         }
 
         return 0;

@@ -119,6 +119,7 @@ class FFXIPH_MobUtils  {
 
         return $maxSkill;
     }
+
 }
 
 ?>
