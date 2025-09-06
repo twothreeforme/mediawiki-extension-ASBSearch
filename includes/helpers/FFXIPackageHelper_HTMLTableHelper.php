@@ -880,25 +880,29 @@ class FFXIPackageHelper_HTMLTableHelper {
 			"<b>Zone:</b>  " . $zone . "<br>" .
 			"<b>Mob:</b>  " . $name ."<br>" .
 			"<table id=\"FFXIPH_equipsets_combatsim_mobdetails\" class=\"sortable\">
-				<tr>" .
+				<tr>";
 					// "<th>Zone</th>" .
 					// "<th>Mob Name</th>" .
-					"<th>Lvl</th>
-					<th>HP</th>
-					<th>MP</th>
-					<th>STR</th>
-					<th>DEX</th>
-					<th>VIT</th>
-					<th>AGI</th>
-					<th>INT</th>
-					<th>MND</th>
-					<th>CHR</th>
-					<th>DEF</th>
-					<th>EVA</th>
-					<th>ATT</th>
-					<th>ACC</th>
-				</tr> 
-				";
+					// "<th>Lvl</th>
+					//  <th>HP</th>
+					//  <th>MP</th>
+					//  <th>STR</th>
+					//  <th>DEX</th>
+					//  <th>VIT</th>
+					//  <th>AGI</th>
+					//  <th>INT</th>
+					//  <th>MND</th>
+					//  <th>CHR</th>
+					//  <th>DEF</th>
+					//  <th>EVA</th>
+					//  <th>ATT</th>
+					//  <th>ACC</th>" . 
+					for ( $s = 1; $s <= count( self::$tableMap_MobStats ); $s++){
+						$html .= "<th>";
+						$html .= self::$tableMap_MobStats[$s];
+						$html .= "</th>";
+					}
+				$html .= "</tr>";
 		
 		foreach($moblist as $mob){
 			$html .= "<tr>";
@@ -930,6 +934,23 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 		return $html;
 	}
+
+	private static $tableMap_MobStats = [
+		1 =>   "Lvl",
+		2 =>   "HP",
+		3 =>   "MP",
+		4 =>   "STR",
+		5 =>   "DEX",
+		6 =>   "VIT",
+		7 =>   "AGI",
+		8 =>   "INT",
+		9 =>   "MND",
+		10  => "CHR",
+		11  => "DEF",
+		12  => "EVA",
+		13  => "ATT",
+		14  => "ACC",
+	];
 }
 
 ?>

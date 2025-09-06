@@ -63,6 +63,7 @@ class FFXIPH_Mob  {
 
     public function getZone(){ return $this->zone ?? ""; }
     public function getName(){ return $this->name ?? ""; }
+
     public function getHP(){ return $this->HP ?? 0; }
     public function getMP(){ return $this->MP ?? 0; }
     //public function getMinlvl(){ return $this->minlvl ?? 0; }
@@ -465,8 +466,27 @@ class FFXIPH_Mob  {
         // $this->setMEVA( FFXIPH_MobUtils::getMagicEvasion( $mLvl, $SQLmob->DEF ) );
         $this->setATT( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ATT ) );
         $this->setACC( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ACC ) );
-
     }
+
+    public function get($stat){
+        switch($stat){
+            case 'Lvl': return $this->getMaxlvl();
+            case 'HP': return $this->getHP();
+            case 'MP': return $this->getMP();
+            case 'STR': return $this->getSTR();
+            case 'DEX': return $this->getDEX();
+            case 'VIT': return $this->getVIT();
+            case 'AGI': return $this->getAGI();
+            case 'INT': return $this->getINT();
+            case 'MND': return $this->getMND();
+            case 'CHR': return $this->getCHR();
+            case 'DEF': return $this->getDEF();
+            case 'EVA': return $this->getEVA();
+            case 'ATT': return $this->getATT();
+            case 'ACC': return $this->getACC();
+        }
+    }
+
 }
 
 ?>

@@ -55,7 +55,7 @@ class DatabaseQueryWrapper {
 
     public function incrementHitCounter($tab) {
         $dbw = $this->openASBSearchConnection();
-
+        
         return $dbw->update(
             'search_counters',
             [
