@@ -5,6 +5,7 @@
 .FFXIPH_table_mobdetails td {
   text-align: center;
   vertical-align: middle;
+  border-bottom: 1px solid #a7a6a6;
 }
 
 .FFXIPH_table_mobdetails tr td:nth-child(even){

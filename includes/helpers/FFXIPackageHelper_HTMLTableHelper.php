@@ -873,12 +873,10 @@ class FFXIPackageHelper_HTMLTableHelper {
 		$tdstyleopen = "<td style=\"width: 0;min-width: fit-content;\"><center>";
 		$tdstyleclose = "</center></td>";
 
-		$zone = $moblist[0]->getZone();
-		$name = $moblist[0]->getName();
+		$zone = ParserHelper::zoneName( $moblist[0]->getZone() );
+		$name = ParserHelper::brackets( $moblist[0]->getName() );
 		$mjob = FFXIPackageHelper_Variables::$jobArrayByID[ $moblist[0]->getMjob() ];
 		$sjob = FFXIPackageHelper_Variables::$jobArrayByID[ $moblist[0]->getSjob() ];
-
-
 
 		/*
 				$statsmap[x][y]
@@ -896,7 +894,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$statsmap[$c][$k] = $moblist[$c]->get($v);
 			}
 		} 
-		wfDebugLog( 'ASBSearch', get_called_class() . ":"  . json_encode($statsmap ));
+		// wfDebugLog( 'ASBSearch', get_called_class() . ":"  . json_encode($statsmap ));
 
 		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">" .
 			"<b>Zone:</b>  " . $zone . "<br>" .
@@ -906,43 +904,17 @@ class FFXIPackageHelper_HTMLTableHelper {
 			
 			for ( $s = 1; $s <= count( self::$tableMap_MobStats ); $s++){
 					$html .= "<tr>";
-					$html .= "<td><b>" . self::$tableMap_MobStats[$s] . "</b></td>";
+					$html .= "<td><b>&nbsp;" . self::$tableMap_MobStats[$s] . "&nbsp;</b></td>";
 
 					for ( $m = 0; $m < count( $statsmap ); $m++){
-						$html .= "<td>";
+						$html .= "<td>&nbsp;&nbsp;";
+
 						if ( $s == 1 ) $html .= "<b>" . $statsmap[$m][$s] . "</b>";
 						else $html .= $statsmap[$m][$s];
-						$html .= "</td>";
+						$html .= "&nbsp;&nbsp;</td>";
 					}
 					$html .= "</tr>";
 				}
-			
-		
-		// foreach($moblist as $mob){
-		// 	$html .= "<tr>";
-		// 		// $html .= "<td><center>" . $mob->getZone() . "</center></td>";
-				
-		// 		// $mn = $mob->getName() ;
-		// 		// $html .= "<td><center>" . $mn . "</center></td>";
-				
-		// 		$html .= $tdstyleopen . $mob->getMaxlvl() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getHP() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getMP() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getSTR() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getDEX() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getVIT() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getAGI() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getINT() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getMND() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getCHR() . $tdstyleclose;
-
-		// 		$html .= $tdstyleopen . $mob->getDEF() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getEVA() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getATT() . $tdstyleclose;
-		// 		$html .= $tdstyleopen . $mob->getACC() . $tdstyleclose;
-
-		// 	$html .= "</tr>";
-		// }
 		
 		$html .= "</table></div>";
 

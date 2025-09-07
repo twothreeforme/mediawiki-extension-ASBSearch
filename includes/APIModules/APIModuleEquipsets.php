@@ -371,7 +371,7 @@ class APIModuleEquipsets extends ApiBase {
 
             $mobsArray = $dm->buildMobStatsArray($mobFromSQL,  $params['moblevel']);
             $finalHtml = FFXIPackageHelper_HTMLTableHelper::table_mobDetails($mobsArray);
-
+            $finalHtml = ParserHelper::wikiParse($finalHtml);
             //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  . json_encode($mobs) );
             $result->addValue( $params['action'], "mobstatstable", $finalHtml );
         }

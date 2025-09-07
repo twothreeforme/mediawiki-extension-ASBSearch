@@ -18,7 +18,16 @@ class ParserHelper {
     /**************************
      * Mob related parsing
      */
-    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $mobChanges, $bcnmChanges){
+    public static function mobNameBasic($name){
+        $name = self::replaceUnderscores($name);
+        $name = ucwords($name);
+        $name = str_replace(" Of ", " of ", $name);
+        $name = self::fixTrailingRomanNumerals($name);
+        $name = self::brackets($name);
+        return $name;
+    }
+
+    public static function mobName($mobName, $minLvl, $maxLvl, $mobType, $zoneName, $mobChanges){
 		//print_r($zoneName);
 		$fished = false;
 		if ( str_contains($mobName, "_fished") ) {
@@ -452,7 +461,7 @@ class ParserHelper {
         return false;
     }
 
-    public static function wikiParseOptions(){
+    private static function wikiParseOptions(){
         $context = RequestContext::getMain();
         $title = $context->getTitle();
         $parser = MediaWikiServices::getInstance()->getParserFactory()->create();
