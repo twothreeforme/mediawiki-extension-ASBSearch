@@ -168,12 +168,16 @@ class FFXIPH_Mob  {
 
     public function setEVA($baseEVA){  
         // Enemy evasion = f(Lv, main job evasion skill rank) + [AGI/2] + job characteristics
+        
+        if ( isset( $this->modifiers["EVA"] ) ) $baseEVA += $this->modifiers["EVA"];
         $EVA = $baseEVA + ($this->getAGI() / 2);
         $this->EVA = $EVA; 
     }
 
     public function setDEF($baseDEF){
         // Enemy defense = [baseDEF + 8 + [VIT/2] + job characteristics] x racial characteristics
+        
+        if ( isset( $this->modifiers["DEF"] ) ) $baseDEF += $this->modifiers["DEF"];
         $DEF = ($baseDEF + 8 + ($this->getVIT() / 2) );
         if ( isset( $this->modifiers["DEFP"] ) ) $DEF = $DEF + ($DEF * $this->modifiers["DEFP"] / 100);
         $this->DEF = $DEF; 
