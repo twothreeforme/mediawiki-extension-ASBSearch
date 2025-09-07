@@ -121,6 +121,7 @@
             ],
             "styles": [
 				"resources/styles/FFXIPackageHelper_Forms.css",
+                "resources/styles/FFXIPH_MobSearch.css",
                 "resources/styles/tabs.css",
                 "resources/styles/hint.css"
 			]

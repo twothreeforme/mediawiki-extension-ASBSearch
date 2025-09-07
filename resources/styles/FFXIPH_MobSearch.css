@@ -1,0 +1,12 @@
+.FFXIPH_table_mobdetails{
+    border-spacing: 0px;
+}
+
+.FFXIPH_table_mobdetails td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.FFXIPH_table_mobdetails tr td:nth-child(even){
+  background-color: #72777d21;
+}
