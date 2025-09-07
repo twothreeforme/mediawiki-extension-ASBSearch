@@ -740,7 +740,7 @@ class DatabaseQueryWrapper {
         $dbr = $this->openASBSearchConnection();
         $query = [
             "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
-            "( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
+            //"( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
         ];
 
         return $dbr->newSelectQueryBuilder()
@@ -753,7 +753,7 @@ class DatabaseQueryWrapper {
         ->where( $query	)
         ->fetchResultSet();
     }
-    
+
     public function getMobPoolMods($poolid){
         $dbr = $this->openASBSearchConnection();
         return $dbr->newSelectQueryBuilder()

@@ -182,32 +182,41 @@ class FFXIPH_Mob  {
     public function setATT($ATT){  $this->ATT = $ATT; }
     public function setACC($ACC){  $this->ACC = $ACC; }
 
-    private function addMod($mod){
-       // wfDebugLog( 'ASBSearch', get_called_class() . ":addMod:" . json_encode($mod) );
-        $vars = new FFXIPackageHelper_Variables();
+    private function addMod($modlabel, $modValue){
+        if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($modValue);
+        else $this->modifiers[$modlabel] += intval($modValue);
+    }
 
-        //Trait mods
-        //traits are treated a little different than pool and family mods
-        //traits are prioritized based on highest trait, not added together
-        if ( isset($mod->traitid) ){
-            $modlabel = $vars->modArray[$mod->modid];
-            
-            if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($mod->value);
-            else { //$this->modifiers[$modlabel] += intval($mod->value);
-                $this->modifiers[$modlabel] = ( $this->modifiers[$modlabel] > intval($mod->value) ) ? $this->modifiers[$modlabel] : intval($mod->value);
-            }
-        }
-        // Pool and Family mods
-        else {
+    private function handleMods($mods){
+        // wfDebugLog( 'ASBSearch', get_called_class() . ":addMod:" . json_encode($mod) );
+        $vars = new FFXIPackageHelper_Variables();
+        
+        foreach ($mods as $mod) { 
+            // Pool and Family mods
             if ( isset($mod->is_mob_mod) && $mod->is_mob_mod == 1 ) {
                 $modlabel = FFXIPackageHelper_Variables::$mobModArray[$mod->modid];
             }
             else $modlabel = $vars->modArray[$mod->modid];
-            
-            if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($mod->value);
-            else $this->modifiers[$modlabel] += intval($mod->value);
+            $this->addMod( $modlabel, $mod->value );
         }
+    }
+
+    private function handleTraits($SQLtraits){
+        //Trait mods
+        //traits are treated a little different than pool and family mods
+        //traits are prioritized based on highest trait, not added together
+        $vars = new FFXIPackageHelper_Variables();
         
+        $traits = [];
+        foreach ( $SQLtraits as $row ) {
+            if ( !isset($traits[$row->modid]) ) $traits[$row->modid] = $row->value;
+            else if ( $traits[$row->modid] < $row->value ) $traits[$row->modid] = $row->value;
+        }
+
+        foreach ( $traits as $m => $v ) {
+            $modlabel = $vars->modArray[$m];
+            $this->addMod($modlabel, $v);
+        }
     }
 
     public function setModifiersFromSQL( $SQLmob, $mLvl ){
@@ -216,14 +225,15 @@ class FFXIPH_Mob  {
        
 
         $poolMods = $db->getMobPoolMods($SQLmob->poolid); 
-        foreach ($poolMods as $mod) { $this->addMod($mod); }
+        $this->handleMods($poolMods);
 
         $familyMods = $db->getMobFamilyMods($SQLmob->familyID);
-        foreach ($familyMods as $mod) { $this->addMod($mod); }
+        $this->handleMods($familyMods);
 
         $traits =  $db->getTraits($mLvl, $mLvl, $SQLmob->mJob, $SQLmob->sJob);
-        foreach ($traits as $mod) { $this->addMod($mod); }
-        wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
+        $this->handleTraits($traits);
+        
+        //wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
 
 
         // foreach ($SQLmods as $m => $v) {
@@ -236,7 +246,6 @@ class FFXIPH_Mob  {
         //     // if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($mod->value);
         //     // else $this->modifiers[$modlabel] += intval($mod->value);
         // }
-        wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
     }
 
 
