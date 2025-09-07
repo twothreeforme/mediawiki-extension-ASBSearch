@@ -19,7 +19,7 @@
         "FFXIPH_Character": "includes/Models/FFXIPH_Character.php",
         "FFXIPH_Mob": "includes/Models/FFXIPH_Mob.php",
         "FFXIPH_MobUtils": "includes/Models/FFXIPH_MobUtils.php",
-        "FFXIPH_StatsUtils": "includes/Models/FFXIPH_StatsUtils.php",
+        "FFXIPH_StatsUtils": "includes/helpers/data/FFXIPH_StatsUtils.php",
         "FFXIPH_Races": "includes/Models/FFXIPH_Races.php",
         "FFXIPH_ItemDescription": "includes/Models/FFXIPH_ItemDescription.php",
 

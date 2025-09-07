@@ -183,8 +183,15 @@ class FFXIPH_Mob  {
         $this->DEF = $DEF; 
     }
     
-    public function setATT($ATT){  $this->ATT = $ATT; }
-    public function setACC($ACC){  $this->ACC = $ACC; }
+    public function setATT($baseATT){  
+        $ATT = 8 + $baseATT + ($this->getSTR() / 2);
+        if ( isset( $this->modifiers["ATTP"] ) ) $ATT += ($ATT * $this->modifiers["ATTP"] / 100);
+        $this->ATT = $ATT;
+    }
+
+    public function setACC($baseACC){
+        $this->ACC = $baseACC + $this->getDEX() / 2;
+    }
 
     private function addMod($modlabel, $modValue){
         if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($modValue);
