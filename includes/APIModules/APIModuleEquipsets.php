@@ -368,12 +368,8 @@ class APIModuleEquipsets extends ApiBase {
             $dm = new DataModel();
 
             $mobFromSQL = $db->getMobStats($params['mobname'], $params['zonename'], $params['moblevel']);
-            
-            $mobPoolMods = $db->getMobPoolMods($mobFromSQL->poolid);
-            $mobFamilyMods = $db->getMobFamilyMods($mobFromSQL->familyID);
-           // $mobTraits =  $db->getTraits($mobFromSQL->);
 
-            $mobsArray = $dm->buildMobStatsArray($mobFromSQL, $mobPoolMods, $mobFamilyMods, $params['moblevel']);
+            $mobsArray = $dm->buildMobStatsArray($mobFromSQL,  $params['moblevel']);
             $finalHtml = FFXIPackageHelper_HTMLTableHelper::table_mobDetails($mobsArray);
 
             //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  . json_encode($mobs) );

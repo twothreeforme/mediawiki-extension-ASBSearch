@@ -220,10 +220,8 @@ class FFXIPH_Mob  {
     }
 
     public function setModifiersFromSQL( $SQLmob, $mLvl ){
-        //if ( count($SQLmods) == 0 ) return;
         $db = new DatabaseQueryWrapper();
        
-
         $poolMods = $db->getMobPoolMods($SQLmob->poolid); 
         $this->handleMods($poolMods);
 
@@ -234,22 +232,10 @@ class FFXIPH_Mob  {
         $this->handleTraits($traits);
         
         //wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
-
-
-        // foreach ($SQLmods as $m => $v) {
-        //     wfDebugLog( 'ASBSearch', get_called_class() . ":importSQL: " . json_encode($m) . ", ". json_encode($v) );
-        //     // if ( isset($mod->is_mob_mod) && $mod->is_mob_mod == 1 ) {
-        //     //     $modlabel = FFXIPackageHelper_Variables::$mobModArray[$mod->modid];
-        //     // }
-        //     // else $modlabel = $vars->modArray[$mod->modid];
-            
-        //     // if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($mod->value);
-        //     // else $this->modifiers[$modlabel] += intval($mod->value);
-        // }
     }
 
 
-    public function importSQL( $SQLmob, $SQLpoolMods, $SQLfamilyMods, $useLvl ){
+    public function importSQL( $SQLmob, $useLvl ){
         //Modifiers set in the beginning of Mob creation
 
         if ( $useLvl > 0 ){
