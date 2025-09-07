@@ -870,8 +870,8 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 
 	public static function table_mobDetails(Array $moblist){
-		$tdstyleopen = "<td style=\"width: 0;min-width: fit-content;\"><center>";
-		$tdstyleclose = "</center></td>";
+		// $tdstyleopen = "<td style=\"width: 0;min-width: fit-content;\"><center>";
+		// $tdstyleclose = "</center></td>";
 
 		$zone = ParserHelper::zoneName( $moblist[0]->getZone() );
 		$name = ParserHelper::brackets( $moblist[0]->getName() );

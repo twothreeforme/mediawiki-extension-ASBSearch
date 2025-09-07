@@ -73,6 +73,11 @@ DROP TABLE IF EXISTS `mob_resistances`;
 source mob_resistances.sql;
 \! echo mob_resistances done
 
+\! echo era_mob_resistances
+DROP TABLE IF EXISTS `era_mob_resistances`;
+source era_mob_resistances.sql;
+\! echo era_mob_resistances done
+
 \! echo mob_family_system
 DROP TABLE IF EXISTS `mob_family_system`;
 source mob_family_system.sql;

@@ -29,8 +29,11 @@ class FFXIPH_Mob  {
     public int $CHR;
     public int $EVA;
     public int $DEF;
+
     public int $ATT;
+    public int $RATT;
     public int $ACC;
+    public int $RACC;
 
 
     public int $slash_sdt;
@@ -88,7 +91,9 @@ class FFXIPH_Mob  {
     public function getEVA(){ return $this->EVA ?? 0; }
     public function getDEF(){ return $this->DEF ?? 0; }
     public function getATT(){ return $this->ATT ?? 0; }
+    public function getRATT(){ return $this->RATT ?? 0; }
     public function getACC(){ return $this->ACC ?? 0; }
+    public function getRACC(){ return $this->RACC ?? 0; }
 
     public function getSlash_sdt(){ return $this->slash_sdt ?? 1000; }
     public function getPierce_sdt(){ return $this->pierce_sdt ?? 1000; }
@@ -187,6 +192,12 @@ class FFXIPH_Mob  {
         $ATT = 8 + $baseATT + ($this->getSTR() / 2);
         if ( isset( $this->modifiers["ATTP"] ) ) $ATT += ($ATT * $this->modifiers["ATTP"] / 100);
         $this->ATT = $ATT;
+    }
+
+    public function setRATT($baseRATT){  
+        $RATT = 8 + $baseRATT + ($this->getSTR() / 2);
+        if ( isset( $this->modifiers["RATTP"] ) ) $RATT += ($RATT * $this->modifiers["RATTP"] / 100);
+        $this->RATT = $RATT;
     }
 
     public function setACC($baseACC){
@@ -518,6 +529,13 @@ class FFXIPH_Mob  {
         // $this->setMEVA( FFXIPH_MobUtils::getMagicEvasion( $mLvl, $SQLmob->DEF ) );
         $this->setATT( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ATT ) );
         $this->setACC( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ACC ) );
+
+        $this->setSlash_sdt( $SQLmob->slash_sdt * 1000 );
+        $this->setPierce_sdt( $SQLmob->pierce_sdt * 1000 );
+        $this->setH2H_sdt( $SQLmob->h2h_sdt * 1000 );
+        $this->setImpact_sdt( $SQLmob->impact_sdt * 1000 );
+
+
     }
 
     public function get($stat){
