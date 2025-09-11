@@ -461,7 +461,7 @@ class ParserHelper {
         return false;
     }
 
-    private static function wikiParseOptions(){
+    public static function wikiParseOptions(){
         $context = RequestContext::getMain();
         $title = $context->getTitle();
         $parser = MediaWikiServices::getInstance()->getParserFactory()->create();

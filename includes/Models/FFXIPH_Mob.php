@@ -39,7 +39,7 @@ class FFXIPH_Mob  {
     public int $slash_sdt;
     public int $pierce_sdt;
     public int $h2h_sdt;
-    //public int $impact_sdt;
+    public int $impact_sdt;
     
     public int $magical_sdt;
     public int $fire_sdt;
@@ -98,7 +98,7 @@ class FFXIPH_Mob  {
     public function getSlash_sdt(){ return $this->slash_sdt ?? 1000; }
     public function getPierce_sdt(){ return $this->pierce_sdt ?? 1000; }
     public function getH2H_sdt(){ return $this->h2h_sdt ?? 1000; }
-    //public function getimpact_sdt(){ return $this->impact_sdt ?? 0; }
+    public function getimpact_sdt(){ return $this->impact_sdt ?? 1000; }
 
     public function getMagical_sdt(){ return $this->magical_sdt ?? 0; }
     public function getFire_sdt(){ return $this->fire_sdt ?? 0; }
@@ -150,7 +150,7 @@ class FFXIPH_Mob  {
     public function setSlash_sdt($slash_sdt){                   $this->slash_sdt             = $slash_sdt; }
     public function setPierce_sdt($pierce_sdt){                 $this->pierce_sdt            = $pierce_sdt; }
     public function setH2H_sdt($h2h_sdt){                       $this->h2h_sdt               = $h2h_sdt; }
-    //public function setimpact_sdt($impact_sdt){               $this->impact_sdt            = $impact_sdt; }
+    public function setimpact_sdt($impact_sdt){               $this->impact_sdt            = $impact_sdt; }
 
     public function setMagical_sdt($magical_sdt){               $this->magical_sdt           = $magical_sdt; }
     public function setFire_sdt($fire_sdt){                     $this->fire_sdt              = $fire_sdt; }
