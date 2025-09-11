@@ -16,7 +16,7 @@ class DataModel {
 
 		$groupRateMax = 0;
 		foreach ( $param as $row ) {
-			//wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($row) );
+			
 			/*******************************************************
 			 * Removing OOE 
 			 */
@@ -432,7 +432,7 @@ class DataModel {
 
 	}
 
-	function buildMobStatsArray( $SQLresultsMob, $SQLresultsPoolMods, $SQLresultsFamilyMods, $setLevel = 0 ){
+	function buildMobStatsArray( $SQLresultsMob, $setLevel = 0 ){
 		if ( !$SQLresultsMob ) return NULL;
 		
 		$rangeMin = $SQLresultsMob->minLevel;
@@ -449,7 +449,7 @@ class DataModel {
 			//$mobFromSQL = FFXIPH_MobUtils::mobArrayFromSQL( $SQLresultsMob, $lvl );
 			
 				$resultMob = new FFXIPH_Mob();
-				$resultMob->importSQL( $SQLresultsMob, $SQLresultsPoolMods, $SQLresultsFamilyMods, $lvl );
+				$resultMob->importSQL( $SQLresultsMob, $lvl );
 
 				// //Set properties that dont have any associated calcs
 				// $resultMob->setZone(	$SQLresultsMob->zonename );

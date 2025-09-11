@@ -335,7 +335,8 @@ class ExclusionsHelper {
         'Yilbegan', 'Provenance_Watcher', 'Slime','She-Slime', 'Metal_Slime', 'Quagmire_Pugil', 'Sunderclaw','Void_Hare', 'Prickly_Sheep', 'Ig-Alima',
 
         //Garrison
-        'Orcish_Cursemaker', 'Orcish_Serjeant', 'Orcish_Fighter', 'Orcish_Chasseur', 'Orcish_Fighterchief', 'Orcish_Fighter_G','Orcish_Serjeant_G','Orcish_Cursemaker_G','Orcish_Colonel',
+        //'Orcish_Cursemaker', 'Orcish_Serjeant', 'Orcish_Fighter', 
+        'Orcish_Chasseur', 'Orcish_Fighterchief', 'Orcish_Fighter_G','Orcish_Serjeant_G','Orcish_Cursemaker_G','Orcish_Colonel',
         'Goblin_Swordmaker', 'Goblin_Leecher_G', 'Goblin_Gaoler', 'Goblin_Gambler_G', 'Goblin_Swindler',
 
 

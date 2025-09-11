@@ -29,8 +29,11 @@ class FFXIPH_Mob  {
     public int $CHR;
     public int $EVA;
     public int $DEF;
+
     public int $ATT;
+    public int $RATT;
     public int $ACC;
+    public int $RACC;
 
 
     public int $slash_sdt;
@@ -88,7 +91,9 @@ class FFXIPH_Mob  {
     public function getEVA(){ return $this->EVA ?? 0; }
     public function getDEF(){ return $this->DEF ?? 0; }
     public function getATT(){ return $this->ATT ?? 0; }
+    public function getRATT(){ return $this->RATT ?? 0; }
     public function getACC(){ return $this->ACC ?? 0; }
+    public function getRACC(){ return $this->RACC ?? 0; }
 
     public function getSlash_sdt(){ return $this->slash_sdt ?? 1000; }
     public function getPierce_sdt(){ return $this->pierce_sdt ?? 1000; }
@@ -117,8 +122,7 @@ class FFXIPH_Mob  {
     public function setZone($zone){ $this->zone = $zone; }
     public function setName($name){ $this->name = $name; }
     public function setHP($HP){
-        isset( $this->modifiers["HP_BASE"] ) ?? $HP += $this->modifiers["HP_BASE"] ;
-        $this->HP = $HP; 
+        $this->HP = isset( $this->modifiers["HP"]  ) ? $HP + $this->modifiers["HP"] : $HP ; 
     }
 
     public function setMP($MP){ $this->MP = $MP; }
@@ -169,35 +173,92 @@ class FFXIPH_Mob  {
 
     public function setEVA($baseEVA){  
         // Enemy evasion = f(Lv, main job evasion skill rank) + [AGI/2] + job characteristics
+        
+        if ( isset( $this->modifiers["EVA"] ) ) $baseEVA += $this->modifiers["EVA"];
         $EVA = $baseEVA + ($this->getAGI() / 2);
         $this->EVA = $EVA; 
     }
 
     public function setDEF($baseDEF){
         // Enemy defense = [baseDEF + 8 + [VIT/2] + job characteristics] x racial characteristics
+        
+        if ( isset( $this->modifiers["DEF"] ) ) $baseDEF += $this->modifiers["DEF"];
         $DEF = ($baseDEF + 8 + ($this->getVIT() / 2) );
         if ( isset( $this->modifiers["DEFP"] ) ) $DEF = $DEF + ($DEF * $this->modifiers["DEFP"] / 100);
         $this->DEF = $DEF; 
     }
     
-    public function setATT($ATT){  $this->ATT = $ATT; }
-    public function setACC($ACC){  $this->ACC = $ACC; }
-
-    public function setModifiers( $SQLmods ){
-        $vars = new FFXIPackageHelper_Variables();
-
-        foreach ($SQLmods as $mod) {
-            $modlabel = $vars->modArray[$mod->modid];
-            if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($mod->value);
-            else $this->modifiers[$modlabel] += intval($mod->value);
-        }
-        //wfDebugLog( 'Equipsets', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
+    public function setATT($baseATT){  
+        $ATT = 8 + $baseATT + ($this->getSTR() / 2);
+        if ( isset( $this->modifiers["ATTP"] ) ) $ATT += ($ATT * $this->modifiers["ATTP"] / 100);
+        $this->ATT = $ATT;
     }
 
-    public function importSQL( $SQLmob, $SQLpoolMods, $SQLfamilyMods, $useLvl ){
+    public function setRATT($baseRATT){  
+        $RATT = 8 + $baseRATT + ($this->getSTR() / 2);
+        if ( isset( $this->modifiers["RATTP"] ) ) $RATT += ($RATT * $this->modifiers["RATTP"] / 100);
+        $this->RATT = $RATT;
+    }
+
+    public function setACC($baseACC){
+        $this->ACC = $baseACC + $this->getDEX() / 2;
+    }
+
+    private function addMod($modlabel, $modValue){
+        if ( !isset($this->modifiers[$modlabel]) ) $this->modifiers[$modlabel] = intval($modValue);
+        else $this->modifiers[$modlabel] += intval($modValue);
+    }
+
+    private function handleMods($mods){
+        // wfDebugLog( 'ASBSearch', get_called_class() . ":addMod:" . json_encode($mod) );
+        $vars = new FFXIPackageHelper_Variables();
+        
+        foreach ($mods as $mod) { 
+            // Pool and Family mods
+            if ( isset($mod->is_mob_mod) && $mod->is_mob_mod == 1 ) {
+                $modlabel = FFXIPackageHelper_Variables::$mobModArray[$mod->modid];
+            }
+            else $modlabel = $vars->modArray[$mod->modid];
+            $this->addMod( $modlabel, $mod->value );
+        }
+    }
+
+    private function handleTraits($SQLtraits){
+        //Trait mods
+        //traits are treated a little different than pool and family mods
+        //traits are prioritized based on highest trait, not added together
+        $vars = new FFXIPackageHelper_Variables();
+        
+        $traits = [];
+        foreach ( $SQLtraits as $row ) {
+            if ( !isset($traits[$row->modid]) ) $traits[$row->modid] = $row->value;
+            else if ( $traits[$row->modid] < $row->value ) $traits[$row->modid] = $row->value;
+        }
+
+        foreach ( $traits as $m => $v ) {
+            $modlabel = $vars->modArray[$m];
+            $this->addMod($modlabel, $v);
+        }
+    }
+
+    public function setModifiersFromSQL( $SQLmob, $mLvl ){
+        $db = new DatabaseQueryWrapper();
+       
+        $poolMods = $db->getMobPoolMods($SQLmob->poolid); 
+        $this->handleMods($poolMods);
+
+        $familyMods = $db->getMobFamilyMods($SQLmob->familyID);
+        $this->handleMods($familyMods);
+
+        $traits =  $db->getTraits($mLvl, $mLvl, $SQLmob->mJob, $SQLmob->sJob);
+        $this->handleTraits($traits);
+        
+        //wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
+    }
+
+
+    public function importSQL( $SQLmob, $useLvl ){
         //Modifiers set in the beginning of Mob creation
-        $this->setModifiers( $SQLpoolMods );
-        $this->setModifiers( $SQLfamilyMods );
 
         if ( $useLvl > 0 ){
             $mLvl = $useLvl;
@@ -210,6 +271,12 @@ class FFXIPH_Mob  {
         $mJob     = $SQLmob->mJob;
         $sJob     = $SQLmob->sJob;
         $familyID = $SQLmob->familyID;
+
+        // $this->setModifiers( $SQLpoolMods );
+        // $this->setModifiers( $SQLfamilyMods );
+        // $this->setModifiers( $SQLtraits);
+
+        $this->setModifiersFromSQL($SQLmob, $mLvl);
 
         //$zoneType = PMob->loc.zone->GetTypeMask();
 
@@ -250,13 +317,13 @@ class FFXIPH_Mob  {
 
             if ($mLvl > 0)
             {
-                $baseMobHP = $BaseHP + (min($mLvl, 5) - 1) * ($JobScale + $raceScale - 1) + $RI + $mLvlIf * (min($mLvl, 30) - 5) * (2 * ($JobScale + $raceScale) + min($mLvl, 30) - 6) / 2 + $mLvlIf30 * (($mLvl - 30) * (63 + $ScaleXHP) + ($mLvl - 31) * ($JobScale + $raceScale));
+                $baseMobHP = $BaseHP + ((min($mLvl, 5) - 1) * ($JobScale + $raceScale - 1)) + $RI + ($mLvlIf * (min($mLvl, 30) - 5) * ((2 * ($JobScale + $raceScale) + min($mLvl, 30) - 6) / 2)) + ($mLvlIf30 * (($mLvl - 30) * (63 + $ScaleXHP) + ($mLvl - 31) * ($JobScale + $raceScale)));
             }
 
             // 50+ = 1 hp sjstats
             if ($mLvl > 49)
             {
-                $mLvlScale = floor($mLvl);
+                $mLvlScale = $mLvl;
             }
             // 40-49 = 3/4 hp sjstats
             else if ($mLvl > 39)
@@ -278,7 +345,7 @@ class FFXIPH_Mob  {
             {
                 $mLvlScale = 0;
             }
-
+            
             $sjHP = ceil(($sjJobScale * (max(($mLvlScale - 1), 0)) + (0.5 + 0.5 * $sjScaleXHP) * (max($mLvlScale - 10, 0)) + max($mLvlScale - 30, 0) + max($mLvlScale - 50, 0) + max($mLvlScale - 70, 0)) / 2);
 
             // Orcs 5% more hp
@@ -300,6 +367,7 @@ class FFXIPH_Mob  {
             {
                 $mobHP = $baseMobHP + $sjHP;
             }
+            
 
             // if (PMob->PMaster != nullptr)
             // {
@@ -346,14 +414,12 @@ class FFXIPH_Mob  {
                 break;
         }
 
-        // if (PMob->getMobMod(MOBMOD_MP_BASE))
-        // {
-        //     hasMp = true;
-        // }
+        if ( isset( $this->modifiers["MOBMOD_MP_BASE"] ) ){ $hasMp = true; }
 
         if ($hasMp)
         {
-            $scale = isset( $this->modifiers["MP_BASE"] ) ? $this->modifiers["MP_BASE"] / 100 : $SQLmob->MPscale;
+            //wfDebugLog( 'ASBSearch', get_called_class() . ":importSQL:" . json_encode($this->modifiers) );
+            $scale = isset( $this->modifiers["MOBMOD_MP_BASE"] ) ? $this->modifiers["MOBMOD_MP_BASE"] / 100 : $SQLmob->MPscale;
             
             if ($SQLmob->MPmodifier == 0)
             {
@@ -408,10 +474,6 @@ class FFXIPH_Mob  {
         $sMND = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][7], $sLvl );
         $sCHR = FFXIPH_SkillGrades::baseToRank( FFXIPH_SkillGrades::$JobGrades[$sJob][8], $sLvl );
 
-
-        // As per conversation with Jimmayus, all mobs at any level get bonus stats from subjobs.
-        // From lvl 45 onwards, 1/2. Before lvl 30, 1/4. In between, the value gets progresively higher, from 1/4 at 30 to 1/2 at 44.
-        // Im leaving that range at 1/3, for now.
         if ($mLvl >= 45)
         {
             $sSTR /= 2;
@@ -443,16 +505,17 @@ class FFXIPH_Mob  {
             $sVIT /= 4;
         }
 
+
         $this->setZone( $SQLmob->zonename );
         $this->setZone(	$SQLmob->zonename );
         $this->setName( $SQLmob->name );
         $this->setMjob( $SQLmob->mJob );
         $this->setSjob( $SQLmob->sJob );
         $this->setMaxlvl( $mLvl );
-
+        
         $this->setHP( $maxHP );
         $this->setMP( $maxMP );
-        
+
         $this->setSTR( ($fSTR + $mSTR + $sSTR) );
         $this->setDEX( ($fDEX + $mDEX + $sDEX) );
         $this->setVIT( ($fVIT + $mVIT + $sVIT) );
@@ -466,6 +529,13 @@ class FFXIPH_Mob  {
         // $this->setMEVA( FFXIPH_MobUtils::getMagicEvasion( $mLvl, $SQLmob->DEF ) );
         $this->setATT( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ATT ) );
         $this->setACC( FFXIPH_MobUtils::getBaseSkill( $mLvl, $SQLmob->ACC ) );
+
+        $this->setSlash_sdt( $SQLmob->slash_sdt * 1000 );
+        $this->setPierce_sdt( $SQLmob->pierce_sdt * 1000 );
+        $this->setH2H_sdt( $SQLmob->h2h_sdt * 1000 );
+        $this->setImpact_sdt( $SQLmob->impact_sdt * 1000 );
+
+
     }
 
     public function get($stat){
@@ -486,6 +556,12 @@ class FFXIPH_Mob  {
             case 'ACC': return $this->getACC();
         }
     }
+
+    // private function setTraits(Array $traits){
+    //     if ( count($traits) == 0 ) return;
+        
+    //     wfDebugLog( 'ASBSearch', get_called_class() . ":setTraits:mob: " . $this->getName() . ",mjob: ". $this->getMjob() . ",sjob: ". $this->getSjob() .", traits:" . json_encode($traits) );
+    // }
 
 }
 
