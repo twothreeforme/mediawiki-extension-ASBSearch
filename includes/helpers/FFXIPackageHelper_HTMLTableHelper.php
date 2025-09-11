@@ -875,10 +875,13 @@ class FFXIPackageHelper_HTMLTableHelper {
 
 		$zone = $moblist[0]->getZone();
 		$name = $moblist[0]->getName();
+		$mjob = FFXIPackageHelper_Variables::$jobArrayByID[ $moblist[0]->getMjob() ];
+		$sjob = FFXIPackageHelper_Variables::$jobArrayByID[ $moblist[0]->getSjob() ];
 
 		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">" .
 			"<b>Zone:</b>  " . $zone . "<br>" .
 			"<b>Mob:</b>  " . $name ."<br>" .
+			"<b>Main/sub:</b>  " . $mjob  ."/". $sjob . "<br>" .
 			"<table id=\"FFXIPH_equipsets_combatsim_mobdetails\" class=\"sortable\">
 				<tr>";
 					// "<th>Zone</th>" .
