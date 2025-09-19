@@ -3,6 +3,7 @@ var API = require("./FFXIPackageHelper_ActionAPI.js");
 function updateEquipmentGrid(id, slot, sender){
     //console.log("clicked: " + id + ", " + slot);
     const equipment = getEquipIDs();
+    //console.log("updateEquipmentGrid:", equipment);
     equipment[slot] = [ id, 1 ]; // updated equip flagged with 1 to trigger update
 
     var all = getStatsData(equipment);
@@ -27,8 +28,9 @@ function getEquipIDs(updateAll){
     for (let v = 0; v <= 15; v++) {
         let str = "grid" + v;
         let slot = document.getElementById(str);
-        //console.log(v, slot.dataset.value);
-        if ( !slot || !slot.hasAttribute('dataset') ) return null;
+        //console.log(slot);
+
+        if ( !slot || !slot.hasAttribute('data-value') ) return null;
 
         if ( updateAll == true ) {
             // if ( slot.dataset.value != 0) shareEquipIDs[v] = [ slot.dataset.value, 1 ];
