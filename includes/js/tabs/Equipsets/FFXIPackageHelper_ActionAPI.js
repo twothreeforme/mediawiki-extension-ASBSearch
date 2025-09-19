@@ -122,7 +122,7 @@ function actionAPI(params, forTab, currentButton, callback) {
         }
         else {
           //updateEquipsets(result['stats']);
-          updateStats(result['stats']);
+          if ( arrayOfObjects.some(obj => 'stats' in obj) == true ) updateStats(result['stats']);
         }
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
