@@ -56,7 +56,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		 */
 		$html .= "<br>
 		<div ><i> All data and probabilities are based on AirSkyBoat. All earth times are based on your local timezone.</i></div>
-		<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%; position: relative; overflow: scroll;\">
+		<div class=\"FFXIPH_weatherforecast\">
 		<table id=\"special-weatherforecast-table\" class=\"horizon-table general-table special-weatherforecast-table  sortable\">
             <tr><th>Zone Name</th>
 			<th>Vana Days</th>

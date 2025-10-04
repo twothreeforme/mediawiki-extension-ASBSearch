@@ -359,7 +359,7 @@ class ExclusionsHelper {
         // Ukn
         'Otherworldly_Rimester', 'Blue_Bascinet', 'Pixie', 'Gougetooth_Ganzaga', 'Wayward_Worm', 'Tatenashi_Armor', 'Hizamaru_Armor', 'Ubuginu_Armor', 'Hachiryu_Armor', 'Omodaka_Armor', 
         'Bull_[Herd1]', 'Cow_[Herd1]', 'Calf_[Herd1]', 'Bull_[Herd2]', 'Cow_[Herd2]', 'Calf_[Herd2]', 'Bull_[Herd3]', 'Cow_[Herd3]', 'Calf_[Herd3]',
-        'Pyracmon', 'Wraith_Bat', 'Spriggan_Sifter',  'Spriggan_Crier', 'Spriggan_Graverobber', 'Astral_Box',
+        'Pyracmon', 'Wraith_Bat', 'Spriggan_Sifter',  'Spriggan_Crier', 'Spriggan_Graverobber', 'Astral_Box', 'Goblin Bounty Hunter'
 
     );
 
