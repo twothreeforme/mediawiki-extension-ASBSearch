@@ -7,7 +7,8 @@ class SpecialDiggingWeatherForecast extends SpecialPage {
     }
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
-       // if ( $out->getTitle() == "Special:DiggingWeatherForecast" )  $out->addModules(['inputHandler']);
+        //wfDebugLog( 'Equipsets', get_called_class() . ":" . $out->getTitle() );
+        if ( $out->getTitle() == "Special:DiggingWeatherForecast" )  $out->addModules(['FFXIPackageHelper_WeatherForecast']);
     }
 
     function execute( $par ) {

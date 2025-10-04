@@ -1,12 +1,5 @@
 
-.FFXIPH_weatherforecast {
-    max-height: 400px;
-    overflow: auto;
-    display: inline-block;
-    width: 100%;
-    position: relative;
-    overflow: scroll;
-}
+
 
 .special-weatherforecast-table th {
     position: sticky;

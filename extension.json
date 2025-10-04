@@ -84,6 +84,8 @@
         "BeforePageDisplay": [
             "SpecialASBSearch::onBeforePageDisplay",
             "SpecialWeatherForecast::onBeforePageDisplay",
+            "SpecialDiggingWeatherForecast::onBeforePageDisplay",
+            "SpecialDiggingWeatherForecast_Retail::onBeforePageDisplay",
             "SpecialEquipsets::onBeforePageDisplay"
         ],
         "ParserFirstCallInit": [

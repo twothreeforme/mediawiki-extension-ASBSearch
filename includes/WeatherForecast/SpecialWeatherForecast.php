@@ -9,6 +9,7 @@ class SpecialWeatherForecast extends SpecialPage {
     }
 
     static function onBeforePageDisplay( $out, $skin ) : void  { 
+        //wfDebugLog( 'Equipsets', get_called_class() . ":" . $out->getTitle() );
         if ( $out->getTitle() == "Special:WeatherForecast" )  $out->addModules(['FFXIPackageHelper_WeatherForecast']);
     }
 
