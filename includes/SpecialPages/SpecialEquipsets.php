@@ -77,6 +77,7 @@ class SpecialEquipsets extends SpecialPage {
 				$this->tabEquipsets( $tabEquipsets->showEquipsets() ) .
 				$this->tabCharacter( $tabEquipsets->showCharacters($this->userChars, $this->shouldLoadDefaultCharacter, $this->currentCharacter) ) .
 				$this->tabCombatSim( $combatsimContent ) .
+				$this->tabImportLua( $tabEquipsets->importLuaForm() ) .
             "</div>";
 
 		$output->addHTML( $html );
@@ -87,6 +88,7 @@ class SpecialEquipsets extends SpecialPage {
 					"<button id=\"FFXIPackageHelper_tabs_equipsets\" class=\"tablinks\">Gear Sets</button>" .
 					"<button id=\"FFXIPackageHelper_tabs_characters\" class=\"tablinks\">Characters</button>" .
 					"<button id=\"FFXIPackageHelper_tabs_combatsim\" class=\"tablinks\">Combat Sim</button>" .
+					"<button id=\"FFXIPackageHelper_tabs_importlua\" class=\"tablinks\">Import Lua</button>" .
         		"</div>";
       }
 
@@ -130,7 +132,17 @@ class SpecialEquipsets extends SpecialPage {
         return $html;
     }
 
-	
+	public function tabImportLua($content){
+        if ( !isset($content)  ) $content = "<p>no content yet</p>";
+
+        //remove when setting up for use on HXI
+        //if ( isset($_SERVER['HTTP_HOST']) &&  $_SERVER['HTTP_HOST'] != 'localhost' ) $content = "<p><b>This site is still under construction. Coming soon !</b></p>";
+		
+        $html = "<div id=\"FFXIPackageHelper_tabs_importlua_shown\" class=\"tabcontent\">
+		" . $content . "</div>";
+
+        return $html;
+    }
 
 	
 

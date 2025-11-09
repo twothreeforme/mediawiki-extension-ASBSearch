@@ -262,7 +262,7 @@ Character selection buttons
   color: #fff;
 }
 
-.FFXIPackageHelper_charButton, .FFXIPackageHelper_setButton {
+.FFXIPackageHelper_charButton, .FFXIPackageHelper_setButton, .FFXIPackageHelper_importluaButton {
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -276,12 +276,17 @@ Character selection buttons
     color: #3586ff;
     box-shadow: 0 4px 5px 0 rgb(0 0 0 / 10%);
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-
   }
 
-.FFXIPackageHelper_charButton:hover{
+.FFXIPackageHelper_charButton:hover,
+.FFXIPackageHelper_importluaButton:hover {
     background-color: #3586ff50;
     box-shadow: 0 6px 10px rgb(93 93 93 / 23%);
+}
+
+.FFXIPackageHelper_importluaButton {
+  background-color: #3586ff;
+  color: #fff;
 }
 
 .FFXIPackageHelper_charButton:disabled,

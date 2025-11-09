@@ -150,6 +150,7 @@
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabEquipsets.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_TabCharacters.js",
                 "includes/js/tabs/FFXIPackageHelper_TabMobSearch.js",
+                "includes/js/tabs/Equipsets/FFXIPH_TabImportLua.js",
 
                 "includes/js/FFXIPackageHelper_copyURLToClipboard.js"
 			],

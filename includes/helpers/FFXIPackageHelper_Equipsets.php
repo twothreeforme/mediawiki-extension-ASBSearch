@@ -24,6 +24,7 @@ class FFXIPackageHelper_Equipsets  {
 
     private $sharedLink;
     private $sharedEquipmentModel;
+    private $updatedEquipmentData;
 
     public function __construct(FFXIPH_Character $query) {
         if ( !is_null($query) && $query->isDefault() == false){
@@ -35,7 +36,8 @@ class FFXIPackageHelper_Equipsets  {
         }
 
         $this->sharedEquipmentModel = new FFXIPackageHelper_Equipment(  $this->sharedLink['equipment'] );
-        
+        $this->updatedEquipmentData = $this->updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList());
+
     }
 
     public function querySection(): string{
@@ -243,11 +245,11 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
-    public function showLuaSets($sets){
-        $html =  "<div class=\"FFXIPackageHelper_Equipsets_container\" >
+    public function luaContent(){
+        $html = "<div class=\"FFXIPackageHelper_Equipsets_container\" >
                     <span id=\"FFXIPackageHelper_Equipsets_showLuaSets\">";
         $setsHTML = new FFXIPackageHelper_LuaSetsHelper();
-        $html .= $setsHTML->__getSetsHTML($sets);    
+        $html .= $setsHTML->__getSetsHTML( $this->updatedEquipmentData[1] );    
                     
         $html .=  "</span></div>";
         return $html;
@@ -269,13 +271,7 @@ class FFXIPackageHelper_Equipsets  {
                                                     $this->sharedEquipmentModel->getEquipmentArray() );
             $stats =  $newStats->getStats();
         }
-        //wfDebugLog( 'Equipsets', get_called_class() . ":showEquipsets:" . json_encode($stats) );
-        //wfDebugLog( 'Equipsets', get_called_class() . ":showEquipsets:" . $this->sharedLink['canGenerateStats'] );
-
-        $updatedEquipmentData = $this->updateGridItems($this->sharedEquipmentModel->getIncomingEquipmentList());
-        // $updatedGridItems = $updatedEquipmentData[0];
-        // $updatedLuaNames = $updatedEquipmentData[1];
-
+        
         $html = "<span><i><b>Disclosure:</b>  Please reach out with any questions/comments via Discord.</i>" .
                 "<div class=\"FFXIPackageHelper_Equipsets_container\" >" .
                     $this->userSetsData() .
@@ -284,7 +280,7 @@ class FFXIPackageHelper_Equipsets  {
                             <td colspan=\"2\">" . $this->querySection() . "</td>
                         </tr>
                         <tr>
-                            <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $updatedEquipmentData[0] ) . "</table></td>
+                            <td><table id=\"FFXIPackageHelper_Equipsets_equipmentgrid\" class=\"FFXIPackageHelper_Equipsets_equipmentgrid\" >" . $this->equipmentGrid( $this->updatedEquipmentData[0] ) . "</table></td>
                         </tr>
                         <tr><td><div id=\"FFXIPackageHelper_Equipsets_showstats_res\">" . $this->resistances( $stats ) ."</div></td></tr>
                     </table>" .   
@@ -295,10 +291,10 @@ class FFXIPackageHelper_Equipsets  {
                         "<table id=\"FFXIPackageHelper_Equipsets_showstatstable\" class=\"FFXIPackageHelper_Equipsets_showstatstable\">" .
                             $this->statsSection( $stats ) .
                         "</table></div><br><br>" .
-                    $this->additionalData( $updatedEquipmentData[1] ) . 
+                    $this->additionalData( $this->updatedEquipmentData[1] ) . 
                 "</div>" .
-                FFXIPackageHelper_HTMLOptions::setsList() . 
-                $this->showLuaSets( $updatedEquipmentData[1] ) ;
+                FFXIPackageHelper_HTMLOptions::setsList().
+                $this->luaContent()  ;
 
         return $html;
     }
@@ -522,6 +518,14 @@ class FFXIPackageHelper_Equipsets  {
         return $html;
     }
 
+    public function importLuaForm(){
+        $html = "";
+        $html .= "<textarea id=\"form_importlua\" name=\"form_importlua\" 
+                    style=\"width: 300px; height: 150px; resize:both;\"
+                    placeholder=\"Paste LUA sets here...\"></textarea><br>";
+        $html .= "<button id=\"FFXIPackageHelper_importluabutton\" class=\"FFXIPackageHelper_importluaButton\">Import</button>";
+        return $html;
+    }
 }
 
 ?>

@@ -1,6 +1,8 @@
 var TabEquipsets = require("./FFXIPackageHelper_TabEquipsets.js");
 var TabCharacters = require("./FFXIPackageHelper_TabCharacters.js");
 var TabCombatSim = require("../FFXIPackageHelper_TabMobSearch.js");
+var TabImportLua = require("./FFXIPH_TabImportLua.js");
+
 var Tabs = require("../FFXIPackageHelper_ShowTabs.js");
 
 function onPageLoad(){
@@ -31,6 +33,14 @@ function onPageLoad(){
     Tabs.showTab(e,tabsButton_combatsim.id);
   });
 
+  const tabsButton_importlua = document.getElementById("FFXIPackageHelper_tabs_importlua");
+  if ( tabsButton_importlua == null ) {
+    return ;
+  }
+  tabsButton_importlua.addEventListener("click", function (e) {
+    Tabs.showTab(e,tabsButton_importlua.id);
+  });
+
   return 0;
 }
 
@@ -49,6 +59,7 @@ mw.hook('wikipage.content').add( function () {
   TabEquipsets.setLinks();
   TabCharacters.setLinks();
   TabCombatSim.setLinks();
+  TabImportLua.setLinks();
 
   initiallyLoaded = true;
   console.log("Equipsets - Tab Controller: initiallyLoaded");
