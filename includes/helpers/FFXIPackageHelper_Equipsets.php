@@ -519,17 +519,20 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function importLuaForm(){
-        $html = "<span> <h4>Rules</h4>" .
-                        "<ul>
-                            <li>Tool is designed for those using <b>Luashitacast</b> lua sets. More to come in the future...</li>
+        $html = "<h4>Rules</h4>" .
+                        "<ul>" .
+                            "<li>Tool is designed for those using <b>Luashitacast</b> lua sets. More to come in the future...</li>
                             <li><b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b></li>
+                            <li>If you import your lua there is no mechanism (yet) to check all the gear in your set with the selected job/levels from the \"Gear Sets\" tab, so all the gear will equip and the stats will calculate as such. Take care to ensure the correct job is selected when equipping based off a lua.</li>
                         </ul>".
                         "<h4>How to use this tool:</h4>" .
-                        "<b>Step 1:</b>Paste your set, directly from your lua and include the set name, in the box below. One set at a time, for now...<br>" .
-                        "<b>Step 2:</b> Click \"Verify Lua\". This will check the formatting and find the equipment assocaited with your slots.<br>" .
-                        "<b>Step 3:</b> Clicking \"Equip set\" will equip the set on the \"Gear Sets\" page, and will clear this page.<br>" .
-                        "<b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b><br>" .
-                        "<i>[Under Construction]</i> Clicking \"Save set\" will permanently save the set for the user under the \"Additional Sets\" section.</span><br><br>";
+                        "<ul>" .
+                            "<li><b>Step 1:</b>Paste your set, directly from your lua and include the set name, in the box below. One set at a time, for now...</li>" .
+                            "<li><b>Step 2:</b> Click \"Verify Lua\". This will check the formatting and find the equipment assocaited with your slots.</li>" .
+                            "<li><b>Step 3:</b> Clicking \"Equip set\" will equip the set on the \"Gear Sets\" page, and will clear this page.<b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b></li>" .
+                            "<li><i>[Under Construction]</i> Clicking \"Save set\" will permanently save the set for the user under the \"Additional Sets\" section.</li>
+                        </ul>".
+                        "<br><br>";
         $html .= "<textarea id=\"form_importlua\" name=\"form_importlua\"
                     style=\"width: 300px; height: 150px; resize:both;\"
                     placeholder=\"Paste LUA set here...\"></textarea><br>";
