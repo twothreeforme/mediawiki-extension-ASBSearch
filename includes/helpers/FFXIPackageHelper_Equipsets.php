@@ -519,7 +519,12 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function importLuaForm(){
-        $html = "<span> <h4>How to use this tool:</h4>" .
+        $html = "<span> <h4>Rules</h4>" .
+                        "<ul>
+                            <li>Tool is designed for those using <b>Luashitacast</b> lua sets. More to come in the future...</li>
+                            <li><b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b></li>
+                        </ul>".
+                        "<h4>How to use this tool:</h4>" .
                         "<b>Step 1:</b>Paste your set, directly from your lua and include the set name, in the box below. One set at a time, for now...<br>" .
                         "<b>Step 2:</b> Click \"Verify Lua\". This will check the formatting and find the equipment assocaited with your slots.<br>" .
                         "<b>Step 3:</b> Clicking \"Equip set\" will equip the set on the \"Gear Sets\" page, and will clear this page.<br>" .
