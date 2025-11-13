@@ -292,7 +292,9 @@ Character selection buttons
 .FFXIPackageHelper_charButton:disabled,
 .FFXIPackageHelper_charButton[disabled],
 .FFXIPackageHelper_editCharButton:disabled,
-.FFXIPackageHelper_editCharButton[disabled]{
+.FFXIPackageHelper_editCharButton[disabled],
+.FFXIPackageHelper_importluaButton:disabled,
+.FFXIPackageHelper_importluaButton[disabled] {
   cursor: not-allowed;
   pointer-events: none;
   background-color: #86868671;

@@ -819,7 +819,7 @@ class DatabaseQueryWrapper {
         $query = [ "( synth_recipes.ContentTag = 'COP' OR synth_recipes.ContentTag IS NULL )" ];
 
         if ( isset($recipename) && $recipename != "" ){
-            $recipeIDs = $this->getItemIDsFromDB($dbr, $recipename );
+            $recipeIDs = $this->getItemIDsFromDB($recipename, $dbr);
 
             $q = $dbr->makeList( [ 'synth_recipes.Result' => $recipeIDs ,
                                     'synth_recipes.ResultHQ1' => $recipeIDs ,
@@ -831,7 +831,7 @@ class DatabaseQueryWrapper {
 
         if ( isset($ingredient) && $ingredient != "" ) {
             $ingr = [];
-            $ingr = $this->getItemIDsFromDB($dbr, $ingredient );
+            $ingr = $this->getItemIDsFromDB($ingredient, $dbr );
 
             $q = $dbr->makeList( [ 'synth_recipes.Ingredient1' => $ingr ,
                                             'synth_recipes.Ingredient2' => $ingr ,
@@ -915,14 +915,20 @@ class DatabaseQueryWrapper {
         return [ $recipesQueryResult, $itemArray ];
     }
 
-    private function getItemIDsFromDB($db, $name){
+    public function getItemIDsFromDB($name, $db = NULL, $mustMatch = NULL){
+        if ( $db == NULL ) $db = $this->openASBSearchConnection();
+
+        $query = [ "item_basic.name LIKE '%$name%'" ];
+        if ( $mustMatch == true ) $query = [ "item_basic.name = '$name'" ];
+
         $items = $db->newSelectQueryBuilder()
             ->select( [ 'item_basic.name, item_basic.itemid' ] )
             ->from( 'item_basic' )
-            ->where( "item_basic.name LIKE '%$name%'"	)
+            ->where( $query	)
             ->fetchResultSet();
 
             $returnarray = [];
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $name . ":" .  count($items) );
             if ( count($items) == 0 || count($items) == NULL) return NULL;
             foreach ( $items as $row ) {
                 array_push( $returnarray , strval($row->itemid));

@@ -215,6 +215,12 @@
 		},
         "combatsim_selectedmob": {
 			"class": "APIModuleEquipsets"
+		},
+        "importlua_verify": {
+			"class": "APIModuleEquipsets"
+		},
+        "importlua_commit": {
+			"class": "APIModuleEquipsets"
 		}
 	},
     "manifest_version": 2,

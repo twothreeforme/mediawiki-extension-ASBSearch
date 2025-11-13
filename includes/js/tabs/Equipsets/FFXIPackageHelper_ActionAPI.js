@@ -37,6 +37,8 @@ function actionAPI(params, forTab, currentButton, callback) {
           const luas_base64 = decodeURIComponent(result['luaNames']);
           const luas_ = JSON.parse(atob(luas_base64));
           LuaSets.adjustLuaSet(luas_);
+
+          if ( callback ) callback();
         }
         else if ( forTab.includes("savechar")) {
           if /*ERROR*/( result['status'][0] == "ERROR" ) mw.notify( result['status'][1], { autoHide: true,  type: 'error' } );
@@ -124,6 +126,12 @@ function actionAPI(params, forTab, currentButton, callback) {
           //updateEquipsets(result['stats']);
           if ( result && "stats" in result ) updateStats(result['stats']);
         }
+      }
+      else if ( forTab.includes("importlua_verify")) {
+        callback(result);
+      }
+      else if ( forTab.includes("importlua_commit")) {
+        callback(result);
       }
       else if ( forTab.includes("fishingsearch") )updateFishingFromQuery(result["fishing"]);
       else if ( forTab.includes("combatsim_mobsearch")){

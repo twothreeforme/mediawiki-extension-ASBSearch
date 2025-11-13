@@ -921,6 +921,18 @@ class FFXIPackageHelper_HTMLTableHelper {
 		return $html;
 	}
 
+	public static function table_importLuaResults(Array $sets){
+		$html = "";
+		foreach($sets as $title => $set ){
+			$html .= $title . " = {";
+			foreach ( $set as $slot => $item ){
+				$html .= "<br>&nbsp;&nbsp;&nbsp;&nbsp;$slot" . " = " . $item;
+			}
+			$html .= "<br>}";
+		}
+		return $html;
+	}
+
 	private static $tableMap_MobStats = [
 		1  	=> "Lvl",
 		2 	=> "HP",

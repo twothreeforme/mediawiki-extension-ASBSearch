@@ -108,23 +108,23 @@ function getCharData(){
 
 /**
  * 
- * @param {object} equipIDString 
+ * @param {object} equipIDs - either Array or String
  * @returns {object} object - with params when getEquipIDs() exists
  * @returns {object} empty - when getEquipIDs() is null
  */
-function getStatsData(equipIDString){
-    if ( equipIDString == null ) equipIDString = getEquipIDs(); //getEquipIDs().join(",");
-    else if ( equipIDString == true ) {
-        equipIDString = getEquipIDs(true);
-    }
+function getStatsData(equipIDs){
+    if ( equipIDs == null ) equipIDs = getEquipIDs(); //getEquipIDs().join(",");
+    else if ( equipIDs == true ) { equipIDs = getEquipIDs(true); }
     
     // no equipment IDs means function called from a different tab and no equipment data
     // need to be sent via API, therefore return an empty object
-    if ( !equipIDString ) return {};
-    
-    equipIDString = equipIDString.join("|");
+    if ( !equipIDs ) return {};
+    if ( typeof(equipIDs) == 'array' || typeof(equipIDs) == 'object') {
+        equipIDs = equipIDs.join("|");
+        equipIDs = encodeURIComponent(btoa(equipIDs));
+    }
 
-    //console.log("getStatsData: ", equipIDString);
+    //console.log("getStatsData: ", typeof(equipIDs), equipIDs);
     //console.log("getMeritsData: ", getMeritsData(), encodeURIComponent(btoa(getMeritsData())));
     return {
         action: "equipsets",
@@ -134,7 +134,7 @@ function getStatsData(equipIDString){
         mjob:document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value,
         sjob:document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value,
         merits: encodeURIComponent(btoa(getMeritsData())),
-        equipment: encodeURIComponent(btoa(equipIDString)),
+        equipment: equipIDs,
     };
 }
 

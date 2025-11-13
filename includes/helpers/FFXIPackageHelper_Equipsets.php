@@ -519,11 +519,20 @@ class FFXIPackageHelper_Equipsets  {
     }
 
     public function importLuaForm(){
-        $html = "";
-        $html .= "<textarea id=\"form_importlua\" name=\"form_importlua\" 
+        $html = "<span> <h4>How to use this tool:</h4>" .
+                        "<b>Step 1:</b>Paste your set, directly from your lua and include the set name, in the box below. One set at a time, for now...<br>" .
+                        "<b>Step 2:</b> Click \"Verify Lua\". This will check the formatting and find the equipment assocaited with your slots.<br>" .
+                        "<b>Step 3:</b> Clicking \"Equip set\" will equip the set on the \"Gear Sets\" page, and will clear this page.<br>" .
+                        "<b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b><br>" .
+                        "<i>[Under Construction]</i> Clicking \"Save set\" will permanently save the set for the user under the \"Additional Sets\" section.</span><br><br>";
+        $html .= "<textarea id=\"form_importlua\" name=\"form_importlua\"
                     style=\"width: 300px; height: 150px; resize:both;\"
-                    placeholder=\"Paste LUA sets here...\"></textarea><br>";
-        $html .= "<button id=\"FFXIPackageHelper_importluabutton\" class=\"FFXIPackageHelper_importluaButton\">Import</button>";
+                    placeholder=\"Paste LUA set here...\"></textarea><br>";
+        $html .= "<button id=\"FFXIPackageHelper_verifyluabutton\" class=\"FFXIPackageHelper_importluaButton\">Verify Lua</button>";
+        $html .= "<div id=\"FFXIPackageHelper_importlua_verificationResults\"></div>";
+        $html .= "<br><button id=\"FFXIPackageHelper_importluabutton\" class=\"FFXIPackageHelper_importluaButton\" disabled>Equip set</button>";
+        $html .= "<br><button id=\"FFXIPackageHelper_saveImportedSetButton\" class=\"FFXIPackageHelper_importluaButton\" disabled>Save set</button>";
+        $html .= "<br><div id=\"FFXIPackageHelper_importlua_importReady\"></div>";
         return $html;
     }
 }

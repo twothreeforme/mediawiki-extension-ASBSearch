@@ -27,7 +27,9 @@ class APIModuleEquipsets extends ApiBase {
             // Combatsim search
             'mobname' => null,
             'zonename' => null,
-            'moblevel' => null
+            'moblevel' => null,
+
+            'importlua' => null
     		];
 	}
 
@@ -52,7 +54,6 @@ class APIModuleEquipsets extends ApiBase {
 
             $newStats = new FFXIPackageHelper_Stats( $params['race'], $params['mlvl'], $params['slvl'], $params['mjob'], $params['sjob'], $meritsString, $newEquipmentArray );
             $stats =  $newStats->getStats();
-            //if ( $params['mjob'] == 6 ) throw new Exception ( json_encode($params) );
 
             $char = $this->createChar($params, $meritsString, $newEquipmentArray );
             $equipsets = new FFXIPackageHelper_Equipsets($char);
@@ -375,7 +376,87 @@ class APIModuleEquipsets extends ApiBase {
             //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  . json_encode($mobs) );
             $result->addValue( $params['action'], "mobstatstable", $finalHtml );
         }
+        else if ( $params['action'] == "importlua_verify" ) {
 
+            $decoded = urldecode($params['importlua']);
+            $jsonEncodedString = base64_decode($decoded);
+
+            if ($jsonEncodedString === false) {
+                wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  . "Decoding failed: Invalid base64 string." );
+                return;
+            }
+
+            $phpObject = json_decode($jsonEncodedString);
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  .  $jsonEncodedString );
+
+            $validList = [ "Main", "Sub", "Range", "Ammo", "Head", "Neck", "Ear1", "Ear2", "Body", "Hands", "Ring1", "Ring2", "Back", "Waist", "Legs", "Feet" ];
+            $db = new DatabaseQueryWrapper();
+
+            $equipmentArrayResponse = [];
+
+            $allSets = get_object_vars($phpObject); // Loop through all set title names
+            foreach ($allSets as $title => $setDetails) {
+                //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  .  $title );
+
+                $newSetResponse = [];
+                $newSetForImport = [];
+
+                //$slot = get_object_vars($setDetails);
+                foreach ($validList as $slot => $slotname){
+                    if ( isset($setDetails->$slotname) ){
+                        $itemname = $setDetails->$slotname;
+                        $parsedItemname = ParserHelper::replaceApostrophe($itemname);
+                        $parsedItemname = ParserHelper::replaceSpaces($itemname);
+                        $main = $db->getItemIDsFromDB(strtolower($parsedItemname), NULL,  true);
+                        if ( !$main || count($main) < 1  ) $newSetResponse[$slotname] =  $itemname . "[**Not Found**]";
+                        else if ( count($main) > 1 ) $newSetResponse[$slotname] =  ParserHelper::brackets( $itemname )  . "[**Multiple Found**]";
+                        else  {
+                            $newSetResponse[$slotname] = ParserHelper::brackets( $itemname )  . "[". $main[0] . "]";
+                            $newSetForImport[] = [intval($main[0]),1];
+                            continue;
+                        }
+                    }
+                    $newSetForImport[] = [0,0];
+                }
+
+                // foreach ($slot as $slotname => $itemname) { // Loop through each slot in the set and look up the item in the DB
+                //     $parsedItemname = ParserHelper::replaceApostrophe($itemname);
+		        //     $parsedItemname = ParserHelper::replaceSpaces($itemname);
+                //     $main = $db->getItemIDsFromDB(strtolower($parsedItemname), NULL,  true);
+                //     if ( !$main || count($main) < 1  ) $newSetResponse[$slotname] =  $itemname . "[**Not Found**]";
+                //     else if ( count($main) > 1 ) $newSetResponse[$slotname] =  ParserHelper::brackets( $itemname )  . "[**Multiple Found**]";
+                //     else  {
+                //         $newSetResponse[$slotname] = ParserHelper::brackets( $itemname )  . "[". $main[0] . "]";
+
+                //     }
+                // }
+
+                $equipmentArrayResponse[$title] = $newSetResponse;
+                //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  .  json_encode($newSetResponse) );
+            }
+
+            $html = FFXIPackageHelper_HTMLTableHelper::table_importLuaResults($equipmentArrayResponse);
+            $finalHtml = ParserHelper::wikiParse($html);
+            $result->addValue( $params['action'], "verifyresults", $finalHtml );
+
+            $importReady = [];
+            // Loop through each sub-array
+            foreach ($newSetForImport as $subArray) {
+                // Join sub-array elements and add to the result
+                $importReady[] = implode(',', $subArray);
+            }
+            $importReadyResponse = implode('|', $importReady);
+
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  .  $importReadyResponse);
+
+            $responseEncoded = base64_encode($importReadyResponse);
+            $responseURLSafe = urlencode($responseEncoded);
+            $result->addValue( $params['action'], "luaImportReady", $responseURLSafe );
+        }
+        else if ( $params['action'] == "importlua_commit" ) {
+            //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":"  .  json_encode($params) );
+            $result->addValue( $params['action'], "luaImportReady", $params['importlua'] );
+        }
     }
 
     private function getHTMLSetsListTable($db, $uid){

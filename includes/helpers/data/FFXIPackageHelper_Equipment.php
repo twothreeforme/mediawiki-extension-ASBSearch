@@ -9,8 +9,8 @@ class FFXIPackageHelper_Equipment {
     private $incomingEquipmentList = [];
 
     public function __construct($equipment) {
-        if ($equipment == null ) return;
-
+        if ($equipment == null || $equipment == '' ) return;
+        //wfDebugLog( 'Equipsets', get_called_class() . ":" . gettype($equipment) );
         if ( $this->detectDelimiter($equipment) == ',') $equipment = explode( ",", $equipment);
         else if ( $this->detectDelimiter($equipment) == '|' ) $equipment = explode( "|", $equipment);
         else if ( strlen($equipment) == 0 ) throw new Exception ("equp string len = 0");
