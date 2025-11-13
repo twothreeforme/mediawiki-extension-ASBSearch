@@ -522,6 +522,7 @@ class FFXIPackageHelper_Equipsets  {
         $html = "<h4>Rules</h4>" .
                         "<ul>" .
                             "<li>Tool is designed for those using <b>Luashitacast</b> lua sets. More to come in the future...</li>
+                            <li>Tool is NOT designed for \"Priority\" leveling sets. Each slot can only have one piece of gear listed.</b></li>
                             <li><b>To import a lua to your current set you must select a job and job level on the \"Gear Sets\" tab first.</b></li>
                             <li>If you import your lua there is no mechanism (yet) to check all the gear in your set with the selected job/levels from the \"Gear Sets\" tab, so all the gear will equip and the stats will calculate as such. Take care to ensure the correct job is selected when equipping based off a lua.</li>
                         </ul>".
