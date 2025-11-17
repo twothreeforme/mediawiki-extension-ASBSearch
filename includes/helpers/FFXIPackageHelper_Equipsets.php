@@ -539,7 +539,7 @@ class FFXIPackageHelper_Equipsets  {
                     placeholder=\"Paste LUA set here...\"></textarea><br>";
         $html .= "<button id=\"FFXIPackageHelper_verifyluabutton\" class=\"FFXIPackageHelper_importluaButton\">Verify Lua</button>";
         $html .= "<div id=\"FFXIPackageHelper_importlua_verificationResults\"></div>";
-        $html .= "<br><button id=\"FFXIPackageHelper_importluabutton\" class=\"FFXIPackageHelper_importluaButton\" disabled>Equip set</button>";
+        $html .= "<br><button id=\"FFXIPackageHelper_importLuaButton\" class=\"FFXIPackageHelper_importluaButton\" disabled>Equip set</button><span id=\"FFXIPackageHelper_importLuaComment\"></span>";
         $html .= "<br><button id=\"FFXIPackageHelper_saveImportedSetButton\" class=\"FFXIPackageHelper_importluaButton\" disabled>Save set</button>";
         $html .= "<br><div id=\"FFXIPackageHelper_importlua_importReady\"></div>";
         return $html;

@@ -1,7 +1,7 @@
 var API = require("./FFXIPackageHelper_ActionAPI.js");
 var Data = require("./FFXIPackageHelper_DataManager.js");
 
-const importButton = document.getElementById("FFXIPackageHelper_importluabutton");
+const importButton = document.getElementById("FFXIPackageHelper_importLuaButton");
 
 module.exports.setLinks = function (){
 
@@ -61,6 +61,7 @@ function convertSet(luaObjectStr) {
         .replace(/\n+\t+\s*/g, '') // Remove spaces, new lines, and tabs
         .replace(/(\w+)\s*=\s*/g, '"$1": ') // Replace key=value with "key":
         .replace(/"(\w+)":\s*'([\w\s*-_`']+)'/g, '"$1":"$2"') // Ensure string values are quoted
+        .replace(/\\'/g, '') // Handle backslash w/apostrophe - for JSON.parse and SQL query
         .replace(/(\w+)\s*=\s*\{/, '"$1": {') // Handle object start
         .replace(/,\s*}/g, '}') // Properly handle object end with braces
         .replace(/;/g, '') // Handle semi colon - as this introduces more parsing issues
@@ -76,6 +77,7 @@ function allSets(luaObjectStr){
         const setTitle = luaObjectStr.slice(0, index).replace(/\s*/, '').replace(/\s+$/, '');  // Remove spaces at beginning and end of the title
 
         var setDetails = luaObjectStr.slice(index + 1).replace(/;/g, ''); // Remove semi colon at the end
+        //console.log(convertSet(setDetails));
         setDetails = JSON.parse( convertSet(setDetails) ); // Convert the set string into JSON object
 
         if ( isValidJSONSet(setDetails) ) return [ setTitle, setDetails];
@@ -108,8 +110,13 @@ function verifyResult(result){
     resultsDIV.innerHTML = "";
     resultsDIV.innerHTML += result['verifyresults'];
 
-    if ( isCharSet() ){ importButton.disabled = false; }
-
+    const importComment = document.getElementById("FFXIPackageHelper_importLuaComment");
+    if ( isCharSet() ){
+        importComment.innerHTML = "";
+        importButton.disabled = false; }
+    else {
+        importComment.innerHTML = "<i>Requires job and level selected on Gear Sets tab.</i>";
+    }
     const importReady = document.getElementById("FFXIPackageHelper_importlua_importReady");
     importReady.innerText += result['luaImportReady'];
 }
@@ -136,7 +143,6 @@ function resetPage(){
 
 function isCharSet(){
     if ( document.getElementById("FFXIPackageHelper_equipsets_selectMLevel").value == 0 ||
-            document.getElementById("FFXIPackageHelper_equipsets_selectSLevel").value == 0 ||
             document.getElementById("FFXIPackageHelper_equipsets_selectMJob").value == 0 ||
             document.getElementById("FFXIPackageHelper_equipsets_selectSJob").value == 0 )
             return false;
