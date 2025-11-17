@@ -65,7 +65,7 @@ function convertSet(luaObjectStr) {
         .replace(/(\w+)\s*=\s*\{/, '"$1": {') // Handle object start
         .replace(/,\s*}\s*[;,]*/g, '}') // Properly handle object end with braces, comma, and semicolon
 
-    console.log(jsonStr);
+    //console.log(jsonStr);
 
     return jsonStr;
 }
