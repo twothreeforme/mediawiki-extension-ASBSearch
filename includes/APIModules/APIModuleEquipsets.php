@@ -408,6 +408,7 @@ class APIModuleEquipsets extends ApiBase {
                         $parsedItemname = ParserHelper::replaceApostrophe($itemname);
                         $parsedItemname = ParserHelper::replaceSpaces($itemname);
                         $main = $db->getItemIDsFromDB(strtolower($parsedItemname), NULL,  true);
+                        $itemname = ParserHelper::itemName($itemname);
                         if ( !$main || count($main) < 1  ) $newSetResponse[$slotname] =  $itemname . "[**Not Found**]";
                         else if ( count($main) > 1 ) $newSetResponse[$slotname] =  ParserHelper::brackets( $itemname )  . "[**Multiple Found**]";
                         else  {
