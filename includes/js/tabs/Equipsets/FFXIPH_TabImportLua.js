@@ -63,10 +63,9 @@ function convertSet(luaObjectStr) {
         .replace(/"(\w+)":\s*'([\w\s*-_`']+)'/g, '"$1":"$2"') // Ensure string values are quoted
         .replace(/\\'/g, '') // Handle backslash w/apostrophe - for JSON.parse and SQL query
         .replace(/(\w+)\s*=\s*\{/, '"$1": {') // Handle object start
-        .replace(/,\s*}\s*[;,]*/g, '}') // Properly handle object end with braces, comma, and semicolon
+        .replace(/,?\s*}\s*[;,]*/g, '}') // Properly handle object end with braces, comma, and semicolon
 
     //console.log(jsonStr);
-
     return jsonStr;
 }
 
