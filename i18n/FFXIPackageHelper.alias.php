@@ -12,7 +12,7 @@ $specialPageAliases = [];
  * @author <your username>
  */
 $specialPageAliases['en'] = [
-	'ASBSearch' => [ 'ASBSearch' ],
+	'LSBSearch' => [ 'LSBSearch' ],
 	'WeatherForecast' => [ 'WeatherForecast' ],
 	'DiggingWeatherForecast' => [ 'DiggingWeatherForecast' ],
 	'DiggingWeatherForecast_Retail' => [ 'DiggingWeatherForecast_Retail' ],

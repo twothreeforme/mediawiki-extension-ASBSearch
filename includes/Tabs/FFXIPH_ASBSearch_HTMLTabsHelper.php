@@ -1,7 +1,7 @@
 <?php
 
 
-class FFXIPH_ASBSearch_HTMLTabsHelper {
+class FFXIPH_LSBSearch_HTMLTabsHelper {
     public function __construct() {
       }
 

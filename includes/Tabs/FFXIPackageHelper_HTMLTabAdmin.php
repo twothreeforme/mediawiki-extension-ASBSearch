@@ -19,7 +19,7 @@ class FFXIPackageHelper_HTMLTabAdmin {
         $mobsearchhits = $db->getHitCounter("mobsearch");
 
          $html = "<div id=\"FFXIPackageHelper_tabs_admin_display\">" .
-                    "<h3>ASBSearch Clicks:</h3>
+                    "<h3>LSBSearch Clicks:</h3>
                     <pre>Drop Rates: $drhits\nEquipment: $eqhits\nRecipes: $rehits\nFishing: $fihits\nMob Search: $mobsearchhits</pre>" .
                 "</div>";
          return $html;

@@ -1,5 +1,5 @@
 
--- ASB_Data updates:
+-- LSB_Data updates:
 -- usage from within sql folder: mysql -u -p db < dbupdate.sql
 
 -- ************************

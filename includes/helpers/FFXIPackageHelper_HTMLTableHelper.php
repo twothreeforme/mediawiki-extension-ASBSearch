@@ -84,7 +84,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 		<br><br>
 		</i> </div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_dropstable\" class=\"horizon-table general-table sortable\">
+		<table id=\"LSBSearch_dropstable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Zone Name</th>
 			<th>Mob Name</th>
 			<th>Family</th>
@@ -202,7 +202,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			/*******************
 			 * Add items as individual tables inside a cell
 			 */
-			$html .= "<td><table id=\"asbsearch_dropstable2\" >";
+			$html .= "<td><table id=\"LSBSearch_dropstable2\" >";
 			for ( $i = 0; $i < count($row['dropData']['items']); $i ++){
 				$item = $row['dropData']['items'][$i];
 
@@ -394,7 +394,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 			/*******************
 			 * Add items as individual tables inside a cell
 			 */
-			$html .= "<td><table id=\"asbsearch_dropstable2\" >";
+			$html .= "<td><table id=\"LSBSearch_dropstable2\" >";
 			for ( $g = 0; $g < count($row['dropData']); $g++){
 				$dropGroup = $row['dropData'][$g];
 				
@@ -492,7 +492,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_RecipesQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_recipestable\" class=\"horizon-table general-table sortable\">
+		<table id=\"LSBSearch_recipestable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Skill Lvl</th>
 			<th>Synth</th>
 			<th>Crystal</th>
@@ -676,7 +676,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_EquipmentQuery($array){
 		$html = "<br><div ><i><b>Disclosure:</b>  All data here is from AirSkyBoat, with minor additions/edits made based on direct feedback from Horizon Devs.<br>Any Horizon specific changes made to the table will be marked with the Template:Changes->{{Changes}} tag.</i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_equipmenttable\" class=\"horizon-table general-table sortable\">
+		<table id=\"LSBSearch_equipmenttable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Item Name</th>
 			<th class=\"equipmenttable_slot\">Slot</th>
 			<th class=\"equipmenttable_jobs\">Jobs</th>
@@ -776,7 +776,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 	public static function table_FishingQuery($queryResults){
 		$html = "<br><div ><i></i></div>
 		<div style=\"max-height: 900px; overflow: auto; display: inline-block; width: 100%;\">
-		<table id=\"asbsearch_fishingtable\" class=\"horizon-table general-table sortable\">
+		<table id=\"LSBSearch_fishingtable\" class=\"horizon-table general-table sortable\">
 			<tr><th>Fish</th>
 			<th>Zone</th>
 			<th>Bait</th>
@@ -894,7 +894,7 @@ class FFXIPackageHelper_HTMLTableHelper {
 				$statsmap[$c][$k] = $moblist[$c]->get($v);
 			}
 		} 
-		// wfDebugLog( 'ASBSearch', get_called_class() . ":"  . json_encode($statsmap ));
+		// wfDebugLog( 'LSBSearch', get_called_class() . ":"  . json_encode($statsmap ));
 
 		$html = "<div style=\"max-height: 400px; overflow: auto; display: inline-block; width: 100%;\">" .
 			"<b>Zone:</b>  " . $zone . "<br>" .

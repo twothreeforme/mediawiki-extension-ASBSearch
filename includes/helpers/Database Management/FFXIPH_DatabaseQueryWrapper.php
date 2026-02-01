@@ -36,11 +36,11 @@ class DatabaseQueryWrapper {
     }
 
 
-    private function openASBSearchConnection() { return $this->database->openConnection("ASB_Data"); }
+    private function openLSBSearchConnection() { return $this->database->openConnection("LSB_Data"); }
     private function openEquipsetsConnection() { return $this->database->openConnection("Equipsets"); }
 
     public function getHitCounter($tab) {
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
 		$tabHitCounter = $dbr->newSelectQueryBuilder()
 			->select( [ 'hitcount' ] )
 			->from( 'search_counters' )
@@ -54,7 +54,7 @@ class DatabaseQueryWrapper {
     }
 
     public function incrementHitCounter($tab) {
-        $dbw = $this->openASBSearchConnection();
+        $dbw = $this->openLSBSearchConnection();
         
         return $dbw->update(
             'search_counters',
@@ -117,7 +117,7 @@ class DatabaseQueryWrapper {
 
 
     function getZoneList() {
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
 		$zoneList = $dbr->newSelectQueryBuilder()
 			->select( [ 'zoneid, name' ] )
 			->from( 'zone_settings' )
@@ -133,7 +133,7 @@ class DatabaseQueryWrapper {
     }
 
     function getZoneListFishing() {
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
 		$zoneList = $dbr->newSelectQueryBuilder()
 			->select( [ 'fishing_zone.zoneid, fishing_zone.name' ] )
 			->from( 'fishing_zone' )
@@ -145,7 +145,7 @@ class DatabaseQueryWrapper {
 
 
     function getZoneWeather($zone, $numberOfDays ) {
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
         $query = "zone_weather.zone = $zone";
 		$weather = $dbr->newSelectQueryBuilder()
 			->select( [ '*' ] )
@@ -306,7 +306,7 @@ class DatabaseQueryWrapper {
 
     
     public function getZoneForecastFromDB($zone){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         $query = "zone_weather.zone = $zone";
 		return $dbr->newSelectQueryBuilder()
 			->select( [ '*' ] )
@@ -316,7 +316,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getForecastFromDB() {
-        $dbr =  $this->openASBSearchConnection();
+        $dbr =  $this->openLSBSearchConnection();
         // $query = "zone_weather.zone = $zone";
 		return $dbr->newSelectQueryBuilder()
 			->select( [ 'name', 'zoneid', 'weather' ] )
@@ -413,7 +413,7 @@ class DatabaseQueryWrapper {
 
         if ( $mobNameSearch !=  '' ) {
             array_push($query, "mob_groups.name LIKE '%$mobNameSearch%'");
-            //wfDebugLog( 'ASBSearch', get_called_class() . ":" . json_encode($query) );
+            //wfDebugLog( 'LSBSearch', get_called_class() . ":" . json_encode($query) );
             
 		}
 
@@ -445,7 +445,7 @@ class DatabaseQueryWrapper {
 		}
         else array_push($query, "mob_droplist.dropType <= 1"); // all other drops = 0
 
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
@@ -483,7 +483,7 @@ class DatabaseQueryWrapper {
 
 
     /**
-     * Used mainly for the 'Page Directs' calls. Not used with ASBSearch. Default exclusions not applied in this search.
+     * Used mainly for the 'Page Directs' calls. Not used with LSBSearch. Default exclusions not applied in this search.
      * @param string $mobname *required
      * @return fetchResultSet array of rows for SQL results
      */
@@ -499,7 +499,7 @@ class DatabaseQueryWrapper {
 
         $query = $this->exclude_MOBGROUPS_OOE($query);
 
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'mob_droplist.itemRate',
@@ -566,7 +566,7 @@ class DatabaseQueryWrapper {
 		}
 
 
-		$dbr = $this->openASBSearchConnection();
+		$dbr = $this->openLSBSearchConnection();
 		return $dbr->newSelectQueryBuilder()
 			->select( [ //'mob_droplist.name', 
 						'hxi_bcnm_crate_list.itemRate',
@@ -615,7 +615,7 @@ class DatabaseQueryWrapper {
         
         //wfDebugLog( 'Equipsets', get_called_class() . ":" . $params['action'] . ":" . $zonename .":". $mobname . ":" . $moblevel . ":" . gettype($moblevel)  );
 
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         $results = $dbr->newSelectQueryBuilder()
 			->select( [ 
 						'mob_groups.groupId',
@@ -666,7 +666,7 @@ class DatabaseQueryWrapper {
             array_push($query, "(mob_groups.minLevel <= '$moblevel') AND (mob_groups.maxLevel >= '$moblevel')");
         }
 	
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         $results = $dbr->newSelectQueryBuilder()
 			->select( [ 
 						'mob_groups.groupid',
@@ -737,7 +737,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getTraits( $mlvl, $slvl, $mjob, $sjob){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         $query = [
             "( traits.job = '$mjob' AND traits.level <= '$mlvl') OR (traits.job = '$sjob' AND traits.level <= '$slvl')",
             //"( traits.content_tag = 'COP' OR traits.content_tag IS NULL )",
@@ -755,7 +755,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getMobPoolMods($poolid){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         return $dbr->newSelectQueryBuilder()
 			->select( [ 
                         'mob_pool_mods.modid',
@@ -768,7 +768,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getMobFamilyMods($familyid){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         return $dbr->newSelectQueryBuilder()
 			->select( [ 
                         'mob_family_mods.modid',
@@ -805,7 +805,7 @@ class DatabaseQueryWrapper {
         $recipename = ParserHelper::replaceApostrophe($recipename);
 		$ingredient = ParserHelper::replaceApostrophe($ingredient);
 
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $items = $dbr->newSelectQueryBuilder()
             ->select( [ 'item_basic.name, item_basic.itemid' ] )
@@ -916,7 +916,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getItemIDsFromDB($name, $db = NULL, $mustMatch = NULL){
-        if ( $db == NULL ) $db = $this->openASBSearchConnection();
+        if ( $db == NULL ) $db = $this->openLSBSearchConnection();
 
         $query = [ "item_basic.name LIKE '%$name%'" ];
         if ( $mustMatch == true ) $query = [ "item_basic.name = '$name'" ];
@@ -954,7 +954,7 @@ class DatabaseQueryWrapper {
     public function getEquipmentFromDB($queryData){
         //$this->incrementHitCounter("equipment");
 
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $equipmentname = $queryData[0];
         // $job = $queryData[1];
@@ -1009,7 +1009,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getItem( $itemid ){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         $query = [ "item_basic.itemId = '$itemid'" ];
 
         return $dbr->newSelectQueryBuilder()
@@ -1033,7 +1033,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getSkillRanks( $mjob, $sjob ){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $mjobLabel =  strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$mjob]);
         $sjobLabel =  strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$sjob]);
@@ -1052,7 +1052,7 @@ class DatabaseQueryWrapper {
     }
 
     public function getSkillRank( $skill, $mjob ){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $mjobLabel = strtolower(FFXIPackageHelper_Variables::$jobArrayByID[$mjob]);
 
@@ -1071,7 +1071,7 @@ class DatabaseQueryWrapper {
     }    
 
     public function getSkillCap( $mLvl, $rank ){
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $rank = "r" . $rank;
 
@@ -1091,7 +1091,7 @@ class DatabaseQueryWrapper {
 
     public function getEquipment( $name, $mlvl, $gridSlot = null ){
 
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
 
         $mlvl = intval($mlvl);
 
@@ -1183,7 +1183,7 @@ class DatabaseQueryWrapper {
         $zone = $queryData[2];
 
         
-        $dbr = $this->openASBSearchConnection();
+        $dbr = $this->openLSBSearchConnection();
         //$vars = new FFXIPackageHelper_Variables();
 
         $query = [];
@@ -1540,7 +1540,7 @@ class DatabaseQueryWrapper {
     }
 
     public function setExists($dbr, $setid){
-        //$dbr = $this->openASBSearchConnection();
+        //$dbr = $this->openLSBSearchConnection();
 
         // $chars = $dbr->newSelectQueryBuilder()
         // ->select( [ 'charname' ] )

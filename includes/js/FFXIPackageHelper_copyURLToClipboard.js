@@ -1,5 +1,5 @@
 
-/* Copy to Clipboard helper for ASBSearch */
+/* Copy to Clipboard helper for LSBSearch */
 
 function copyURLToClipboard() {
     

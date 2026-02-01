@@ -1,17 +1,17 @@
 <?php
 
 
-class SpecialASBSearch extends SpecialPage {
+class SpecialLSBSearch extends SpecialPage {
 
 	private $queryLimit = 1500;
 
     public function __construct( ) {
-        parent::__construct( 'ASBSearch' );
+        parent::__construct( 'LSBSearch' );
     }
 
 	static function onBeforePageDisplay( $out, $skin ) : void  {
-		//$out->addModules(['FFXIPackageHelper_ASBSearch']);
-		if ( $out->getTitle() == "Special:ASBSearch" ) $out->addModules(['FFXIPackageHelper_TabsController']);
+		//$out->addModules(['FFXIPackageHelper_LSBSearch']);
+		if ( $out->getTitle() == "Special:LSBSearch" ) $out->addModules(['FFXIPackageHelper_TabsController']);
 	}
 
 	function execute( $par ) {
@@ -20,7 +20,7 @@ class SpecialASBSearch extends SpecialPage {
 		$this->setHeaders();
 		$request = $this->getRequest();
 		$output = $this->getOutput();
-		$output->setPageTitle( $this->msg( 'asbsearch' ) );
+		$output->setPageTitle( $this->msg( 'LSBSearch' ) );
 
 		// # Get request data
 
@@ -85,7 +85,7 @@ class SpecialASBSearch extends SpecialPage {
 		// }
 
 
-        $tabs = new FFXIPH_ASBSearch_HTMLTabsHelper();
+        $tabs = new FFXIPH_LSBSearch_HTMLTabsHelper();
         $tabDropRates = new FFXIPackageHelper_HTMLTabDropRates($queryDataDR);
         $tabRecipes = new FFXIPackageHelper_HTMLTabRecipeSearch();
 		$tabEquipment = new FFXIPackageHelper_HTMLTabEquipSearch();

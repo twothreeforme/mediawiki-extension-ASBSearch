@@ -9,7 +9,7 @@
     "license-name": "MIT",
     "type": "other",
     "AutoloadClasses": {
-        "SpecialASBSearch": "includes/SpecialPages/SpecialASBSearch.php",
+        "SpecialLSBSearch": "includes/SpecialPages/SpecialLSBSearch.php",
         "SpecialWeatherForecast": "includes/WeatherForecast/SpecialWeatherForecast.php",
         "SpecialDiggingWeatherForecast": "includes/WeatherForecast/SpecialDiggingWeatherForecast.php",
         "SpecialDiggingWeatherForecast_Retail": "includes/WeatherForecast/SpecialDiggingWeatherForecast_Retail.php",
@@ -41,7 +41,7 @@
         "FFXIPackageHelper_HTMLOptions": "includes/Tabs/FFXIPackageHelper_HTMLOptions.php",
         "FFXIPH_HTMLTabMobSearch": "includes/Tabs/FFXIPH_HTMLTabMobSearch.php",
 
-        "FFXIPH_ASBSearch_HTMLTabsHelper": "includes/Tabs/FFXIPH_ASBSearch_HTMLTabsHelper.php",
+        "FFXIPH_LSBSearch_HTMLTabsHelper": "includes/Tabs/FFXIPH_LSBSearch_HTMLTabsHelper.php",
         "FFXIPackageHelper_HTMLTabDropRates": "includes/Tabs/FFXIPackageHelper_HTMLTabDropRates.php",
         "FFXIPackageHelper_HTMLTabRecipeSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabRecipeSearch.php",
         "FFXIPackageHelper_HTMLTabEquipSearch": "includes/Tabs/FFXIPackageHelper_HTMLTabEquipSearch.php",
@@ -64,7 +64,7 @@
         "FFXIPackageHelper_ShowMobDropTable": "includes/Page Directs/FFXIPackageHelper_ShowMobDropTable.php"
 	},
     "SpecialPages": {
-        "ASBSearch": "SpecialASBSearch",
+        "LSBSearch": "SpecialLSBSearch",
         "WeatherForecast": "SpecialWeatherForecast",
         "DiggingWeatherForecast": "SpecialDiggingWeatherForecast",
         "DiggingWeatherForecast_Retail": "SpecialDiggingWeatherForecast_Retail",
@@ -76,13 +76,13 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"ASBSearchAlias": "i18n/FFXIPackageHelper.alias.php",
+		"LSBSearchAlias": "i18n/FFXIPackageHelper.alias.php",
 		"WeatherForecastAlias": "i18n/FFXIPackageHelper.alias.php",
         "EquipsetsAlias": "i18n/FFXIPackageHelper.alias.php"
 	},
     "Hooks": {
         "BeforePageDisplay": [
-            "SpecialASBSearch::onBeforePageDisplay",
+            "SpecialLSBSearch::onBeforePageDisplay",
             "SpecialWeatherForecast::onBeforePageDisplay",
             "SpecialDiggingWeatherForecast::onBeforePageDisplay",
             "SpecialDiggingWeatherForecast_Retail::onBeforePageDisplay",
@@ -96,7 +96,7 @@
 	"ResourceModules": {
         "FFXIPackageHelper_WeatherForecast" : {
 			"localBasePath": "",
-			"remoteExtPath": "ASBSearch",
+			"remoteExtPath": "LSBSearch",
 			"packageFiles": [
 				"includes/js/FFXIPackageHelper_sortTable.js"
 			],
@@ -106,7 +106,7 @@
 		},
         "FFXIPackageHelper_TabsController" : {
 			"localBasePath": "",
-			"remoteExtPath": "ASBSearch",
+			"remoteExtPath": "LSBSearch",
 			"packageFiles": [
                 "includes/js/tabs/FFXIPackageHelper_TabsController.js",
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_ActionAPI.js",
@@ -130,7 +130,7 @@
         },
         "FFXIPackageHelper_Equipsets" : {
 			"localBasePath": "",
-            "remoteExtPath": "ASBSearch",
+            "remoteExtPath": "LSBSearch",
 			"packageFiles": [
                 "includes/js/tabs/Equipsets/FFXIPackageHelper_Equipsets_TabsController.js",
                 "includes/js/tabs/FFXIPackageHelper_ShowTabs.js",

@@ -27,7 +27,7 @@ class DataModel {
 			if ( ExclusionsHelper::mobIsOOE($row->mobName) ) { continue; }
 			if ( ExclusionsHelper::itemIsOOE($row->itemName) && intval($row->groupId) == 0) { continue; }
 
-			//wfDebugLog( 'ASBSearch', get_called_class() . ": " . ExclusionsHelper::itemIsOOE($row->itemName) . " : " . $row->groupId );
+			//wfDebugLog( 'LSBSearch', get_called_class() . ": " . ExclusionsHelper::itemIsOOE($row->itemName) . " : " . $row->groupId );
 			/*******************************************************/
 			//print_r(gettype($row));
 			$r_mobMinLevel = ( property_exists($row, 'mobMinLevel' ) ) ? $row->mobMinLevel : 0; 
@@ -137,7 +137,7 @@ class DataModel {
 
 	/**
 	 * used for mob tables on a wiki page
-	 * not associated with ASBSearch
+	 * not associated with LSBSearch
 	 */
 	function parseMobDropData($param){
        

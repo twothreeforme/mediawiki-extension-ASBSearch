@@ -236,24 +236,24 @@ Leftover from old ASB page
 /*
 Drop Rates table
 */
-#asbsearch_dropstable {
+#LSBSearch_dropstable {
     position: relative;
     width: 100%;
     font-size: 13px;
 }
 
-#asbsearch_dropstable th {
+#LSBSearch_dropstable th {
     background-color: #ffffff9d;
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
-#asbsearch_dropstable tr:nth-child(odd) td{
+#LSBSearch_dropstable tr:nth-child(odd) td{
     background-color: #12396c30;
 }
 
-#asbsearch_dropstable2 tr td{
+#LSBSearch_dropstable2 tr td{
     width: 100%;
     background-color:rgba(0, 0, 0, 0) !important;
 }
@@ -262,66 +262,66 @@ Drop Rates table
 /*
 Recipes table
 */
-#asbsearch_recipestable {
+#LSBSearch_recipestable {
     position: relative;
     width: 100%;
     font-size: 13px;
 }
 
-#asbsearch_recipestable th {
+#LSBSearch_recipestable th {
     background-color: #ffffff9d;
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
-#asbsearch_recipestable tr:nth-child(odd) td{
+#LSBSearch_recipestable tr:nth-child(odd) td{
     background-color: #12396c30;
 }
 
-#asbsearch_recipestable tr td{
+#LSBSearch_recipestable tr td{
     background-color:rgba(0, 0, 0, 0) !important;
 }
 
 /*
 Equipment table
 */
-#asbsearch_equipmenttable {
+#LSBSearch_equipmenttable {
     position: relative;
     width: 100%;
     font-size: 13px;
 }
 
-#asbsearch_equipmenttable th.equipmenttable_jobs {
+#LSBSearch_equipmenttable th.equipmenttable_jobs {
     width: 15%;
 }
 
-#asbsearch_equipmenttable td.equipmenttable_reducedfont {
+#LSBSearch_equipmenttable td.equipmenttable_reducedfont {
     font-size: 12px;
 }
 
-#asbsearch_equipmenttable th.equipmenttable_slot,
-#asbsearch_equipmenttable th.equipmenttable_level {
+#LSBSearch_equipmenttable th.equipmenttable_slot,
+#LSBSearch_equipmenttable th.equipmenttable_level {
     width: 7%;
 }
 
-#asbsearch_equipmenttable th {
+#LSBSearch_equipmenttable th {
     background-color: #ffffff9d;
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
-#asbsearch_equipmenttable tr:nth-child(odd) td{
+#LSBSearch_equipmenttable tr:nth-child(odd) td{
     background-color: #12396c30;
 }
 
-#asbsearch_equipmenttable2 {
+#LSBSearch_equipmenttable2 {
     width: 80%;
     text-align: left;
 }
 
-.asbsearch_LvlSelect td.mw-label {
+.LSBSearch_LvlSelect td.mw-label {
     text-align: right;
 }
 

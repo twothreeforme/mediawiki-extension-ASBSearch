@@ -7,7 +7,7 @@ class SpecialEquipsets extends SpecialPage {
     }
 
 	static function onBeforePageDisplay( $out, $skin ) : void  {
-		//$out->addModules(['FFXIPackageHelper_ASBSearch']);
+		//$out->addModules(['FFXIPackageHelper_LSBSearch']);
 		if ( $out->getTitle() == "Special:Equipsets" )  {
 			$out->addModules(['FFXIPackageHelper_Equipsets']);
 		}

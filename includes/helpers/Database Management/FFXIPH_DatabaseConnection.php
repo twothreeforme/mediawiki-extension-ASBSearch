@@ -16,7 +16,7 @@ class DatabaseConnection {
         $this->dbUsername = $wgDBuser;
         $this->dbPassword = $wgDBpassword;
 
-        wfDebugLog( 'ASBSearch', get_called_class() . ":dbServer: " .  $this->dbServer . " : " . $wgDBserver );
+        wfDebugLog( 'LSBSearch', get_called_class() . ":dbServer: " .  $this->dbServer . " : " . $wgDBserver );
     }
 
     private function getDatabaseFactory(mixed $database = null): DatabaseMysqli{

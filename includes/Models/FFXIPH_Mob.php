@@ -210,7 +210,7 @@ class FFXIPH_Mob  {
     }
 
     private function handleMods($mods){
-        // wfDebugLog( 'ASBSearch', get_called_class() . ":addMod:" . json_encode($mod) );
+        // wfDebugLog( 'LSBSearch', get_called_class() . ":addMod:" . json_encode($mod) );
         $vars = new FFXIPackageHelper_Variables();
         
         foreach ($mods as $mod) { 
@@ -253,7 +253,7 @@ class FFXIPH_Mob  {
         $traits =  $db->getTraits($mLvl, $mLvl, $SQLmob->mJob, $SQLmob->sJob);
         $this->handleTraits($traits);
         
-        //wfDebugLog( 'ASBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
+        //wfDebugLog( 'LSBSearch', get_called_class() . ":setModifiers:" . json_encode($this->modifiers) );
     }
 
 
@@ -418,7 +418,7 @@ class FFXIPH_Mob  {
 
         if ($hasMp)
         {
-            //wfDebugLog( 'ASBSearch', get_called_class() . ":importSQL:" . json_encode($this->modifiers) );
+            //wfDebugLog( 'LSBSearch', get_called_class() . ":importSQL:" . json_encode($this->modifiers) );
             $scale = isset( $this->modifiers["MOBMOD_MP_BASE"] ) ? $this->modifiers["MOBMOD_MP_BASE"] / 100 : $SQLmob->MPscale;
             
             if ($SQLmob->MPmodifier == 0)
@@ -560,7 +560,7 @@ class FFXIPH_Mob  {
     // private function setTraits(Array $traits){
     //     if ( count($traits) == 0 ) return;
         
-    //     wfDebugLog( 'ASBSearch', get_called_class() . ":setTraits:mob: " . $this->getName() . ",mjob: ". $this->getMjob() . ",sjob: ". $this->getSjob() .", traits:" . json_encode($traits) );
+    //     wfDebugLog( 'LSBSearch', get_called_class() . ":setTraits:mob: " . $this->getName() . ",mjob: ". $this->getMjob() . ",sjob: ". $this->getSjob() .", traits:" . json_encode($traits) );
     // }
 
 }
